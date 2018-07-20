@@ -11,8 +11,9 @@ class MailTest extends TestCase
 {
     
     /**
-     * A basic test example.
-     *
+     * An example test for phpunit.
+     * Test to see if an email can be sent in the dev environment.
+     * 
      * @return void
      */
     public function testSendEmail()
