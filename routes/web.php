@@ -18,3 +18,11 @@ Route::get('/', function () {
 Route::get('/auction', function () {
     return view('auction');
 });
+
+Route::get('/previous', function () {
+    return view('previous');
+});
+
+Route::get('/contenders', function () {
+    return view('contenders');
+});
