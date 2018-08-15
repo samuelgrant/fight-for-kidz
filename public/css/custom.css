@@ -1,0 +1,260 @@
+/* Custom scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #888; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #DA4D4D; 
+  border-radius: 20px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #CA2A2A; 
+}
+
+.vs{ 
+    margin: 0 auto;
+    width: 100%;
+    height: 50px;
+  }
+  
+  .button-div{
+    margin-left: auto;
+    margin-right: auto;
+    padding:1rem;
+    border: 1px solid aqua;
+  }
+  
+  .auctions-section{
+    padding: 10rem 0;
+  }
+  
+  .navbar-brand img{
+    max-width: 200px;
+  }
+  
+  .bar{
+    border-bottom: 2px solid aqua;
+  }
+  
+  .about-section h4{
+    margin-bottom: 1rem;  
+  }
+  
+  .all-caps{
+    text-transform: uppercase;
+  }
+
+  .push-down{
+    margin-top:9rem;
+    margin-bottom: 3rem;
+  }
+
+  /* .heading-container{
+    background-color: rgba(22, 22, 22, 0.5);
+    padding: 2.5em;
+  } */
+  
+  .heading-container h1{
+    margin:0px;
+  }
+
+  /* Auction Section */
+
+  .auction-section .row{
+    background-color: black;
+    background-size: 30%;
+    border-radius: 10px;
+  }
+
+  .auction-item-div{
+    /* border: 1px solid black; */
+    /* background-color: rgba(22, 22, 22, 0.5); */
+    padding: 0px !important;
+  }
+
+  .item-name{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    color: white;
+  }
+
+  .item-img{
+    max-height: 300px;
+    display: block;
+    margin: auto;
+    width: 100%;    
+  }
+
+  .item-donee{
+    color: white;
+  }
+
+  .item-desc{
+    color: white;
+    margin-top: 0.3rem;
+  }
+
+  .item-link{
+    color: aqua;
+    border: 1px solid aqua;
+    text-transform: uppercase;
+    width: 50%;
+    margin: auto;
+  }
+
+  .item-link:hover{
+    cursor: pointer;
+  }
+
+  /* Modals in auction page */
+  
+  .modal{
+    display: none;
+    position: fixed;
+    z-index: 1031;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.9);
+  }
+
+  .modal-content{ /* image */
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+  }
+
+  #caption{
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0px;
+    height: 150px;
+  }
+
+  .ring-bg{
+    background: url('/img/bg-masthead.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+
+  /* Add animation */
+  .modal-content, .caption{
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+  }
+
+  @-webkit-keyframes zoom{
+    from{-webkit-transform:scale(0)}
+    to{-webkit-transform: scale(1)}
+  }
+
+  @keyframes zoom{
+    from{transform:scale(0)}
+    to{transform: scale(1)}
+  }
+
+  #close{
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  #close:hover, #close:focus{
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+    @media only screen and (max-width: 700px){
+      .modal-content{
+        width: 100%;
+      }
+    }
+  
+    /* Dropdown animation */
+
+  .dropdown .dropdown-menu{
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+
+    max-height: 0;
+    display: block;
+    overflow: hidden;
+    opacity: 0;
+  }
+
+  .dropdown:hover .dropdown-menu{
+    max-height: 200px;
+    opacity: 1;
+  }
+
+  /* Dropdown styling */
+
+  .dropdown-transparent{
+    background-color: transparent;    
+  }
+
+  .dropdown-transparent p{
+    color: white !important;
+  }
+
+  .dropdown-menu{
+    border: none;
+    border-radius: 0px;
+    top: 5rem;
+  }
+
+  .dropdown-menu p{
+    text-align: center;
+    color: black;
+  }
+
+  /* Sponsors section on index */
+  #sponsors-section{
+    padding: 2rem;
+    background-color: #f5f5f5;
+  }
+
+  #sponsors-section img{
+    display: block;
+    width: 50%;
+    margin: auto;
+    margin-top: 25px;
+  }
+
+  /* Upcoming event section */
+  .upcoming-section{
+    background-color: #141414;
+
+  }
+
