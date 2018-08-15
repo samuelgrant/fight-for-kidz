@@ -26,3 +26,12 @@ Route::get('/previous', function () {
 Route::get('/contenders', function () {
     return view('contenders');
 });
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+Route::get('/apply', function () {
+    return view('apply');
+});
+

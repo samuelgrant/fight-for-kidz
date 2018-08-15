@@ -1,34 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>Fight For Kidz 2018</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Custom fonts for this template -->
-    <link href="https://fonts.googleapis.com/css?family=Varela+Round" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="css/previous.css" rel="stylesheet">
-    <link href="css/custom.css" rel="stylesheet">
-    <link href="css/grayscale.css" rel="stylesheet">
-
-</head>
-
-<body id="page-top" class="ring-bg" style="padding: 15px; background-color: rgba(0,0,0,0.7);">
-
-   @include('nav')
-
+@section('content')
     <div class="container push-down">
         <h1 class="text-white text-center mb-5">Previous Events</h1>
         <div class="dropdown" style="display: block !important; margin:auto !important; width:fit-content;">
@@ -130,23 +102,5 @@
         </a>
 
     </div>
+@endsection
 
-    <!-- Footer -->
-    <footer class="bg-black small text-center text-white-50" ">
-        <p class="text-gray text-center">Copyright &copy; Fight For Kidz 2018</p>
-    </footer>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="vendor/font-awesome/js/all.js"></script>
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="js/grayscale.js"></script>
-
-</body>
-
-</html>
