@@ -43,10 +43,10 @@
             <a class="nav-link js-scroll-trigger" href="index.html#about">About us</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="contenders.html">Contenders</a>
+            <a class="nav-link js-scroll-trigger" href="/contenders">Contenders</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="previous.html">Previous Years</a>
+              <a class="nav-link js-scroll-trigger" href="/previous">Previous Years</a>
           </li>
           <li class="dropdown">
             <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">Support Us
@@ -60,7 +60,7 @@
                 <a class="js-scroll-trigger" href="#merchandise"><p>Merchandise</p></a>
               </li>
               <li>
-                <a href="auction.html"><p>Auction</p></a>
+                <a href="/auction"><p>Auction</p></a>
               </li>
               <li>
                 <a class="js-scroll-trigger" href="index.html#signup"><p>Apply</p></a>
