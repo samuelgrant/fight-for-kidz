@@ -15,7 +15,15 @@ class CreateSponsorApplicationsTable extends Migration
     {
         Schema::create('sponsor__applications', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('event_id')->unsigned();
             $table->timestamps();
+
+            /*
+                Application form fields here
+            */
+
+            // Foreign key definitions
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
         });
     }
 

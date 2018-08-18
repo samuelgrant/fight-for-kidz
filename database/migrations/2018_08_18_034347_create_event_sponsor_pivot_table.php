@@ -1,5 +1,7 @@
 <?php
 
+// This migration was created with the laracasts/generators make:migration:pivot command
+
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
