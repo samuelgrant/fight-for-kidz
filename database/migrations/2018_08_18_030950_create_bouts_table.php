@@ -28,6 +28,7 @@ class CreateBoutsTable extends Migration
             $table->foreign('red_contender_id')->references('id')->on('contenders')->onDelete('cascade');
             $table->foreign('blue_contender_id')->references('id')->on('contenders')->onDelete('cascade');
             $table->foreign('victor_id')->references('id')->on('contenders')->onDelete('cascade');
+            $table->foreign('sponsor_id')->references('id')->on('sponsors')->onDelete('cascade');
         });
     }
 

@@ -18,20 +18,20 @@ class Bout extends Model
         return $this->belongsTo('App\Sponsor');
     }
 
-    // Relationship to blue contender -
+    // Relationship to blue contender - many to one
     public function blue_contender()
     {
-        return $this->belongsTo('App\Contender', 'blue_contender_id');
+        return $this->belongsTo('App\Contender');
     } 
 
-    // Relationship to red contender -
+    // Relationship to red contender - many to one
     public function red_contender(){
-        return $this->belongsTo('App\Contender', 'red_contender_id');
+        return $this->belongsTo('App\Contender');
     }
 
-    // Relationship to victor - 
+    // Relationship to victor - many to one
     public function victor()
     {
-        return $this->belongsTo('App\Contender', 'victor_id');
+        return $this->belongsTo('App\Contender');
     }
 }

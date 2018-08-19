@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContenderApplicationsTable extends Migration
+class CreateAuctionItemsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,17 @@ class CreateContenderApplicationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contender__applications', function (Blueprint $table) {
+        Schema::create('auction_items', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('event_id')->unsigned();
-            $table->boolean('is_selected');            
+            $table->string('name');
+            $table->string('desc');
+            $table->string('donor');
+            $table->string('picture'); // uri to image
+            $table->float('sale_price', 8, 2)->nullable();
             $table->timestamps();
 
-            /*
-                Application form fields go here
-            */
-
-            // Foreign key constraints definition
+            // Foreign key constraint definition
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
         });
     }
@@ -35,6 +35,6 @@ class CreateContenderApplicationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contender__applications');
+        Schema::dropIfExists('auction__items');
     }
 }

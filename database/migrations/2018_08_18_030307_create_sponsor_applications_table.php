@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAuctionItemsTable extends Migration
+class CreateSponsorApplicationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,16 @@ class CreateAuctionItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('auction__items', function (Blueprint $table) {
+        Schema::create('sponsor_applications', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('event_id')->unsigned();
-            $table->string('name');
-            $table->string('desc');
-            $table->string('donor');
-            $table->string('picture'); // uri to image
-            $table->float('sale_price', 8, 2)->nullable();
             $table->timestamps();
 
-            // Foreign key constraint definition
+            /*
+                Application form fields here
+            */
+
+            // Foreign key definitions
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
         });
     }
@@ -35,6 +34,6 @@ class CreateAuctionItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('auction__items');
+        Schema::dropIfExists('sponsor__applications');
     }
 }

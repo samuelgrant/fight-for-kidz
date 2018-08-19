@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Contender_Application extends Model
+class ContenderApplication extends Model
 {
     // Relationship to event - many to one
     public function event()
