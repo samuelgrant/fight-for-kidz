@@ -35,4 +35,33 @@ class User extends Authenticatable
 
     // Relationship with sponsor application notes
     // To be implemented
+
+    protected function enable()
+    {
+        if(!$this->active){
+            $this->active = true;
+            $this->save();
+
+            //Add to admin ml group
+            //Fire email YOUR ACCOUNT IS NOW ACTIVATED
+            //Return WINNING
+        }
+
+        //Return account already active error
+    }
+
+    protected function disable()
+    {
+        if($this->active){
+            $this->active = false;
+            $this->save();
+
+
+            //Remove from admin group (for mailing list things)
+            //Fire email account disabled
+            
+            //Return account now disabled
+        }
+        //Return already disabled
+    }
 }
