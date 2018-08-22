@@ -99,14 +99,6 @@
     color: white;
   }
 
-  footer {
-    position:absolute;
-    bottom:0;
-    width:100%;
-    height:60px;   /* Height of the footer */
-    background:#6cf;
- }
-
   .item-desc{
     color: white;
     margin-top: 0.3rem;
@@ -267,5 +259,6 @@
   }
 
 .auth{
-  margin-top: 180px;
+  margin-top: 160px;
+  margin-bottom: 160px;
 }
