@@ -31,7 +31,7 @@ _Hosting can be purchased at [Digital Ocean](https://www.digitalocean.com/) or [
 4. `` cp .env.example .env``
 5. ``php artisan key:generate``
 6. Fill out the .env file
-7. Create an Apache Virtual Hosts file. You can use the example below to test your site, but check that you update the DocumentRoot. When you publish this site to production please create a full virtual hosts file. __Refer to [Apache2 Documentation](https://httpd.apache.org/docs/2.4/vhosts/)_. Then restart apache2.
+7. Create an Apache Virtual Hosts file. You can use the example below to test your site, but check that you update the DocumentRoot. When you publish this site to production please create a full virtual hosts file. _Refer to [Apache2 Documentation](https://httpd.apache.org/docs/2.4/vhosts/)_. Then restart apache2.
 ```
 <VirtualHost *:80>
 	ServerAdmin caitlin@viliana.space
