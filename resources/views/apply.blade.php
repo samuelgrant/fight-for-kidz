@@ -11,20 +11,28 @@
       <form>
         <div class="row">
           <div class="form-group col-md-6">
-            <input id="name" type="text" class="form-control" placeholder="Your name">
+            <input id="name" type="text" class="form-control" placeholder="Full name">
           </div>
           <div class="form-group col-md-6">
-            <input id="email" type="text" class="form-control" placeholder="Your email address">
+            <input id="email" type="text" class="form-control" placeholder="Email address">
           </div>
         </div>
         <div class="row">
           <div class="form-group col-md-6">
-            <input id="phone" type="text" class="form-control" placeholder="Phone number">
+            <input id="home phone" type="text" class="form-control" placeholder="Home phone">
           </div>
           <div class="form-group col-md-6">
-            <input id="dob" type="text" class="form-control" placeholder="Date of birth">
+            <input id="mobile phone" type="text" class="form-control" placeholder="Mobile phone">
           </div>
         </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <input id="dob" type="date" class="form-control">
+          </div>
+          <div class="form-group col-md-6">
+            <input id="PreferedHand" type="text" class="form-control" placeholder="Left or right handed">
+          </div>
+        </div>  
         <div class="form-group">
           <p class="text-white">Do you have previous boxing experience?</p>
           <div class="radio text-white">
@@ -37,6 +45,22 @@
         <div class="form-group">
           <label for="experience" class="text-white">Please describe your boxing experience:</label>
           <textarea id="experience" class="form-control" rows="2"></textarea>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <input id="Weight" type="number" class="form-control" placeholder="Weight(kgs)">
+          </div>
+          <div class="form-group col-md-6">
+            <input id="Height" type="number" class="form-control" placeholder="Height(cms)">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <input id="Occupation" type="text" class="form-control" placeholder="Occupation">
+          </div>
+          <div class="form-group col-md-6">
+            <input id="Employer" type="text" class="form-control" placeholder="Employer">
+          </div>
         </div>
         <div class="form-group">
           <p class="text-white">Do you experience any of the following health issues:</p>

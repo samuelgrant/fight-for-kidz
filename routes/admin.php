@@ -10,6 +10,6 @@
 |
 */
 
-Route::get('/test', function () {
-    return ('This is the Admin Test View');
+Route::get('/dashboard', function(){
+    return view('admin.dashboard');
 });
