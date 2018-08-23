@@ -35,6 +35,6 @@ class CreateAuctionItemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('auction__items');
+        Schema::dropIfExists('auction_items');
     }
 }

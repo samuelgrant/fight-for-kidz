@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
  @section('content')
 <div class="container auth">
     <div class="row justify-content-center">
@@ -10,6 +11,7 @@
                             {{ session('status') }}
                         </div>
                     @endif
+
                      <form method="POST" action="{{ route('password.email') }}" aria-label="{{ __('Reset Password') }}">
                         @csrf
                          <div class="form-group row">
@@ -23,6 +25,7 @@
                                 @endif
                             </div>
                         </div>
+
                          <div class="form-group row mb-0">
                             <div class="col-md-12 ">
                                 <button type="submit" class="btn btn-danger" style="width: 100%">

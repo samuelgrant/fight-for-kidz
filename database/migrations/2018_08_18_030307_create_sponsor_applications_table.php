@@ -34,6 +34,6 @@ class CreateSponsorApplicationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sponsor__applications');
+        Schema::dropIfExists('sponsor_applications');
     }
 }

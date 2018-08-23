@@ -35,6 +35,6 @@ class CreateContenderApplicationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contender__applications');
+        Schema::dropIfExists('contender_applications');
     }
 }
