@@ -34,16 +34,22 @@ class UserManagementController extends Controller
     {
         $user = User::find($id);
 
-        if(Auth::user()->id != $id){
-            if($user->active)
-            {
-                $user->disable();
-            }
-            else
-            {
-                $user->enable();
-            }
+        if(Auth::user()->id == $id){
+            session()->flash('error', 'You cannot adjust your own account.');
+            return redirect()->back();
+        };
+        
+        if($user->active)
+        {
+            $user->disable();
+            session()->flash('success', 'The account belonging to '.$user->name.' was deactivated.');
         }
+        else
+        {
+            $user->enable();
+            session()->flash('success', 'The account belonging to '.$user->name.' was activated.');
+        }
+        
         return redirect()->back();
     }
 
@@ -58,8 +64,12 @@ class UserManagementController extends Controller
 
         if(Auth::user()->id != $id){
             $user->delete();
+            session()->flash('success', 'The account belonging to '.$user->name.' was deleted.');
         }
-        
+        else
+        {
+            session()->flash('error', 'You cannot adjust your own account.');
+        }        
         return redirect()->back();
     }
 }

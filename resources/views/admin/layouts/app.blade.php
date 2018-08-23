@@ -9,6 +9,7 @@
         @include('admin.layouts.nav')
             <div id="content-wrapper">
                 <div class="container-fluid">
+                    @include('admin.layouts.alerts')
                     @yield('page')
                 </div>
                 <!-- /.container-fluid -->
