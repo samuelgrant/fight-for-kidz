@@ -34,3 +34,5 @@ Route::get('/contact', function () {
 Route::get('/apply', function () {
     return view('apply');
 });
+
+Auth::routes();

@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
  @section('content')
 <div class="container auth">
     <div class="row justify-content-center">
@@ -19,6 +20,7 @@
                                 @endif
                             </div>
                         </div>
+                        
                          <div class="form-group row">
                             <label for="password" class="col-md-12 col-form-label text-md-left">{{ __('Password') }}</label>
                              <div class="col-md-12">
@@ -30,6 +32,7 @@
                                 @endif
                             </div>
                         </div>
+                        
                          <div class="form-group row">
                             <label for="password-confirm" class="col-md-12 col-form-label text-md-left">{{ __('Confirm Password') }}</label>
                              <div class="col-md-12">
