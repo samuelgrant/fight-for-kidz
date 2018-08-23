@@ -4,10 +4,13 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
     use Notifiable;
+    use SoftDeletes;
+    
 
     /**
      * The attributes that are mass assignable.
@@ -36,7 +39,7 @@ class User extends Authenticatable
     // Relationship with sponsor application notes
     // To be implemented
 
-    protected function enable()
+    public function enable()
     {
         if(!$this->active){
             $this->active = true;
@@ -50,7 +53,7 @@ class User extends Authenticatable
         //Return account already active error
     }
 
-    protected function disable()
+    public function disable()
     {
         if($this->active){
             $this->active = false;
