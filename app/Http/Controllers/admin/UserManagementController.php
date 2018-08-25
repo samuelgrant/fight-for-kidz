@@ -30,7 +30,7 @@ class UserManagementController extends Controller
      * 
      * @param $id
      */
-    public function update($id)
+    public function toggleActive($id)
     {
         $user = User::find($id);
 
