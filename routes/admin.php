@@ -15,5 +15,5 @@ Route::get('/dashboard', function(){
 })->name('admin.dashboard');
 
 Route::get('/user-management', 'admin\UserManagementController@index')->name('admin.userManagement');
-Route::put('/user-management/{userID}', 'admin\UserManagementController@toggleActive')->name('admin.userManagement.update');
+Route::put('/user-management/{userID}', 'admin\UserManagementController@toggleActive')->name('admin.userManagement.toggleActive');
 Route::delete('/user-management/{userID}', 'admin\UserManagementController@destroy')->name('admin.userManagement.destroy');
