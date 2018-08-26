@@ -46,41 +46,4 @@ class UserManagementTest extends TestCase
             'active' => 0
         ]);
     }
-
-    /**
-     * Tests that the destroy() function is soft deleting the correct user.
-     * 
-     * @return void
-     */
-    public function testDestroy()
-    {
-
-        //Create logged in user and other user.
-
-         $authenticatedUser = factory(User::class)->create([
-             'active' => 1
-         ]);
-         $otherUser = factory(User::class)->create();
-                        
-        /*
-        * Simulates someone trying to delete themselves. Should not soft delete.
-        */
-        $this->actingAs($authenticatedUser)->delete('UserManagementController@destroy', ['userID' => $authenticatedUser->id]);
-        $this->assertDatabaseHas('users', [
-            'id' => $authenticatedUser->id,
-            'deleted_at' => null // i.e. not deleted
-        ]);
-
-        /*
-        * Simulates someone trying to delete another user. Other user should be soft deleted.
-        */
-        $this->actingAs($authenticatedUser)->delete('UserManagementController@destroy', ['userID' => $otherUser->id]);
-        $this->assertSoftDeleted('users', [
-            'name' => $otherUser->name,
-            'email' => $otherUser->email,
-            'id' => $otherUser->id
-        ]);
-
-        
-    }
 }
