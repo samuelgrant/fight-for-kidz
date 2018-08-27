@@ -12,5 +12,27 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+})->name('index');
+
+Route::get('/auction', function () {
+    return view('auction');
 });
+
+Route::get('/previous', function () {
+    return view('previous');
+});
+
+Route::get('/contenders', function () {
+    return view('contenders');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
+});
+
+Route::get('/apply', function () {
+    return view('apply');
+});
+
+Auth::routes();
