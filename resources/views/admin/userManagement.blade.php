@@ -31,7 +31,7 @@
                         <td>{{($user->active)? "Active Account" : "Activation Required"}}</td>
                         <td>{{$user->updated_at}}</td>
                         <td>
-                            {!!Form::open(['action'=>['admin\UserManagementController@update', $user->id], 'method' => 'POST']) !!}
+                            {!!Form::open(['action'=>['admin\UserManagementController@toggleActive', $user->id], 'method' => 'POST']) !!}
                             @if($user->active)
                             <button class="btn btn-info" type="submit"><i class="far fa-times-circle"></i> Deactive Account</button>
                             @else
