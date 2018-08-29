@@ -72,4 +72,19 @@ class UserManagementController extends Controller
         }        
         return redirect()->back();
     }
+
+    /**
+     * Restores soft deleted selected user account
+     * 
+     * @param $id
+     */
+    public function restore($id){
+
+        $user = User::find($id);
+
+        $user->restore();
+        
+        return redirect()->back();
+    }
+
 }
