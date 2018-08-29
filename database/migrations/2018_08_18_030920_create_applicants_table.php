@@ -15,8 +15,7 @@ class CreateApplicantsTable extends Migration
     {
         Schema::create('applicants', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('event_id')->unsigned();
-            $table->boolean('is_selected');            
+            $table->integer('event_id')->unsigned();           
             $table->timestamps();
 
             /*
