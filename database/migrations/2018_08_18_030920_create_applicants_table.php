@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateContenderApplicationsTable extends Migration
+class CreateApplicantsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateContenderApplicationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('contender_applications', function (Blueprint $table) {
+        Schema::create('applicants', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('event_id')->unsigned();
             $table->boolean('is_selected');            
@@ -35,6 +35,6 @@ class CreateContenderApplicationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contender_applications');
+        Schema::dropIfExists('applicants');
     }
 }
