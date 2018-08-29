@@ -373,3 +373,25 @@ body.sidebar-toggled footer.sticky-footer {
     width: calc(100% - 90px);
   }
 }
+
+
+
+/* Groups Button */
+.btn.groups>img{
+  float: left;
+}
+
+.btn.groups > h3, .btn.groups > span{
+  color: black;
+  text-align: left;
+}
+
+.btn.groups{
+  outline: none;
+  box-shadow: none;
+  width: 100%;
+}
+
+.btn.groups:hover{
+  background-color: rgb(218, 218, 218, 0.4);
+}

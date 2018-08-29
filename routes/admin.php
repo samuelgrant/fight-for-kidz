@@ -17,3 +17,9 @@ Route::get('/dashboard', function(){
 Route::get('/user-management', 'admin\UserManagementController@index')->name('admin.userManagement');
 Route::put('/user-management/{userID}', 'admin\UserManagementController@update')->name('admin.userManagement.update');
 Route::delete('/user-management/{userID}', 'admin\UserManagementController@destroy')->name('admin.userManagement.destroy');
+
+Route::get('/group-management', 'admin\GroupManagementController@index')->name('admin.groupManagement');
+Route::post('/group-management', 'admin\GroupManagementController@store')->name('admin.groupManagement.create');
+Route::get('/group-management/{groupID}', 'admin\GroupManagementController@view')->name('admin.group');
+Route::put('/group-management/{groupID}', 'admin\GroupManagementController@update')->name('admin.group.update');
+Route::delete('/group-management/{groupID}', 'admin\GroupManagementController@destroy')->name('admin.group.destroy');
