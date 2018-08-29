@@ -30,6 +30,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function groups(){
+        return $this->belongsToMany('App\Group', 'group_user');
+    }
+
     public function enable()
     {
         if(!$this->active){
