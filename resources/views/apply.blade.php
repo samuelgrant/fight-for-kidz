@@ -19,11 +19,40 @@
         </div>
         <div class="row">
           <div class="form-group col-md-6">
-            <input id="phone" type="text" class="form-control" placeholder="Phone number">
+            <input id="Address" type="text" class="form-control" placeholder="Address">
           </div>
           <div class="form-group col-md-6">
             <input id="dob" type="text" class="form-control" placeholder="Date of birth">
           </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <input id="Phone" type="text" class="form-control" placeholder="Phone">
+          </div>
+          <div class="form-group col-md-6">
+            <input id="Moblie" type="text" class="form-control" placeholder="Mobile">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <input id="Weight" type="text" class="form-control" placeholder="Weight">
+          </div>
+          <div class="form-group col-md-6">
+            <input id="Height" type="text" class="form-control" placeholder="Height">
+          </div>
+        </div>
+        <div class="form-group">
+          <p class="text-white">Are you left handed or right?</p>
+          <div class="radio text-white">
+            <label>
+              <input type="radio" class="radio" name="expRadio">Yes</label>
+            <label>
+              <input type="radio" class="radio" name="expRadio">No</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="summary" class="text-white">All Sporting Experience:</label>
+          <textarea id="summary" class="form-control" rows="2"></textarea>
         </div>
         <div class="form-group">
           <p class="text-white">Do you have previous boxing experience?</p>
@@ -39,21 +68,17 @@
           <textarea id="experience" class="form-control" rows="2"></textarea>
         </div>
         <div class="form-group">
-          <p class="text-white">Do you experience any of the following health issues:</p>
-          <div class="checkboxes text-white">
-            <div class="checkbox"><label><input type="checkbox" value = "">High blood pressure</label></div>
-            <div class="checkbox"><label><input type="checkbox" value = "">Headaches</label></div>
-            <div class="checkbox"><label><input type="checkbox" value = "">Vertigo</label></div>
-            <div class="checkbox"><label><input type="checkbox" value = "">Heart Disease</label></div>
-            <div class="checkbox"><label><input type="checkbox" value = "">Asthma</label></div>
-            <div class="checkbox"><label><input type="checkbox" value = "">Hayfever</label></div>
-            <div class="checkbox"><label><input type="checkbox" value = "">Diabetes</label></div>
-            <div class="checkbox"><label><input type="checkbox" value = "">Depression and anxiety</label></div>
+          <p class="text-white">do you have any crimal convictions?</p>
+          <div class="radio text-white">
+            <label>
+              <input type="radio" class="radio" name="expRadio">Yes</label>
+            <label>
+              <input type="radio" class="radio" name="expRadio">No</label>
           </div>
         </div>
         <div class="form-group">
-          <label for="summary" class="text-white">Please tell us about yourself:</label>
-          <textarea id="summary" class="form-control" rows="5"></textarea>
+          <label for="experience" class="text-white">Please list/describe your crimes:</label>
+          <textarea id="experience" class="form-control" rows="2"></textarea>
         </div>
         <div class="form-group text-white">
           <label for="upload" class="text-white">Please upload your photo:</label>
