@@ -36,7 +36,6 @@ class GroupManagementController extends Controller
     public function store(Request $request){
         $group = new Groups();
         $group->name = $request->input('groupName');
-        $group->type = "Custom Group";
         
         if($request->hasFile('image')){
 
