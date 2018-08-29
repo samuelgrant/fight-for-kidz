@@ -21,7 +21,7 @@ class CreateGroupApplicantTable extends Migration
 
             $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
             $table->foreign('applicant_id')->references('id')->on('applicants')->onDelete('cascade');
-            $talbe->primary('group_id', 'applicant_id');
+            $table->primary('group_id', 'applicant_id');
         });
     }
 

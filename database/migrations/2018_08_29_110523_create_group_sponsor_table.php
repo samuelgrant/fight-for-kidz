@@ -21,7 +21,7 @@ class CreateGroupSponsorTable extends Migration
 
             $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
             $table->foreign('sponsor_id')->references('id')->on('sponsors')->onDelete('cascade');
-            $talbe->primary('group_id', 'sponsor_id');
+            $table->primary('group_id', 'sponsor_id');
         });
     }
 
