@@ -32,5 +32,7 @@ class UsersTableSeeder extends Seeder
                 'active' => 0
             ]
         );
+
+        Log::debug('Test user accounts created');
     }
 }
