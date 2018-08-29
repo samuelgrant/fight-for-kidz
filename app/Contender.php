@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Contender extends Model
 {
     // Relationship to application - one to one
-    public function application()
+    public function applicant()
     {
-        return $this->belongsTo('App\ContenderApplication');
+        return $this->belongsTo('App\Applicant');
     }
 
     // Relationship to event - one to many

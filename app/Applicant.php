@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ContenderApplication extends Model
+class Applicant extends Model
 {
     // Relationship to event - many to one
     public function event()
@@ -18,6 +18,7 @@ class ContenderApplication extends Model
         return $this->hasOne('App\Contender');
     }
 
-    // Relationship to application notes
-    // Table yet to be created
+    public function groups(){
+        return $this->belongsToMany('App\Group', 'group_applicant');
+    }
 }

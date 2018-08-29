@@ -31,9 +31,9 @@ class Event extends Model
     }
 
     // Relationship to contender applications - one to many
-    public function contender_applications()
+    public function applicants()
     {
-        return $this->hasMany('App\Contender_Application');
+        return $this->hasMany('App\Applicant');
     }
 
     // Relationship to sponsor applications - one to many
