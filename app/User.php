@@ -30,15 +30,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    // Relationship with contender application notes
-    public function ContenderAppNotes()
-    {
-        return $this->hasMany('App\ContenderAppNote');
-    }
-
-    // Relationship with sponsor application notes
-    // To be implemented
-
     public function enable()
     {
         if(!$this->active){
