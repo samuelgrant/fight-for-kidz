@@ -21,8 +21,9 @@ class UserManagementController extends Controller
      */
     public function index()
     {
-        $user = User::orderBy('name', 'asc')->get();
-        return view('admin.userManagement')->with('users', $user);
+        $users = User::orderBy('name', 'asc')->get();
+        $deletedUsers = User::onlyTrashed()->get();
+        return view('admin.userManagement')->with(['users' => $users, 'deletedUsers' => $deletedUsers]);
     }
 
     /**
@@ -63,6 +64,7 @@ class UserManagementController extends Controller
         $user = User::find($id);
 
         if(Auth::user()->id != $id){
+            $user->disable();
             $user->delete();
             session()->flash('success', 'The account belonging to '.$user->name.' was deleted.');
         }
@@ -80,10 +82,10 @@ class UserManagementController extends Controller
      */
     public function restore($id){
 
-        $user = User::find($id);
-
+        $user = User::withTrashed()->find($id);
         $user->restore();
-        
+        session()->flash('success', 'The account belonging to '.$user->name.' was restored, activation required.');
+
         return redirect()->back();
     }
 
