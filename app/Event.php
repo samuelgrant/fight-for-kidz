@@ -35,10 +35,4 @@ class Event extends Model
     {
         return $this->hasMany('App\Applicant');
     }
-
-    // Relationship to sponsor applications - one to many
-    public function sponsor_applications()
-    {
-        return $this->hasMany('App\Sponsor_Application');
-    }
 }
