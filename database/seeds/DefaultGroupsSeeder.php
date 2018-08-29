@@ -16,9 +16,13 @@ class DefaultGroupsSeeder extends Seeder
             'type' => 'System Group'
         ]);
 
+        Log::debug('Administrators group created');
+
         factory(App\Group::class)->create([
             'name' => 'Subscribers',
             'type' => 'System Group'
         ]);
+
+        Log::debug('Subscribers group created');
     }
 }
