@@ -30,7 +30,6 @@ class CreateContendersTable extends Migration
 
             // Foreign key constraints definition
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
-            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
             $table->foreign('sponsor_id')->references('id')->on('sponsors')->onDelete('cascade');
             $table->foreign('application_id')->references('id')->on('contender_applications')->onDelete('cascade');            
         });

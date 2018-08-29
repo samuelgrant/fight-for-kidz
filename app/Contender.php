@@ -18,12 +18,6 @@ class Contender extends Model
         return $this->belongsTo('App\Event');
     }
 
-    // Relationship to team - many to one
-    public function team()
-    {
-        return $this->belongsTo('App\Team');
-    }
-
     // Relationship to sponsor - many to one
     public function sponsor()
     {
