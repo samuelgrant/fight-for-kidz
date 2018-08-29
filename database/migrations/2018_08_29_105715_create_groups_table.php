@@ -15,10 +15,11 @@ class CreateGroupsTable extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('icon');
-            $table->string('desc');
+            $table->string('name', 30)->unique();
+            $table->string('type', 30)->nullable()->default('Custom Group');
+            $table->boolean('customIcon')->default(false);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

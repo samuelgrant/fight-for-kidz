@@ -16,7 +16,10 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // This causes the run() function of UsersTableSeeder to execute
+        // This causes the run() function of UsersTableSeeder to execute -- disable on production
         $this->call(UsersTableSeeder::class);
+
+        // Seeds default user groups, Administrators and Subscribers
+        $this->call(DefaultGroupsSeeder::class);
     }
 }
