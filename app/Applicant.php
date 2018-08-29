@@ -21,4 +21,10 @@ class Applicant extends Model
     public function groups(){
         return $this->belongsToMany('App\Group', 'group_applicant');
     }
+
+    // Return true if a contender record exists for this application
+    
+    public function isContender(){
+        return $this->contender != null;
+    }
 }
