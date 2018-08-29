@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+use Storage;
 use App\Groups;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -30,6 +31,23 @@ class GroupManagementController extends Controller
     public function view($id)
     {
         return "Group Page: ".$id;
+    }
+
+    public function store(Request $request){
+        $group = new Groups();
+        $group->name = $request->input('groupName');
+        $group->type = "Custom Group";
+        
+        if($request->hasFile('image')){
+
+
+        } else {
+            $group->custom_icon = false;
+        }
+
+        $group->save();
+        
+        return redirect()->back();
     }
 
     public function destroy($id){
