@@ -37,5 +37,6 @@
 
   <!-- Custom scripts for this template -->
   <script src="/js/grayscale.js" defer></script>
+  <script src="/js/custom.js" defer></script>
 
 </head>
