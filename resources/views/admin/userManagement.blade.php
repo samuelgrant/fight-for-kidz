@@ -18,7 +18,7 @@
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'deleted')? 'active': '' }}" role="tab" data-toggle="tab" href="#tab-2" id="deleted">Deleted Accounts</a></li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane {{ (app('request')->input('tabs') != 'deleted')? 'active': '' }}" role="tabpanel" id="tab-1">
+                <div class="tab-pane {{ (app('request')->input('tab') != 'deleted')? 'active': '' }}" role="tabpanel" id="tab-1">
                     <div class="table-responsive">
                         <table class="table table-striped table-hover table-sm">
                             <thead>
@@ -60,7 +60,7 @@
                         </table>
                     </div> 
                 </div>
-                <div class="tab-pane {{ (app('request')->input('tabs') == 'deleted')? 'active': '' }}" role="tabpanel" id="tab-2">
+                <div class="tab-pane {{ (app('request')->input('tab') == 'deleted')? 'active': '' }}" role="tabpanel" id="tab-2">
                 <div class="table-responsive">
                         <table class="table table-striped table-hover table-sm">
                             <thead>
