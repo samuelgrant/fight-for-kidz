@@ -22,4 +22,4 @@
 
 <!-- Custom scripts for all pages-->
 <script src="/admin/js/sb-admin.min.js"></script>
-<script src="/admin/js/app.min.js"></script>
+<script src="/admin/js/app.js"></script>
