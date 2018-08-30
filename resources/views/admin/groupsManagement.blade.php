@@ -5,17 +5,23 @@
     <li class="breadcrumb-item">
         <a href="{{route('admin.dashboard')}}">Dashboard</a>
     </li>
-    <li class="breadcrumb-item">
-        <a href="{{route('admin.groupManagement')}}">Group Management</a>
-    </li>
-    <li class="breadcrumb-item active">Group: {{$group->name}}</li>   
+    <li class="breadcrumb-item active">Group Management</li>   
 </ol>
 
 <!-- Page Content -->
 <div class="row">
     <div class="col-md-12">
+        <button class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#newGroup">New Group</button>
         <div class="row">
-            
+            @foreach($groups as $group)
+            <div class="col-md-4 col-md-4 col-sm-6 my-1">    
+                <a class="btn groups" href="{{ route('admin.group', ['id' => $group->id])}}">
+                    <img src="/storage/images/groups/{{($group->custom_icon)?$group->id: 0 }}.png" alt="Group Icon"/>
+                    <h3>{{$group->name}}</h3>
+                    <span class="d-block">{{$group->type}}</span>
+                </a>
+            </div>
+            @endforeach
         </div>
     </div>
 </div>

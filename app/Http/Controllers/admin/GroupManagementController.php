@@ -25,12 +25,13 @@ class GroupManagementController extends Controller
         foreach($groups as $group){
             $group->image = $group->id.".ping";
         }
-        return view('admin.groupManagement')->with('groups', $groups);
+        return view('admin.groupsManagement')->with('groups', $groups);
     }
 
     public function view($id)
     {
-        return "Group Page: ".$id;
+        return view('admin.groupManagement')
+            ->with('group', Groups::find($id));
     }
 
     public function store(Request $request){
