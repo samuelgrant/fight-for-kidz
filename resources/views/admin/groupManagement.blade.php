@@ -16,7 +16,7 @@
             @foreach($groups as $group)
             <div class="col-md-4 col-md-4 col-sm-6 my-1">    
                 <a class="btn groups" href="{{ route('admin.group', ['id' => $group->id])}}">
-                    <img src="/storage/images/groups/{{$group->id}}.png" alt="Group Icon"/>
+                    <img src="/storage/images/groups/{{($group->custom_icon)?$group->id: 0 }}.png" alt="Group Icon"/>
                     <h3>{{$group->name}}</h3>
                     <span class="d-block">{{$group->type}}</span>
                 </a>
