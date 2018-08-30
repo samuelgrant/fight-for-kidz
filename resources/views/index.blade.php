@@ -7,7 +7,7 @@
       <div class="mx-auto text-center">
         <img src="img/f4k.png" class="img-fluid" />
         <h2 class="text-white-50 mx-auto mt-5 mb-5">Fight For Kidz is a charity boxing event held in Southland to raise money for Southland kidz charities.</h2>
-        <a href="#signup" class="btn btn-primary js-scroll-trigger">Be a part of it!</a>
+        <button href="#signup" class="btn btn-primary js-scroll-trigger" data-toggle="modal" data-target="#subscribe" >SUBSCRIBE TO OUR NEWSLETTER</button>
       </div>
     </div>
   </header>
@@ -50,7 +50,7 @@
       <img src="img/troopers-memorial2.png" class="img-fluid mb-5" />
     </div>
   </section> 
-  </div>
+
 
   <section id="sponsors-section">
     <h2 class="text-center">Our Sponsors</h2>
@@ -61,8 +61,37 @@
         <div class="col-lg-3"><img src="img/customer-4.png" /></div>
       </div>
     </section>      
-
     </div>
-  </section>
+<!--modals-->
+<section>
+<div class="modal" id="subscribe">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <button type="button" class="close mr-2" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            <div class="modal-header text-center">
+            <img src="/img/f4k.png" class="img-fluid " alt="Fight For Kidz">
+            </div>
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                <label for="name">Your name</label>
+                    <input type="text" id="name" class="form-control validate">
+                    
+                </div>
 
+                <div class="md-form mb-4">
+                  <label for="email">Your email</label>
+                    <input type="email" id="email" class="form-control validate">
+                   
+                </div>
+
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button class="btn btn-indigo">Subscribe</button>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
 @endsection
