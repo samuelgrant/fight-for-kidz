@@ -17,5 +17,5 @@ function processImage(input){
 
 function resetImagePre(){
     $('#imgPreview').attr('src', 'https://via.placeholder.com/100x80');
-    $('input:file').replaceWith($("#fileInput").val('').clone(true));
+    $('input:file') = null;
 }

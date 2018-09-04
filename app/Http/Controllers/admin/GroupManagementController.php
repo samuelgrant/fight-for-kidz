@@ -37,15 +37,20 @@ class GroupManagementController extends Controller
     public function store(Request $request){
         $group = new Groups();
         $group->name = $request->input('groupName');
+
+        $group->save(); // need to save group here to generate an ID value
         
-        if($request->hasFile('image')){
+        if($request->hasFile('groupImage')){
+            
+            // Validate image dimensions and file type. Resize would be great if too large.
+            
+            // Saves file as a png with the filename equal to the group id.
+            $request->file('groupImage')->storeAs('public/images/groups', $group->id.'.png');
 
-
-        } else {
-            $group->custom_icon = false;
-        }
-
-        $group->save();
+            // Set the group to use custom icon. Defaults to false.
+            $group->custom_icon = true;
+            $group->save();
+        }        
         
         return redirect()->back();
     }

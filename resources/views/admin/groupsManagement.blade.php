@@ -33,7 +33,7 @@
             <div class="modal-header bg-dark text-white">
                 <h4 class="modal-title">Create a New Group</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
             <div class="modal-body">
-                {!! Form::open(['action' => 'admin\GroupManagementController@store', 'method' => 'POST']) !!}
+                {!! Form::open(['action' => 'admin\GroupManagementController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
                     <div class="form-group">
                       <label for="name">Group Name</label>
                       <input type="text" name="groupName" id="name" class="form-control" placeholder="*required" maxlength="30" required>
