@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use Storage;
-use App\Groups;
+use App\Group;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -21,7 +21,7 @@ class GroupManagementController extends Controller
      */
     public function index()
     {
-        $groups = Groups::all();
+        $groups = Group::all();
         foreach($groups as $group){
             $group->image = $group->id.".ping";
         }
@@ -31,11 +31,11 @@ class GroupManagementController extends Controller
     public function view($id)
     {
         return view('admin.groupManagement')
-            ->with('group', Groups::find($id));
+            ->with('group', Group::find($id));
     }
 
     public function store(Request $request){
-        $group = new Groups();
+        $group = new Group();
         $group->name = $request->input('groupName');
 
         $group->save(); // need to save group here to generate an ID value
