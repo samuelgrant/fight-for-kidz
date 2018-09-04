@@ -25,5 +25,9 @@ class DatabaseSeeder extends Seeder
         // Fake record seeders
         $this->call(ContactsTableSeeder::class);
         $this->call(SubscribersTableSeeder::class);
+        $this->call(SponsorsTableSeeder::class);
+        $this->call(EventsTableSeeder::class);
+        $this->call(ApplicantsTableSeeder::class);        
+        $this->call(AuctionItemsTableSeeder::class);
     }
 }
