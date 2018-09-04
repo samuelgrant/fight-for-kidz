@@ -18,8 +18,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
 <!-- Core plugin JavaScript-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script> -->
 
 <!-- Custom scripts for all pages-->
-<script src="/admin/js/sb-admin.min.js"></script>
-<script src="/admin/js/app.js"></script>
+<script type="text/javascript" src="/admin/js/admin-app.js"></script>
+<script type="text/javascript" src="/admin/js/sb-admin.min.js"></script>
