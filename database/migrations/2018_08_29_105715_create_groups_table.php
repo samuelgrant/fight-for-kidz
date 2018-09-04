@@ -17,7 +17,7 @@ class CreateGroupsTable extends Migration
             $table->increments('id');
             $table->string('name', 30)->unique();
             $table->string('type', 30)->nullable()->default('Custom Group');
-            $table->boolean('customIcon')->default(false);
+            $table->boolean('custom_icon')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
