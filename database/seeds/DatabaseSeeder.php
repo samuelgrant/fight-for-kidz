@@ -21,5 +21,9 @@ class DatabaseSeeder extends Seeder
 
         // Seeds default user groups, Administrators and Subscribers
         $this->call(DefaultGroupsSeeder::class);
+
+        // Fake record seeders
+        $this->call(ContactsTableSeeder::class);
+        $this->call(SubscribersTableSeeder::class);
     }
 }
