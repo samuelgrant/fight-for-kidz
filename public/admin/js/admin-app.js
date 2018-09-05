@@ -1,3 +1,15 @@
+// adds the tab value to the URL and refreshes page
+$(document).ready(function(){
+    $('.nav-tabs').click(function(event){
+        var newURLString = window.location.pathname + "?tab=" + event.target.id;
+
+        window.location.href = newURLString;
+    })
+})
+
+
+// Processes the image preview for group icon uploads.
+
 $(document).ready(function(){
     $('input:file').change(function(){
         processImage(this);
