@@ -15,7 +15,7 @@ class CreateApplicantsTable extends Migration
     {
         Schema::create('applicants', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('event_id')->unsigned()->default(0);                
+            $table->integer('event_id')->unsigned();                
 
             // Application form fields:
             $table->string('first_name', 30);
