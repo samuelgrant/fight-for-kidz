@@ -32,7 +32,7 @@ class GroupManagementController extends Controller
     public function view($id)
     {
         return view('admin.groupManagement')
-            ->with('group', Group::find($id));
+            ->with('group', Group::withTrashed()->find($id));
     }
 
     public function store(Request $request){

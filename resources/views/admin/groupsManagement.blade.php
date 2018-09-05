@@ -18,6 +18,7 @@
             <ul class="nav nav-tabs">
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') != 'deleted')? 'active': '' }}" role="tab" data-toggle="tab" href="#tab-1" id="active">Current Groups</a></li>
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'deleted')? 'active': '' }}" role="tab" data-toggle="tab" href="#tab-2" id="deleted">Deleted Groups</a></li>
+                <button class="btn btn-primary btn-sm ml-1 my-1 tab-modal" data-toggle="modal" data-target="#newGroup">New Group</button>
             </ul>
         </div>
         <div class="tab-content">
@@ -33,21 +34,15 @@
                     </div>
                     @endforeach
                 </div>
-                <button class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#newGroup">New Group</button>
             </div>
             <div class="tab-pane {{ (app('request')->input('tab') == 'deleted')? 'active': '' }}" role="tabpanel" id="tab-2">
                 <div class="row">
                     @foreach($deletedGroups as $group)
                     <div class="col-md-4 col-md-4 col-sm-6 my-1">    
-                        <a class="btn groups">
+                        <a class="btn groups" href="{{route('admin.group', ['id' => $group->id])}}">
                             <img src="/storage/images/groups/{{($group->custom_icon)?$group->id: 0 }}.png" alt="Group Icon"/>
                             <h3>{{$group->name}}</h3>
                             <span class="d-block">{{$group->type}}</span>
-                            
-                            {!!Form::open(['action'=>['admin\GroupManagementController@restore', $group->id], 'method'=> 'POST']) !!}
-                            <button class="btn btn-info" type="submit" ><i class="far fa-times-circle"></i> Restore Account</button>
-                            {{Form::hidden('_method', 'patch')}}
-                            {!! Form::close() !!}
                         </a>
                     </div>
                     @endforeach
@@ -82,27 +77,6 @@
                         </div>
                         <small id="groupAvatarHelp" class="text-muted d-block">Required format .png - max 100 x 80 px.</small>
                    </div>
-                   <style>
-                   .btn-file {
-                        position: relative;
-                        overflow: hidden;
-                    }
-                    .btn-file input[type=file] {
-                        position: absolute;
-                        top: 0;
-                        right: 0;
-                        min-width: 100%;
-                        min-height: 100%;
-                        font-size: 100px;
-                        text-align: right;
-                        filter: alpha(opacity=0);
-                        opacity: 0;
-                        outline: none;
-                        background: white;
-                        cursor: inherit;
-                        display: block;
-                    }
-                   </style>
                     <button class="btn btn-primary btn-success" type="submit">Create Group</button>
 
                 {!! Form::close() !!}
