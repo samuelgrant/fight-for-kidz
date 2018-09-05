@@ -8,20 +8,51 @@
     <li class="breadcrumb-item active">Group Management</li>   
 </ol>
 
+
+
 <!-- Page Content -->
 <div class="row">
     <div class="col-md-12">
-        <button class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#newGroup">New Group</button>
-        <div class="row">
-            @foreach($groups as $group)
-            <div class="col-md-4 col-md-4 col-sm-6 my-1">    
-                <a class="btn groups" href="{{ route('admin.group', ['id' => $group->id])}}">
-                    <img src="/storage/images/groups/{{($group->custom_icon)?$group->id: 0 }}.png" alt="Group Icon"/>
-                    <h3>{{$group->name}}</h3>
-                    <span class="d-block">{{$group->type}}</span>
-                </a>
+        <!-- Tabs -->
+        <div>
+            <ul class="nav nav-tabs">
+                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') != 'deleted')? 'active': '' }}" role="tab" data-toggle="tab" href="#tab-1" id="active">Current Groups</a></li>
+                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'deleted')? 'active': '' }}" role="tab" data-toggle="tab" href="#tab-2" id="deleted">Deleted Groups</a></li>
+            </ul>
+        </div>
+        <div class="tab-content">
+            <div class="tab-pane {{ (app('request')->input('tab') != 'deleted')? 'active': '' }}" role="tabpanel" id="tab-1">
+                <div class="row">
+                    @foreach($groups as $group)
+                    <div class="col-md-4 col-md-4 col-sm-6 my-1">    
+                        <a class="btn groups" href="{{ route('admin.group', ['id' => $group->id])}}">
+                            <img src="/storage/images/groups/{{($group->custom_icon)?$group->id: 0 }}.png" alt="Group Icon"/>
+                            <h3>{{$group->name}}</h3>
+                            <span class="d-block">{{$group->type}}</span>
+                        </a>
+                    </div>
+                    @endforeach
+                </div>
+                <button class="btn btn-primary btn-sm float-right" data-toggle="modal" data-target="#newGroup">New Group</button>
             </div>
-            @endforeach
+            <div class="tab-pane {{ (app('request')->input('tab') == 'deleted')? 'active': '' }}" role="tabpanel" id="tab-2">
+                <div class="row">
+                    @foreach($deletedGroups as $group)
+                    <div class="col-md-4 col-md-4 col-sm-6 my-1">    
+                        <a class="btn groups">
+                            <img src="/storage/images/groups/{{($group->custom_icon)?$group->id: 0 }}.png" alt="Group Icon"/>
+                            <h3>{{$group->name}}</h3>
+                            <span class="d-block">{{$group->type}}</span>
+                            
+                            {!!Form::open(['action'=>['admin\GroupManagementController@restore', $group->id], 'method'=> 'POST']) !!}
+                            <button class="btn btn-info" type="submit" ><i class="far fa-times-circle"></i> Restore Account</button>
+                            {{Form::hidden('_method', 'patch')}}
+                            {!! Form::close() !!}
+                        </a>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
     </div>
 </div>

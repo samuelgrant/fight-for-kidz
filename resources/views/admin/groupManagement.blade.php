@@ -15,7 +15,13 @@
 <div class="row">
     <div class="col-md-12">
         <div class="row">
-            
+        
+        @if($group->type != "System Group")
+        {!!Form::open(['action'=>['admin\GroupManagementController@destroy', $group->id], 'method'=> 'POST']) !!}
+        <button class="btn btn-danger" type="submit"><i class="fas fa-user-times"></i> Delete Group</button>
+        {{Form::hidden('_method', 'delete')}}
+        {!! Form::close() !!}
+        @endif
         </div>
     </div>
 </div>
