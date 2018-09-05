@@ -24,3 +24,4 @@ Route::post('/group-management', 'admin\GroupManagementController@store')->name(
 Route::get('/group-management/{groupID}', 'admin\GroupManagementController@view')->name('admin.group');
 Route::put('/group-management/{groupID}', 'admin\GroupManagementController@update')->name('admin.group.update');
 Route::delete('/group-management/{groupID}', 'admin\GroupManagementController@destroy')->name('admin.group.destroy');
+Route::patch('/group-management/{groupID}', 'admin\GroupManagementController@restore')->name('admin.groupManagement.restore');
