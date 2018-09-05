@@ -17,3 +17,4 @@
 
 <!-- Custom styles for this template-->
 <link href="/admin/css/sb-admin.css" rel="stylesheet">
+<link href="/admin/css/admin.css" rel="stylesheet">
