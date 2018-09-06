@@ -60,13 +60,14 @@
 
         <div class="form-group">
           <p class="">Are you:</p>
-          <div class="radio">
-            <label class="radio-selector"><input type="radio" name="gender" value="male">Male</label>
-            <label class="radio-selector"><input type="radio" name="gender" value="female">Female</label>
+          <div class="radio form-group">
+            <div><label class="radio-selector"><input type="radio" name="gender" value="male">Male</label></div>
+            <div><label class="radio-selector"><input type="radio" name="gender" value="female">Female</label></div>
           </div>
-          <div class="radio">
-            <label class="radio-selector"><input type="radio" name="hand" value="left">Left Handed</label>
-            <label class="radio-selector"><input type="radio" name="hand" value="right">Right Handed</label>
+          <p>Are you:</p>
+          <div class="radio form-group">
+            <div><label class="radio-selector"><input type="radio" name="hand" value="left">Left-handed</label></div>
+            <div><label class="radio-selector"><input type="radio" name="hand" value="right">Right-handed</label></div>
           </div>
         </div>
 
@@ -110,7 +111,7 @@
           </div>
         </div>
         <div id="exeperience" class="form-group" style="display: none;">
-          <textarea id="experience" class="form-control" rows="2" placeholder="Please describe any prior boxing/kickboxing experience..."></textarea>
+          <textarea id="experience" class="form-control" rows="3" placeholder="Please describe any prior boxing/kickboxing experience..."></textarea>
         </div>
 
         <!-- All sporting experience -->
@@ -135,7 +136,7 @@
           </div>
         </div>
         <div id="criminal" class="form-group" style="display: none;">
-          <textarea id="convictions" name="conviction_details" class="form-control" rows="2" placeholder="Please explain..."></textarea>
+          <textarea id="convictions" name="conviction_details" class="form-control" rows="3" placeholder="Please explain..."></textarea>
         </div>
 
         <div class="form-group">
