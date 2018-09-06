@@ -1,4 +1,5 @@
-@extends('layouts.app') @section('content')
+@extends('layouts.app') 
+@section('content')
 <div class="container conform" id="application-form">
   <div class="push-down p-3">
     <h1 class="text-center my-3">Application Form - Contenders</h1>
@@ -43,7 +44,8 @@
         <hr>
         <div class="form-group">
           <div class="row">
-            <div class="col-sm-6"><input class="form-control" type="date" name="dob" placeholder="Date of birth"></div> <!-- Replace with nicer date picker -->
+            <div class="col-sm-6"><input class="form-control" type="date" name="dob" placeholder="Date of birth"></div>
+            <!-- Replace with nicer date picker -->
             <div class="col-sm-6"><input class="form-control" type="text" name="height" placeholder="Height (cm)"></div>
             <div class="col-sm-6"><input class="form-control" type="text" name="current_weight" placeholder="Current weight (kg)"></div>
             <div class="col-sm-6"><input class="form-control" type="text" name="expected_weight" placeholder="Target weight (kg)"></div>
@@ -59,15 +61,21 @@
         <!-- Gender and handedness -->
 
         <div class="form-group">
-          <p class="">Are you:</p>
-          <div class="radio form-group">
-            <div><label class="radio-selector"><input type="radio" name="gender" value="male">Male</label></div>
-            <div><label class="radio-selector"><input type="radio" name="gender" value="female">Female</label></div>
-          </div>
-          <p>Are you:</p>
-          <div class="radio form-group">
-            <div><label class="radio-selector"><input type="radio" name="hand" value="left">Left-handed</label></div>
-            <div><label class="radio-selector"><input type="radio" name="hand" value="right">Right-handed</label></div>
+          <div class="row">
+            <div class="col-sm-6">
+              <p class="">Are you:</p>
+              <div class="radio form-group">
+                <div><label class="radio-selector"><input type="radio" name="gender" value="male">Male</label></div>
+                <div><label class="radio-selector"><input type="radio" name="gender" value="female">Female</label></div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <p>Are you:</p>
+              <div class="radio form-group">
+                <div><label class="radio-selector"><input type="radio" name="hand" value="left">Left-handed</label></div>
+                <div><label class="radio-selector"><input type="radio" name="hand" value="right">Right-handed</label></div>
+              </div>
+            </div>
           </div>
         </div>
 
