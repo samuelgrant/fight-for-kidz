@@ -56,22 +56,34 @@
           </div>
         </div>
 
-        <!-- Left or right handedness -->
+        <!-- Gender and handedness -->
 
         <div class="form-group">
-          <p class="">Are you left or right handed?</p>
-          <div class="radio ">
-            <label class="radio-selector"><input type="radio" name="hand" value="left">Left</label>
-            <label class="radio-selector"><input type="radio" name="hand" value="right">Right</label>
+          <p class="">Are you:</p>
+          <div class="radio">
+            <label class="radio-selector"><input type="radio" name="gender" value="male">Male</label>
+            <label class="radio-selector"><input type="radio" name="gender" value="female">Female</label>
+          </div>
+          <div class="radio">
+            <label class="radio-selector"><input type="radio" name="hand" value="left">Left Handed</label>
+            <label class="radio-selector"><input type="radio" name="hand" value="right">Right Handed</label>
           </div>
         </div>
 
         <div class="form-group">
           <div class="row">
             <div class="col-sm-6">
-              <p class="">Preferred boxing nickname:</p>
-              <input type="text" class="form-control" placeholder="(leave blank if undecided)">
+              <label for="nickname">Preferred boxing nickname:</label>
+              <input type="text" id="nickname" class="form-control" placeholder="(leave blank if undecided)">
             </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <p class="">Can you secure your own sponsor? (not a condition of entry)</p>
+          <div class="radio">
+            <label class="radio-selector"><input type="radio" name="sponsorRadio">Yes</label>
+            <label class="radio-selector"><input type="radio" name="sponsorRadio">No</label>
           </div>
         </div>
 
@@ -134,7 +146,9 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <hr>
+
+        <div class="form-group text-center">
           <input type="checkbox" name="guidelinesCheckbox" id="guidelinesCheckbox">
           <label for="guidelinesCheckbox">I have read and agree to the <a href="#" target="_blank"><u>Applicant Guidelines</u></a></label>
         </div>
