@@ -24,6 +24,7 @@
   <link href="/css/contender.css" rel="stylesheet">
   <link href="/css/previous.css" rel="stylesheet">
   <link href="/css/grayscale.css" rel="stylesheet">
+  <link href="/css/application.css" rel="stylesheet">
   <link href="/css/custom.css" rel="stylesheet">
 
   <!-- Bootstrap core JavaScript -->

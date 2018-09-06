@@ -1,0 +1,29 @@
+body{
+    color:white;
+}
+
+#application-form hr{
+    height: 2px;
+    border-color: white;
+}
+
+#application-form .form-control{
+    margin-bottom: 5px;
+}
+
+#application-form h3{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.radio-selector{
+    margin-right: 15px;    
+}
+
+.radio-selector input{
+    margin-right: 5px;
+}
+
+.form-section{
+    margin-bottom: 2.5rem;
+}
