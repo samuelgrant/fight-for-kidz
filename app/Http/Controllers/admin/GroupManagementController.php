@@ -25,13 +25,14 @@ class GroupManagementController extends Controller
         foreach($groups as $group){
             $group->image = $group->id.".ping";
         }
-        return view('admin.groupsManagement')->with('groups', $groups);
+        $deletedGroups = Group::onlyTrashed()->get();
+        return view('admin.groupsManagement')->with(['groups' => $groups, 'deletedGroups' => $deletedGroups]);
     }
 
     public function view($id)
     {
         return view('admin.groupManagement')
-            ->with('group', Group::find($id));
+            ->with('group', Group::withTrashed()->find($id));
     }
 
     public function store(Request $request){
@@ -55,6 +56,11 @@ class GroupManagementController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Soft deletes selected group
+     * 
+     * @param $id
+     */
     public function destroy($id){
         
         $group = Group::find($id);
@@ -65,6 +71,21 @@ class GroupManagementController extends Controller
             session()->flash('error', 'You cannot disable that group.');
         }
         
+        
+        return redirect(route('admin.groupManagement'));
+    }
+
+    /**
+     * Restores soft deleted selected group then navigates back to Group Management
+     * 
+     * @param $id
+     */
+    public function restore($id){
+
+        $group = Group::withTrashed()->find($id);
+        $group->restore();
+        session()->flash('success', 'The group called '.$group->name.' was restored.');
+
         return redirect()->back();
     }
 }
