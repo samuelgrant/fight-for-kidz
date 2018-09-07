@@ -9,49 +9,162 @@
         <u>Applicant Guidelines</u></a>.</p>
     <form id="application-form">
       <div class="form-section">
+
+        <!-- Contact Information -->
         <h3>Contact Information</h3>
         <hr>
         <div class="form-group">
           <div class="row">
-            <div class="col-sm-6"><input class="form-control" type="text" name="first_name" placeholder="First Name(s)"></div>
-            <div class="col-sm-6"><input class="form-control" type="text" name="last_name" placeholder="Last Name"></div>
+            <div class="col-sm-2 inputLabel">
+              <label for="first_name">First Name:</label>
+            </div>
+            <div class="col-sm-4">
+              <input class="form-control" type="text" name="first_name">
+            </div>
+
+            <div class="col-sm-2 inputLabel">
+              <label for="last_name">Last Name:</label>
+            </div>
+            <div class="col-sm-4">
+              <input class="form-control" type="text" name="last_name">
+            </div>
           </div>
         </div>
+
         <div class="form-group">
           <div class="row">
-            <div class="col-sm-6"><input class="form-control" type="text" name="address_1" placeholder="Address line 1"></div>
-            <div class="col-sm-6"><input class="form-control" type="text" name="address_2" placeholder="Adress line 2 (optional)"></div>
+            <div class="col-sm-2 inputLabel">
+              <label for="address_1">Address 1:</label>
+            </div>
+            <div class="col-sm-4">
+              <input class="form-control" type="text" name="address_1">   
+            </div>
+
+
+            <div class="col-sm-2 inputLabel">
+              <label for="address_2">Address 2:</label>  
+            </div>
+            <div class="col-sm-4">
+              <input class="form-control" type="text" name="address_2">
+            </div>
           </div>
+
           <div class="row">
-            <div class="col-sm-6"><input class="form-control" type="text" name="suburb" placeholder="Suburb (optional)"></div>
-            <div class="col-sm-6"><input class="form-control" type="text" name="city" placeholder="City"></div>
+            <div class="col-sm-2 inputLabel">
+              <label for="suburb">Suburb:</label>
+            </div>
+            <div class="col-sm-4">
+              <input class="form-control" type="text" name="suburb">
+            </div>
+
+            <div class="col-sm-2 inputLabel">
+              <label for="city">City:</label>
+            </div>
+            <div class="col-sm-4">
+              <input class="form-control" type="text" name="city">
+            </div>
           </div>
-        </div>
-        <div class="form-group">
+
           <div class="row">
-            <div class="col-sm-6"><input class="form-control" type="text" name="email" placeholder="Email address"></div>
-            <div class="col-sm-3" id="phoneInput"><input class="form-control" type="text" name="phone" placeholder="Phone"></div>
-            <div class="col-sm-3" id="mobileInput"><input class="form-control" type="text" name="mobile" placeholder="Mobile"></div>
+            <div class="col-sm-2 inputLabel">
+              <label for="post_code">Post Code:</label>
+            </div>
+            <div class="col-sm-4">
+              <input class="form-control" type="text" name="post_code">
+            </div>
+            
+            <div class="col-sm-2 inputLabel">
+              <label for="email">Email:</label>
+            </div>
+            <div class="col-sm-4">
+              <input class="form-control" type="text" name="email">
+            </div> 
           </div>
-        </div>
+
+          <div class="form-group">
+            <div class="row">
+              <div class="col-sm-2 inputLabel">
+                <label for="phone">Phone:</label>
+              </div>
+              <div class="col-sm-4" id="phoneInput">
+                <input class="form-control" type="text" name="phone">              
+              </div>
+  
+              <div class="col-sm-2 inputLabel">
+                <label for="mobile">Mobile:</label>
+              </div>
+              <div class="col-sm-4" id="mobileInput">
+                <input class="form-control" type="text" name="mobile">
+              </div>
+            </div>
+          </div> <!-- Need to double check that there are no unclosed divs-->
       </div>
 
+      <!-- Personal Details -->
       <div class="form-section">
         <h3>Personal Details</h3>
         <hr>
         <div class="form-group">
           <div class="row">
-            <div class="col-sm-6"><input class="form-control" type="date" name="dob" placeholder="Date of birth"></div>
+            <div class="col-sm-3 inputLabel">
+              <label for="dob">Date of Birth:</label>
+            </div>
+            <div class="col-sm-3 input-group date" id="datepicker">
+                <input class="form-control" type="text" name="dob">
+            </div>        
+<!-- 
+            <div class="input-append date form_datetime">
+                <input size="16" type="text" value="" readonly>
+                <span class="add-on"><i class="icon-th"></i></span>
+            </div>
+            <script type="text/javascript">
+              $(function () {
+                  $('#datepicker').datetimepicker({
+                      format: 'DD/MM/YYYY'
+                  });
+              });
+          </script> -->
+
             <!-- Replace with nicer date picker -->
-            <div class="col-sm-6"><input class="form-control" type="text" name="height" placeholder="Height (cm)"></div>
-            <div class="col-sm-6"><input class="form-control" type="text" name="current_weight" placeholder="Current weight (kg)"></div>
-            <div class="col-sm-6"><input class="form-control" type="text" name="expected_weight" placeholder="Target weight (kg)"></div>
+
+            <div class="col-sm-3 inputLabel">
+              <label for="height">Height (cm):</label>
+            </div>
+            <div class="col-sm-3">
+              <input class="form-control" type="text" name="height">
+            </div>
+
+            <div class="col-sm-3 inputLabel">
+              <label for="current_weight">Current Weight (kg):</label>
+            </div>
+            <div class="col-sm-3">
+              <input class="form-control" type="text" name="current_weight">
+            </div>
+
+            <div class="col-sm-3 inputLabel">
+              <label for="expected_weight">Expected Weight (kg):</label>
+            </div>
+            <div class="col-sm-3">
+              <input class="form-control" type="text" name="expected_weight">
+            </div>
           </div>
         </div>
+
         <div class="form-group">
           <div class="row">
-            <div class="col-sm-6"><input class="form-control" type="text" name="occupation" placeholder="Occupation"></div>
-            <div class="col-sm-6"><input class="form-control" type="text" name="employer" placeholder="Current Employer (if employed)"></div>
+            <div class="col-sm-3 inputLabel">
+              <label for="occupation">Occupation:</label>
+            </div>
+            <div class="col-sm-3">
+              <input class="form-control" type="text" name="occupation">
+            </div>
+
+            <div class="col-sm-3 inputLabel">
+              <label for="employer">Employer:</label>
+            </div>
+            <div class="col-sm-3">
+              <input class="form-control" type="text" name="employer">
+            </div>
           </div>
         </div>
 

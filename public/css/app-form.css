@@ -28,11 +28,7 @@ body{
     margin-bottom: 2.5rem;
 }
 
-@media only screen and (min-width: 574px){
-    #phoneInput{
-        padding-right: 5px;
-    }
-    #mobileInput{
-        padding-left: 5px;
-    }
+.inputLabel{ 
+    padding-top: .5rem !important;
+    padding-bottom: .5rem !important;
 }
