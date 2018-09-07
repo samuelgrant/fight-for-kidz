@@ -15,17 +15,17 @@
         <hr class="mb-4">
         <div class="form-group-margin">
           <div class="row">
-            <div class="col-sm-2 inputLabel">
+            <div class="col-md-2 inputLabel">
               <label for="first_name">First Name:</label>
             </div>
-            <div class="col-sm-4">
+            <div class="col-md-4">
               <input class="form-control" type="text" name="first_name">
             </div>
 
-            <div class="col-sm-2 inputLabel">
+            <div class="col-md-2 inputLabel">
               <label for="last_name">Last Name:</label>
             </div>
-            <div class="col-sm-4">
+            <div class="col-md-4">
               <input class="form-control" type="text" name="last_name">
             </div>
           </div>
@@ -33,50 +33,50 @@
 
         <div class="form-group-margin">
           <div class="row">
-            <div class="col-sm-2 inputLabel">
+            <div class="col-md-2 inputLabel">
               <label for="address_1">Address 1:</label>
             </div>
-            <div class="col-sm-4">
+            <div class="col-md-4">
               <input class="form-control" type="text" name="address_1">   
             </div>
 
 
-            <div class="col-sm-2 inputLabel">
+            <div class="col-md-2 inputLabel">
               <label for="address_2">Address 2:</label>  
             </div>
-            <div class="col-sm-4">
+            <div class="col-md-4">
               <input class="form-control" type="text" name="address_2">
             </div>
           </div>
 
           <div class="row">
-            <div class="col-sm-2 inputLabel">
+            <div class="col-md-2 inputLabel">
               <label for="suburb">Suburb:</label>
             </div>
-            <div class="col-sm-4">
+            <div class="col-md-4">
               <input class="form-control" type="text" name="suburb">
             </div>
 
-            <div class="col-sm-2 inputLabel">
+            <div class="col-md-2 inputLabel">
               <label for="city">City:</label>
             </div>
-            <div class="col-sm-4">
+            <div class="col-md-4">
               <input class="form-control" type="text" name="city">
             </div>
           </div>
 
           <div class="row">
-            <div class="col-sm-2 inputLabel">
+            <div class="col-md-2 inputLabel">
               <label for="post_code">Post Code:</label>
             </div>
-            <div class="col-sm-4">
+            <div class="col-md-4">
               <input class="form-control" type="text" name="post_code">
             </div>
             
-            <div class="col-sm-2 inputLabel">
+            <div class="col-md-2 inputLabel">
               <label for="email">Email:</label>
             </div>
-            <div class="col-sm-4">
+            <div class="col-md-4">
               <input class="form-control" type="text" name="email">
             </div> 
           </div>
@@ -84,17 +84,17 @@
 
           <div class="form-group-margin">
             <div class="row">
-              <div class="col-sm-2 inputLabel">
+              <div class="col-md-2 inputLabel">
                 <label for="phone">Phone:</label>
               </div>
-              <div class="col-sm-4" id="phoneInput">
+              <div class="col-md-4" id="phoneInput">
                 <input class="form-control" type="text" name="phone">              
               </div>
   
-              <div class="col-sm-2 inputLabel">
+              <div class="col-md-2 inputLabel">
                 <label for="mobile">Mobile:</label>
               </div>
-              <div class="col-sm-4" id="mobileInput">
+              <div class="col-md-4" id="mobileInput">
                 <input class="form-control" type="text" name="mobile">
               </div>
             </div>
@@ -107,31 +107,31 @@
         <hr class="mb-4">
         <div class="form-group-margin">
           <div class="row">
-            <div class="col-sm-3 inputLabel">
+            <div class="col-md-3 inputLabel">
               <label for="dob">Date of Birth:</label>
             </div>
-            <div class="col-sm-3 input-group date" id="datepicker">
+            <div class="col-md-3 input-group date" id="datepicker">
                 <input class="form-control" type="date" name="dob">
             </div>        
 
-            <div class="col-sm-3 inputLabel">
+            <div class="col-md-3 inputLabel">
               <label for="height">Height (cm):</label>
             </div>
-            <div class="col-sm-3">
+            <div class="col-md-3">
               <input class="form-control" type="text" name="height">
             </div>
 
-            <div class="col-sm-3 inputLabel">
+            <div class="col-md-3 inputLabel">
               <label for="current_weight">Current Weight (kg):</label>
             </div>
-            <div class="col-sm-3">
+            <div class="col-md-3">
               <input class="form-control" type="text" name="current_weight">
             </div>
 
-            <div class="col-sm-3 inputLabel">
+            <div class="col-md-3 inputLabel">
               <label for="expected_weight">Expected Weight (kg):</label>
             </div>
-            <div class="col-sm-3">
+            <div class="col-md-3">
               <input class="form-control" type="text" name="expected_weight">
             </div>
           </div>
@@ -139,17 +139,17 @@
 
         <div class="form-group">
           <div class="row">
-            <div class="col-sm-3 inputLabel">
+            <div class="col-md-3 inputLabel">
               <label for="occupation">Occupation:</label>
             </div>
-            <div class="col-sm-3">
+            <div class="col-md-3">
               <input class="form-control" type="text" name="occupation">
             </div>
 
-            <div class="col-sm-3 inputLabel">
+            <div class="col-md-3 inputLabel">
               <label for="employer">Employer:</label>
             </div>
-            <div class="col-sm-3">
+            <div class="col-md-3">
               <input class="form-control" type="text" name="employer">
             </div>
           </div>
@@ -159,14 +159,14 @@
 
         <div class="form-group">
           <div class="row">
-            <div class="col-sm-6">
+            <div class="col-md-6">
               <p class="">Are you:</p>
               <div class="radio form-group">
                 <div><label class="radio-selector"><input type="radio" name="gender" value="male">Male</label></div>
                 <div><label class="radio-selector"><input type="radio" name="gender" value="female">Female</label></div>
               </div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-md-6">
               <p>Are you:</p>
               <div class="radio form-group">
                 <div><label class="radio-selector"><input type="radio" name="hand" value="left">Left-handed</label></div>
@@ -178,7 +178,7 @@
 
         <div class="form-group">
           <div class="row">
-            <div class="col-sm-6">
+            <div class="col-md-6">
               <label for="nickname">Preferred boxing nickname:</label>
               <input type="text" id="nickname" class="form-control" placeholder="(leave blank if undecided)">
             </div>
