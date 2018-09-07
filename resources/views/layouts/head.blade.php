@@ -20,7 +20,7 @@
     rel="stylesheet">
 
   <!-- Custom styles for this template -->  
-  <link href="/css/aucion-hover.css" rel="stylesheet">
+  <link href="/css/auction-hover.css" rel="stylesheet">
   <link href="/css/contender.css" rel="stylesheet">
   <link href="/css/previous.css" rel="stylesheet">
   <link href="/css/grayscale.css" rel="stylesheet">
