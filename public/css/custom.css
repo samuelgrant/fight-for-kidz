@@ -272,3 +272,14 @@
 .auth-card{
   background-color: #960000;
 }
+
+.conform{
+  max-width: 900px; 
+  background-color: rgba(0,0,0,0.7);
+  border-radius: 10px;
+}
+
+.concards{
+  background-color: rgba(0,0,0,0.75);
+  color: white;
+}
