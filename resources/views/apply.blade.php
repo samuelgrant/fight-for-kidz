@@ -12,8 +12,8 @@
 
         <!-- Contact Information -->
         <h3>Contact Information</h3>
-        <hr>
-        <div class="form-group">
+        <hr class="mb-4">
+        <div class="form-group-margin">
           <div class="row">
             <div class="col-sm-2 inputLabel">
               <label for="first_name">First Name:</label>
@@ -31,7 +31,7 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group-margin">
           <div class="row">
             <div class="col-sm-2 inputLabel">
               <label for="address_1">Address 1:</label>
@@ -80,8 +80,9 @@
               <input class="form-control" type="text" name="email">
             </div> 
           </div>
+          </div>
 
-          <div class="form-group">
+          <div class="form-group-margin">
             <div class="row">
               <div class="col-sm-2 inputLabel">
                 <label for="phone">Phone:</label>
@@ -97,14 +98,14 @@
                 <input class="form-control" type="text" name="mobile">
               </div>
             </div>
-          </div> <!-- Need to double check that there are no unclosed divs-->
+          </div> 
       </div>
 
       <!-- Personal Details -->
       <div class="form-section">
         <h3>Personal Details</h3>
-        <hr>
-        <div class="form-group">
+        <hr class="mb-4">
+        <div class="form-group-margin">
           <div class="row">
             <div class="col-sm-3 inputLabel">
               <label for="dob">Date of Birth:</label>
@@ -218,7 +219,7 @@
 
       <div class="form-section">
         <h3>Sporting Experience</h3>
-        <hr>
+        <hr class="mb-4">
         <!-- Previous boxing experience -->
 
         <div class="form-group">
@@ -245,19 +246,19 @@
 
       <div class="form-section">
         <h3>Additional Information</h3>
-        <hr>
-        <div class="form-group">
+        <hr class="mb-4">
+        <div class="form-group" id="additional_information">
           <p class="">Do you have any criminal convictions or are facing charges?</p>
           <div class="radio ">
             <label class="radio-selector"><input type="radio" name="convictedRadio" onclick="showcriminal()">Yes</label>
             <label class="radio-selector"><input type="radio" name="convictedRadio" onclick="hidecriminal()">No</label>
           </div>
-        </div>
+        
         <div id="criminal" class="form-group" style="display: none;">
           <textarea id="convictions" name="conviction_details" class="form-control" rows="3" placeholder="Please explain..."></textarea>
         </div>
-
-        <div class="form-group">
+          
+          <br>
           <p class="">Are you happy to take a drug screening test?</p>
           <div class="radio">
             <label class="radio-selector"><input type="radio" name="crimeRadio">Yes</label>
@@ -265,7 +266,7 @@
           </div>
         </div>
 
-        <hr>
+        <hr class="mb-4">
 
         <div class="form-group text-center">
           <input type="checkbox" name="guidelinesCheckbox" id="guidelinesCheckbox">

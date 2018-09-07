@@ -32,3 +32,11 @@ body{
     padding-top: .5rem !important;
     padding-bottom: .5rem !important;
 }
+
+.form-group-margin{ /*adds a 50px margin to the bottom of certain form groups on the application form */
+    margin-bottom: 50px;
+}
+
+#additional_information{
+    margin-bottom: 24px;
+}
