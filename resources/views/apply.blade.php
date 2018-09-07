@@ -111,22 +111,8 @@
               <label for="dob">Date of Birth:</label>
             </div>
             <div class="col-sm-3 input-group date" id="datepicker">
-                <input class="form-control" type="text" name="dob">
+                <input class="form-control" type="date" name="dob">
             </div>        
-<!-- 
-            <div class="input-append date form_datetime">
-                <input size="16" type="text" value="" readonly>
-                <span class="add-on"><i class="icon-th"></i></span>
-            </div>
-            <script type="text/javascript">
-              $(function () {
-                  $('#datepicker').datetimepicker({
-                      format: 'DD/MM/YYYY'
-                  });
-              });
-          </script> -->
-
-            <!-- Replace with nicer date picker -->
 
             <div class="col-sm-3 inputLabel">
               <label for="height">Height (cm):</label>
