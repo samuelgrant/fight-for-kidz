@@ -30,11 +30,8 @@
         <div class="form-group">
           <div class="row">
             <div class="col-sm-6"><input class="form-control" type="text" name="email" placeholder="Email address"></div>
-            <div class="col-sm-6"><input class="form-control" type="text" name="phone" placeholder="Phone"></div>
-          </div>
-          <div class="row">
-            <div class="col-sm-6"></div>
-            <div class="col-sm-6"><input class="form-control" type="text" name="mobile" placeholder="Mobile"></div>
+            <div class="col-sm-3" id="phoneInput"><input class="form-control" type="text" name="phone" placeholder="Phone"></div>
+            <div class="col-sm-3" id="mobileInput"><input class="form-control" type="text" name="mobile" placeholder="Mobile"></div>
           </div>
         </div>
       </div>
