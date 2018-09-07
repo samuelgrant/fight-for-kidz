@@ -11,28 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('index');
-
-Route::get('/auction', function () {
-    return view('auction');
-});
-
-Route::get('/previous', function () {
-    return view('previous');
-});
-
-Route::get('/contenders', function () {
-    return view('contenders');
-});
-
-Route::get('/contact', function () {
-    return view('contact');
-});
-
-Route::get('/apply', function () {
-    return view('apply');
-});
+Route::get('/', 'PagesController@index')->name('index');
+Route::get('/auction', 'PagesController@auction')->name('auction');
+Route::get('/previous', 'PagesController@previous')->name('previous');
+Route::get('/contenders', 'PagesController@contenders')->name('contenders');
+Route::get('/contact', 'PagesController@contact')->name('contact');
+Route::get('/apply', 'PagesController@apply')->name('apply');
 
 Auth::routes();

@@ -21,8 +21,9 @@ class UserManagementController extends Controller
      */
     public function index()
     {
-        $user = User::orderBy('name', 'asc')->get();
-        return view('admin.userManagement')->with('users', $user);
+        $users = User::orderBy('name', 'asc')->get();
+        $deletedUsers = User::onlyTrashed()->get();
+        return view('admin.userManagement')->with(['users' => $users, 'deletedUsers' => $deletedUsers]);
     }
 
     /**
@@ -30,20 +31,26 @@ class UserManagementController extends Controller
      * 
      * @param $id
      */
-    public function update($id)
+    public function toggleActive($id)
     {
         $user = User::find($id);
 
-        if(Auth::user()->id != $id){
-            if($user->active)
-            {
-                $user->disable();
-            }
-            else
-            {
-                $user->enable();
-            }
+        if(Auth::user()->id == $id){
+            session()->flash('error', 'You cannot adjust your own account.');
+            return redirect()->back();
+        };
+        
+        if($user->active)
+        {
+            $user->disable();
+            session()->flash('success', 'The account belonging to '.$user->name.' was deactivated.');
         }
+        else
+        {
+            $user->enable();
+            session()->flash('success', 'The account belonging to '.$user->name.' was activated.');
+        }
+        
         return redirect()->back();
     }
 
@@ -57,9 +64,29 @@ class UserManagementController extends Controller
         $user = User::find($id);
 
         if(Auth::user()->id != $id){
+            $user->disable();
             $user->delete();
+            session()->flash('success', 'The account belonging to '.$user->name.' was deleted.');
         }
-        
+        else
+        {
+            session()->flash('error', 'You cannot adjust your own account.');
+        }        
         return redirect()->back();
     }
+
+    /**
+     * Restores soft deleted selected user account
+     * 
+     * @param $id
+     */
+    public function restore($id){
+
+        $user = User::withTrashed()->find($id);
+        $user->restore();
+        session()->flash('success', 'The account belonging to '.$user->name.' was restored, activation required.');
+
+        return redirect()->back();
+    }
+
 }

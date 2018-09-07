@@ -72,11 +72,17 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="{{route('admin.groupManagement')}}">
+            <i class="fas fa-layer-group"></i>
+            <span>Group Management</span>
+          </a>
+        </li>         
+        <li class="nav-item">
           <a class="nav-link" href="{{route('admin.userManagement')}}">
             <i class="fas fa-fw fa-users"></i>
             <span>User Management</span>
           </a>
-        </li>
+        </li>       
       </ul>
 
     

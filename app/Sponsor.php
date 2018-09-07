@@ -24,6 +24,7 @@ class Sponsor extends Model
         return $this->hasMany('App\Contender');
     }
 
-    // Relationship to team
-    // To be implemented
+    public function groups(){
+        return $this->belongsToMany('App\Group', 'group_sponsor');
+    }
 }
