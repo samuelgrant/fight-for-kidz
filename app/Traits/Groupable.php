@@ -8,6 +8,9 @@ use App\Group, App\User, App\Subscriber, App\Sponsor, App\Contact, App\Applicant
 /**
  * This trait should be used by all classes that are to 
  * be added to groups.
+ * 
+ * The group-member relationship will also need to be configured
+ * in the group model and member model.
  */
 
 trait Groupable
