@@ -18,4 +18,7 @@ Route::get('/contenders', 'PagesController@contenders')->name('contenders');
 Route::get('/contact', 'PagesController@contact')->name('contact');
 Route::get('/apply', 'PagesController@apply')->name('apply');
 
+// Subscriber route
+Route::post('/subscribe', 'SubscribersController@store')->name('subscribe');
+
 Auth::routes();

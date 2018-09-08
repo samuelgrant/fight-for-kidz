@@ -55,7 +55,7 @@
 
     <div class="container my-5">
       <h1 class="mb-3">Fight For Kidz Newsletter!</h1>
-      {!!Form::open(['class' => 'form-inline justify-content-center' ]) !!} {{--['action' =>['SubscriberController@store'], ['class' => 'bs-form' ]]post is assumed --}}
+      {!!Form::open(['action' =>'SubscribersController@store', 'class' =>'form-inline justify-content-center']) !!} 
     
         <div class="row">
           
@@ -79,6 +79,10 @@
         </div>
   
       {!!Form::close() !!}
+    </div>
+
+    <div class="alert">
+      @include('layouts.messages')
     </div>
   </section>
 
