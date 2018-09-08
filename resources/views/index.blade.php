@@ -7,7 +7,7 @@
       <div class="mx-auto text-center">
         <img src="img/f4k.png" class="img-fluid" />
         <h2 class="text-white-50 mx-auto mt-5 mb-5">Fight For Kidz is a charity boxing event held in Southland to raise money for Southland kidz charities.</h2>
-        <button href="#signup" class="btn btn-primary js-scroll-trigger" data-toggle="modal" data-target="#subscribe" >SUBSCRIBE TO OUR NEWSLETTER</button>
+        {{-- <button href="#signup" class="btn btn-primary js-scroll-trigger" data-toggle="modal" data-target="#subscribe" >SUBSCRIBE TO OUR NEWSLETTER</button> --}}
       </div>
     </div>
   </header>
@@ -51,7 +51,25 @@
     </div>
   </section> 
 
+  <!-- Subscriber Section -->
+  <section class="text-center" id="subscriber-section">
 
+    <div class="container my-5">
+      <h1 class="mb-3">Fight For Kidz Newsletter!</h1>
+      {!!Form::open(['class' => 'form-inline justify-content-center' ]) !!} {{--['action' =>['SubscriberController@store'], ['class' => 'bs-form' ]]post is assumed --}}
+    
+        {{Form::label('name', 'Name:', ['class' => 'mr-3'])}}
+        {{Form::text('name', '', ['class' => 'form-control mr-3'])}}
+        
+        {{Form::label('email', 'Email:', ['class' => 'mr-3'])}}
+        {{Form::text('email', '', ['class' => 'form-control mr-3'])}}
+        <button class="btn btn-danger" id="subscribeBtn" type="submit"><i class="fas fa-user-plus"></i> Sign Up!</button>
+  
+      {!!Form::close() !!}
+    </div>
+  </section>
+
+  <!-- Sponsors Section -->
   <section id="sponsors-section">
     <h2 class="text-center">Our Sponsors</h2>
       <div class="row">
@@ -62,7 +80,8 @@
       </div>
     </section>      
     </div>
-<!--modals-->
+
+{{-- <!--modals-->
 <section>
 <div class="modal" id="subscribe">
     <div class="modal-dialog">
@@ -93,5 +112,5 @@
         </div>
     </div>
 </div>
-</section>
+</section> --}}
 @endsection
