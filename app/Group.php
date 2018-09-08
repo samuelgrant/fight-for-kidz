@@ -48,33 +48,27 @@ class Group extends Model
     {
         $recipients = [];
 
-        $applicants = $this->applicants;
-        $sponsors = $this->sponsors;
-        $users = $this->users;
-        $contacts = $this->contacts;
-        $subscribers = $this->subscribers;
-
-        foreach ($applicants as $applicant) {
+        foreach ($this->applicants as $applicant) {
             $recipients[] = ['role' => 'applicant', 'name' => $applicant->first_name, 'email' => $applicant->email];
         }
 
 
-        foreach ($sponsors as $sponsor) {
+        foreach ($this->sponsors as $sponsor) {
             $recipients[] = ['role' => 'sponsor', 'name' => $sponsor->company_name, 'email' => $sponsor->email];
         }
 
 
-        foreach ($users as $user) {
+        foreach ($this->users as $user) {
             $recipients[] = ['role' => 'admin', 'name' => $user->name, 'email' => $user->email];
         }
 
 
-        foreach ($contacts as $contact) {
+        foreach ($this->contacts as $contact) {
             $recipients[] = ['role' => $contact->role, 'name' => $contact->name, 'email' => $contact->email];
         }
 
 
-        foreach ($subscribers as $subscriber) {
+        foreach ($this->subscribers as $subscriber) {
             $recipients[] = ['role' => 'subscriber', 'name' => $subscriber->name, 'email' => $subscriber->email];
         }
         
