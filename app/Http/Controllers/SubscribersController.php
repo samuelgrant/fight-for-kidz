@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Subscriber;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class SubscribersController extends Controller
 {
