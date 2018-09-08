@@ -7,25 +7,30 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Group extends Model
 {
-    use SoftDeletes;  
-  
-    public function applicants(){
+    use SoftDeletes;
+
+    public function applicants()
+    {
         return $this->belongsToMany('App\Applicant', 'group_applicant');
     }
 
-    public function sponsors(){
+    public function sponsors()
+    {
         return $this->belongsToMany('App\Sponsor', 'group_sponsor');
     }
 
-    public function users(){
+    public function users()
+    {
         return $this->belongsToMany('App\User', 'group_user');
     }
 
-    public function contacts(){
+    public function contacts()
+    {
         return $this->belongsToMany('App\Contact', 'group_contact');
     }
 
-    public function subscribers(){
+    public function subscribers()
+    {
         return $this->belongsToMany('App\Subscriber', 'group_subscriber');
     }
 
@@ -39,36 +44,44 @@ class Group extends Model
      * 
      * @return array
      */
-    public function recipients(){
-        $applicants = $this->applicants();
-        $sponsors = $this->sponsors();
-        $users = $this->users();
-        $contacts = $this->contacts();
-        $subscribers = $this->subscribers();
+    public function recipients()
+    {
+        $recipients = [];
 
-        foreach($applicants as $applicant){
+        $applicants = $this->applicants;
+        $sponsors = $this->sponsors;
+        $users = $this->users;
+        $contacts = $this->contacts;
+        $subscribers = $this->subscribers;
+
+        foreach ($applicants as $applicant) {
             $recipients[] = ['role' => 'applicant', 'name' => $applicant->first_name, 'email' => $applicant->email];
         }
 
-        foreach($sponsors as $sponsor){
+
+        foreach ($sponsors as $sponsor) {
             $recipients[] = ['role' => 'sponsor', 'name' => $sponsor->company_name, 'email' => $sponsor->email];
         }
 
-        foreach($users as $user){
+
+        foreach ($users as $user) {
             $recipients[] = ['role' => 'admin', 'name' => $user->name, 'email' => $user->email];
         }
 
-        foreach($contacts as $contact){
+
+        foreach ($contacts as $contact) {
             $recipients[] = ['role' => $contact->role, 'name' => $contact->name, 'email' => $contact->email];
         }
 
-        foreach($subscribers as $subscriber){
+
+        foreach ($subscribers as $subscriber) {
             $recipients[] = ['role' => 'subscriber', 'name' => $subscriber->name, 'email' => $subscriber->email];
         }
+        
 
         /* 
-        * Remove duplicates if present - needs to be coded.
-        */
+         * Remove duplicates if present - needs to be coded.
+         */
 
 
         return $recipients;

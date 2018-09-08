@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Groupable;
 
 class Applicant extends Model
 {
+    use Groupable;
+    
     // Relationship to event - many to one
     public function event()
     {
@@ -23,6 +26,7 @@ class Applicant extends Model
     }
 
     // Return true if a contender record exists for this application
+    // aka was this applicant accepted.
     
     public function isContender(){
         return $this->contender != null;
