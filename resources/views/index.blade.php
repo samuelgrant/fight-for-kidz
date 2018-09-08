@@ -74,7 +74,8 @@
           </div>
 
           <div class="col-md-2">         
-            <button class="btn btn-danger form-control" id="subscribeBtn" type="submit"><i class="fas fa-user-plus"></i> Sign Up!</button>          
+            <button class="btn btn-danger form-control" id="subscribeBtn" type="submit"><i class="fas fa-user-plus"></i> Sign Up!</button>
+            {!! app('captcha')->render(); !!}      
           </div>
         </div>
   

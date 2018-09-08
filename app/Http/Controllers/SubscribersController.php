@@ -2,16 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Input;
 use App\Subscriber;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Validator;
 
 class SubscribersController extends Controller
 {
     //stores subscriber info into database
     public function store(Request $request){
+        $validate = Validator::make(Input::all(), [
+            'g-recaptcha-response' => 'required|captcha'
+        ]);
 
+        
         if(!Subscriber::where('email', $request->input('email'))->count()){
             $subscriber = new Subscriber;
             $subscriber->name = $request->input('name');

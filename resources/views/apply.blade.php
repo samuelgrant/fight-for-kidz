@@ -262,6 +262,7 @@
 
       <div class="text-center">
         <input type="submit" role="button" class="btn btn-danger mt-2" value="Submit Application">
+        {!! app('captcha')->render(); !!}
       </div>
     </form>
   </div>
