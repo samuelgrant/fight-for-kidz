@@ -32,7 +32,7 @@ class User extends Authenticatable
     ];
 
     public function groups(){
-        return $this->belongsToMany('App\Group', 'group_user');
+        return $this->morphToMany('App\Group', 'groupable');
     }
 
     public function enable()

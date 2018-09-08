@@ -29,6 +29,6 @@ class Sponsor extends Model
     }
 
     public function groups(){
-        return $this->belongsToMany('App\Group', 'group_sponsor');
+        return $this->morphToMany('App\Group', 'groupable');
     }
 }

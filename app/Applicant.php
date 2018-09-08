@@ -22,7 +22,7 @@ class Applicant extends Model
     }
 
     public function groups(){
-        return $this->belongsToMany('App\Group', 'group_applicant');
+        return $this->morphToMany('App\Group', 'groupable');
     }
 
     // Return true if a contender record exists for this application

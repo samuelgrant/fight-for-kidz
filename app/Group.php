@@ -11,27 +11,27 @@ class Group extends Model
 
     public function applicants()
     {
-        return $this->belongsToMany('App\Applicant', 'group_applicant');
+        return $this->morphedByMany('App\Applicant', 'groupable');
     }
 
     public function sponsors()
     {
-        return $this->belongsToMany('App\Sponsor', 'group_sponsor');
+        return $this->morphedByMany('App\Sponsor', 'groupable');
     }
 
     public function users()
     {
-        return $this->belongsToMany('App\User', 'group_user');
+        return $this->morphedByMany('App\User', 'groupable');
     }
 
     public function contacts()
     {
-        return $this->belongsToMany('App\Contact', 'group_contact');
+        return $this->morphedByMany('App\Contact', 'groupable');
     }
 
     public function subscribers()
     {
-        return $this->belongsToMany('App\Subscriber', 'group_subscriber');
+        return $this->morphedByMany('App\Subscriber', 'groupable');
     }
 
     /**
