@@ -81,9 +81,7 @@
       {!!Form::close() !!}
     </div>
 
-    <div class="alert">
       @include('layouts.messages')
-    </div>
   </section>
 
     <!-- Sponsors Section -->
