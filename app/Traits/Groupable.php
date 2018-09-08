@@ -20,7 +20,7 @@ trait Groupable
         
     // if not already in group, add to group
 
-    
+    $this->groups()->attach($groupId);
 
     Log::debug('Added '.get_class($this).' '.$this->id. ' to group '.$groupId);
 
@@ -30,12 +30,15 @@ trait Groupable
     {
 
     // if in group, remove from group
+
+    $this->groups()->detach($groupId);
+
     Log::debug('Removed '.get_class($this).' '.$this->id.' from group '.$groupId);
 
     }
 
     public function groups(){
-        return $this->morphToMany('App/Group', 'groupable');
+        return $this->morphToMany('App\Group', 'groupable');
     }
 }
 
