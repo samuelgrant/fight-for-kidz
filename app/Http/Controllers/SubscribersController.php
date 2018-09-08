@@ -11,7 +11,11 @@ class SubscribersController extends Controller
 {
     //stores subscriber info into database
     public function store(Request $request){
+        $validate = Validator::make(Input::all(), [
+            'g-recaptcha-response' => 'required|captcha'
+        ]);
 
+        
         if(!Subscriber::where('email', $request->input('email'))->count()){
             $subscriber = new Subscriber;
             $subscriber->name = $request->input('name');
