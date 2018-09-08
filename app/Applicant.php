@@ -21,10 +21,6 @@ class Applicant extends Model
         return $this->hasOne('App\Contender');
     }
 
-    public function groups(){
-        return $this->morphToMany('App\Group', 'groupable');
-    }
-
     // Return true if a contender record exists for this application
     // aka was this applicant accepted.
     

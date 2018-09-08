@@ -9,8 +9,4 @@ class Subscriber extends Model
 {
 
     use Groupable;
-
-    public function groups(){
-        return $this->morphToMany('App\Group', 'groupable');
-    }
 }

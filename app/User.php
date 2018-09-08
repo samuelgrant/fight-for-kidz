@@ -31,10 +31,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function groups(){
-        return $this->morphToMany('App\Group', 'groupable');
-    }
-
     public function enable()
     {
         if(!$this->active){
