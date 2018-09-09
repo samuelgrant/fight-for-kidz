@@ -35,7 +35,7 @@ trait Groupable
             
             // code 23000 is an constraint / integrity violation
             if($ex->getCode() == 23000){
-                Log::debug(get_class($this).' '.$this->id. ' is already in group '.$groupId);
+                Log::debug(get_class($this).' '.$this->id. ' was not added to '.$groupId.'. It may already be a member of this group');
                 return;
             }
             else { // continue to throw the exception if it isn't related to duplicate record.

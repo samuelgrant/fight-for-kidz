@@ -19,6 +19,7 @@ class CreateGroupablesTable extends Migration
             $table->string('groupable_type');
 
             $table->primary(['group_id', 'groupable_id', 'groupable_type']);
+            $table->foreign('group_id')->references('id')->on('groups')->onDelete('cascade');
         });
     }
 
