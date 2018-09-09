@@ -17,6 +17,8 @@ class CreateGroupablesTable extends Migration
             $table->integer('group_id')->unsigned();
             $table->integer('groupable_id')->unsigned();
             $table->string('groupable_type');
+
+            $table->primary(['group_id', 'groupable_id', 'groupable_type']);
         });
     }
 
