@@ -23,7 +23,7 @@ class GroupManagementController extends Controller
     {
         $groups = Group::all();
         foreach($groups as $group){
-            $group->image = $group->id.".ping";
+            $group->image = $group->id.".png";
         }
         $deletedGroups = Group::onlyTrashed()->get();
         return view('admin.groupsManagement')->with(['groups' => $groups, 'deletedGroups' => $deletedGroups]);
@@ -51,8 +51,37 @@ class GroupManagementController extends Controller
             // Set the group to use custom icon. Defaults to false.
             $group->custom_icon = true;
             $group->save();
+        } else {
+            $group->custom_icon = false;
         }        
         
+        return redirect()->back();
+    }
+
+    /**
+     * Updates a group name and avatar
+     * 
+     * @param request, $id
+     */
+    public function update(request $request, $id){
+        $group = Group::find($id);
+            $group->name = $request->input('name');
+        $group->save();
+        
+        if($request->hasFile('groupImage')){
+            
+            // Validate image dimensions and file type. Resize would be great if too large.
+            
+            // Saves file as a png with the filename equal to the group id.
+            $request->file('groupImage')->storeAs('public/images/groups', $group->id.'.png');
+
+            // Set the group to use custom icon. Defaults to false.
+            $group->custom_icon = true;
+            $group->save();
+        } else {
+            $group->custom_icon = false;
+        }        
+
         return redirect()->back();
     }
 
