@@ -34,7 +34,8 @@
 
 
     <!-- Switch to the below code to run tests on the local database on the hard drive.
-        It will use the database defined in .env.testing (you may need to make this file) -->
+        It will use the database defined in .env.testing (you may need to make this file) 
+        DO NOT TEST ON PRODUCTION DATABASE. RECORDS MAY BE ERASED IF THIS IS ATTEMPTED!!!!-->
     <!-- <php>
         <env name="APP_ENV" value="testing"/>
         <env name="BCRYPT_ROUNDS" value="4"/>
