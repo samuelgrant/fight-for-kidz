@@ -3,10 +3,10 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Groupable;
 
 class Contact extends Model
 {
-    public function groups(){
-        return $this->belongsToMany('App/Group', 'group_contact');
-    }
+
+    use Groupable;
 }

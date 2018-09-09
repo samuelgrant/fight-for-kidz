@@ -3,9 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Groupable;
 
 class Sponsor extends Model
 {
+
+    use Groupable;
+
     // Relationship to event - many to many
     public function events()
     {
@@ -22,9 +26,5 @@ class Sponsor extends Model
     public function contender()
     {
         return $this->hasMany('App\Contender');
-    }
-
-    public function groups(){
-        return $this->belongsToMany('App\Group', 'group_sponsor');
     }
 }

@@ -5,12 +5,13 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Traits\Groupable;
 
 class User extends Authenticatable
 {
     use Notifiable;
     use SoftDeletes;
-    
+    use Groupable;    
 
     /**
      * The attributes that are mass assignable.
@@ -29,10 +30,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    public function groups(){
-        return $this->belongsToMany('App\Group', 'group_user');
-    }
 
     public function enable()
     {
