@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\admin;
 
+//use Validator;
 use Storage;
 use App\Group;
 use Illuminate\Http\Request;
@@ -31,30 +32,25 @@ class GroupManagementController extends Controller
 
     public function view($id)
     {
+        $group = Group::withTrashed()->find($id);
+        $groupMembers = $group->recipients();
         return view('admin.groupManagement')
-            ->with('group', Group::withTrashed()->find($id));
+            ->with('group', $group)
+            ->with('members', $groupMembers);
     }
 
     public function store(Request $request){
+        $this->validate($request, [
+            'groupName' => 'required|string',
+            'groupImage' => 'mimes:png|dimensions:min_width=80,min_height=100'
+        ]);
+        
+        
         $group = new Group();
-        $group->name = $request->input('groupName');
+            $group->name = $request->input('groupName');
+            $group->setImage(($request->file('groupImage')!== null)? $request->file('groupImage') : null); 
+        $group->save();
 
-        $group->save(); // need to save group here to generate an ID value
-        
-        if($request->hasFile('groupImage')){
-            
-            // Validate image dimensions and file type. Resize would be great if too large.
-            
-            // Saves file as a png with the filename equal to the group id.
-            $request->file('groupImage')->storeAs('public/images/groups', $group->id.'.png');
-
-            // Set the group to use custom icon. Defaults to false.
-            $group->custom_icon = true;
-            $group->save();
-        } else {
-            $group->custom_icon = false;
-        }        
-        
         return redirect()->back();
     }
 
@@ -64,23 +60,15 @@ class GroupManagementController extends Controller
      * @param request, $id
      */
     public function update(request $request, $id){
+        $this->validate($request, [
+            'groupName' => 'required|string',
+            'groupImage' => 'mimes:png|dimensions:min_width=80,min_height=100'
+        ]);
+        
         $group = Group::find($id);
             $group->name = $request->input('name');
+            $group->setImage($request->file('groupImage')!== null)? $request->file('groupImage') : null;
         $group->save();
-        
-        if($request->hasFile('groupImage')){
-            
-            // Validate image dimensions and file type. Resize would be great if too large.
-            
-            // Saves file as a png with the filename equal to the group id.
-            $request->file('groupImage')->storeAs('public/images/groups', $group->id.'.png');
-
-            // Set the group to use custom icon. Defaults to false.
-            $group->custom_icon = true;
-            $group->save();
-        } else {
-            $group->custom_icon = false;
-        }        
 
         return redirect()->back();
     }
