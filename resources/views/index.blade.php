@@ -57,23 +57,19 @@
       <h1 class="mb-3">Fight For Kidz Newsletter!</h1>
       {!!Form::open(['action' =>'SubscribersController@store', 'class' =>'form-inline justify-content-center']) !!} 
     
-        <div class="row">
+        <div class="row ">
           
-          <div class="col-md-1 inputLabel"> 
-            {{Form::label('name', 'Name:', ['class' => 'mr-3'])}}
-          </div>
-          <div class="col-md-4">
-            {{Form::text('name', '', ['class' => 'form-control mr-3'])}}
+          
+          <div class="col-md-12 mb-2">
+            {{Form::text('name', 'Name', ['class' => 'form-control '])}}
           </div>
 
-          <div class="col-md-1 inputLabel">
-            {{Form::label('email', 'Email:', ['class' => 'mr-3'])}}
-          </div>
-          <div class="col-md-4">
-            {{Form::text('email', '', ['class' => 'form-control mr-3 mb-4'])}}
+          
+          <div class="col-md-12 mb-2">
+            {{Form::text('email', 'Email', ['class' => 'form-control  mb-4'])}}
           </div>
 
-          <div class="col-md-2">         
+          <div class="col-md-12 text-center">         
             <button class="btn btn-danger form-control" id="subscribeBtn" type="submit"><i class="fas fa-user-plus"></i> Sign Up!</button>
             {!! app('captcha')->render(); !!}      
           </div>
