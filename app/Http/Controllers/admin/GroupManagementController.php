@@ -148,6 +148,6 @@ class GroupManagementController extends Controller
      * @return null
      */
     public function deleteMember($groupID, $contactID){
-
+        abort(501);
     }
 }
