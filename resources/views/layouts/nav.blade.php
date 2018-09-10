@@ -12,7 +12,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="index.html#about">About us</a>
+            <a class="nav-link js-scroll-trigger" href="{{route('index')}}#about">About us</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="/contenders">Contenders</a>
