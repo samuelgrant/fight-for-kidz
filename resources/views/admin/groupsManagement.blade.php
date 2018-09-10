@@ -79,7 +79,7 @@
                         <button class="btn btn-danger btn-sm d-block" type="button" onclick="resetImagePre()"><i class="fas fa-times"></i>
                             Remove Image</button>
                     </div>
-                    <small id="groupAvatarHelp" class="text-muted d-block">Required format .png - max 100 x 80 px.</small>
+                    <small id="groupAvatarHelp" class="text-muted d-block">Use png 100H x 80W.</small>
                 </div>
                 <button class="btn btn-primary btn-success" type="submit">Create Group</button>
 

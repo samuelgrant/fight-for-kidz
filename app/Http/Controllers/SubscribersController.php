@@ -24,6 +24,7 @@ class SubscribersController extends Controller
             $subscriber->email = $request->input('email');
             $subscriber->save();
 
+            $subscriber->addToGroup(2);
             session()->flash('success', 'You have successfully subscribed');
         }else{
             session()->flash('error', 'This email address has already been signed up');

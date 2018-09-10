@@ -14,12 +14,13 @@
 <!-- Page Content -->
 <div class="row">
     <!-- Group Settings -->
-    <div class="col-lg-3 col-md-4 col-sm-12">
+    <div class="col-lg-4 col-md-6 col-sm-12">
         <div class="card border-danger">
             <div class="card-header bg-danger text-white">
                 <h5 class="mb-0"><i class="fas fa-exclamation-triangle"></i> Group Settings</h5>
             </div>
             <div class="card-body">
+                @if($group->type != "System Group")
                 <form method="POST" action="{{route('admin.group.update', [$group->id])}}">
                     <div class="form-group">
                       <label for="name">Group Name</label>
@@ -30,7 +31,20 @@
                     {{Form::hidden('_method', 'PUT')}}
                     <button type="submit" class="btn btn-success btn-block"><i class="far fa-check-circle"></i> Update Settings</button>
                 </form>
-                @if($group->type != "System Group")
+                <div class="form-group">
+                    <label for="groupAvatar">Optional Group Icon</label>
+                    <div>
+                        <img id="imgPreview" src="https://via.placeholder.com/100x80" class="float-left mr-2" alt="placeholder">
+                        <label class="btn btn-info btn-sm btn-file">
+                            <i class="fas fa-upload"></i> Select Image
+                            <input name="groupImage" id="img" type="file" style="display: none;">
+                        </label>
+                        <button class="btn btn-danger btn-sm d-block" type="button" onclick="resetImagePre()"><i class="fas fa-times"></i>
+                            Remove Image</button>
+                    </div>
+                    <small id="groupAvatarHelp" class="text-muted d-bhlock">Use png 100H x 80W.</small>
+                </div>
+                
                 <hr>
                     @if($group->type != "System Group" && !$group->deleted_at)
                     {!!Form::open(['action'=>['admin\GroupManagementController@destroy', $group->id], 'method'=> 'POST']) !!}
@@ -50,14 +64,66 @@
                         {{Form::hidden('_method', 'patch')}}
                     {!! Form::close() !!}
                     @endif
+                @else
+                    <span class="text-danger">This is an automated group. You cannot change the settings of this group.</span>
                 @endif
             </div>
         </div>
     </div>
+    <div class="col-lg-8 col-md-6 col-sm-12">
+        @if($group->type != "System Group")
+            <button class="btn btn-primary mb-3" type="button" data-toggle="modal" data-target="#addToGroupModal">Add new contact to Group</button>
+        @endif
+        <table id="subscribers-dtable" class="table table-striped table-hover table-sm">
+            <thead class="thead-default">
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($members as $member)
+                <tr>
+                    <td>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="" value="checkedValue">
+                        </div>
+                    </td>
+                    <td>{{$member['name']}}</td>
+                        <td><a href="mailto:{{$member['email']}}">{{$member['email']}}</a></td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
 
-        
-
+@if($group->type != "System Group")
+<!-- Add to group modal -->
+<div class="modal fade" id="addToGroupModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add a new contact to a group.</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{{route('admin.group.addMember', [$group->id])}}">
+                    <div class="form-group">
+                        <label for="inviteeName">Name</label>
+                        <input type="text" name="name" id="inviteName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="inviteeName">Email</label>
+                        <input type="email" name="email" id="inviteEmail" class="form-control" required>
+                    </div>
+                    @csrf
+                    <button type="submit" class="btn btn-success"><i class="fas fa-user-plus"></i> Add person to Group</button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+@endif
 @endsection
