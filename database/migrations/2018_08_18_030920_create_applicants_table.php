@@ -20,6 +20,8 @@ class CreateApplicantsTable extends Migration
             // Application form fields:
             $table->string('first_name', 30);
             $table->string('last_name', 30);
+            $table->string('preferred_nickname')->nullable();
+            $table->boolean('is_male');
 
             $table->string('address_1');
             $table->string('address_2')->nullable();

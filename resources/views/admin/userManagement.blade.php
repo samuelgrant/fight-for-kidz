@@ -14,7 +14,7 @@
         <!-- Tabs -->
         <div>
             <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') != 'deleted')? 'active': '' }}" role="tab" data-toggle="tab" href="#tab-1" id="active">Active Accounts</a></li>
+                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') != 'deleted')? 'active': '' }}" role="tab" data-toggle="tab" href="#tab-1" id="active">Current Accounts</a></li>
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'deleted')? 'active': '' }}" role="tab" data-toggle="tab" href="#tab-2" id="deleted">Deleted Accounts</a></li>
             </ul>
             <div class="tab-content">
@@ -41,7 +41,7 @@
                                     <td>
                                         {!!Form::open(['action'=>['admin\UserManagementController@toggleActive', $user->id], 'method' => 'POST']) !!}
                                         @if($user->active)
-                                        <button class="btn btn-info" type="submit"><i class="far fa-times-circle"></i> Deactive Account</button>
+                                        <button class="btn btn-info" type="submit"><i class="far fa-times-circle"></i> Deactivate Account</button>
                                         @else
                                         <button class="btn btn-info" type="submit"><i class="far fa-check-circle"></i> Activate Account</button>
                                         @endif

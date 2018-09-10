@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Contender extends Model
 {
+
     // Relationship to application - one to one
     public function applicant()
     {

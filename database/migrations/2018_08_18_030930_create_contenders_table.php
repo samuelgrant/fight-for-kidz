@@ -16,7 +16,6 @@ class CreateContendersTable extends Migration
         Schema::create('contenders', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('event_id')->unsigned();
-            $table->integer('team_id')->unsigned();
             $table->integer('sponsor_id')->unsigned()->nullable();
             $table->integer('applicant_id')->unsigned();
             $table->string('first_name');

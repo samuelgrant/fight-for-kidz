@@ -40,4 +40,7 @@
   <script src="/js/grayscale.js" defer></script>
   <script src="/js/custom.js" defer></script>
 
+  <!-- Cookie -->
+  <link href="/css/jquery.gdrp.css" rel="stylesheet">
+  <script type="text/javascript" src="/jquery/jquery.gdrp.js"></script>
 </head>

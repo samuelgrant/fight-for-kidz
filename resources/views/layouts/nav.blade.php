@@ -35,7 +35,7 @@
                 <a href="/auction"><p>Auction</p></a>
               </li>
               <li>
-                <a class="js-scroll-trigger" href="/apply"><p>Apply</p></a>
+                <a class="js-scroll-trigger" href="{{route('application')}}"><p>Apply</p></a>
               </li>
             </ul>
           </li>

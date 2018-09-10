@@ -72,11 +72,24 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="{{route('admin.groupManagement')}}">
+            <i class="fas fa-layer-group"></i>
+            <span>Group Management</span>
+          </a>
+        </li>         
+        <li class="nav-item">
           <a class="nav-link" href="{{route('admin.userManagement')}}">
             <i class="fas fa-fw fa-users"></i>
             <span>User Management</span>
           </a>
         </li>
+        <hr>
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('index')}}">
+            <i class="fas fa-boxing-glove"></i>
+            <span>Back to Public Website</span>
+          </a>
+        </li>    
       </ul>
 
     
