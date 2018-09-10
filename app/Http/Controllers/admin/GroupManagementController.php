@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\admin;
 
+//use Validator;
 use Storage;
 use App\Group;
+use App\Contact;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -23,36 +25,62 @@ class GroupManagementController extends Controller
     {
         $groups = Group::all();
         foreach($groups as $group){
-            $group->image = $group->id.".ping";
+            $group->image = $group->id.".png";
         }
         $deletedGroups = Group::onlyTrashed()->get();
         return view('admin.groupsManagement')->with(['groups' => $groups, 'deletedGroups' => $deletedGroups]);
     }
 
+    /**
+     * Returns a view for a single group.
+     * 
+     * @param GroupID
+     */
     public function view($id)
     {
+        $group = Group::withTrashed()->find($id);
+        $groupMembers = $group->recipients();
         return view('admin.groupManagement')
-            ->with('group', Group::withTrashed()->find($id));
+            ->with('group', $group)
+            ->with('members', $groupMembers);
     }
 
+    /**
+     * Creates a new group
+     * 
+     * @param request(Web Form)
+     */
     public function store(Request $request){
+        $this->validate($request, [
+            'groupName' => 'required|string',
+            'groupImage' => 'mimes:png|dimensions:min_width=80,min_height=100'
+        ]);
+        
+        
         $group = new Group();
-        $group->name = $request->input('groupName');
+            $group->name = $request->input('groupName');
+            $group->setImage(($request->file('groupImage')!== null)? $request->file('groupImage') : null); 
+        $group->save();
 
-        $group->save(); // need to save group here to generate an ID value
-        
-        if($request->hasFile('groupImage')){
-            
-            // Validate image dimensions and file type. Resize would be great if too large.
-            
-            // Saves file as a png with the filename equal to the group id.
-            $request->file('groupImage')->storeAs('public/images/groups', $group->id.'.png');
+        return redirect()->back();
+    }
 
-            // Set the group to use custom icon. Defaults to false.
-            $group->custom_icon = true;
-            $group->save();
-        }        
+    /**
+     * Updates a group name and avatar
+     * 
+     * @param request, $id
+     */
+    public function update(request $request, $id){
+        $this->validate($request, [
+            'groupName' => 'required|string',
+            'groupImage' => 'mimes:png|dimensions:min_width=80,min_height=100'
+        ]);
         
+        $group = Group::find($id);
+            $group->name = $request->input('name');
+            $group->setImage($request->file('groupImage')!== null)? $request->file('groupImage') : null;
+        $group->save();
+
         return redirect()->back();
     }
 
@@ -87,5 +115,39 @@ class GroupManagementController extends Controller
         session()->flash('success', 'The group called '.$group->name.' was restored.');
 
         return redirect()->back();
+    }
+
+    /**
+     * Manually adds a contact to a specific group
+     * 
+     * @param GroupID, Name, Email
+     * @return null
+     */
+    public function addMember(request $request, $groupID){
+        $contact = Contact::where('name', $request->input('name'))
+                    ->where('email', $request->input('email'))->first();
+        
+        if(empty($contact)){
+            $contact = new Contact();
+                $contact->name = $request->input('name');
+                $contact->email = $request->input('email');
+                $contact->role = 'Custom Contact';
+            $contact->save();
+        }
+
+        $contact->addToGroup($groupID);
+
+        session()->flash('success', $request->input('name').' was added to the group.');
+        return redirect()->back();
+    }
+
+    /**
+     * Manually removes a contact from a specific group
+     * 
+     * @param GroupID, ContactID
+     * @return null
+     */
+    public function deleteMember($groupID, $contactID){
+        abort(501);
     }
 }

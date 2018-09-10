@@ -21,17 +21,7 @@ class DefaultGroupsSeeder extends Seeder
         factory(App\Group::class)->create([
             'name' => 'Subscribers',
             'type' => 'System Group'
-        ]);
-
-        factory(App\Group::class)->create([
-            'name' => 'Test Group 1',
-            'type' => 'Test Group'
-        ]);
-
-        factory(App\Group::class)->create([
-            'name' => 'Test Group 2',
-            'type' => 'Test Group'
-        ]);
+        ]);        
 
         Log::debug('Subscribers group created');
     }

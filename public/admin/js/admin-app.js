@@ -31,3 +31,35 @@ function resetImagePre(){
     $('#imgPreview').attr('src', 'https://via.placeholder.com/100x80');
     $('input:file') = null;
 }
+
+/* Data Tables */
+$(document).ready(function() {
+    $('#subscribers-dtable').DataTable({
+        "columns": [
+          { "orderable": false, "searchable": false },
+          null,
+          null
+        ]
+      });
+
+    $('#user-dtable').DataTable({
+        "columns": [
+          null,
+          null,
+          null,
+          null,
+          { "orderable": false, "searchable": false },
+          { "orderable": false, "searchable": false }
+        ]
+      });
+    $('#userDeleted-dtable').DataTable({
+        "columns": [
+          null,
+          null,
+          null,
+          null,
+          { "orderable": false, "searchable": false },
+          { "orderable": false, "searchable": false }
+        ]
+      });
+});

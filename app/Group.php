@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Intervention\Image\Facades\Image;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Log;
@@ -110,5 +111,24 @@ class Group extends Model
         $uniques = array_unique(array_column($array, 'email'));
 
         return (in_array($email, $uniques));
+    }
+
+    /**
+     * Resizes and saves the group Avatar
+     * Max Size 100H x 80W
+     * 
+     * @param image
+     * @return void
+     */
+    public function setImage($image){
+
+        if(isset($image)) {
+            $image->storeAs('public/images/groups', $this->id.'.png');
+            $this->custom_icon = true;
+        } else {
+            $this->custom_icon = false;
+        }
+
+        return;
     }
 }
