@@ -27,14 +27,11 @@
                       <input type="text" name="name" id="name" class="form-control" value="{{$group->name}}" required>
                     </div>
                     
-                    @csrf
-                    {{Form::hidden('_method', 'PUT')}}
-                    <button type="submit" class="btn btn-success btn-block"><i class="far fa-check-circle"></i> Update Settings</button>
-                </form>
+                   
                 <div class="form-group">
                     <label for="groupAvatar">Optional Group Icon</label>
                     <div>
-                        <img id="imgPreview" src="https://via.placeholder.com/100x80" class="float-left mr-2" alt="placeholder">
+                        <img id="imgPreview" src="{{$group->custom_icon ? '/storage/images/groups/'.$group->id.'.png' : 'https://via.placeholder.com/100x80'}}" class="float-left mr-2" alt="placeholder">
                         <label class="btn btn-info btn-sm btn-file">
                             <i class="fas fa-upload"></i> Select Image
                             <input name="groupImage" id="img" type="file" style="display: none;">
@@ -44,6 +41,11 @@
                     </div>
                     <small id="groupAvatarHelp" class="text-muted d-bhlock">Use png 100H x 80W.</small>
                 </div>
+
+                 @csrf
+                    {{Form::hidden('_method', 'PUT')}}
+                    <button type="submit" class="btn btn-success btn-block"><i class="far fa-check-circle"></i> Update Settings</button>
+                </form>
                 
                 <hr>
                     @if($group->type != "System Group" && !$group->deleted_at)
