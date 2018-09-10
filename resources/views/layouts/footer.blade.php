@@ -4,7 +4,7 @@
 <script>
   $('body').ihavecookies({
     title: "Cookies & Privacy",
-    message: "This website uses cookies to ensure you get the best experience on our website.",
+    message: "We use cookies to ensure you get the best experince on our website.",
     cookieTypes: []
   }); 
 </script>
