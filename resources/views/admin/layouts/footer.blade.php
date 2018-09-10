@@ -23,3 +23,6 @@
 <!-- Custom scripts for all pages-->
 <script type="text/javascript" src="/admin/js/admin-app.js"></script>
 <script type="text/javascript" src="/admin/js/sb-admin.min.js"></script>
+
+<!-- Datatable -->
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
