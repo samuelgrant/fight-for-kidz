@@ -133,4 +133,10 @@ class Group extends Model
 
         return;
     }
+
+    public function removeMemberByEmail($email){
+        $contact = $this->contacts->where('email', $email)->first();
+
+        $contact->removeFromGroup($this->id);
+    }
 }

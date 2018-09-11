@@ -138,8 +138,7 @@ class GroupManagementController extends Controller
      * @return null
      */
     public function addMember(request $request, $groupID){
-        $contact = Contact::where('name', $request->input('name'))
-                    ->where('email', $request->input('email'))->first();
+        $contact = Contact::where('email', $request->input('email'))->first();
         
         if(empty($contact)){
             $contact = new Contact();
@@ -148,7 +147,14 @@ class GroupManagementController extends Controller
                 $contact->role = 'Custom Contact';
             $contact->save();
         }
+        // Check if the user is trying to make a new contact using an email already in use.
+        elseif($contact->name != $request->input('name')){
+            session()->flash('error', 'The email address "'.$request->input('email').'" is already in use in '.count($contact->groups->all()).' group(s).');
+            return redirect()->back();
+        }
 
+        // We have loaded the contact with this email address and checked that the same name is 
+        // being used.
         $contact->addToGroup($groupID);
 
         session()->flash('success', $request->input('name').' was added to the group.');
@@ -161,7 +167,7 @@ class GroupManagementController extends Controller
      * @param GroupID, ContactID
      * @return null
      */
-    public function deleteMember($groupID, $contactID){
-        abort(501);
+    public function removeMember($groupID, $email){
+        Group::find($groupID)->removeMemberByEmail($email);
     }
 }
