@@ -17,6 +17,7 @@ $factory->define(App\Applicant::class, function (Faker $faker) {
         'address_2' => null,
         'suburb' => $faker->city(),
         'city' => $faker->city(),
+        'postcode' => $faker->randomNumber(4, true),
         'phone' => $faker->phoneNumber(),
         'mobile' => $faker->phoneNumber(),
         'email' => $faker->email(),
