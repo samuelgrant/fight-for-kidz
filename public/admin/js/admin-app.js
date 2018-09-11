@@ -39,8 +39,10 @@ function resetImagePre(){
         $('input:file').prop('value', null); // = null;
     }
 
-    $('#removeImageCheckbox').prop('checked', true);
-    console.log($('#removeImageCheckbox').prop('checked'));    
+    // Set this hidden checkbox to true. This tells the controller that 
+    // the user has clicked 'Remove Image' and therefore to set the 
+    // group icon to default.
+    $('#removeImageCheckbox').prop('checked', true);  
 }
 
 /* Data Tables */
@@ -84,7 +86,16 @@ function countSelected() {
     $('#removeCount').text('You have selected ' + count + ' contact(s) for deletion.');
 }
 
-// Sends an array of email addresses to be removed to the GroupsManagementController
+/**
+ * jQuery selects all checked datatable boxes and iterates through them.
+ * For each checkbox, the code sends an ajax delete request to the appropriate
+ * route. It includes the CSRF token otherwise a 419 error is returned.
+ * 
+ * When the ajax request is finished, successfully, the associated row on the 
+ * datatable is removed, without having to reload the page.  
+ * 
+ * @param groupID 
+ */
 function removeSelectedFromGroup(groupID) {
     var checkboxes = $('.dtable-remove-checkbox:checkbox:checked');
     var table = $('#subscribers-dtable').DataTable();
