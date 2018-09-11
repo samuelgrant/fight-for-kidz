@@ -64,24 +64,20 @@
 
     <div class="container my-5">
       <h1 class="mb-3">Fight For Kidz Newsletter!</h1>
-      {!!Form::open(['action' =>'SubscribersController@store', 'class' =>'form-inline justify-content-center']) !!} 
-    
+      @include('layouts.messages')
+      <form method="post" action="{{route('subscribe')}}" class="justify-content-center">
         <div class="row">
-          
-          <div class="col-md-12  inputLabel"> 
-            {{Form::label('name', 'Name', ['class' => ''])}}
+          <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" name="name" id="name" class="form-control" required>
+            </div>
           </div>
-
-          <div class="col-md-12">
-            {{Form::text('name', '', ['class' => 'form-control px-5'])}}
-          </div>
-
-           <div class="col-md-12 inputLabel">
-            {{Form::label('email', 'Email', ['class' => ''])}}
-          </div>
-
-          <div class="col-md-12">
-            {{Form::text('email', '', ['class' => 'form-control mb-4 px-5'])}}
+          <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email" class="form-control" required>
+            </div>
           </div>
 
           <div class="col-md-12">         
@@ -89,11 +85,9 @@
             {!! app('captcha')->render(); !!}      
           </div>
         </div>
-  
-      {!!Form::close() !!}
+        @csrf
+      </form>
     </div>
-
-      @include('layouts.messages')
   </section>
 
     <!-- Sponsors Section -->
