@@ -14,6 +14,8 @@ $(document).ready(function(){
     $('input:file').change(function(){
         processImage(this);
     })
+
+    $
 });
 
 function processImage(input){
@@ -28,8 +30,17 @@ function processImage(input){
 }
 
 function resetImagePre(){
-    $('#imgPreview').attr('src', 'https://via.placeholder.com/100x80');
-    $('input:file') = null;
+
+    // Set preview image back to placeholder.
+    $('#imgPreview').attr('src', 'https://via.placeholder.com/80x100');
+
+    // Set file input to null if it isn't already.
+    if($('input:file').prop('value') != null){        
+        $('input:file').prop('value', null); // = null;
+    }
+
+    $('#removeImageCheckbox').prop('checked', true);
+    console.log($('#removeImageCheckbox').prop('checked'));    
 }
 
 /* Data Tables */

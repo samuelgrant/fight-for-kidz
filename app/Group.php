@@ -129,6 +129,8 @@ class Group extends Model
             $this->custom_icon = false;
         }
 
+        $this->save();
+
         return;
     }
 }

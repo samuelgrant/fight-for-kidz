@@ -21,25 +21,30 @@
             </div>
             <div class="card-body">
                 @if($group->type != "System Group")
-                <form method="POST" action="{{route('admin.group.update', [$group->id])}}">
+                <form method="POST" action="{{route('admin.group.update', [$group->id])}}" enctype="multipart/form-data">
                     <div class="form-group">
                       <label for="name">Group Name</label>
-                      <input type="text" name="name" id="name" class="form-control" value="{{$group->name}}" required>
+                      <input type="text" name="groupName" id="name" class="form-control" value="{{$group->name}}" required>
                     </div>
                     
                    
                 <div class="form-group">
                     <label for="groupAvatar">Optional Group Icon</label>
-                    <div>
-                        <img id="imgPreview" src="{{$group->custom_icon ? '/storage/images/groups/'.$group->id.'.png' : 'https://via.placeholder.com/100x80'}}" class="float-left mr-2" alt="placeholder">
-                        <label class="btn btn-info btn-sm btn-file">
-                            <i class="fas fa-upload"></i> Select Image
-                            <input name="groupImage" id="img" type="file" style="display: none;">
-                        </label>
-                        <button class="btn btn-danger btn-sm d-block" type="button" onclick="resetImagePre()"><i class="fas fa-times"></i>
-                            Remove Image</button>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img id="imgPreview" class="group-icon" src="{{$group->custom_icon ? '/storage/images/groups/'.$group->id.'.png' : 'https://via.placeholder.com/100x80'}}" class="float-left mr-2" alt="placeholder">
+                        </div>
+                        <div class="col-md-10">
+                            <label class="btn btn-info btn-sm btn-file">
+                                <i class="fas fa-upload"></i> Select Image
+                                <input name="groupImage" id="img" type="file" style="display: none;">
+                                <input type="checkbox" id="removeImageCheckbox" name="removeImageCheckbox" style="display:none">
+                            </label>
+                            <button class="btn btn-danger btn-sm d-block" type="button" id="btnRemoveImage" onclick="resetImagePre()"><i class="fas fa-times"></i>
+                                Remove Image</button>                                
+                            <small id="groupAvatarHelp" class="text-muted d-bhlock">Use png 100H x 80W.</small>
+                        </div>
                     </div>
-                    <small id="groupAvatarHelp" class="text-muted d-bhlock">Use png 100H x 80W.</small>
                 </div>
 
                  @csrf
