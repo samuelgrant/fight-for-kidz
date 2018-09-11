@@ -59,8 +59,8 @@ class GroupManagementController extends Controller
         
         $group = new Group();
             $group->name = $request->input('groupName');
-            $group->setImage(($request->file('groupImage')!== null)? $request->file('groupImage') : null); 
-        $group->save();
+            $group->save(); // save now to generate id
+            $group->setImage(($request->file('groupImage')!== null)? $request->file('groupImage') : null);         
 
         return redirect()->back();
     }
@@ -76,9 +76,23 @@ class GroupManagementController extends Controller
             'groupImage' => 'mimes:png|dimensions:min_width=80,min_height=100'
         ]);
         
+        $image = $request->file('groupImage');
+
         $group = Group::find($id);
-            $group->name = $request->input('name');
-            $group->setImage($request->file('groupImage')!== null)? $request->file('groupImage') : null;
+            $group->name = $request->input('groupName');
+
+            /* If image file has been set this means the use has selected a new image, 
+            *  so set this as the new image. Otherwise, set image to null only if the 
+            *  user has clicked 'remove image', which sets the checkbox to true through
+            *  javascript.            
+            */ 
+            if($image){
+                $group->setImage($image);
+            }
+            elseif($request->input('removeImageCheckbox') == true){
+                $group->setImage(null);
+            }
+
         $group->save();
 
         return redirect()->back();
@@ -124,8 +138,7 @@ class GroupManagementController extends Controller
      * @return null
      */
     public function addMember(request $request, $groupID){
-        $contact = Contact::where('name', $request->input('name'))
-                    ->where('email', $request->input('email'))->first();
+        $contact = Contact::where('email', $request->input('email'))->first();
         
         if(empty($contact)){
             $contact = new Contact();
@@ -134,7 +147,14 @@ class GroupManagementController extends Controller
                 $contact->role = 'Custom Contact';
             $contact->save();
         }
+        // Check if the user is trying to make a new contact using an email already in use.
+        elseif($contact->name != $request->input('name')){
+            session()->flash('error', 'The email address "'.$request->input('email').'" is already in use in '.count($contact->groups->all()).' group(s).');
+            return redirect()->back();
+        }
 
+        // We have loaded the contact with this email address and checked that the same name is 
+        // being used.
         $contact->addToGroup($groupID);
 
         session()->flash('success', $request->input('name').' was added to the group.');
@@ -147,7 +167,7 @@ class GroupManagementController extends Controller
      * @param GroupID, ContactID
      * @return null
      */
-    public function deleteMember($groupID, $contactID){
-        abort(501);
+    public function removeMember($groupID, $email){
+        Group::find($groupID)->removeMemberByEmail($email);
     }
 }

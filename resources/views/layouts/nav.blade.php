@@ -24,7 +24,7 @@
             <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">Support Us
               <span class="caret"></span>
             </a>
-            <ul id="dropdown2" class="dropdown-menu">
+            <ul id="dropdown1" class="dropdown-menu">
               <li>
                 <a class="js-scroll-trigger" href="#"><p>Reserve Seats</p></a>
               </li>

@@ -129,6 +129,14 @@ class Group extends Model
             $this->custom_icon = false;
         }
 
+        $this->save();
+
         return;
+    }
+
+    public function removeMemberByEmail($email){
+        $contact = $this->contacts->where('email', $email)->first();
+
+        $contact->removeFromGroup($this->id);
     }
 }
