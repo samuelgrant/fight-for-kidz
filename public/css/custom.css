@@ -283,3 +283,15 @@
   background-color: rgba(0,0,0,0.75);
   color: white;
 }
+
+/* Subscriber form */
+#subscribeBtn{
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.logoimg{
+  background-image: url("/img/f4kmain.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}

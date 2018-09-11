@@ -82,7 +82,14 @@
             <i class="fas fa-fw fa-users"></i>
             <span>User Management</span>
           </a>
-        </li>       
+        </li>
+        <hr>
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('index')}}">
+            <i class="fas fa-boxing-glove"></i>
+            <span>Back to Public Website</span>
+          </a>
+        </li>    
       </ul>
 
     

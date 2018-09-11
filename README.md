@@ -31,6 +31,7 @@ _Hosting can be purchased at [Digital Ocean](https://www.digitalocean.com/) or [
 4. `` cp .env.example .env``
 5. ``php artisan key:generate``
 6. Fill out the .env file
+	- Register a Google Invisible reCAPTCHA account [here](https://www.google.com/recaptcha/admin#list)
 7. Create an Apache Virtual Hosts file. You can use the example below to test your site, but check that you update the DocumentRoot. When you publish this site to production please create a full virtual hosts file. _Refer to [Apache2 Documentation](https://httpd.apache.org/docs/2.4/vhosts/)_. Then restart apache2.
 ```
 <VirtualHost *:80>
@@ -46,3 +47,5 @@ ___Database Notice:__ Please create a new MySQL user __DO NOT USE ROOT__. Grant 
 - Structure: `CREATE, ALTER, INDEX, DROP, CREATE TEMPORARY TABLES, CREATE ROUTINE, ALTER ROUTINE, EXECUTE, EVENT, TRIGER`
 ###### Final Things
 Please secure your site with an SSL certificate. You can get a free certificate using [Certbot](https://certbot.eff.org/lets-encrypt/ubuntuartful-apache) from Let's Encrypt.
+
+**Windows Users**: To create the required symbolic link run the command `php artisan storage:link`.
