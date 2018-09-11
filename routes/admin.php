@@ -14,6 +14,7 @@ Route::get('/dashboard', function(){
     return view('admin.dashboard');
 })->name('admin.dashboard');
 
+//View, Activate, Delete, Restore Users.
 Route::get('/user-management', 'admin\UserManagementController@index')->name('admin.userManagement');
 Route::put('/user-management/{userID}', 'admin\UserManagementController@toggleActive')->name('admin.userManagement.toggleActive');
 Route::delete('/user-management/{userID}', 'admin\UserManagementController@destroy')->name('admin.userManagement.destroy');
@@ -32,3 +33,8 @@ Route::put('/group-management/{groupID}', 'admin\GroupManagementController@updat
 //Add, Remove from Group
 Route::post('/group-management/{groupID}', 'admin\GroupManagementController@addMember')->name('admin.group.addMember');
 Route::delete('/group-management/{groupID}/{contact}', 'admin\GroupManagementController@removeMember')->name('admin.group.removeMember');
+
+//View, Delete, Restore Events
+Route::get('/event-management', 'admin\EventManagementController@index')->name('admin.eventManagement');
+Route::delete('/event-management/{eventID}', 'admin\EventManagementController@destroy')->name('admin.eventManagment.destroy');
+Route::patch('/event-management/{eventID}', 'admin\EventManagementController@restore')->name('admin.eventManagement.restore');
