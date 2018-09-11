@@ -36,7 +36,7 @@
                                 <td>{{$user->name}}</td>
                                 <td><a href="mailto:{{$user->email}}">{{$user->email}}</a></td>
                                 <td>{{($user->active)? "Active Account" : "Activation Required"}}</td>
-                                <td>{{$user->updated_at}}</td>
+                                <td>{{$user->updated_at->format('d M Y')}}</td>
                                 <td>
                                     {!!Form::open(['action'=>['admin\UserManagementController@toggleActive', $user->id], 'method' => 'POST']) !!}
                                     @if($user->active)
@@ -73,7 +73,7 @@
                             <tr>
                                 <td>{{$user->name}}</td>
                                 <td><a href="mailto:{{$user->email}}">{{$user->email}}</a></td>
-                                <td>{{$user->deleted_at}}</td>
+                                <td>{{$user->deleted_at->format('d M Y')}}</td>
                                 <td>
                                     {!!Form::open(['action'=>['admin\UserManagementController@restore', $user->id], 'method'=> 'POST']) !!}
                                     <button class="btn btn-info" type="submit"><i class="far fa-times-circle"></i> Restore Account</button>
