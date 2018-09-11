@@ -23,6 +23,7 @@ class CreateEventsTable extends Migration
             $table->string('desc_1');
             $table->string('desc_2');            
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
