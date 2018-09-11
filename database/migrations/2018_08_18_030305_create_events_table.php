@@ -20,8 +20,8 @@ class CreateEventsTable extends Migration
             $table->string('charity')->nullable();
             $table->string('venue_name');
             $table->string('venue_address');
-            $table->string('desc_1');
-            $table->string('desc_2');            
+            $table->string('desc_1', 2000)->nullable();
+            $table->string('desc_2', 2000)->nullable();            
             $table->timestamps();
             $table->softDeletes();
         });

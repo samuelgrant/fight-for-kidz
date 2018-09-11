@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\admin;
 
 use Auth;
+use App\Event;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Event;
+
 
 class EventManagementController extends Controller
 {
@@ -26,6 +28,22 @@ class EventManagementController extends Controller
     }
 
     /**
+     * Creates a new event with the default state not public
+     * 
+     * @param request
+     */
+    public function store(request $request){
+
+        $event = new Event();
+            $event->name = $request->input('eventName');
+            $event->datetime = new carbon($request->input('dateTime'));
+            $event->venue_name = $request->input('venueName');
+            $event->venue_address = $request->input('venueAddress');
+        $event->save();
+        session()->flash('success', 'The event called '.$event->name.' was created.');
+        return redirect()->back();
+    }
+    /**
      * Soft deletes selected event
      * 
      * @param $id
@@ -33,6 +51,8 @@ class EventManagementController extends Controller
     public function destroy($id)
     {
         $event = Event::find($id);
+            $event->is_public = false;
+            $event->save();
 
             $event->delete();
             session()->flash('success', 'The event called '.$event->name.' was deleted.');
