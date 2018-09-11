@@ -4,13 +4,23 @@
   <!-- Header -->
   <header class="masthead">
     <div class="container d-flex h-100 align-items-center">
-      <div class="mx-auto text-center">
-        <img src="img/f4k.png" class="img-fluid" />
+      <div class="mx-auto text-center col-md-12">
+        <div class="logoimg col-md-12">
+          <canvas id="myCanvas"   style=" width: 100%; height: 100%;">
+          </canvas>
+        </div>  
         <h2 class="text-white-50 mx-auto mt-5 mb-5">Fight For Kidz is a charity boxing event held in Southland to raise money for Southland kidz charities.</h2>
       </div>
     </div>
   </header>
-
+  <script>
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    var year = "2017"
+    ctx.font = "40px Arial";
+    ctx.fillStyle = "white";
+    ctx.fillText(year,10,100);
+</script>
   <!-- Upcoming event -->
   <div style="background-color: black;">
     <section class="upcoming-section">
