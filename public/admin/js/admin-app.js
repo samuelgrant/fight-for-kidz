@@ -74,3 +74,34 @@ $(document).ready(function() {
         ]
       });
 });
+
+// Count the number of selected datatable rows on a page, and display the result
+// on the remove contacts modal.
+function countSelected() {
+
+    var count = $('.dtable-remove-checkbox:checkbox:checked').length;
+
+    $('#removeCount').text('You have selected ' + count + ' contact(s) for deletion.');
+}
+
+// Sends an array of email addresses to be removed to the GroupsManagementController
+function removeSelectedFromGroup(groupID) {
+    var checkboxes = $('.dtable-remove-checkbox:checkbox:checked');
+    var table = $('#subscribers-dtable').DataTable();
+
+    checkboxes.each(function () {
+
+        var rowId = $(this).prop('id');        
+
+        $.ajax({
+            type: 'DELETE',
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            url: '/a/group-management/' + groupID + '/' + rowId
+        }).done(function (data) {
+            console.log(data);
+            table.row( $(this).parents('tr')[0]).remove().draw();
+        }).fail(function (err) {
+            console.error(err);
+        });
+    });
+}
