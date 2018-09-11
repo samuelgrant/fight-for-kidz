@@ -5,7 +5,7 @@
   <header class="masthead">
     <div class="container d-flex h-100 align-items-center">
       <div class="mx-auto text-center col-md-12">
-        <div class="logoimg col-md-12">
+        <div class="logoimg col-md-12 ">
           <canvas id="myCanvas"   style=" width: 100%; height: 100%;">
           </canvas>
         </div>  
@@ -16,7 +16,6 @@
   <script>
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
-    var year = "2017"
     ctx.font = "40px Arial";
     ctx.fillStyle = "white";
     ctx.fillText(year,10,100);
@@ -67,20 +66,26 @@
       <h1 class="mb-3">Fight For Kidz Newsletter!</h1>
       {!!Form::open(['action' =>'SubscribersController@store', 'class' =>'form-inline justify-content-center']) !!} 
     
-        <div class="row ">
+        <div class="row">
           
-          
-          <div class="col-md-12 mb-2">
-            {{Form::text('name', 'Name', ['class' => 'form-control '])}}
+          <div class="col-md-12  inputLabel"> 
+            {{Form::label('name', 'Name', ['class' => ''])}}
           </div>
 
-          
-          <div class="col-md-12 mb-2">
-            {{Form::text('email', 'Email', ['class' => 'form-control  mb-4'])}}
+          <div class="col-md-12">
+            {{Form::text('name', '', ['class' => 'form-control px-5'])}}
           </div>
 
-          <div class="col-md-12 text-center">         
-            <button class="btn btn-danger form-control" id="subscribeBtn" type="submit"><i class="fas fa-user-plus"></i> Sign Up!</button>
+           <div class="col-md-12 inputLabel">
+            {{Form::label('email', 'Email', ['class' => ''])}}
+          </div>
+
+          <div class="col-md-12">
+            {{Form::text('email', '', ['class' => 'form-control mb-4 px-5'])}}
+          </div>
+
+          <div class="col-md-12">         
+            <button class="btn btn-danger form-control px-4" id="subscribeBtn" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
             {!! app('captcha')->render(); !!}      
           </div>
         </div>
