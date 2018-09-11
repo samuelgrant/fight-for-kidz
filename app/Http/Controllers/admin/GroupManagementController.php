@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\admin;
 
-//use Validator;
 use Storage;
 use App\Group;
 use App\Contact;
