@@ -151,4 +151,24 @@ class GroupableTest extends TestCase
         $this->assertTrue(count($group->fresh()->recipients()) == 5);
         $this->assertTrue(count($group->fresh()->recipients(false)) == 5);
     }
+
+    /**
+     * This method checks that contact records are deleted when they no longer
+     * belong to any groups.
+     */
+    public function testContactAutoDelete(){
+
+        $initialContactCount = count(Contact::all());
+
+        $contact = new Contact;
+        $contact->name = 'Sam';
+        $contact->email = 'sam@gmail.com';
+        $contact->save();
+        $contact->addToGroup(3);
+
+        $contact->removeFromGroup(3);
+        
+        // If test was successful, we should be back to the initial number of contacts.
+        $this->assertTrue(count(Contact::all()) == $initialContactCount);
+    }
 }

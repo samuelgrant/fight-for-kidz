@@ -148,13 +148,13 @@ class GroupManagementController extends Controller
             $contact->save();
         }
         // Check if the user is trying to make a new contact using an email already in use.
-        elseif($contact->name != $request->input('name')){
-            session()->flash('error', 'The email address "'.$request->input('email').'" is already in use in '.count($contact->groups->all()).' group(s).');
+        elseif($contact->name != $request->input('name')){            
+            session()->flash('error', 'The email address "'.$request->input('email').'" is already assigned to '.$contact->name.' in '.count($contact->groups).' group(s)');
             return redirect()->back();
         }
 
         // We have loaded the contact with this email address and checked that the same name is 
-        // being used.
+        // being used. Now we can add to the group.
         $contact->addToGroup($groupID);
 
         session()->flash('success', $request->input('name').' was added to the group.');

@@ -143,9 +143,10 @@ class Group extends Model
      * of groupable type.
      */
     public function removeMembersByEmail($email){
+
         $contacts = $this->contacts->where('email', $email)->all();
 
-        $this->removeCollectionFromGroup($this->contacts->where('email', $email)->all());
+        $this->removeCollectionFromGroup($contacts);
         $this->removeCollectionFromGroup($this->users->where('email', $email)->all());
         $this->removeCollectionFromGroup($this->sponsors->where('email', $email)->all());
         $this->removeCollectionFromGroup($this->applicants->where('email', $email)->all());
