@@ -16,8 +16,33 @@
     <section class="upcoming-section">
       <div class="container">
         <h1 class="text-white">Fight for Kidz 2018</h1>
-        <p class="text-white mb-0">Join us on April 28th 2018 for the next Fight For Kids!</p>
+        <hr>
+        <div class="row mb-5">
+          <div class="col-lg-7">
+              <h4 class="bar text-left text-white">Join us this April for the next <em>Fight For Kids!</em></h4>
+              <div class="mt-lg-5">
+                  <p class="text-white-50 text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae deserunt
+                      ab cupiditate quidem qui voluptates dolores quo veniam tempora neque sapiente libero ullam, excepturi
+                      culpa quibusdam non tempore! Quis, consequatur. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Repellendus maxime ducimus nulla veritatis quia aliquam vel architecto amet doloribus laudantium neque
+                      ipsum nemo, accusantium cupiditate et. Tempora eaque hic perspiciatis!
+                  </p>
+              </div>
+          </div>
+          <div class="col-lg-2"></div>
+          <div class="col-lg-3 text-white text-right results">
+              <h4 class="bar">Fight For Kidz 2018</h4>
+              <p class="all-caps">Date</p>
+              <p class="stat">Saturday 28<sup>th</sup> April</p>
+              <p class="all-caps">Location</p>
+              <p class="stat">ILT Stadium</p>
+              <p class="all-caps">Charity Supported</p>
+              <p class="stat">Koha Kai</p>
+          </div>
+        </div>
+        <img src="img/ILT_Stadium.png" class="img-fluid mb-5" />
       </div>
+      <hr>
     </section>
 
   <!-- Subscriber Section -->
