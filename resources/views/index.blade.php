@@ -4,13 +4,22 @@
   <!-- Header -->
   <header class="masthead">
     <div class="container d-flex h-100 align-items-center">
-      <div class="mx-auto text-center">
-        <img src="img/f4k.png" class="img-fluid" />
+      <div class="mx-auto text-center col-md-12">
+        <div class="logoimg col-md-12 ">
+          <canvas id="myCanvas"   style=" width: 100%; height: 100%;">
+          </canvas>
+        </div>  
         <h2 class="text-white-50 mx-auto mt-5 mb-5">Fight For Kidz is a charity boxing event held in Southland to raise money for Southland kidz charities.</h2>
       </div>
     </div>
   </header>
-
+  <script>
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.font = "40px Arial";
+    ctx.fillStyle = "white";
+    ctx.fillText(year,10,100);
+</script>
   <!-- Upcoming event -->
   <div style="background-color: black;">
     <section class="upcoming-section">
@@ -55,34 +64,30 @@
 
     <div class="container my-5">
       <h1 class="mb-3">Fight For Kidz Newsletter!</h1>
-      {!!Form::open(['action' =>'SubscribersController@store', 'class' =>'form-inline justify-content-center']) !!} 
-    
+      @include('layouts.messages')
+      <form method="post" action="{{route('subscribe')}}" class="justify-content-center">
         <div class="row">
-          
-          <div class="col-md-1 inputLabel"> 
-            {{Form::label('name', 'Name:', ['class' => 'mr-3'])}}
+          <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" name="name" id="name" class="form-control" required>
+            </div>
           </div>
-          <div class="col-md-4">
-            {{Form::text('name', '', ['class' => 'form-control mr-3'])}}
-          </div>
-
-          <div class="col-md-1 inputLabel">
-            {{Form::label('email', 'Email:', ['class' => 'mr-3'])}}
-          </div>
-          <div class="col-md-4">
-            {{Form::text('email', '', ['class' => 'form-control mr-3 mb-4'])}}
+          <div class="col-md-6 col-sm-12">
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email" class="form-control" required>
+            </div>
           </div>
 
-          <div class="col-md-2">         
-            <button class="btn btn-danger form-control" id="subscribeBtn" type="submit"><i class="fas fa-user-plus"></i> Sign Up!</button>
+          <div class="col-md-12">         
+            <button class="btn btn-danger form-control px-4" id="subscribeBtn" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
             {!! app('captcha')->render(); !!}      
           </div>
         </div>
-  
-      {!!Form::close() !!}
+        @csrf
+      </form>
     </div>
-
-      @include('layouts.messages')
   </section>
 
     <!-- Sponsors Section -->
