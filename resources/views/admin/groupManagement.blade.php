@@ -90,12 +90,12 @@
         <button class="btn btn-danger mb-3" type="button" data-toggle="modal" data-target="#removeFromGroupModal"
             onclick="countSelected()">Remove selected</button>
         @endif
-        <table id="subscribers-dtable" class="table table-striped table-hover table-sm">
+        <table id="group-dtable" class="table table-striped table-hover table-sm">
             <thead class="thead-default">
                 <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Email</th>
+                    <th><input type="checkbox" id="dtable-select-all"></th>
+                    <th class="dtable-control">Name</th>
+                    <th class="dtable-control">Email</th>
                 </tr>
             </thead>
             <tbody>
@@ -103,7 +103,7 @@
                 <tr>
                     <td>
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input dtable-remove-checkbox" id="{{$member['email']}}"
+                            <input type="checkbox" class="form-check-input dtable-remove-checkbox dtable-control" id="{{$member['email']}}"
                                 value="checkedValue">
                         </div>
                     </td>
@@ -155,7 +155,7 @@
 
                 <p id="removeCount"></p>
 
-                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="removeSelectedFromGroup({{$group->id}})">Remove contacts</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="removeSelectedFromGroup({{$group->id}})">Confirm</button>
 
             </div>
         </div>

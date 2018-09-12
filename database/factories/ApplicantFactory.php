@@ -20,7 +20,7 @@ $factory->define(App\Applicant::class, function (Faker $faker) {
         'postcode' => $faker->randomNumber(4, true),
         'phone' => $faker->phoneNumber(),
         'mobile' => $faker->phoneNumber(),
-        'email' => $faker->email(),
+        'email' => $faker->unique()->email(),
         'dob' => $faker->dateTimeBetween($startDate = '-30 years', $endDate = '-18 years'),
         'current_weight' => $faker->numberBetween(50, 160),
         'expected_weight' => $faker->numberBetween(60, 140),
