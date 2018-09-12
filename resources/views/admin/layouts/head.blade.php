@@ -3,6 +3,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="">
 <meta name="author" content="">
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 <title>F4K Admin</title>
 
@@ -16,9 +17,6 @@
 <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" rel="stylesheet">
 
-
-
 <!-- Custom styles for this template-->
 <link href="/admin/css/sb-admin.css" rel="stylesheet">
-<link href="/admin/css/admin.css" rel="stylesheet">
-<link href="/admin/css/app.css" rel="stylesheet">
+<link href="/admin/css/admin_custom.css" rel="stylesheet">

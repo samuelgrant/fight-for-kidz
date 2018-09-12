@@ -54,8 +54,8 @@ class Group extends Model
         $recipients = [];
 
         foreach ($this->applicants as $applicant) {
-            if ($this->nonUniqueEmail($recipients, $applicant->email && $removeDuplicates)) {
-                Log::debug('Duplicate email ' . $applicant->email . ' omitted from array');
+            if ($this->nonUniqueEmail($recipients, $applicant->email) && $removeDuplicates) {
+                //Log::debug('Duplicate email ' . $applicant->email . ' omitted from array');
             } else {
                 $recipients[] = ['role' => 'applicant', 'name' => $applicant->first_name, 'email' => $applicant->email];
             }
@@ -64,7 +64,7 @@ class Group extends Model
 
         foreach ($this->sponsors as $sponsor) {
             if ($this->nonUniqueEmail($recipients, $sponsor->email) && $removeDuplicates) {
-                Log::debug('Duplicate email ' . $sponsor->email . ' omitted from array');
+                //Log::debug('Duplicate email ' . $sponsor->email . ' omitted from array');
             } else {
                 $recipients[] = ['role' => 'sponsor', 'name' => $sponsor->company_name, 'email' => $sponsor->email];
             }
@@ -73,7 +73,7 @@ class Group extends Model
 
         foreach ($this->users as $user) {
             if ($this->nonUniqueEmail($recipients, $user->email) && $removeDuplicates) {
-                Log::debug('Duplicate email ' . $user->email . ' omitted from array');
+                //Log::debug('Duplicate email ' . $user->email . ' omitted from array');
             } else {
                 $recipients[] = ['role' => 'admin', 'name' => $user->name, 'email' => $user->email];
             }
@@ -82,7 +82,7 @@ class Group extends Model
 
         foreach ($this->contacts as $contact) {
             if ($this->nonUniqueEmail($recipients, $contact->email) && $removeDuplicates) {
-                Log::debug('Duplicate email ' . $contact->email . ' omitted from array');
+                //Log::debug('Duplicate email ' . $contact->email . ' omitted from array');
             } else {
                 $recipients[] = ['role' => $contact->role, 'name' => $contact->name, 'email' => $contact->email];
             }
@@ -91,7 +91,7 @@ class Group extends Model
 
         foreach ($this->subscribers as $subscriber) {
             if ($this->nonUniqueEmail($recipients, $subscriber->email) && $removeDuplicates) {
-                Log::debug('Duplicate email ' . $subscriber->email . ' omitted from array');
+                //Log::debug('Duplicate email ' . $subscriber->email . ' omitted from array');
             } else {
                 $recipients[] = ['role' => 'subscriber', 'name' => $subscriber->name, 'email' => $subscriber->email];
             }
@@ -108,7 +108,11 @@ class Group extends Model
      */
     protected function nonUniqueEmail($array, $email)
     {
+        
         $uniques = array_unique(array_column($array, 'email'));
+
+        //Log::debug($email);
+        //Log::debug((in_array($email, $uniques) ? 'is not unique' : 'is unique'));
 
         return (in_array($email, $uniques));
     }
@@ -129,6 +133,33 @@ class Group extends Model
             $this->custom_icon = false;
         }
 
+        $this->save();
+
         return;
+    }
+
+    /**
+     * Pass an email, remove all groupables with that email, regardless
+     * of groupable type.
+     */
+    public function removeMembersByEmail($email){
+
+        $contacts = $this->contacts->where('email', $email)->all();
+
+        $this->removeCollectionFromGroup($contacts);
+        $this->removeCollectionFromGroup($this->users->where('email', $email)->all());
+        $this->removeCollectionFromGroup($this->sponsors->where('email', $email)->all());
+        $this->removeCollectionFromGroup($this->applicants->where('email', $email)->all());
+        $this->removeCollectionFromGroup($this->subscribers->where('email', $email)->all());
+    }
+
+    /**
+     * Pass an eloquent collection of groupables, remove all from
+     * this group.
+     */
+    protected function removeCollectionFromGroup($groupables){
+        foreach($groupables as $groupable){
+            $groupable->removeFromGroup($this->id);
+        }
     }
 }

@@ -218,15 +218,25 @@
     opacity: 1;
   }
 
-  /* Dropdown styling */
+  /* Dropdown styling */  
 
   .dropdown-transparent{
     background-color: transparent;    
   }
 
+  @media only screen and (max-width: 991px){
+    .dropdown-transparent p{
+      color: rgba(0,0,0,.5) !important;
+      text-align: left !important;
+      margin-left:  0.5rem;
+    }
+  }
+
+  @media only screen and (min-width: 992px){
   .dropdown-transparent p{
     color: white !important;
   }
+}
 
   .dropdown-menu{
     border: none;
@@ -288,4 +298,10 @@
 #subscribeBtn{
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+.logoimg{
+  background-image: url("/img/f4kmain.png");
+  background-size: contain;
+  background-repeat: no-repeat;
 }
