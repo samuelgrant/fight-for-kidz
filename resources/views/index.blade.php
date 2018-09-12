@@ -40,7 +40,17 @@
               <p class="stat">Koha Kai</p>
           </div>
         </div>
-        <img src="img/ILT_Stadium.png" class="img-fluid mb-5" />
+       <div class="row">
+          <div class="col-md-6 py-3">
+            <img src="img/ILT_Stadium.png" class="img-fluid mb-5"  style="object-fit: cover; height: 100%; width: 100%;" />
+          </div>
+          <div class="col-md-6 py-3">
+            <iframe width="600" height="450" frameborder="0" style="border:0"
+            src="https://www.google.com/maps/embed/v1/place?q=ILT%20stadium&key=AIzaSyCh5DbSbB0_mE1DZJJfjhbJpkRfROHjgSw" allowfullscreen>
+            </iframe>
+          </div>
+       </div>
+        
       </div>
       <hr>
     </section>
