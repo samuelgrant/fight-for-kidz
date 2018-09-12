@@ -36,8 +36,17 @@
               <p class="stat">Saturday 28<sup>th</sup> April</p>
               <p class="all-caps">Location</p>
               <p class="stat">ILT Stadium</p>
-              <p class="all-caps">Charity Supported</p>
-              <p class="stat">Koha Kai</p>
+              <div class="row">
+                <a href="https://facebook.com/kohakai">
+                  <div class="col-md-6"><img src="img/KohaKai.png"></div>
+                </a>
+                <div class="col-md-6">
+                  <p class="all-caps">Supporting</p>
+                  <p class="stat">Koha Kai</p>
+                </div>
+              </div>
+              
+              
           </div>
         </div>
        <div class="row">
