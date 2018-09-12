@@ -155,7 +155,7 @@
 
                 <p id="removeCount"></p>
 
-                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="removeSelectedFromGroup({{$group->id}})">Remove contacts</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="removeSelectedFromGroup({{$group->id}})">Confirm</button>
 
             </div>
         </div>

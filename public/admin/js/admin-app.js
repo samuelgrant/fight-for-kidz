@@ -83,6 +83,13 @@ function countSelected() {
 
     var count = $('.dtable-remove-checkbox:checkbox:checked').length;
 
+    console.log(count);
+
+    if(count == 0){
+        $('#removeCount').text('Oops! You have not selected any group members.');
+        return;
+    }   
+
     $('#removeCount').text('You have selected ' + count + ' contact(s) for deletion.');
 }
 
