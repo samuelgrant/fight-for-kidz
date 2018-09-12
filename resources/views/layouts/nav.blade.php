@@ -24,7 +24,7 @@
             <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">Support Us
               <span class="caret"></span>
             </a>
-            <ul id="dropdown2" class="dropdown-menu">
+            <ul id="dropdown1" class="dropdown-menu">
               <li>
                 <a class="js-scroll-trigger" href="#"><p>Reserve Seats</p></a>
               </li>
@@ -35,7 +35,7 @@
                 <a href="/auction"><p>Auction</p></a>
               </li>
               <li>
-                <a class="js-scroll-trigger" href="/apply"><p>Apply</p></a>
+                <a class="js-scroll-trigger" href="{{route('application')}}"><p>Apply</p></a>
               </li>
             </ul>
           </li>

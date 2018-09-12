@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\Groupable;
 
-class ContenderApplication extends Model
+class Applicant extends Model
 {
+    use Groupable;
+    
     // Relationship to event - many to one
     public function event()
     {
@@ -18,6 +21,10 @@ class ContenderApplication extends Model
         return $this->hasOne('App\Contender');
     }
 
-    // Relationship to application notes
-    // Table yet to be created
+    // Return true if a contender record exists for this application
+    // aka was this applicant accepted.
+    
+    public function isContender(){
+        return $this->contender != null;
+    }
 }

@@ -2,15 +2,17 @@
 
 namespace App;
 
+use App\Traits\Groupable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
 
 class User extends Authenticatable
 {
     use Notifiable;
     use SoftDeletes;
-    
+    use Groupable;    
 
     /**
      * The attributes that are mass assignable.
@@ -30,22 +32,14 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    // Relationship with contender application notes
-    public function ContenderAppNotes()
-    {
-        return $this->hasMany('App\ContenderAppNote');
-    }
-
-    // Relationship with sponsor application notes
-    // To be implemented
-
     public function enable()
     {
         if(!$this->active){
             $this->active = true;
             $this->save();
 
-            //Add to admin ml group
+            
+            $this->addToGroup(1);
             //Fire email YOUR ACCOUNT IS NOW ACTIVATED
             //Return WINNING
         }
@@ -59,7 +53,7 @@ class User extends Authenticatable
             $this->active = false;
             $this->save();
 
-
+            $this->removeFromGroup(1);
             //Remove from admin group (for mailing list things)
             //Fire email account disabled
             

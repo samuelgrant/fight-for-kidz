@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Seeder;
 
 class UsersTableSeeder extends Seeder
@@ -14,23 +15,22 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        
-        factory(App\User::class)->create(
-            [
-                'name' => 'Admin',
-                'email' => 'admin@example.com',
-                'password' => '$2y$10$6z.fpsPw33atdIbj6mwhKevVR.lYRKrjxNxBBtS4XPmun9r4yOkzi',
-                'active' => 1
-            ]
-        );
+        //Create Two Users
+        $userOne = new User();
+            $userOne->name = 'Admin';
+            $userOne->email = 'admin@example.com';
+            $userOne->password = '$2y$10$6z.fpsPw33atdIbj6mwhKevVR.lYRKrjxNxBBtS4XPmun9r4yOkzi';
+        $userOne->save();
 
-        factory(App\User::class)->create(
-            [
-                'name' => 'Tester',
-                'email' => 'tester@example.com',
-                'password' => '$2y$10$6z.fpsPw33atdIbj6mwhKevVR.lYRKrjxNxBBtS4XPmun9r4yOkzi',
-                'active' => 0
-            ]
-        );
+        $userTwo = new User();
+            $userTwo->name = 'Test User';
+            $userTwo->email = 'test@example.com';
+            $userTwo->password = '$2y$10$6z.fpsPw33atdIbj6mwhKevVR.lYRKrjxNxBBtS4XPmun9r4yOkzi';
+        $userTwo->save();
+
+        //Set User One to Admin
+        $userOne->enable();
+
+        Log::debug('Test user accounts created');
     }
 }

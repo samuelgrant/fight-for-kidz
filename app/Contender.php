@@ -6,22 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Contender extends Model
 {
+
     // Relationship to application - one to one
-    public function application()
+    public function applicant()
     {
-        return $this->belongsTo('App\ContenderApplication');
+        return $this->belongsTo('App\Applicant');
     }
 
     // Relationship to event - one to many
     public function event()
     {
         return $this->belongsTo('App\Event');
-    }
-
-    // Relationship to team - many to one
-    public function team()
-    {
-        return $this->belongsTo('App\Team');
     }
 
     // Relationship to sponsor - many to one
