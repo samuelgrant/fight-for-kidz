@@ -22,3 +22,7 @@
     cursor: inherit;
     display: block;
 }
+.group-icon{
+    width: 80px;
+    height: 100px;
+}
