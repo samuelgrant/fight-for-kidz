@@ -24,51 +24,32 @@
   <div style="background-color: black;">
     <section class="upcoming-section">
       <div class="container">
-        <h1 class="text-white">Fight for Kidz 2018</h1>
-        <hr>
         <div class="row mb-5">
-          <div class="col-lg-7">
-              <h4 class="bar text-left text-white">Join us this April for the next <em>Fight For Kids!</em></h4>
-              <div class="mt-lg-5">
-                  <p class="text-white-50 text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae deserunt
-                      ab cupiditate quidem qui voluptates dolores quo veniam tempora neque sapiente libero ullam, excepturi
-                      culpa quibusdam non tempore! Quis, consequatur. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Repellendus maxime ducimus nulla veritatis quia aliquam vel architecto amet doloribus laudantium neque
-                      ipsum nemo, accusantium cupiditate et. Tempora eaque hic perspiciatis!
-                  </p>
-              </div>
+          <div class="col-lg-8 col-md-6 col-col-sm-12">
+            <h1 class="text-white underline bar">Fight for Kidz 2018</h1>
+            <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae deserunt ab cupiditate quidem qui voluptates dolores quo veniam tempora neque sapiente libero ullam, excepturi culpa quibusdam non tempore! Quis, consequatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus maxime ducimus nulla veritatis quia aliquam vel architecto amet doloribus laudantium neque ipsum nemo, accusantium cupiditate et. Tempora eaque hic perspiciatis!</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae deserunt ab cupiditate quidem qui voluptates dolores quo veniam tempora neque sapiente libero ullam, excepturi culpa quibusdam non tempore! Quis, consequatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus maxime ducimus nulla veritatis quia aliquam vel architecto amet doloribus laudantium neque ipsum nemo, accusantium cupiditate et. Tempora eaque hic perspiciatis!</p>
+            <p>veritatis quia aliquam vel architecto amet doloribus laudantium neque ipsum nemo, accusantium cupiditate et. Tempora eaque hic perspiciatis!</p>
           </div>
-          <div class="col-lg-2"></div>
-          <div class="col-lg-3 text-white text-right results">
-              <h4 class="bar">Fight For Kidz 2018</h4>
-              <p class="all-caps">Date</p>
+          <div class="col-lg-4 col-md-6 col-sm-12 text-white text-right results mt-5">
+              <p class="all-caps sidebar-heading">Date</p>
               <p class="stat">Saturday 28<sup>th</sup> April</p>
-              <p class="all-caps">Location</p>
+              <p class="all-caps sidebar-heading">Location</p>
               <p class="stat">ILT Stadium</p>
-              <div class="row">
-                <a href="https://facebook.com/kohakai">
-                  <div class="col-md-6"><img src="img/KohaKai.png"></div>
+              <p class="all-caps sidebar-heading">Supporting</p>
+                <a class="stat-link" href="https://google.com" style="color: white!important;">
+                    <i class="fas fa-link"></i>
+                    Koha Kai
                 </a>
-                <div class="col-md-6">
-                  <p class="all-caps">Supporting</p>
-                  <p class="stat">Koha Kai</p>
-                </div>
-              </div>
-              
-              
+            </div>
           </div>
         </div>
        <div class="row">
-          <div class="col-md-6 py-3">
-            <img src="img/ILT_Stadium.png" class="img-fluid mb-5"  style="object-fit: cover; height: 100%; width: 100%;" />
-          </div>
-          <div class="col-md-6 py-3">
-            <iframe width="600" height="450" frameborder="0" style="border:0"
-            src="https://www.google.com/maps/embed/v1/place?q=ILT%20stadium&key=AIzaSyCh5DbSbB0_mE1DZJJfjhbJpkRfROHjgSw" allowfullscreen>
+          <div class="col-lg-12 col-md-12 col-col-sm-12">
+            <iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=ILT%20stadium&key=AIzaSyCh5DbSbB0_mE1DZJJfjhbJpkRfROHjgSw" allowfullscreen>
             </iframe>
           </div>
-       </div>
-        
+       </div>    
       </div>
       <hr>
     </section>

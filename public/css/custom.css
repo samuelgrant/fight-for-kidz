@@ -1,4 +1,7 @@
 /* Custom scrollbar */
+body{
+  overflow-x: hidden;
+}
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -304,4 +307,14 @@
   background-image: url("/img/f4kmain.png");
   background-size: contain;
   background-repeat: no-repeat;
+}
+
+/* Public page sidebar */
+.sidebar-heading{
+  color: #00FFFF;
+  font-size: x-large;
+  font-weight: bold;
+}
+.stat{
+  font-size: large;
 }
