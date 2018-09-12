@@ -24,6 +24,10 @@ class GroupableTest extends TestCase
      * This test ensures that admins are not added to the admins
      * group until they have been activated, and that they are 
      * removed from the group when deactivated.
+     * 
+     * Note: When calling recipients(), duplicate addresses are
+     * filtered out of the returned array. When recipients(false)
+     * is called, duplicates are left in. This is used for testing.
      */
     public function testAdmins()
     {
