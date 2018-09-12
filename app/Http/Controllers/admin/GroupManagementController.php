@@ -168,6 +168,6 @@ class GroupManagementController extends Controller
      * @return null
      */
     public function removeMember($groupID, $email){
-        Group::find($groupID)->removeMemberByEmail($email);
+        Group::find($groupID)->removeMembersByEmail($email);
     }
 }

@@ -29,7 +29,7 @@ trait Groupable
         try {
             $this->groups()->attach($groupId);
 
-            Log::debug('Added ' . get_class($this) . ' ' . $this->id . ' to group ' . $groupId);
+            // Log::debug('Added ' . get_class($this) . ' ' . $this->id . ' to group ' . $groupId);
 
         } catch (\PDOException $ex) {
             
@@ -53,7 +53,7 @@ trait Groupable
     {
         $this->groups()->detach($groupId);
 
-        Log::debug('Removed ' . get_class($this) . ' ' . $this->id . ' from group ' . $groupId);
+        // Log::debug('Removed ' . get_class($this) . ' ' . $this->id . ' from group ' . $groupId);
 
     }
 
