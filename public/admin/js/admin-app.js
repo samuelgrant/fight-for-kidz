@@ -47,7 +47,7 @@ function resetImagePre(){
 
 /* Data Tables */
 $(document).ready(function() {
-    $('#subscribers-dtable').DataTable({
+    $('#group-dtable').DataTable({
         "columns": [
           { "orderable": false, "searchable": false },
           null,
@@ -105,7 +105,7 @@ function countSelected() {
  */
 function removeSelectedFromGroup(groupID) {
     var checkboxes = $('.dtable-remove-checkbox:checkbox:checked');
-    var table = $('#subscribers-dtable').DataTable();
+    var table = $('#group-dtable').DataTable();
 
     checkboxes.each(function () {
 
@@ -123,3 +123,18 @@ function removeSelectedFromGroup(groupID) {
         });
     });
 }
+
+$('body').on('change', '#dtable-select-all', function() {
+    var rows, checked;
+    rows = $('#group-dtable').find('tbody tr');
+    checked = $(this).prop('checked');
+    $.each(rows, function() {
+       var checkbox = $($(this).find('td').eq(0)).find('input').prop('checked', checked);
+    });
+  });
+
+  // Uncheck 'select all' checkbox when row checkboxes are clicked or columns sorted.
+  $('.dtable-control').on('click', function(){
+    $('#dtable-select-all').prop('checked', false);
+  });
+
