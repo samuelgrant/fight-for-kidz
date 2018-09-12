@@ -72,6 +72,12 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="{{route('admin.eventManagement')}}">
+            <i class="fab fa-react"></i>
+            <span>Event Management</span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="{{route('admin.groupManagement')}}">
             <i class="fas fa-layer-group"></i>
             <span>Group Management</span>

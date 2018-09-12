@@ -46,7 +46,31 @@ function resetImagePre() {
 }
 
 /* Data Tables */
-$(document).ready(function () {
+$(document).ready(function() {
+    $("#event-dtable").DataTable({
+        "columns": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false }
+          ]
+    });
+
+    $("#eventDeleted-dtable").DataTable({
+        "columns": [
+            null,
+            null,
+            null,
+            null,
+            null,
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false }
+        ]
+    });
+    
     $('#group-dtable').DataTable({
         "columns": [
             { "orderable": false, "searchable": false },

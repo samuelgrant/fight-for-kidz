@@ -25,39 +25,53 @@
     <section class="upcoming-section">
       <div class="container">
         <h1 class="text-white">Fight for Kidz 2018</h1>
-        <p class="text-white mb-0">Join us on April 28th 2018 for the next Fight For Kids!</p>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about-section">
-      <div class="container">
-        <h1 class="text-white text-center mb-5">About Us</h1>
+        <hr>
         <div class="row mb-5">
           <div class="col-lg-7">
-            <h4 class="bar text-left text-white">Our Vision</h4>
-            <div class="mt-lg-5">
-              <p class="text-white-50 text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae deserunt ab cupiditate quidem qui voluptates dolores
-                quo veniam tempora neque sapiente libero ullam, excepturi culpa quibusdam non tempore! Quis, consequatur. Lorem
-                ipsum dolor sit amet consectetur adipisicing elit. Repellendus maxime ducimus nulla veritatis quia aliquam
-                vel architecto amet doloribus laudantium neque ipsum nemo, accusantium cupiditate et. Tempora eaque hic perspiciatis!
-              </p>
-            </div>
+              <h4 class="bar text-left text-white">Join us this April for the next <em>Fight For Kids!</em></h4>
+              <div class="mt-lg-5">
+                  <p class="text-white-50 text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae deserunt
+                      ab cupiditate quidem qui voluptates dolores quo veniam tempora neque sapiente libero ullam, excepturi
+                      culpa quibusdam non tempore! Quis, consequatur. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Repellendus maxime ducimus nulla veritatis quia aliquam vel architecto amet doloribus laudantium neque
+                      ipsum nemo, accusantium cupiditate et. Tempora eaque hic perspiciatis!
+                  </p>
+              </div>
           </div>
           <div class="col-lg-2"></div>
           <div class="col-lg-3 text-white text-right results">
-            <h4 class="bar">Our Results - 2017</h4>
-            <p class="all-caps">Contenders</p>
-            <p class="stat">12</p>
-            <p class="all-caps">Funds Raised</p>
-            <p class="stat">$212,000</p>
-            <p class="all-caps">Charities Supported</p>
-            <p class="stat">CharityOne, CharityTwo</p>
+              <h4 class="bar">Fight For Kidz 2018</h4>
+              <p class="all-caps">Date</p>
+              <p class="stat">Saturday 28<sup>th</sup> April</p>
+              <p class="all-caps">Location</p>
+              <p class="stat">ILT Stadium</p>
+              <div class="row">
+                <a href="https://facebook.com/kohakai">
+                  <div class="col-md-6"><img src="img/KohaKai.png"></div>
+                </a>
+                <div class="col-md-6">
+                  <p class="all-caps">Supporting</p>
+                  <p class="stat">Koha Kai</p>
+                </div>
+              </div>
+              
+              
           </div>
         </div>
-        <img src="img/troopers-memorial2.png" class="img-fluid mb-5" />
+       <div class="row">
+          <div class="col-md-6 py-3">
+            <img src="img/ILT_Stadium.png" class="img-fluid mb-5"  style="object-fit: cover; height: 100%; width: 100%;" />
+          </div>
+          <div class="col-md-6 py-3">
+            <iframe width="600" height="450" frameborder="0" style="border:0"
+            src="https://www.google.com/maps/embed/v1/place?q=ILT%20stadium&key=AIzaSyCh5DbSbB0_mE1DZJJfjhbJpkRfROHjgSw" allowfullscreen>
+            </iframe>
+          </div>
+       </div>
+        
       </div>
-    </section> 
+      <hr>
+    </section>
 
   <!-- Subscriber Section -->
   <section class="text-center" id="subscriber-section">
