@@ -3,6 +3,7 @@
 namespace App\Console\Commands\images;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Storage;
 
 class Defaults extends Command
 {
@@ -37,6 +38,10 @@ class Defaults extends Command
      */
     public function handle()
     {
-        //
+        
+        $files = Storage::files("private/images");
+        foreach($files as $file){
+            Storage::copy($file, "public/images/groups");
+        }
     }
 }

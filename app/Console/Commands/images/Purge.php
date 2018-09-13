@@ -3,7 +3,7 @@
 namespace App\Console\Commands\images;
 
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Storage;;
+use Illuminate\Support\Facades\Storage;
 
 class Purge extends Command
 {
@@ -37,18 +37,8 @@ class Purge extends Command
      * @return mixed
      */
     public function handle()
-    {
-        echo "Do you want to delete:\n1. All group images\n2. Custom group images only.\n\n";
-        $userRequest = substr(readline(), 0, 1);
-        echo "\n\n";
-        
-        if($userRequest == 1){
-            $this->deleteAllImages();
-        } elseif($userRequest == 2){
-            $this->deleteCustomImages();
-        } else {
-            echo "Invalid Request";
-        }
+    {       
+        $this->deleteAll();
     }
 
     /**
@@ -58,7 +48,7 @@ class Purge extends Command
      * @param null
      * @return null
      */
-    protected function deleteAllImages(){
+    protected function deleteAll(){
         $counter = 0;
 
         $files = Storage::files('public/images/groups');
@@ -67,26 +57,15 @@ class Purge extends Command
             $counter++;
         }
 
-        echo $counter." group images deleted.\nRun php artisan image:default to get standard group images back.";
+        $this->promptToCopyDefault();
     }
+    
+    protected function promptToCopyDefault(){
+        echo "Do you want to copy the default images back to the public directory? (Y/N)\n\n";
+        $userRequest = substr(readline(), 0, 1);
 
-    /**
-     * Deletes custom images from
-     * /storage/app/public/images/groups
-     * 
-     * @param null
-     * @return null
-     */
-    protected function deleteCustomImages(){
-        $ignoreArray = [0, 1, 2];//Default, SystemAdmins & Subscribers
-        $counter = 0;
-
-        $files = Storage::files('public/images/groups');
-        for($i = 0; $i < count($files); $i++){
-            if(!in_array($i, $ignoreArray)){
-                Storage::delete($file);
-                $counter++;
-            }
+        if(strtolower($userRequest) == "y"){
+            $this->call('image:default');  
         }
-    }    
+    }
 }
