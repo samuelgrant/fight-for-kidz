@@ -38,11 +38,17 @@ class Defaults extends Command
      */
     public function handle()
     {
-        
+
         $files = Storage::files("private/images");
-        foreach($files as $file){
-            $filename = pathinfo($file, PATHINFO_FILENAME) .'.'. pathinfo($file, PATHINFO_EXTENSION);
-            Storage::copy($file, "public/images/groups/".$filename);
+        foreach ($files as $file) {
+            $filename = pathinfo($file, PATHINFO_FILENAME) . '.' . pathinfo($file, PATHINFO_EXTENSION);
+            
+            // Delete the public image if it exists
+            if (Storage::exists("public/images/groups/" . $filename)) {
+                Storage::delete("public/images/groups/" . $filename);
+                echo 'public/images/groups/'.$filename.' already exists, replacing.';
+            }
+            Storage::copy($file, "public/images/groups/" . $filename);
         }
     }
 }
