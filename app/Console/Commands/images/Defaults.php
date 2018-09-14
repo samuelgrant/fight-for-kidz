@@ -41,7 +41,8 @@ class Defaults extends Command
         
         $files = Storage::files("private/images");
         foreach($files as $file){
-            Storage::copy($file, "public/images/groups");
+            $filename = pathinfo($file, PATHINFO_FILENAME) .'.'. pathinfo($file, PATHINFO_EXTENSION);
+            Storage::copy($file, "public/images/groups/".$filename);
         }
     }
 }
