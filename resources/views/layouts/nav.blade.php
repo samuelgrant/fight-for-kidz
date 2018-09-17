@@ -15,7 +15,7 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{{route('index')}}#about">About us</a>
+            <a class="nav-link js-scroll-trigger" href="/about">About us</a>
           </li>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="/contenders">Contenders</a>
@@ -27,7 +27,7 @@
             <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">Support Us
               <span class="caret"></span>
             </a>
-            <ul id="dropdown2" class="dropdown-menu">
+            <ul id="dropdown1" class="dropdown-menu">
               <li>
                 <a class="js-scroll-trigger" href="#"><p>Reserve Seats</p></a>
               </li>
