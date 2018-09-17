@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
             $this->call(EventsTableSeeder::class);
             $this->call(ApplicantsTableSeeder::class);
             $this->call(AuctionItemsTableSeeder::class);
+            $this->call(MerchandiseItemsTableSeeder::class);
         }
     }
 }
