@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-<div id="merchandise">
+<div id="merchandise" class="container mb-5 ">
             <div class="heading-container push-down">
-                <h1 class="text-center pt-5">Merchandise</h1>
+                <h1 class="text-center ">Merchandise</h1>
             </div>
 
             <div class="row">
                 <div class="col-lg-4 merch-div">
                     <div class="card">
-                        <div style="height: 320px"><img class="img-fluid" src="/img/cap.png" /></div>
+                        <div  class="mb-4 text-center"><img class="img-fluid" style="max-height: 350px;" src="/img/merch/F4Kcap.png" /></div>
                         <div class="item-details-fixed">
                             <h5 class="">F4K Cap</h5>
                             <p class="">Great for outdoors!</p>
@@ -23,7 +23,7 @@
                 </div>
                 <div class="col-lg-4 merch-div">
                     <div class="card">
-                        <div style="height:320px;"><img class="img-fluid" style="vertical-align: middle;" src="/img/merch-shirt.png" /></div>
+                        <div  class="mb-4"><img class="img-fluid" style="vertical-align: middle; max-height: 350px;" src="/img/merch/F4KTechCrewBW.png" /></div>
                         <div class="item-details-fixed">
                             <h5 class="">F4K Shirt</h5>
                             <p class="">Show your support for the cause!</p>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="col-lg-4 merch-div">
                     <div class="card">
-                        <div style="height:320px"><img class="img-fluid" src="/img/merch-shirt2.png" /></div>
+                        <div class="mb-4"><img class="img-fluid" style="max-height: 350px;" src="/img/merch/F4KTshirtGrey.png" /></div>
                         <div class="item-details-fixed">
                             <h5 class="">F4K Sweater</h5>
                             <p class="">Keep warm during the warmer months!</p>
