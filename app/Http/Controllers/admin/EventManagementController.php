@@ -39,6 +39,7 @@ class EventManagementController extends Controller
             $event->datetime = new carbon($request->input('dateTime'));
             $event->venue_name = $request->input('venueName');
             $event->venue_address = $request->input('venueAddress');
+            $event->venue_gps = $this->getGPS($request->input('venueAddress'));
         $event->save();
         session()->flash('success', 'The event called '.$event->name.' was created.');
         return redirect()->back();
@@ -72,5 +73,13 @@ class EventManagementController extends Controller
         session()->flash('success', 'The event called '.$event->name.' was restored.');
 
         return redirect()->back();
+    }
+
+    public function getGPS($address){
+        $response = \GoogleMaps::load('geocoding')
+        ->setParam (['address' => $address])->get();
+        $json = json_decode($response, TRUE);
+
+        return ('lat: '.$json['results'][0]['geometry']['location']['lat'].", lng: ".$json['results'][0]['geometry']['location']['lng']);  
     }
 }

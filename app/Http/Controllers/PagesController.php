@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Event;
 
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
     public function index(){
-        return view('index');
+        $latestEvent = Event::where('is_public', true)->orderBy('datetime')->first();
+        return view('index')->with('event', $latestEvent);
     }
 
     public function auction(){
