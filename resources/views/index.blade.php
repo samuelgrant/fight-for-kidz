@@ -26,28 +26,46 @@
       <div class="container">
         <div class="row mb-5">
           <div class="col-lg-8 col-md-6 col-col-sm-12">
-            <h1 class="text-white underline bar">Fight for Kidz 2018</h1>
-            <p class="text-justify">Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae deserunt ab cupiditate quidem qui voluptates dolores quo veniam tempora neque sapiente libero ullam, excepturi culpa quibusdam non tempore! Quis, consequatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus maxime ducimus nulla veritatis quia aliquam vel architecto amet doloribus laudantium neque ipsum nemo, accusantium cupiditate et. Tempora eaque hic perspiciatis!</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae deserunt ab cupiditate quidem qui voluptates dolores quo veniam tempora neque sapiente libero ullam, excepturi culpa quibusdam non tempore! Quis, consequatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus maxime ducimus nulla veritatis quia aliquam vel architecto amet doloribus laudantium neque ipsum nemo, accusantium cupiditate et. Tempora eaque hic perspiciatis!</p>
-            <p>veritatis quia aliquam vel architecto amet doloribus laudantium neque ipsum nemo, accusantium cupiditate et. Tempora eaque hic perspiciatis!</p>
+            <h1 class="text-white underline bar">{{$event->name}}</h1>
+            <p class="text-justify">{!! $event->desc_1 !!}</p>
           </div>
           <div class="col-lg-4 col-md-6 col-sm-12 text-white text-right results mt-5">
               <p class="all-caps sidebar-heading">Date</p>
-              <p class="stat">Saturday 28<sup>th</sup> April</p>
+              <p class="stat">{{\Carbon\Carbon::parse($event->datetime)->format('D d M Y')}}</p>
               <p class="all-caps sidebar-heading">Location</p>
-              <p class="stat">ILT Stadium</p>
+          <p class="stat">{{$event->venue_name}}</p>
               <p class="all-caps sidebar-heading">Supporting</p>
-                <a class="stat-link" href="https://google.com" style="color: white!important;">
-                    <i class="fas fa-link"></i>
-                    Koha Kai
-                </a>
+                  @if($event->charity_url)
+                  <a class="stat-link" href="{{$event->charity_url}}" target="blank" style="color: white!important;">
+                    <i class="fas fa-link"></i> {{$event->charity}}
+                  </a>
+                  @else 
+                    <p class="stat">{{$event->charity}}</p>
+                  @endif
             </div>
           </div>
         </div>
        <div class="row">
           <div class="col-lg-12 col-md-12 col-col-sm-12">
-            <iframe width="100%" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q=ILT%20stadium&key=AIzaSyCh5DbSbB0_mE1DZJJfjhbJpkRfROHjgSw" allowfullscreen>
-            </iframe>
+            <div id="map" style="width:100%; height: 450px; border:0"></div>
+                <script>
+                    function initMap() {
+                        var uluru = { {{$event->venue_gps}} };
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 15,
+                        center: uluru
+                        });
+                        var marker = new google.maps.Marker({
+                        position: uluru,
+                        map: map
+                        });
+                    }
+                </script>
+                
+                <script async defer
+                    src="https://maps.googleapis.com/maps/api/js?key={{env('GOOGLE_MAPS_KEY')}}&callback=initMap">
+                </script>
+            </div> 
           </div>
        </div>    
       </div>
