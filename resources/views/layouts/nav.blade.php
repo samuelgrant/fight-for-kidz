@@ -2,8 +2,8 @@
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
       <a class="navbar-brand js-scroll-trigger" href="{{route('index')}}">
-      <div class="logoimg col-md-7 col-7">
-          <canvas id="navcanvas"   style=" width: 100%; height: 100%; ">
+      <div class="logoimg" style="max-width: 200px;">
+          <canvas id="navCanvas"   style=" width: 100%; height: 100%; ">
           </canvas>
         </div>
       </a>
