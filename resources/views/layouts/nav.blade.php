@@ -32,7 +32,7 @@
                 <a class="js-scroll-trigger" href="#"><p>Reserve Seats</p></a>
               </li>
               <li>
-                <a class="js-scroll-trigger" href="#merchandise"><p>Merchandise</p></a>
+                <a class="js-scroll-trigger" href="#merhandise"><p>Merchandise</p></a>
               </li>
               <li>
                 <a href="/auction"><p>Auction</p></a>
