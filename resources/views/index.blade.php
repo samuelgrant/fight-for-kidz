@@ -92,14 +92,13 @@
 
     <!-- Sponsors Section -->
     <section id="sponsors-section">
-      <h2 class="text-center">Our Sponsors</h2>
-        <div class="row">
-          <div class="col-lg-3"><img src="img/customer-1.png" /></div>
-          <div class="col-lg-3"><img src="img/customer-2.png" /></div>
-          <div class="col-lg-3"><img src="img/customer-3.png" /></div>
-          <div class="col-lg-3"><img src="img/customer-4.png" /></div>
-        </div>
+      <h2 class="text-center text-dark">Our Sponsors</h2>
+      <div class="your-class">
+          <div><img src="img/customer-1.png" /></div>
+          <div><img src="img/customer-2.png" /></div>
+          <div><img src="img/customer-3.png" /></div>
+          <div><img src="img/customer-4.png" /></div>
+      </div>
       </section>    
-
   </div>
 @endsection
