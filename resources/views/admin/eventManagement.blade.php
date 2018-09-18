@@ -97,23 +97,35 @@
             <div class="modal-body">
                 <form action="{{route('admin.eventManagement.store')}}" method="post">
                     <div class="form-group">
-                      <label for="eventName">Event Name</label>
+                        <label for="eventName">
+                            <i class="fas fa-info-circle" data-toggle="tooltip" title="This is the event name;"></i>  
+                            Event Name
+                        </label>
                         <input type="text" name="eventName" id="eventName" class="form-control" placeholder="Fight for Kidz {{date('Y')}}" required>
                     </div>
 
                     <div class="form-group">
-                      <label for="dateTime">Date Time</label>
-                      <input type="datetime-local" name="dateTime" id="dateTime" class="form-control" required>
+                        <label for="dateTime">
+                                <i class="fas fa-info-circle" data-toggle="tooltip" title="The date and time of the main event; This can be used to display a countdown on the main page."></i>  
+                            Date Time
+                        </label>
+                        <input type="datetime-local" name="dateTime" id="dateTime" class="form-control" required>
                     </div>
 
                     <div class="form-group">
-                      <label for="venueName">Venue Name</label>
-                      <input type="text" name="venueName" id="venueName" class="form-control" required>
+                        <label for="venueName">
+                            <i class="fas fa-info-circle" data-toggle="tooltip" title="Displayed under location; use the name of the venue."></i>  
+                            Venue Name
+                        </label>
+                        <input type="text" name="venueName" id="venueName" class="form-control" required>
                     </div>
 
                     <div class="form-group">
-                      <label for="venueAddress">Venue Address</label>
-                      <input type="text" name="venueAddress" id="venueAddress" class="form-control" required>
+                        <label for="venueAddress">
+                            <i class="fas fa-info-circle" data-toggle="tooltip" title="Used for Google Maps; use the physical address or a well known name for the venue."></i>
+                            Venue Address
+                        </label>
+                        <input type="text" name="venueAddress" id="venueAddress" class="form-control" required>
                     </div>
 
                     <button type="submit" class="btn btn-success"><i class="far fa-check-circle"></i> Create Event</button>
