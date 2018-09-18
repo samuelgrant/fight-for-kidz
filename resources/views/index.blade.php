@@ -38,7 +38,7 @@
             </div>
           </div>
         </div>
-       <div class="row">
+        <div class="row">
           <div class="col-lg-12 col-md-12 col-col-sm-12">
             <div id="map" style="width:100%; height: 450px; border:0"></div>
                 <script>
@@ -60,7 +60,7 @@
                 </script>
             </div> 
           </div>
-       </div>    
+        </div>    
       </div>
       <hr>
     </section>
