@@ -98,7 +98,7 @@
                 <form action="{{route('admin.eventManagement.store')}}" method="post">
                     <div class="form-group">
                         <label for="eventName">
-                            <i class="fas fa-info-circle" data-toggle="tooltip" title="This is the event name; it must be Fight For Kidz and the event year."></i>  
+                            <i class="fas fa-info-circle" data-toggle="tooltip" title="This is the event name;"></i>  
                             Event Name
                         </label>
                         <input type="text" name="eventName" id="eventName" class="form-control" placeholder="Fight for Kidz {{date('Y')}}" required>
