@@ -19,14 +19,17 @@ $("document").ready(function(){
 });
 $("document").ready(function(){
   $('.your-class').slick({
-    speed: 4000,
+    speed: 10000,
     autoplay: true,
     autoplaySpeed: 0,
     cssEase: 'linear',
     slidesToShow: 1,
     slidesToScroll: 1,
     variableWidth: true,
-    arrows: false
+    arrows: false,
+    draggable: false,
+    pauseOnHover: false,
+    touchMove: false
   });
 });
 
