@@ -9,14 +9,17 @@
   }); 
 </script>
 
-  <footer class="bg-black small text-center text-white-50">
-    <div class="col-sm-4">
-      <img src="img/f4k.png" style="height:50px" alt="Fight for Kidz logo" class="d-none d-md-inline-block">
-    </div>
-    <div class="container">
+  <footer class="bg-black small text-center text-white-50 row" style="">
+    <div class="col-sm-4 mb-3">
+      <div class="logoimg nav-logoimg">
+        <canvas id="footerCanvas" style="width: 100%; height:100%">
+        </canvas>
+      </div> 
+    </div>  
+    <div class="col-sm-4 mb-3">
       Copyright &copy; {{config('app.name')}} {{ date('Y') }}
-    </div>
-    <div class="text-right mr-3">
+    </div>     
+    <div class="col-sm-4 mb-3">
       <a style="color: grey;" href="{{route('login')}}">Administration Login</a>
     </div>
   </footer>

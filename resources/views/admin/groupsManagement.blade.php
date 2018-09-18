@@ -30,7 +30,7 @@
                     @foreach($groups as $group)
                     <div class="col-lg-3 col-md-4 col-sm-6 my-4 px-2">
                         <a class="btn groups" href="{{ route('admin.group', ['id' => $group->id])}}">
-                            <img class="d-block m-auto" src="/storage/images/groups/{{($group->custom_icon)?$group->id: 0 }}.png" alt="Group Icon" />
+                            <img class="d-block m-auto group-icon" src="/storage/images/groups/{{($group->custom_icon)?$group->id: 0 }}.png" alt="Group Icon" />
                             <h5>{{$group->name}}</h5>
                             <span class="d-block text-center">{{$group->type}}</span>
                         </a>
@@ -43,7 +43,7 @@
                     @foreach($deletedGroups as $group)
                     <div class="col-lg-3 col-md-4 col-sm-6 my-4 px-2">
                         <a class="btn groups" href="{{ route('admin.group', ['id' => $group->id])}}">
-                            <img class="d-block m-auto" src="/storage/images/groups/{{($group->custom_icon)?$group->id: 0 }}.png" alt="Group Icon" />
+                            <img class="d-block m-auto group-icon" src="/storage/images/groups/{{($group->custom_icon)?$group->id: 0 }}.png" alt="Group Icon" />
                             <h5>{{$group->name}}</h5>
                             <span class="d-block text-center">{{$group->type}}</span>
                         </a>
@@ -71,7 +71,7 @@
                 <div class="form-group">
                     <label for="groupAvatar">Optional Group Icon</label>
                     <div>
-                        <img id="imgPreview" src="https://via.placeholder.com/100x80" class="float-left mr-2" alt="placeholder">
+                        <img id="imgPreview" src="https://via.placeholder.com/80x100" class="float-left mr-2 group-icon" alt="placeholder">
                         <label class="btn btn-info btn-sm btn-file">
                             <i class="fas fa-upload"></i> Select Image
                             <input name="groupImage" id="img" type="file" style="display: none;">
@@ -79,7 +79,7 @@
                         <button class="btn btn-danger btn-sm d-block" type="button" onclick="resetImagePre()"><i class="fas fa-times"></i>
                             Remove Image</button>
                     </div>
-                    <small id="groupAvatarHelp" class="text-muted d-block">Required format .png - max 100 x 80 px.</small>
+                    <small id="groupAvatarHelp" class="text-muted d-block">Use png 100H x 80W.</small>
                 </div>
                 <button class="btn btn-primary btn-success" type="submit">Create Group</button>
 

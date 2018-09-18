@@ -2,10 +2,11 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Traits\Groupable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+
 
 class User extends Authenticatable
 {
@@ -37,7 +38,8 @@ class User extends Authenticatable
             $this->active = true;
             $this->save();
 
-            //Add to admin ml group
+            
+            $this->addToGroup(1);
             //Fire email YOUR ACCOUNT IS NOW ACTIVATED
             //Return WINNING
         }
@@ -51,7 +53,7 @@ class User extends Authenticatable
             $this->active = false;
             $this->save();
 
-
+            $this->removeFromGroup(1);
             //Remove from admin group (for mailing list things)
             //Fire email account disabled
             
