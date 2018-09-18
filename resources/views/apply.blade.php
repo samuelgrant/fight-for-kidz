@@ -179,8 +179,8 @@
         <div class="form-group">
           <div class="row">
             <div class="col-md-6">
-              <label for="nickname">Preferred boxing nickname:</label>
-              <input type="text" id="nickname" class="form-control" placeholder="(leave blank if undecided)">
+              <label for="nickname">Preferred fight name:</label>
+              <input type="text" id="nickname" name="nickname" class="form-control" placeholder="(leave blank if undecided)">
             </div>
           </div>
         </div>

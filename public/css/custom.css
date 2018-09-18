@@ -1,4 +1,7 @@
 /* Custom scrollbar */
+body{
+  overflow-x: hidden;
+}
 /* width */
 ::-webkit-scrollbar {
   width: 10px;
@@ -218,15 +221,25 @@
     opacity: 1;
   }
 
-  /* Dropdown styling */
+  /* Dropdown styling */  
 
   .dropdown-transparent{
     background-color: transparent;    
   }
 
+  @media only screen and (max-width: 991px){
+    .dropdown-transparent p{
+      color: rgba(0,0,0,.5) !important;
+      text-align: left !important;
+      margin-left:  0.5rem;
+    }
+  }
+
+  @media only screen and (min-width: 992px){
   .dropdown-transparent p{
     color: white !important;
   }
+}
 
   .dropdown-menu{
     border: none;
@@ -290,8 +303,24 @@
   padding-bottom: 10px;
 }
 
+/* Background of the logo canvas */
 .logoimg{
   background-image: url("/img/f4kmain.png");
   background-size: contain;
   background-repeat: no-repeat;
+}
+.nav-logoimg{
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 200px;
+}
+
+/* Public page sidebar */
+.sidebar-heading{
+  color: #00FFFF;
+  font-size: x-large;
+  font-weight: bold;
+}
+.stat{
+  font-size: large;
 }
