@@ -18,6 +18,7 @@ Route::get('/contenders', 'PagesController@contenders')->name('contenders');
 Route::get('/contact', 'PagesController@contact')->name('contact');
 Route::get('/about', 'PagesController@about')->name('about');
 
+Route::get('/Merchandise', 'MerchandiseController@Merchandise')->name('Merchandise');
 
 Route::get('/apply', 'EventApplicationController@index')->name('application');
 Route::post('/apply', 'EventApplicationController@store')->name('apply');

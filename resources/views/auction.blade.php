@@ -15,7 +15,7 @@
 
                 <div class="col-lg-4 auction-item-div">
 
-                    <img class="img-fluid item-img" id="myImg" src="img/Phoenix_shirt.jpg" alt="Phoenix Shirt" />
+                    <img class="img-fluid item-img" id="myImg" src="img/allblacks.PNG" alt="allblackstop" />
 
                     <div class="item-details">
                         <h5 class="item-name">Phoenix Shirt</h5>
@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-lg-4 auction-item-div">
 
-                    <img class="img-fluid item-img" id="myImg" src="img/warriors.jpg" />
+                    <img class="img-fluid item-img" id="myImg" src="img/boxinggloves.png" />
                     <div class="item-details">
                         <h5 class="item-name">Warriors Shirt</h5>
                         <p class="item-desc">Signed by all of the team.</p>
@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-lg-4 auction-item-div">
 
-                    <img class="img-fluid item-img" src="img/ali_glove.jpg" />
+                    <img class="img-fluid item-img" src="img/boxinggloves2.png" />
                     <div class="item-details">
                         <h5 class="item-name">Ali's Glove</h5>
                         <p class="item-desc">Signed by the man himself.</p>
@@ -57,7 +57,7 @@
 
                 <div class="col-lg-4 auction-item-div">
 
-                    <img class="img-fluid item-img" src="img/Phoenix_shirt.jpg" />
+                    <img class="img-fluid item-img" src="img/boxinggloves3.png" />
 
                     <div class="item-details">
                         <h5 class="item-name">Phoenix Shirt</h5>
@@ -67,7 +67,7 @@
                 </div>
                 <div class="col-lg-4 auction-item-div">
 
-                    <img class="img-fluid item-img" src="img/ali_glove.jpg" />
+                    <img class="img-fluid item-img" src="img/golf.png" />
                     <div class="item-details">
                         <h5 class="item-name">Ali's Glove</h5>
                         <p class="item-desc">Signed by the man himself.</p>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="col-lg-4 auction-item-div">
 
-                    <img class="img-fluid item-img" src="img/warriors.jpg" />
+                    <img class="img-fluid item-img" src="img/richiemacaw.png" />
                     <div class="item-details">
                         <h5 class="item-name">Warriors Shirt</h5>
                         <p class="item-desc">Signed by all of the team.</p>
@@ -86,56 +86,6 @@
             </div>
 
         </section>
-
-        <div id="merchandise">
-            <div class="heading-container push-down">
-                <h1 class="text-center pt-5">Merchandise</h1>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-4 merch-div">
-                    <div class="card">
-                        <div style="height: 320px"><img class="img-fluid" src="/img/cap.png" /></div>
-                        <div class="item-details-fixed">
-                            <h5 class="">F4K Cap</h5>
-                            <p class="">Great for outdoors!</p>
-                            <p class="">$14.99</p>
-                            <a href="#">
-                                <p class="item-link">Buy</p>
-                            </a>
-    
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 merch-div">
-                    <div class="card">
-                        <div style="height:320px;"><img class="img-fluid" style="vertical-align: middle;" src="/img/merch-shirt.png" /></div>
-                        <div class="item-details-fixed">
-                            <h5 class="">F4K Shirt</h5>
-                            <p class="">Show your support for the cause!</p>
-                            <p class="">$24.99</p>
-                            <a href="#">
-                                <p class="item-link">Buy</p>
-                            </a>
-    
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 merch-div">
-                    <div class="card">
-                        <div style="height:320px"><img class="img-fluid" src="/img/merch-shirt2.png" /></div>
-                        <div class="item-details-fixed">
-                            <h5 class="">F4K Sweater</h5>
-                            <p class="">Keep warm during the warmer months!</p>
-                            <p class="">$34.99</p>
-                            <a href="#">
-                                <p class="item-link">Buy</p>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 
 @endsection
