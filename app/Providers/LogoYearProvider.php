@@ -8,27 +8,17 @@ use Illuminate\Support\ServiceProvider;
 class LogoYearProvider extends ServiceProvider
 {
     /**
-     * Bootstrap services.
-     *
+     * Returns the layouts.head with the date and time of the current event. 
+     * 
      * @return void
      */
     public function boot()
     {
         view()->composer('layouts.head', function($view)
         {
-            $year = Event::where('is_public', true)::orderBy('datetime')->first();
+            $year = Event::where('is_public', true)->orderBy('datetime')->first()->datetime;
 
             $view->with('eventYear', $year); 
         });
-    }
-
-    /**
-     * Register services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //
     }
 }
