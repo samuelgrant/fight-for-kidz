@@ -169,7 +169,6 @@ class EventManagementController extends Controller
 
         // Output the image to the public storage directory
         imagepng($image, '..\storage\app\public\images\f4k_logo.png');
-        // imagepng($image, dirname(dirname(dirname(dirname(dirname(__FILE__))))).'\storage\app\public\images\f4k_logo.png');
 
         // Remove the image from memory
         imagedestroy($image);
