@@ -4,10 +4,9 @@
   <!-- Header -->
   <header class="masthead">
     <div class="container d-flex h-100 align-items-center">
-      <div class="mx-auto text-center col-md-12">
-        <div class="logoimg col-md-12 ">
-          <canvas id="myCanvas" style=" width: 100%; height: 100%">
-          </canvas>
+      <div class="mx-auto text-center">
+        <div>
+          <img src="/storage/images/f4k_logo.png" class="img-fluid">
         </div>  
         <h2 class="text-white-50 mx-auto mt-5 mb-5">Fight For Kidz is a charity boxing event held in Southland to raise money for Southland kidz charities.</h2>
       </div>

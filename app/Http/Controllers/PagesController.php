@@ -8,8 +8,8 @@ use Illuminate\Http\Request;
 class PagesController extends Controller
 {
     public function index(){
-        $latestEvent = Event::where('is_public', true)->orderBy('datetime')->first();
-        return view('index')->with('event', $latestEvent);
+        $currentEvent = Event::current();
+        return view('index')->with('event', $currentEvent);
     }
 
     public function auction(){

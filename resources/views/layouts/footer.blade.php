@@ -11,13 +11,11 @@
 
   <footer class="bg-black small text-center text-white-50 row" style="">
     <div class="col-sm-4 mb-3">
-      <div class="logoimg nav-logoimg">
-        <canvas id="footerCanvas" style="width: 100%; height:100%">
-        </canvas>
+      <img src="/storage/images/f4k_logo.png" class="img-fluid w-50">
       </div> 
     </div>  
     <div class="col-sm-4 mb-3">
-      Copyright &copy; {{config('app.name')}} {{ date('Y') }}
+      &copy; {{ date('Y') }} {{config('app.name')}} 
     </div>     
     <div class="col-sm-4 mb-3">
       <a style="color: grey;" href="{{route('login')}}">Administration Login</a>
