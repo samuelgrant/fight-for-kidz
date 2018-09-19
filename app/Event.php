@@ -2,6 +2,7 @@
 
 namespace App;
 
+use \GoogleMaps as GoogleMaps;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Log;
@@ -66,5 +67,19 @@ class Event extends Model
     public function applicants()
     {
         return $this->hasMany('App\Applicant');
+    }
+
+    /**
+     * This method updates the venue_gps field for the event.
+     * It should be called whenever the venue_address field is
+     * modified.
+     */
+    public function updateGPS(){
+        $response = GoogleMaps::load('geocoding')
+        ->setParam (['address' => $this->venue_address])->get();
+        $json = json_decode($response, TRUE);
+
+        $this->venue_gps = 'lat: '.$json['results'][0]['geometry']['location']['lat'].", lng: ".$json['results'][0]['geometry']['location']['lng'];
+        $this->save(); 
     }
 }
