@@ -18,7 +18,7 @@ $("document").ready(function(){
   }, 5000 ); // 5 secs
 });
 $("document").ready(function(){
-  $('.your-class').slick({
+  $('.slick-sponsors').slick({
     speed: 10000,
     autoplay: true,
     autoplaySpeed: 0,

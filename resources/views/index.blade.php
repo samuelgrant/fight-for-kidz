@@ -99,7 +99,7 @@
     <!-- Sponsors Section -->
     <section id="sponsors-section">
       <h2 class="text-center text-dark">Our Sponsors</h2>
-      <div class="your-class">
+      <div class="slick-sponsors">
           <div><img src="img/customer-1.png" /></div>
           <div><img src="img/customer-2.png" /></div>
           <div><img src="img/customer-3.png" /></div>
