@@ -44,7 +44,6 @@ class EventManagementController extends Controller
             $event->venue_address = $request->input('venueAddress');
             $event->venue_gps = $this->getGPS($request->input('venueAddress'));
         $event->save();
-        $this->updateLogo();
         session()->flash('success', 'The event called '.$event->name.' was created.');
         return redirect()->back();
     }
