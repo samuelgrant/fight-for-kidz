@@ -39,7 +39,7 @@ class Defaults extends Command
     public function handle()
     {
 
-        $files = Storage::files("private/images");
+        $files = Storage::files("private/images/group-defaults");
         foreach ($files as $file) {
             $filename = pathinfo($file, PATHINFO_FILENAME) . '.' . pathinfo($file, PATHINFO_EXTENSION);
             
