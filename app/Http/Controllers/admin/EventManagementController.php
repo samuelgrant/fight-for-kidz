@@ -44,6 +44,7 @@ class EventManagementController extends Controller
             $event->venue_address = $request->input('venueAddress');
             $event->venue_gps = $this->getGPS($request->input('venueAddress'));
         $event->save();
+        $this->updateLogo();
         session()->flash('success', 'The event called '.$event->name.' was created.');
         return redirect()->back();
     }
@@ -78,6 +79,24 @@ class EventManagementController extends Controller
         return redirect()->back();
     }
 
+    public function togglePublic($id){
+        $event = Event::find($id);
+
+        if($event->is_public){
+            $event->makeNotPublic();            
+        } 
+        else {
+            $event->makePublic();
+        }
+
+        /*
+        * As the above code will likely change the which event is 'current'
+        * we will update the logo image with the correct year. If the current
+        * event did not change, then no harm will be done.
+        */
+        $this->updateLogo();
+    }
+
     public function getGPS($address){
         $response = \GoogleMaps::load('geocoding')
         ->setParam (['address' => $address])->get();
@@ -104,49 +123,48 @@ class EventManagementController extends Controller
      */
     public function updateLogo(){   
 
-    $currentEventDate = Event::where('is_public', true)->orderBy('datetime', 'desc')->first()->datetime;
+        $currentEventDate = Event::current()->datetime;
 
-    $year = Carbon::parse($currentEventDate)->format('Y');
+        $currentEventYear = Carbon::parse($currentEventDate)->format('Y');
 
-    // Creates the image in memory from the private storage directory
-    $image = imagecreatefrompng('../storage/app/private/images/f4k_logo_noyear.png');
+        // Creates the image in memory from the private storage directory
+        $image = imagecreatefrompng('../storage/app/private/images/f4k_logo_noyear.png');
     
-    // Sets transparent color to transparent black.
-    imagecolortransparent($image, imagecolorallocatealpha($image, 0,0,0,0));
+        // Sets transparent color to transparent black.
+        imagecolortransparent($image, imagecolorallocatealpha($image, 0,0,0,0));
 
-    $box = new Box($image);
+        $box = new Box($image);
 
-    // Set font .ttf file. Feel free to change the nested dirnames if you can find something that definitely works.
-    $box->setFontFace(dirname(dirname(dirname(dirname(dirname(__FILE__))))).'\storage\app\private\fonts\Ubuntu-BoldItalic.ttf');
+        // Set font .ttf file. Feel free to change the nested dirnames if you can find something that definitely works.
+        $box->setFontFace(dirname(dirname(dirname(dirname(dirname(__FILE__))))).'\storage\app\private\fonts\Ubuntu-BoldItalic.ttf');
 
-    // Set the text properties
-    $box->setFontColor(new Color(255,255,255));    
-    $box->setFontSize(140);
+        // Set the text properties
+        $box->setFontColor(new Color(255,255,255));    
+        $box->setFontSize(140);
 
-    // Set the text outline
-    $box->setStrokeColor(new Color(0,0,1));
-    $box->setStrokeSize(3);
+        // Set the text outline
+        $box->setStrokeColor(new Color(0,0,1));
+        $box->setStrokeSize(3);
 
-    // Add shadow effect color, xOffset, yOffset
-    $box->setTextShadow(new Color(0,0,1), 10, 10);
+        // Add shadow effect color, xOffset, yOffset
+        $box->setTextShadow(new Color(0,0,1), 10, 10);
 
-    // Set textbox xPos, yPos, width, heigh
-    $box->setBox(20,190,320,135);
+        // Set textbox xPos, yPos, width, heigh
+        $box->setBox(20,190,320,135);
 
-    // Text alignment within text box
-    $box->setTextAlign('left', 'top');
+        // Text alignment within text box
+        $box->setTextAlign('left', 'top');
 
-    Log::debug('the year is '.$year);
-    // Draw to the image in memory
-    $box->draw($year);
+        // Draw to the image in memory
+        $box->draw($currentEventYear);
 
-    // Output the image to the public storage directory
-    imagepng($image, '..\storage\app\public\images\f4k_logo.png');
-    // imagepng($image, dirname(dirname(dirname(dirname(dirname(__FILE__))))).'\storage\app\public\images\f4k_logo.png');
+        // Output the image to the public storage directory
+        imagepng($image, '..\storage\app\public\images\f4k_logo.png');
+        // imagepng($image, dirname(dirname(dirname(dirname(dirname(__FILE__))))).'\storage\app\public\images\f4k_logo.png');
 
-    // Remove the image from memory
-    imagedestroy($image);
+        // Remove the image from memory
+        imagedestroy($image);
 
-    Log::debug('Logo updated. New logo year is '.$year);
+        Log::debug('Logo updated. New logo year is '.$currentEventYear);
     }
 }

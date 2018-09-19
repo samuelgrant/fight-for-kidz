@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <meta name="logoYear" content="{{\Carbon\Carbon::parse($eventYear)->format('Y')}}">
+  <meta name="logoYear" content="{{\Carbon\Carbon::parse($currentEvent->datetime)->format('Y')}}">
 
   <title>Fight For Kidz 2018</title>
 

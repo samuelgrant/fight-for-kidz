@@ -8,6 +8,34 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Event extends Model
 {
     use SoftDeletes;
+
+    /**
+     * Static function returns the current event.
+     */
+    public static function current(){
+        $currentEvent = Event::where('is_public', true)->orderBy('datetime', 'desc')->first();
+        return $currentEvent;
+    }
+
+    /**
+     * Take the event off the public pages
+     */
+    public function makeNotPublic(){
+        $this->is_public = false;
+        $this->save();
+
+        Log::debug($this->name.' was taken off the public site.');
+    }
+
+    /**
+     * Put the event on the public pages
+     */
+    public function makePublic(){
+        $this->is_public = true;
+        $this->save();
+        
+        Log::debug($this->name.' was added to the public site.');
+    }
     
     // Relationship to auction items - one to many
     public function auction_items()
