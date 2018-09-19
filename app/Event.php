@@ -40,11 +40,17 @@ class Event extends Model
         return $this->hasMany('App\Applicant');
     }
 
-    public function updateGPS($address){
+    /**
+     * This method updates the venue_gps field for the event.
+     * It should be called whenever the venue_address field is
+     * modified.
+     */
+    public function updateGPS(){
         $response = GoogleMaps::load('geocoding')
-        ->setParam (['address' => $address])->get();
+        ->setParam (['address' => $this->venue_address])->get();
         $json = json_decode($response, TRUE);
 
-        return ('lat: '.$json['results'][0]['geometry']['location']['lat'].", lng: ".$json['results'][0]['geometry']['location']['lng']);  
+        $this->venue_gps = 'lat: '.$json['results'][0]['geometry']['location']['lat'].", lng: ".$json['results'][0]['geometry']['location']['lng'];
+        $this->save(); 
     }
 }
