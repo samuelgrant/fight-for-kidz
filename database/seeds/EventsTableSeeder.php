@@ -13,7 +13,6 @@ class EventsTableSeeder extends Seeder
     {
         factory(App\Event::class)->create([
             'name' => 'Fight For Kidz 2019',
-            'datetime' => '2019-05-02 13:55:00',
             'venue_name' => 'ILT Stadium',
             'venue_address' => 'Glengarry, Invercargill 9810',
             'datetime' => '2019-05-02 13:55:00',
