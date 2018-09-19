@@ -15,7 +15,7 @@
       </div> 
     </div>  
     <div class="col-sm-4 mb-3">
-      Copyright &copy; {{config('app.name')}} {{ date('Y') }}
+      &copy; {{ date('Y') }} {{config('app.name')}} 
     </div>     
     <div class="col-sm-4 mb-3">
       <a style="color: grey;" href="{{route('login')}}">Administration Login</a>
