@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class PagesController extends Controller
 {
     public function index(){
-        $latestEvent = Event::where('is_public', true)->orderBy('datetime')->first();
+        $latestEvent = Event::where('is_public', true)->orderBy('datetime', 'desc')->first();
         return view('index')->with('event', $latestEvent);
     }
 

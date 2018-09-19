@@ -16,7 +16,7 @@ class LogoYearProvider extends ServiceProvider
     {
         view()->composer('layouts.head', function($view)
         {
-            $year = Event::where('is_public', true)->orderBy('datetime')->first()->datetime;
+            $year = Event::where('is_public', true)->orderBy('datetime', 'desc')->first()->datetime;
 
             $view->with('eventYear', $year); 
         });
