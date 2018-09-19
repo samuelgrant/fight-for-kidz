@@ -38,7 +38,7 @@
             </div>
           </div>
         </div>
-       <div class="row">
+        <div class="row">
           <div class="col-lg-12 col-md-12 col-col-sm-12">
             <div id="map" style="width:100%; height: 450px; border:0"></div>
                 <script>
@@ -60,7 +60,7 @@
                 </script>
             </div> 
           </div>
-       </div>    
+        </div>    
       </div>
       <hr>
     </section>
@@ -86,8 +86,8 @@
             </div>
           </div>
 
-          <div class="col-md-12">         
-            <button class="btn btn-danger form-control px-4" id="subscribeBtn" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
+          <div class="col-md-6 offset-md-3">         
+            <button class="btn btn-danger btn-block " id="subscribeBtn" type="submit"><i class="fas fa-user-plus"></i> Sign Up</button>
             {!! app('captcha')->render(); !!}      
           </div>
         </div>

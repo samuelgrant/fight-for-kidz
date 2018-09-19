@@ -15,15 +15,15 @@ class EventsTableSeeder extends Seeder
             'name' => 'Fight For Kidz 2019',
             'datetime' => '2019-05-02 13:55:00',
             'venue_name' => 'ILT Stadium',
-            'venue_address' => 'ILT Stadium',
-            
+            'venue_address' => 'Glengarry, Invercargill 9810',
+            'datetime' => '2019-05-02 13:55:00',
             'is_public' => '1'
         ]);
 
         factory(App\Event::class)->create([
             'name' => 'Fight For Kidz 2018',
             'venue_name' => 'Hansen Hall, SIT Invercargill',
-            'venue_address' => '133 Tay St Invercargill',
+            'venue_address' => '133 Tay St, Invercargill, 9810',
             'datetime' => '2018-12-02 13:55:00',
         ]);
 
