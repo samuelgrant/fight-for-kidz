@@ -3,7 +3,7 @@
 <div class="container conform" id="application-form">
   <div class="push-down p-3">
     <h1 class="text-center my-3">Application Form - Contenders</h1>
-    <p class="text-center">Thank you for your interest in becoming a Fight For Kidz contender.</p>
+    <p class="text-center">Thank you for your interest in becoming a Fight for Kidz contender.</p>
     <p class="text-center mb-5">Before applying, please familiarize yourself with the
       <a class="" href="#">
         <u>Applicant Guidelines</u></a>.</p>

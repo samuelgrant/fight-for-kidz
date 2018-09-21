@@ -8,7 +8,7 @@
         <div>
           <img src="/storage/images/f4k_logo.png" class="img-fluid">
         </div>  
-        <h2 class="text-white-50 mx-auto mt-5 mb-5">Fight For Kidz is a charity boxing event held in Southland to raise money for Southland kidz charities.</h2>
+        <h2 class="text-white-50 mx-auto mt-5 mb-5">Fight for Kidz is a charity boxing event held in Southland to raise money for Southland kidz charities.</h2>
       </div>
     </div>
   </header>
@@ -68,7 +68,7 @@
   <section class="text-center" id="subscriber-section">
 
     <div class="container my-5">
-      <h1 class="mb-3">Fight For Kidz Newsletter!</h1>
+      <h1 class="mb-3">Fight for Kidz Newsletter!</h1>
       @include('layouts.messages')
       <form method="post" action="{{route('subscribe')}}" class="justify-content-center">
         <div class="row">

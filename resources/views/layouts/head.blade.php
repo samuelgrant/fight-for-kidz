@@ -9,7 +9,7 @@
   <meta name="author" content="">
   <meta name="logoYear" content="{{\Carbon\Carbon::parse($currentEvent->datetime)->format('Y')}}">
 
-  <title>Fight For Kidz 2018</title>
+  <title>Fight for Kidz</title>
 
   <!-- Bootstrap core CSS -->
   <!-- Latest compiled and minified CSS -->
