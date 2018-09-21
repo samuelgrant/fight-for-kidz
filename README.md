@@ -45,6 +45,7 @@ _Hosting can be purchased at [Digital Ocean](https://www.digitalocean.com/) or [
 ___Database Notice:__ Please create a new MySQL user __DO NOT USE ROOT__. Grant that user the following privileges_:
 - Data: `SELECT, INSERT, UPDATE, DELETE, FILE`
 - Structure: `CREATE, ALTER, INDEX, DROP, CREATE TEMPORARY TABLES, CREATE ROUTINE, ALTER ROUTINE, EXECUTE, EVENT, TRIGER`
+- Admin: `REFERENCES`
 ###### Final Things
 Please secure your site with an SSL certificate. You can get a free certificate using [Certbot](https://certbot.eff.org/lets-encrypt/ubuntuartful-apache) from Let's Encrypt.
 
