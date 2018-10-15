@@ -148,6 +148,41 @@ function removeSelectedFromGroup(groupID) {
     });
 }
 
+/**
+ * This method adds all selected group members to another group selected by the 
+ * user.
+ * 
+ * @param groupID
+ */
+function copySelectedToGroup() {
+
+    var contacts = $('.dtable-remove-checkbox:checkbox:checked');
+    var toGroupId = $('#groupDropdown').val();
+
+    // for each selected contact, add to group
+    contacts.each(function() {
+
+        var type = $(this).data('memberType');
+        var memberId = $(this).data("memberId");
+
+        //make ajax request to copy member to another group
+        $.ajax({
+            type: 'PUT',
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            url: '/a/group-management/' + toGroupId + '/' + type + '/' + memberId 
+        }).done(function (data){
+            console.log(data);
+        }).fail(function(err){
+            console.error(err);
+        });
+
+    });
+
+}
+
+
+// When the user ticks/unticks the 'select all' checkbox, tick or untick all visible 
+// datatable items
 $('body').on('change', '#dtable-select-all', function () {
     var rows, checked;
     rows = $('#group-dtable').find('tbody tr');
