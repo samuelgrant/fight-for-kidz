@@ -199,7 +199,7 @@
 
                 <br>
 
-                <button type="button" class="btn btn-danger d-block m-auto" data-dismiss="modal" onclick="copySelectedToGroup()">Confirm</button>
+                <button type="button" class="btn btn-success d-block m-auto" data-dismiss="modal" onclick="copySelectedToGroup()">Confirm</button>
 
             </div>
         </div>
