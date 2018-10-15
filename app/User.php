@@ -46,7 +46,7 @@ class User extends Authenticatable
 
         //Return account already active error
     }
-
+    
     public function disable()
     {
         if($this->active){
