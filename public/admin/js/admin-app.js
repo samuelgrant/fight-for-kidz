@@ -170,4 +170,3 @@ $('.dtable-control').on('click', function () {
         });
     }
 });
-

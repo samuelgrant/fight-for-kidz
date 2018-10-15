@@ -80,11 +80,22 @@ class EventManagementController extends Controller
         return redirect()->back();
     }
 
-    public function togglePublic($id){
+  /**
+  * Inverts the is_public boolean of an event.
+  *
+  * @param $id
+  */
+  public function togglePublic($id){
         $event = Event::find($id);
 
         if($event->is_public){
-            $event->makeNotPublic();            
+            if(count(Event::where('is_public', true)->get()) > 1 ){
+                $event->makeNotPublic();            
+            }
+            else {
+                session()->flash('error', 'You must have at least one event publicly visible');
+                return redirect()->back();
+            }
         } 
         else {
             $event->makePublic();
@@ -96,6 +107,10 @@ class EventManagementController extends Controller
         * event did not change, then no harm will be done.
         */
         $this->updateLogo();
+
+        $visibility = $event->is_public ? 'public' : 'private';
+        session()->flash('success', $event->name.' was made '.$visibility);
+        return redirect()->back();
     }
 
 
@@ -115,7 +130,7 @@ class EventManagementController extends Controller
      *  this function whenever an event's public visibility 
      *  is changed. 
      */
-    public function updateLogo(){   
+    public function updateLogo(){
 
         $currentEventDate = Event::current()->datetime;
 
@@ -154,7 +169,6 @@ class EventManagementController extends Controller
 
         // Output the image to the public storage directory
         imagepng($image, '..\storage\app\public\images\f4k_logo.png');
-        // imagepng($image, dirname(dirname(dirname(dirname(dirname(__FILE__))))).'\storage\app\public\images\f4k_logo.png');
 
         // Remove the image from memory
         imagedestroy($image);

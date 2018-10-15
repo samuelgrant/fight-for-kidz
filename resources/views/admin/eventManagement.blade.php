@@ -40,7 +40,14 @@
                                 <td>{{\Carbon\Carbon::parse($event->datetime)->format('d M Y')}}</td>
                                 <td>{{$event->venue_name}}</td>
                                 <td>{{$event->charity}}</td>
-                                <td>{{($event->is_public)? "Yes":"No"}}</td>
+                                <td>
+                                    {!! Form::open(['action' => ['admin\EventManagementController@togglePublic', $event->id], 'method' => 'PUT']) !!}
+                                        <label class="switch">
+                                            <input type="checkbox" {{$event->is_public ? 'checked' : ''}} onchange="this.form.submit()">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    {!! Form::close() !!}
+                                </td>
                                 <td>
                                     {!!Form::open(['action'=>['admin\EventManagementController@destroy', $event->id], 'method'=> 'POST']) !!}
                                     <button class="btn btn-danger" type="submit"><i class="far fa-times-circle"></i> Delete Event</button>

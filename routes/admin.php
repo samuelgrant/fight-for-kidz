@@ -39,3 +39,6 @@ Route::get('/event-management', 'admin\EventManagementController@index')->name('
 Route::post('/event-management', 'admin\EventManagementController@store')->name('admin.eventManagement.store');
 Route::delete('/event-management/{eventID}', 'admin\EventManagementController@destroy')->name('admin.eventManagment.destroy');
 Route::patch('/event-management/{eventID}', 'admin\EventManagementController@restore')->name('admin.eventManagement.restore');
+
+//Toggle event visibility
+Route::put('/event-management/{eventID}', 'admin\EventManagementController@togglePublic')->name('admin.eventManagement.togglePublic');
