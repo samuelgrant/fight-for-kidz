@@ -20,7 +20,7 @@
     	<section id="about" class="upcoming-section">
 			<div class="container">
 				<div class="row mb-5">
-					<div class="col-lg-8 col-md-6 col-col-sm-12 py-5">
+					<div class="col-lg-12 col-ms-12 col-sm-12">
 						<h1 class="text-white underline bar">About</h1>
 						<p class="text-justify">
 							Fight for Kidz is a charity boxing event held in Southland every year to help raise funds for our most vunerable children.
@@ -31,6 +31,9 @@
 							Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae deserunt ab cupiditate quidem qui voluptates dolores quo veniam tempora neque sapiente libero ullam, 
 							excepturi culpa quibusdam non tempore! Quis, consequatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus maxime ducimus nulla veritatis quia aliquam vel architecto amet doloribus laudantium neque ipsum nemo, accusantium cupiditate et. Tempora eaque hic perspiciatis!
 						</p>
+					</div>
+					<div class="col-lg-8 col-md-6 col-col-sm-12 py-5">
+						<img src="storage/images/2016Cheque.jpg" class="img-fluid" alt="Fight for Kidz 2016 cheque">
 					</div>
 					<div class="col-lg-4 col-md-6 col-sm-12 mt-5 pb-4">
 						<div id="fb-root"></div>
