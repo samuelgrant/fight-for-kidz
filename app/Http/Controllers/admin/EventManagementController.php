@@ -113,13 +113,6 @@ class EventManagementController extends Controller
         return redirect()->back();
     }
 
-    public function getGPS($address){
-        $response = \GoogleMaps::load('geocoding')
-        ->setParam (['address' => $address])->get();
-        $json = json_decode($response, TRUE);
-
-        return ('lat: '.$json['results'][0]['geometry']['location']['lat'].", lng: ".$json['results'][0]['geometry']['location']['lng']);  
-    }
 
     /**
      *  This function uses the gd and stil/gd-text libraries.

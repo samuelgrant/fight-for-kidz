@@ -84,12 +84,19 @@
         </div>
     </div>
     <div class="col-lg-8 col-md-6 col-sm-12">
+
+        {{-- Add selected to group - visible to all groups --}}
+        <button class="btn btn-primary mb-3" type="button" data-toggle="modal" data-target="#copyToGroupModal">
+            Copy selected to another group
+        </button>
+
         @if($group->type != "System Group")
         <button class="btn btn-primary mb-3" type="button" data-toggle="modal" data-target="#addToGroupModal">Add new
             contact to Group</button>
         <button class="btn btn-danger mb-3" type="button" data-toggle="modal" data-target="#removeFromGroupModal"
             onclick="countSelected()">Remove selected</button>
-        @endif
+        @endif        
+
         <table id="group-dtable" class="table table-striped table-hover table-sm">
             <thead class="thead-default">
                 <tr>
@@ -104,7 +111,7 @@
                     <td>
                         <div class="form-check">
                             <input type="checkbox" class="form-check-input dtable-remove-checkbox dtable-control" id="{{$member['email']}}"
-                                value="checkedValue">
+                                value="checkedValue" data-member-type="{{$member['role']}}" data-member-id="{{$member['id']}}">
                         </div>
                     </td>
                     <td>{{$member['name']}}</td>
@@ -143,6 +150,7 @@
     </div>
 </div>
 
+{{-- Remove from group modal --}}
 <div class="modal fade" id="removeFromGroupModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -166,6 +174,41 @@
         </div>
     </div>
 </div>
-</div>
 @endif
+
+{{-- Copy to another group modal - outside if block as it is available for system groups --}}
+<div class="modal fade" id="copyToGroupModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Copy Selected Contacts to Group</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+
+                <p>Copy selected contacts to which group?</p>
+
+                <select id="groupDropdown" class="form-control">
+                    @foreach ($groups as $groupOption)
+                        @if($groupOption->type != 'System Group' && $groupOption->id != $group->id)
+                            <option value="{{$groupOption->id}}">{{$groupOption->name}}</option>
+                        @endif
+                    @endforeach
+                </select>
+
+                <br>
+
+                <button type="button" class="btn btn-success d-block m-auto" data-dismiss="modal" onclick="copySelectedToGroup()">Confirm</button>
+
+            </div>
+        </div>
+        <div class="modal-body">
+            <form>
+
+            </form>
+        </div>
+    </div>
+</div>
+
 @endsection
