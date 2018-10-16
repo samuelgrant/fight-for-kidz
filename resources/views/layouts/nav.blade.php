@@ -3,7 +3,13 @@
         <div class="collapse navbar-collapse"
             id="navcol-1">
             <ul class="nav navbar-nav ml-auto">
-                <li role="presentation" class="nav-item"><a href="#" class="nav-link">Events</a></li>
+                <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle nav-link dropdown-toggle">Events</a>
+                    <div role="menu" class="dropdown-menu">
+                        @foreach($events as $event)
+                        <a role="presentation" href="#" class="dropdown-item">{{$event->name}}</a>
+                        @endforeach
+                    </div>
+                </li>
                 @if(true)
                 <li role="presentation" class="nav-item"><a href="{{route('merchandise')}}" class="nav-link">Merchandise</a></li>
                 @endif
