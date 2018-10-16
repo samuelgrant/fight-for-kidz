@@ -1,58 +1,30 @@
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-    <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="{{route('index')}}">
-      <div>
-        <img src="/storage/images/f4k_logo.png" class="img-fluid">
-      </div>
-      </a>
-      <button class="navbar-toggler  navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        Menu
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/about">About us</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/contenders">Contenders</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/previous">Previous Years</a>
-          </li>
-          <li class="dropdown">
-            <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">Support Us
-              <span class="caret"></span>
-            </a>
-            <ul id="dropdown1" class="dropdown-menu">
-              <li>
-                <a class="js-scroll-trigger" href="#"><p>Reserve Seats</p></a>
-              </li>
-              <li>
-                <a class="js-scroll-trigger" href="{{route('Merchandise')}}"><p>Merchandise</p></a>
-              </li>
-              <li>
-                <a href="/auction"><p>Auction</p></a>
-              </li>
-              <li>
-                <a class="js-scroll-trigger" href="{{route('application')}}"><p>Apply</p></a>
-              </li>
+<nav class="navbar navbar-dark navbar-expand-md sticky-top bg-dark navigation-clean">
+    <div class="container"><a href="{{route('index')}}" class="navbar-brand"><img src="/storage/images/f4k_logo.png" alt="Fight for Kidz Logo"></a><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse"
+            id="navcol-1">
+            <ul class="nav navbar-nav ml-auto">
+                <li role="presentation" class="nav-item"><a href="#" class="nav-link">Events</a></li>
+                @if(true)
+                <li role="presentation" class="nav-item"><a href="{{route('merchandise')}}" class="nav-link">Merchandise</a></li>
+                @endif
+                <!-- Buy Tickets Dropdown -->
+                <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle nav-link dropdown-toggle">Apply</a>
+                    <div role="menu" class="dropdown-menu">
+                        <a role="presentation" href="{{route('application.fight')}}" class="dropdown-item">To Fight</a>
+                        <a role="presentation" href="{{route('application.sponsor')}}" class="dropdown-item">To be a Sponser</a>
+                    </div>
+                </li>
+                <!-- End Buy Tickets Dropdown -->
+                <!-- Buy Tickets Dropdown -->
+                <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle nav-link dropdown-toggle">Book Tickets</a>
+                    <div role="menu" class="dropdown-menu">
+                        <a role="presentation" href="#" class="dropdown-item">Seats</a>
+                        <a role="presentation" href="#" class="dropdown-item">Tables</a>
+                    </div>
+                </li>
+                <!-- End Buy Tickets Dropdown -->
+                <li role="presentation" class="nav-item"><a href="{{route('contact')}}" class="nav-link">Contact Us</a></li>
             </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/contact"><p>Contact Us</p></a>
-          </li>
-        </ul>
-      </div>
+        </div>
     </div>
-  </nav>
-  <script>
-        var c = document.getElementById("navcanvas");
-        var ctx = c.getContext("2d");
-        var year = "2021"
-        ctx.font = "40px Arial";
-        ctx.fillStyle = "white";
-        ctx.fillText(year,1,110);
-      </script>
+</nav>

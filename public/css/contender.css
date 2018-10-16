@@ -117,3 +117,42 @@
     transition: 0.5s ease;
 }
 
+.bout-btn {
+    color: white;
+    padding: 0.5rem;
+    background-color: transparent;
+    background-image: none;
+    -webkit-transition: all 0.3s !important;
+    transition: all 0.3s !important;
+    border-radius: 5px;
+  }
+
+  .bout-btn:hover {
+    /* color: white; */
+    cursor: pointer;
+    -webkit-transition: all 0.3s !important;
+    transition: all 0.3s !important;
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+
+  .bout-btn-blue {
+    border: 2px solid #2762D6;
+    margin-bottom: 0.5rem;
+  }
+
+  .bout-btn-blue:hover {
+    /* background-color: #2762D6; */
+    /* border: 1px solid #2762D6; */
+    border: 2px solid white;
+  }
+
+  .bout-btn-red {
+    border: 2px solid red;
+    margin-bottom: 0.5rem;
+  }
+
+  .bout-btn-red:hover {
+    /* background-color: red; */
+    /* border: 1px solid red; */
+    border: 2px solid white;
+  } 
