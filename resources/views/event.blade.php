@@ -65,7 +65,7 @@
 </section>
 
 <!-- Bouts Section -->
-<div class="container container-wide">
+<div class="container pt-5">
 
   <!-- All bouts will be contained within single row -->
   <div class="row bouts-row">
