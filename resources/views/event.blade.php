@@ -412,6 +412,108 @@
   </div>
 </div>
 
+<!-- Dynamic modal -->
+<div id="bio-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none; z-index:4005;">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-body">
+
+        <div id="modal-loader" style="display: none; text-align: center">
+          <p style="color: black;">Loading</p>
+          <img src="/storage/images/ajax-loader.gif">
+        </div>
+
+        {{-- Dynamic content will load here --}}
+        <div id="dynamic-content" style="color:black;">
+
+
+          <div class="text-center">
+              <h5 id=first-name class="d-inline"></h5>
+              <h4 id="nickname" class="d-inline"></h4>
+              <h5 id="last-name" class="d-inline"></h5>
+              <hr>
+              <div style="background-color:lightgray; width: 100%; height: 300px" class="mx-auto my-3"></div>
+              
+              <div class="bio-text text-justify">
+                  <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quam cupiditate ea, 
+                    aliquam voluptate veritatis officiis sequi quaerat aliquid placeat voluptatum 
+                    nesciunt quod non, velit at inventore sapiente? Quia, quis.
+                  </p>
+              </div>
+
+              <div class="row">
+                <div class="col-lg-6"><img id="pic" src="/storage/images/applicants/default.png" class="img-fluid"></div>
+                <div class="col-lg-6">
+                  <h5 class="text-center">My Stats:</h5>
+                  <table class="table table-striped table-bordered table-sm text-center">
+                      <tbody>
+                        <tr>
+                          <td> Age: 44</td>
+                        </tr>
+                        <tr>
+                          <td> Weight: 77kg</td>
+                        </tr>
+                        <tr>
+                          <td> Height: 174cm</td>
+                        </tr>
+                        <tr>
+                          <td> Reach 174cm</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+              </div>
+              
+          </div>
+
+
+        </div>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div> {{-- close bio-modal --}}
+
+<script>
+  $(document).ready(function(){
+      $('.bio-view-button').on('click', function(e){
+
+        var url = '/contenders/bio/' + $(this).attr('data-contenderId');
+
+        console.log(url);
+
+        $('#modal-loader').show();
+
+        $.ajax({
+          url: url,
+          method: 'get',
+          dataType: 'json'
+        }).done(function(data){
+          
+          console.log(data);
+          $('#first-name').html(data['first_name']);
+          $('#last-name').html(data['last_name']);
+          $('#nickname').html('\'' + data['nickname'] + '\'');
+          // $('#pic').attr('src', data['imagePath']);
+          $('#bio-vid').attr('src', 'https://www.youtube.com/embed/y2Ky3Wo37AY?rel=0');
+          $('#modal-loader').hide();
+        }).fail(function(){
+          console.log('failed');
+          $('#dynamic-content').html('<p style="color:black;">Something went wrong. Please try again...</p>');
+          $('#modal-loader').hide();
+        });
+      });
+    });
+
+</script>
+
 <!-- Subscriber Section -->
 <section class="text-center" id="subscriber-section">
 
