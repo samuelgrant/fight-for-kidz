@@ -27,7 +27,7 @@ class EventManagementController extends Controller
 
         $events = Event::get();
         $deletedEvents = Event::onlyTrashed()->get();
-        return view('admin.eventManagement')->with(['events' => $events, 'deletedEvents' => $deletedEvents]);
+        return view('admin.eventsManagement')->with(['events' => $events, 'deletedEvents' => $deletedEvents]);
     }
 
     /**
@@ -49,6 +49,21 @@ class EventManagementController extends Controller
         session()->flash('success', 'The event called '.$event->name.' was created.');
         return redirect()->back();
     }
+
+    /**
+     * Returns event management view for specific event
+     * 
+     * 
+     */
+    public function view($eventID){
+
+        $event = Event::find($eventID);
+
+        return view('admin.eventManagement')->with('event', $event);
+
+    }
+
+
     /**
      * Soft deletes selected event
      * 
