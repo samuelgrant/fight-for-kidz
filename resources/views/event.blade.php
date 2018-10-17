@@ -77,7 +77,7 @@
       <div class="bout-card">
         <div class="bout-header">
           <h2>BOUT ONE</h2>
-          <p class="sponsored-by">sponsored by</p>
+          {{-- <p class="sponsored-by">sponsored by</p> --}}
           <div class="sponsor-badge">
             <div class="vertical-aligner"></div><img src="/storage/images/FighterSponsorslogo/Taurs sponsor.png" class="img-fluid bout-sponsor">
           </div>
@@ -92,13 +92,13 @@
               <h4>'The Beast'</h4>
               <h5>Blee</h5>
             </div>
-            <div class="contender-sponsor">
+            <!-- <div class="contender-sponsor">
               <p class="sponsored-by">sponsored by</p>
               <div class="sponsor-badge">
                 <div class="vertical-aligner"></div><img src="/storage/images/FighterSponsorslogo/Logan sponsor.png"
                   class="img-fluid">
               </div>
-            </div>
+            </div> -->
             <div class="table-responsive table-borderless">
             </div>
             <div class="bout-btn bout-btn-red bio-view-button" data-toggle="modal" data-target="#bio-modal"
@@ -115,13 +115,13 @@
               <h4>'Intimidator'</h4>
               <h5>Valli</h5>
             </div>
-            <div class="contender-sponsor">
+            <!-- <div class="contender-sponsor">
               <p class="sponsored-by">sponsored by</p>
               <div class="sponsor-badge">
                 <div class="vertical-aligner"></div><img src="/storage/images/FighterSponsorslogo/Joes sponser.png"
                   class="img-fluid">
               </div>
-            </div>
+            </div> -->
             <div class="bout-btn bout-btn-blue" onclick="location.href='#'">View Bio</div>
             <div class="bout-btn bout-btn-blue" onclick="location.href='#'">Donate</div>
           </div>
@@ -161,7 +161,7 @@
             <div class="bout-btn bout-btn-red" onclick="location.href='#'">View Bio</div>
             <div class="bout-btn bout-btn-red" onclick="location.href='#'">Donate</div>
           </div>
-        </div>
+        </div> <!-- end contender card -->
 
         <div class="contender-card contender-card-blue">
           <div class="contender-card-inner">
@@ -181,195 +181,9 @@
             <div class="bout-btn bout-btn-blue" onclick="location.href='#'">View Bio</div>
             <div class="bout-btn bout-btn-blue" onclick="location.href='#'">Donate</div>
           </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="col-lg-6 bout-column">
-
-      <!-- Each bout has a bout header -->
-      <div class="bout-card">
-        <div class="bout-header">
-          <h2>BOUT ONE</h2>
-          <p class="sponsored-by">sponsored by</p>
-          <div class="sponsor-badge">
-            <div class="vertical-aligner"></div><img src="/storage/images/FighterSponsorslogo/Taurs sponsor.png" class="img-fluid bout-sponsor">
-          </div>
-        </div>
-
-        <!-- Each bout card will contain two contender-cards -->
-        <div class="contender-card contender-card-red">
-          <div class="contender-card-inner">
-            <img src="/storage/images/Fighters/Joe THE BEAST Blee.png" class="mx-auto contender-img">
-            <div class="contender-name">
-              <h5>Joe</h5>
-              <h4>'The Beast'</h4>
-              <h5>Blee</h5>
-            </div>
-            <div class="contender-sponsor">
-              <p class="sponsored-by">sponsored by</p>
-              <div class="sponsor-badge">
-                <div class="vertical-aligner"></div><img src="/storage/images/FighterSponsorslogo/Logan sponsor.png"
-                  class="img-fluid">
-              </div>
-            </div>
-            <div class="table-responsive table-borderless">
-              <table class="table table-striped table-bordered table-sm text-center">
-                <tbody>
-                  <tr>
-                    <td> Age: 44</td>
-                  </tr>
-                  <tr>
-                    <td> Weight: 77kg</td>
-                  </tr>
-                  <tr>
-                    <td> Height: 174cm</td>
-                  </tr>
-                  <tr>
-                    <td> Reach 174cm</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="bout-btn bout-btn-red" onclick="location.href='#'">View Bio</div>
-            <div class="bout-btn bout-btn-red" onclick="location.href='#'">Donate</div>
-          </div>
-        </div>
-
-        <div class="contender-card contender-card-blue">
-          <div class="contender-card-inner">
-            <img src="/storage/images/Fighters/Logan Intimidator Valli.png" class="mx-auto contender-img">
-            <div class="contender-name">
-              <h5>Logan</h5>
-              <h4>'Intimidator'</h4>
-              <h5>Valli</h5>
-            </div>
-            <div class="contender-sponsor">
-              <p class="sponsored-by">sponsored by</p>
-              <div class="sponsor-badge">
-                <div class="vertical-aligner"></div><img src="/storage/images/FighterSponsorslogo/Joes sponser.png"
-                  class="img-fluid">
-              </div>
-            </div>
-            <div class="table-responsive table-borderless">
-              <table class="table table-striped table-bordered table-sm text-center">
-                <tbody>
-                  <tr>
-                    <td> Age: 44</td>
-                  </tr>
-                  <tr>
-                    <td> Weight: 77kg</td>
-                  </tr>
-                  <tr>
-                    <td> Height: 174cm</td>
-                  </tr>
-                  <tr>
-                    <td> Reach 174cm</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="bout-btn bout-btn-blue" onclick="location.href='#'">View Bio</div>
-            <div class="bout-btn bout-btn-blue" onclick="location.href='#'">Donate</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="col-lg-6 bout-column">
-
-      <!-- Each bout has a bout header -->
-      <div class="bout-card">
-        <div class="bout-header">
-          <h2>BOUT ONE</h2>
-          <p class="sponsored-by">sponsored by</p>
-          <div class="sponsor-badge">
-            <div class="vertical-aligner"></div><img src="/storage/images/FighterSponsorslogo/Alissa sponser.png" class="img-fluid bout-sponsor">
-          </div>
-        </div>
-
-        <!-- Each bout card will contain two contender-cards -->
-        <div class="contender-card contender-card-red">
-          <div class="contender-card-inner">
-            <img src="/storage/images/Fighters/Joe THE BEAST Blee.png" class="mx-auto contender-img">
-            <div class="contender-name">
-              <h5>Joe</h5>
-              <h4>'The Beast'</h4>
-              <h5>Blee</h5>
-            </div>
-            <div class="contender-sponsor">
-              <p class="sponsored-by">sponsored by</p>
-              <div class="sponsor-badge">
-                <div class="vertical-aligner"></div><img src="/storage/images/FighterSponsorslogo/Kelly sponser.png"
-                  class="img-fluid">
-              </div>
-            </div>
-            <div class="table-responsive table-borderless">
-              <table class="table table-striped table-bordered table-sm text-center">
-                <tbody>
-                  <tr>
-                    <td> Age: 44</td>
-                  </tr>
-                  <tr>
-                    <td> Weight: 77kg</td>
-                  </tr>
-                  <tr>
-                    <td> Height: 174cm</td>
-                  </tr>
-                  <tr>
-                    <td> Reach 174cm</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="bout-btn bout-btn-red" onclick="location.href='#'">View Bio</div>
-            <div class="bout-btn bout-btn-red" onclick="location.href='#'">Donate</div>
-          </div>
-        </div>
-
-        <div class="contender-card contender-card-blue">
-          <div class="contender-card-inner">
-            <img src="/storage/images/Fighters/Logan Intimidator Valli.png" class="mx-auto contender-img">
-            <div class="contender-name">
-              <h5>Logan</h5>
-              <h4>'Intimidator'</h4>
-              <h5>Valli</h5>
-            </div>
-            <div class="contender-sponsor">
-              <p class="sponsored-by">sponsored by</p>
-              <div class="sponsor-badge">
-                <div class="vertical-aligner"></div><img src="/storage/images/FighterSponsorslogo/pauls sponser.png"
-                  class="img-fluid">
-              </div>
-            </div>
-            <div class="table-responsive table-borderless">
-              <table class="table table-striped table-bordered table-sm text-center">
-                <tbody>
-                  <tr>
-                    <td> Age: 44</td>
-                  </tr>
-                  <tr>
-                    <td> Weight: 77kg</td>
-                  </tr>
-                  <tr>
-                    <td> Height: 174cm</td>
-                  </tr>
-                  <tr>
-                    <td> Reach 174cm</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="bout-btn bout-btn-blue" onclick="location.href='#'">View Bio</div>
-            <div class="bout-btn bout-btn-blue" onclick="location.href='#'">Donate</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
+        </div> <!-- end contender card -->
+      </div> <!-- end bout card -->
+    </div> <!-- end bout column -->
 
   </div>
 
@@ -515,7 +329,7 @@
 </script>
 
 <!-- Subscriber Section -->
-<section class="text-center" id="subscriber-section">
+{{-- <section class="text-center" id="subscriber-section">
 
   <div class="container my-5">
     <h1 class="mb-3">Fight for Kidz Newsletter!</h1>
@@ -544,7 +358,7 @@
       @csrf
     </form>
   </div>
-</section>
+</section> --}}
 
 </div>
 @endsection
