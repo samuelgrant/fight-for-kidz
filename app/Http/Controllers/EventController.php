@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class EventController extends Controller
 {  
     public function index() {
-        $event = Event::first();
+        $event = Event::current();
         return view('event')->with('event', $event);
     }
 }
