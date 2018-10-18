@@ -83,14 +83,51 @@
                    
                 </div>
             </div>
+
             <div class="tab-pane {{(app('request')->input('tab') == 'applicants') ? 'active': ''}}" role="tabpanel" id="tab-3">
-                <div class="row">
-                   <h3>test</h3>
-                </div>
+                
+                <table id="applicant-dtable" class="table table-striped table-hover table-sm">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Height (cm)</th>
+                            <th>Current Weight (kg)</th>
+                            <th>Expected Weight (kg)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($event->applicants as $applicant)
+                        <tr>
+                            <td>
+                                <input type="checkbox" class="form-check-input dtable-control" id="{{$applicant->id}}"
+                                    value="checkedvalue">
+                            </td>
+                            <td>{{$applicant->first_name . ' ' . $applicant->last_name}}</td>
+                            <td>{{$applicant->getAge()}}</td>
+                            @if($applicant->is_male)
+                                <td>M</td>
+                            @else
+                                <td>F</td>
+                            @endif
+                            <td>{{$applicant->height}}</td>
+                            <td>{{$applicant->current_weight}}</td>
+                            <td>{{$applicant->expected_weight}}</td>
+                            <td>
+                                <button class="btn btn-info" type="submit"><i class="fal fa-info-circle"></i> More Info</button>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+                
             </div>
             <div class="tab-pane {{(app('request')->input('tab') == 'auction') ? 'active': ''}}" role="tabpanel" id="tab-4">
                 <div class="row">
-                   
+                    
                 </div>
             </div>
         </div>
@@ -98,7 +135,7 @@
 </div>
 
 <!-- Edit Event Details Modal -->
-<div class="modal fade" id="addToGroupModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+{{-- <div class="modal fade" id="addToGroupModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -120,7 +157,7 @@
                 </form>
             </div>
         </div>
-    </div>
-</div> <!-- End Edit Event Details Modal -->
+    </div> --}}
+{{-- </div> <!-- End Edit Event Details Modal --> --}}
 
 @endsection

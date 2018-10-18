@@ -99,6 +99,19 @@ $(document).ready(function() {
             { "orderable": false, "searchable": false }
         ]
     });
+
+    $('#applicant-dtable').DataTable({
+        "columns":[
+            { "orderable": false, "searchable": false},
+            null,
+            {"searchable": false},
+            {"searchable": false},
+            {"searchable": false},
+            {"searchable": false},
+            {"searchable": false},
+            { "orderable": false, "searchable": false }
+        ]
+    })
 });
 
 // Count the number of selected datatable rows on a page, and display the result

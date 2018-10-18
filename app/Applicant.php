@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\Groupable;
+use Carbon\Carbon;
 
 class Applicant extends Model
 {
@@ -26,5 +27,11 @@ class Applicant extends Model
     
     public function isContender(){
         return $this->contender != null;
+    }
+
+    public function getAge(){
+        $date = Carbon::parse($this->dob);
+
+        return Carbon::now()->diffInYears($date);
     }
 }
