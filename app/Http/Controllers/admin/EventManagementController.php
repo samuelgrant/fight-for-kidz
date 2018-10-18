@@ -95,12 +95,12 @@ class EventManagementController extends Controller
         return redirect()->back();
     }
 
-  /**
-  * Inverts the is_public boolean of an event.
-  *
-  * @param $id
-  */
-  public function togglePublic($id){
+    /**
+     * Inverts the is_public boolean of an event.
+    *
+    * @param $id
+    */
+    public function togglePublic($id){
         $event = Event::find($id);
 
         if($event->is_public){
