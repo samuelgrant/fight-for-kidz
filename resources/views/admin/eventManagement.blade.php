@@ -36,51 +36,50 @@
                 <hr>
             
                 <div class="row">                    
-                   
-                   <div class="col-md-4">
-                       <div class="card border-primary">
-                       
-                            <div class="card-header bg-primary text-white">
-                                <h5 class="mb-0">Event Details</h5>
-                            </div>
-    
-                            <div class="card-body">
-                                <table class="table">
-                                    <tr>
-                                        <td>Event Name:</td>
-                                        <td>{{$event->name}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Event Date:</td>
-                                        <td>{{$event->datetime}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Event Venue:</td>
-                                        <td>{{$event->venue_name}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Venue Address:</td>
-                                        <td>{{$event->venue_address}}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Charity:</td>
-                                        <td>{{$event->charity}}</td>
-                                    </tr>
-                                </table>
-                            </div>
+                    
+                    <div class="col-md-4">
+                    <div class="card border-primary">
+                    
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Event Details</h5>
+                        </div>
 
-                            <div class="card-footer">
-                                <a href="#" class="btn btn-primary float-right">Edit Details</a>
-                            </div>
-                       
-                       </div>
-                   </div>
+                        <div class="card-body">
+                            <table class="table">
+                                <tr>
+                                    <td>Event Name:</td>
+                                    <td>{{$event->name}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Event Date:</td>
+                                    <td>{{$event->datetime}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Event Venue:</td>
+                                    <td>{{$event->venue_name}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Venue Address:</td>
+                                    <td>{{$event->venue_address}}</td>
+                                </tr>
+                                <tr>
+                                    <td>Charity:</td>
+                                    <td>{{$event->charity}}</td>
+                                </tr>
+                            </table>
+                        </div>
+
+                        <div class="card-footer">
+                            <a href="#" class="btn btn-primary float-right">Edit Details</a>
+                        </div>
+                    </div>
+                </div>
 
                 </div>
             </div>
             <div class="tab-pane {{(app('request')->input('tab') == 'bouts') ? 'active': ''}}" role="tabpanel" id="tab-2">
                 <div class="row">
-                   
+                
                 </div>
             </div>
 
@@ -103,8 +102,10 @@
                         @foreach($event->applicants as $applicant)
                         <tr>
                             <td>
-                                <input type="checkbox" class="form-check-input dtable-control" id="{{$applicant->id}}"
-                                    value="checkedvalue">
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input dtable-control" id="{{$applicant->id}}"
+                                        value="checkedvalue">
+                                </div>
                             </td>
                             <td>{{$applicant->first_name . ' ' . $applicant->last_name}}</td>
                             <td>{{$applicant->getAge()}}</td>
@@ -117,7 +118,7 @@
                             <td>{{$applicant->current_weight}}</td>
                             <td>{{$applicant->expected_weight}}</td>
                             <td>
-                                <button class="btn btn-info" type="submit"><i class="fal fa-info-circle"></i> More Info</button>
+                                <button class="btn btn-info" type="submit" data-toggle="modal" data-target="#moreInfoModal"><i class="fal fa-info-circle"></i> More Info</button>
                             </td>
                         </tr>
                         @endforeach
@@ -160,4 +161,21 @@
     </div> --}}
 {{-- </div> <!-- End Edit Event Details Modal --> --}}
 
+<!-- More Info Modal -->
+<div class="modal fade" id="moreInfoModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h4 class="modal-title">More Info</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- End More Info Modal -->
 @endsection
