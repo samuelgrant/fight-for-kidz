@@ -3,6 +3,7 @@
 namespace App;
 
 use \GoogleMaps as GoogleMaps;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Log;
@@ -37,6 +38,18 @@ class Event extends Model
         $this->save();
         
         Log::debug($this->name.' was added to the public site.');
+    }
+
+    /**
+     *  Returns a datetime string compatible with the
+     *  datetime-local input type.
+     */
+    public function getDateTimeString(){
+
+        $date = Carbon::parse($this->datetime);
+
+        return $date->format('Y-m-d\TH:i:s');
+
     }
     
     // Relationship to auction items - one to many
