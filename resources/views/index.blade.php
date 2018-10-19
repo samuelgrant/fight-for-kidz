@@ -6,7 +6,7 @@
 		<div class="container d-flex h-100 align-items-center">
       		<div class="mx-auto text-center">
         		<div>
-         			<img src="/storage/images/f4k_logo.png" class="img-fluid">
+         			<img src="/storage/images/f4k_logo.png?{{filemtime($_SERVER["DOCUMENT_ROOT"].'/storage/images/f4k_logo.png')}}" class="img-fluid">
         		</div>  
         		<div class="text-white-50 mx-auto mt-5 mb-5">
             		<a class="bout-btn bout-btn-red" href="#about">About Us</a>
