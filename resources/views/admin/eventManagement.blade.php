@@ -22,10 +22,12 @@
                         role="tab" data-toggle="tab" href="#tab-1" id="overview">Overview</a></li>
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'bouts')? 'active': '' }}"
                         role="tab" data-toggle="tab" href="#tab-2" id="bouts">Bouts</a></li>
+                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'contenders')? 'active': '' }}"
+                        role="tab" data-toggle="tab" href="#tab-3" id="contenders">Contenders</a></li>
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'applicants') ? 'active': '' }}"
-                        role="tab" data-toggle="tab" href="#tab-3" id="applicants">Applicants</a></li>
+                        role="tab" data-toggle="tab" href="#tab-4" id="applicants">Applicants</a></li>
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'auction')? 'active': '' }}"
-                    role="tab" data-toggle="tab" href="#tab-4" id="auction">Auction</a></li>
+                    role="tab" data-toggle="tab" href="#tab-5" id="auction">Auction</a></li>
             </ul>
         </div>
         <div class="tab-content">
@@ -41,7 +43,7 @@
                     <div class="card border-primary">
                     
                         <div class="card-header bg-primary text-white">
-                            <h5 class="mb-0">Event Details</h5>
+                            <h4 class="mb-0">Event Details</h4>
                         </div>
 
                         <div class="card-body">
@@ -79,12 +81,78 @@
                 </div>
             </div>
             <div class="tab-pane {{(app('request')->input('tab') == 'bouts') ? 'active': ''}}" role="tabpanel" id="tab-2">
+                
+                <div class="mt-4">
+                    <h3 class="d-inline">{{$event->name}} : Bout Management</h3>
+                    <span class="float-right px-5"><button class="btn btn-success"><i class="fas fa-plus"></i>&nbsp;Add Bout</button></span>
+                </div>
+
+                <hr>
+
                 <div class="row">
                 
+                    {{-- @foreach($event->bouts as $bout) --}}
+                    <div class="col-md-4">
+                        <div class="card boutMgmt-card border-primary">
+                            <div class="card-header boutMgmt-header bg-primary">
+                                <h4 class="mb-0">Bout One</h4>
+                            </div>
+                            <div class="card-body boutMgmt-body">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="sponsor-select">Bout Sponsor</label>
+                                        <select name="sponsor" id="sponsor-select" class="form-control">
+                                            <option value="1">Hunter and Sons</option>
+                                            <option value="2">Harvey Norman</option>
+                                            <option value="3">The Warehouse Invercargill</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="blue-select">Blue Corner</label>
+                                        <select name="blue" id="blue-select" class="form-control">
+                                            <option value="1">Joe Blogg</option>
+                                            <option value="2">Harvey Norman</option>
+                                            <option value="3">John Doe</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="red-select">Red Corner</label>
+                                        <select name="red" id="red-select" class="form-control">
+                                            <option value="1">Hunter Robinson</option>
+                                            <option value="2">Michael Williams</option>
+                                            <option value="3">Gary Woodhouse</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- @endforeach --}}
+
                 </div>
             </div>
 
-            <div class="tab-pane {{(app('request')->input('tab') == 'applicants') ? 'active': ''}}" role="tabpanel" id="tab-3">
+            <div class="tab-pane {{(app('request')->input('tab') == 'contenders') ? 'active': ''}}" role="tabpanel" id="tab-3">
+                
+                <div class="mt-4">
+                    <h3>{{$event->name}} : Contenders</h3>
+                </div>
+
+                <hr>
+            </div>
+
+            <div class="tab-pane {{(app('request')->input('tab') == 'applicants') ? 'active': ''}}" role="tabpanel" id="tab-4">
+
+            <div class="mt-4">
+                <h3 class="d-inline">{{$event->name}} : Applications</h3>
+                <span class="float-right px-5">
+                    <button class="btn btn-success"><i class="fas fa-plus"></i>&nbsp;Add selected to team</button>
+                </span>
+            </div>
+
+            <hr>
                 
                 <table id="applicant-dtable" class="table table-striped table-hover table-sm">
                     <thead>
@@ -127,7 +195,7 @@
                 </table>
                 
             </div>
-            <div class="tab-pane {{(app('request')->input('tab') == 'auction') ? 'active': ''}}" role="tabpanel" id="tab-4">
+            <div class="tab-pane {{(app('request')->input('tab') == 'auction') ? 'active': ''}}" role="tabpanel" id="tab-5">
                 <div class="row">
                     
                 </div>
