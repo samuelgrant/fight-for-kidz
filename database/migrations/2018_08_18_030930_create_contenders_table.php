@@ -18,6 +18,7 @@ class CreateContendersTable extends Migration
             $table->integer('event_id')->unsigned();
             $table->integer('sponsor_id')->unsigned()->nullable();
             $table->integer('applicant_id')->unsigned();
+            $table->string('team'); // should be 'red' or 'blue'
             $table->string('first_name');
             $table->string('last_name');
             $table->string('nickname')->nullable();
@@ -29,7 +30,7 @@ class CreateContendersTable extends Migration
 
             // Foreign key constraints definition
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
-            $table->foreign('sponsor_id')->references('id')->on('sponsors')->onDelete('cascade');
+            $table->foreign('sponsor_id')->references('id')->on('sponsors')->onDelete('set null');
             $table->foreign('applicant_id')->references('id')->on('applicants')->onDelete('cascade');            
         });
     }
