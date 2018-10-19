@@ -69,11 +69,12 @@
                             </table>
                         </div>
 
-                        <div class="card-footer">
-                            <a href="#" class="btn btn-primary float-right">Edit Details</a>
-                        </div>
-                    </div>
-                </div>
+                            <div class="card-footer">
+                                <button data-toggle="modal" data-target="#eventDetailsModal" class="btn btn-primary float-right">Edit Details</button>
+                            </div>
+                       
+                       </div>
+                   </div>
 
                 </div>
             </div>
@@ -136,30 +137,44 @@
 </div>
 
 <!-- Edit Event Details Modal -->
-{{-- <div class="modal fade" id="addToGroupModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+<div class="modal fade" id="eventDetailsModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Add a new contact to {{$group->name}}</h4>
+                <h4 class="modal-title">Edit Event Details</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="{{route('admin.group.addMember', [$group->id])}}">
+                <form method="post" action="{{route('admin.eventManagement.update', ['eventID' => $event->id])}}">
                     <div class="form-group">
-                        <label for="inviteeName">Name</label>
-                        <input type="text" name="name" id="inviteName" class="form-control" required>
+                        <label for="eventName">Name:</label>
+                        <input type="text" name="name" id="eventName" class="form-control" value="{{$event->name}}" required>
                     </div>
                     <div class="form-group">
-                        <label for="inviteeName">Email</label>
-                        <input type="email" name="email" id="inviteEmail" class="form-control" required>
+                        <label for="eventDate">Date and Time:</label>
+                        <input type="datetime-local" name="date" id="eventDate" class="form-control" value="{{$event->getDateTimeString()}}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventVenue">Venue Name:</label>
+                        <input type="text" name="venue" id="eventVenue" class="form-control" value="{{$event->venue_name}}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventAddress">Venue Address:</label>
+                        <input type="text" name="address" id="eventAddress" class="form-control" value="{{$event->venue_address}}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventCharity">Supported Charity</label>
+                        <input type="text" name="charity" id="eventCharity" class="form-control" value="{{$event->charity}}" required>
                     </div>
                     @csrf
-                    <button type="submit" class="btn btn-success"><i class="fas fa-user-plus"></i> Add person to Group</button>
+                    {{method_field('PUT')}}
+                    <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success float-right"><i class="fas fa-edit"></i> Save Changes</button>
                 </form>
             </div>
         </div>
-    </div> --}}
-{{-- </div> <!-- End Edit Event Details Modal --> --}}
+    </div>
+</div> <!-- End Edit Event Details Modal -->
 
 <!-- More Info Modal -->
 <div class="modal fade" id="moreInfoModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
