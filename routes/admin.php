@@ -41,6 +41,7 @@ Route::put('/group-management/{groupID}/{memberID}/{memberType}', 'admin\GroupMa
 Route::get('/event-management', 'admin\EventManagementController@index')->name('admin.eventManagement');
 Route::get('/event-management/{eventID}', 'admin\EventManagementController@view')->name('admin.eventManagement.view');
 Route::post('/event-management', 'admin\EventManagementController@store')->name('admin.eventManagement.store');
+Route::put('/event-management/{eventID}/update', 'admin\EventManagementController@update')->name('admin.eventManagement.update');
 Route::delete('/event-management/{eventID}', 'admin\EventManagementController@destroy')->name('admin.eventManagment.destroy');
 Route::patch('/event-management/{eventID}', 'admin\EventManagementController@restore')->name('admin.eventManagement.restore');
 
