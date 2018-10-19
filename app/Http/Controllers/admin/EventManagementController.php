@@ -63,6 +63,33 @@ class EventManagementController extends Controller
 
     }
 
+    /**
+     *  Updates event
+     */
+    public function update(Request $request, $eventID){
+
+        $event = Event::find($eventID);
+
+        $event->name = $request->input('name');
+        $event->datetime = $request->input('date');
+        $event->venue_name = $request->input('venue');
+        $event->venue_address = $request->input('address');
+        $event->charity = $request->input('charity');
+
+        $event->updateGPS();
+
+        $event->save();
+
+        // We will also update the logo if the event is public. 
+        // This will only change the logo if the modified event
+        // is the 'current' event (i.e. most recent public event)
+        $this->updateLogo();
+
+        session()->flash('success', $event->name . ' was updated.');
+
+        return redirect()->back();
+
+    }
 
     /**
      * Soft deletes selected event
