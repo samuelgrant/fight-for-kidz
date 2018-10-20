@@ -16,10 +16,10 @@ class CreateBoutsTable extends Migration
         Schema::create('bouts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('event_id')->unsigned();
-            $table->integer('sponsor_id')->unsigned();
+            $table->integer('sponsor_id')->unsigned()->nullable();
             $table->string('name');
-            $table->integer('red_contender_id')->unsigned();
-            $table->integer('blue_contender_id')->unsigned();
+            $table->integer('red_contender_id')->unsigned()->nullable();
+            $table->integer('blue_contender_id')->unsigned()->nullable();
             $table->integer('victor_id')->unsigned()->nullable();
             $table->timestamps();
 

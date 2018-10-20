@@ -15,7 +15,7 @@ class CreateContendersTable extends Migration
     {
         Schema::create('contenders', function (Blueprint $table) {
             $table->increments('id');
-            // $table->integer('event_id')->unsigned();
+            $table->integer('event_id')->unsigned();
             $table->integer('sponsor_id')->unsigned()->nullable();
             $table->integer('applicant_id')->unsigned();
             $table->string('team'); // should be 'red' or 'blue'
@@ -26,7 +26,7 @@ class CreateContendersTable extends Migration
             $table->timestamps();
 
             // Foreign key constraints definition
-            // $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
             $table->foreign('sponsor_id')->references('id')->on('sponsors')->onDelete('set null');
             $table->foreign('applicant_id')->references('id')->on('applicants')->onDelete('cascade');            
         });
