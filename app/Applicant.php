@@ -52,10 +52,11 @@ class Applicant extends Model
             $contender->height = $this->height;
             $contender->nickname = $this->preferred_nickname;
             $contender->team = $team;
+            $contender->event_id = $this->event_id;
             $contender->save();
 
             // set foreign key field on contender
-            $this->contender()->associate($contender);
+            $this->contender()->save($contender);
 
         }
         else { //contender record already exists, change team only
