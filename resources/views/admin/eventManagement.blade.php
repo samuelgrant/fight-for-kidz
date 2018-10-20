@@ -91,45 +91,45 @@
 
                 <div class="row">
                 
-                    {{-- @foreach($event->bouts as $bout) --}}
+                    @foreach($event->bouts as $bout)
                     <div class="col-md-4">
-                        <div class="card boutMgmt-card border-primary">
+                        <div class="card boutMgmt-card border-primary mb-3">
                             <div class="card-header boutMgmt-header bg-primary">
-                                <h4 class="mb-0">Bout One</h4>
+                                <h4 class="mb-0">{{$bout->name}}</h4>
                             </div>
                             <div class="card-body boutMgmt-body">
                                 <form>
                                     <div class="form-group">
                                         <label for="sponsor-select">Bout Sponsor</label>
                                         <select name="sponsor" id="sponsor-select" class="form-control">
-                                            <option value="1">Hunter and Sons</option>
-                                            <option value="2">Harvey Norman</option>
-                                            <option value="3">The Warehouse Invercargill</option>
+                                            @foreach($event->sponsors as $sponsor)
+                                                <option value="{{$sponsor->id}}">{{$sponsor->company_name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="blue-select">Blue Corner</label>
                                         <select name="blue" id="blue-select" class="form-control">
-                                            <option value="1">Joe Blogg</option>
-                                            <option value="2">Harvey Norman</option>
-                                            <option value="3">John Doe</option>
+                                            @foreach($event->getTeam('blue') as $contender)
+                                                <option value="{{$contender->id}}">{{$contender->applicant->first_name.' '.$contender->applicant->last_name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="red-select">Red Corner</label>
                                         <select name="red" id="red-select" class="form-control">
-                                            <option value="1">Hunter Robinson</option>
-                                            <option value="2">Michael Williams</option>
-                                            <option value="3">Gary Woodhouse</option>
+                                            @foreach($event->getTeam('red') as $contender)
+                                                <option value="{{$contender->id}}">{{$contender->applicant->first_name.' '.$contender->applicant->last_name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    {{-- @endforeach --}}
+                    @endforeach
 
                 </div>
             </div>
@@ -141,6 +141,14 @@
                 </div>
 
                 <hr>
+
+                @foreach($event->contenders as $contender)
+
+                    <h2>Contender Name: {{$contender->applicant->first_name.' '.$contender->applicant->last_name}}</h2>
+                    <h4>Team: {{$contender->team}}</h4>
+
+                @endforeach
+
             </div>
 
             <div class="tab-pane {{(app('request')->input('tab') == 'applicants') ? 'active': ''}}" role="tabpanel" id="tab-4">
