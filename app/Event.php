@@ -95,4 +95,14 @@ class Event extends Model
         $this->venue_gps = 'lat: '.$json['results'][0]['geometry']['location']['lat'].", lng: ".$json['results'][0]['geometry']['location']['lng'];
         $this->save(); 
     }
+
+    /**
+     *  Returns collection of contenders for the 
+     *  supplied team.
+     */
+    public function getTeam($team){
+
+        return Contender::where('team', $team)->get();
+
+    }
 }
