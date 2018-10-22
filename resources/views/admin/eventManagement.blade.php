@@ -92,16 +92,20 @@
                 <div class="row">
                 
                     @foreach($event->bouts as $bout)
-                    <div class="col-md-4">
+                    <div class="col-lg-4 col-md-6">
                         <div class="card boutMgmt-card border-primary mb-3">
-                            <div class="card-header boutMgmt-header bg-primary">
-                                <h4 class="mb-0">{{$bout->name}}</h4>
+                            <div class="card-header boutMgmt-header bg-primary text-white">
+                                <h4 class="mb-0 d-inline">{{$bout->name}}</h4>
+                                <span class="float-right btn"><i class="fas fa-trash"></i></span>
                             </div>
                             <div class="card-body boutMgmt-body">
-                                <form>
+                                <form data-bout-id="{{$bout->id}}" action="{{route('admin.eventManagement.updateBoutDetails', ['boutId' => $bout->id])}}"
+                                    data-red-id="{{$bout->red_contender_id ? $bout->red_contender_id : '0'}}" data-blue-id="{{$bout->blue_contender_id ? $bout->blue_contender_id : '0'}}" data-sponsor-id="{{$bout->sponsor_id ? $bout->sponsor_id : '0'}}"
+                                    method="POST">
                                     <div class="form-group">
-                                        <label for="sponsor-select">Bout Sponsor</label>
-                                        <select name="sponsor" id="sponsor-select" class="form-control">
+                                        <label for="sponsor-select-{{$bout->id}}">Bout Sponsor</label>
+                                        <select name="sponsor-{{$bout->id}}" id="sponsor-select-{{$bout->id}}" class="form-control sponsor-select">
+                                            <option value="0">---</option>
                                             @foreach($event->sponsors as $sponsor)
                                                 <option value="{{$sponsor->id}}">{{$sponsor->company_name}}</option>
                                             @endforeach
@@ -109,8 +113,9 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="blue-select">Blue Corner</label>
-                                        <select name="blue" id="blue-select" class="form-control">
+                                        <label for="blue-select-{{$bout->id}}">Blue Corner</label>
+                                        <select name="blue-{{$bout->id}}" id="blue-select-{{$bout->id}}" class="form-control blue-select">
+                                            <option value="0">---</option>
                                             @foreach($event->getTeam('blue') as $contender)
                                                 <option value="{{$contender->id}}">{{$contender->applicant->first_name.' '.$contender->applicant->last_name}}</option>
                                             @endforeach
@@ -118,13 +123,16 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="red-select">Red Corner</label>
-                                        <select name="red" id="red-select" class="form-control">
+                                        <label for="red-select-{{$bout->id}}">Red Corner</label>
+                                        <select name="red-{{$bout->id}}" id="red-select-{{$bout->id}}" class="form-control red-select">
+                                            <option value="0">---</option>
                                             @foreach($event->getTeam('red') as $contender)
                                                 <option value="{{$contender->id}}">{{$contender->applicant->first_name.' '.$contender->applicant->last_name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
+                                    @csrf
+                                    {{method_field('PATCH')}}
                                 </form>
                             </div>
                         </div>
