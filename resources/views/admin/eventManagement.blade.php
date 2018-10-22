@@ -104,7 +104,7 @@
                                     method="POST">
                                     <div class="form-group">
                                         <label for="sponsor-select-{{$bout->id}}">Bout Sponsor</label>
-                                        <select name="sponsor-{{$bout->id}}" id="sponsor-select-{{$bout->id}}" class="form-control sponsor-select">
+                                        <select name="sponsor" id="sponsor-select-{{$bout->id}}" class="form-control sponsor-select">
                                             <option value="0">---</option>
                                             @foreach($event->sponsors as $sponsor)
                                                 <option value="{{$sponsor->id}}">{{$sponsor->company_name}}</option>
@@ -114,7 +114,7 @@
 
                                     <div class="form-group">
                                         <label for="blue-select-{{$bout->id}}">Blue Corner</label>
-                                        <select name="blue-{{$bout->id}}" id="blue-select-{{$bout->id}}" class="form-control blue-select">
+                                        <select name="blue" id="blue-select-{{$bout->id}}" class="form-control blue-select">
                                             <option value="0">---</option>
                                             @foreach($event->getTeam('blue') as $contender)
                                                 <option value="{{$contender->id}}">{{$contender->applicant->first_name.' '.$contender->applicant->last_name}}</option>
@@ -124,7 +124,7 @@
 
                                     <div class="form-group">
                                         <label for="red-select-{{$bout->id}}">Red Corner</label>
-                                        <select name="red-{{$bout->id}}" id="red-select-{{$bout->id}}" class="form-control red-select">
+                                        <select name="red" id="red-select-{{$bout->id}}" class="form-control red-select">
                                             <option value="0">---</option>
                                             @foreach($event->getTeam('red') as $contender)
                                                 <option value="{{$contender->id}}">{{$contender->applicant->first_name.' '.$contender->applicant->last_name}}</option>

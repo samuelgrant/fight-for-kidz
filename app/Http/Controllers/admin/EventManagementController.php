@@ -228,9 +228,9 @@ class EventManagementController extends Controller
 
         $bout = Bout::find($boutId);
 
-        $bout->red_contender()->associate(Contender::find($request->input('red-'.$boutId)));
-        $bout->blue_contender()->associate(Contender::find($request->input('blue-'.$boutId)));
-        $bout->sponsor()->associate(Sponsor::find($request->input('sponsor-'.$boutId)));
+        $bout->red_contender()->associate(Contender::find($request->input('red')));
+        $bout->blue_contender()->associate(Contender::find($request->input('blue')));
+        $bout->sponsor()->associate(Sponsor::find($request->input('sponsor')));
 
         $bout->save();
         
