@@ -221,12 +221,12 @@
 </div>
 
 <!-- Edit Event Details Modal -->
-<div class="modal fade" id="eventDetailsModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+<div class="modal fade" id="eventDetailsModal" tabindex="-1" role="dialog" aria-labelledby="Edit Event Details" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-dark text-white">
                 <h4 class="modal-title">Edit Event Details</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                 <form method="post" action="{{route('admin.eventManagement.update', ['eventID' => $event->id])}}">
@@ -261,7 +261,7 @@
 </div> <!-- End Edit Event Details Modal -->
 
 <!-- More Info Modal -->
-<div class="modal fade" id="moreInfoModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+<div class="modal fade" id="moreInfoModal" tabindex="-1" role="dialog" aria-labelledby="Edit More Information" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-dark text-white">

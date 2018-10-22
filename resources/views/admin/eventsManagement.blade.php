@@ -103,7 +103,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
-                <h4 class="modal-title">Create a New Event</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                <h4 class="modal-title">Create a New Event</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">×</span></button></div>
             <div class="modal-body">
                 <form action="{{route('admin.eventManagement.store')}}" method="post">
                     <div class="form-group">
