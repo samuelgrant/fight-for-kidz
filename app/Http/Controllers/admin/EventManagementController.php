@@ -10,7 +10,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-
+use App\Contender, App\Bout, App\Sponsor;
 
 class EventManagementController extends Controller
 {
@@ -216,5 +216,24 @@ class EventManagementController extends Controller
         imagedestroy($image);
 
         Log::debug('Logo updated. New logo year is '.$currentEventYear);
+    }
+
+    /**
+     *  Updates bout contenders and sponsor.
+     * 
+     *  Used on the event management page when 
+     *  user changes a dropdown value.
+     */
+    public function updateBoutDetails($boutId, Request $request){
+
+        $bout = Bout::find($boutId);
+
+        $bout->red_contender()->associate(Contender::find($request->input('red-'.$boutId)));
+        $bout->blue_contender()->associate(Contender::find($request->input('blue-'.$boutId)));
+        $bout->sponsor()->associate(Sponsor::find($request->input('sponsor-'.$boutId)));
+
+        $bout->save();
+        
+        return redirect()->back();
     }
 }

@@ -47,3 +47,6 @@ Route::patch('/event-management/{eventID}', 'admin\EventManagementController@res
 
 //Toggle event visibility
 Route::put('/event-management/{eventID}', 'admin\EventManagementController@togglePublic')->name('admin.eventManagement.togglePublic');
+
+// Bouts CRUD functions
+Route::patch('/event-management/bouts/{boutId}', 'admin\EventManagementController@updateBoutDetails')->name('admin.eventManagement.updateBoutDetails');
