@@ -4,6 +4,7 @@ namespace App;
 
 use \GoogleMaps as GoogleMaps;
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Log;
@@ -83,6 +84,18 @@ class Event extends Model
     }
 
     /**
+     *  Returns true if event is in the future.
+     */
+    public function isFutureEvent(){
+
+        $now = new DateTime('nz'); // defaults at current time
+        $eventDate = DateTime::createFromFormat('Y-m-d H:i:s', $this->datetime); // convert string from DB into datetime object
+
+        return $eventDate > $now;
+
+    }
+
+    /**
      * This method updates the venue_gps field for the event.
      * It should be called whenever the venue_address field is
      * modified.
@@ -102,7 +115,7 @@ class Event extends Model
      */
     public function getTeam($team){
 
-        return Contender::where('team', $team)->get();
+        return $this->contenders()->where('team', $team)->get();
 
     }
 }
