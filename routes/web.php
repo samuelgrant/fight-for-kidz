@@ -21,9 +21,13 @@ Route::get('/event', 'EventController@index')->name('event');
 
 Route::get('/Merchandise', 'MerchandiseController@Merchandise')->name('merchandise');
 
-Route::get('/fighter-application', 'EventApplicationController@index')->name('application.fight');
-Route::get('/sponsor-application', 'EventApplicationController@index')->name('application.sponsor');
-Route::post('/apply-to-fight', 'EventApplicationController@store')->name('apply');
+// Fighter application form and submission
+Route::get('/fighter-application', 'EventApplicationController@fighterForm')->name('application.fight');
+Route::post('/fighter-application', 'EventApplicationController@storeFighterApp')->name('application.fight.submit');
+
+// Sponsor application form and submission
+Route::get('/sponsor-application', 'EventApplicationController@sponsorForm')->name('application.sponsor');
+Route::post('/sponsor-application', 'EventApplicationController@storeSponsorApp')->name('application.sponsor.submit');
 
 // Subscriber route
 Route::post('/subscribe', 'SubscribersController@store')->name('subscribe');
