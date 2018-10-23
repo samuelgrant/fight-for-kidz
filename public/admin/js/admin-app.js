@@ -49,9 +49,9 @@ function resetImagePre() {
 $(document).ready(function() {
     $("#event-dtable").DataTable({
         "columns": [
+            {"visible": false, "type": "num"},
             null,
-            null,
-            null,
+            {"orderData": 0}, // this column will sort using the invisible columns data
             null,
             null,
             { "orderable": false, "searchable": false },

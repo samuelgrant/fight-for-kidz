@@ -23,7 +23,7 @@
                     <table id="event-dtable" class="table table-striped table-hover table-sm">
                         <thead>
                             <tr>
-                                <th>Event ID</th>
+                                <th></th>
                                 <th>Name</th>
                                 <th>Date</th>
                                 <th>Venue</th>
@@ -36,7 +36,7 @@
                         <tbody>
                             @foreach($events as $event)
                             <tr>
-                                <td>F4k-{{\Carbon\Carbon::parse($event->datetime)->format('Y')}}</td>
+                                <td>{{strtotime($event->datetime)}}</td> {{-- Used for sorting by date --}}
                                 <td>{{$event->name}}</td>
                                 <td>{{\Carbon\Carbon::parse($event->datetime)->format('d M Y')}}</td>
                                 <td>{{$event->venue_name}}</td>
