@@ -5,8 +5,10 @@
             <ul class="nav navbar-nav ml-auto">
                 <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle nav-link dropdown-toggle">Events</a>
                     <div role="menu" class="dropdown-menu">
-                        @foreach($events as $event)
-                        <a role="presentation" href="#" class="dropdown-item">{{$event->name}}</a>
+                        @foreach($events as $event)                        
+                            @if($event->is_public)
+                                <a role="presentation" href="{{route('event', $event->id)}}" class="dropdown-item">{{$event->name}}</a>
+                            @endif
                         @endforeach
                     </div>
                 </li>
