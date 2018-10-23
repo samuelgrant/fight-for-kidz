@@ -11,7 +11,7 @@
 */
 
 Route::get('/dashboard', function(){
-    return view('admin.dashboard');
+    return view('admin.dashboard')->with('event', App\Event::current());
 })->name('admin.dashboard');
 
 //View, Activate, Delete, Restore Users.
