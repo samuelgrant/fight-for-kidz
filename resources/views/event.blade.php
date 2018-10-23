@@ -27,6 +27,7 @@
         </div>
       </div>
     </div>
+    @if(App\Event::current() == $event && $event->isFutureEvent())
     <div class="row">
       <div class="col-lg-12 col-md-12 col-col-sm-12">
         <div id="map" style="width:100%; height: 450px; border:0"></div>
@@ -49,6 +50,7 @@
         </script>
       </div>
     </div>
+    @endif
 </div>
 </div>
 </section>
