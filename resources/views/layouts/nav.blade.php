@@ -8,6 +8,9 @@
                         @foreach($events as $event)                        
                             @if($event->is_public)
                                 <a role="presentation" href="{{route('event', $event->id)}}" class="dropdown-item">{{$event->name}}</a>
+                                @if($event == App\Event::current() && $event->isFutureEvent())
+                                    <hr class=" my-0">
+                                @endif
                             @endif
                         @endforeach
                     </div>
