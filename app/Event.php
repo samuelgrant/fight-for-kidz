@@ -41,6 +41,32 @@ class Event extends Model
         Log::debug($this->name.' was added to the public site.');
     }
 
+    /** 
+     *  Sets the events applications to either on or off
+     * 
+     * @return Boolean true if action was successful
+     */
+    public function setApplications($val){
+
+        if($val == true){
+
+            if($this->isFutureEvent()){
+                $this->open = true;
+                $this->save();
+                return true;
+            }else{
+                return false;
+            }
+
+            
+        } else {
+            $this->open = false;
+            $this->save();
+            return true;
+        }
+
+    }
+
     /**
      *  Returns a datetime string compatible with the
      *  datetime-local input type.

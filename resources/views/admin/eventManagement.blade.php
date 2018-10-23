@@ -39,8 +39,8 @@
             
                 <div class="row">                    
                     
-                    <div class="col-md-4">
-                        <div class="card border-primary">
+                    <div class="col-lg-6">
+                        <div class="card border-primary mb-2">
                         
                             <div class="card-header bg-primary text-white">
                                 <h4 class="mb-0 d-inline-block">Event Details</h4>
@@ -78,13 +78,23 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4">
-                        <div class="card border-primary">
+                    <div class="col-lg-6">
+                        <div class="card border-primary mb-2">
                             <div class="card-header bg-primary text-white">
                                 <h4 class="text-white d-inline-block mb-0">Pending Applications</h4>
                                 <span class="float-right"><a class="btn btn-primary" href="/a/event-management/{{$event->id}}?tab=applicants"><i class="fas fa-search"></i>&nbsp; View</a></span>
                             </div>
                             <div class="card-body">
+
+                                {{Form::open(['action' => ['admin\EventManagementController@toggleApplications', $event->id], 'method' => 'PUT'])}}
+                                    <label class="switch">
+                                            <input type="checkbox" {{$event->open ? 'checked' : ''}} onchange="this.form.submit()">
+                                            <span class="slider round"></span>
+                                    </label>
+                                {{Form::close()}}
+
+                                <hr>
+
                                 <h3 class="text-center">Applications Received</h3>
                                 <h2 class="text-grey text-center">{{count($event->applicants)}}</h2>
 

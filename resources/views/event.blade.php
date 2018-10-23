@@ -9,7 +9,7 @@
       <div class="row mb-5">
         <div class="col-lg-8 col-md-6 col-col-sm-12 pt-5">
           <h1 class="text-white underline bar">{{$event->name}}</h1>
-          <p class="text-justify">{!! $event->desc_1 !!}</p>
+          <p class="text-justify">{{$event->desc_1}}</p>
         </div>
         <div class="col-lg-4 col-md-6 col-sm-12 text-white text-right results mt-5">
           <p class="all-caps sidebar-heading">Date</p>
