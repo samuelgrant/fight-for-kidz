@@ -104,6 +104,7 @@ $(document).ready(function() {
     $('#applicant-dtable').DataTable({
         "columns":[
             { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": true},
             null,
             {"searchable": false},
             {"searchable": false},

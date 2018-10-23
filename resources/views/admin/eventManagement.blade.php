@@ -210,6 +210,7 @@
                     <thead>
                         <tr>
                             <th></th>
+                            <th>Team</th>
                             <th>Name</th>
                             <th>Age</th>
                             <th>Gender</th>
@@ -227,6 +228,15 @@
                                     <input type="checkbox" class="form-check-input dtable-control" id="{{$applicant->id}}"
                                         value="checkedvalue">
                                 </div>
+                            </td>
+                            <td>
+                            @if($applicant->contender != null)
+                                @if($applicant->contender->team == 'red')
+                                    <span class="badge badge-danger">Red</span>
+                                @elseif($applicant->contender->team == 'blue')
+                                    <span class="badge badge-primary">Blue</span>
+                                @endif
+                            @endif
                             </td>
                             <td>{{$applicant->first_name . ' ' . $applicant->last_name}}</td>
                             <td>{{$applicant->getAge()}}</td>
