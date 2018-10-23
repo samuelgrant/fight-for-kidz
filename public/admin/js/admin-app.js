@@ -55,6 +55,7 @@ $(document).ready(function() {
             null,
             null,
             { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false }
           ]
     });

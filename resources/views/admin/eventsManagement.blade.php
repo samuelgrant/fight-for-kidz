@@ -30,6 +30,7 @@
                                 <th>Charity</th>
                                 <th>Public</th>
                                 <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
