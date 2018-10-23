@@ -17,7 +17,7 @@ Route::get('/previous', 'PagesController@previous')->name('previous');
 Route::get('/contenders', 'PagesController@contenders')->name('contenders');
 Route::get('/contact', 'PagesController@contact')->name('contact');
 Route::get('/about', 'PagesController@about')->name('about');
-Route::get('/event', 'EventController@index')->name('event');
+Route::get('/event/{eventId}', 'EventController@index')->name('event');
 
 Route::get('/Merchandise', 'MerchandiseController@Merchandise')->name('merchandise');
 
