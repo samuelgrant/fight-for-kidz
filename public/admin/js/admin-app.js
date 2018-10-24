@@ -95,8 +95,6 @@ $(document).ready(function() {
             null,
             null,
             null,
-            null,
-            { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false }
         ]
     });
@@ -118,18 +116,32 @@ $(document).ready(function() {
 
 // Count the number of selected datatable rows on a page, and display the result
 // on the remove contacts modal.
-function countSelected() {
+function countSelected(mode) {
 
-    var count = $('.dtable-remove-checkbox:checkbox:checked').length;
+    var dtable;
+    var modal;
 
-    console.log(count);
+    if(mode == 'groups'){
+        dtable = $('#group-dtable');
+        modal = $('#removeFromGroupModal');
+    } else if(mode == 'applicants'){
+        dtable = $('#applicant-dtable');
+        modal = $('#editTeamModal');
+    }
+
+    var selected = dtable.find('.dtable-checkbox:checkbox:checked');
+    var count = selected.length;
 
     if (count == 0) {
-        $('#removeCount').text('Oops! You have not selected any group members.');
+        modal.find('#modal-message').text('Oops! You have not selected anything.');
         return;
     }
 
-    $('#removeCount').text('You have selected ' + count + ' contact(s) for deletion.');
+    if(mode == 'groups'){
+        modal.find('#modal-message').text('You have selected ' + count + ' contact(s) for deletion.')
+    } else if(mode == 'applicants'){
+        modal.find('#modal-message').text('You have selected ' + count + ' applicants.')
+    }
 }
 
 /**
@@ -143,7 +155,7 @@ function countSelected() {
  * @param groupID 
  */
 function removeSelectedFromGroup(groupID) {
-    var checkboxes = $('.dtable-remove-checkbox:checkbox:checked');
+    var checkboxes = $('.member-remove-checkbox:checkbox:checked');
     var table = $('#group-dtable').DataTable();
 
     checkboxes.each(function () {
@@ -171,7 +183,7 @@ function removeSelectedFromGroup(groupID) {
  */
 function copySelectedToGroup() {
 
-    var contacts = $('.dtable-remove-checkbox:checkbox:checked');
+    var contacts = $('#group-dtable').find('.dtable-checkbox:checkbox:checked');
     var toGroupId = $('#groupDropdown').val();
 
     // for each selected contact, add to group
@@ -194,6 +206,37 @@ function copySelectedToGroup() {
     });
 
 }
+
+/**
+ * This function adds selected applicants for an event to 
+ * a team for that event.
+ */
+function addSelectedToTeam(eventId){
+    
+    var team = $('#team-select').val();
+
+    var selected = $('#applicant-dtable').find('.dtable-checkbox:checkbox:checked');
+
+    selected.each(function(){
+
+        var appId = $(this).data('applicantId');
+        
+        // ajax call to add to team
+        $.ajax({
+            type: 'PUT',
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            url: '/a/event-management/' + 'team/' + eventId,
+            data: {'applicantId' : appId, 'team' : team}, 
+        }).done(function(){
+            location.reload();
+        }).fail(function(error){
+            console.log(error);
+        });
+
+    });
+
+}
+
 
 
 // When the user ticks/unticks the 'select all' checkbox, tick or untick all visible 

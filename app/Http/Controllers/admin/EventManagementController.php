@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use Auth;
 use App\Event;
+use App\Applicant;
 use GDText\Box;
 use GDText\Color;
 use Carbon\Carbon;
@@ -255,5 +256,18 @@ class EventManagementController extends Controller
         $bout->save();
         
         return redirect()->back();
+    }
+
+    public function addToTeam($eventId, Request $request){
+
+        $team = $request->input('team');
+        $applicantId = $request->input('applicantId');
+
+        Log::debug($team);
+        Log::debug($applicantId);
+
+        $applicant = Applicant::find($applicantId);
+        $applicant->addToTeam($team);
+
     }
 }

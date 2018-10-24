@@ -69,6 +69,23 @@ class Applicant extends Model
     }
 
     /**
+     *  Removes the applicants associated contender from whatever
+     *  team it is in. The contender record is not deleted from the
+     *  database, and any customized data for the contender will remain
+     *  intact.
+     */
+    public function clearTeam(){
+
+        $contender = $this->contender;
+
+        if($contender != null){
+            $contender->team = null;
+            $contender->save();
+        }
+
+    }
+
+    /**
      *  Returns the age of the applicant
      */
 
