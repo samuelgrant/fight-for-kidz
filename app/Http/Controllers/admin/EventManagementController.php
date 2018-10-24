@@ -252,6 +252,7 @@ class EventManagementController extends Controller
         $bout->red_contender()->associate(Contender::find($request->input('red')));
         $bout->blue_contender()->associate(Contender::find($request->input('blue')));
         $bout->sponsor()->associate(Sponsor::find($request->input('sponsor')));
+        $bout->video_url = $request->input('video');
 
         $victor = Contender::find($request->input('winner'));
 

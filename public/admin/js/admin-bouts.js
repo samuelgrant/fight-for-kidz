@@ -8,9 +8,38 @@ $(document).ready(function(){
 
 
     // set on change handlers for all drop downs - this simply adds a 'Save Changes' button to the form
-    $('.sponsor-select, .red-select, .blue-select, .winner-select, .winner-select').change(function(event){
+    $('.sponsor-select, .red-select, .blue-select, .winner-select, .winner-select, .video-url').change(function(event){
 
-        var form = $(this).closest('form');
+        showButtons($(this));
+        
+    });
+
+    $('.video-url').on('input', function(event){
+
+        showButtons($(this));
+    });
+
+});
+
+function resetForm(form){
+
+    sponsor = form.find('.sponsor-select');
+    red = form.find('.red-select');
+    blue = form.find('.blue-select');
+    victor = form.find('.winner-select');
+    video = form.find('.video-url');
+
+
+    sponsor.val(form.data('sponsorId'));
+    red.val(form.data('redId'));
+    blue.val(form.data('blueId'));
+    victor.val(form.data('winnerId'));
+    video.val(form.data('videoUrl'));
+}
+
+function showButtons(input){
+
+    var form = input.closest('form');
         var btnDiv = form.find('#bout-buttons');
         var btnSave = form.find('#save-button')
         var btnCancel = form.find('#cancel-button');
@@ -27,20 +56,5 @@ $(document).ready(function(){
         btnCancel.on('click', function(){
             resetForm(form);
         });
-    });
-
-});
-
-function resetForm(form){
-
-    sponsor = form.find('.sponsor-select');
-    red = form.find('.red-select');
-    blue = form.find('.blue-select');
-    victor = form.find('.winner-select');
-
-
-    sponsor.val(form.data('sponsorId'));
-    red.val(form.data('redId'));
-    blue.val(form.data('blueId'));
-    victor.val(form.data('winnerId'));
+    
 }

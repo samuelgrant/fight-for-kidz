@@ -137,7 +137,7 @@
                             <div class="card-body boutMgmt-body">
                                 <form data-bout-id="{{$bout->id}}" action="{{route('admin.eventManagement.updateBoutDetails', ['boutId' => $bout->id])}}"
                                     data-red-id="{{$bout->red_contender_id ?? '0'}}" data-blue-id="{{$bout->blue_contender_id ?? '0'}}" data-sponsor-id="{{$bout->sponsor_id ?? '0'}}"
-                                    data-winner-id="{{$bout->victor_id ?? '0'}}"
+                                    data-winner-id="{{$bout->victor_id ?? '0'}}" data-video-url="{{$bout->video_url}}"
                                     method="POST">
                                     <div class="form-group">
                                         <label for="sponsor-select-{{$bout->id}}">Bout Sponsor</label>
@@ -183,8 +183,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="video-url">Video URL:</label>
-                                        <input class="form-control" type="text" name="video_url" id="video-url" placeholder="Enter video url">
+                                        <label for="video-{{$bout->id}}">Video URL:</label>
+                                        <input class="form-control video-url" type="text" name="video" id="video-{{$bout->id}}" placeholder="Enter video url">
                                     </div>
 
                                     <div class="form-group float-right mb-0" style="display:none" id="bout-buttons" class='bout-buttons-div'>                                    

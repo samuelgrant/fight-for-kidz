@@ -21,6 +21,7 @@ class CreateBoutsTable extends Migration
             $table->integer('red_contender_id')->unsigned()->nullable();
             $table->integer('blue_contender_id')->unsigned()->nullable();
             $table->integer('victor_id')->unsigned()->nullable();
+            $table->string('video_url')->nullable();
             $table->timestamps();
 
             // Foreign key constraint definition
