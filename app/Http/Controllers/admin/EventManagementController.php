@@ -53,8 +53,6 @@ class EventManagementController extends Controller
 
     /**
      * Returns event management view for specific event
-     * 
-     * 
      */
     public function view($eventID){
 
@@ -124,8 +122,7 @@ class EventManagementController extends Controller
     }
 
     /**
-     * Inverts the is_public boolean of an event.
-    *
+    * Inverts the is_public boolean of an event.
     * @param $id
     */
     public function togglePublic($id){

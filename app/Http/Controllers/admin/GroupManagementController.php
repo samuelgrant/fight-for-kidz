@@ -211,7 +211,5 @@ class GroupManagementController extends Controller
         $groupable->addToGroup($groupId);
 
         Log::debug('Use the copy function to add '. $memberType . ' ' . $memberId . ' to group ' . $groupId);
-
     }
-
 }

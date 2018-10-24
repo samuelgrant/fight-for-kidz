@@ -56,3 +56,6 @@ Route::put('/event-management/team/{eventId}', 'admin\EventManagementController@
 
 // Bouts CRUD functions
 Route::patch('/event-management/bouts/{boutId}', 'admin\EventManagementController@updateBoutDetails')->name('admin.eventManagement.updateBoutDetails');
+
+//Get Applicant Data
+Route::get('/event-management/applicants/{applicantId}', 'admin\ApplicantManagementController@getApplicant')->name('admin.applicantManagement.getApplicant');
