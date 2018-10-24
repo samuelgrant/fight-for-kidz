@@ -49,11 +49,12 @@ function resetImagePre() {
 $(document).ready(function() {
     $("#event-dtable").DataTable({
         "columns": [
+            {"visible": false, "type": "num"},
+            null,
+            {"orderData": 0}, // this column will sort using the invisible columns data
             null,
             null,
-            null,
-            null,
-            null,
+            { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false }
           ]
@@ -103,6 +104,7 @@ $(document).ready(function() {
     $('#applicant-dtable').DataTable({
         "columns":[
             { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": true},
             null,
             {"searchable": false},
             {"searchable": false},
