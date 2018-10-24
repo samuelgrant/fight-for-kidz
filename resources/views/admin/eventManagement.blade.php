@@ -203,7 +203,7 @@
                             <td>{{$applicant->current_weight}}</td>
                             <td>{{$applicant->expected_weight}}</td>
                             <td>
-                                <button class="btn btn-info" type="submit" data-toggle="modal" data-target="#moreInfoModal"><i class="fal fa-info-circle"></i> More Info</button>
+                                <button class="btn btn-info" type="button" onclick="applicantManagementModal({{$applicant->id}})"><i class="fal fa-info-circle"></i> More Info</button>
                             </td>
                         </tr>
                         @endforeach
@@ -261,20 +261,71 @@
 </div> <!-- End Edit Event Details Modal -->
 
 <!-- More Info Modal -->
-<div class="modal fade" id="moreInfoModal" tabindex="-1" role="dialog" aria-labelledby="Edit More Information" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-dark text-white">
-                    <h4 class="modal-title">More Info</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        
-                    </form>
+<div class="modal fade" id="applicantMoreInfoModal" tabindex="-1" role="dialog" aria-labelledby="Edit Event Details" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h4 class="modal-title">Edit Event Details</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantGeneral" class="nav-link active">General</a></li>
+                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantPhysical" class="nav-link">Physical Information</a></li>
+                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantAdditional" class="nav-link">Additional Info</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="applicantGeneral">
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <img src="/img/44Aquila.png" class="img-thumbnail">
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Name:</label>
+                                        <input type="text" value="Joe Bloggs" readonly class="form-control-plaintext" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Fight Name:</label>
+                                        <input type="text" value='"Average Joe"' readonly class="form-control-plaintext" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Age:</label>
+                                        <input type="text" value="23" readonly class="form-control-plaintext" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>DOB</label>
+                                        <input type="text" value="26/07/1990" readonly class="form-control-plaintext" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="form-group">
+                                        <label>Gender:</label>
+                                        <input type="text" value="Male" readonly class="form-control-plaintext" />
+                                    </div>
+                                </div>
+                                    
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="applicantPhysical">
+                            <p>Content for tab 2.</p>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="applicantAdditional">
+                            <p>Content for tab 3.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-<!-- End More Info Modal -->
+</div><!-- End More Info Modal -->
 @endsection

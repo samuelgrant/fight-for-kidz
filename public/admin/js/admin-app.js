@@ -56,7 +56,7 @@ $(document).ready(function() {
             null,
             { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false }
-          ]
+            ]
     });
 
     $("#eventDeleted-dtable").DataTable({
@@ -218,3 +218,19 @@ $('.dtable-control').on('click', function () {
         });
     }
 });
+
+function applicantManagementModal(id){
+
+    $.ajax({
+        method: "get",
+        headers:  {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: `/a/event-management/applicants/${id}`
+    }).done((data) => {
+        console.log(data);
+        $("#applicantMoreInfoModal").modal('show');
+    }).fail((error) => {
+        console.log(error);
+    });
+}
