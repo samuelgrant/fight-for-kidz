@@ -186,12 +186,75 @@
 
                 <hr>
 
-                @foreach($event->contenders as $contender)
+                <div class="row">
+                
+                    {{-- start of blue team --}}
+                    <div class="col-lg-6">
+                    
+                        <div class="card border-primary">
+                        
+                            <div class="card-header bg-primary text-white">
+                            
+                                <h4 class="d-inline-block">Blue Team</h4>
+                                <h5 class="d-inline-block float-right">{{count($event->getTeam('blue'))}} members</h5>
+                            
+                            </div>
 
-                    <h2>Contender Name: {{$contender->applicant->first_name.' '.$contender->applicant->last_name}}</h2>
-                    <h4>Team: {{$contender->team}}</h4>
+                            <div class="card-body">
+                            
+                                <table class="table table-hover table-sm">
+                                
+                                    @foreach($event->getTeam('blue') as $contender)
 
-                @endforeach
+                                        <tr>
+                                            <td><h3>{{$contender->applicant->first_name.' '.$contender->applicant->last_name}}</h3></td>
+                                        </tr>
+
+                                    @endforeach
+
+                                </table>
+
+                            </div>
+                        
+                        </div>
+                    
+                    </div>
+                    {{-- end of blue team --}}
+
+                    {{-- start of red team --}}
+                    <div class="col-lg-6">
+                    
+                        <div class="card border-danger">
+                        
+                            <div class="card-header bg-danger text-white">
+                            
+                                <h4 class="d-inline-block">Red Team</h4>
+                                <h5 class="d-inline-block float-right">{{count($event->getTeam('red'))}} members</h5>
+                            
+                            </div>
+
+                            <div class="card-body">
+                            
+                                <table class="table table-hover table-sm">
+                                
+                                    @foreach($event->getTeam('red') as $contender)
+
+                                        <tr>
+                                            <td><h3>{{$contender->applicant->first_name.' '.$contender->applicant->last_name}}</h3></td>
+                                        </tr>
+
+                                    @endforeach
+
+                                </table>
+
+                            </div>
+                        
+                        </div>
+                    
+                    </div>
+                    {{-- end of red team --}}
+                
+                </div>                
 
             </div>
 
@@ -200,7 +263,7 @@
             <div class="mt-4">
                 <h3 class="d-inline">{{$event->name}} : Applications</h3>
                 <span class="float-right px-5">
-                    <button class="btn btn-success"><i class="fas fa-plus"></i>&nbsp;Add selected to team</button>
+                    <button class="btn btn-success" data-toggle="modal" data-target="#editTeamModal" onclick="countSelected('applicants')"><i class="fas fa-plus"></i>&nbsp;Add selected to team</button>
                 </span>
             </div>
 
@@ -225,8 +288,8 @@
                         <tr>
                             <td>
                                 <div class="form-check">
-                                    <input type="checkbox" class="form-check-input dtable-control" id="{{$applicant->id}}"
-                                        value="checkedvalue">
+                                    <input type="checkbox" class="dtable-checkbox form-check-input dtable-control" id="{{$applicant->id}}"
+                                        value="checkedvalue" data-applicant-id="{{$applicant->id}}">
                                 </div>
                             </td>
                             <td>
@@ -307,7 +370,7 @@
 </div> <!-- End Edit Event Details Modal -->
 
 <!-- More Info Modal -->
-<div class="modal fade" id="moreInfoModal" tabindex="-1" role="dialog" aria-labelledby="Edit More Information" aria-hidden="true">
+<div class="modal fade" id="moreInfoModal" tabindex="-1" role="dialog" aria-labelledby="More Information" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header bg-dark text-white">
@@ -323,4 +386,32 @@
         </div>
     </div>
 <!-- End More Info Modal -->
+
+<!-- Add applicants to team modal -->
+<div class="modal fade" id="editTeamModal" tabindex="-1" role="dialog" aria-labelledby="Edit Team" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h4 class="modal-title">Edit Team Membership</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <p id="modal-message"></p>
+
+                        <div class="form-group">
+                            <label for="team-select">Select team to add to:</label>
+                            <select class="form-control" name="team" id="team-select">
+                                <option value="red">Red</option>
+                                <option value="blue">Blue</option>
+                            </select>
+                        </div>
+
+                        <button data-dismiss="modal" id="confirmAddToTeam" role="button" onclick="addSelectedToTeam({{$event->id}})" class="btn btn-success">Confirm</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- End add to team modal -->
 @endsection
