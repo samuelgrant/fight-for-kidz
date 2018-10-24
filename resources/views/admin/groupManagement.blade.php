@@ -93,8 +93,8 @@
         @if($group->type != "System Group")
         <button class="btn btn-primary mb-3" type="button" data-toggle="modal" data-target="#addToGroupModal">Add new
             contact to Group</button>
-        <button class="btn btn-danger mb-3" type="button" data-toggle="modal" data-target="#removeFromGroupModal"
-            onclick="countSelected()">Remove selected</button>
+        <button class="btn btn-danger mb-3" id="removeFromGroupButton" type="button" data-toggle="modal" data-target="#removeFromGroupModal"
+            onclick="countSelected('groups')">Remove selected</button>
         @endif        
 
         <table id="group-dtable" class="table table-striped table-hover table-sm">
@@ -110,7 +110,7 @@
                 <tr>
                     <td>
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input dtable-remove-checkbox dtable-control" id="{{$member['email']}}"
+                            <input type="checkbox" class="form-check-input dtable-checkbox member-remove-checkbox dtable-control" id="{{$member['email']}}"
                                 value="checkedValue" data-member-type="{{$member['role']}}" data-member-id="{{$member['id']}}">
                         </div>
                     </td>
@@ -161,7 +161,7 @@
             </div>
             <div class="modal-body">
 
-                <p id="removeCount"></p>
+                <p id="modal-message"></p>
 
                 <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="removeSelectedFromGroup({{$group->id}})">Confirm</button>
 
