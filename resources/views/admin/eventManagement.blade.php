@@ -580,6 +580,7 @@
             </div>
         </div>
     </div>
+</div>
 <!-- End More Info Modal -->
 
 <!-- Add applicants to team modal -->
