@@ -9,7 +9,7 @@
       <div class="row mb-5">
         <div class="col-lg-8 col-md-6 col-col-sm-12 pt-5">
           <h1 class="text-white underline bar">{{$event->name}}</h1>
-          <p class="text-justify">{!! $event->desc_1 !!}</p>
+          <p class="text-justify">{{$event->desc_1}}</p>
         </div>
         <div class="col-lg-4 col-md-6 col-sm-12 text-white text-right results mt-5">
           <p class="all-caps sidebar-heading">Date</p>
@@ -27,6 +27,7 @@
         </div>
       </div>
     </div>
+    @if(App\Event::current() == $event && $event->isFutureEvent())
     <div class="row">
       <div class="col-lg-12 col-md-12 col-col-sm-12">
         <div id="map" style="width:100%; height: 450px; border:0"></div>
@@ -49,6 +50,7 @@
         </script>
       </div>
     </div>
+    @endif
 </div>
 </div>
 </section>
@@ -57,10 +59,10 @@
 <section id="sponsors-section">
   <h2 class="text-center text-dark">Our Sponsors</h2>
   <div class="slick-sponsors">
-    <div><img src="img/customer-1.png" /></div>
-    <div><img src="img/customer-2.png" /></div>
-    <div><img src="img/customer-3.png" /></div>
-    <div><img src="img/customer-4.png" /></div>
+    <div><img src="/img/customer-1.png" /></div>
+    <div><img src="/img/customer-2.png" /></div>
+    <div><img src="/img/customer-3.png" /></div>
+    <div><img src="/img/customer-4.png" /></div>
   </div>
 </section>
 

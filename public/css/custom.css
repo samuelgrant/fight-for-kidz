@@ -324,3 +324,9 @@ body{
 .stat{
 	font-size: large;
 }
+
+/* Nav link spacing */
+.nav li{
+	margin-left: 10px;
+	margin-right: 10px;
+}

@@ -11,7 +11,7 @@
 */
 
 Route::get('/dashboard', function(){
-    return view('admin.dashboard');
+    return view('admin.dashboard')->with('event', App\Event::current());
 })->name('admin.dashboard');
 
 //View, Activate, Delete, Restore Users.
@@ -46,7 +46,10 @@ Route::delete('/event-management/{eventID}', 'admin\EventManagementController@de
 Route::patch('/event-management/{eventID}', 'admin\EventManagementController@restore')->name('admin.eventManagement.restore');
 
 //Toggle event visibility
-Route::put('/event-management/{eventID}', 'admin\EventManagementController@togglePublic')->name('admin.eventManagement.togglePublic');
+Route::put('/event-management/togglepublic/{eventID}', 'admin\EventManagementController@togglePublic')->name('admin.eventManagement.togglePublic');
+
+// Toggle event applications on/off
+Route::put('/event-management/toggleapps/{eventID}', 'admin\EventManagementController@toggleApplications')->name('admin.eventManagement.toggleApplications');
 
 // Bouts CRUD functions
 Route::patch('/event-management/bouts/{boutId}', 'admin\EventManagementController@updateBoutDetails')->name('admin.eventManagement.updateBoutDetails');

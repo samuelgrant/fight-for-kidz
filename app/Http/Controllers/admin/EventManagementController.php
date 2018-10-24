@@ -152,6 +152,29 @@ class EventManagementController extends Controller
         return redirect()->back();
     }
 
+    /**
+     *  This method toggles whether the event is open for applications or 
+     *  not. Visitors to the site will only be able to apply if the current 
+     *  event is open for applications.
+     */
+    public function toggleApplications($eventId){
+
+        $event = Event::find($eventId);
+
+        if($event->setApplications(!($event->open))){
+            $apps = $event->open ? 'on' : 'off';
+            session()->flash('success', 'Applications were turned ' . $apps . ' for ' . $event->name);
+        } else{
+            session()->flash('error', 'Cannot turn applications on for an event in the past.');
+        }
+
+        return redirect()->back();
+
+
+
+
+    }
+
 
     /**
      *  This function uses the gd and stil/gd-text libraries.

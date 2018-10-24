@@ -25,6 +25,7 @@ class CreateEventsTable extends Migration
             $table->string('desc_1', 2000)->nullable();
             $table->string('desc_2', 2000)->nullable();   
             $table->boolean('is_public')->default(false);
+            $table->boolean('open')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
