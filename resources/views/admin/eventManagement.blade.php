@@ -311,7 +311,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
-                <h4 class="modal-title">Edit Event Details</h4>
+                <h4 class="modal-title">Applicant Details</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
@@ -320,53 +320,197 @@
                         <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantGeneral" class="nav-link active">General</a></li>
                         <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantPhysical" class="nav-link">Physical Information</a></li>
                         <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantAdditional" class="nav-link">Additional Info</a></li>
+                        <li class="nav-item mr-auto">
+                            <button class="btn btn-primary btn-sm ml-1 my-1">
+                                    <svg class="svg-inline--fa fa-edit fa-w-18" aria-hidden="true" data-prefix="fas" data-icon="edit" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z"></path></svg>
+                                Edit
+                            </button>
+                        </li>
                     </ul>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="applicantGeneral">
-                            <div class="row">
-                                <div class="col-lg-4 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <img src="/img/44Aquila.png" class="img-thumbnail">
+                            <form>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+                                        <div class="form-group mb-0 mt-3">
+                                            <img src="/img/cox.png" class="img-thumbnail" height="200" width="200">
+                                        </div>
                                     </div>
+                                    <fieldset class="mx-3 mb-1 px-3" style="border: 1px solid;">
+                                        <legend style="width: 150px;">Personal Info</legend>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label class="inline-block text-left" style="width: 100px;" >Name:</label> 
+                                                    <input type="text" value="Joe Bloggs" readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Fight Name:</label>
+                                                    <input type="text" value='"Average Joe"' readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Age:</label>
+                                                    <input type="text" value="23" readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>DOB:</label>
+                                                    <input type="text" value="26/07/1990" readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Gender:</label>
+                                                    <input type="text" value="Male" readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset class="mx-3 my-1 px-3" style="border: 1px solid; width:764px;">
+                                        <legend style="width: 140px;">Contact Info</legend>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Email:</label>
+                                                    <input type="text" value="Joe.bloggs@average.com" readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Phone:</label>
+                                                    <input type="text" value="N/A" readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Mobile:</label>
+                                                    <input type="text" value="0211319819" readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset class="m-3 px-3" style="border: 1px solid;">
+                                        <legend style="width: 100px;">Address</legend>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Address 1:</label>
+                                                    <input type="text" value="123 Fake St" readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Address 2:</label>
+                                                    <input type="text" value="" readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Suburb:</label>
+                                                    <input type="text" value="Clifton" readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>City:</label>
+                                                    <input type="text" value="Cruella De ville" readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Post Code:</label>
+                                                    <input type="text" value="9812" readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>  
                                 </div>
-                                <div class="col-lg-4 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label>Name:</label>
-                                        <input type="text" value="Joe Bloggs" readonly class="form-control-plaintext" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label>Fight Name:</label>
-                                        <input type="text" value='"Average Joe"' readonly class="form-control-plaintext" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label>Age:</label>
-                                        <input type="text" value="23" readonly class="form-control-plaintext" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label>DOB</label>
-                                        <input type="text" value="26/07/1990" readonly class="form-control-plaintext" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-6 col-sm-12">
-                                    <div class="form-group">
-                                        <label>Gender:</label>
-                                        <input type="text" value="Male" readonly class="form-control-plaintext" />
-                                    </div>
-                                </div>
-                                    
-                            </div>
+                            </form>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="applicantPhysical">
-                            <p>Content for tab 2.</p>
+                            <div class="row">
+                                <fieldset class="mx-3 mt-3 px-3" style="border: 1px solid; width:764px;">
+                                    <div class="row pt-3">
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Height:</label>
+                                                <input type="text" value="5 feet 9 inches" readonly class="form-control-plaintext" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Weight:</label>
+                                                <input type="text" value="90kg" readonly class="form-control-plaintext" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Expected Weight:</label>
+                                                <input type="text" value="120kg" readonly class="form-control-plaintext" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 px-0">
+                                        <div class="form-group">
+                                            <label>Sporting Experience:</label>
+                                            <textarea rows="4" cols="50" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pulvinar tellus vel nulla feugiat, id vehicula tortor tincidunt. Sed auctor rutrum nibh, sit amet suscipit risus porttitor eget. Aliquam in diam nisl. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ut leo quis eros tempus porta. Nunc at tellus a erat pulvinar efficitur quis ac tellus. Phasellus porttitor dolor ut mauris venenatis, nec feugiat nisl cursus. Proin risus massa, tempor nec sagittis eu, faucibus eget erat. Suspendisse fermentum nulla non velit condimentum, ut fermentum urna faucibus."
+                                                readonly class="form-control-plaintext" ></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 px-0">
+                                        <div class="form-group">
+                                            <label>Boxing Experience:</label>
+                                            <textarea rows="4" cols="50" placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pulvinar tellus vel nulla feugiat, id vehicula tortor tincidunt. Sed auctor rutrum nibh, sit amet suscipit risus porttitor eget. Aliquam in diam nisl. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean ut leo quis eros tempus porta. Nunc at tellus a erat pulvinar efficitur quis ac tellus. Phasellus porttitor dolor ut mauris venenatis, nec feugiat nisl cursus. Proin risus massa, tempor nec sagittis eu, faucibus eget erat. Suspendisse fermentum nulla non velit condimentum, ut fermentum urna faucibus."
+                                                readonly class="form-control-plaintext" ></textarea>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="applicantAdditional">
-                            <p>Content for tab 3.</p>
+                            <div class="row">
+                                <fieldset class="mx-3 mt-3 px-3" style="border: 1px solid; width:764px;">
+                                    <div class="row pt-3">
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Occupation:</label>
+                                                <input type="text" value="Male" readonly class="form-control-plaintext" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Employer:</label>
+                                                <input type="text" value="Male" readonly class="form-control-plaintext" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Conviction Details:</label>
+                                                <input type="text" value="120kg" readonly class="form-control-plaintext" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Can Secure Sponsor:</label>
+                                                <input type="text" value="120kg" readonly class="form-control-plaintext" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Consents to drug test:</label>
+                                                <input type="text" value="120kg" readonly class="form-control-plaintext" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
                         </div>
                     </div>
                 </div>

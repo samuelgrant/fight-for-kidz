@@ -222,7 +222,7 @@ $('.dtable-control').on('click', function () {
 });
 
 function applicantManagementModal(id){
-
+    
     $.ajax({
         method: "get",
         headers:  {
