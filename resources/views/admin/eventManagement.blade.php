@@ -136,7 +136,8 @@
                             </div>
                             <div class="card-body boutMgmt-body">
                                 <form data-bout-id="{{$bout->id}}" action="{{route('admin.eventManagement.updateBoutDetails', ['boutId' => $bout->id])}}"
-                                    data-red-id="{{$bout->red_contender_id ? $bout->red_contender_id : '0'}}" data-blue-id="{{$bout->blue_contender_id ? $bout->blue_contender_id : '0'}}" data-sponsor-id="{{$bout->sponsor_id ? $bout->sponsor_id : '0'}}"
+                                    data-red-id="{{$bout->red_contender_id ?? '0'}}" data-blue-id="{{$bout->blue_contender_id ?? '0'}}" data-sponsor-id="{{$bout->sponsor_id ?? '0'}}"
+                                    data-winner-id="{{$bout->victor_id ?? '0'}}"
                                     method="POST">
                                     <div class="form-group">
                                         <label for="sponsor-select-{{$bout->id}}">Bout Sponsor</label>
@@ -167,6 +168,30 @@
                                             @endforeach
                                         </select>
                                     </div>
+
+                                    <div class="form-group">
+                                        <label for="winner-{{$bout->id}}">Winner</label>
+                                        <select name="winner" id="winner-{{$bout->id}}" class="form-control winner-select">
+                                            <option value="0">---</option>
+                                            @if($bout->red_contender)
+                                                <option value="{{$bout->red_contender->id}}">(Red) {{$bout->red_contender->getFullName()}}</option>
+                                            @endif
+                                            @if($bout->blue_contender)
+                                                <option value="{{$bout->blue_contender->id}}">(Blue) {{$bout->blue_contender->getFullName()}}</option>
+                                            @endif
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="video-url">Video URL:</label>
+                                        <input class="form-control" type="text" name="video_url" id="video-url" placeholder="Enter video url">
+                                    </div>
+
+                                    <div class="form-group float-right mb-0" style="display:none" id="bout-buttons" class='bout-buttons-div'>                                    
+                                        <button id="cancel-button" class="btn btn-danger mr-2">Cancel</button>
+                                        <input type="submit" id="save-button" class="btn btn-success float-right" value="Save Changes">
+                                    </div>
+
                                     @csrf
                                     {{method_field('PATCH')}}
                                 </form>

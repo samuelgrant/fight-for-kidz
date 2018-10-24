@@ -256,6 +256,14 @@ class EventManagementController extends Controller
         $bout->blue_contender()->associate(Contender::find($request->input('blue')));
         $bout->sponsor()->associate(Sponsor::find($request->input('sponsor')));
 
+        $victor = Contender::find($request->input('winner'));
+
+        if($bout->red_contender == null || $bout->blue_contender == null || $victor != $bout->red_contender && $victor != $bout->blue_contender){
+            $bout->victor()->dissociate();
+        } else{
+            $bout->victor()->associate($victor);
+        }
+
         $bout->save();
         
         return redirect()->back();
