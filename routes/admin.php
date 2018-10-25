@@ -55,9 +55,9 @@ Route::put('/event-management/toggleapps/{eventID}', 'admin\EventManagementContr
 Route::put('/event-management/team/{eventId}', 'admin\EventManagementController@addToTeam')->name('admin.eventManagement.addToTeam');
 
 // Bouts CRUD functions
-Route::patch('/event-management/bouts/{boutId}', 'admin\EventManagementController@updateBoutDetails')->name('admin.eventManagement.updateBoutDetails');
-Route::delete('/event-management/bouts/{boutId}', 'admin\EventManagementController@removeBout')->name('admin.eventManagement.removeBout');
-Route::put('/event-management/bouts/{eventId}', 'admin\EventManagementController@addBout')->name('admin.eventManagement.addBout');
+Route::patch('/event-management/bouts/{boutId}', 'admin\BoutManagementController@updateBoutDetails')->name('admin.eventManagement.updateBoutDetails');
+Route::delete('/event-management/bouts/{boutId}', 'admin\BoutManagementController@removeBout')->name('admin.eventManagement.removeBout');
+Route::put('/event-management/bouts/{eventId}', 'admin\BoutManagementController@addBout')->name('admin.eventManagement.addBout');
 
 //Get Applicant Data
 Route::get('/event-management/applicants/{applicantId}', 'admin\ApplicantManagementController@getApplicant')->name('admin.applicantManagement.getApplicant');
