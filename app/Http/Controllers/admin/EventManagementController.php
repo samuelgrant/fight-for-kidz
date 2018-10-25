@@ -291,7 +291,6 @@ class EventManagementController extends Controller
         $event = Event::find($eventId);
 
         $bout = new Bout();
-        $bout->name = 'New bout';
         $bout->event()->associate($event);
         $bout->save();
 

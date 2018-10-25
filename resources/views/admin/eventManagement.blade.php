@@ -126,12 +126,12 @@
                 <hr>
 
                 <div class="row">
-                
+                <?php global $i; ?> {{-- Counter that is used to name bouts --}}                
                     @foreach($event->bouts as $bout)
                     <div class="col-lg-4 col-md-6">
                         <div class="card boutMgmt-card border-primary mb-3">
                             <div class="card-header boutMgmt-header bg-primary text-white">
-                                <h4 class="mb-0 d-inline">{{$bout->name}}</h4>
+                                <h4 class="mb-0 d-inline">Bout {{++$i}}</h4> {{-- Counter increments, then prints --}}
                                 <span class="btn btn-primary float-right" onclick="removeBout({{$bout->id}})"><i class="fas fa-trash"></i></span>
                             </div>
                             <div class="card-body boutMgmt-body">

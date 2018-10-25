@@ -17,7 +17,6 @@ class CreateBoutsTable extends Migration
             $table->increments('id');
             $table->integer('event_id')->unsigned();
             $table->integer('sponsor_id')->unsigned()->nullable();
-            $table->string('name');
             $table->integer('red_contender_id')->unsigned()->nullable();
             $table->integer('blue_contender_id')->unsigned()->nullable();
             $table->integer('victor_id')->unsigned()->nullable();
