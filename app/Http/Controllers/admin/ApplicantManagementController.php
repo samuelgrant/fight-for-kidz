@@ -8,6 +8,11 @@ use App\Http\Controllers\Controller;
 
 class ApplicantManagementController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth.activeUser');
+    }
+
     /*
      * 
      */
