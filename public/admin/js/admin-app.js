@@ -273,9 +273,67 @@ function applicantManagementModal(id){
         },
         url: `/a/event-management/applicants/${id}`
     }).done((data) => {
-        console.log(data);
+        var dob = new Date(data.dob);
+        pic = new Image(data.photo);
+        // Dynamically populate modal
+
+        // General Tab
+        $("#appFirstName").val(data.first_name);            $("#appLastName").val(data.last_name);
+        $("#appFightName").val(data.preferred_nickame);     $("#appAge").val(calculate_age(dob));
+        $("#appDob").val(dob.toLocaleDateString("en-US"));
+
+        // Set Photo
+        if(data.photo == ""){
+            $("#appPhoto").attr("src", "/img/noImage.png");
+        }else if(data.photo != ""){
+            $("#appPhoto").attr("src", data.photo);
+        }
+
+        // Set Gender 
+        if(if_male = 0) {
+            $("#appGender").val("Male");
+        }else if(if_male = 1) {
+            $("#appGender").val("Female");
+        }
+        
+        $("#appEmail").val(data.email);                     $("#appPhone").val(data.phone);
+        $("#appMobile").val(data.mobile);                   $("#appAddress1").val(data.address_1);
+        $("#appAddress2").val(data.address_2);              $("#appSuburb").val(data.suburb);
+        $("#appCity").val(data.city);                       $("#appPostCode").val(data.postcode)
+
+        // Physical Tab
+        $("#appHeight").val(data.height + "cm");           $("#appWeightC").val(data.current_weight + "kg");
+        $("#appWeightE").val(data.expected_weight + "kg");  $("#appSportingExperience").attr('Placeholder', data.sporting_exp);
+        $("#appBoxingExperience").attr("Placeholder", data.boxing_exp);
+
+        // Additional Tab
+        $("#appOccupation").val(data.occupation);           $("#appEmployer").val(data.employer);
+        $("appConvictionDetails").attr("Placeholder", data.conviction_details);
+
+        // Set Consent
+        if(consent_to_test = 0){
+            $("#appConsent").val("Yes");
+        }else if(consent_to_test = 1){
+            $("#appConsent").val("Yes");
+        }
+
+        // Set Sponsor
+        if(can_secure_sponsor = 0){
+            $("#appSponsor").val("Yes");
+        }else if(consent_to_test = 1){
+            $("#appSponsor").val("Yes");
+        }
+
+
         $("#applicantMoreInfoModal").modal('show');
     }).fail((error) => {
         console.log(error);
     });
 }
+
+function calculate_age (data) {
+    var now = new Date();
+    var age = now - data;
+    age = Math.floor(age/1000/60/60/24/365);
+    return age;
+};
