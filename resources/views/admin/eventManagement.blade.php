@@ -132,7 +132,7 @@
                         <div class="card boutMgmt-card border-primary mb-3">
                             <div class="card-header boutMgmt-header bg-primary text-white">
                                 <h4 class="mb-0 d-inline">{{$bout->name}}</h4>
-                                <span class="float-right btn"><i class="fas fa-trash"></i></span>
+                                <span class="btn btn-primary float-right" onclick="removeBout({{$bout->id}})"><i class="fas fa-trash"></i></span>
                             </div>
                             <div class="card-body boutMgmt-body">
                                 <form data-bout-id="{{$bout->id}}" action="{{route('admin.eventManagement.updateBoutDetails', ['boutId' => $bout->id])}}"

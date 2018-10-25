@@ -58,3 +58,20 @@ function showButtons(input){
         });
     
 }
+
+/**
+ *  Removes a bout
+ */
+function removeBout(boutId){
+
+    $.ajax({
+        type: 'DELETE',
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        url: '/a/event-management/bouts/' + boutId
+    }).done(function (data) {
+        location.reload();
+    }).fail(function(err){
+        console.log(err);
+    });
+
+}

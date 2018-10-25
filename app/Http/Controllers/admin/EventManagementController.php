@@ -279,4 +279,10 @@ class EventManagementController extends Controller
         $applicant->addToTeam($team);
 
     }
+
+    public function removeBout($boutId){
+
+        $bout = Bout::find($boutId);
+        $bout->delete();
+    }
 }
