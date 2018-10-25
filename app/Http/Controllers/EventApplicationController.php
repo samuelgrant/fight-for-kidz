@@ -122,7 +122,7 @@ class EventApplicationController extends Controller
         // set applicant event to current event
         $applicant->event()->associate(Event::current());
 
-        $applicant->save(); // generates id number to use with saving image
+        $applicant->save(); // generates id number to use when generating image name
 
         Log::debug('saved applicant');
 
@@ -146,7 +146,11 @@ class EventApplicationController extends Controller
         }
 
         // save image to storage
-        $image->storeAs('private/images/applicant_photos', $imageName);
+        $image->storeAs('private/images/applicants', $imageName);
+
+        // return to home page 
+        session()->flash('success', 'Application received, thank you. We will be in touch');
+        return redirect()->route('index');
     }
 
     /**
