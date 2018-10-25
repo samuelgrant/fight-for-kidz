@@ -53,8 +53,10 @@ function showButtons(input){
             form.submit();
         });
 
-        btnCancel.on('click', function(){
+        btnCancel.on('click', function(event){
+            event.preventDefault();
             resetForm(form);
+            btnDiv.slideUp();
         });
     
 }
