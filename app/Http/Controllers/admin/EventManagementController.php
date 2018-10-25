@@ -285,4 +285,15 @@ class EventManagementController extends Controller
         $bout = Bout::find($boutId);
         $bout->delete();
     }
+
+    public function addBout($eventId){
+
+        $event = Event::find($eventId);
+
+        $bout = new Bout();
+        $bout->name = 'New bout';
+        $bout->event()->associate($event);
+        $bout->save();
+
+    }
 }

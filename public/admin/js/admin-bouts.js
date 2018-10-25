@@ -75,3 +75,17 @@ function removeBout(boutId){
     });
 
 }
+
+function addBout(eventId){
+
+    $.ajax({
+        type: 'PUT',
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        url: '/a/event-management/bouts/' + eventId
+    }).done(function (data) {
+        location.reload();
+    }).fail(function(err){
+        console.log(err);
+    });
+
+}

@@ -120,7 +120,7 @@
                 
                 <div class="mt-4">
                     <h3 class="d-inline">{{$event->name}} : Bout Management</h3>
-                    <span class="float-right px-5"><button class="btn btn-success"><i class="fas fa-plus"></i>&nbsp;Add Bout</button></span>
+                    <span class="float-right btn btn-success" onclick="addBout({{$event->id}})"><i class="fas fa-plus"></i>&nbsp;Add Bout</span>
                 </div>
 
                 <hr>

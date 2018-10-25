@@ -57,6 +57,7 @@ Route::put('/event-management/team/{eventId}', 'admin\EventManagementController@
 // Bouts CRUD functions
 Route::patch('/event-management/bouts/{boutId}', 'admin\EventManagementController@updateBoutDetails')->name('admin.eventManagement.updateBoutDetails');
 Route::delete('/event-management/bouts/{boutId}', 'admin\EventManagementController@removeBout')->name('admin.eventManagement.removeBout');
+Route::put('/event-management/bouts/{eventId}', 'admin\EventManagementController@addBout')->name('admin.eventManagement.addBout');
 
 //Get Applicant Data
 Route::get('/event-management/applicants/{applicantId}', 'admin\ApplicantManagementController@getApplicant')->name('admin.applicantManagement.getApplicant');
