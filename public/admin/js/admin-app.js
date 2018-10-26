@@ -312,11 +312,8 @@ function applicantManagementModal(id){
         $("#appDob").val(dob.toLocaleDateString("en-US"));
 
         // Set Photo
-        if(data.photo == ""){
-            $("#appPhoto").attr("src", "/img/noImage.png");
-        }else if(data.photo != ""){
-            $("#appPhoto").attr("src", data.photo);
-        }
+        var img = $('#appPhoto');
+        img.attr('src', img.data('route') + data.id + '.png'); // appends id.png to end of supplied route
 
         // Set Gender 
         if(if_male = 0) {

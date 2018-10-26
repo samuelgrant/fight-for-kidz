@@ -129,7 +129,7 @@
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 text-center">
                                         <div class="form-group mb-0 mt-3">
-                                            <img src="" id="appPhoto" class="img-thumbnail" height="200" width="200">
+                                            <img src="" id="appPhoto" data-route="{{route('admin.getApplicantImage', ['imageName' => null])}}/" class="img-thumbnail" height="200" width="200">
                                         </div>
                                     </div>
                                     <fieldset class="mx-3 mb-1 px-3" style="border: 1px solid;">
