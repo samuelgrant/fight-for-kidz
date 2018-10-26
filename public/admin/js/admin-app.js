@@ -328,7 +328,7 @@ function applicantManagementModal(id){
         $("#appEmail").val(data.email);                     $("#appPhone").val(data.phone);
         $("#appMobile").val(data.mobile);                   $("#appAddress1").val(data.address_1);
         $("#appAddress2").val(data.address_2);              $("#appSuburb").val(data.suburb);
-        $("#appCity").val(data.city);                       $("#appPostCode").val(data.postcode)
+        $("#appCity").val(data.city);                       $("#appPostCode").val(data.postcode);
 
         // Physical Tab
         $("#appHeight").val(data.height + "cm");           $("#appWeightC").val(data.current_weight + "kg");
