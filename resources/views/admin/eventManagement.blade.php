@@ -287,7 +287,8 @@
 
             <div class="mt-4">
                 <h3 class="d-inline">{{$event->name}} : Applications</h3>
-                <span class="float-right px-5">
+                <span class="float-right">
+                    <button class="btn btn-warning" onclick="removeSelectedFromTeam()"><i class="fas fa-minus"></i>&nbsp;Remove selected from team</button>
                     <button class="btn btn-success" data-toggle="modal" data-target="#editTeamModal" onclick="countSelected('applicants')"><i class="fas fa-plus"></i>&nbsp;Add selected to team</button>
                 </span>
             </div>
@@ -632,7 +633,7 @@
                             </select>
                         </div>
 
-                        <button data-dismiss="modal" id="confirmAddToTeam" role="button" onclick="addSelectedToTeam({{$event->id}})" class="btn btn-success">Confirm</button>
+                        <button data-dismiss="modal" id="confirmAddToTeam" role="button" onclick="addSelectedToTeam()" class="btn btn-success">Confirm</button>
                     </form>
                 </div>
             </div>

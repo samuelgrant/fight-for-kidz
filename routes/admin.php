@@ -51,8 +51,9 @@ Route::put('/event-management/togglepublic/{eventID}', 'admin\EventManagementCon
 // Toggle event applications on/off
 Route::put('/event-management/toggleapps/{eventID}', 'admin\EventManagementController@toggleApplications')->name('admin.eventManagement.toggleApplications');
 
-// Add applicants to team
-Route::put('/event-management/team/{eventId}', 'admin\EventManagementController@addToTeam')->name('admin.eventManagement.addToTeam');
+// Add/remove applicants to/from team
+Route::put('/event-management/team/add', 'admin\ApplicantManagementController@addToTeam')->name('admin.eventManagement.addToTeam');
+Route::delete('/event-management/team/remove', 'admin\ApplicantManagementController@removeFromTeam')->name('admin.eventManagement.removeFromTeam');
 
 // Bouts CRUD functions
 Route::patch('/event-management/bouts/{boutId}', 'admin\BoutManagementController@updateBoutDetails')->name('admin.eventManagement.updateBoutDetails');

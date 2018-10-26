@@ -211,7 +211,7 @@ function copySelectedToGroup() {
  * This function adds selected applicants for an event to 
  * a team for that event.
  */
-function addSelectedToTeam(eventId){
+function addSelectedToTeam(){
     
     var team = $('#team-select').val();
 
@@ -225,8 +225,37 @@ function addSelectedToTeam(eventId){
         $.ajax({
             type: 'PUT',
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            url: '/a/event-management/' + 'team/' + eventId,
+            url: '/a/event-management/team/add',
             data: {'applicantId' : appId, 'team' : team}, 
+        }).done(function(){
+            location.reload();
+        }).fail(function(error){
+            console.log(error);
+        });
+
+    });
+
+}
+
+/**
+ * This function adds selected applicants for an event to 
+ * a team for that event.
+ */
+function removeSelectedFromTeam(){
+    
+    
+    var selected = $('#applicant-dtable').find('.dtable-checkbox:checkbox:checked');
+
+    selected.each(function(){
+
+        var appId = $(this).data('applicantId');
+        
+        // ajax call to remove from team
+        $.ajax({
+            type: 'DELETE',
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            url: '/a/event-management/team/remove/',
+            data: {'applicantId' : appId}, 
         }).done(function(){
             location.reload();
         }).fail(function(error){

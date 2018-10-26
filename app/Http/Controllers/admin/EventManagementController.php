@@ -238,17 +238,5 @@ class EventManagementController extends Controller
 
         Log::debug('Logo updated. New logo year is '.$currentEventYear);
     }    
-
-    public function addToTeam($eventId, Request $request){
-
-        $team = $request->input('team');
-        $applicantId = $request->input('applicantId');
-
-        Log::debug($team);
-        Log::debug($applicantId);
-
-        $applicant = Applicant::find($applicantId);
-        $applicant->addToTeam($team);
-
-    }
+        
 }

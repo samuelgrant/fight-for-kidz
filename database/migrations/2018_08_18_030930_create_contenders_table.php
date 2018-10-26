@@ -18,11 +18,13 @@ class CreateContendersTable extends Migration
             $table->integer('event_id')->unsigned();
             $table->integer('sponsor_id')->unsigned()->nullable();
             $table->integer('applicant_id')->unsigned();
-            $table->string('team'); // should be 'red' or 'blue'
+            $table->string('team')->nullable(); // should be 'red' or 'blue'
             $table->string('nickname')->nullable();
             $table->float('weight')->nullable();
             $table->float('height')->nullable();
             $table->float('reach')->nullable();
+            $table->string('bio_url')->nullable(); // url to bio video, if any
+            $table->string('bio_text')->nullable();
             $table->timestamps();
 
             // Foreign key constraints definition
