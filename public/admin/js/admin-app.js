@@ -14,8 +14,6 @@ $(document).ready(function () {
     $('input:file').change(function () {
         processImage(this);
     })
-
-    $
 });
 
 function processImage(input) {
