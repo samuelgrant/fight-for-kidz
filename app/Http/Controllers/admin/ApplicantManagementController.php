@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Applicant;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
 
 class ApplicantManagementController extends Controller
 {
@@ -40,6 +41,25 @@ class ApplicantManagementController extends Controller
         // contender record retained in case they are re-added. We don't want to
         // lose the contender information. This will likely cause issues with
         // the event contender count.
+
+        // remove this applicants contender from any bouts they were in,
+        // whether red, blue or victor
+        foreach($applicant->contender->bouts() as $bout){
+
+            if($applicant->contender->is($bout->red_contender)){
+                $bout->red_contender()->dissociate();
+            }
+
+            if($applicant->contender->is($bout->blue_contender)){
+                $bout->blue_contender()->dissociate();
+            }
+            
+            if($applicant->contender->is($bout->victor)){
+                $bout->victor()->dissociate();
+            }
+
+            $bout->save();
+        }
 
     }
 }
