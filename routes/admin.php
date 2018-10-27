@@ -66,5 +66,8 @@ Route::put('/event-management/bouts/{eventId}', 'admin\BoutManagementController@
 //Get Applicant Data
 Route::get('/event-management/applicants/{applicantId}', 'admin\ApplicantManagementController@getApplicant')->name('admin.applicantManagement.getApplicant');
 
+//Get contender data
+Route::get('/event-management/contenders/{contenderID}', 'admin\ContenderManagementController@getContender')->name('admin.contenderManagement.getContender');
+
 //Retrieve private images (https://laravel.io/forum/04-23-2015-securing-filesimages)
 Route::get('/applicantImages/{imageName}', 'admin\ImageController@getApplicantImage')->where('imageName', '^[^/]+$')->name('admin.getApplicantImage');
