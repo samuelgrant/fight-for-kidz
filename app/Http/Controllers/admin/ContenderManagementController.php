@@ -28,10 +28,10 @@ class ContenderManagementController extends Controller
 
         $contender = Contender::find($contenderID);
         $sponsor = Sponsor::find($request->input('contenderSponsor'));
+        $image = $request->file('contenderImage');
 
-        // validate input here
-        //
-        //
+        // validate all inputs here
+                
 
         $contender->nickname = $request->input('contenderNickname');
         $contender->sponsor()->associate($sponsor);
@@ -42,6 +42,9 @@ class ContenderManagementController extends Controller
         $contender->bio_text = $request->input('contenderBio');
 
         $contender->save();
+
+        // store image
+        $image->storeAs('/public/images/contenders/', $contender->id . '.png');
 
         session()->flash('success', 'Profile of ' . $contender->getFullName() . ' updated.');
         return redirect()->back();

@@ -71,7 +71,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
                 </div>
                 <div class="modal-body">
-                    <form method="post" id="editContenderForm" data-action="{{route('admin.eventManagement.updateContender', ['contenderID' => null])}}/" action="">
+                    <form method="post" id="editContenderForm" enctype="multipart/form-data" data-action="{{route('admin.eventManagement.updateContender', ['contenderID' => null])}}/" action="">
                         <div class="row">
                             <div class="col-lg-8">
                                 <div class="form-group">
@@ -109,6 +109,9 @@
 
                         <label for="contenderBio">Contender Bio:</label>
                         <textarea name="contenderBio" id="contenderBio" class="form-control mb-3"></textarea>
+
+                        <label for="contenderImage">Contender Image:</label>
+                        <input type="file" class="d-block mb-3" name="contenderImage" id="contenderImage">
 
                         @csrf
                         {{method_field('PATCH')}}
