@@ -62,6 +62,64 @@
     </div>
 </div>
 
+<!-- Edit Contender Details Modal - loads dynamically -->
+<div class="modal fade" id="editContenderModal" tabindex="-1" role="dialog" aria-labelledby="Edit Contender Details" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h4 class="modal-title">Edit Contender Details</h4>                    
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" id="editContenderForm" data-action="{{route('admin.eventManagement.updateContender', ['contenderID' => null])}}/" action="">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="form-group">
+                                    <label for="contenderName">Nickname:</label>
+                                    <input type="text" name="contenderNickname" id="contenderNickname" class="form-control" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="contenderSponsor">Sponsor:</label>
+                                    <select class="form-control" id="contenderSponsor" name="contenderSponsor">
+                                        @foreach($event->sponsors as $sponsor)
+                                            <option value="{{$sponsor->id}}">{{$sponsor->company_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contenderBioUrl">Bio URL:</label>
+                                    <input type="text" name="contenderBioUrl" id="contenderBioUrl" class="form-control" value="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label for="contenderHeight">Height:</label>
+                                    <input type="text" name="contenderHeight" id="contenderHeight" class="form-control" value="" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contenderWeight">Weight:</label>
+                                    <input type="text" name="contenderWeight" id="contenderWeight" class="form-control" value="" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contenderReach">Reach:</label>
+                                    <input type="text" name="contenderReach" id="contenderReach" class="form-control" value="" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <label for="contenderBio">Contender Bio:</label>
+                        <textarea name="contenderBio" id="contenderBio" class="form-control mb-3"></textarea>
+
+                        @csrf
+                        {{method_field('PATCH')}}
+                        <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-success float-right"><i class="fas fa-edit"></i> Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End Edit Contender Details Modal -->
+
 <!-- Edit Event Details Modal -->
 <div class="modal fade" id="eventDetailsModal" tabindex="-1" role="dialog" aria-labelledby="Edit Event Details" aria-hidden="true">
     <div class="modal-dialog" role="document">
