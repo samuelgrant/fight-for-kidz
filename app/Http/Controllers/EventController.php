@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Event;
+use App\Contender;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class EventController extends Controller
 {  
@@ -16,5 +18,17 @@ class EventController extends Controller
         }
 
         return view('event')->with('event', $event);
+    }
+
+    public function getContender($contenderID){
+
+        $contender = Contender::find($contenderID);
+
+        if($contender){
+            return ['contender' => $contender, 'applicant' => $contender->applicant];
+        } else{
+            return response('No contender found', 400);
+        }
+
     }
 }

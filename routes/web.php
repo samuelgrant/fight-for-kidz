@@ -32,4 +32,7 @@ Route::post('/sponsor-application', 'EventApplicationController@storeSponsorApp'
 // Subscriber route
 Route::post('/subscribe', 'SubscribersController@store')->name('subscribe');
 
+// Contender api
+Route::get('/contenders/bio/{contenderID}', 'EventController@getContender')->name('getContender');
+
 Auth::routes();
