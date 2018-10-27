@@ -51,7 +51,15 @@ class Purge extends Command
     protected function deleteAll(){
         $counter = 0;
 
+        // delete all group icons
         $files = Storage::files('public/images/groups');
+        foreach($files as $file){
+            Storage::delete($file);
+            $counter++;
+        }
+
+        // delete all contender images
+        $files = Storage::files('public/images/contenders');
         foreach($files as $file){
             Storage::delete($file);
             $counter++;
