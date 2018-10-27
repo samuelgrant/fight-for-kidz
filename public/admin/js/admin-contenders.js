@@ -25,3 +25,18 @@ function editContenderModal(contenderID){
         console.log(error);
     });
 }
+
+function removeContenderFromTeam(applicantId){
+
+    // ajax call to remove from team
+    $.ajax({
+        type: 'DELETE',
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        url: '/a/event-management/team/remove/',
+        data: {'applicantId' : applicantId}, 
+    }).done(function(){
+        location.reload();
+    }).fail(function(error){
+        console.log(error);
+    });
+}
