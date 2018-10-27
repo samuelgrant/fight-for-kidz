@@ -263,6 +263,11 @@
           $('#modal-loader').hide();
         });
       });
+
+      $("#bio-modal").on('hidden.bs.modal', function (e) {
+        $("#bio-modal iframe").attr("src", "");
+      });
+
     });
 
 </script>
