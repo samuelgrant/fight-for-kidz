@@ -72,13 +72,15 @@
   <!-- All bouts will be contained within single row -->
   <div class="row bouts-row">
 
+<?php global $i ?> <!-- counter used to name bouts -->
+  @foreach($event->bouts as $bout)
     <!-- Each bout will create one column -->
     <div class="col-lg-6 bout-column">
 
       <!-- Each bout has a bout header -->
       <div class="bout-card">
         <div class="bout-header">
-          <h2>BOUT ONE</h2>
+          <h2>BOUT {{++$i}}</h2>
           {{-- <p class="sponsored-by">sponsored by</p> --}}
           <div class="sponsor-badge">
             <div class="vertical-aligner"></div><img src="/storage/images/FighterSponsorslogo/Taurs sponsor.png" class="img-fluid bout-sponsor">
@@ -88,106 +90,38 @@
         <!-- Each bout card will contain two contender-cards -->
         <div class="contender-card contender-card-red">
           <div class="contender-card-inner">
-            <img src="/storage/images/Fighters/Joe THE BEAST Blee.png" class="mx-auto contender-img">
+            <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->red_contender->id . '.png')) ? '/storage/images/contenders/' . $bout->red_contender->id . '.png' : '/storage/images/contenders/0.png'}}" class="mx-auto contender-img">
             <div class="contender-name">
-              <h5>Joe</h5>
-              <h4>'The Beast'</h4>
-              <h5>Blee</h5>
+              <h5>{{$bout->red_contender->applicant->first_name}}</h5>
+              <h4>{{$bout->red_contender->nickname}}</h4>
+              <h5>{{$bout->red_contender->applicant->last_name}}</h5>
             </div>
-            <!-- <div class="contender-sponsor">
-              <p class="sponsored-by">sponsored by</p>
-              <div class="sponsor-badge">
-                <div class="vertical-aligner"></div><img src="/storage/images/FighterSponsorslogo/Logan sponsor.png"
-                  class="img-fluid">
-              </div>
-            </div> -->
             <div class="table-responsive table-borderless">
             </div>
             <div class="bout-btn bout-btn-red bio-view-button" data-toggle="modal" data-target="#bio-modal"
-              data-contenderId="1">View Bio</div>
+              data-contenderId="{{$bout->red_contender->id}}">View Bio</div>
             <div class="bout-btn bout-btn-red" onclick="window.open('https://givealittle.co.nz/fundraiser/joe-blee-fight-for-kidz-2018', '_blank')">Donate</div>
           </div>
         </div>
 
         <div class="contender-card contender-card-blue">
           <div class="contender-card-inner">
-            <img src="/storage/images/Fighters/Logan Intimidator Valli.png" class="mx-auto contender-img">
+            <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->blue_contender->id . '.png')) ? '/storage/images/contenders/' . $bout->blue_contender->id . '.png' : '/storage/images/contenders/0.png'}}" class="mx-auto contender-img">
             <div class="contender-name">
-              <h5>Logan</h5>
-              <h4>'Intimidator'</h4>
-              <h5>Valli</h5>
+              <h5>{{$bout->blue_contender->applicant->first_name}}</h5>
+              <h4>{{$bout->blue_contender->nickname}}</h4>
+              <h5>{{$bout->blue_contender->applicant->last_name}}</h5>
             </div>
-            <!-- <div class="contender-sponsor">
-              <p class="sponsored-by">sponsored by</p>
-              <div class="sponsor-badge">
-                <div class="vertical-aligner"></div><img src="/storage/images/FighterSponsorslogo/Joes sponser.png"
-                  class="img-fluid">
-              </div>
-            </div> -->
-            <div class="bout-btn bout-btn-blue" onclick="location.href='#'">View Bio</div>
+            <div class="bout-btn bout-btn-blue bio-view-button" data-toggle="modal" data-target="#bio-modal"
+              data-contenderId="{{$bout->blue_contender->id}}">View Bio</div>
             <div class="bout-btn bout-btn-blue" onclick="location.href='#'">Donate</div>
           </div>
-        </div>
+        </div>  
       </div>
+    </div> <!-- end each bout -->
+    @endforeach
 
-    </div>
-
-    <div class="col-lg-6 bout-column">
-
-      <!-- Each bout has a bout header -->
-      <div class="bout-card">
-        <div class="bout-header">
-          <h2>BOUT ONE</h2>
-          <p class="sponsored-by">sponsored by</p>
-          <div class="sponsor-badge">
-            <div class="vertical-aligner"></div><img src="/storage/images/FighterSponsorslogo/Alissa sponser.png" class="img-fluid bout-sponsor">
-          </div>
-        </div>
-
-        <!-- Each bout card will contain two contender-cards -->
-        <div class="contender-card contender-card-red">
-          <div class="contender-card-inner">
-            <img src="/storage/images/Fighters/Joe THE BEAST Blee.png" class="mx-auto contender-img">
-            <div class="contender-name">
-              <h5>Joe</h5>
-              <h4>'The Beast'</h4>
-              <h5>Blee</h5>
-            </div>
-            <div class="contender-sponsor">
-              <p class="sponsored-by">sponsored by</p>
-              <div class="sponsor-badge">
-                <div class="vertical-aligner"></div><img src="/storage/images/FighterSponsorslogo/Kelly sponser.png"
-                  class="img-fluid">
-              </div>
-            </div>
-            <div class="bout-btn bout-btn-red" onclick="location.href='#'">View Bio</div>
-            <div class="bout-btn bout-btn-red" onclick="location.href='#'">Donate</div>
-          </div>
-        </div> <!-- end contender card -->
-
-        <div class="contender-card contender-card-blue">
-          <div class="contender-card-inner">
-            <img src="/storage/images/Fighters/Logan Intimidator Valli.png" class="mx-auto contender-img">
-            <div class="contender-name">
-              <h5>Logan</h5>
-              <h4>'Intimidator'</h4>
-              <h5>Valli</h5>
-            </div>
-            <div class="contender-sponsor">
-              <p class="sponsored-by">sponsored by</p>
-              <div class="sponsor-badge">
-                <div class="vertical-aligner"></div><img src="/storage/images/FighterSponsorslogo/pauls sponser.png"
-                  class="img-fluid">
-              </div>
-            </div>
-            <div class="bout-btn bout-btn-blue" onclick="location.href='#'">View Bio</div>
-            <div class="bout-btn bout-btn-blue" onclick="location.href='#'">Donate</div>
-          </div>
-        </div> <!-- end contender card -->
-      </div> <!-- end bout card -->
-    </div> <!-- end bout column -->
-
-  </div>
+  </div> <!-- end all bouts -->
 
   <!-- This version of the layout is displayed on a small screen. -->
   <div class="bouts-stack">
@@ -245,14 +179,15 @@
 
 
           <div class="text-center">
-              <h5 id=first-name class="d-inline"></h5>
-              <h4 id="nickname" class="d-inline"></h4>
-              <h5 id="last-name" class="d-inline"></h5>
+              <h5 id=first-name class="d-inline mx-2"></h5>
+              <h4 id="nickname" class="d-inline mx-2"></h4>
+              <h5 id="last-name" class="d-inline mx-2"></h5>
               <hr>
-              <div style="background-color:lightgray; width: 100%; height: 300px" class="mx-auto my-3"></div>
+              <iframe width="560" height="315" id="bio-vid" src="" 
+                frameborder="0" allow="autoplay; encrypted-media;" allowfullscreen></iframe>
               
-              <div class="bio-text text-justify">
-                  <p>
+              <div class="text-justify">
+                  <p id="bio-text">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quam cupiditate ea, 
                     aliquam voluptate veritatis officiis sequi quaerat aliquid placeat voluptatum 
                     nesciunt quod non, velit at inventore sapiente? Quia, quis.
@@ -310,18 +245,20 @@
         $.ajax({
           url: url,
           method: 'get',
+          headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
           dataType: 'json'
         }).done(function(data){
           
           console.log(data);
-          $('#first-name').html(data['first_name']);
-          $('#last-name').html(data['last_name']);
-          $('#nickname').html('\'' + data['nickname'] + '\'');
+          $('#first-name').text(data['applicant']['first_name']);
+          $('#last-name').text(data['applicant']['last_name']);
+          $('#nickname').text('\'' + data['contender']['nickname'] + '\'');
           // $('#pic').attr('src', data['imagePath']);
-          $('#bio-vid').attr('src', 'https://www.youtube.com/embed/y2Ky3Wo37AY?rel=0');
+          $('#bio-vid').attr('src', 'https://www.youtube-nocookie.com/embed/' + data['contender']['bio_url'] + '?rel=0&modestbranding=1');
+          $('#bio-text').text(data['contender']['bio_text']);
           $('#modal-loader').hide();
-        }).fail(function(){
-          console.log('failed');
+        }).fail(function(err){
+          console.log(err);
           $('#dynamic-content').html('<p style="color:black;">Something went wrong. Please try again...</p>');
           $('#modal-loader').hide();
         });
