@@ -248,23 +248,26 @@ function removeSelectedFromTeam(){
 
         var appId = $(this).data('applicantId');
         
-        // ajax call to remove from team
-        $.ajax({
-            type: 'DELETE',
-            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-            url: '/a/event-management/team/remove/',
-            data: {'applicantId' : appId}, 
-        }).done(function(){
-            location.reload();
-        }).fail(function(error){
-            console.log(error);
-        });
+        removeApplicantFromTeam(appId);
 
     });
 
 }
 
+function removeApplicantFromTeam(applicantId){
 
+    // ajax call to remove from team
+    $.ajax({
+        type: 'DELETE',
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        url: '/a/event-management/team/remove/',
+        data: {'applicantId' : applicantId}, 
+    }).done(function(){
+        location.reload();
+    }).fail(function(error){
+        console.log(error);
+    });
+}
 
 // When the user ticks/unticks the 'select all' checkbox, tick or untick all visible 
 // datatable items
