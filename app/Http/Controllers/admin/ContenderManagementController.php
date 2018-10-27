@@ -44,7 +44,9 @@ class ContenderManagementController extends Controller
         $contender->save();
 
         // store image
-        $image->storeAs('/public/images/contenders/', $contender->id . '.png');
+        if($image){
+            $image->storeAs('/public/images/contenders/', $contender->id . '.png');
+        }
 
         session()->flash('success', 'Profile of ' . $contender->getFullName() . ' updated.');
         return redirect()->back();
