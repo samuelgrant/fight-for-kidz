@@ -4,142 +4,408 @@
     <li class="breadcrumb-item">
         <a href="{{route('admin.dashboard')}}">Dashboard</a>
     </li>
-    <li class="breadcrumb-item active">Event Management</li>
+    <li class="breadcrumb-item">
+        <a href="{{route('admin.eventManagement')}}">Events Management</a>
+    </li>
+    <li class="breadcrumb-item active">Event: {{$event->name}}</li>
 </ol>
 
 
+
 <!-- Page Content -->
-<div class="row">  
+<div class="row">
     <div class="col-md-12">
         <!-- Tabs -->
         <div>
             <ul class="nav nav-tabs">
-                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') != 'deleted')? 'active': '' }}" role="tab" data-toggle="tab" href="#tab-1" id="active">Current Events</a></li>
-                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'deleted')? 'active': '' }}" role="tab" data-toggle="tab" href="#tab-2" id="deleted">Deleted Events</a></li>
-                <button class="btn btn-primary btn-sm ml-1 my-1 tab-modal" data-toggle="modal" data-target="#newEvent">New Event</button>
+                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'overview') || (app('request')->input('tab') == '') ? 'active': '' }}"
+                        role="tab" data-toggle="tab" href="#tab-1" id="overview">Overview</a></li>
+                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'bouts')? 'active': '' }}"
+                        role="tab" data-toggle="tab" href="#tab-2" id="bouts">Bouts</a></li>
+                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'contenders')? 'active': '' }}"
+                        role="tab" data-toggle="tab" href="#tab-3" id="contenders">Contenders</a></li>
+                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'applicants') ? 'active': '' }}"
+                        role="tab" data-toggle="tab" href="#tab-4" id="applicants">Applicants</a></li>
+                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'auction')? 'active': '' }}"
+                    role="tab" data-toggle="tab" href="#tab-5" id="auction">Auction</a></li>
             </ul>
-            <div class="tab-content">
-                <div class="tab-pane {{ (app('request')->input('tab') != 'deleted')? 'active': '' }}" role="tabpanel" id="tab-1">
-                    <table id="event-dtable" class="table table-striped table-hover table-sm">
-                        <thead>
-                            <tr>
-                                <th>Event ID</th>
-                                <th>Name</th>
-                                <th>Date</th>
-                                <th>Venue</th>
-                                <th>Charity</th>
-                                <th>Public</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($events as $event)
-                            <tr>
-                                <td>F4k-{{\Carbon\Carbon::parse($event->datetime)->format('Y')}}</td>
-                                <td>{{$event->name}}</td>
-                                <td>{{\Carbon\Carbon::parse($event->datetime)->format('d M Y')}}</td>
-                                <td>{{$event->venue_name}}</td>
-                                <td>{{$event->charity}}</td>
-                                <td>
-                                    {!! Form::open(['action' => ['admin\EventManagementController@togglePublic', $event->id], 'method' => 'PUT']) !!}
-                                        <label class="switch">
-                                            <input type="checkbox" {{$event->is_public ? 'checked' : ''}} onchange="this.form.submit()">
-                                            <span class="slider round"></span>
-                                        </label>
-                                    {!! Form::close() !!}
-                                </td>
-                                <td>
-                                    {!!Form::open(['action'=>['admin\EventManagementController@destroy', $event->id], 'method'=> 'POST']) !!}
-                                    <button class="btn btn-danger" type="submit"><i class="far fa-times-circle"></i> Delete Event</button>
-                                    {{Form::hidden('_method', 'delete')}} {!! Form::close() !!}
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-                <div class="tab-pane {{ (app('request')->input('tab') == 'deleted')? 'active': '' }}" role="tabpanel" id="tab-2">
-                    <table id="eventDeleted-dtable" class="table table-striped table-hover table-sm">
-                        <thead>
-                            <tr>
-                                <th>Event ID</th>
-                                <th>Name</th>
-                                <th>Date</th>
-                                <th>Venue</th>
-                                <th>Charity</th>
-                                <th>Public</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($deletedEvents as $event)
-                            <tr>
-                                <td>F4k-{{\Carbon\Carbon::parse($event->datetime)->format('Y')}}</td>
-                                <td>{{$event->name}}</td>
-                                <td>{{\Carbon\Carbon::parse($event->datetime)->format('d M Y')}}</td>
-                                <td>{{$event->venue_name}}</td>
-                                <td>{{$event->charity}}</td>
-                                <td>{{($event->is_public)? "Yes":"No"}}</td>
-                                <td>
-                                    {!!Form::open(['action'=>['admin\EventManagementController@restore', $event->id], 'method'=> 'POST']) !!}
-                                    <button class="btn btn-info" type="submit"><i class="far fa-times-circle"></i> Restore Event</button>
-                                    {{Form::hidden('_method', 'patch')}} {!! Form::close() !!}
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
+        </div>
+        <div class="tab-content">
+            <div class="tab-pane {{(app('request')->input('tab') == '') || (app('request')->input('tab') == 'overview') ? 'active': ''}}" role="tabpanel" id="tab-1">
+
+                @include('admin.tabs.events.overview')
+                
+            </div>
+            <div class="tab-pane {{(app('request')->input('tab') == 'bouts') ? 'active': ''}}" role="tabpanel" id="tab-2">
+                
+                @include('admin.tabs.events.bouts')
+
+            </div>
+
+            <div class="tab-pane {{(app('request')->input('tab') == 'contenders') ? 'active': ''}}" role="tabpanel" id="tab-3">
+                
+                @include('admin.tabs.events.contenders')              
+
+            </div>
+
+            <div class="tab-pane {{(app('request')->input('tab') == 'applicants') ? 'active': ''}}" role="tabpanel" id="tab-4">
+
+                @include('admin.tabs.events.applicants')
+                
+            </div>
+            <div class="tab-pane {{(app('request')->input('tab') == 'auction') ? 'active': ''}}" role="tabpanel" id="tab-5">
+                
+                @include('admin.tabs.events.auction')
+
             </div>
         </div>
     </div>
 </div>
-<!-- New Event Modal -->
 
-<div class="modal fade" id="newEvent" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+<!-- Edit Contender Details Modal - loads dynamically -->
+<div class="modal fade" id="editContenderModal" tabindex="-1" role="dialog" aria-labelledby="Edit Contender Details" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h4 class="modal-title">Edit Contender Details</h4>                    
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" id="editContenderForm" enctype="multipart/form-data" data-action="{{route('admin.eventManagement.updateContender', ['contenderID' => null])}}/" action="">
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="form-group">
+                                    <label for="contenderName">Nickname:</label>
+                                    <input type="text" name="contenderNickname" id="contenderNickname" class="form-control" value="">
+                                </div>
+                                <div class="form-group">
+                                    <label for="contenderSponsor">Sponsor:</label>
+                                    <select class="form-control" id="contenderSponsor" name="contenderSponsor">
+                                        @foreach($event->sponsors as $sponsor)
+                                            <option value="{{$sponsor->id}}">{{$sponsor->company_name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contenderBioUrl">Bio URL:</label>
+                                    <input type="text" name="contenderBioUrl" id="contenderBioUrl" class="form-control" value="">
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="form-group">
+                                    <label for="contenderHeight">Height:</label>
+                                    <input type="text" name="contenderHeight" id="contenderHeight" class="form-control" value="" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contenderWeight">Weight:</label>
+                                    <input type="text" name="contenderWeight" id="contenderWeight" class="form-control" value="" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contenderReach">Reach:</label>
+                                    <input type="text" name="contenderReach" id="contenderReach" class="form-control" value="" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <label for="contenderBio">Contender Bio:</label>
+                        <textarea name="contenderBio" id="contenderBio" class="form-control mb-3"></textarea>
+
+                        <label for="contenderImage">Contender Image:</label>
+                        <input type="file" class="d-block mb-3" name="contenderImage" id="contenderImage">
+
+                        @csrf
+                        {{method_field('PATCH')}}
+                        <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-success float-right"><i class="fas fa-edit"></i> Save Changes</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div> <!-- End Edit Contender Details Modal -->
+
+<!-- Edit Event Details Modal -->
+<div class="modal fade" id="eventDetailsModal" tabindex="-1" role="dialog" aria-labelledby="Edit Event Details" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
-                <h4 class="modal-title">Create a New Event</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button></div>
+                <h4 class="modal-title">Edit Event Details</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
+            </div>
             <div class="modal-body">
-                <form action="{{route('admin.eventManagement.store')}}" method="post">
+                <form method="post" action="{{route('admin.eventManagement.update', ['eventID' => $event->id])}}">
                     <div class="form-group">
-                        <label for="eventName">
-                            <i class="fas fa-info-circle" data-toggle="tooltip" title="This is the event name;"></i>  
-                            Event Name
-                        </label>
-                        <input type="text" name="eventName" id="eventName" class="form-control" placeholder="Fight for Kidz {{date('Y')}}" required>
+                        <label for="eventName">Name:</label>
+                        <input type="text" name="name" id="eventName" class="form-control" value="{{$event->name}}" required>
                     </div>
-
                     <div class="form-group">
-                        <label for="dateTime">
-                                <i class="fas fa-info-circle" data-toggle="tooltip" title="The date and time of the main event; This can be used to display a countdown on the main page."></i>  
-                            Date Time
-                        </label>
-                        <input type="datetime-local" name="dateTime" id="dateTime" class="form-control" required>
+                        <label for="eventDate">Date and Time:</label>
+                        <input type="datetime-local" name="date" id="eventDate" class="form-control" value="{{$event->getDateTimeString()}}" required>
                     </div>
-
                     <div class="form-group">
-                        <label for="venueName">
-                            <i class="fas fa-info-circle" data-toggle="tooltip" title="Displayed under location; use the name of the venue."></i>  
-                            Venue Name
-                        </label>
-                        <input type="text" name="venueName" id="venueName" class="form-control" required>
+                        <label for="eventVenue">Venue Name:</label>
+                        <input type="text" name="venue" id="eventVenue" class="form-control" value="{{$event->venue_name}}" required>
                     </div>
-
                     <div class="form-group">
-                        <label for="venueAddress">
-                            <i class="fas fa-info-circle" data-toggle="tooltip" title="Used for Google Maps; use the physical address or a well known name for the venue."></i>
-                            Venue Address
-                        </label>
-                        <input type="text" name="venueAddress" id="venueAddress" class="form-control" required>
+                        <label for="eventAddress">Venue Address:</label>
+                        <input type="text" name="address" id="eventAddress" class="form-control" value="{{$event->venue_address}}" required>
                     </div>
-
-                    <button type="submit" class="btn btn-success"><i class="far fa-check-circle"></i> Create Event</button>
+                    <div class="form-group">
+                        <label for="eventCharity">Supported Charity</label>
+                        <input type="text" name="charity" id="eventCharity" class="form-control" value="{{$event->charity}}" required>
+                    </div>
                     @csrf
+                    {{method_field('PUT')}}
+                    <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success float-right"><i class="fas fa-edit"></i> Save Changes</button>
                 </form>
             </div>
         </div>
     </div>
+</div> <!-- End Edit Event Details Modal -->
+
+<!-- More Info Modal -->
+<div class="modal fade" id="applicantMoreInfoModal" tabindex="-1" role="dialog" aria-labelledby="Edit Event Details" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h4 class="modal-title">Applicant Details</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantGeneral" class="nav-link active">General</a></li>
+                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantPhysical" class="nav-link">Physical Information</a></li>
+                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantAdditional" class="nav-link">Additional Info</a></li>
+                        <li class="nav-item mr-auto">
+                            <button class="btn btn-primary btn-sm ml-auto">
+                                    <svg class="svg-inline--fa fa-edit fa-w-18" aria-hidden="true" data-prefix="fas" data-icon="edit" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z"></path></svg>
+                                Edit
+                            </button>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="applicantGeneral">
+                            <form>
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+                                        <div class="form-group mb-0 mt-3">
+                                            <img src="" id="appPhoto" data-route="{{route('admin.getApplicantImage', ['imageName' => null])}}/" class="img-thumbnail" height="200" width="200">
+                                        </div>
+                                    </div>
+                                    <fieldset class="mx-3 mb-1 px-3" style="border: 1px solid;">
+                                        <legend style="width: 150px;">Personal Info</legend>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>First Name:</label> 
+                                                    <input type="text" id="appFirstName" value='' readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Last Name:</label> 
+                                                    <input type="text" id="appLastName" value='' readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Fight Name:</label>
+                                                    <input type="text" id="appFightName" value='' readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Age:</label>
+                                                    <input type="text" id="appAge" value='' readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>DOB:</label>
+                                                    <input type="text" id="appDob" value='' readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Gender:</label>
+                                                    <input type="text" id="appGender" value='' readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset class="mx-3 my-1 px-3" style="border: 1px solid; width:764px;">
+                                        <legend style="width: 140px;">Contact Info</legend>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Email:</label>
+                                                    <input type="text" id="appEmail" value='' readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Phone:</label>
+                                                    <input type="text" id="appPhone" value='' readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Mobile:</label>
+                                                    <input type="text" id="appMobile" value='' readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>
+                                    <fieldset class="m-3 px-3" style="border: 1px solid;">
+                                        <legend style="width: 100px;">Address</legend>
+                                        <div class="row">
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Address 1:</label>
+                                                    <input type="text" id="appAddress1" value='' readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Address 2:</label>
+                                                    <input type="text" id="appAddress2" value='' readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Suburb:</label>
+                                                    <input type="text" id="appSuburb" value='' readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>City:</label>
+                                                    <input type="text" id="appCity" value='' readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Post Code:</label>
+                                                    <input type="text" id="appPostCode" value='' readonly class="form-control-plaintext" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </fieldset>  
+                                </div>
+                            </form>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="applicantPhysical">
+                            <div class="row">
+                                <fieldset class="mx-3 mt-3 px-3" style="border: 1px solid; width:764px;">
+                                    <div class="row pt-3">
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Height:</label>
+                                                <input type="text" id="appHeight" value='' readonly class="form-control-plaintext" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Current Weight:</label>
+                                                <input type="text" id="appWeightC" value='' readonly class="form-control-plaintext" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Expected Weight:</label>
+                                                <input type="text" id="appWeightE" value='' readonly class="form-control-plaintext" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 px-0">
+                                        <div class="form-group">
+                                            <label>Sporting Experience:</label>
+                                            <textarea rows="4" cols="50" id="appSportingExperience" placeholder="" readonly class="form-control-plaintext" ></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 px-0">
+                                        <div class="form-group">
+                                            <label>Boxing Experience:</label>
+                                            <textarea rows="4" cols="50" id="appBoxingExperience" placeholder="" readonly class="form-control-plaintext" ></textarea>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="applicantAdditional">
+                            <div class="row">
+                                <fieldset class="mx-3 mt-3 px-3" style="border: 1px solid; width:764px;">
+                                    <div class="row pt-3">
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Occupation:</label>
+                                                <input type="text" id="appOccupation" value='' readonly class="form-control-plaintext" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Employer:</label>
+                                                <input type="text" id="appEmployer" value='' readonly class="form-control-plaintext" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Can Secure Sponsor:</label>
+                                                <input type="text" id="appSponsor" value='' readonly class="form-control-plaintext" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Consents to drug test:</label>
+                                                <input type="text" id="appConsent" value='' readonly class="form-control-plaintext" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Conviction Details:</label>
+                                                <textarea rows="4" cols="50" id="appConvictionDetails" placeholder='' readonly class="form-control-plaintext"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<!-- End More Info Modal -->
+
+<!-- Add applicants to team modal -->
+<div class="modal fade" id="editTeamModal" tabindex="-1" role="dialog" aria-labelledby="Edit Team" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h4 class="modal-title">Edit Team Membership</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <p id="modal-message"></p>
+
+                        <div class="form-group">
+                            <label for="team-select">Select team to add to:</label>
+                            <select class="form-control" name="team" id="team-select">
+                                <option value="red">Red</option>
+                                <option value="blue">Blue</option>
+                            </select>
+                        </div>
+
+                        <button data-dismiss="modal" id="confirmAddToTeam" role="button" onclick="addSelectedToTeam()" class="btn btn-success">Confirm</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- End add to team modal -->
 @endsection

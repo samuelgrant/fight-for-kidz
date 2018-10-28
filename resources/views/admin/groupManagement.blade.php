@@ -93,8 +93,8 @@
         @if($group->type != "System Group")
         <button class="btn btn-primary mb-3" type="button" data-toggle="modal" data-target="#addToGroupModal">Add new
             contact to Group</button>
-        <button class="btn btn-danger mb-3" type="button" data-toggle="modal" data-target="#removeFromGroupModal"
-            onclick="countSelected()">Remove selected</button>
+        <button class="btn btn-danger mb-3" id="removeFromGroupButton" type="button" data-toggle="modal" data-target="#removeFromGroupModal"
+            onclick="countSelected('groups')">Remove selected</button>
         @endif        
 
         <table id="group-dtable" class="table table-striped table-hover table-sm">
@@ -110,7 +110,7 @@
                 <tr>
                     <td>
                         <div class="form-check">
-                            <input type="checkbox" class="form-check-input dtable-remove-checkbox dtable-control" id="{{$member['email']}}"
+                            <input type="checkbox" class="form-check-input dtable-checkbox member-remove-checkbox dtable-control" id="{{$member['email']}}"
                                 value="checkedValue" data-member-type="{{$member['role']}}" data-member-id="{{$member['id']}}">
                         </div>
                     </td>
@@ -128,9 +128,9 @@
 <div class="modal fade" id="addToGroupModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Add a new contact to {{$group->name}}</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <div class="modal-header bg-dark">
+                <h4 class="modal-title text-white">Add a new contact to {{$group->name}}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
                 <form method="post" action="{{route('admin.group.addMember', [$group->id])}}">
@@ -155,13 +155,13 @@
     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-dark text-white">
                 <h4 class="modal-title">Remove selected from {{$group->name}}?</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
 
-                <p id="removeCount"></p>
+                <p id="modal-message"></p>
 
                 <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="removeSelectedFromGroup({{$group->id}})">Confirm</button>
 
@@ -177,13 +177,12 @@
 @endif
 
 {{-- Copy to another group modal - outside if block as it is available for system groups --}}
-<div class="modal fade" id="copyToGroupModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
-    aria-hidden="true">
+<div class="modal fade" id="copyToGroupModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header bg-dark text-white">
                 <h4 class="modal-title">Copy Selected Contacts to Group</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
 

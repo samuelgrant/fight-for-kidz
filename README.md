@@ -6,7 +6,7 @@ _The new website for Fight for kids, developed in PHP using the Laravel framewor
 
 * [View the wiki for our developers documentation](https://github.com/samuelgrant/fight4kidz/wiki/Developers-Wiki)
 #### Installation 
-This application is intended for the private use by Fight For Kidz. For more information please contact [Samuel Grant](mailto:samueljegrant@outlook.com)
+This application is intended for the private use by Fight for Kidz. For more information please contact [Samuel Grant](mailto:samueljegrant@outlook.com)
 
 ##### Installation Requirements
 _While we recommend that this application is deployed on a Linux, Apache, Mysql & PHP (LAMP) stack, this application may be deployed on any system so long as the following requirements are met_.

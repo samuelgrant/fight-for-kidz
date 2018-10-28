@@ -50,5 +50,26 @@ class Defaults extends Command
             }
             Storage::copy($file, "public/images/groups/" . $filename);
         }
+
+        // copy contender default
+        $files = Storage::files("private/images/contender-default");
+        foreach ($files as $file) {
+            $filename = pathinfo($file, PATHINFO_FILENAME) . '.' . pathinfo($file, PATHINFO_EXTENSION);
+            
+            // Delete the public image if it exists
+            if (Storage::exists("public/images/contenders/" . $filename)) {
+                Storage::delete("public/images/contenders/" . $filename);
+                echo 'public/images/contenders/'.$filename.' already exists, replacing.';
+            }
+            Storage::copy($file, "public/images/contenders/" . $filename);
+        }
+
+        // ensure that a logo file exists in public dir
+        if(Storage::exists("public/images/f4k_logo.png")){
+            echo "Logo file already in public folder.";
+        } else{
+            echo "Copying blank logo file to public folder. This will be updated when an events public visibility is toggled.";
+            Storage::copy("private/images/f4k_logo_noyear.png", "public/images/f4k_logo.png");
+        }
     }
 }

@@ -14,8 +14,6 @@ $(document).ready(function () {
     $('input:file').change(function () {
         processImage(this);
     })
-
-    $
 });
 
 function processImage(input) {
@@ -49,14 +47,15 @@ function resetImagePre() {
 $(document).ready(function() {
     $("#event-dtable").DataTable({
         "columns": [
+            {"visible": false, "type": "num"},
             null,
-            null,
-            null,
+            {"orderData": 0}, // this column will sort using the invisible columns data
             null,
             null,
             { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false }
-          ]
+            ]
     });
 
     $("#eventDeleted-dtable").DataTable({
@@ -94,27 +93,53 @@ $(document).ready(function() {
             null,
             null,
             null,
-            null,
-            { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false }
         ]
     });
+
+    $('#applicant-dtable').DataTable({
+        "columns":[
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": true},
+            null,
+            {"searchable": false},
+            {"searchable": false},
+            {"searchable": false},
+            {"searchable": false},
+            {"searchable": false},
+            { "orderable": false, "searchable": false }
+        ]
+    })
 });
 
 // Count the number of selected datatable rows on a page, and display the result
 // on the remove contacts modal.
-function countSelected() {
+function countSelected(mode) {
 
-    var count = $('.dtable-remove-checkbox:checkbox:checked').length;
+    var dtable;
+    var modal;
 
-    console.log(count);
+    if(mode == 'groups'){
+        dtable = $('#group-dtable');
+        modal = $('#removeFromGroupModal');
+    } else if(mode == 'applicants'){
+        dtable = $('#applicant-dtable');
+        modal = $('#editTeamModal');
+    }
+
+    var selected = dtable.find('.dtable-checkbox:checkbox:checked');
+    var count = selected.length;
 
     if (count == 0) {
-        $('#removeCount').text('Oops! You have not selected any group members.');
+        modal.find('#modal-message').text('Oops! You have not selected anything.');
         return;
     }
 
-    $('#removeCount').text('You have selected ' + count + ' contact(s) for deletion.');
+    if(mode == 'groups'){
+        modal.find('#modal-message').text('You have selected ' + count + ' contact(s) for deletion.')
+    } else if(mode == 'applicants'){
+        modal.find('#modal-message').text('You have selected ' + count + ' applicants.')
+    }
 }
 
 /**
@@ -128,7 +153,7 @@ function countSelected() {
  * @param groupID 
  */
 function removeSelectedFromGroup(groupID) {
-    var checkboxes = $('.dtable-remove-checkbox:checkbox:checked');
+    var checkboxes = $('.member-remove-checkbox:checkbox:checked');
     var table = $('#group-dtable').DataTable();
 
     checkboxes.each(function () {
@@ -156,7 +181,7 @@ function removeSelectedFromGroup(groupID) {
  */
 function copySelectedToGroup() {
 
-    var contacts = $('.dtable-remove-checkbox:checkbox:checked');
+    var contacts = $('#group-dtable').find('.dtable-checkbox:checkbox:checked');
     var toGroupId = $('#groupDropdown').val();
 
     // for each selected contact, add to group
@@ -180,6 +205,69 @@ function copySelectedToGroup() {
 
 }
 
+/**
+ * This function adds selected applicants for an event to 
+ * a team for that event.
+ */
+function addSelectedToTeam(){
+    
+    var team = $('#team-select').val();
+
+    var selected = $('#applicant-dtable').find('.dtable-checkbox:checkbox:checked');
+
+    selected.each(function(){
+
+        var appId = $(this).data('applicantId');
+        
+        // ajax call to add to team
+        $.ajax({
+            type: 'PUT',
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            url: '/a/event-management/team/add',
+            data: {'applicantId' : appId, 'team' : team}, 
+        }).done(function(){
+            location.reload();
+        }).fail(function(error){
+            console.log(error);
+        });
+
+    });
+
+}
+
+/**
+ * This function adds selected applicants for an event to 
+ * a team for that event.
+ */
+function removeSelectedFromTeam(){
+    
+    
+    var selected = $('#applicant-dtable').find('.dtable-checkbox:checkbox:checked');
+
+    selected.each(function(){
+
+        var appId = $(this).data('applicantId');
+        
+        removeApplicantFromTeam(appId);
+
+    });
+
+}
+
+function removeApplicantFromTeam(applicantId){
+
+    // ajax call to remove from team
+    $.ajax({
+        type: 'DELETE',
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        url: '/a/event-management/team/remove/',
+        data: {'applicantId' : applicantId}, 
+    }).done(function(){
+        location.reload();
+    }).fail(function(error){
+        console.log(error);
+    });
+}
 
 // When the user ticks/unticks the 'select all' checkbox, tick or untick all visible 
 // datatable items
@@ -205,3 +293,74 @@ $('.dtable-control').on('click', function () {
         });
     }
 });
+
+function applicantManagementModal(id){
+    
+    $.ajax({
+        method: "get",
+        headers:  {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: `/a/event-management/applicants/${id}`
+    }).done((data) => {
+        var dob = new Date(data.dob);
+        pic = new Image(data.photo);
+        // Dynamically populate modal
+
+        // General Tab
+        $("#appFirstName").val(data.first_name);            $("#appLastName").val(data.last_name);
+        $("#appFightName").val(data.preferred_nickame);     $("#appAge").val(calculate_age(dob));
+        $("#appDob").val(dob.toLocaleDateString("en-US"));
+
+        // Set Photo
+        var img = $('#appPhoto');
+        img.attr('src', img.data('route') + data.id + '.png'); // appends id.png to end of supplied route
+
+        // Set Gender 
+        if(if_male = 0) {
+            $("#appGender").val("Male");
+        }else if(if_male = 1) {
+            $("#appGender").val("Female");
+        }
+        
+        $("#appEmail").val(data.email);                     $("#appPhone").val(data.phone);
+        $("#appMobile").val(data.mobile);                   $("#appAddress1").val(data.address_1);
+        $("#appAddress2").val(data.address_2);              $("#appSuburb").val(data.suburb);
+        $("#appCity").val(data.city);                       $("#appPostCode").val(data.postcode);
+
+        // Physical Tab
+        $("#appHeight").val(data.height + "cm");           $("#appWeightC").val(data.current_weight + "kg");
+        $("#appWeightE").val(data.expected_weight + "kg");  $("#appSportingExperience").attr('Placeholder', data.sporting_exp);
+        $("#appBoxingExperience").attr("Placeholder", data.boxing_exp);
+
+        // Additional Tab
+        $("#appOccupation").val(data.occupation);           $("#appEmployer").val(data.employer);
+        $("appConvictionDetails").attr("Placeholder", data.conviction_details);
+
+        // Set Consent
+        if(consent_to_test = 0){
+            $("#appConsent").val("Yes");
+        }else if(consent_to_test = 1){
+            $("#appConsent").val("Yes");
+        }
+
+        // Set Sponsor
+        if(can_secure_sponsor = 0){
+            $("#appSponsor").val("Yes");
+        }else if(consent_to_test = 1){
+            $("#appSponsor").val("Yes");
+        }
+
+
+        $("#applicantMoreInfoModal").modal('show');
+    }).fail((error) => {
+        console.log(error);
+    });
+}
+
+function calculate_age (data) {
+    var now = new Date();
+    var age = now - data;
+    age = Math.floor(age/1000/60/60/24/365);
+    return age;
+};

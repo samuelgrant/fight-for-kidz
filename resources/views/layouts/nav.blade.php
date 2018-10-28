@@ -3,7 +3,18 @@
         <div class="collapse navbar-collapse"
             id="navcol-1">
             <ul class="nav navbar-nav ml-auto">
-                <li role="presentation" class="nav-item"><a href="#" class="nav-link">Events</a></li>
+                <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle nav-link dropdown-toggle">Events</a>
+                    <div role="menu" class="dropdown-menu">
+                        @foreach($events as $event)                        
+                            @if($event->is_public)
+                                <a role="presentation" href="{{route('event', str_replace(' ', '-', $event->name))}}" class="dropdown-item">{{$event->name}}</a>
+                                @if($event == App\Event::current() && $event->isFutureEvent())
+                                    <hr class=" my-0">
+                                @endif
+                            @endif
+                        @endforeach
+                    </div>
+                </li>
                 @if(true)
                 <li role="presentation" class="nav-item"><a href="{{route('merchandise')}}" class="nav-link">Merchandise</a></li>
                 @endif

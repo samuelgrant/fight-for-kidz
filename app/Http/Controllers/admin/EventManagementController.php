@@ -4,13 +4,14 @@ namespace App\Http\Controllers\admin;
 
 use Auth;
 use App\Event;
+use App\Applicant;
 use GDText\Box;
 use GDText\Color;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
-
+use App\Contender, App\Bout, App\Sponsor;
 
 class EventManagementController extends Controller
 {
@@ -27,7 +28,7 @@ class EventManagementController extends Controller
 
         $events = Event::get();
         $deletedEvents = Event::onlyTrashed()->get();
-        return view('admin.eventManagement')->with(['events' => $events, 'deletedEvents' => $deletedEvents]);
+        return view('admin.eventsManagement')->with(['events' => $events, 'deletedEvents' => $deletedEvents]);
     }
 
     /**
@@ -49,6 +50,46 @@ class EventManagementController extends Controller
         session()->flash('success', 'The event called '.$event->name.' was created.');
         return redirect()->back();
     }
+
+    /**
+     * Returns event management view for specific event
+     */
+    public function view($eventID){
+
+        $event = Event::find($eventID);
+
+        return view('admin.eventManagement')->with('event', $event);
+
+    }
+
+    /**
+     *  Updates event
+     */
+    public function update(Request $request, $eventID){
+
+        $event = Event::find($eventID);
+
+        $event->name = $request->input('name');
+        $event->datetime = $request->input('date');
+        $event->venue_name = $request->input('venue');
+        $event->venue_address = $request->input('address');
+        $event->charity = $request->input('charity');
+
+        $event->updateGPS();
+
+        $event->save();
+
+        // We will also update the logo if the event is public. 
+        // This will only change the logo if the modified event
+        // is the 'current' event (i.e. most recent public event)
+        $this->updateLogo();
+
+        session()->flash('success', $event->name . ' was updated.');
+
+        return redirect()->back();
+
+    }
+
     /**
      * Soft deletes selected event
      * 
@@ -80,12 +121,11 @@ class EventManagementController extends Controller
         return redirect()->back();
     }
 
-  /**
-  * Inverts the is_public boolean of an event.
-  *
-  * @param $id
-  */
-  public function togglePublic($id){
+    /**
+    * Inverts the is_public boolean of an event.
+    * @param $id
+    */
+    public function togglePublic($id){
         $event = Event::find($id);
 
         if($event->is_public){
@@ -111,6 +151,29 @@ class EventManagementController extends Controller
         $visibility = $event->is_public ? 'public' : 'private';
         session()->flash('success', $event->name.' was made '.$visibility);
         return redirect()->back();
+    }
+
+    /**
+     *  This method toggles whether the event is open for applications or 
+     *  not. Visitors to the site will only be able to apply if the current 
+     *  event is open for applications.
+     */
+    public function toggleApplications($eventId){
+
+        $event = Event::find($eventId);
+
+        if($event->setApplications(!($event->open))){
+            $apps = $event->open ? 'on' : 'off';
+            session()->flash('success', 'Applications were turned ' . $apps . ' for ' . $event->name);
+        } else{
+            session()->flash('error', 'Cannot turn applications on for an event in the past.');
+        }
+
+        return redirect()->back();
+
+
+
+
     }
 
 
@@ -174,5 +237,6 @@ class EventManagementController extends Controller
         imagedestroy($image);
 
         Log::debug('Logo updated. New logo year is '.$currentEventYear);
-    }
+    }    
+        
 }

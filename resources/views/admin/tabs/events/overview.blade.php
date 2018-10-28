@@ -1,27 +1,27 @@
-@extends('admin.layouts.app')
-@section('page')
-<!-- Breadcrumbs-->
-<ol class="breadcrumb">
-    <li class="breadcrumb-item active">
-        Dashboard
-    </li>
-</ol>
+<h3 class="mt-4">{{$event->name}} Overview</h3>
 
-<!-- Page Content -->
+<hr>
 
 <div class="row">
 
-    {{-- Current event card --}}
     <div class="col-lg-6">
-        <div class="card border-primary">
+        <div class="card border-primary mb-2">
+
             <div class="card-header bg-primary text-white">
-                <small>Upcoming Event:</small>
-                <br>
-                <h4 class="text-white d-inline-block mb-0">{{$event->name}}</h4>
-                <span class="float-right"><a class="btn btn-primary" href="/a/event-management/{{$event->id}}"><i class="fas fa-cogs"></i>&nbsp; Manage</a></span>
+                <h4 class="mb-0 d-inline-block">Event Details</h4>
+                <span class="float-right">
+                                    <button role="button" data-toggle="modal" data-target="#eventDetailsModal" class="btn btn-primary float-right">
+                                        <i class="fas fa-cog"></i>&nbsp; Edit Details
+                                    </button> 
+                                </span>
             </div>
+
             <div class="card-body">
                 <table class="table">
+                    <tr>
+                        <td>Event Name:</td>
+                        <td>{{$event->name}}</td>
+                    </tr>
                     <tr>
                         <td>Event Date:</td>
                         <td>{{$event->datetime}}</td>
@@ -43,20 +43,26 @@
         </div>
     </div>
 
-    {{-- Applications card --}}
     <div class="col-lg-6">
-        <div class="card border-primary">
+        <div class="card border-primary mb-2">
             <div class="card-header bg-primary text-white">
-                <small>{{$event->name}}</small>
-                <br>
                 <h4 class="text-white d-inline-block mb-0">Pending Applications</h4>
                 <span class="float-right"><a class="btn btn-primary" href="/a/event-management/{{$event->id}}?tab=applicants"><i class="fas fa-search"></i>&nbsp; View</a></span>
             </div>
             <div class="card-body">
+
+                {{Form::open(['action' => ['admin\EventManagementController@toggleApplications', $event->id], 'method' => 'PUT'])}}
+                <label class="switch">
+                                            <input type="checkbox" {{$event->open ? 'checked' : ''}} onchange="this.form.submit()">
+                                            <span class="slider round"></span>
+                                    </label> {{Form::close()}}
+
+                <hr>
+
                 <h3 class="text-center">Applications Received</h3>
                 <h2 class="text-grey text-center">{{count($event->applicants)}}</h2>
 
-                <br>
+                <hr>
 
                 <div class="row">
                     <div class="col-6">
@@ -73,5 +79,3 @@
     </div>
 
 </div>
-
-@endsection

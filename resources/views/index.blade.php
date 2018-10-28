@@ -10,7 +10,7 @@
         		</div>  
         		<div class="text-white-50 mx-auto mt-5 mb-5">
             		<a class="bout-btn bout-btn-red" href="#about">About Us</a>
-            		<a class="bout-btn bout-btn-blue" href="/fight">Fight for Kidz 2018</a>
+            		<a class="bout-btn bout-btn-blue" href="{{route('event', str_replace(' ','-', App\Event::current()->name))}}">{{App\Event::current()->name}}</a>
         		</div>
       		</div>
     	</div>

@@ -37,7 +37,6 @@ class CreateApplicantsTable extends Migration
             $table->integer('expected_weight')->unsigned()->nullable();
             $table->integer('height')->unsigned();
             $table->boolean('right_handed');
-            $table->string('photo')->nullable(); // one photo upload per applicant
             $table->mediumText('sporting_exp');
             $table->mediumText('boxing_exp')->nullable(); // null if the applicant ticks 'no' on the form 
 

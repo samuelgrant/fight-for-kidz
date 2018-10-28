@@ -1,123 +1,141 @@
-/* Contender profile styling */
-.contender-profile-div{
-    margin-top:3rem;
-    border-radius: 25px;
-    padding: 20px 15px 0px 15px;
-}
+ /* Contains the bouts in the large screen format */
+ .bouts-row {
+    color: black;
+    display: none;
+  }
 
-.contender-profile{
+  /* Contains the bouts in the small screen format */
+  .bouts-stack {
+    color: black;
+  }
+
+  /* Point at which bout card format changes */
+  @media only screen and (min-width: 9px) {
+    .bouts-row {
+      display: flex;
+    }
+
+    .bouts-stack {
+      display: none;
+    }
+  }
+
+  .bout-card {
     color: white;
-}
-
-/* profile text styling */
-.contender-profile p{
-    text-align: justify;
-    margin-top: 2rem;
-}
-
-/* Donate button styling */
-.contender-profile .donate-button p{
-    font-size: 2rem; 
-    color: white;
-    border: 1px solid white;
-    text-transform: capitalize;
-    width: fit-content;
-    padding: 5px;
-    margin: auto;
-}
-.contender-profile .donate-button p:hover{
-    background-color: rgba(255,255,255,0.25);
-}
-
-.trans-red-bg{
-    background: linear-gradient(to right,rgba(255,0,0,0.3), transparent);
-    background-color: rgba(255,0,0,0.3);
-}
-
-.trans-blue-bg{
-    background-color: rgba(0,0,255,0.3);
-}
-
-.contender-div{
+    background-color: rgba(0, 0, 0, .75);
+    border-radius: 5px;
     padding: 1rem;
-}
+    width: 100%;
+    display: inline-block;
+    margin-bottom: 3rem;
+  }
 
-.contender-div h4{
+  .bout-header {
+    margin-bottom: 0.75rem;
     text-align: center;
-    height: fit-content;
-}
+  }
 
-/* Contender photo styling */
-.contender-red .contender-img{
-    /* border: 2px solid red; */
-}
-.contender-blue .contender-img{
-    /* border: 2px solid blue; */
-}
+  .bout-header .sponsored-by {
+    display: inline-block;
+    margin-right: 15px;
+  }
 
-/* Styling for the box under boxer image */
-.contender-info{    
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;   
-    padding: 15px;        
-    padding-bottom: 50px; 
-    color: white;
-}
+  .bout-header .sponsor-badge {
+    max-width: 50%;
+    display: inline-block;
+  }
 
-/* Red team styling */
-.contender-red .contender-info{
-    background: linear-gradient(red, transparent);
-}
+  .bout-header h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
 
-/* Blue team styling */
-.contender-blue .contender-info{
-    background: linear-gradient(blue, transparent);
-}
+  .sponsored-by {
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
 
-/* Stats table styling */
-.contender-div table{
-    margin:auto;
-}
-.contender-div table td, th{    
-    padding: 5px 10px;
-}
-
-/* Matchup div */
-.matchup{
-    /* background-color: rgba(0,0,0,0.4); */
-    margin-top: 1.5rem;
-    padding: 30px;
+  /* This contains the sponsor logo and takes the edge off the
+  white background of the logo */
+  .sponsor-badge {
     border-radius: 10px;
-}
+    background-color: white;
+    height: 85px;
+    padding: 10px;
+  }
 
-/* VS styling */
-.matchup h1{
-    font-size: 5rem;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    color: white;
+  @media only screen and (min-width: 992px){
+    .bout-header .sponsor-badge{
+        min-width: 250px;      
+    }
+  }
+
+  /* This is applied to a div which makes it possible to vertically align 
+    the sponsor image that comes after it. */
+  .sponsor-badge .vertical-aligner {
+    height: 100%;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .contender-card {
+    /* border: 1px solid black; */
+    padding: 1rem;
+    display: inline-block;
     text-align: center;
-    text-transform: uppercase;
-}
+    width: 50%;
+  }
 
-/*TBC signup button */
-.tbc-signup{
-    color: white;
-    text-align: center;
-    text-transform: uppercase;
-    border: 1px solid white;
-    width: fit-content;
-    margin: auto;
-    border-radius: 10px;
-    padding: 5px 10px;
-    transition: 0.5s ease;
-}
+  .contender-card-red {
+    float: left;
+  }
 
-.tbc-signup:hover{
-    background-color: rgba(255,255,255,0.3);
-    transition: 0.5s ease;
-}
+  .contender-card-blue {
+    float: right;
+  }
 
-.bout-btn {
+  .contender-card-inner {
+    padding: 1rem;
+    border-radius: 3px;
+  }
+
+  .contender-img {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1.5rem;
+  }
+
+  .contender-card-red .contender-img {
+    border: 4px solid red;
+  }
+
+  .contender-card-blue .contender-img {
+    border: 4px solid blue;
+  }
+
+  .contender-card-blue .contender-card-inner {
+    background: linear-gradient(transparent, blue);
+  }
+
+  .contender-card-red .contender-card-inner {
+    background: linear-gradient(transparent, red);
+  }
+
+  .contender-name {
+    margin-bottom: 1rem;
+  }
+
+  /* Fighter nickname */
+  .contender-name h4 {
+    font-style: italic;
+  }
+
+  .contender-sponsor {
+    margin-bottom: 1rem;
+  }
+
+  .bout-btn {
     color: white;
     padding: 0.5rem;
     background-color: transparent;
@@ -156,3 +174,30 @@
     /* border: 1px solid red; */
     border: 2px solid white;
   } 
+
+  @media only screen and (max-width: 468px){
+    .container{
+      width: 100%;
+      padding: 0px;
+    }
+
+    .contender-card{
+      margin: 0px;
+      padding: 0px;
+    }
+
+    .contender-card-inner{
+      padding: 5px;
+      margin: 0px;
+    }
+
+    .bout-card{
+      margin: 0px;
+      padding: 0px;
+    }
+
+    .sponsor-badge{
+      margin: 20px;
+    }
+  }
+  

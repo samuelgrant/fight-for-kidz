@@ -17,14 +17,22 @@ Route::get('/previous', 'PagesController@previous')->name('previous');
 Route::get('/contenders', 'PagesController@contenders')->name('contenders');
 Route::get('/contact', 'PagesController@contact')->name('contact');
 Route::get('/about', 'PagesController@about')->name('about');
+Route::get('/event/{eventId}', 'EventController@index')->name('event');
 
 Route::get('/Merchandise', 'MerchandiseController@Merchandise')->name('merchandise');
 
-Route::get('/fighter-application', 'EventApplicationController@index')->name('application.fight');
-Route::get('/sponsor-application', 'EventApplicationController@index')->name('application.sponsor');
-Route::post('/apply-to-fight', 'EventApplicationController@store')->name('apply');
+// Fighter application form and submission
+Route::get('/fighter-application', 'EventApplicationController@fighterForm')->name('application.fight');
+Route::post('/fighter-application', 'EventApplicationController@storeFighterApp')->name('application.fight.submit');
+
+// Sponsor application form and submission
+Route::get('/sponsor-application', 'EventApplicationController@sponsorForm')->name('application.sponsor');
+Route::post('/sponsor-application', 'EventApplicationController@storeSponsorApp')->name('application.sponsor.submit');
 
 // Subscriber route
 Route::post('/subscribe', 'SubscribersController@store')->name('subscribe');
+
+// Contender api
+Route::get('/contenders/bio/{contenderID}', 'EventController@getContender')->name('getContender');
 
 Auth::routes();

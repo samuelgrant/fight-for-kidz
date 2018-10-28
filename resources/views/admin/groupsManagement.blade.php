@@ -60,7 +60,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
-                <h4 class="modal-title">Create a New Group</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                <h4 class="modal-title bg-dark text-white">Create a New Group</h4><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white"
                         aria-hidden="true">×</span></button></div>
             <div class="modal-body">
                 {!! Form::open(['action' => 'admin\GroupManagementController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data'])!!}
