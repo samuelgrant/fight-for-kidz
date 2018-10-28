@@ -16,7 +16,7 @@
                     </div>
                 </li>
                 {{-- Event Applications --}}
-                @if($currentEvent->open)
+                @if($currentEvent->isFutureEvent() && $currentEvent->open)
                 <!-- Applications Dropdown -->
                 <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle nav-link dropdown-toggle">Apply</a>
                     <div role="menu" class="dropdown-menu">

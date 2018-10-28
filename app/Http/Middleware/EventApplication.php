@@ -16,7 +16,7 @@ class EventApplication
      */
     public function handle($request, Closure $next)
     {
-        if(Event::current()->is_public && Event::current()->open) 
+        if(Event::current()->is_public && Event::current()->open && Event::current()->isFutureEvent()) 
         {
             return $next($request);
         } else {
