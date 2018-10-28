@@ -87,8 +87,8 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="contenderBioUrl">Bio URL:</label>
-                                    <input type="text" name="contenderBioUrl" id="contenderBioUrl" class="form-control" value="">
+                                    <label for="contenderDonateUrl">Donate URL:</label>
+                                    <input type="text" name="contenderDonateUrl" id="contenderDonateUrl" class="form-control" value="">
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -105,6 +105,11 @@
                                     <input type="text" name="contenderReach" id="contenderReach" class="form-control" value="" required>
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contenderBioUrl">Bio URL:</label>
+                            <input type="text" name="contenderBioUrl" id="contenderBioUrl" class="form-control" value="">
                         </div>
 
                         <label for="contenderBio">Contender Bio:</label>

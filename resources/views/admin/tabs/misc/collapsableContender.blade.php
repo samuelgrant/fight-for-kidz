@@ -29,6 +29,9 @@
                 <tr>
                     <td><span class="badge {{$contender->team == 'blue' ? 'badge-primary' : 'badge-danger'}}">Reach:</span> {{$contender->reach}} cm</td>
                 </tr>
+                <tr>
+                    <td><span class="badge {{$contender->team == 'blue' ? 'badge-primary' : 'badge-danger'}}">Donate URL:</span> <a href="{{$contender->donate_url}}" target="blank">{{$contender->donate_url}}</a></td>
+                </tr>
             </table>
 
         </div>
