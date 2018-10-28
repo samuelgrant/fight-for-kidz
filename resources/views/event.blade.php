@@ -249,12 +249,15 @@
           dataType: 'json'
         }).done(function(data){
           
+          // get video id from donate_url
+          vidId = getQueryVariable(data['contender']['bio_url'], 'v')
+
           console.log(data);
           $('#first-name').text(data['applicant']['first_name']);
           $('#last-name').text(data['applicant']['last_name']);
           $('#nickname').text('\'' + data['contender']['nickname'] + '\'');
           // $('#pic').attr('src', data['imagePath']);
-          $('#bio-vid').attr('src', 'https://www.youtube-nocookie.com/embed/' + data['contender']['bio_url'] + '?rel=0&modestbranding=1');
+          $('#bio-vid').attr('src', 'https://www.youtube-nocookie.com/embed/' + vidId + '?rel=0&modestbranding=1');
           $('#bio-text').text(data['contender']['bio_text']);
           $('#modal-loader').hide();
         }).fail(function(err){
