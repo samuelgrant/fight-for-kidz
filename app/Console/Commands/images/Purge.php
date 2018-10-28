@@ -52,6 +52,7 @@ class Purge extends Command
         $counter = 0;
 
         // delete all group icons
+        $this->info('Deleting group icons');
         $files = Storage::files('public/images/groups');
         foreach($files as $file){
             Storage::delete($file);
@@ -59,6 +60,7 @@ class Purge extends Command
         }
 
         // delete all contender images
+        $this->info('Deleting contender icons');
         $files = Storage::files('public/images/contenders');
         foreach($files as $file){
             Storage::delete($file);
@@ -69,8 +71,9 @@ class Purge extends Command
     }
     
     protected function promptToCopyDefault(){
-        echo "Do you want to copy the default images back to the public directory? (Y/N)\n\n";
-        $userRequest = substr(readline(), 0, 1);
+        
+        $userRequest = $this->ask('Do you want to copy the default images back to the public directory? (Y/N)');
+        $userRequest = substr($userRequest, 0, 1);
 
         if(strtolower($userRequest) == "y"){
             $this->call('image:default');  
