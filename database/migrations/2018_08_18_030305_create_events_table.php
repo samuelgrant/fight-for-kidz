@@ -23,7 +23,8 @@ class CreateEventsTable extends Migration
             $table->string('venue_address');
             $table->string('venue_gps')->nullable();
             $table->string('desc_1', 2000)->nullable();
-            $table->string('desc_2', 2000)->nullable();   
+            $table->string('desc_2', 2000)->nullable();
+            $table->string('ticket_seller_url')->nullable();  
             $table->boolean('is_public')->default(false);
             $table->boolean('open')->default(false);
             $table->timestamps();

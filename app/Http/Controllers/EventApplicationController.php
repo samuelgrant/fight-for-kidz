@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Log;
 
 class EventApplicationController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('event.application');
+    }
+
     /**
      * Returns the fighter application form view
      */

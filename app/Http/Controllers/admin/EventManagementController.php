@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use Auth;
+use Input;
+use Validator;
 use App\Event;
 use App\Applicant;
 use GDText\Box;
@@ -66,6 +68,20 @@ class EventManagementController extends Controller
      *  Updates event
      */
     public function update(Request $request, $eventID){
+        $validator = Validator::make(Input::all(), [ 
+            'name' => 'required',
+            'tickets' => 'active_url',
+
+        ],        
+        // error messages
+        [
+            'required' => ':attribute must be filled in',
+            'accepted' => 'Please confirm that your details are correct',
+            'url' => 'Please enter a valid URL'
+        ]
+    
+    )->validate();
+
 
         $event = Event::find($eventID);
 
@@ -74,6 +90,7 @@ class EventManagementController extends Controller
         $event->venue_name = $request->input('venue');
         $event->venue_address = $request->input('address');
         $event->charity = $request->input('charity');
+        $event->ticket_seller_url = $request->input('tickets');
 
         $event->updateGPS();
 

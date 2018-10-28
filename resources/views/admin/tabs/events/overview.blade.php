@@ -10,10 +10,10 @@
             <div class="card-header bg-primary text-white">
                 <h4 class="mb-0 d-inline-block">Event Details</h4>
                 <span class="float-right">
-                                    <button role="button" data-toggle="modal" data-target="#eventDetailsModal" class="btn btn-primary float-right">
-                                        <i class="fas fa-cog"></i>&nbsp; Edit Details
-                                    </button> 
-                                </span>
+                    <button role="button" data-toggle="modal" data-target="#eventDetailsModal" class="btn btn-primary float-right">
+                        <i class="fas fa-cog"></i>&nbsp; Edit Details
+                    </button> 
+                </span>
             </div>
 
             <div class="card-body">
@@ -37,6 +37,10 @@
                     <tr>
                         <td>Charity:</td>
                         <td>{{$event->charity}}</td>
+                    </tr>
+                    <tr>
+                        <td>Buy Tickets (Seats) URL:</td>
+                        <td><a href="{{$event->ticket_seller_url}}">{{$event->ticket_seller_url}}</a></td>
                     </tr>
                 </table>
             </div>

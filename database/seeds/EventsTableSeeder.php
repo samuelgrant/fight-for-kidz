@@ -17,7 +17,8 @@ class EventsTableSeeder extends Seeder
             'venue_address' => 'Glengarry, Invercargill 9810',
             'venue_gps' => 'lat: -46.4037442, lng: 168.3789479',
             'datetime' => '2019-05-02 13:55:00',
-            'is_public' => '1'
+            'is_public' => '1',
+            'ticket_seller_url' => "https://www.ticketdirect.co.nz"
         ]);
 
         factory(App\Event::class)->create([
@@ -26,6 +27,7 @@ class EventsTableSeeder extends Seeder
             'venue_address' => '133 Tay St, Invercargill, 9810',
             'venue_gps' => 'lat: -46.4037442, lng: 168.3789479',
             'datetime' => '2018-12-02 13:55:00',
+            'ticket_seller_url' => "https://www.ticketdirect.co.nz"
         ]);
 
         factory(App\Event::class)->create([
@@ -34,6 +36,7 @@ class EventsTableSeeder extends Seeder
             'venue_address' => '384,400 km away',
             'venue_gps' => 'lat: -46.4037442, lng: 168.3789479',
             'datetime' => '1969-07-20 13:55:00',
+            'ticket_seller_url' => "https://www.ticketdirect.co.nz"
         ]);
     }
 }

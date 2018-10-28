@@ -19,7 +19,7 @@ class Defaults extends Command
      *
      * @var string
      */
-    protected $description = 'Makes a working copy of the default group images.';
+    protected $description = 'Makes a working copy of the default site images.';
 
     /**
      * Create a new command instance.
@@ -46,7 +46,8 @@ class Defaults extends Command
             // Delete the public image if it exists
             if (Storage::exists("public/images/groups/" . $filename)) {
                 Storage::delete("public/images/groups/" . $filename);
-                echo 'public/images/groups/'.$filename.' already exists, replacing.';
+                $this->info('public/images/groups/'.$filename.' already exists, replacing.');
+                
             }
             Storage::copy($file, "public/images/groups/" . $filename);
         }
@@ -59,17 +60,25 @@ class Defaults extends Command
             // Delete the public image if it exists
             if (Storage::exists("public/images/contenders/" . $filename)) {
                 Storage::delete("public/images/contenders/" . $filename);
-                echo 'public/images/contenders/'.$filename.' already exists, replacing.';
+                $this->info('public/images/contenders/'.$filename.' already exists, replacing.');
             }
             Storage::copy($file, "public/images/contenders/" . $filename);
         }
 
         // ensure that a logo file exists in public dir
         if(Storage::exists("public/images/f4k_logo.png")){
-            echo "Logo file already in public folder.";
+            $this->warn('Logo file already in public folder.');
         } else{
-            echo "Copying blank logo file to public folder. This will be updated when an events public visibility is toggled.";
+            $this->info('Copying blank logo file to public folder. This will be updated when an events public visibility is toggled.');
             Storage::copy("private/images/f4k_logo_noyear.png", "public/images/f4k_logo.png");
+        }
+
+        // ensure that a nodate logo file exists in the public dir
+        if(Storage::exists("public/images/f4k_logo_nodate.png")){
+            $this->warn('No date logo file already in public folder.');
+        } else{
+            $this->info('Copying a no date logo file to public folder. This version will not be changed.');
+            Storage::copy("private/images/f4k_logo_noyear.png", "public/images/f4k_logo_nodate.png");
         }
     }
 }
