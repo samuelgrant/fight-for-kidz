@@ -9,12 +9,12 @@ use Illuminate\Support\Facades\Log;
 
 class EventController extends Controller
 {  
-    public function index($eventId) {
-        
-        if($eventId == null){
+    public function index($eventName) {
+
+        if($eventName == null){
             $event = Event::current();
         } else{
-            $event = Event::find($eventId);
+            $event = Event::where('name', $eventName)->first();
         }
 
         return view('event')->with('event', $event);

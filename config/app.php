@@ -162,7 +162,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
-        App\Providers\LogoYearProvider::class,
         App\Providers\NavbarServiceProvider::class,
 
     ],
