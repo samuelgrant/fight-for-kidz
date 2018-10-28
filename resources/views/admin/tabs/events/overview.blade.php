@@ -39,7 +39,7 @@
                         <td>{{$event->charity}}</td>
                     </tr>
                     <tr>
-                        <td>Buy Tickets (Seats)</td>
+                        <td>Buy Tickets (Seats) URL:</td>
                         <td><a href="{{$event->ticket_seller_url}}">{{$event->ticket_seller_url}}</a></td>
                     </tr>
                 </table>

@@ -154,7 +154,7 @@
                         <input type="text" name="charity" id="eventCharity" class="form-control" value="{{$event->charity}}" required>
                     </div>
                     <div class="form-group">
-                        <label for="ticketsWebsite">Buy Tickets (Seats)</label>
+                        <label for="ticketsWebsite">Buy Tickets (Seats) URL</label>
                         <input type="text" name="tickets" id="ticketWebsite" class="form-control" value="{{$event->ticket_seller_url}}">
                     </div>
                     @csrf

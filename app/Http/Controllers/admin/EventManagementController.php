@@ -70,8 +70,7 @@ class EventManagementController extends Controller
     public function update(Request $request, $eventID){
         $validator = Validator::make(Input::all(), [ 
             'name' => 'required',
-            'datetime' => 'date|required',
-            'ticket_seller_url' => 'active_url',
+            'tickets' => 'active_url',
 
         ],        
         // error messages
@@ -81,7 +80,7 @@ class EventManagementController extends Controller
             'url' => 'Please enter a valid URL'
         ]
     
-    );
+    )->validate();
 
 
         $event = Event::find($eventID);
