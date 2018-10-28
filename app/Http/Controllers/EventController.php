@@ -14,7 +14,7 @@ class EventController extends Controller
         if($eventName == null){
             $event = Event::current();
         } else{
-            $event = Event::where('name', $eventName)->first();
+            $event = Event::where('name', str_replace('-', ' ', $eventName))->first();
         }
 
         return view('event')->with('event', $event);
