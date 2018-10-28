@@ -271,38 +271,5 @@
     });
 
 </script>
-
-<!-- Subscriber Section -->
-{{-- <section class="text-center" id="subscriber-section">
-
-  <div class="container my-5">
-    <h1 class="mb-3">Fight for Kidz Newsletter!</h1>
-    @include('layouts.messages')
-    <form method="post" action="{{route('subscribe')}}" class="justify-content-center">
-      <div class="row">
-        <div class="col-md-6 col-sm-12">
-          <div class="form-group">
-            <label for="name">Your Name</label>
-            <input type="text" name="name" id="name" class="form-control" required>
-          </div>
-        </div>
-        <div class="col-md-6 col-sm-12">
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email" class="form-control" required>
-          </div>
-        </div>
-
-        <div class="col-md-6 offset-md-3">
-          <button class="btn btn-danger btn-block " id="subscribeBtn" type="submit"><i class="fas fa-user-plus"></i>
-            Sign Up</button>
-          {!! app('captcha')->render(); !!}
-        </div>
-      </div>
-      @csrf
-    </form>
-  </div>
-</section> --}}
-
 </div>
 @endsection
