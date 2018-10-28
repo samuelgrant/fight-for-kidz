@@ -9,8 +9,8 @@
          			<img src="/storage/images/f4k_logo.png" class="img-fluid">
         		</div>  
         		<div class="text-white-50 mx-auto mt-5 mb-5">
-            		<a class="bout-btn bout-btn-red" href="#about">About Us</a>
-            		<a class="bout-btn bout-btn-blue" href="{{route('event', str_replace(' ','-', App\Event::current()->name))}}">{{App\Event::current()->name}}</a>
+            		<a class="btn btn-danger" href="#about">About Us</a>
+            		<a class="btn btn-primary bg-blue" href="{{route('event', str_replace(' ','-', App\Event::current()->name))}}">{{App\Event::current()->name}}</a>
         		</div>
       		</div>
     	</div>
@@ -45,33 +45,35 @@
 				</div> 
 			</div>
 		</section>
-		<section id="contact">
-			<div class="container conform">
-				<div class="push-down mt-0" style="padding: 20px 40px;">
-					<h1 class="text-white text-center">Contact Us</h1>
-					<p class="text-white text-center mb-5">Please feel free to contact us and we will get back to you as soon as possible.</p>
-					<form>
-						<div class="row">
-							<div class="form-group col-md-6">
-								<input id="name" type="text" class="form-control" placeholder="Your name">
+		<!-- Subscriber Section -->
+		<section class="text-center" id="subscriber-section">
+	  
+		  	<div class="container my-5">
+				<h1 class="mb-3">Fight for Kidz Newsletter!</h1>
+				@include('layouts.messages')
+				<form method="post" action="{{route('subscribe')}}" class="justify-content-center">
+					<div class="row">
+						<div class="col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="name">Your Name</label>
+								<input type="text" name="name" id="name" class="form-control" required>
 							</div>
-							<div class="form-group col-md-6">
-								<input id="name" type="text" class="form-control" placeholder="Your email address">
+						</div>
+						<div class="col-md-6 col-sm-12">
+							<div class="form-group">
+								<label for="email">Email</label>
+								<input type="email" name="email" id="email" class="form-control" required>
 							</div>
 						</div>
-						<div class="form-group">
-							<input id="name" type="text" class="form-control" placeholder="Phone number">
+			
+						<div class="col-md-6 offset-md-3">         
+							<button class="btn btn-success btn-block " id="subscribeBtn" type="submit"><i class="far fa-newspaper"></i> Sign up for updates</button>
+							{!! app('captcha')->render(); !!}      
 						</div>
-						<div class="form-group">
-							<label for="message" class="text-white">Your message:</label>
-							<textarea id="message" class="form-control" rows="5"></textarea>
-						</div>
-						<div class="text-center">
-							<input type="submit" role="button" class="btn btn-primary mt-2" value="Send Message">
-						</div>
-					</form>
-				</div>
-			</div>
+					</div>
+					@csrf
+				</form>
+		  	</div>
 		</section>
   	</div>
 @endsection
