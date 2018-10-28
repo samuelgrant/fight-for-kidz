@@ -15,11 +15,8 @@
                         @endforeach
                     </div>
                 </li>
-                @if(true)
-                <li role="presentation" class="nav-item"><a href="{{route('merchandise')}}" class="nav-link">Merchandise</a></li>
-                @endif
-
-                @if($currnetEvent->open)
+                {{-- Event Applications --}}
+                @if($currentEvent->open)
                 <!-- Applications Dropdown -->
                 <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle nav-link dropdown-toggle">Apply</a>
                     <div role="menu" class="dropdown-menu">
@@ -29,14 +26,26 @@
                 </li><!-- End Applications Dropdown -->
                 @endif
                 <!-- End Buy Tickets Dropdown -->
+                
+                {{-- Book Tickets (Seats & Tables) --}}
+                @if($currentEvent->isFutureEvent())
                 <!-- Buy Tickets Dropdown -->
                 <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle nav-link dropdown-toggle">Book Tickets</a>
                     <div role="menu" class="dropdown-menu">
-                        <a role="presentation" href="#" class="dropdown-item">Seats</a>
+                        @if(isset($currentEvent->ticket_seller_url))
+                        <a role="presentation" href="{{$currentEvent->ticket_seller_url}}" target="blank" class="dropdown-item">Seats</a>
+                        @endif
                         <a role="presentation" href="#" class="dropdown-item">Tables</a>
                     </div>
-                </li>
-                <!-- End Buy Tickets Dropdown -->
+                </li><!-- End Book Tickets -->
+                @endif
+                
+                @if(false)
+                <!-- Merchandise -->
+                <li role="presentation" class="nav-item"><a href="{{route('merchandise')}}" class="nav-link">Merchandise</a></li>
+                @endif
+
+                <!-- Contact/Subscribe -->
                 <li role="presentation" class="nav-item"><a href="{{route('contact')}}" class="nav-link">Contact Us</a></li>
             </ul>
         </div>

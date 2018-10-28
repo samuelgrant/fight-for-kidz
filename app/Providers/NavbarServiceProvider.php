@@ -18,7 +18,7 @@ class NavbarServiceProvider extends ServiceProvider
         {
             $events = Event::orderBy('datetime', 'desc')->get();
             $currentEvent = Event::current();
-            $view->with("events", $events)->with("currnetEvent", $currentEvent); 
+            $view->with("events", $events)->with("currentEvent", $currentEvent); 
         });
     }
 }
