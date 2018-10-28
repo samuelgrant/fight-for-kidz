@@ -18,13 +18,16 @@
                 @if(true)
                 <li role="presentation" class="nav-item"><a href="{{route('merchandise')}}" class="nav-link">Merchandise</a></li>
                 @endif
-                <!-- Buy Tickets Dropdown -->
+
+                @if($currnetEvent->open)
+                <!-- Applications Dropdown -->
                 <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle nav-link dropdown-toggle">Apply</a>
                     <div role="menu" class="dropdown-menu">
                         <a role="presentation" href="{{route('application.fight')}}" class="dropdown-item">To Fight</a>
                         <a role="presentation" href="{{route('application.sponsor')}}" class="dropdown-item">To be a Sponser</a>
                     </div>
-                </li>
+                </li><!-- End Applications Dropdown -->
+                @endif
                 <!-- End Buy Tickets Dropdown -->
                 <!-- Buy Tickets Dropdown -->
                 <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle nav-link dropdown-toggle">Book Tickets</a>

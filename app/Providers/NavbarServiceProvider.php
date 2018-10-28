@@ -17,8 +17,8 @@ class NavbarServiceProvider extends ServiceProvider
         view()->composer('layouts.nav', function($view)
         {
             $events = Event::orderBy('datetime', 'desc')->get();
-
-            $view->with("events", $events); 
+            $currentEvent = Event::current();
+            $view->with("events", $events)->with("currnetEvent", $currentEvent); 
         });
     }
 }
