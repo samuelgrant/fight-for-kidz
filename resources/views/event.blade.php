@@ -169,11 +169,6 @@
 
       <div class="modal-body">
 
-        <div id="modal-loader" style="display: none; text-align: center">
-          <p style="color: black;">Loading</p>
-          <img src="/storage/images/ajax-loader.gif">
-        </div>
-
         {{-- Dynamic content will load here --}}
         <div id="dynamic-content" style="color:black;">
 
@@ -240,8 +235,6 @@
 
         console.log(url);
 
-        $('#modal-loader').show();
-
         $.ajax({
           url: url,
           method: 'get',
@@ -252,7 +245,6 @@
           // get video id from donate_url
           vidId = getQueryVariable(data['contender']['bio_url'], 'v')
 
-          console.log(data);
           $('#first-name').text(data['applicant']['first_name']);
           $('#last-name').text(data['applicant']['last_name']);
           $('#nickname').text('\'' + data['contender']['nickname'] + '\'');
@@ -263,7 +255,6 @@
         }).fail(function(err){
           console.log(err);
           $('#dynamic-content').html('<p style="color:black;">Something went wrong. Please try again...</p>');
-          $('#modal-loader').hide();
         });
       });
 
