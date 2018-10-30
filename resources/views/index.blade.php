@@ -26,11 +26,6 @@
 							Fight for Kidz is a charity boxing event held in Southland every year to help raise funds for our most vunerable children.
 							Since 2003 boxers have gone head to head in xx events  raising money for verious charities rasing a total of $xxx,xxx.
 						</p>
-
-						<p class="texr-justify">
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae deserunt ab cupiditate quidem qui voluptates dolores quo veniam tempora neque sapiente libero ullam, 
-							excepturi culpa quibusdam non tempore! Quis, consequatur. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus maxime ducimus nulla veritatis quia aliquam vel architecto amet doloribus laudantium neque ipsum nemo, accusantium cupiditate et. Tempora eaque hic perspiciatis!
-						</p>
 					</div>
 					<div class="col-lg-8 col-md-6 col-col-sm-12 py-5">
 						<img src="storage/images/2016Cheque.jpg" class="img-fluid" alt="Fight for Kidz 2016 cheque">
