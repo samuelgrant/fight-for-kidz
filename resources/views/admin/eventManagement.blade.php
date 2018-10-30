@@ -94,15 +94,15 @@
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <label for="contenderHeight">Height:</label>
-                                    <input type="text" name="contenderHeight" id="contenderHeight" class="form-control" value="" required>
+                                    <input type="text" name="contenderHeight" id="contenderHeight" class="form-control" value="">
                                 </div>
                                 <div class="form-group">
                                     <label for="contenderWeight">Weight:</label>
-                                    <input type="text" name="contenderWeight" id="contenderWeight" class="form-control" value="" required>
+                                    <input type="text" name="contenderWeight" id="contenderWeight" class="form-control" value="">
                                 </div>
                                 <div class="form-group">
                                     <label for="contenderReach">Reach:</label>
-                                    <input type="text" name="contenderReach" id="contenderReach" class="form-control" value="" required>
+                                    <input type="text" name="contenderReach" id="contenderReach" class="form-control" value="">
                                 </div>
                             </div>
                         </div>
