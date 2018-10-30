@@ -110,6 +110,17 @@ $(document).ready(function() {
             { "orderable": false, "searchable": false }
         ]
     })
+
+    $('#sponsor-dtable').DataTable({
+        "columns":[
+            null,
+            null,
+            {"orderable" : false},
+            null,
+            null,
+            null,
+        ]
+    })
 });
 
 // Count the number of selected datatable rows on a page, and display the result
