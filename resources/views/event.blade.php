@@ -174,9 +174,9 @@
 
 
           <div class="text-center">
-              <h5 id=first-name class="d-inline mx-2"></h5>
-              <h4 id="nickname" class="d-inline mx-2"></h4>
-              <h5 id="last-name" class="d-inline mx-2"></h5>
+              <h3 id=first-name class="d-inline mx-2"></h3>
+              <h2 id="nickname" class="d-inline"></h2>
+              <h3 id="last-name" class="d-inline mx-2"></h3>
               <hr>
               <iframe width="560" height="315" id="bio-vid" src="" 
                 frameborder="0" allow="autoplay; encrypted-media;" allowfullscreen></iframe>
@@ -196,16 +196,16 @@
                   <table class="table table-striped table-bordered table-sm text-center">
                       <tbody>
                         <tr>
-                          <td> Age: 44</td>
+                          <td> Age: <span id="contenderAge">44</span></td>
                         </tr>
                         <tr>
-                          <td> Weight: 77kg</td>
+                          <td> Weight (kg): <span id="contenderWeight">77</span></td>
                         </tr>
                         <tr>
-                          <td> Height: 174cm</td>
+                          <td> Height (cm): <span id="contendereHeight">174</span></td>
                         </tr>
                         <tr>
-                          <td> Reach 174cm</td>
+                          <td> Reach (cm) <span id="contenderReach">174</span></td>
                         </tr>
                       </tbody>
                     </table>
@@ -242,17 +242,36 @@
           dataType: 'json'
         }).done(function(data){
           
-          // get video id from donate_url
-          vidId = getQueryVariable(data['contender']['bio_url'], 'v')
+          
 
           $('#first-name').text(data['applicant']['first_name']);
           $('#last-name').text(data['applicant']['last_name']);
-          $('#nickname').text('\'' + data['contender']['nickname'] + '\'');
-          // $('#pic').attr('src', data['imagePath']);
-          $('#bio-vid').attr('src', 'https://www.youtube-nocookie.com/embed/' + vidId + '?rel=0&modestbranding=1');
+
+          // show nickname if one is set
+          if(data['contender']['nickname'] != null){
+            $('#nickname').text('\'' + data['contender']['nickname'] + '\'');
+          }
+          
+          // get video id from donate_url
+          if(data['contender']['bio_url'] != null){
+          vidId = getQueryVariable(data['contender']['bio_url'], 'v')
+            $('#bio-vid').removeClass('d-none');
+            $('#bio-vid').attr('src', 'https://www.youtube-nocookie.com/embed/' + vidId + '?rel=0&modestbranding=1');
+          } else{
+            $('#bio-vid').addClass('d-none');
+          }
+
           $('#bio-text').text(data['contender']['bio_text']);
           $('#bio-image').attr('src', '/storage/images/contenders/' + data['contender']['id'] + '.png');
-          $('#modal-loader').hide();
+          $('#contenderAge').html(data['age']);
+          $('#contenderHeight').html(data['contender']['height']);
+          $('#contenderWeight').html(data['contender']['weight']);
+          $('#contenderReach').html(data['contender']['reach']);
+
+
+          console.log(data);
+
+
         }).fail(function(err){
           console.log(err);
           $('#dynamic-content').html('<p style="color:black;">Something went wrong. Please try again...</p>');
