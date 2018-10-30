@@ -25,6 +25,7 @@ class CreateContendersTable extends Migration
             $table->float('reach')->nullable();
             $table->string('bio_url')->nullable(); // url to bio video, if any
             $table->string('bio_text')->nullable();
+            $table->string('donate_url')->nullable();
             $table->timestamps();
 
             // Foreign key constraints definition

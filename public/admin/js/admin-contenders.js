@@ -15,6 +15,7 @@ function editContenderModal(contenderID){
         $('#contenderHeight').val(data.height);
         $('#contenderWeight').val(data.weight);
         $('#contenderReach').val(data.reach);
+        $('#contenderDonateUrl').val(data.donate_url);
         $('#contenderBioUrl').val(data.bio_url);
         $('#contenderBio').val(data.bio_text);
 
