@@ -32,17 +32,17 @@ class ContenderManagementController extends Controller
         $sponsor = Sponsor::find($request->input('contenderSponsor'));
         $image = $request->file('contenderImage');
 
-        $validator = Validator::make(Input::all(), [ 
-            // need to add the rest here
-            'contenderDonateUrl' => 'active_url',
-            ],        
-            // error messages
-            [
-                'required' => ':attribute must be filled in',
-                'url' => 'Please enter a valid URL'
-            ]
+        // $validator = Validator::make(Input::all(), [ 
+        //     // need to add the rest here
+        //     'contenderDonateUrl' => 'active_url',
+        //     ],        
+        //     // error messages
+        //     [
+        //         'required' => ':attribute must be filled in',
+        //         'url' => 'Please enter a valid URL'
+        //     ]
     
-        )->validate();
+        // )->validate();
                 
 
         $contender->nickname = $request->input('contenderNickname');
