@@ -26,6 +26,13 @@ Route::post('/group-management', 'admin\GroupManagementController@store')->name(
 Route::delete('/group-management/{groupID}', 'admin\GroupManagementController@destroy')->name('admin.group.destroy');
 Route::patch('/group-management/{groupID}', 'admin\GroupManagementController@restore')->name('admin.groupManagement.restore');
 
+//View, create delete, assign sponsors
+Route::get('/sponsor-management', 'SponsorManagementController@index')->name('admin.sponsorManagement');
+Route::post('/sponsor-management', 'SponsorManagementController@store')->name('admin.sponsorManagement.store');
+Route::put('/sponsor-management/{sponsorID}/{eventID}', 'SponsorManagementController@addToEvent')->name('admin.sponsorManagement.addToEvent');
+Route::delete('/sponsor-management/{SponsorID}', 'SponsorManagementController@deleteSponsor')->name('admin.sponsorManagement.deleteSponsor');
+Route::delete('/sponsor-management/{SponsorID}/{eventID}', 'SponsorManagementController@removeFromEvent')->name('admin.sponsorManagement.removeFromEvent');
+
 //View, Update Group
 Route::get('/group-management/{groupID}', 'admin\GroupManagementController@view')->name('admin.group');
 Route::put('/group-management/{groupID}', 'admin\GroupManagementController@update')->name('admin.group.update');

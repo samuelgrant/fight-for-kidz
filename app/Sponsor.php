@@ -27,4 +27,16 @@ class Sponsor extends Model
     {
         return $this->hasMany('App\Contender');
     }
+
+    public function addToEvent($event){
+
+        $this->attach($event);
+
+    }
+
+    public function removeFromEvent($event){
+
+        $this->detach($event);
+
+    }
 }
