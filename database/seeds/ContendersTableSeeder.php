@@ -12,7 +12,7 @@ class ContendersTableSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 1; $i < 13; $i++){
+        for($i = 1; $i < 9; $i++){
             $app = Applicant::find($i);
             
             if($i < 6){

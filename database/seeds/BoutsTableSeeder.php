@@ -13,7 +13,7 @@ class BoutsTableSeeder extends Seeder
      */
     public function run()
     {
-        for($i = 1; $i < 6; $i++){
+        for($i = 1; $i < 5; $i++){
 
             $bout = new Bout;
             $bout->event_id = 1;
