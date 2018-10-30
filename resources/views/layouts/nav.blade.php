@@ -35,7 +35,7 @@
                         @if(isset($currentEvent->ticket_seller_url))
                         <a role="presentation" href="{{$currentEvent->ticket_seller_url}}" target="blank" class="dropdown-item">Seats</a>
                         @endif
-                        <a role="presentation" href="#" class="dropdown-item">Tables</a>
+                        {{-- <a role="presentation" href="#" class="dropdown-item">Tables</a> --}}
                     </div>
                 </li><!-- End Book Tickets -->
                 @endif
