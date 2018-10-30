@@ -91,6 +91,7 @@ class EventManagementController extends Controller
         $event->venue_address = $request->input('address');
         $event->charity = $request->input('charity');
         $event->ticket_seller_url = $request->input('tickets');
+        $event->desc_1 = $request->input('eventDesc');
 
         $event->updateGPS();
 

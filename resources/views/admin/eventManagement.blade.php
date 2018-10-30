@@ -147,6 +147,10 @@
                         <input type="datetime-local" name="date" id="eventDate" class="form-control" value="{{$event->getDateTimeString()}}" required>
                     </div>
                     <div class="form-group">
+                        <label for="eventDesc">Description:</label>
+                        <textarea name="eventDesc" id="eventDesc" class="form-control" required>{{$event->desc_1}}</textarea>
+                    </div>
+                    <div class="form-group">
                         <label for="eventVenue">Venue Name:</label>
                         <input type="text" name="venue" id="eventVenue" class="form-control" value="{{$event->venue_name}}" required>
                     </div>

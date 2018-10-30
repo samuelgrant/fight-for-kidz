@@ -27,6 +27,10 @@
                         <td>{{$event->datetime}}</td>
                     </tr>
                     <tr>
+                        <td>Event Description:</td>
+                        <td>{{$event->desc_1}}</td>
+                    </tr>
+                    <tr>
                         <td>Event Venue:</td>
                         <td>{{$event->venue_name}}</td>
                     </tr>
