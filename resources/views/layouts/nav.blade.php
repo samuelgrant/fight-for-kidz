@@ -21,7 +21,7 @@
                 <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle nav-link dropdown-toggle">Apply</a>
                     <div role="menu" class="dropdown-menu">
                         <a role="presentation" href="{{route('application.fight')}}" class="dropdown-item">To Fight</a>
-                        <a role="presentation" href="{{route('application.sponsor')}}" class="dropdown-item">To be a Sponser</a>
+                        <a role="presentation" href="{{route('application.sponsor')}}" class="dropdown-item">To be a Sponsor</a>
                     </div>
                 </li><!-- End Applications Dropdown -->
                 @endif
