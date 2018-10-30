@@ -55,11 +55,14 @@
             </div>
             <div class="card-body">
 
-                {{Form::open(['action' => ['admin\EventManagementController@toggleApplications', $event->id], 'method' => 'PUT'])}}
-                <label class="switch">
-                                            <input type="checkbox" {{$event->open ? 'checked' : ''}} onchange="this.form.submit()">
-                                            <span class="slider round"></span>
-                                    </label> {{Form::close()}}
+                <div class="mx-auto text-center">
+                    {{Form::open(['action' => ['admin\EventManagementController@toggleApplications', $event->id], 'method' => 'PUT'])}}
+                    <h5 class="d-inline-block mr-3">Applications are {{$event->open ? 'open' : 'closed'}}</h5>
+                    <label class="switch align-middle">
+                                                <input type="checkbox" {{$event->open ? 'checked' : ''}} onchange="this.form.submit()">
+                                                <span class="slider round"></span>
+                                        </label> {{Form::close()}}
+                </div>
 
                 <hr>
 
