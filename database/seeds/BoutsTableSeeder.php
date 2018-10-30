@@ -18,7 +18,7 @@ class BoutsTableSeeder extends Seeder
             $bout = new Bout;
             $bout->event_id = 1;
             $bout->red_contender_id = Contender::find($i)->id;
-            $bout->blue_contender_id = Contender::find($i + 5)->id;
+            $bout->blue_contender_id = Contender::find($i + 4)->id;
             $bout->save();
         }
     }
