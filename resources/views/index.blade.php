@@ -6,7 +6,7 @@
 		<div class="container d-flex h-100 align-items-center">
       		<div class="mx-auto text-center">
         		<div>
-         			<img src="/storage/images/f4k_logo.png" class="img-fluid">
+         			<img src="{{App\Event::current()->isFutureEvent() ? '/storage/images/f4k_logo.png' : '/storage/images/f4k_logo_nodate.png'}}" class="img-fluid">
         		</div>  
         		<div class="text-white-50 mx-auto mt-5 mb-5">
             		<a class="btn btn-danger" href="#about">About Us</a>
