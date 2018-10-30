@@ -148,7 +148,7 @@ class EventApplicationController extends Controller
         }
 
         if(isset($img)){
-            imagepng($img, storage_path($imagePath . $imageName));
+            imagepng($img, storage_path('\app\\' . $imagePath . $imageName));
         } else{
             // save image to storage
             $image->storeAs($imagePath, $imageName);
