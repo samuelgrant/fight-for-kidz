@@ -82,9 +82,9 @@
         <div class="bout-header">
           <h2>BOUT {{++$i}}</h2>
           {{-- <p class="sponsored-by">sponsored by</p> --}}
-          <div class="sponsor-badge">
+          {{-- <div class="sponsor-badge">
             <div class="vertical-aligner"></div><img src="/storage/images/FighterSponsorslogo/Taurs sponsor.png" class="img-fluid bout-sponsor">
-          </div>
+          </div> --}}
         </div>
 
         <!-- Each bout card will contain two contender-cards -->
@@ -100,7 +100,7 @@
             </div>
             <div class="bout-btn bout-btn-red bio-view-button" data-toggle="modal" data-target="#bio-modal"
               data-contenderId="{{$bout->red_contender->id}}">View Bio</div>
-            <div class="bout-btn bout-btn-red" onclick="window.open('https://givealittle.co.nz/fundraiser/joe-blee-fight-for-kidz-2018', '_blank')">Donate</div>
+            <div class="bout-btn bout-btn-red" onclick="window.open('{{$bout->red_contender->donate_url ?? 'https://givealittle.co.nz'}}', '_blank')">Donate</div>
           </div>
         </div>
 
@@ -114,7 +114,7 @@
             </div>
             <div class="bout-btn bout-btn-blue bio-view-button" data-toggle="modal" data-target="#bio-modal"
               data-contenderId="{{$bout->blue_contender->id}}">View Bio</div>
-            <div class="bout-btn bout-btn-blue" onclick="location.href='#'">Donate</div>
+            <div class="bout-btn bout-btn-blue" onclick="window.open('{{$bout->blue_contender->donate_url ?? 'https://givealittle.co.nz'}}', '_blank')">Donate</div>
           </div>
         </div>  
       </div>
@@ -123,7 +123,7 @@
 
   </div> <!-- end all bouts -->
 
-  <!-- This version of the layout is displayed on a small screen. -->
+  {{-- <!-- This version of the layout is displayed on a small screen. -->
   <div class="bouts-stack">
     <div class="bout-card">
       <div class="row bout-header text-center">
@@ -160,7 +160,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> --}}
 
 <!-- Dynamic modal -->
 <div id="bio-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none; z-index:4005;">
@@ -181,7 +181,7 @@
               <iframe width="560" height="315" id="bio-vid" src="" 
                 frameborder="0" allow="autoplay; encrypted-media;" allowfullscreen></iframe>
               
-              <div class="text-justify">
+              <div class="text-justify px-4 py-3">
                   <p id="bio-text">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quam cupiditate ea, 
                     aliquam voluptate veritatis officiis sequi quaerat aliquid placeat voluptatum 
@@ -190,7 +190,7 @@
               </div>
 
               <div class="row">
-                <div class="col-lg-6"><img id="pic" src="/storage/images/applicants/default.png" class="img-fluid"></div>
+                <div class="col-lg-6"><img id="bio-image" src="/storage/images/contenders/0.png" class="img-fluid"></div>
                 <div class="col-lg-6">
                   <h5 class="text-center">My Stats:</h5>
                   <table class="table table-striped table-bordered table-sm text-center">
@@ -251,6 +251,7 @@
           // $('#pic').attr('src', data['imagePath']);
           $('#bio-vid').attr('src', 'https://www.youtube-nocookie.com/embed/' + vidId + '?rel=0&modestbranding=1');
           $('#bio-text').text(data['contender']['bio_text']);
+          $('#bio-image').attr('src', '/storage/images/contenders/' + data['contender']['id'] + '.png');
           $('#modal-loader').hide();
         }).fail(function(err){
           console.log(err);
