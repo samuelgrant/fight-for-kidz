@@ -30,14 +30,16 @@
                 {{-- Book Tickets (Seats & Tables) --}}
                 @if($currentEvent->isFutureEvent())
                 <!-- Buy Tickets Dropdown -->
-                <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle nav-link dropdown-toggle">Book Tickets</a>
-                    <div role="menu" class="dropdown-menu">
-                        @if(isset($currentEvent->ticket_seller_url))
-                        <a role="presentation" href="{{$currentEvent->ticket_seller_url}}" target="blank" class="dropdown-item">Seats</a>
-                        @endif
-                        {{-- <a role="presentation" href="#" class="dropdown-item">Tables</a> --}}
-                    </div>
-                </li><!-- End Book Tickets -->
+                    @if(isset($currentEvent->ticket_seller_url))
+                        <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle nav-link dropdown-toggle">Book Tickets</a>
+                            <div role="menu" class="dropdown-menu">
+                                
+                                <a role="presentation" href="{{$currentEvent->ticket_seller_url}}" target="blank" class="dropdown-item">Seats</a>
+                                
+                                {{-- <a role="presentation" href="#" class="dropdown-item">Tables</a> --}}
+                            </div>
+                        </li><!-- End Book Tickets -->
+                    @endif
                 @endif
                 
                 @if(false)
