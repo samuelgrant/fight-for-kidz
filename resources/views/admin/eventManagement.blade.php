@@ -26,8 +26,8 @@
                         role="tab" data-toggle="tab" href="#tab-3" id="contenders">Contenders</a></li>
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'applicants') ? 'active': '' }}"
                         role="tab" data-toggle="tab" href="#tab-4" id="applicants">Applicants</a></li>
-                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'auction')? 'active': '' }}"
-                    role="tab" data-toggle="tab" href="#tab-5" id="auction">Auction</a></li>
+                {{-- <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'auction')? 'active': '' }}"
+                    role="tab" data-toggle="tab" href="#tab-5" id="auction">Auction</a></li> --}}
             </ul>
         </div>
         <div class="tab-content">
