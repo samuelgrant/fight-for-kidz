@@ -115,11 +115,16 @@ class EventManagementController extends Controller
     public function destroy($id)
     {
         $event = Event::find($id);
+            
+        if(!$event->is(Event::current())){
             $event->is_public = false;
             $event->save();
 
             $event->delete();
             session()->flash('success', 'The event called '.$event->name.' was deleted.');
+        } else{
+            session()->flash('error', 'Please turn off public visibility before deleting this event');
+        }
     
         return redirect()->back();
     }
