@@ -304,7 +304,6 @@ function applicantManagementModal(id){
         url: `/a/event-management/applicants/${id}`
     }).done((data) => {
         var dob = new Date(data.dob);
-        pic = new Image(data.photo);
         // Dynamically populate modal
 
         // General Tab
