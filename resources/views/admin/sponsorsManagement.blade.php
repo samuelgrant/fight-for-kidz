@@ -49,9 +49,41 @@
             </div>
             <div class="modal-body">
                 <form method="post" action="{{route('admin.sponsorManagement.store')}}">
-
-                    to be constructed
-
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="companyName">Company Name:</label>
+                            <input type="text" name="companyName" id="companyName" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="contactName">Contact Name:</label>
+                            <input type="text" name="contactName" id="contactName" class="form-control">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label for="phone">Phone:</label>
+                            <input type="text" name="phone" id="phone" class="form-control" required>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="email">Email:</label>
+                            <input type="text" name="email" id="email" class="form-control" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="url">Website URL:</label>
+                        <input type="url" name="url" id="url" class="form-control">
+                    </div>
+                    <div class="card w-50 mx-auto text-center mb-3">
+                        <label for="logo">Logo:</label>                        
+                        <img class="logoPreview" id="logoPreview" src="/storage/images/sponsors/0.png">
+                        <label for="logoInput" class="btn btn-primary">Change
+                            <input type="file" name="logo" id="logoInput" class="form-control" hidden>
+                        </label>
+                    </div>
+                    @csrf
+                    {{method_field('PATCH')}}
+                    <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success float-right"><i class="fas fa-edit"></i> Save Changes</button>
                 </form>
             </div>
         </div>

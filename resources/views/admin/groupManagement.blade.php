@@ -39,7 +39,7 @@
                             <div class="float-right">
                                 <label class="btn btn-info btn-sm btn-file">
                                     <i class="fas fa-upload"></i> Select Image
-                                    <input name="groupImage" id="img" type="file" style="display: none;">
+                                    <input name="groupImage" id="groupImage" type="file" style="display: none;">
                                     <input type="checkbox" id="removeImageCheckbox" name="removeImageCheckbox" style="display:none">
                                 </label>
                                 <button class="btn btn-danger btn-sm d-block" type="button" id="btnRemoveImage" onclick="resetImagePre()"><i

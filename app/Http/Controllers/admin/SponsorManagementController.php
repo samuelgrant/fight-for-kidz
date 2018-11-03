@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
 use App\Sponsor, App\Event;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class SponsorManagementController extends Controller
 {
@@ -26,14 +27,61 @@ class SponsorManagementController extends Controller
     public function store(Request $request){
 
         // validate inputs here
+        $this->validate($request, [
+            'companyName' => 'required',
+            'phone' => 'required',
+            'email' => 'email|required',
+            'url' => 'active_url',
+            'logo' => 'mimes:png'
+        ]);
 
         $sponsor = new Sponsor;
 
         // assign inputs here
+        $sponsor->company_name = $request->input('companyName');
+        $sponsor->contact_name = $request->input('contactName');
+        $sponsor->contact_phone = $request->input('phone');
+        $sponsor->email = $request->input('email');
+        $sponsor->url = $request->input('url');
 
-        // save sponsor to database
-        //$sponsor->save();
+        // save sponsor to generate id
+        $sponsor->save();
 
+        $logoImage = $request->file('logo');
+        $sponsor->setImage($logoImage);
+
+        session()->flash('success', $sponsor->company_name . ' was successfully created');
+        return redirect()->back();
+
+    }
+
+    public function update($sponsorID, Request $request){
+
+        $sponsor = Sponsor::find($sponsorID);
+
+        // validate inputs here
+        $this->validate($request, [
+            'companyName' => 'required',
+            'phone' => 'required',
+            'email' => 'email|required',
+            'url' => 'active_url',
+            'logo' => 'mimes:png'
+        ]);
+
+        // assign inputs here
+        $sponsor->company_name = $request->input('companyName');
+        $sponsor->contact_name = $request->input('contactName');
+        $sponsor->contact_phone = $request->input('phone');
+        $sponsor->email = $request->input('email');
+        $sponsor->url = $request->input('url');
+
+        $logoImage = $request->file('logo');
+        $sponsor->setImage($logoImage);
+
+        $sponsor->save();
+
+        session()->flash('success', 'Details for ' . $sponsor->company_name . ' updated successfully');
+        return redirect()->back();
     }
 
     /**

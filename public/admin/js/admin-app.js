@@ -19,7 +19,7 @@ $(document).ready(function () {
 // Processes the image preview for group icon uploads.
 
 $(document).ready(function () {
-    $('input:file').change(function () {
+    $('#groupImage').change(function () {
         processImage(this);
     })
 });
