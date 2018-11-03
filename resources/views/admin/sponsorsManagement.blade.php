@@ -16,24 +16,22 @@
         </div>
     </div>
     <div class="col-md-12">
-        <table id="sponsor-dtable" class="table table-striped table-sm">
+        <table id="sponsor-dtable" class="table table-striped table-sm table-hover">
             <thead>
                 <tr>
                     <th>Company name</th>
-                    <th>Contact</th>
-                    <th>Phone</th>
-                    <th>Email</th>
+                    <th>Logo</th>
                     <th>Website</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($sponsors as $sponsor)
-                <tr>
-                    <td>{{$sponsor->company_name}}</td>
-                    <td>{{$sponsor->contact_name ?? '-'}}</td>
-                    <td>{{$sponsor->contact_phone}}</td>
-                    <td>{{$sponsor->email}}</td>
-                    <td>{{$sponsor->url ?? '-'}}<td>
+                <tr class="clickable-row" data-href="sponsor-management/{{$sponsor->id}}">
+                    <td class="align-middle">{{$sponsor->company_name}}</td>
+                    <td><img class="img-fluid" style="max-width: 200px;" src="/storage/images/sponsors/{{file_exists(public_path('storage/images/sponsors/' . $sponsor->id . '.png')) ? $sponsor->id : '0' }}.png"></td>
+                    <td class="align-middle">{{$sponsor->url ?? '-'}}</td>
+                    <td class="align-middle"></td>
                 </tr>
                 @endforeach
             </tbody>

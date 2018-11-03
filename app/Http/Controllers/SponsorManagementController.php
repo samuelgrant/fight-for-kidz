@@ -14,6 +14,14 @@ class SponsorManagementController extends Controller
         return view('admin.sponsorsManagement')->with('sponsors', $sponsors);
 
     }
+
+    public function view($sponsorID){
+
+        $sponsor = Sponsor::find($sponsorID);
+
+        return view('admin.sponsorManagement')->with('sponsor', $sponsor);
+
+    }
     
     public function store(Request $request){
 

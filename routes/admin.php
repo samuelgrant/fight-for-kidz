@@ -28,6 +28,7 @@ Route::patch('/group-management/{groupID}', 'admin\GroupManagementController@res
 
 //View, create delete, assign sponsors
 Route::get('/sponsor-management', 'SponsorManagementController@index')->name('admin.sponsorManagement');
+Route::get('/sponsor-management/{sponsorID}', 'SponsorManagementController@view')->name('admin.sponsorManagement.view');
 Route::post('/sponsor-management', 'SponsorManagementController@store')->name('admin.sponsorManagement.store');
 Route::put('/sponsor-management/{sponsorID}/{eventID}', 'SponsorManagementController@addToEvent')->name('admin.sponsorManagement.addToEvent');
 Route::delete('/sponsor-management/{SponsorID}', 'SponsorManagementController@deleteSponsor')->name('admin.sponsorManagement.deleteSponsor');

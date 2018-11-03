@@ -5,7 +5,15 @@ $(document).ready(function () {
 
         window.history.replaceState(null, null, newURLString);
     })
-})
+
+    // clicking a sponsor dtable row will show that sponsors page
+    $('.clickable-row').on('click', function(){
+
+        window.location = $(this).data('href');
+
+    });
+
+});
 
 
 // Processes the image preview for group icon uploads.
@@ -114,11 +122,9 @@ $(document).ready(function() {
     $('#sponsor-dtable').DataTable({
         "columns":[
             null,
+            {"orderable" : false, "searchable" : false},
             null,
-            {"orderable" : false},
-            null,
-            null,
-            null,
+            {"orderable" : false, "searchable" : false},
         ]
     })
 });
