@@ -65,6 +65,19 @@ class Defaults extends Command
             Storage::copy($file, "public/images/contenders/" . $filename);
         }
 
+        // copy sponsor default
+        $files = Storage::files("private/images/sponsor-defaults");
+        foreach ($files as $file) {
+            $filename = pathinfo($file, PATHINFO_FILENAME) . '.' . pathinfo($file, PATHINFO_EXTENSION);
+            
+            // Delete the public image if it exists
+            if (Storage::exists("public/images/sponsors/" . $filename)) {
+                Storage::delete("public/images/sponsors/" . $filename);
+                $this->info('public/images/sponsors/'.$filename.' already exists, replacing.');
+            }
+            Storage::copy($file, "public/images/sponsors/" . $filename);
+        }
+
         // ensure that a logo file exists in public dir
         if(Storage::exists("public/images/f4k_logo.png")){
             $this->warn('Logo file already in public folder.');
@@ -73,11 +86,11 @@ class Defaults extends Command
             Storage::copy("private/images/f4k_logo_noyear.png", "public/images/f4k_logo.png");
         }
 
-        // ensure that a nodate logo file exists in the public dir
+        // ensure that a noyear logo file exists in the public dir
         if(Storage::exists("public/images/f4k_logo_noyear.png")){
-            $this->warn('No date logo file already in public folder.');
+            $this->warn('No year logo file already in public folder.');
         } else{
-            $this->info('Copying a no date logo file to public folder. This version will not be changed.');
+            $this->info('Copying a no year logo file to public folder. This version will not be changed.');
             Storage::copy("private/images/f4k_logo_noyear.png", "public/images/f4k_logo_noyear.png");
         }
     }
