@@ -30,13 +30,13 @@ class Sponsor extends Model
 
     public function addToEvent($event){
 
-        $this->attach($event);
+        $this->events()->attach($event);
 
     }
 
     public function removeFromEvent($event){
 
-        $this->detach($event);
+        $this->events()->detach($event);
 
     }
 
