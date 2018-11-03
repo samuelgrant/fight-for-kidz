@@ -74,11 +74,11 @@ class Defaults extends Command
         }
 
         // ensure that a nodate logo file exists in the public dir
-        if(Storage::exists("public/images/f4k_logo_nodate.png")){
+        if(Storage::exists("public/images/f4k_logo_noyear.png")){
             $this->warn('No date logo file already in public folder.');
         } else{
             $this->info('Copying a no date logo file to public folder. This version will not be changed.');
-            Storage::copy("private/images/f4k_logo_noyear.png", "public/images/f4k_logo_nodate.png");
+            Storage::copy("private/images/f4k_logo_noyear.png", "public/images/f4k_logo_noyear.png");
         }
     }
 }
