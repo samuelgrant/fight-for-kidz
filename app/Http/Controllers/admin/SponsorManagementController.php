@@ -128,11 +128,20 @@ class SponsorManagementController extends Controller
         $sponsor = Sponsor::find($sponsorID);
         $event = Event::find($eventID);
 
-        $sponsor->removeFromEvent($event);
+        if(count($sponsor->boutsForEvent($eventID)) > 0 || count($sponsor->contendersForEvent($eventID)) > 0){
 
-        session()->flash('success', $sponsor->company_name . ' was removed from ' . $event->name);
+            session()->flash('error', 'Cannot remove this sponsor while they sponsor bouts/contenders in this event.');
 
-        return redirect()->back();
+            return redirect()->back();
 
+        } else {
+
+            $sponsor->removeFromEvent($event);
+
+            session()->flash('success', $sponsor->company_name . ' was removed from ' . $event->name);
+
+            return redirect()->back();
+
+        }
     }
 }
