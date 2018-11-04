@@ -20,7 +20,7 @@
                 <h5 class="mb-0"><i class="fas fa-exclamation-triangle"></i> Group Settings</h5>
             </div>
             <div class="card-body">
-                @if($group->type != "System Group")
+                @if($group->type != "System Group" && !$group->deleted_at)
                 <form method="POST" action="{{route('admin.group.update', [$group->id])}}" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="name">Group Name</label>
@@ -70,15 +70,18 @@
                     <li>Manage this group.</li>
                 </ul>
                 <p>You can re-enable this group from the deleted tab on the group management page.</p>
-                @elseif($group->deleted_at)
-                {!!Form::open(['action'=>['admin\GroupManagementController@restore', $group->id], 'method'=> 'POST'])
-                !!}
-                <button class="btn btn-info btn-block" type="submit"><i class="far fa-check-circle"></i> Restore Group</button>
-                {{Form::hidden('_method', 'patch')}}
-                {!! Form::close() !!}
                 @endif
                 @else
+                @if($group->deleted_at)
+                <span class="text-danger">This group is disabled, you cannot change it's details unless it is restored first. </span>
+                {!!Form::open(['action'=>['admin\GroupManagementController@restore', $group->id], 'method'=> 'POST'])
+                !!}
+                <button class="btn btn-info btn-block mt-3" type="submit"><i class="far fa-check-circle"></i> Restore Group</button>
+                {{Form::hidden('_method', 'patch')}}
+                {!! Form::close() !!}
+                @else
                 <span class="text-danger">This is an automated group. You cannot change the settings of this group.</span>
+                @endif
                 @endif
             </div>
         </div>
