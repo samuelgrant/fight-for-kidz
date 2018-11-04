@@ -220,6 +220,13 @@ function copySelectedToGroup() {
 
     });
 
+    // show success modal
+    var modal = $('#successModal');
+    var messageBox = $('#modal-message-success');
+
+    messageBox.text('Successfully copied ' + contacts.length + ' to group.');
+    $('#successModal').modal('show');
+
 }
 
 /**
