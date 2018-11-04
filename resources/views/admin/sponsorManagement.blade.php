@@ -66,6 +66,7 @@
 
             <div class="card-body">
                 <table class="table table-striped">
+                    @if(count($sponsor->events) > 0)
                     @foreach($sponsor->events as $event)
                     <tr>
                         <td>
@@ -76,6 +77,9 @@
                         </td>               
                     </tr>
                     @endforeach
+                    @else
+                        <h4 class="text-center">This sponsor has not sponsored any events yet.</h4>
+                    @endif
                 </table>
             </div>
         </div>

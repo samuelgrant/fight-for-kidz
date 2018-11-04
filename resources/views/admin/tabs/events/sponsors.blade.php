@@ -13,6 +13,7 @@
 
             <div class="card-body">
                 <table class="table">
+                    @if(count($event->sponsors) > 0)
                     @foreach($event->sponsors as $sponsor)
                     <tr>
                         <td>{{$sponsor->company_name}}
@@ -26,6 +27,9 @@
                         </td>
                     </tr>
                     @endforeach
+                    @else
+                        <h4 class="text-center">There are no sponsors set for this event.</h4>
+                    @endif
                 </table>
             </div>
         </div>
