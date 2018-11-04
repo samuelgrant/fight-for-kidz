@@ -110,10 +110,10 @@ class SponsorManagementController extends Controller
 
     }
     
-    public function addToEvent($sponsorID, $eventID){
+    public function addToEvent($sponsorID, Request $request){
 
         $sponsor = Sponsor::find($sponsorID);
-        $event = Event::find($eventID);
+        $event = Event::find($request->input('eventID'));
 
         $sponsor->addToEvent($event);
 

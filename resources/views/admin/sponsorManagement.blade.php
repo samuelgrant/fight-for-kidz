@@ -19,10 +19,10 @@
             <div class="card-header bg-primary text-white">
                 <h4 class="mb-0 d-inline-block">Sponsor Details</h4>
                 <span class="float-right">
-                            <button role="button" data-toggle="modal" data-target="#sponsorDetailsModal" class="btn btn-primary float-right">
-                                <i class="fas fa-cog"></i>&nbsp; Edit Details
-                            </button> 
-                        </span>
+                    <button role="button" data-toggle="modal" data-target="#sponsorDetailsModal" class="btn btn-primary float-right">
+                        <i class="fas fa-cog"></i>&nbsp; Edit Details
+                    </button> 
+                </span>
             </div>
 
             <div class="card-body">
@@ -62,6 +62,11 @@
 
             <div class="card-header bg-primary text-white">
                 <h4 class="mb-0 d-inline-block">Sponsorships</h4>
+                <span class="float-right">
+                    <button role="button" data-toggle="modal" data-target="#sponsorshipAddModal" class="btn btn-primary float-right">
+                        <i class="fas fa-plus"></i>&nbsp; Add sponsorship
+                    </button> 
+                </span>
             </div>
 
             <div class="card-body">
@@ -134,4 +139,31 @@
     </div>
 </div>
 <!-- End Edit Sponsor Details Modal -->
+
+{{-- Add sponsorship modal --}}
+<div class="modal fade" id="sponsorshipAddModal" tabindex="-1" role="dialog" aria-labelledby="Add Sponsorship" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h4 class="modal-title">Add Sponsorship</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body text-center">
+                    <h5>Select which event to sponsor:</h5>
+                    <form method="post" action="{{route('admin.sponsorManagement.addToEvent', ['sponsorID' => $sponsor->id])}}">
+                        <select class="form-control" name="eventID">
+                            @foreach(App\Event::all() as $event)
+                            <option value="{{$event->id}}">{{$event->name}}</option>
+                            @endforeach
+                        </select>
+                        <br>
+                        @csrf
+                        <button type="submit" class="btn btn-success">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- end sponsorship add modal --}}
+
 @endsection

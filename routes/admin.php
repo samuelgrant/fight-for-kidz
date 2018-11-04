@@ -31,7 +31,7 @@ Route::get('/sponsor-management', 'admin\SponsorManagementController@index')->na
 Route::get('/sponsor-management/{sponsorID}', 'admin\SponsorManagementController@view')->name('admin.sponsorManagement.view');
 Route::post('/sponsor-management', 'admin\SponsorManagementController@store')->name('admin.sponsorManagement.store');
 Route::patch('/sponsor-management/{sponsorID}', 'admin\SponsorManagementController@update')->name('admin.sponsorManagement.update');
-Route::put('/sponsor-management/{sponsorID}/{eventID}', 'admin\SponsorManagementController@addToEvent')->name('admin.sponsorManagement.addToEvent');
+Route::post('/sponsor-management/{sponsorID}', 'admin\SponsorManagementController@addToEvent')->name('admin.sponsorManagement.addToEvent');
 Route::delete('/sponsor-management/{SponsorID}', 'admin\SponsorManagementController@deleteSponsor')->name('admin.sponsorManagement.deleteSponsor');
 Route::delete('/sponsor-management/{SponsorID}/{eventID}', 'admin\SponsorManagementController@removeFromEvent')->name('admin.sponsorManagement.removeFromEvent');
 
