@@ -13,22 +13,31 @@
 
             <div class="card-body">
                 <table class="table">
-                    @if(count($event->sponsors) > 0)
-                    @foreach($event->sponsors as $sponsor)
+
+                    <thead>
+                        <th>View</th>
+                        <th>Company Name</th>
+                        <th class="text-right">Remove</th>
+                    </thead>
+
+                    @if(count($event->sponsors) > 0) @foreach($event->sponsors as $sponsor)
                     <tr>
-                        <td>{{$sponsor->company_name}}
-                            <form class="d-inline-block float-right" 
-                                action="{{route('admin.sponsorManagement.removeFromEvent', ['SponsorID' => $sponsor->id, 'eventID' => $event->id])}}"
+                        <td>
+                            <a class="btn btn-primary mr-2" href="{{route('admin.sponsorManagement.view', $sponsor->id)}}"><i class="fas fa-search-plus"></i></a>                          
+                        </td>
+
+                        <td>{{$sponsor->company_name}}</td>
+
+                        <td>
+                            <form class="d-inline-block float-right" action="{{route('admin.sponsorManagement.removeFromEvent', ['SponsorID' => $sponsor->id, 'eventID' => $event->id])}}"
                                 method="POST">
-                                @csrf
-                                {{method_field('DELETE')}}
-                                <button role="submit" class="btn btn-warning"><i class="fas fa-minus"></i></button> 
+                                @csrf {{method_field('DELETE')}}
+                                <button role="submit" class="btn btn-warning"><i class="fas fa-minus"></i></button>
                             </form>
                         </td>
                     </tr>
-                    @endforeach
-                    @else
-                        <h4 class="text-center">There are no sponsors set for this event.</h4>
+                    @endforeach @else
+                    <h4 class="text-center">There are no sponsors set for this event.</h4>
                     @endif
                 </table>
             </div>
