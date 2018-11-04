@@ -89,7 +89,7 @@
           <h2>BOUT {{++$i}}</h2>
           {{-- <p class="sponsored-by">sponsored by</p> --}}
           <div class="sponsor-badge">
-            <div class="vertical-aligner"></div><img src="/storage/images/FighterSponsorslogo/Taurs sponsor.png" class="img-fluid bout-sponsor">
+            <div class="vertical-aligner"></div><a href="{{$bout->sponsor->url}}" target="_blank"><img style="max-height:60px;" src="{{'/storage/images/sponsors/' . $bout->sponsor->id . '.png'}}" class="img-fluid bout-sponsor"></a>
           </div>
         </div>
 
@@ -128,45 +128,6 @@
     @endforeach
 
   </div> <!-- end all bouts -->
-
-  <!-- This version of the layout is displayed on a small screen. -->
-  <div class="bouts-stack">
-    <div class="bout-card">
-      <div class="row bout-header text-center">
-        <div class="col-sm-4">
-          <h2>BOUT ONE</h2>
-        </div>
-        <div class="col-sm-4">
-          <p>sponsored by</p>
-        </div>
-        <div class="col-sm-4 sponsor-badge mx-auto"><img src="/storage/images/FighterSponsorslogo/Taurs sponsor.png"
-            class="img-fluid bout-sponsor"></div>
-      </div>
-      <div class="row">
-        <div class="col-6 contender-card contender-card-red">
-          <div class="contender-card-inner">
-            <img src="/storage/images/Fighters/Logan Intimidator Valli.png" class="mx-auto contender-img">
-            <div class="contender-name">
-              <h5>Logan</h5>
-              <h4>'Intimidator'</h4>
-              <h5>Valli</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 contender-card contender-card-blue">
-          <div class="contender-card-inner">
-            <img src="/storage/images/Fighters/Logan Intimidator Valli.png" class="mx-auto contender-img">
-            <div class="contender-name">
-              <h5>Logan</h5>
-              <h4>'Intimidator'</h4>
-              <h5>Valli</h5>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- Dynamic modal -->
 <div id="bio-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none; z-index:4005;">
