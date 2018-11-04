@@ -75,7 +75,7 @@
                     </div>
                     <div class="card w-50 mx-auto text-center mb-3">
                         <label for="logo">Logo:</label>                        
-                        <img class="logoPreview" id="logoPreview" src="/storage/images/sponsors/0.png">
+                        <img class="logoPreview img-fluid" id="logoPreview" src="/storage/images/sponsors/0.png">
                         <label for="logoInput" class="btn btn-primary">Change
                             <input type="file" name="logo" id="logoInput" class="form-control" hidden>
                         </label>

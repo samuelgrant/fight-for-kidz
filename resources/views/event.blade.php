@@ -59,10 +59,16 @@
 <section id="sponsors-section">
   <h2 class="text-center text-dark">Our Sponsors</h2>
   <div class="slick-sponsors">
-    <div><img src="/img/customer-1.png" /></div>
-    <div><img src="/img/customer-2.png" /></div>
-    <div><img src="/img/customer-3.png" /></div>
-    <div><img src="/img/customer-4.png" /></div>
+    @foreach($event->sponsors as $sponsor)
+      {{-- only show logo in sponsors bar if the image file for it exists --}}
+      @if(file_exists(public_path('storage/images/sponsors/' . $sponsor->id . '.png')))
+        <div>
+            <a href="{{$sponsor->url}}" target="_blank">
+            <img class="img-fluid" style="max-width:250px;" src="{{'/storage/images/sponsors/' . $sponsor->id . '.png'}}">
+          </a>
+        </div>  
+      @endif
+    @endforeach
   </div>
 </section>
 
