@@ -32,7 +32,7 @@ class SponsorManagementController extends Controller
             'phone' => 'required',
             'email' => 'email|required',
             'url' => 'active_url',
-            'logo' => 'mimes:png'
+            // 'logo' => 'mimes:png'
         ]);
 
         $sponsor = new Sponsor;
@@ -65,7 +65,7 @@ class SponsorManagementController extends Controller
             'phone' => 'required',
             'email' => 'email|required',
             'url' => 'active_url',
-            'logo' => 'mimes:png'
+            // 'logo' => 'mimes:png'
         ]);
 
         // assign inputs here
