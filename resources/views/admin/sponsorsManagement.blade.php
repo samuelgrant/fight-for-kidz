@@ -48,7 +48,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="{{route('admin.sponsorManagement.store')}}">
+                <form method="post" action="{{route('admin.sponsorManagement.store')}}" enctype="multipart/form-data">
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="companyName">Company Name:</label>
@@ -81,7 +81,6 @@
                         </label>
                     </div>
                     @csrf
-                    {{method_field('PATCH')}}
                     <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-success float-right"><i class="fas fa-edit"></i> Save Changes</button>
                 </form>
