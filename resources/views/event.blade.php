@@ -74,6 +74,7 @@
 
 <?php global $i ?> <!-- counter used to name bouts -->
   @foreach($event->bouts as $bout)
+  @if($bout->contendersSet()) {{-- Only use bouts that have contenders set, this prevents crash --}}
     <!-- Each bout will create one column -->
     <div class="col-lg-6 bout-column">
 
@@ -119,6 +120,7 @@
         </div>  
       </div>
     </div> <!-- end each bout -->
+    @endif
     @endforeach
 
   </div> <!-- end all bouts -->
