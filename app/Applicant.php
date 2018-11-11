@@ -50,6 +50,8 @@ class Applicant extends Model
             $contender->applicant_id = $this->id;
             $contender->weight = $this->expected_weight;
             $contender->height = $this->height;
+            $contender->first_name = $this->first_name;
+            $contender->last_name = $this->last_name;
             $contender->nickname = $this->preferred_nickname;
             $contender->team = $team;
             $contender->event_id = $this->event_id;
