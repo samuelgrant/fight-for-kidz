@@ -19,7 +19,9 @@ class CreateAuctionItemsTable extends Migration
             $table->string('name');
             $table->string('desc');
             $table->string('donor');
-            $table->string('picture'); // uri to image
+            $table->string('picture'); // url to image
+            $table->integer('bout')->nullable();
+            $table->time('approximate_time');
             $table->float('sale_price', 8, 2)->nullable();
             $table->timestamps();
 
