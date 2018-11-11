@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Log;
 
 class ImageController extends Controller
 {
@@ -23,12 +24,12 @@ class ImageController extends Controller
      */
     public function getApplicantImage($filename){
 
-        $fullpath = "private/images/applicants/{$filename}";
+        $fullpath = "\private\images\applicants\\" . $filename;
 
-        if(Storage::exists($fullpath)){        
-            return response()->download(storage_path("app/" . $fullpath), null, [], null);
+        if(Storage::exists($fullpath)){       
+            return response()->download(storage_path("app\\" . $fullpath), null, [], null);
         } else{
-            return response()->download(storage_path("app/public/images/noImage.png"));
+            return response()->download(storage_path("app\public\images\\noImage.png"));
         }
     }
 }
