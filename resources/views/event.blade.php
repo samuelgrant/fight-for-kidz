@@ -92,9 +92,9 @@
           <div class="contender-card-inner">
             <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->red_contender->id . '.png')) ? '/storage/images/contenders/' . $bout->red_contender->id . '.png' : '/storage/images/contenders/0.png'}}" class="mx-auto contender-img">
             <div class="contender-name">
-              <h5>{{$bout->red_contender->applicant->first_name}}</h5>
+              <h5>{{$bout->red_contender->first_name}}</h5>
               <h4>{{$bout->red_contender->nickname}}</h4>
-              <h5>{{$bout->red_contender->applicant->last_name}}</h5>
+              <h5>{{$bout->red_contender->last_name}}</h5>
             </div>
             <div class="table-responsive table-borderless">
             </div>
@@ -108,9 +108,9 @@
           <div class="contender-card-inner">
             <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->blue_contender->id . '.png')) ? '/storage/images/contenders/' . $bout->blue_contender->id . '.png' : '/storage/images/contenders/0.png'}}" class="mx-auto contender-img">
             <div class="contender-name">
-              <h5>{{$bout->blue_contender->applicant->first_name}}</h5>
+              <h5>{{$bout->blue_contender->first_name}}</h5>
               <h4>{{$bout->blue_contender->nickname}}</h4>
-              <h5>{{$bout->blue_contender->applicant->last_name}}</h5>
+              <h5>{{$bout->blue_contender->last_name}}</h5>
             </div>
             <div class="bout-btn bout-btn-blue bio-view-button" data-toggle="modal" data-target="#bio-modal"
               data-contenderId="{{$bout->blue_contender->id}}">View Bio</div>
@@ -244,8 +244,8 @@
           
           
 
-          $('#first-name').text(data['applicant']['first_name']);
-          $('#last-name').text(data['applicant']['last_name']);
+          $('#first-name').text(data['contender']['first_name']);
+          $('#last-name').text(data['contender']['last_name']);
 
           // show nickname if one is set
           if(data['contender']['nickname'] != null){
