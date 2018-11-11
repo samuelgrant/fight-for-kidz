@@ -46,6 +46,8 @@ class ContenderManagementController extends Controller
                 
 
         $contender->nickname = $request->input('contenderNickname');
+        $contender->first_name = $request->input('contenderFirstName');
+        $contender->last_name = $request->input('contenderLastName');
         $contender->sponsor()->associate($sponsor);
         $contender->height = $request->input('contenderHeight');
         $contender->weight = $request->input('contenderWeight');

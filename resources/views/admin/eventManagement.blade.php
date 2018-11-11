@@ -74,8 +74,16 @@
                     <form method="post" id="editContenderForm" enctype="multipart/form-data" data-action="{{route('admin.eventManagement.updateContender', ['contenderID' => null])}}/" action="">
                         <div class="row">
                             <div class="col-lg-8">
+                            <div class="form-group">
+                                <label for="contenderFirstName">First Name:</label>
+                                <input type="text" name="contenderFirstName" id="contenderFirstName" class="form-control" value="" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contenderLastName">Nickname:</label>
+                                <input type="text" name="contenderLastName" id="contenderLastName" class="form-control" value="" required>
+                            </div>
                                 <div class="form-group">
-                                    <label for="contenderName">Nickname:</label>
+                                    <label for="contenderNickName">Nickname:</label>
                                     <input type="text" name="contenderNickname" id="contenderNickname" class="form-control" value="">
                                 </div>
                                 <div class="form-group">
