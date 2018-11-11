@@ -3,6 +3,7 @@
     <span class="float-right">
             <button class="btn btn-warning" onclick="removeSelectedFromTeam()"><i class="fas fa-minus"></i>&nbsp;Remove selected from team</button>
             <button class="btn btn-success" data-toggle="modal" data-target="#editTeamModal" onclick="countSelected('applicants')"><i class="fas fa-plus"></i>&nbsp;Add selected to team</button>
+            <a class="btn btn-info" href="{{route('admin.eventManagment.downloadApplicants', [$event->id])}}"><i class="fas fa-file-excel"></i> Download</a>
         </span>
 </div>
 

@@ -62,4 +62,8 @@ class ApplicantManagementController extends Controller
         }
 
     }
+
+    public function downloadExcel(Request $request){
+        
+    }
 }
