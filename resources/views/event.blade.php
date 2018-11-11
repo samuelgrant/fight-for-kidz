@@ -74,53 +74,53 @@
 
 <?php global $i ?> <!-- counter used to name bouts -->
   @foreach($event->bouts as $bout)
-  @if($bout->contendersSet()) {{-- Only use bouts that have contenders set, this prevents crash --}}
-    <!-- Each bout will create one column -->
-    <div class="col-lg-6 bout-column">
+    @if($bout->contendersSet()) {{-- Only use bouts that have contenders set, this prevents crash --}}
+      <!-- Each bout will create one column -->
+      <div class="col-lg-6 bout-column">
 
-      <!-- Each bout has a bout header -->
-      <div class="bout-card">
-        <div class="bout-header">
-          <h2>BOUT {{++$i}}</h2>
-          {{-- <p class="sponsored-by">sponsored by</p> --}}
-          {{-- <div class="sponsor-badge">
-            <div class="vertical-aligner"></div><img src="/storage/images/FighterSponsorslogo/Taurs sponsor.png" class="img-fluid bout-sponsor">
-          </div> --}}
-        </div>
-
-        <!-- Each bout card will contain two contender-cards -->
-        <div class="contender-card contender-card-red">
-          <div class="contender-card-inner">
-            <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->red_contender->id . '.png')) ? '/storage/images/contenders/' . $bout->red_contender->id . '.png' : '/storage/images/contenders/0.png'}}" class="mx-auto contender-img">
-            <div class="contender-name">
-              <h5>{{$bout->red_contender->applicant->first_name}}</h5>
-              <h4>{{$bout->red_contender->nickname}}</h4>
-              <h5>{{$bout->red_contender->applicant->last_name}}</h5>
-            </div>
-            <div class="table-responsive table-borderless">
-            </div>
-            <div class="bout-btn bout-btn-red bio-view-button" data-toggle="modal" data-target="#bio-modal"
-              data-contenderId="{{$bout->red_contender->id}}">View Bio</div>
-            <div class="bout-btn bout-btn-red" onclick="window.open('{{$bout->red_contender->donate_url ?? 'https://givealittle.co.nz'}}', '_blank')">Donate</div>
+        <!-- Each bout has a bout header -->
+        <div class="bout-card">
+          <div class="bout-header">
+            <h2>BOUT {{++$i}}</h2>
+            {{-- <p class="sponsored-by">sponsored by</p> --}}
+            {{-- <div class="sponsor-badge">
+              <div class="vertical-aligner"></div><img src="/storage/images/FighterSponsorslogo/Taurs sponsor.png" class="img-fluid bout-sponsor">
+            </div> --}}
           </div>
-        </div>
 
-        <div class="contender-card contender-card-blue">
-          <div class="contender-card-inner">
-            <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->blue_contender->id . '.png')) ? '/storage/images/contenders/' . $bout->blue_contender->id . '.png' : '/storage/images/contenders/0.png'}}" class="mx-auto contender-img">
-            <div class="contender-name">
-              <h5>{{$bout->blue_contender->applicant->first_name}}</h5>
-              <h4>{{$bout->blue_contender->nickname}}</h4>
-              <h5>{{$bout->blue_contender->applicant->last_name}}</h5>
+          <!-- Each bout card will contain two contender-cards -->
+          <div class="contender-card contender-card-red">
+            <div class="contender-card-inner">
+              <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->red_contender->id . '.png')) ? '/storage/images/contenders/' . $bout->red_contender->id . '.png' : '/storage/images/contenders/0.png'}}" class="mx-auto contender-img">
+              <div class="contender-name">
+                <h5>{{$bout->red_contender->applicant->first_name}}</h5>
+                <h4>{{$bout->red_contender->nickname}}</h4>
+                <h5>{{$bout->red_contender->applicant->last_name}}</h5>
+              </div>
+              <div class="table-responsive table-borderless">
+              </div>
+              <div class="bout-btn bout-btn-red bio-view-button" data-toggle="modal" data-target="#bio-modal"
+                data-contenderId="{{$bout->red_contender->id}}">View Bio</div>
+              <div class="bout-btn bout-btn-red" onclick="window.open('{{$bout->red_contender->donate_url ?? 'https://givealittle.co.nz'}}', '_blank')">Donate</div>
             </div>
-            <div class="bout-btn bout-btn-blue bio-view-button" data-toggle="modal" data-target="#bio-modal"
-              data-contenderId="{{$bout->blue_contender->id}}">View Bio</div>
-            <div class="bout-btn bout-btn-blue" onclick="window.open('{{$bout->blue_contender->donate_url ?? 'https://givealittle.co.nz'}}', '_blank')">Donate</div>
           </div>
-        </div>  
-      </div>
-    </div> <!-- end each bout -->
-    @endif
+
+          <div class="contender-card contender-card-blue">
+            <div class="contender-card-inner">
+              <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->blue_contender->id . '.png')) ? '/storage/images/contenders/' . $bout->blue_contender->id . '.png' : '/storage/images/contenders/0.png'}}" class="mx-auto contender-img">
+              <div class="contender-name">
+                <h5>{{$bout->blue_contender->applicant->first_name}}</h5>
+                <h4>{{$bout->blue_contender->nickname}}</h4>
+                <h5>{{$bout->blue_contender->applicant->last_name}}</h5>
+              </div>
+              <div class="bout-btn bout-btn-blue bio-view-button" data-toggle="modal" data-target="#bio-modal"
+                data-contenderId="{{$bout->blue_contender->id}}">View Bio</div>
+              <div class="bout-btn bout-btn-blue" onclick="window.open('{{$bout->blue_contender->donate_url ?? 'https://givealittle.co.nz'}}', '_blank')">Donate</div>
+            </div>
+          </div>  
+        </div>
+      </div> <!-- end each bout -->
+      @endif
     @endforeach
 
   </div> <!-- end all bouts -->
