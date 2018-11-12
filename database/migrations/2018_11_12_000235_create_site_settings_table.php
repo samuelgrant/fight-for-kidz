@@ -16,8 +16,8 @@ class CreateSiteSettingsTable extends Migration
         Schema::create('site_settings', function (Blueprint $table) {
             $table->increments('id');
             $table->timestamps();
-            $table->boolean('displayMerch')->default(false);
-            $table->longText('aboutUs');
+            $table->boolean('display_merch')->default(false);
+            $table->longText('about_us');
             $table->longText('merch')->nullable();
             $table->longText('auction')->nullable();
         });
