@@ -5,16 +5,26 @@
 
     <hr>
 
-    <div class="row">
+    <div class="row" style="display: flex">
     <?php global $i; ?> {{-- Counter that is used to name bouts --}}                
         @foreach($event->bouts as $bout)
-        <div class="col-lg-4 col-md-6">
-            <div class="card boutMgmt-card border-primary mb-3">
+        <div class="col-lg-4 col-md-6 mb-3">
+            <div class="card boutMgmt-card border-primary h-100">
                 <div class="card-header boutMgmt-header bg-primary text-white">
                     <h4 class="mb-0 d-inline">Bout {{++$i}}</h4> {{-- Counter increments, then prints --}}
                     <span class="btn btn-primary float-right" onclick="removeBout({{$bout->id}})"><i class="fas fa-trash"></i></span>
                 </div>
                 <div class="card-body boutMgmt-body">
+
+                     {{-- This alert will show if either the blue or red contender is missing, and will inform the admin that the bout
+                            will not be displayed on the public site --}}
+                    @if(!$bout->contendersSet())
+                        <div role="alert" class="alert alert-warning">
+                            <p class="mb-0">This bout will not display on the public website until both a blue and red contender have been assigned!</p>
+                        </div>
+                    @endif
+
+
                     <form data-bout-id="{{$bout->id}}" action="{{route('admin.eventManagement.updateBoutDetails', ['boutId' => $bout->id])}}"
                         data-red-id="{{$bout->red_contender_id ?? '0'}}" data-blue-id="{{$bout->blue_contender_id ?? '0'}}" data-sponsor-id="{{$bout->sponsor_id ?? '0'}}"
                         data-winner-id="{{$bout->victor_id ?? '0'}}" data-video-url="{{$bout->video_url}}"
