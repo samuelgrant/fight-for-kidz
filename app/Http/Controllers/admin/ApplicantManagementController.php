@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\admin;
 
-use Illuminate\Http\Request;
 use App\Applicant;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 
@@ -63,7 +63,20 @@ class ApplicantManagementController extends Controller
 
     }
 
-    public function downloadExcel(Request $request){
+    /**
+     * Creates and downloads an excel spreadsheet of applicants
+     * @param EventID
+     * @return ExcellObject
+     */
+    public function downloadExcel(Request $request, $eventID){
+        $redTeam = [];
+        $blueTeam = [];
+        $noTeam = [];
         
+        $applicants = Applicant::where('event_id', $eventID)->get();
+
+        Applicant::downloadCsv($applicants);
+
+        return redirect()->back();
     }
 }

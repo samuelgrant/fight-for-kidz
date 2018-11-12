@@ -143,5 +143,5 @@ class Event extends Model
 
         return $this->contenders()->where('team', $team)->get();
 
-    }
+    }    
 }
