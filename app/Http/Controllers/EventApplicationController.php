@@ -132,7 +132,8 @@ class EventApplicationController extends Controller
         Log::debug('saved applicant');
 
         $image = $request->file('photo');
-        $imageName = 'app/private/images/applicants/' . $applicant->id . '.png'; // use with storage_path()
+        $imagePath = 'private/images/applicants/';
+        $imageName = $applicant->id . '.png'; 
         
         // convert to png if not already
         switch (exif_imagetype($image)){
@@ -146,13 +147,11 @@ class EventApplicationController extends Controller
                 throw new InvalidArgumentException('Invalid image type'); // validation should prevent this happening
         }
 
-        Log::debug($img);
-
         if(isset($img)){
-            imagepng($img, storage_path($imageName));
+            imagepng($img, storage_path('\app\\' . $imagePath . $imageName));
         } else{
             // save image to storage
-            $image->storeAs(storage_path($imageName));
+            $image->storeAs($imagePath, $imageName);
         }
         // return to home page 
         session()->flash('success', 'Application received, thank you. We will be in touch');

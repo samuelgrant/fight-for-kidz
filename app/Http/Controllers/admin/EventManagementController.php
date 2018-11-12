@@ -91,6 +91,7 @@ class EventManagementController extends Controller
         $event->venue_address = $request->input('address');
         $event->charity = $request->input('charity');
         $event->ticket_seller_url = $request->input('tickets');
+        $event->desc_1 = $request->input('eventDesc');
 
         $event->updateGPS();
 
@@ -115,11 +116,16 @@ class EventManagementController extends Controller
     public function destroy($id)
     {
         $event = Event::find($id);
+            
+        if(!$event->is(Event::current())){
             $event->is_public = false;
             $event->save();
 
             $event->delete();
             session()->flash('success', 'The event called '.$event->name.' was deleted.');
+        } else{
+            session()->flash('error', 'Please turn off public visibility before deleting this event');
+        }
     
         return redirect()->back();
     }

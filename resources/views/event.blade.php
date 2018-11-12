@@ -74,56 +74,58 @@
 
 <?php global $i ?> <!-- counter used to name bouts -->
   @foreach($event->bouts as $bout)
-    <!-- Each bout will create one column -->
-    <div class="col-lg-6 bout-column">
+    @if($bout->contendersSet()) {{-- Only use bouts that have contenders set, this prevents crash --}}
+      <!-- Each bout will create one column -->
+      <div class="col-lg-6 bout-column">
 
-      <!-- Each bout has a bout header -->
-      <div class="bout-card">
-        <div class="bout-header">
-          <h2>BOUT {{++$i}}</h2>
-          {{-- <p class="sponsored-by">sponsored by</p> --}}
-          <div class="sponsor-badge">
-            <div class="vertical-aligner"></div><img src="/storage/images/FighterSponsorslogo/Taurs sponsor.png" class="img-fluid bout-sponsor">
+        <!-- Each bout has a bout header -->
+        <div class="bout-card">
+          <div class="bout-header">
+            <h2>BOUT {{++$i}}</h2>
+            {{-- <p class="sponsored-by">sponsored by</p> --}}
+            {{-- <div class="sponsor-badge">
+              <div class="vertical-aligner"></div><img src="/storage/images/FighterSponsorslogo/Taurs sponsor.png" class="img-fluid bout-sponsor">
+            </div> --}}
           </div>
+
+          <!-- Each bout card will contain two contender-cards -->
+          <div class="contender-card contender-card-red">
+            <div class="contender-card-inner">
+              <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->red_contender->id . '.png')) ? '/storage/images/contenders/' . $bout->red_contender->id . '.png' : '/storage/images/contenders/0.png'}}" class="mx-auto contender-img">
+              <div class="contender-name">
+                <h5>{{$bout->red_contender->applicant->first_name}}</h5>
+                <h4>{{$bout->red_contender->nickname}}</h4>
+                <h5>{{$bout->red_contender->applicant->last_name}}</h5>
+              </div>
+              <div class="table-responsive table-borderless">
+              </div>
+              <div class="bout-btn bout-btn-red bio-view-button" data-toggle="modal" data-target="#bio-modal"
+                data-contenderId="{{$bout->red_contender->id}}">View Bio</div>
+              <div class="bout-btn bout-btn-red" onclick="window.open('{{$bout->red_contender->donate_url ?? 'https://givealittle.co.nz'}}', '_blank')">Donate</div>
+            </div>
+          </div>
+
+          <div class="contender-card contender-card-blue">
+            <div class="contender-card-inner">
+              <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->blue_contender->id . '.png')) ? '/storage/images/contenders/' . $bout->blue_contender->id . '.png' : '/storage/images/contenders/0.png'}}" class="mx-auto contender-img">
+              <div class="contender-name">
+                <h5>{{$bout->blue_contender->applicant->first_name}}</h5>
+                <h4>{{$bout->blue_contender->nickname}}</h4>
+                <h5>{{$bout->blue_contender->applicant->last_name}}</h5>
+              </div>
+              <div class="bout-btn bout-btn-blue bio-view-button" data-toggle="modal" data-target="#bio-modal"
+                data-contenderId="{{$bout->blue_contender->id}}">View Bio</div>
+              <div class="bout-btn bout-btn-blue" onclick="window.open('{{$bout->blue_contender->donate_url ?? 'https://givealittle.co.nz'}}', '_blank')">Donate</div>
+            </div>
+          </div>  
         </div>
-
-        <!-- Each bout card will contain two contender-cards -->
-        <div class="contender-card contender-card-red">
-          <div class="contender-card-inner">
-            <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->red_contender->id . '.png')) ? '/storage/images/contenders/' . $bout->red_contender->id . '.png' : '/storage/images/contenders/0.png'}}" class="mx-auto contender-img">
-            <div class="contender-name">
-              <h5>{{$bout->red_contender->applicant->first_name}}</h5>
-              <h4>{{$bout->red_contender->nickname}}</h4>
-              <h5>{{$bout->red_contender->applicant->last_name}}</h5>
-            </div>
-            <div class="table-responsive table-borderless">
-            </div>
-            <div class="bout-btn bout-btn-red bio-view-button" data-toggle="modal" data-target="#bio-modal"
-              data-contenderId="{{$bout->red_contender->id}}">View Bio</div>
-            <div class="bout-btn bout-btn-red" onclick="window.open('https://givealittle.co.nz/fundraiser/joe-blee-fight-for-kidz-2018', '_blank')">Donate</div>
-          </div>
-        </div>
-
-        <div class="contender-card contender-card-blue">
-          <div class="contender-card-inner">
-            <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->blue_contender->id . '.png')) ? '/storage/images/contenders/' . $bout->blue_contender->id . '.png' : '/storage/images/contenders/0.png'}}" class="mx-auto contender-img">
-            <div class="contender-name">
-              <h5>{{$bout->blue_contender->applicant->first_name}}</h5>
-              <h4>{{$bout->blue_contender->nickname}}</h4>
-              <h5>{{$bout->blue_contender->applicant->last_name}}</h5>
-            </div>
-            <div class="bout-btn bout-btn-blue bio-view-button" data-toggle="modal" data-target="#bio-modal"
-              data-contenderId="{{$bout->blue_contender->id}}">View Bio</div>
-            <div class="bout-btn bout-btn-blue" onclick="location.href='#'">Donate</div>
-          </div>
-        </div>  
-      </div>
-    </div> <!-- end each bout -->
+      </div> <!-- end each bout -->
+      @endif
     @endforeach
 
   </div> <!-- end all bouts -->
 
-  <!-- This version of the layout is displayed on a small screen. -->
+  {{-- <!-- This version of the layout is displayed on a small screen. -->
   <div class="bouts-stack">
     <div class="bout-card">
       <div class="row bout-header text-center">
@@ -160,7 +162,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> --}}
 
 <!-- Dynamic modal -->
 <div id="bio-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none; z-index:4005;">
@@ -174,14 +176,14 @@
 
 
           <div class="text-center">
-              <h5 id=first-name class="d-inline mx-2"></h5>
-              <h4 id="nickname" class="d-inline mx-2"></h4>
-              <h5 id="last-name" class="d-inline mx-2"></h5>
+              <h3 id=first-name class="d-inline mx-2"></h3>
+              <h2 id="nickname" class="d-inline"></h2>
+              <h3 id="last-name" class="d-inline mx-2"></h3>
               <hr>
               <iframe width="560" height="315" id="bio-vid" src="" 
                 frameborder="0" allow="autoplay; encrypted-media;" allowfullscreen></iframe>
               
-              <div class="text-justify">
+              <div class="text-justify px-4 py-3">
                   <p id="bio-text">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quam cupiditate ea, 
                     aliquam voluptate veritatis officiis sequi quaerat aliquid placeat voluptatum 
@@ -190,22 +192,22 @@
               </div>
 
               <div class="row">
-                <div class="col-lg-6"><img id="pic" src="/storage/images/applicants/default.png" class="img-fluid"></div>
+                <div class="col-lg-6"><img id="bio-image" src="/storage/images/contenders/0.png" class="img-fluid"></div>
                 <div class="col-lg-6">
                   <h5 class="text-center">My Stats:</h5>
                   <table class="table table-striped table-bordered table-sm text-center">
                       <tbody>
                         <tr>
-                          <td> Age: 44</td>
+                          <td> Age: <span id="contenderAge">44</span></td>
                         </tr>
                         <tr>
-                          <td> Weight: 77kg</td>
+                          <td> Weight (kg): <span id="contenderWeight">77</span></td>
                         </tr>
                         <tr>
-                          <td> Height: 174cm</td>
+                          <td> Height (cm): <span id="contendereHeight">174</span></td>
                         </tr>
                         <tr>
-                          <td> Reach 174cm</td>
+                          <td> Reach (cm) <span id="contenderReach">174</span></td>
                         </tr>
                       </tbody>
                     </table>
@@ -242,16 +244,36 @@
           dataType: 'json'
         }).done(function(data){
           
-          // get video id from donate_url
-          vidId = getQueryVariable(data['contender']['bio_url'], 'v')
+          
 
           $('#first-name').text(data['applicant']['first_name']);
           $('#last-name').text(data['applicant']['last_name']);
-          $('#nickname').text('\'' + data['contender']['nickname'] + '\'');
-          // $('#pic').attr('src', data['imagePath']);
-          $('#bio-vid').attr('src', 'https://www.youtube-nocookie.com/embed/' + vidId + '?rel=0&modestbranding=1');
+
+          // show nickname if one is set
+          if(data['contender']['nickname'] != null){
+            $('#nickname').text('\'' + data['contender']['nickname'] + '\'');
+          }
+          
+          // get video id from donate_url
+          if(data['contender']['bio_url'] != null){
+          vidId = getQueryVariable(data['contender']['bio_url'], 'v')
+            $('#bio-vid').removeClass('d-none');
+            $('#bio-vid').attr('src', 'https://www.youtube-nocookie.com/embed/' + vidId + '?rel=0&modestbranding=1');
+          } else{
+            $('#bio-vid').addClass('d-none');
+          }
+
           $('#bio-text').text(data['contender']['bio_text']);
-          $('#modal-loader').hide();
+          $('#bio-image').attr('src', '/storage/images/contenders/' + data['contender']['id'] + '.png');
+          $('#contenderAge').html(data['age']);
+          $('#contenderHeight').html(data['contender']['height']);
+          $('#contenderWeight').html(data['contender']['weight']);
+          $('#contenderReach').html(data['contender']['reach']);
+
+
+          console.log(data);
+
+
         }).fail(function(err){
           console.log(err);
           $('#dynamic-content').html('<p style="color:black;">Something went wrong. Please try again...</p>');
