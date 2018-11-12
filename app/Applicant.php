@@ -2,7 +2,7 @@
 
 namespace App;
 
-use Maatwebsite\Excel\Excel;
+use Excel;
 use App\Applicant;
 use Illuminate\Database\Eloquent\Model;
 use App\Contender;
@@ -131,7 +131,7 @@ class Applicant extends Model
     private static function trimApplicants($applicants){
 
         for($i = 0; $i < count($applicants); $i++){
-            $tmpApplicant = new Applicant();
+            $tmpApplicant = [];
                 $tmpApplicant->name = $applicants[$i]->last_name.', '.$applicants[$i]->first_name;
                 $tmpApplicant->pref_name = $applicants[$i]->preferred_nickname;
                 $tmpApplicant->gender = ($applicants[$i]->is_male)? "Male":"Female";
@@ -139,7 +139,7 @@ class Applicant extends Model
                 $tmpApplicant->phone = (isset($applicants[$i]->mobile))? $applicants[$i]->mobile : $applicants[$i]->phone;
                 $tmpApplicant->email = $applicants[$i]->email;
                 $tmpApplicant->weight = $applicants[$i]->current_weight;
-                $tmpApplicant->height = $applicants[$i]->current_height;
+                $tmpApplicant->height = $applicants[$i]->height;
                 $tmpApplicant->dominant_hand = ($applicants[$i]->right_handed) ? "Right" : "Left";
                 $tmpApplicant->has_conviction = isset($applicants[$i]->conviction_details);
             $applicants[$i] = $tmpApplicant;
@@ -147,14 +147,15 @@ class Applicant extends Model
 
         return $applicants;
     }
-
+    
     /**
      * Breaks down applicants into teams
      * @param Elloquent\Applicants
      * @return Class\Teams
      */
     private static function getTeams($applicants){
-        $teams = new class{};
+        
+        $teams = new \stdClass();
         $redTeam = [];
         $blueTeam = [];
         $noTeam = [];
@@ -182,18 +183,32 @@ class Applicant extends Model
      * @return File\Applicants.csv
      */
     private static function createExcel($applicants, $teams){
-        // Excel::create('Applicants', function($excel) {
-        //     // Set the title
-        //     $excel->setTitle('Applications');
-
-        //     // Chain the setters
-        //     $excel->setCreator('Fight for Kidz System')->setCompany('Fight for Kidz');
-
-        //     //Creatte applicant sheet
-        //     $excel->sheet('All Applicants', function($sheet) use ($applicants) {
-        //         $sheet->setOrientation('landscape');
-        //         $sheet->fromArray($applicants, null, 'A3');
-        //     })->download('xlsx');
-        // });
+        
+        $all = $applicants->toArray();
+        $red =  $teams->red;
+        $blue = $teams->blue;
+        $none = $teams->none;
+     
+        return Excel::create('Fighter Applications', function($excel) use ($all, $red, $blue, $none) {
+			$excel->sheet('All Fighters', function($sheet) use ($all)
+	        {
+				$sheet->fromArray($all);
+            });
+            
+            $excel->sheet('Red Team', function($sheet) use ($red)
+	        {
+				$sheet->fromArray($red);
+            });
+            
+            $excel->sheet('Blue Team', function($sheet) use ($blue)
+	        {
+				$sheet->fromArray($blue);
+            });
+            
+            $excel->sheet('No Team', function($sheet) use ($none)
+	        {
+				$sheet->fromArray($none);
+	        });
+		})->download('xlsx');
     }
 }
