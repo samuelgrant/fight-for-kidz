@@ -110,6 +110,18 @@ $(document).ready(function() {
             { "orderable": false, "searchable": false }
         ]
     })
+
+    $('#auction-dtable').DataTable({
+        "columns":[
+            { "orderable": false, "searchable": false},
+            null,
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false}
+        ]
+    })
 });
 
 // Count the number of selected datatable rows on a page, and display the result
