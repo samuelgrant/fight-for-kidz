@@ -19,7 +19,7 @@
 	<div style="background-color: black;">
     	<section id="about" class="upcoming-section">
 			<div class="container">
-				<div class="row mb-5">
+				<div class="row mb-5 pb-5 d-flex">
 					<div class="col-lg-12 col-ms-12 col-sm-12">
 						<h1 class="text-white underline bar">About</h1>
 						<p class="text-justify">
@@ -27,10 +27,10 @@
 							Since 2003 boxers have gone head to head in xx events raising money for various charities rasing a total of $xxx,xxx.
 						</p>
 					</div>
-					<div class="col-lg-8 col-md-6 col-col-sm-12 py-5">
-						<img src="storage/images/2016Cheque.jpg" class="img-fluid" alt="Fight for Kidz 2016 cheque">
+					<div class="col-lg-8 col-md-6 col-col-sm-12">
+						<img src="storage/images/mainPagePhoto.jpg" class="img-fluid" alt="Fight for Kidz 2016 cheque">
 					</div>
-					<div class="col-lg-4 col-md-6 col-sm-12 mt-5 pb-4">
+					<div class="col-lg-4 col-md-6 col-sm-12" style="background-color: lightgray;">
 						<div id="fb-root"></div>
 							<div class="fb-page" data-href="https://www.facebook.com/fightforkidz" data-tabs="timeline" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
 								<blockquote cite="https://www.facebook.com/fightforkidz" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/fightforkidz">Fight For Kidz</a></blockquote>
