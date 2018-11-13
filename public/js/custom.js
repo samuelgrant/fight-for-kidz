@@ -62,7 +62,7 @@ $(document).ready(function(){
       $('html, body').animate({
         scrollTop: $(hash).offset().top - 100
       }, 800, function(){
-   
+  
         // Add hash (#) to URL when done scrolling (default click behavior)
         window.location.hash = hash;
       });
@@ -74,12 +74,12 @@ $(document).ready(function(){
 // returns URL query string with the given name - used with contender bio videos
 function getQueryVariable(url, variable)
 {   
-       var query = url.split("?")[1];
-       
-       var vars = query.split("&");
-       for (var i=0;i<vars.length;i++) {
-               var pair = vars[i].split("=");
-               if(pair[0] == variable){return pair[1];}
-       }
-       return(false);
+      var query = url.split("?")[1];
+      
+      var vars = query.split("&");
+      for (var i=0;i<vars.length;i++) {
+        var pair = vars[i].split("=");
+        if(pair[0] == variable){return pair[1];}
+      }
+      return(false);
 }

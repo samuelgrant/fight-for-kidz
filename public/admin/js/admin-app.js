@@ -119,6 +119,21 @@ $(document).ready(function() {
             { "orderable": false, "searchable": false},
             { "orderable": false, "searchable": false},
             { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false}
+        ]
+    })
+
+    $('#auctionDeleted-dtable').DataTable({
+        "columns":[
+            { "orderable": false, "searchable": false},
+            null,
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false},
             { "orderable": false, "searchable": false}
         ]
     })

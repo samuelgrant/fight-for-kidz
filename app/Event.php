@@ -82,8 +82,13 @@ class Event extends Model
     // Relationship to auction items - one to many
     public function auction_items()
     {
-        return $this->hasMany('App\Auction_Item');
+        return $this->hasMany('App\AuctionItem');
     }
+
+    // // Return deleted auction items
+    // public function deleted_auction_items(){
+    //     return $this->hasMany
+    // }
 
     // Relationship to sponsor - many to many
     public function sponsors()

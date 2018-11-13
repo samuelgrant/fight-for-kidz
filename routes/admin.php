@@ -72,5 +72,8 @@ Route::get('/event-management/contenders/{contenderID}', 'admin\ContenderManagem
 //Retrieve private images (https://laravel.io/forum/04-23-2015-securing-filesimages)
 Route::get('/applicantImages/{imageName}', 'admin\ImageController@getApplicantImage')->where('imageName', '^[^/]+$')->name('admin.getApplicantImage');
 
-//Get Auction Data
-Route::get('/event-management/aucton/{auctionId}', 'admin\AuctionManagementController@getAuctionItems')->name('admin.getAuctionItems');
+//Create Delete Restore Auction Items
+// Route::post('/event-management', 'admin\EventManagementController@store')->name('admin.eventManagement.store');
+// Route::put('/event-management/{eventID}/update', 'admin\EventManagementController@update')->name('admin.eventManagement.update');
+Route::delete('/auction-management/{itemID}', 'admin\AuctionManagementController@destroy')->name('admin.auctionManagement.destroy');
+Route::patch('/auction-management/{itemID}', 'admin\AuctionManagementController@restore')->name('admin.auctionManagement.restore');

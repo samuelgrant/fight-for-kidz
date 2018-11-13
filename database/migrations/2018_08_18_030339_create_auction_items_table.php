@@ -19,11 +19,13 @@ class CreateAuctionItemsTable extends Migration
             $table->string('name');
             $table->string('desc');
             $table->string('donor');
+            $table->string('donor_url');
             $table->string('picture'); // url to image
             $table->integer('bout')->nullable();
-            $table->time('approximate_time');
+            $table->time('approximate_time')->nullable();
             $table->float('sale_price', 8, 2)->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             // Foreign key constraint definition
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
