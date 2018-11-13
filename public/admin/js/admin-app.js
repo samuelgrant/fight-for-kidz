@@ -27,6 +27,17 @@ function processImage(input) {
     }
 }
 
+// set file input back to null if user cancels the update 
+function resetFile(defaultImagePath){
+
+    // set preview back to current
+    $('#imgPreview').prop('src', defaultImagePath);
+
+    // set input to null
+    $('input:file').prop('value', null);    
+    
+}
+
 function resetImagePre() {
 
     // Set preview image back to placeholder.

@@ -63,6 +63,9 @@ Route::patch('/event-management/bouts/{boutId}', 'admin\BoutManagementController
 Route::delete('/event-management/bouts/{boutId}', 'admin\BoutManagementController@removeBout')->name('admin.eventManagement.removeBout');
 Route::put('/event-management/bouts/{eventId}', 'admin\BoutManagementController@addBout')->name('admin.eventManagement.addBout');
 
+// Site settings functions
+Route::patch('/dashboard/settings', 'admin\SiteSettingsController@update')->name('admin.updateSettings');
+
 //Get Applicant Data
 Route::get('/event-management/applicants/{applicantId}', 'admin\ApplicantManagementController@getApplicant')->name('admin.applicantManagement.getApplicant');
 
