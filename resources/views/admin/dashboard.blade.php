@@ -80,7 +80,7 @@
             
             <div class="card-header bg-primary text-white">
                 <h4 class="text-white d-inline-block mb-0">Other Website Settings</h4>                
-                <span class="float-right"><button class="btn btn-primary" data-target="#siteSettingsModal" data-toggle="modal"><i class="fas fa-cogs"></i>&nbsp; Edit</button></span>
+                <span class="float-right"><button class="btn btn-primary" data-target="#siteSettingsModal" onclick="setSettingsModal({{$settings->display_merch}}, '{{$settings->about_us}}')" id="editSettingsButton" data-toggle="modal"><i class="fas fa-cogs"></i>&nbsp; Edit</button></span>
             </div>
 
             <div class="card-body">
@@ -90,7 +90,7 @@
                 <div class="row d-flex">
                     <div class="col-lg-8">
                         <h5>About Us</h5>
-                        <p class="text-justify">{{$settings->about_us}}</p>
+                        <p id="aboutUsText" class="text-justify">{{$settings->about_us}}</p>
                     </div>
     
                     <div class="col-lg-4">
@@ -120,7 +120,7 @@
                 <div class="form-group w-100 text-center">
                     <h5 class="mb-3">Enable Merchandise Page</h5>
                     <label class="switch align-middle">
-                            <input name="displayMerch" type="checkbox" {{$settings->display_merch ? 'checked' : ''}}>
+                            <input name="displayMerch" id="displayMerchCheckbox" type="checkbox" {{$settings->display_merch ? 'checked' : ''}}>
                             <span class="slider round"></span>
                     </label>
                 </div>                
@@ -140,14 +140,16 @@
                     <label class="btn btn-info btn-sm btn-file">
                         <i class="fas fa-upload"></i> Select Image
                         <input type="file" name="mainPagePhoto" id="mainPagePhoto" class="d-none">
-                    </label>                
+                    </label> 
+                    <small>file must be jpg less than 2MB</small>             
                 </div>
 
                 {{method_field('PATCH')}}
                 <div class="float-right">
-                    <button type="button" data-dismiss="modal" class="btn btn-danger" onclick="resetFile('/storage/images/mainPagePhoto.jpg')">Cancel</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-danger">Cancel</button>
                     <button class="btn btn-primary" type="submit">Save Changes</button>
-                </div>                    
+                </div>     
+                @csrf               
                 </form>
             </div>
         </div>
