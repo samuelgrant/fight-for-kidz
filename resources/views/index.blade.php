@@ -44,7 +44,7 @@
 		<section class="text-center" id="subscriber-section">
 	  
 		  	<div class="container my-5">
-				<h1 class="mb-3">Fight for Kidz Newsletter!</h1>
+				<h1 class="mb-3">Fight for Kidz Updates!</h1>
 				@include('layouts.messages')
 				<form method="post" action="{{route('subscribe')}}" class="justify-content-center">
 					<div class="row">
