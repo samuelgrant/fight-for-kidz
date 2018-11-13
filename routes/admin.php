@@ -71,3 +71,5 @@ Route::get('/event-management/contenders/{contenderID}', 'admin\ContenderManagem
 
 //Retrieve private images (https://laravel.io/forum/04-23-2015-securing-filesimages)
 Route::get('/applicantImages/{imageName}', 'admin\ImageController@getApplicantImage')->where('imageName', '^[^/]+$')->name('admin.getApplicantImage');
+
+Route::get('/emails', 'admin\MailController@index')->name('admin.sendMail');
