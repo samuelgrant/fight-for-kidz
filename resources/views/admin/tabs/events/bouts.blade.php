@@ -16,7 +16,7 @@
                 </div>
                 <div class="card-body boutMgmt-body">
 
-                     {{-- This alert will show if either the blue or red contender is missing, and will inform the admin that the bout
+                    {{-- This alert will show if either the blue or red contender is missing, and will inform the admin that the bout
                             will not be displayed on the public site --}}
                     @if(!$bout->contendersSet())
                         <div role="alert" class="alert alert-warning">

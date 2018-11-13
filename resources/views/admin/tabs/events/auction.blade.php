@@ -1,5 +1,6 @@
 <div class="mt-4">
     <h3 class="d-inline">{{$event->name}} : Auction</h3>
+    <span class="float-right btn btn-success" onclick=""><i class="fas fa-plus"></i>&nbsp;Add Item</span>
 </div>
 
 <hr>
@@ -37,11 +38,11 @@
                     <tbody>
                         @foreach($event->auction_items as $item)
                         <tr>
-                            <td>
+                            {{-- <td>
                                 <div class="form-check">
                                     <input type="checkbox" class="dtable-checkbox form-check-input dtable-control" value="checkedvalue">
                                 </div>
-                            </td>
+                            </td> --}}
                             <td>{{$item->name}}</td>
                             <td>{{$item->desc}}</td>
                             <td>{{$item->donor}}</td>
