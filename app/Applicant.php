@@ -108,19 +108,15 @@ class Applicant extends Model
         }
     }
 
-    public static function downloadCsv($applicants){
-        // Split the applicants into teams.
-        $teams = Applicant::getTeams($applicants);
-
+    public static function downloadCsv($applicants, $red_team, $blue_team, $no_team){
         // Remove unnecessary applicant informaiton
         $applicants = Applicant::trimApplicants($applicants);
-        $teams->red = Applicant::trimApplicants($teams->red);
-        $teams->red = Applicant::trimApplicants($teams->blue);
-        $teams->red = Applicant::trimApplicants($teams->none);
-
+        $red_team = Applicant::trimApplicants($red_team);
+        $blue_team = Applicant::trimApplicants($blue_team);
+        $no_team = Applicant::trimApplicants($no_team);
 
         //Create and download
-        Applicant::createExcel($applicants, $teams);
+        Applicant::createExcel($applicants, $red_team, $blue_team, $no_team);
     }
 
     /**
@@ -131,7 +127,7 @@ class Applicant extends Model
     private static function trimApplicants($applicants){
 
         for($i = 0; $i < count($applicants); $i++){
-            $tmpApplicant = [];
+            $tmpApplicant = new Applicant();
                 $tmpApplicant->name = $applicants[$i]->last_name.', '.$applicants[$i]->first_name;
                 $tmpApplicant->pref_name = $applicants[$i]->preferred_nickname;
                 $tmpApplicant->gender = ($applicants[$i]->is_male)? "Male":"Female";
@@ -149,45 +145,16 @@ class Applicant extends Model
     }
     
     /**
-     * Breaks down applicants into teams
-     * @param Elloquent\Applicants
-     * @return Class\Teams
-     */
-    private static function getTeams($applicants){
-        
-        $teams = new \stdClass();
-        $redTeam = [];
-        $blueTeam = [];
-        $noTeam = [];
-
-        foreach($applicants as $applicant){
-            if($applicant->getTeam() == "red"){
-                array_push($redTeam, $applicant);
-            } elseif ($applicant->getTeam() == "blue"){
-                array_push($blueTeam, $applicant);
-            } else {
-                array_push($noTeam, $applicant);
-            }
-        }
-
-        $teams->red = $redTeam;
-        $teams->blue = $blueTeam;
-        $teams->none = $noTeam;
-
-        return $teams;
-    }
-
-    /**
      * Creates and downloads the CSV file
      * @param Class\Teams
      * @return File\Applicants.csv
      */
-    private static function createExcel($applicants, $teams){
+    private static function createExcel($applicants, $red_team, $blue_team, $no_team){
         
         $all = $applicants->toArray();
-        $red =  $teams->red;
-        $blue = $teams->blue;
-        $none = $teams->none;
+        $red =  $red_team->toArray();
+        $blue = $blue_team->toArray();
+        $none = $no_team->toArray();
      
         return Excel::create('Fighter Applications', function($excel) use ($all, $red, $blue, $none) {
 			$excel->sheet('All Fighters', function($sheet) use ($all)

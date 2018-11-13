@@ -66,16 +66,30 @@ class ApplicantManagementController extends Controller
     /**
      * Creates and downloads an excel spreadsheet of applicants
      * @param EventID
-     * @return ExcellObject
+     * @return ExcellObject || @return error && @return Request
      */
     public function downloadExcel(Request $request, $eventID){
-        $redTeam = [];
-        $blueTeam = [];
-        $noTeam = [];
-        
-        $applicants = Applicant::where('event_id', $eventID)->get();
 
-        Applicant::downloadCsv($applicants);
+        try {
+            $applicants = Applicant::where('event_id', $eventID)->orderBy('last_name')->get();
+        
+            $red_team = Applicant::where('event_id', $eventID)->whereHas('contender', function($q) {
+                $q->where('team', '=', 'red');
+            })->orderBy('last_name')->get();
+    
+            $blue_team = Applicant::where('event_id', $eventID)->whereHas('contender', function($q) {
+                $q->where('team', '=', 'blue');
+            })->orderBy('last_name')->get();
+    
+            $no_team = Applicant::where('event_id', $eventID)->whereHas('contender', function($q) {
+                $q->where('team', '=', null);
+            })->orderBy('last_name')->get();
+    
+            Applicant::downloadCsv($applicants, $red_team, $blue_team, $no_team);
+        } catch(Exception $e) {
+            session()->flash('error', 'Something went wrong. The spreadsheet cannot be downloaded.');
+        }
+
 
         return redirect()->back();
     }
