@@ -1,7 +1,7 @@
 @if(count($errors) > 0 )
    @foreach($errors->all() as $error)
      <div role="alert" class="alert alert-danger">
-       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&#10007;</span></button>
+       <button type="button" class="close alert-tag" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
         {{$error}}
      </div>
    @endforeach
@@ -9,14 +9,14 @@
 
 @if(session('success'))
      <div role="alert" class="alert alert-success">
-       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&#10007;</span></button>
+       <button type="button" class="close alert-tag" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
         {!! session('success') !!}
      </div>
 @endif
 
 @if(session('error'))
      <div role="alert" class="alert alert-danger">
-       <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&#10007;</span></button>
+       <button type="button" class="close alert-tag" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">x</span></button>
         {!! session('error') !!}
      </div>
 @endif
