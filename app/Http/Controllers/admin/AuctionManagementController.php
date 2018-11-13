@@ -8,25 +8,30 @@ use App\AuctionItem;
 
 class AuctionManagementController extends Controller
 {
-    // /**
-    //  * Creates a new event with the default state not public
-    //  * 
-    //  * @param request
-    //  */
-    // public function store(request $request){
+    public function __construct()
+    {
+        $this->middleware('auth.activeUser');
+    }
+    
+    /**
+     * Creates a new auction item
+     * 
+     * @param request
+     */
+    public function store(request $request){
 
-    //     $event = new Event();
-    //         $event->name = $request->input('eventName');
-    //         $event->datetime = new carbon($request->input('dateTime'));
-    //         $event->venue_name = $request->input('venueName');
-    //         $event->venue_address = $request->input('venueAddress');
-    //     $event->save();
+        $item = new AuctionItem();
+            $item->name = $request->input('name');
+            $item->desc = $request->input('description');
+            $item->donor = $request->input('donor');
+            $item->donor_url = $request->input('donorUrl');
+            $item->picture = $request->input('itemImage');
+            $item->time = new carbon($request->input('time'));
+        $item->save();
 
-    //     $event->updateGPS();
-
-    //     session()->flash('success', 'The event called '.$event->name.' was created.');
-    //     return redirect()->back();
-    // }
+        session()->flash('success', 'The item called '.$item->name.' was created.');
+        return redirect()->back();
+    }
 
     // /**
     //  *  Updates event

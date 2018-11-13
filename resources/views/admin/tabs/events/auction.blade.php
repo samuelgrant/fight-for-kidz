@@ -1,6 +1,6 @@
 <div class="mt-4">
     <h3 class="d-inline">{{$event->name}} : Auction</h3>
-    <span class="float-right btn btn-success" onclick=""><i class="fas fa-plus"></i>&nbsp;Add Item</span>
+    <span class="float-right btn btn-success" data-toggle="modal" data-target="#createAuctionItemModal"><i class="fas fa-plus"></i>&nbsp;Add Item</span>
 </div>
 
 <hr>
@@ -47,7 +47,7 @@
                             <td>{{$item->desc}}</td>
                             <td>{{$item->donor}}</td>
                             <td><a href="{{$item->donor_url}}">{{$item->donor_url}}</a></td>
-                            <td><img src={{$item->picture}} alt={{$item->picture}} height=100 width=100></td>
+                            <td><img src={{$item->picture}} alt={{$item->picture}} height=100 width=80></td>
                             <td>{{$item->bout}}</td>
                             <td>{{$item->approximate_time}}</td>
                             <td>

@@ -73,7 +73,7 @@ Route::get('/event-management/contenders/{contenderID}', 'admin\ContenderManagem
 Route::get('/applicantImages/{imageName}', 'admin\ImageController@getApplicantImage')->where('imageName', '^[^/]+$')->name('admin.getApplicantImage');
 
 //Create Delete Restore Auction Items
-// Route::post('/event-management', 'admin\EventManagementController@store')->name('admin.eventManagement.store');
+Route::post('/auction-management', 'admin\AuctionManagementController@store')->name('admin.auctionManagement.store');
 // Route::put('/event-management/{eventID}/update', 'admin\EventManagementController@update')->name('admin.eventManagement.update');
 Route::delete('/auction-management/{itemID}', 'admin\AuctionManagementController@destroy')->name('admin.auctionManagement.destroy');
 Route::patch('/auction-management/{itemID}', 'admin\AuctionManagementController@restore')->name('admin.auctionManagement.restore');

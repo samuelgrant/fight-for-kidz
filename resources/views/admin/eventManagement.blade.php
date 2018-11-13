@@ -421,4 +421,72 @@
         </div>
     </div>
 <!-- End add to team modal -->
+
+<!-- Create new auction item modal -->
+<div class="modal fade" id="createAuctionItemModal" tabindex="-1" role="dialog" aria-labelledby="Edit Team" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h4 class="modal-title">Create new Auction Item</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    {!! Form::open(['action' => 'admin\AuctionManagementController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data'])!!}
+                    <div class="form-group">
+                        <label for="name-text">Item name:</label>
+                        <input  type="text" class="form-control" name="name" id="name-text" placeholder="*required">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description-text">Item description:</label>
+                        <input  type="text" class="form-control" name="description" id="description-text"  placeholder="*required">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="donor-text">Item donor:</label>
+                        <input  type="text" class="form-control" name="donor" id="donor-text"  placeholder="*required">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="donorUrl-text">Item donor url:</label>
+                        <input  type="text" class="form-control" name="donorUrl" id="donorUrl-text" placeholder="*required">
+                    </div>
+
+                    <div class="form-group">
+                        <div class=row>
+                            <div class="col-xs-6">
+                                <label for="bout-text">Item bout:</label>
+                                <input  type="text" style="width: 100px;" class="form-control" name="bout" id="bout-text">
+                            </div>
+                            <div class="col-xs-6">
+                                <label for="item-time">Item time:</label>
+                                <input  type="time" class="form-control" name="time" id="item-time">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="itemPicture">Optional item picture</label>
+                        <div>
+                            <img id="imgPreview" src="https://via.placeholder.com/80x100" class="float-left mr-2 group-icon" alt="placeholder">
+                            <label class="btn btn-info btn-sm btn-file">
+                                <i class="fas fa-upload"></i> Select Image
+                                <input name="itemImage" id="img" type="file" style="display: none;">
+                            </label>
+                            <button class="btn btn-danger btn-sm d-block" type="button" onclick="resetImagePre()"><i class="fas fa-times"></i>
+                                Remove Image</button>
+                        </div>
+                        <small id="itemPictureHelp" class="text-muted d-block">Use png 100H x 80W.</small>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-success">Confirm</button>
+
+                    {!! Form::close() !!}
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End add to team modal -->
 @endsection
