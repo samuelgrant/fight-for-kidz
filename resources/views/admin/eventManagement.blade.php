@@ -88,6 +88,7 @@
                                 <div class="form-group">
                                     <label for="contenderSponsor">Sponsor:</label>
                                     <select class="form-control" id="contenderSponsor" name="contenderSponsor">
+                                            <option value="0">--- No sponsor ---</option>
                                         @foreach($event->sponsors as $sponsor)
                                             <option value="{{$sponsor->id}}">{{$sponsor->company_name}}</option>
                                         @endforeach
