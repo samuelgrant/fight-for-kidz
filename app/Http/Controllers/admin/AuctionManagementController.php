@@ -20,13 +20,19 @@ class AuctionManagementController extends Controller
      */
     public function store(request $request){
 
+        $this->validate($request,[
+            'name' => 'string|required',
+            'description' => 'string|required|lte:150',
+            'donor' => 'string|required',
+            'donorUrl' => 'string',
+            'itemImage' => 'mimes:jpg,jpeg|max:2000'
+        ]);
+
         $item = new AuctionItem();
             $item->name = $request->input('name');
             $item->desc = $request->input('description');
             $item->donor = $request->input('donor');
             $item->donor_url = $request->input('donorUrl');
-            $item->picture = $request->input('itemImage');
-            $item->time = new carbon($request->input('time'));
         $item->save();
 
         session()->flash('success', 'The item called '.$item->name.' was created.');

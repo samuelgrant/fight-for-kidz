@@ -17,7 +17,7 @@
     <div class="col-md-12">
         <!-- Tabs -->
         <div>
-            <ul class="nav nav-tabs">
+            <ul class="nav nav-tabs nav-tabs-persistent">
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'overview') || (app('request')->input('tab') == '') ? 'active': '' }}"
                         role="tab" data-toggle="tab" href="#tab-1" id="overview">Overview</a></li>
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'bouts')? 'active': '' }}"
@@ -431,45 +431,32 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <form>
                     {!! Form::open(['action' => 'admin\AuctionManagementController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data'])!!}
+                    @csrf
                     <div class="form-group">
                         <label for="name-text">Item name:</label>
-                        <input  type="text" class="form-control" name="name" id="name-text" placeholder="*required">
+                        <input  type="text" class="form-control" name="name" id="name-text" placeholder="*required"  required>
                     </div>
 
                     <div class="form-group">
                         <label for="description-text">Item description:</label>
-                        <input  type="text" class="form-control" name="description" id="description-text"  placeholder="*required">
+                        <input  type="text" class="form-control" name="description" id="description-text"  placeholder="*required" required>
                     </div>
 
                     <div class="form-group">
                         <label for="donor-text">Item donor:</label>
-                        <input  type="text" class="form-control" name="donor" id="donor-text"  placeholder="*required">
+                        <input  type="text" class="form-control" name="donor" id="donor-text"  placeholder="*required" required>
                     </div>
 
                     <div class="form-group">
                         <label for="donorUrl-text">Item donor url:</label>
-                        <input  type="text" class="form-control" name="donorUrl" id="donorUrl-text" placeholder="*required">
-                    </div>
-
-                    <div class="form-group">
-                        <div class=row>
-                            <div class="col-xs-6">
-                                <label for="bout-text">Item bout:</label>
-                                <input  type="text" style="width: 100px;" class="form-control" name="bout" id="bout-text">
-                            </div>
-                            <div class="col-xs-6">
-                                <label for="item-time">Item time:</label>
-                                <input  type="time" class="form-control" name="time" id="item-time">
-                            </div>
-                        </div>
+                        <input  type="text" class="form-control" name="donorUrl" id="donorUrl-text">
                     </div>
 
                     <div class="form-group">
                         <label for="itemPicture">Optional item picture</label>
                         <div>
-                            <img id="imgPreview" src="https://via.placeholder.com/80x100" class="float-left mr-2 group-icon" alt="placeholder">
+                            <img id="imgPreview" src="https://via.placeholder.com/400x400" class="float-left mr-2 group-icon" alt="placeholder">
                             <label class="btn btn-info btn-sm btn-file">
                                 <i class="fas fa-upload"></i> Select Image
                                 <input name="itemImage" id="img" type="file" style="display: none;">
@@ -477,13 +464,12 @@
                             <button class="btn btn-danger btn-sm d-block" type="button" onclick="resetImagePre()"><i class="fas fa-times"></i>
                                 Remove Image</button>
                         </div>
-                        <small id="itemPictureHelp" class="text-muted d-block">Use png 100H x 80W.</small>
+                        <small id="itemPictureHelp" class="text-muted d-block">Use png 400H x 400W.</small>
                     </div>
                     
                     <button type="submit" class="btn btn-success">Confirm</button>
 
                     {!! Form::close() !!}
-                </form>
             </div>
         </div>
     </div>

@@ -9,8 +9,6 @@ $factory->define(App\AuctionItem::class, function (Faker $faker) {
         'desc' => $faker->paragraph(1),
         'donor' => $faker->name(),
         'donor_url' => $faker->url(),
-        'picture' => $faker->imageURL(),
-        'bout' => $faker->numberBetween($min = 1, $max = 12),
-        'approximate_time' => $faker->time($format = 'H:i')
+        'picture' => $faker->imageURL()
     ];
 });

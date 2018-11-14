@@ -1,6 +1,6 @@
 // adds the tab value to the URL and refreshes page
 $(document).ready(function () {
-    $('.nav-tabs').click(function (event) {
+    $('.nav-tabs-persistent').click(function (event) {
         var newURLString = window.location.pathname + "?tab=" + event.target.id;
 
         window.history.replaceState(null, null, newURLString);
@@ -113,30 +113,26 @@ $(document).ready(function() {
 
     $('#auction-dtable').DataTable({
         "columns":[
-            { "orderable": false, "searchable": false},
             null,
-            { "orderable": false, "searchable": false},
-            { "orderable": false, "searchable": false},
-            { "orderable": false, "searchable": false},
-            { "orderable": false, "searchable": false},
-            { "orderable": false, "searchable": false},
-            { "orderable": false, "searchable": false},
-            { "orderable": false, "searchable": false}
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false }
         ]
     })
 
-    $('#auctionDeleted-dtable').DataTable({
-        "columns":[
-            { "orderable": false, "searchable": false},
-            null,
-            { "orderable": false, "searchable": false},
-            { "orderable": false, "searchable": false},
-            { "orderable": false, "searchable": false},
-            { "orderable": false, "searchable": false},
-            { "orderable": false, "searchable": false},
-            { "orderable": false, "searchable": false}
-        ]
-    })
+    // $('#auctionDeleted-dtable').DataTable({
+    //     "columns":[
+    //         null,
+    //         { "orderable": false, "searchable": false},
+    //         { "orderable": false, "searchable": false},
+    //         { "orderable": false, "searchable": false},
+    //         { "orderable": false, "searchable": false},
+    //         { "orderable": false, "searchable": false},
+    //         null
+    //     ]
+    // })
 });
 
 // Count the number of selected datatable rows on a page, and display the result
