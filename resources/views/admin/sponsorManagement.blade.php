@@ -169,7 +169,7 @@
                     <form method="post" action="{{route('admin.sponsorManagement.addToEvent', ['sponsorID' => $sponsor->id])}}">
                         <select class="form-control" name="eventID" required>
                             @foreach(App\Event::all() as $event)
-                            @if(!$sponsor->events->contains($event))
+                            @if(!$sponsor->events->contains($event)) {{-- Do not show events that are already sponsored --}}
                             <option value="{{$event->id}}">{{$event->name}}</option>
                             @endif
                             @endforeach
