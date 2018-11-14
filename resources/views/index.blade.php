@@ -27,7 +27,7 @@
 						</p>
 					</div>
 					<div class="col-lg-8 col-md-6 col-col-sm-12">
-						<img src="storage/images/mainPagePhoto.jpg" class="img-fluid" alt="Fight for Kidz 2016 cheque">
+						<img src="storage/images/mainPagePhoto.jpg?{{filemtime(storage_path('app/public/images/mainPagePhoto.jpg'))}}" class="img-fluid" alt="Fight for Kidz 2016 cheque">
 					</div>
 					<div class="col-lg-4 col-md-6 col-sm-12" style="background-color: lightgray;">
 						<div id="fb-root"></div>

@@ -22,6 +22,10 @@ $(document).ready(function () {
     $('#groupImage').change(function () {
         processImage(this);
     })
+
+    $('#mainPagePhoto').change(function(){
+        processImage(this);
+    })
 });
 
 // Populates the other settings modal when user clicks edit 

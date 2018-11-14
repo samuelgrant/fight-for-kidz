@@ -101,7 +101,7 @@
     
                     <div class="col-lg-4">
                         <h5>Main Page Image</h5>
-                        <img class="img-fluid" src="/storage/images/mainPagePhoto.jpg" alt="Main Page Image">
+                        <img class="img-fluid" src="/storage/images/mainPagePhoto.jpg?{{filemtime(storage_path('app/public/images/mainPagePhoto.jpg'))}}" alt="Main Page Image">
                     </div>
                 </div>
 
