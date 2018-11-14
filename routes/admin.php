@@ -55,6 +55,9 @@ Route::put('/event-management/toggleapps/{eventID}', 'admin\EventManagementContr
 Route::put('/event-management/team/add', 'admin\ApplicantManagementController@addToTeam')->name('admin.eventManagement.addToTeam');
 Route::delete('/event-management/team/remove', 'admin\ApplicantManagementController@removeFromTeam')->name('admin.eventManagement.removeFromTeam');
 
+// Download applicants for a specific event
+Route::get('/event-managment/{eventID}/applicants', 'admin\ApplicantManagementController@downloadExcel')->name('admin.eventManagment.downloadApplicants');
+
 // Contender update
 Route::patch('/event-management/contenders/{contenderID}', 'admin\ContenderManagementController@update')->name('admin.eventManagement.updateContender');
 
