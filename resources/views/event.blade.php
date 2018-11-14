@@ -2,18 +2,17 @@
 
 @section('content')
 
-<!-- Upcoming event -->
 <div style="background-color: black;">
   <section class="upcoming-section">
     <div class="container">
-      <div class="row mb-5">
+      <div class="row pb-5">
         <div class="col-lg-8 col-md-6 col-col-sm-12 pt-5">
           <h1 class="text-white underline bar">{{$event->name}}</h1>
           <p class="text-justify">{{$event->desc_1}}</p>
         </div>
         <div class="col-lg-4 col-md-6 col-sm-12 text-white text-right results mt-5">
-          <p class="all-caps sidebar-heading">Date</p>
-          <p class="stat">{{\Carbon\Carbon::parse($event->datetime)->format('D d M Y')}}</p>
+          <p class="all-caps sidebar-heading">Date/Time</p>
+          <p class="stat">{{\Carbon\Carbon::parse($event->datetime)->format('D d M Y h:i a')}}{{--->toDayDateTimeString()--}}</p>
           <p class="all-caps sidebar-heading">Location</p>
           <p class="stat">{{$event->venue_name}}</p>
           <p class="all-caps sidebar-heading">Supporting</p>
@@ -57,7 +56,7 @@
 
 <!-- Sponsors Section -->
 <section id="sponsors-section">
-  <h2 class="text-center text-dark">Our Sponsors</h2>
+  <h2 class="text-center text-dark">Event Sponsors</h2>
   <div class="slick-sponsors">
     @foreach($event->sponsors as $sponsor)
       {{-- only show logo in sponsors bar if the image file for it exists --}}
@@ -90,9 +89,11 @@
         <div class="bout-header">
           <h2>BOUT {{++$i}}</h2>
           {{-- <p class="sponsored-by">sponsored by</p> --}}
-          <div class="sponsor-badge">
-            <div class="vertical-aligner"></div><a href="{{$bout->sponsor->url}}" target="_blank"><img style="max-height:60px;" src="{{'/storage/images/sponsors/' . $bout->sponsor->id . '.png'}}" class="img-fluid bout-sponsor"></a>
-          </div>
+          @if($bout->sponsor)
+            <div class="sponsor-badge">
+              <div class="vertical-aligner"></div><a href="{{$bout->sponsor->url}}" target="_blank"><img style="max-height:60px;" src="{{'/storage/images/sponsors/' . $bout->sponsor->id . '.png'}}" class="img-fluid bout-sponsor"></a>
+            </div>
+          @endif
         </div>
 
         <!-- Each bout card will contain two contender-cards -->
