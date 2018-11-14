@@ -75,9 +75,25 @@
                     @foreach($sponsor->events as $event)
                     <tr>
                         <td>
-                            {{$event->name}}
+                            <h4 class="d-inline-block">{{$event->name}}</h4>
                             <a class="float-right" data-toggle="collapse" href="#{{$event->id}}-collapse"><i class="fas fa-caret-down"></i></a>
                             <div class="collapse mt-3" id="{{$event->id}}-collapse">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <h5 class="mb-1">Bouts:</h5>
+                                        <p>{{count($sponsor->bouts()->where('event_id', $event->id)->get())}} bouts sponsored</p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <h5 class="mb-1">Fighters:</h5>
+                                        @if(count($sponsor->contenders()->where('event_id', $event->id)->get()) > 0)
+                                        @foreach($sponsor->contenders()->where('event_id', $event->id)->get() as $contender)
+                                        <p class="mb-0">{{$contender->getFullName()}}</p>
+                                        @endforeach
+                                        @else
+                                        <p class="mb-0">No fighters sponsored</p>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                         </td>               
                     </tr>
@@ -151,9 +167,11 @@
                 <div class="modal-body text-center">
                     <h5>Select which event to sponsor:</h5>
                     <form method="post" action="{{route('admin.sponsorManagement.addToEvent', ['sponsorID' => $sponsor->id])}}">
-                        <select class="form-control" name="eventID">
+                        <select class="form-control" name="eventID" required>
                             @foreach(App\Event::all() as $event)
+                            @if(!$sponsor->events->contains($event))
                             <option value="{{$event->id}}">{{$event->name}}</option>
+                            @endif
                             @endforeach
                         </select>
                         <br>
