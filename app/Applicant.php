@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Contender;
 use App\Traits\Groupable;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 
 class Applicant extends Model
 {
@@ -38,6 +39,22 @@ class Applicant extends Model
         }
 
         return false;
+    }
+
+    /** Returns collection of non contenders */
+    public static function getNonContenders(){
+
+        $nonContenders = new Collection;
+
+        foreach(Applicant::all() as $applicant){
+            if($applicant->contender == null){
+                $nonContenders->push($applicant);
+            } elseif($applicant->contender->team == null){
+                $nonContenders->push($applicant);
+            }
+        }
+
+        return $nonContenders;
     }
 
     /**

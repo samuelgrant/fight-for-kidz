@@ -81,9 +81,7 @@ class ApplicantManagementController extends Controller
                 $q->where('team', '=', 'blue');
             })->orderBy('last_name')->get();
     
-            $no_team = Applicant::where('event_id', $eventID)->whereHas('contender', function($q) {
-                $q->where('team', '=', null);
-            })->orderBy('last_name')->get();
+            $no_team = Applicant::getNonContenders();
     
             Applicant::downloadCsv($applicants, $red_team, $blue_team, $no_team);
         } catch(Exception $e) {
