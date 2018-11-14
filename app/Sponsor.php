@@ -65,7 +65,7 @@ class Sponsor extends Model
         $result = [];
 
         foreach($this->contenders as $contender){
-            if($contender->applicant->event_id == $evendID){
+            if($contender->applicant->event_id == $eventID){
                 $result[] = $contender;
             }
         }
