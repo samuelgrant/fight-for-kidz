@@ -58,7 +58,7 @@
 
             <!-- Tab 2 -->
             <div class="tab-pane" role="tabpanel" id="tab-deleted">
-                {{-- <table id="auctionDeleted-dtable" class="table table-striped table-hover table-sm">
+                <table id="auctionDeleted-dtable" class="table table-striped table-hover table-sm">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -87,7 +87,7 @@
                         </tr>
                         @endforeach
                     </tbody>
-                </table> --}}
+                </table>
             </div>
         </div>
     </div>
