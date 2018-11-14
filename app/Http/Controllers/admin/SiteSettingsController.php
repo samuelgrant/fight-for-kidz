@@ -14,7 +14,7 @@ class SiteSettingsController extends Controller
         
         $this->validate($request, [
             'aboutUs' => 'required|string',
-            'mainPagePhoto' => 'mimes:jpg,jpeg',
+            'mainPagePhoto' => 'mimes:jpg,jpeg|max:2000',
         ]);
 
         $settings = SiteSetting::getSettings();
