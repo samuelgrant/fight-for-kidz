@@ -41,12 +41,15 @@ class Applicant extends Model
         return false;
     }
 
-    /** Returns collection of non contenders */
-    public static function getNonContenders(){
+    /**
+     *  Returns collection of non contenders
+     *  belonging to given event.
+     */
+    public static function getNonContenders($eventId){
 
         $nonContenders = new Collection;
 
-        foreach(Applicant::all() as $applicant){
+        foreach(Applicant::where('event_id', $eventId)->get() as $applicant){
             if($applicant->contender == null){
                 $nonContenders->push($applicant);
             } elseif($applicant->contender->team == null){
