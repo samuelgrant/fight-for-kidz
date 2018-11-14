@@ -5,13 +5,21 @@ $(document).ready(function () {
 
         window.history.replaceState(null, null, newURLString);
     })
-})
+
+    // clicking a sponsor dtable row will show that sponsors page
+    $('.clickable-row').on('click', function(){
+
+        window.location = $(this).data('href');
+
+    });
+
+});
 
 
 // Processes the image preview for group icon uploads.
 
 $(document).ready(function () {
-    $('input:file').change(function () {
+    $('#groupImage').change(function () {
         processImage(this);
     })
 });
@@ -131,6 +139,15 @@ $(document).ready(function() {
             { "orderable": false, "searchable": false }
         ]
     })
+
+    $('#sponsor-dtable').DataTable({
+        "columns":[
+            null,
+            {"orderable" : false, "searchable" : false},
+            null,
+            {"orderable" : false, "searchable" : false},
+        ]
+    })
 });
 
 // Count the number of selected datatable rows on a page, and display the result
@@ -223,6 +240,13 @@ function copySelectedToGroup() {
         });
 
     });
+
+    // show success modal
+    var modal = $('#successModal');
+    var messageBox = $('#modal-message-success');
+
+    messageBox.text('Successfully copied ' + contacts.length + ' to group.');
+    $('#successModal').modal('show');
 
 }
 

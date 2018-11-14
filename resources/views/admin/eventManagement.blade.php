@@ -20,13 +20,15 @@
             <ul class="nav nav-tabs">
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'overview') || (app('request')->input('tab') == '') ? 'active': '' }}"
                         role="tab" data-toggle="tab" href="#tab-1" id="overview">Overview</a></li>
-                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'bouts')? 'active': '' }}"
+                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'sponsors') ? 'active': '' }}"
+                        role="tab" data-toggle="tab" href="#tab-1-5" id="sponsors">Sponsors</a></li>
+                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'bouts') ? 'active': '' }}"
                         role="tab" data-toggle="tab" href="#tab-2" id="bouts">Bouts</a></li>
-                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'contenders')? 'active': '' }}"
+                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'contenders') ? 'active': '' }}"
                         role="tab" data-toggle="tab" href="#tab-3" id="contenders">Contenders</a></li>
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'applicants') ? 'active': '' }}"
                         role="tab" data-toggle="tab" href="#tab-4" id="applicants">Applicants</a></li>
-                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'auction')? 'active': '' }}"
+                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'auction') ? 'active': '' }}"
                     role="tab" data-toggle="tab" href="#tab-5" id="auction">Auction</a></li>
             </ul>
         </div>
@@ -35,6 +37,11 @@
 
                 @include('admin.tabs.events.overview')
                 
+            </div>
+            <div class="tab-pane {{(app('request')->input('tab') == 'sponsors') ? 'active': ''}}" role="tabpanel" id="tab-1-5">
+
+                @include('admin.tabs.events.sponsors')
+                    
             </div>
             <div class="tab-pane {{(app('request')->input('tab') == 'bouts') ? 'active': ''}}" role="tabpanel" id="tab-2">
                 
@@ -89,6 +96,7 @@
                                 <div class="form-group">
                                     <label for="contenderSponsor">Sponsor:</label>
                                     <select class="form-control" id="contenderSponsor" name="contenderSponsor">
+                                            <option value="0">--- No sponsor ---</option>
                                         @foreach($event->sponsors as $sponsor)
                                             <option value="{{$sponsor->id}}">{{$sponsor->company_name}}</option>
                                         @endforeach

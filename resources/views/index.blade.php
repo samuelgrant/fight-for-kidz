@@ -6,7 +6,7 @@
 		<div class="container d-flex h-100 align-items-center">
       		<div class="mx-auto text-center">
         		<div>
-         			<img src="{{App\Event::current()->isFutureEvent() ? '/storage/images/f4k_logo.png' : '/storage/images/f4k_logo_nodate.png'}}" class="img-fluid">
+         			<img src="{{App\Event::current()->isFutureEvent() ? '/storage/images/f4k_logo.png' : '/storage/images/f4k_logo_noyear.png'}}" class="img-fluid">
         		</div>  
         		<div class="text-white-50 mx-auto mt-5 mb-5">
             		<a class="btn btn-danger" href="#about">About Us</a>
@@ -17,8 +17,8 @@
   	</header>
   	<!-- Upcoming event -->
 	<div style="background-color: black;">
-    	<section id="about" class="upcoming-section">
-			<div class="container">
+    	<section id="about" class="upcoming-section pt-5">
+			<div class="container pt-5">
 				<div class="row mb-5 pb-5 d-flex">
 					<div class="col-lg-12 col-ms-12 col-sm-12">
 						<h1 class="text-white underline bar">About</h1>
@@ -42,7 +42,7 @@
 		<!-- Subscriber Section -->
 		<section class="text-center" id="subscriber-section">
 	  
-		  	<div class="container my-5">
+		  	<div class="container conform p-3 my-5">
 				<h1 class="mb-3">Fight for Kidz Updates!</h1>
 				@include('layouts.messages')
 				<form method="post" action="{{route('subscribe')}}" class="justify-content-center">

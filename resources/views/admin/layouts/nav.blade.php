@@ -78,6 +78,12 @@
           </a>
         </li>
         <li class="nav-item">
+          <a class="nav-link" href="{{route('admin.sponsorManagement')}}">
+            <i class="fas fa-money-bill-wave-alt"></i>
+            <span>Sponsor Management</span>
+          </a>
+        </li>
+        <li class="nav-item">
           <a class="nav-link" href="{{route('admin.groupManagement')}}">
             <i class="fas fa-layer-group"></i>
             <span>Group Management</span>

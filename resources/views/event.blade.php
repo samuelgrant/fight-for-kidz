@@ -2,18 +2,17 @@
 
 @section('content')
 
-<!-- Upcoming event -->
 <div style="background-color: black;">
   <section class="upcoming-section">
     <div class="container">
-      <div class="row mb-5">
+      <div class="row pb-5">
         <div class="col-lg-8 col-md-6 col-col-sm-12 pt-5">
           <h1 class="text-white underline bar">{{$event->name}}</h1>
           <p class="text-justify">{{$event->desc_1}}</p>
         </div>
         <div class="col-lg-4 col-md-6 col-sm-12 text-white text-right results mt-5">
-          <p class="all-caps sidebar-heading">Date</p>
-          <p class="stat">{{\Carbon\Carbon::parse($event->datetime)->format('D d M Y')}}</p>
+          <p class="all-caps sidebar-heading">Date/Time</p>
+          <p class="stat">{{\Carbon\Carbon::parse($event->datetime)->format('D d M Y h:i a')}}{{--->toDayDateTimeString()--}}</p>
           <p class="all-caps sidebar-heading">Location</p>
           <p class="stat">{{$event->venue_name}}</p>
           <p class="all-caps sidebar-heading">Supporting</p>
@@ -57,12 +56,18 @@
 
 <!-- Sponsors Section -->
 <section id="sponsors-section">
-  <h2 class="text-center text-dark">Our Sponsors</h2>
+  <h2 class="text-center text-dark">Event Sponsors</h2>
   <div class="slick-sponsors">
-    <div><img src="/img/customer-1.png" /></div>
-    <div><img src="/img/customer-2.png" /></div>
-    <div><img src="/img/customer-3.png" /></div>
-    <div><img src="/img/customer-4.png" /></div>
+    @foreach($event->sponsors as $sponsor)
+      {{-- only show logo in sponsors bar if the image file for it exists --}}
+      @if(file_exists(public_path('storage/images/sponsors/' . $sponsor->id . '.png')))
+        <div>
+            <a href="{{$sponsor->url}}" target="_blank">
+            <img class="img-fluid" style="max-width:250px;" src="{{'/storage/images/sponsors/' . $sponsor->id . '.png'}}">
+          </a>
+        </div>  
+      @endif
+    @endforeach
   </div>
 </section>
 
@@ -84,9 +89,11 @@
         <div class="bout-header">
           <h2>BOUT {{++$i}}</h2>
           {{-- <p class="sponsored-by">sponsored by</p> --}}
-          {{-- <div class="sponsor-badge">
-            <div class="vertical-aligner"></div><img src="/storage/images/FighterSponsorslogo/Taurs sponsor.png" class="img-fluid bout-sponsor">
-          </div> --}}
+          @if($bout->sponsor)
+            <div class="sponsor-badge">
+              <div class="vertical-aligner"></div><a href="{{$bout->sponsor->url}}" target="_blank"><img style="max-height:60px;" src="{{'/storage/images/sponsors/' . $bout->sponsor->id . '.png'}}" class="img-fluid bout-sponsor"></a>
+            </div>
+          @endif
         </div>
 
         <!-- Each bout card will contain two contender-cards -->
@@ -125,46 +132,6 @@
     @endforeach
 
   </div> <!-- end all bouts -->
-
-  {{--
-  <!-- This version of the layout is displayed on a small screen. -->
-  <div class="bouts-stack">
-    <div class="bout-card">
-      <div class="row bout-header text-center">
-        <div class="col-sm-4">
-          <h2>BOUT ONE</h2>
-        </div>
-        <div class="col-sm-4">
-          <p>sponsored by</p>
-        </div>
-        <div class="col-sm-4 sponsor-badge mx-auto"><img src="/storage/images/FighterSponsorslogo/Taurs sponsor.png"
-            class="img-fluid bout-sponsor"></div>
-      </div>
-      <div class="row">
-        <div class="col-6 contender-card contender-card-red">
-          <div class="contender-card-inner">
-            <img src="/storage/images/Fighters/Logan Intimidator Valli.png" class="mx-auto contender-img">
-            <div class="contender-name">
-              <h5>Logan</h5>
-              <h4>'Intimidator'</h4>
-              <h5>Valli</h5>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 contender-card contender-card-blue">
-          <div class="contender-card-inner">
-            <img src="/storage/images/Fighters/Logan Intimidator Valli.png" class="mx-auto contender-img">
-            <div class="contender-name">
-              <h5>Logan</h5>
-              <h4>'Intimidator'</h4>
-              <h5>Valli</h5>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> --}}
 
 <!-- Dynamic modal -->
 <div id="bio-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"

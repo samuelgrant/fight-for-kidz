@@ -62,11 +62,23 @@ class GroupManagementController extends Controller
             'groupImage' => 'mimes:png|dimensions:min_width=80,min_height=100'
         ]);
         
-        
-        $group = new Group();
+        if(Group::where('name', $request->input('groupName'))->first()){
+
+            session()->flash('error', 'A group with this name already exists.');            
+
+        } else if(Group::withTrashed()->where('name', $request->input('groupName'))->first()){
+
+            session()->flash('error', 'A group with this name already exists, but has been disabled. Please restore and use that one.');
+
+        } else{
+
+            $group = new Group();
             $group->name = $request->input('groupName');
             $group->save(); // save now to generate id
-            $group->setImage(($request->file('groupImage')!== null)? $request->file('groupImage') : null);         
+            $group->setImage(($request->file('groupImage')!== null)? $request->file('groupImage') : null);    
+         
+            session()->flash('success', 'Group created successfully');
+        }
 
         return redirect()->back();
     }

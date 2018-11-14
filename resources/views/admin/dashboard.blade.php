@@ -54,19 +54,25 @@
                 <span class="float-right"><a class="btn btn-primary" href="/a/event-management/{{$event->id}}?tab=applicants"><i class="fas fa-search"></i>&nbsp; View Applicants</a></span>
             </div>
             <div class="card-body">
-                <h3 class="text-center">Applications Received</h3>
-                <h2 class="text-grey text-center">{{count($event->applicants)}}</h2>
+                <div class="gray-card">
+                    <h3 class="text-center">Applications Received</h3>
+                    <h2 class="text-grey text-center">{{count($event->applicants)}}</h2>
+                </div>
 
                 <br>
 
                 <div class="row">
                     <div class="col-6">
-                        <h3 class="text-center">Blue Fighters Selected</h3>
-                        <h2 class="text-center">{{count($event->getTeam('blue'))}}</h2>
+                        <div class="gray-card">
+                            <h3 class="text-center">Blue Fighters Selected</h3>
+                            <h2 class="text-center">{{count($event->getTeam('blue'))}}</h2>
+                        </div>
                     </div>
                     <div class="col-6">
-                        <h3 class="text-center">Red Fighters Selected</h3>
-                        <h2 class="text-center">{{count($event->getTeam('red'))}}</h2>
+                        <div class="gray-card">
+                            <h3 class="text-center">Red Fighters Selected</h3>
+                            <h2 class="text-center">{{count($event->getTeam('red'))}}</h2>
+                        </div>
                     </div>
                 </div>
             </div>
