@@ -122,16 +122,17 @@ $(document).ready(function() {
         ]
     })
 
-    $('#auctionDeleted-dtable').DataTable({
-        "columns":[
-            null,
-            { "orderable": false, "searchable": false},
-            { "orderable": false, "searchable": false},
-            { "orderable": false, "searchable": false},
-            { "orderable": false, "searchable": false},
-            { "orderable": false, "searchable": false}
-        ]
-    })
+    // $('#auctionDeleted-dtable').DataTable({
+    //     "columns":[
+    //         null,
+    //         { "orderable": false, "searchable": false},
+    //         { "orderable": false, "searchable": false},
+    //         { "orderable": false, "searchable": false},
+    //         { "orderable": false, "searchable": false},
+    //         { "orderable": false, "searchable": false},
+    //         null
+    //     ]
+    // })
 });
 
 // Count the number of selected datatable rows on a page, and display the result
