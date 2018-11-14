@@ -56,14 +56,8 @@ class Contender extends Model
      *  contender
      */
     public function getFullName(){
-
-        $applicant = $this->applicant;
-
-        if($applicant != null){
-            return $applicant->first_name . ' ' . $applicant->last_name;
-        } else{
-            return 'Applicant not found';
-        }
+        
+        return $this->first_name . ' ' . $this->last_name;
 
     }
 }

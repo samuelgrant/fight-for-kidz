@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\admin;
 
 use App\Contender;
+use Validator;
+use Input;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Sponsor;
@@ -30,16 +32,29 @@ class ContenderManagementController extends Controller
         $sponsor = Sponsor::find($request->input('contenderSponsor'));
         $image = $request->file('contenderImage');
 
-        // validate all inputs here
+        $validator = Validator::make(Input::all(), [ 
+            // need to add the rest here
+            'contenderDonateUrl' => 'active_url',
+            ],        
+            // error messages
+            [
+                'required' => ':attribute must be filled in',
+                'url' => 'Please enter a valid URL'
+            ]
+    
+        )->validate();
                 
 
         $contender->nickname = $request->input('contenderNickname');
+        $contender->first_name = $request->input('contenderFirstName');
+        $contender->last_name = $request->input('contenderLastName');
         $contender->sponsor()->associate($sponsor);
         $contender->height = $request->input('contenderHeight');
         $contender->weight = $request->input('contenderWeight');
         $contender->reach = $request->input('contenderReach');
         $contender->bio_url = $request->input('contenderBioUrl');
         $contender->bio_text = $request->input('contenderBio');
+        $contender->donate_url = $request->input('contenderDonateUrl');
 
         $contender->save();
 

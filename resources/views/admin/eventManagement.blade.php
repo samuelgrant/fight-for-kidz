@@ -81,8 +81,16 @@
                     <form method="post" id="editContenderForm" enctype="multipart/form-data" data-action="{{route('admin.eventManagement.updateContender', ['contenderID' => null])}}/" action="">
                         <div class="row">
                             <div class="col-lg-8">
+                            <div class="form-group">
+                                <label for="contenderFirstName">First Name:</label>
+                                <input type="text" name="contenderFirstName" id="contenderFirstName" class="form-control" value="" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contenderLastName">Nickname:</label>
+                                <input type="text" name="contenderLastName" id="contenderLastName" class="form-control" value="" required>
+                            </div>
                                 <div class="form-group">
-                                    <label for="contenderName">Nickname:</label>
+                                    <label for="contenderNickName">Nickname:</label>
                                     <input type="text" name="contenderNickname" id="contenderNickname" class="form-control" value="">
                                 </div>
                                 <div class="form-group">
@@ -95,24 +103,29 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="contenderBioUrl">Bio URL:</label>
-                                    <input type="text" name="contenderBioUrl" id="contenderBioUrl" class="form-control" value="">
+                                    <label for="contenderDonateUrl">Donate URL:</label>
+                                    <input type="text" name="contenderDonateUrl" id="contenderDonateUrl" class="form-control" value="">
                                 </div>
                             </div>
                             <div class="col-lg-4">
                                 <div class="form-group">
                                     <label for="contenderHeight">Height:</label>
-                                    <input type="text" name="contenderHeight" id="contenderHeight" class="form-control" value="" required>
+                                    <input type="text" name="contenderHeight" id="contenderHeight" class="form-control" value="">
                                 </div>
                                 <div class="form-group">
                                     <label for="contenderWeight">Weight:</label>
-                                    <input type="text" name="contenderWeight" id="contenderWeight" class="form-control" value="" required>
+                                    <input type="text" name="contenderWeight" id="contenderWeight" class="form-control" value="">
                                 </div>
                                 <div class="form-group">
                                     <label for="contenderReach">Reach:</label>
-                                    <input type="text" name="contenderReach" id="contenderReach" class="form-control" value="" required>
+                                    <input type="text" name="contenderReach" id="contenderReach" class="form-control" value="">
                                 </div>
                             </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="contenderBioUrl">Bio URL:</label>
+                            <input type="text" name="contenderBioUrl" id="contenderBioUrl" class="form-control" value="">
                         </div>
 
                         <label for="contenderBio">Contender Bio:</label>
@@ -148,6 +161,10 @@
                     <div class="form-group">
                         <label for="eventDate">Date and Time:</label>
                         <input type="datetime-local" name="date" id="eventDate" class="form-control" value="{{$event->getDateTimeString()}}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventDesc">Description:</label>
+                        <textarea name="eventDesc" id="eventDesc" class="form-control" required>{{$event->desc_1}}</textarea>
                     </div>
                     <div class="form-group">
                         <label for="eventVenue">Venue Name:</label>
@@ -190,11 +207,6 @@
                         <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantPhysical" class="nav-link">Physical Information</a></li>
                         <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantAdditional" class="nav-link">Additional Info</a></li>
                         <li class="nav-item mr-auto">
-                            <button class="btn btn-primary btn-sm ml-auto">
-                                    <svg class="svg-inline--fa fa-edit fa-w-18" aria-hidden="true" data-prefix="fas" data-icon="edit" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z"></path></svg>
-                                Edit
-                            </button>
-                        </li>
                     </ul>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="applicantGeneral">

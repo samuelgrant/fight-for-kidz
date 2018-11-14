@@ -23,9 +23,10 @@ class EventController extends Controller
     public function getContender($contenderID){
 
         $contender = Contender::find($contenderID);
+        
 
         if($contender){
-            return ['contender' => $contender, 'applicant' => $contender->applicant];
+            return ['contender' => $contender, 'age' => $contender->applicant->getAge()];
         } else{
             return response('No contender found', 400);
         }
