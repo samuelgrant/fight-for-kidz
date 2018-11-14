@@ -9,6 +9,6 @@ $factory->define(App\AuctionItem::class, function (Faker $faker) {
         'desc' => $faker->paragraph(1),
         'donor' => $faker->name(),
         'donor_url' => $faker->url(),
-        'picture' => $faker->imageURL()
+        // 'picture' => $faker->imageURL()
     ];
 });
