@@ -26,7 +26,7 @@ class EventController extends Controller
         
 
         if($contender){
-            return ['contender' => $contender, 'applicant' => $contender->applicant, 'age' => $contender->applicant->getAge()];
+            return ['contender' => $contender, 'age' => $contender->applicant->getAge()];
         } else{
             return response('No contender found', 400);
         }
