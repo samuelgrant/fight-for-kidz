@@ -207,7 +207,7 @@
                       <td> Weight (kg): <span id="contenderWeight">77</span></td>
                     </tr>
                     <tr>
-                      <td> Height (cm): <span id="contendereHeight">174</span></td>
+                      <td> Height (cm): <span id="contenderHeight">174</span></td>
                     </tr>
                     <tr>
                       <td> Reach (cm) <span id="contenderReach">174</span></td>
