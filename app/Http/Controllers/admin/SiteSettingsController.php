@@ -13,7 +13,7 @@ class SiteSettingsController extends Controller
 
         
         $this->validate($request, [
-            'aboutUs' => 'required|string',
+            'aboutUs' => 'required|string|max:1000',
             'mainPagePhoto' => 'mimes:jpg,jpeg|max:2000',
         ]);
 
