@@ -33,7 +33,7 @@
                         <label for="groupAvatar">Optional Group Icon</label>
                         <div class="row px-3">
                             <div class="mr-3 mb-3">
-                                <img id="imgPreview" class="group-icon" src="{{$group->custom_icon ? '/storage/images/groups/'.$group->id.'.png' : 'https://via.placeholder.com/100x80'}}"
+                                <img id="imgPreview" class="group-icon" src="{{$group->custom_icon ? '/storage/images/groups/'.$group->id.'.png' : 'https://via.placeholder.com/80x100'}}"
                                     class="float-left mr-2" alt="placeholder">
                             </div>
                             <div class="float-right">

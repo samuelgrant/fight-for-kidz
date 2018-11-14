@@ -164,6 +164,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         App\Providers\NavbarServiceProvider::class,
+        App\Providers\SettingsServiceProvider::class,
 
     ],
 

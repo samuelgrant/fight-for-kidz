@@ -42,20 +42,24 @@
                                 <td>{{$event->venue_name}}</td>
                                 <td>{{$event->charity}}</td>
                                 <td>
-                                    {!! Form::open(['action' => ['admin\EventManagementController@togglePublic', $event->id], 'method' => 'PUT']) !!}
+                                    <form action="{{route('admin.eventManagement.togglePublic', ['eventID' => $event->id])}}" method="POST">                                    
                                         <label class="switch">
                                             <input type="checkbox" {{$event->is_public ? 'checked' : ''}} onchange="this.form.submit()">
                                             <span class="slider round"></span>
                                         </label>
-                                    {!! Form::close() !!}
+                                        @method('PUT')
+                                        @csrf
+                                    </form>
                                 </td>
                                 <td>
                                     <a class="btn btn-primary" href="{{route('admin.eventManagement.view', ['eventID' => $event->id])}}"><i class="fas fa-edit"></i> Edit</a>
                                 </td>
                                 <td>
-                                    {!!Form::open(['action'=>['admin\EventManagementController@destroy', $event->id], 'method'=> 'POST']) !!}
-                                    <button class="btn btn-danger" type="submit"><i class="far fa-times-circle"></i> Delete Event</button>
-                                    {{Form::hidden('_method', 'delete')}} {!! Form::close() !!}
+                                    <form action="{{route('admin.eventManagement.destroy', ['eventID' => $event->id])}}" method="POST">                                    
+                                        <button class="btn btn-danger" type="submit"><i class="far fa-times-circle"></i> Delete Event</button>
+                                        @method('DELETE')
+                                        @csrf
+                                    </form>
                                 </td>
                             </tr>
                             @endforeach

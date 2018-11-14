@@ -16,6 +16,16 @@ $(document).ready(function () {
     })
 });
 
+// Populates the other settings modal when user clicks edit 
+function setSettingsModal(merch, about){
+
+    resetFile('/storage/images/mainPagePhoto.jpg');
+
+    $('#displayMerchCheckbox').prop('checked', merch);
+    $('#aboutUsText').text(about);
+
+}
+
 function processImage(input) {
     if (input.files && input.files[0]) {
         var fr = new FileReader();
@@ -25,6 +35,17 @@ function processImage(input) {
 
         fr.readAsDataURL(input.files[0]);
     }
+}
+
+// set file input back to null if user cancels the update 
+function resetFile(defaultImagePath){
+
+    // set preview back to current
+    $('#imgPreview').prop('src', defaultImagePath);
+
+    // set input to null
+    $('input:file').prop('value', null);    
+    
 }
 
 function resetImagePre() {

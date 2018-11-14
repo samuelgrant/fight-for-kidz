@@ -42,7 +42,7 @@
                     @endif
                 @endif
                 
-                @if(false)
+                @if($settings->display_merch)
                 <!-- Merchandise -->
                 <li role="presentation" class="nav-item"><a href="{{route('merchandise')}}" class="nav-link">Merchandise</a></li>
                 @endif
