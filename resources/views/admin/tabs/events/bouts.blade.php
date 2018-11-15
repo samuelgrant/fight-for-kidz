@@ -5,6 +5,17 @@
 
     <hr>
 
+    <div>
+    <form class="d-inline" action="{{route('admin.eventManagement.toggleBouts', ['eventID' => $event->id])}}" method="POST">
+        @csrf
+        @method('PUT')
+    <button type="submit" class="btn {{$event->show_bouts ? 'btn-warning' : 'btn-success'}}">{{$event->show_bouts ? 'Hide bouts' : 'Show bouts'}}</button>    
+    </form>
+    <h5>Bouts are currently {{$event->show_bouts ? 'visible' : 'hidden'}} on the public event page.</h5>
+    </div>
+
+    <hr>
+
     <div class="row" style="display: flex">
     <?php global $i; ?> {{-- Counter that is used to name bouts --}}                
         @foreach($event->bouts as $bout)

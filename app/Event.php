@@ -41,6 +41,22 @@ class Event extends Model
         Log::debug($this->name.' was added to the public site.');
     }
 
+    /**
+     * Show bouts on the public event page
+     */
+    public function hideBouts(){
+        $this->show_bouts = false;
+        $this->save();
+    }
+
+    /**
+     * Show bouts on the public event page
+     */
+    public function showBouts(){
+        $this->show_bouts = true;
+        $this->save();
+    }
+
     /** 
      *  Sets the events applications to either on or off
      * 
