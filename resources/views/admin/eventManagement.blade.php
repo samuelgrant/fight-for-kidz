@@ -20,13 +20,15 @@
             <ul class="nav nav-tabs nav-tabs-persistent">
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'overview') || (app('request')->input('tab') == '') ? 'active': '' }}"
                         role="tab" data-toggle="tab" href="#tab-1" id="overview">Overview</a></li>
-                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'bouts')? 'active': '' }}"
+                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'sponsors') ? 'active': '' }}"
+                        role="tab" data-toggle="tab" href="#tab-1-5" id="sponsors">Sponsors</a></li>
+                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'bouts') ? 'active': '' }}"
                         role="tab" data-toggle="tab" href="#tab-2" id="bouts">Bouts</a></li>
-                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'contenders')? 'active': '' }}"
+                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'contenders') ? 'active': '' }}"
                         role="tab" data-toggle="tab" href="#tab-3" id="contenders">Contenders</a></li>
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'applicants') ? 'active': '' }}"
                         role="tab" data-toggle="tab" href="#tab-4" id="applicants">Applicants</a></li>
-                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'auction')? 'active': '' }}"
+                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'auction') ? 'active': '' }}"
                     role="tab" data-toggle="tab" href="#tab-5" id="auction">Auction</a></li>
             </ul>
         </div>
@@ -35,6 +37,11 @@
 
                 @include('admin.tabs.events.overview')
                 
+            </div>
+            <div class="tab-pane {{(app('request')->input('tab') == 'sponsors') ? 'active': ''}}" role="tabpanel" id="tab-1-5">
+
+                @include('admin.tabs.events.sponsors')
+                    
             </div>
             <div class="tab-pane {{(app('request')->input('tab') == 'bouts') ? 'active': ''}}" role="tabpanel" id="tab-2">
                 
@@ -74,13 +81,22 @@
                     <form method="post" id="editContenderForm" enctype="multipart/form-data" data-action="{{route('admin.eventManagement.updateContender', ['contenderID' => null])}}/" action="">
                         <div class="row">
                             <div class="col-lg-8">
+                            <div class="form-group">
+                                <label for="contenderFirstName">First Name:</label>
+                                <input type="text" name="contenderFirstName" id="contenderFirstName" class="form-control" value="" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contenderLastName">Nickname:</label>
+                                <input type="text" name="contenderLastName" id="contenderLastName" class="form-control" value="" required>
+                            </div>
                                 <div class="form-group">
-                                    <label for="contenderName">Nickname:</label>
+                                    <label for="contenderNickName">Nickname:</label>
                                     <input type="text" name="contenderNickname" id="contenderNickname" class="form-control" value="">
                                 </div>
                                 <div class="form-group">
                                     <label for="contenderSponsor">Sponsor:</label>
                                     <select class="form-control" id="contenderSponsor" name="contenderSponsor">
+                                            <option value="0">--- No sponsor ---</option>
                                         @foreach($event->sponsors as $sponsor)
                                             <option value="{{$sponsor->id}}">{{$sponsor->company_name}}</option>
                                         @endforeach
@@ -191,11 +207,6 @@
                         <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantPhysical" class="nav-link">Physical Information</a></li>
                         <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantAdditional" class="nav-link">Additional Info</a></li>
                         <li class="nav-item mr-auto">
-                            <button class="btn btn-primary btn-sm ml-auto">
-                                    <svg class="svg-inline--fa fa-edit fa-w-18" aria-hidden="true" data-prefix="fas" data-icon="edit" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z"></path></svg>
-                                Edit
-                            </button>
-                        </li>
                     </ul>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="applicantGeneral">

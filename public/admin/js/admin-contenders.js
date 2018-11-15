@@ -9,7 +9,8 @@ function editContenderModal(contenderID){
         var form = $('#editContenderForm');
         form.attr('action', form.data('action') + contenderID);
 
-        $('#contenderName').val();
+        $('#contenderLastName').val(data.last_name);
+        $('#contenderFirstName').val(data.first_name)
         $('#contenderNickname').val(data.nickname);
         $('#contenderSponsor').val(data.sponsor_id);
         $('#contenderHeight').val(data.height);

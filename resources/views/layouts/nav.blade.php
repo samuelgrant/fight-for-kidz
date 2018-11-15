@@ -1,5 +1,5 @@
 <nav class="navbar navbar-dark navbar-expand-md sticky-top bg-dark navigation-clean">
-    <div class="container"><a href="{{route('index')}}" class="navbar-brand"><img src="/storage/images/f4k_logo_nodate.png" alt="Fight for Kidz Logo"></a><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+    <div class="container"><a href="{{route('index')}}" class="navbar-brand"><img src="/storage/images/f4k_logo_noyear.png" alt="Fight for Kidz Logo"></a><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse"
             id="navcol-1">
             <ul class="nav navbar-nav ml-auto">
@@ -42,7 +42,7 @@
                     @endif
                 @endif
                 
-                @if(false)
+                @if($settings->display_merch)
                 <!-- Merchandise -->
                 <li role="presentation" class="nav-item"><a href="{{route('merchandise')}}" class="nav-link">Merchandise</a></li>
                 @endif

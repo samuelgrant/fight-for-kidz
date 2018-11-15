@@ -11,7 +11,7 @@
 
   <footer class="bg-black small text-center text-white-50 row py-2">
     <div class="col-sm-4 mb-3">
-      <img src="/storage/images/f4k_logo_nodate.png" class="img-fluid w-50">
+      <img src="/storage/images/f4k_logo_noyear.png" class="img-fluid w-50">
       </div> 
     </div>  
     <div class="col-sm-4 mb-3 my-auto">

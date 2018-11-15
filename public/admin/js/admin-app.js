@@ -5,16 +5,34 @@ $(document).ready(function () {
 
         window.history.replaceState(null, null, newURLString);
     })
-})
+
+    // clicking a sponsor dtable row will show that sponsors page
+    $('.clickable-row').on('click', function(){
+
+        window.location = $(this).data('href');
+
+    });
+
+});
 
 
 // Processes the image preview for group icon uploads.
 
 $(document).ready(function () {
-    $('input:file').change(function () {
+    $('#groupImage').change(function () {
         processImage(this);
     })
 });
+
+// Populates the other settings modal when user clicks edit 
+function setSettingsModal(merch, about){
+
+    resetFile('/storage/images/mainPagePhoto.jpg');
+
+    $('#displayMerchCheckbox').prop('checked', merch);
+    $('#aboutUsText').text(about);
+
+}
 
 function processImage(input) {
     if (input.files && input.files[0]) {
@@ -25,6 +43,17 @@ function processImage(input) {
 
         fr.readAsDataURL(input.files[0]);
     }
+}
+
+// set file input back to null if user cancels the update 
+function resetFile(defaultImagePath){
+
+    // set preview back to current
+    $('#imgPreview').prop('src', defaultImagePath);
+
+    // set input to null
+    $('input:file').prop('value', null);    
+    
 }
 
 function resetImagePre() {
@@ -111,6 +140,7 @@ $(document).ready(function() {
         ]
     })
 
+<<<<<<< HEAD
     $('#auction-dtable').DataTable({
         "columns":[
             null,
@@ -133,6 +163,16 @@ $(document).ready(function() {
     //         null
     //     ]
     // })
+=======
+    $('#sponsor-dtable').DataTable({
+        "columns":[
+            null,
+            {"orderable" : false, "searchable" : false},
+            null,
+            {"orderable" : false, "searchable" : false},
+        ]
+    })
+>>>>>>> staging
 });
 
 // Count the number of selected datatable rows on a page, and display the result
@@ -225,6 +265,13 @@ function copySelectedToGroup() {
         });
 
     });
+
+    // show success modal
+    var modal = $('#successModal');
+    var messageBox = $('#modal-message-success');
+
+    messageBox.text('Successfully copied ' + contacts.length + ' to group.');
+    $('#successModal').modal('show');
 
 }
 

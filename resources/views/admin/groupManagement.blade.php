@@ -20,7 +20,7 @@
                 <h5 class="mb-0"><i class="fas fa-exclamation-triangle"></i> Group Settings</h5>
             </div>
             <div class="card-body">
-                @if($group->type != "System Group")
+                @if($group->type != "System Group" && !$group->deleted_at)
                 <form method="POST" action="{{route('admin.group.update', [$group->id])}}" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="name">Group Name</label>
@@ -33,13 +33,13 @@
                         <label for="groupAvatar">Optional Group Icon</label>
                         <div class="row px-3">
                             <div class="mr-3 mb-3">
-                                <img id="imgPreview" class="group-icon" src="{{$group->custom_icon ? '/storage/images/groups/'.$group->id.'.png' : 'https://via.placeholder.com/100x80'}}"
+                                <img id="imgPreview" class="group-icon" src="{{$group->custom_icon ? '/storage/images/groups/'.$group->id.'.png' : 'https://via.placeholder.com/80x100'}}"
                                     class="float-left mr-2" alt="placeholder">
                             </div>
                             <div class="float-right">
                                 <label class="btn btn-info btn-sm btn-file">
                                     <i class="fas fa-upload"></i> Select Image
-                                    <input name="groupImage" id="img" type="file" style="display: none;">
+                                    <input name="groupImage" id="groupImage" type="file" style="display: none;">
                                     <input type="checkbox" id="removeImageCheckbox" name="removeImageCheckbox" style="display:none">
                                 </label>
                                 <button class="btn btn-danger btn-sm d-block" type="button" id="btnRemoveImage" onclick="resetImagePre()"><i
@@ -70,15 +70,18 @@
                     <li>Manage this group.</li>
                 </ul>
                 <p>You can re-enable this group from the deleted tab on the group management page.</p>
-                @elseif($group->deleted_at)
-                {!!Form::open(['action'=>['admin\GroupManagementController@restore', $group->id], 'method'=> 'POST'])
-                !!}
-                <button class="btn btn-info btn-block" type="submit"><i class="far fa-check-circle"></i> Restore Group</button>
-                {{Form::hidden('_method', 'patch')}}
-                {!! Form::close() !!}
                 @endif
                 @else
+                @if($group->deleted_at)
+                <span class="text-danger">This group is disabled, you cannot change it's details unless it is restored first. </span>
+                {!!Form::open(['action'=>['admin\GroupManagementController@restore', $group->id], 'method'=> 'POST'])
+                !!}
+                <button class="btn btn-info btn-block mt-3" type="submit"><i class="far fa-check-circle"></i> Restore Group</button>
+                {{Form::hidden('_method', 'patch')}}
+                {!! Form::close() !!}
+                @else
                 <span class="text-danger">This is an automated group. You cannot change the settings of this group.</span>
+                @endif
                 @endif
             </div>
         </div>
@@ -167,14 +170,30 @@
 
             </div>
         </div>
-        <div class="modal-body">
-            <form>
-
-            </form>
-        </div>
     </div>
 </div>
 @endif
+
+{{-- copy success modal --}}
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h4 class="modal-title">Copy Successful</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+
+                <p id="modal-message-success"></p>
+
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Okay</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+{{-- end of success modal --}}
 
 {{-- Copy to another group modal - outside if block as it is available for system groups --}}
 <div class="modal fade" id="copyToGroupModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">

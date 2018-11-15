@@ -1,4 +1,4 @@
-<h3 class="d-inline-block">{{$contender->applicant->first_name.' '.$contender->applicant->last_name}}</h3>
+<h3 class="d-inline-block">{{$contender->first_name.' '.$contender->last_name}}</h3>
 <a class="float-right" data-toggle="collapse" href="#{{$contender->id}}-collapsable">Details &nbsp;<i class="fas fa-caret-down"></i></a>
 
 <div class="collapse mt-3" id="{{$contender->id}}-collapsable">

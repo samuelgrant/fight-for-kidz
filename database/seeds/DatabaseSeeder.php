@@ -39,6 +39,7 @@ class DatabaseSeeder extends Seeder
             $this->call(BoutsTableSeeder::class);
             $this->call(AuctionItemsTableSeeder::class);
             $this->call(MerchandiseItemsTableSeeder::class);
+            $this->call(SiteSettingsTableSeeder::class);
         }
     }
 }
