@@ -151,23 +151,14 @@ $(document).ready(function() {
         ]
     })
 
-    // $('#auctionDeleted-dtable').DataTable({
-    //     "columns":[
-    //         null,
-    //         { "orderable": false, "searchable": false},
-    //         { "orderable": false, "searchable": false},
-    //         { "orderable": false, "searchable": false},
-    //         { "orderable": false, "searchable": false},
-    //         { "orderable": false, "searchable": false},
-    //         null
-    //     ]
-    // })
-    $('#sponsor-dtable').DataTable({
+    $('#auctionDeleted-dtable').DataTable({
         "columns":[
             null,
-            {"orderable" : false, "searchable" : false},
-            null,
-            {"orderable" : false, "searchable" : false},
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false}
         ]
     })
 });
