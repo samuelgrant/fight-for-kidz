@@ -140,7 +140,6 @@ $(document).ready(function() {
         ]
     })
 
-<<<<<<< HEAD
     $('#auction-dtable').DataTable({
         "columns":[
             null,
@@ -163,7 +162,6 @@ $(document).ready(function() {
     //         null
     //     ]
     // })
-=======
     $('#sponsor-dtable').DataTable({
         "columns":[
             null,
@@ -172,7 +170,6 @@ $(document).ready(function() {
             {"orderable" : false, "searchable" : false},
         ]
     })
->>>>>>> staging
 });
 
 // Count the number of selected datatable rows on a page, and display the result
