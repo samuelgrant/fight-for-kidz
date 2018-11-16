@@ -152,6 +152,8 @@ $(document).ready(function() {
 
 // Count the number of selected datatable rows on a page, and display the result
 // on the remove contacts modal.
+
+// ** No longer used for applicants **
 function countSelected(mode) {
 
     var dtable;
@@ -254,10 +256,8 @@ function copySelectedToGroup() {
  * This function adds selected applicants for an event to 
  * a team for that event.
  */
-function addSelectedToTeam(){
+function addSelectedToTeam(team){
     
-    var team = $('#team-select').val();
-
     var selected = $('#applicant-dtable').find('.dtable-checkbox:checkbox:checked');
 
     selected.each(function(){

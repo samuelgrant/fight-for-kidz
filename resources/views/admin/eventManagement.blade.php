@@ -411,32 +411,4 @@
     </div>
 </div>
 <!-- End More Info Modal -->
-
-<!-- Add applicants to team modal -->
-<div class="modal fade" id="editTeamModal" tabindex="-1" role="dialog" aria-labelledby="Edit Team" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-dark text-white">
-                    <h4 class="modal-title">Edit Team Membership</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <p id="modal-message"></p>
-
-                        <div class="form-group">
-                            <label for="team-select">Select team to add to:</label>
-                            <select class="form-control" name="team" id="team-select">
-                                <option value="red">Red</option>
-                                <option value="blue">Blue</option>
-                            </select>
-                        </div>
-
-                        <button data-dismiss="modal" id="confirmAddToTeam" role="button" onclick="addSelectedToTeam()" class="btn btn-success">Confirm</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-<!-- End add to team modal -->
 @endsection
