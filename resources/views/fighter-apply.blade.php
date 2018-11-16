@@ -209,14 +209,14 @@
         <!-- Previous boxing experience -->
 
         <div class="form-group">
-          <p class="">Have you ever done boxing/kickboxing fitness?</p>
+          <p class="">Have you ever done boxing/kickboxing/martial arts?</p>
           <div class="radio ">
             <label class="radio-selector"><input type="radio" name="expRadio" value="yes" onclick="showexperience()">Yes</label>
             <label class="radio-selector"><input type="radio" name="expRadio" value="no" onclick="hideExperience()">No</label>
           </div>
         </div>
         <div id="exeperience" class="form-group" style="display: none;">
-          <textarea id="experience" name="fighting_experience" class="form-control" rows="3" placeholder="Please describe any prior boxing/kickboxing experience..."></textarea>
+          <textarea id="experience" name="fighting_experience" class="form-control" rows="3" placeholder="Please describe any prior boxing/kickboxing/martial arts experience..."></textarea>
         </div>
 
         <!-- All sporting experience -->
