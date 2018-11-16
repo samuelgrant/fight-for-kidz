@@ -1,7 +1,10 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
- @section('content')
+ @section('page')
 <div class="container auth">
+
+    <h2 class="text-center my-5">Create New User</h2>
+
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card auth-card">

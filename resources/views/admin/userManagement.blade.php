@@ -16,7 +16,8 @@
             <ul class="nav nav-tabs">
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') != 'deleted')? 'active': '' }}" role="tab" data-toggle="tab" href="#tab-1" id="active">Current Accounts</a></li>
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'deleted')? 'active': '' }}" role="tab" data-toggle="tab" href="#tab-2" id="deleted">Deleted Accounts</a></li>
-            </ul>
+                <a href="{{route('register')}}" class="btn btn-success btn-sm ml-1 my-1"><i class="fas fa-plus"></i>&nbsp; Add User</a>
+            </ul>            
             <div class="tab-content">
                 <div class="tab-pane {{ (app('request')->input('tab') != 'deleted')? 'active': '' }}" role="tabpanel" id="tab-1">
                     <table id="user-dtable" class="table table-striped table-hover table-sm">
