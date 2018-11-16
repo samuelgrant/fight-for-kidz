@@ -28,6 +28,22 @@ class Subscriber extends Model
     }
 
     /**
+     *  Remove subscriber by email
+     */
+    public static function unsubscribeEmail($email){
+
+        $subscriber = Subscriber::where('email', $email);
+
+        if($subscriber){
+            $subscriber->removeFromGroup();
+            return true; // subscriber removed
+        }
+
+        return false; //subscriber not found
+
+    }
+
+    /**
      *  Removes the subscriber from the subscribers
      *  group. The database record will be maintained.
      */
