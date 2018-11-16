@@ -16,6 +16,7 @@
 
     <hr>
 
+    @if(count($event->bouts) > 0)
     <div class="row" style="display: flex">
     <?php global $i; ?> {{-- Counter that is used to name bouts --}}                
         @foreach($event->bouts as $bout)
@@ -98,7 +99,10 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div>        
         @endforeach
 
     </div>
+    @else
+        <h4 class="text-center">There are no bouts set for this event.</h4>
+    @endif

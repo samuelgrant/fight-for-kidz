@@ -19,6 +19,7 @@
 				</div>
 				@endif
 
+				@if(count($event->sponsors) > 0)
                 <table class="table table-hover" id="event-sponsor-dtable">
 
                     <thead>                        
@@ -28,7 +29,7 @@
                     </thead>
 
                    <tbody>
-                   	 @if(count($event->sponsors) > 0) @foreach($event->sponsors as $sponsor)
+                   	 @foreach($event->sponsors as $sponsor)
 	                    <tr>
 							<td>{{$sponsor->company_name}}</td>
 							<td>
