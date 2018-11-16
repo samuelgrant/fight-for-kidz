@@ -6,12 +6,12 @@
     <hr>
 
     <div>
+    <h5>Bouts are currently {{$event->show_bouts ? 'visible' : 'hidden'}} on the public event page.</h5>
     <form class="d-inline" action="{{route('admin.eventManagement.toggleBouts', ['eventID' => $event->id])}}" method="POST">
         @csrf
         @method('PUT')
-    <button type="submit" class="btn {{$event->show_bouts ? 'btn-warning' : 'btn-success'}}">{{$event->show_bouts ? 'Hide bouts' : 'Show bouts'}}</button>    
+    <button type="submit" class="btn btn-primary"><i class="far {{$event->show_bouts ? 'fa-eye-slash' : 'fa-eye'}}"></i>&nbsp;{{$event->show_bouts ? 'Hide bouts' : 'Show bouts'}}</button>    
     </form>
-    <h5>Bouts are currently {{$event->show_bouts ? 'visible' : 'hidden'}} on the public event page.</h5>
     </div>
 
     <hr>
