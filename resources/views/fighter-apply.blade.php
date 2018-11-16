@@ -1,12 +1,9 @@
 @extends('layouts.app') 
 @section('content')
 <div class="container conform" id="application-form">
-  <div class="push-down p-3">
-    <h1 class="text-center my-3">Application Form - Contenders</h1>
+  <div class="mt-3 p-3">
+  <h1 class="text-center my-3">Fighter Application - {{App\Event::current()->name}}</h1>
     <p class="text-center">Thank you for your interest in becoming a Fight for Kidz contender.</p>
-    <p class="text-center mb-5">Before applying, please familiarize yourself with the
-      <a class="" href="#">
-        <u>Applicant Guidelines</u></a>.</p>
     <form id="application-form" method="POST" action="{{route('application.fight.submit')}}" enctype="multipart/form-data">
       <div class="form-section">
 
@@ -255,8 +252,8 @@
         <hr class="mb-4">
 
         <div class="form-group text-center">
-          <input type="checkbox" name="declCheckbox" id="guidelinesCheckbox">
-          <label for="guidelinesCheckbox">I have read and agree to the <a href="#" target="_blank"><u>Applicant Guidelines</u></a></label>
+          
+          <label for="guidelinesCheckbox"><input class="d-inline-block align-middle" type="checkbox" name="declCheckbox" id="guidelinesCheckbox">I have provided true and accurate information in this application</label>
         </div>
       </div>
 
