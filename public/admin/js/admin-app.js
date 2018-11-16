@@ -108,7 +108,8 @@ $(document).ready(function() {
             { "orderable": false, "searchable": false },
             null,
             null
-        ]
+        ],
+        'iDisplayLength' : 100
     });
 
     $('#user-dtable').DataTable({
@@ -141,7 +142,8 @@ $(document).ready(function() {
             {"searchable": false},
             {"searchable": false},
             { "orderable": false, "searchable": false }
-        ]
+        ],
+        'iDisplayLength' : 100
     })
 
     $('#sponsor-dtable').DataTable({
@@ -150,7 +152,8 @@ $(document).ready(function() {
             {"orderable" : false, "searchable" : false},
             null,
             {"orderable" : false, "searchable" : false},
-        ]
+        ],
+        'iDisplayLength' : 25
     })
 });
 
