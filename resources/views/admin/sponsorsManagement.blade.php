@@ -12,7 +12,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="mb-3">
-            <button class="btn btn-success" data-toggle="modal" data-target="#addSponsorModal">Add New Sponsor</button>
+            <button class="btn btn-success" data-toggle="modal" data-target="#addSponsorModal"><i class="fas fa-plus"></i>&nbsp; Add New Sponsor</button>
         </div>
     </div>
     <div class="col-md-12">
@@ -30,7 +30,7 @@
                 @foreach($sponsors as $sponsor)
                 <tr>
                     <td class="align-middle">{{$sponsor->company_name}}</td>
-                    <td><img class="img-fluid" style="max-width: 200px;" src="/storage/images/sponsors/{{file_exists(public_path('storage/images/sponsors/' . $sponsor->id . '.png')) ? $sponsor->id : '0' }}.png"></td>
+                    <td><img class="img-fluid" style="max-width: 160px; max-height: 100px" src="/storage/images/sponsors/{{file_exists(public_path('storage/images/sponsors/' . $sponsor->id . '.png')) ? $sponsor->id : '0' }}.png"></td>
                     <td class="align-middle">{{$sponsor->url ?? '-'}}</td>
                     <td class="align-middle"><form method="GET" action="{{route('admin.sponsorManagement.view', ['sponsorID' => $sponsor->id])}}"><button class="btn btn-primary" type="submit"><i class="fas fa-search"></i>&nbsp;View</button></form></td>
                     <td class="align-middle">
