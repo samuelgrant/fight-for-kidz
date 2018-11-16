@@ -143,6 +143,7 @@ $(document).ready(function() {
     $('#auction-dtable').DataTable({
         "columns":[
             null,
+            { "orderable": false, "searchable": true },
             { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false },
@@ -154,7 +155,7 @@ $(document).ready(function() {
     $('#auctionDeleted-dtable').DataTable({
         "columns":[
             null,
-            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": true},
             { "orderable": false, "searchable": false},
             { "orderable": false, "searchable": false},
             { "orderable": false, "searchable": false},
@@ -412,6 +413,19 @@ function applicantManagementModal(id){
         $("#applicantMoreInfoModal").modal('show');
     }).fail((error) => {
         console.log(error);
+    });
+}
+
+function auctionManagementModal($id){
+    
+    $.ajax({
+        method: "get",
+        headers:  {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: `/a/event-management/auction/${id}`
+    }).done((data) => {
+        console.log(data.id);
     });
 }
 

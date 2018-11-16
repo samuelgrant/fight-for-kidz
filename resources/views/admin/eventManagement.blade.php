@@ -433,7 +433,7 @@
     </div>
 <!-- End add to team modal -->
 
-<!-- Create new auction item modal -->
+<!-- Create / edit auction item modal -->
 <div class="modal fade" id="createAuctionItemModal" tabindex="-1" role="dialog" aria-labelledby="Edit Team" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

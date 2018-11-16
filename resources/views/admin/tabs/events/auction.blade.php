@@ -33,6 +33,7 @@
                             <th>Donor Url</th>
                             <th>Picture:</th>
                             <th></th>
+                            <th></th>
                         </tr>                         
                     </thead>
                     <tbody>
@@ -43,10 +44,13 @@
                             <td>{{$item->donor}}</td>
                             <td>{{$item->donor_url}}</td>
                             <td><img src="{{$item->picture}}" alt="{{$item->picture}}" height=100 width=80></td>
-                            <td>
+                            <td class="align-middle">
+                                <button class="btn btn-warning" onclick="auctionManagementModal({{$item->id}})"><i class="fas fa-pencil"></i>&nbsp;Edit</button>
+                            </td>
+                            <td class="align-middle">
                                 <form action="{{route('admin.auctionManagement.destroy', ['itemID' => $item->id])}}" method="POST">
                                     @csrf
-                                    <button class="btn btn-danger mt-4" type="submit"><i class="far fa-times-circle"></i> Delete Item</button>
+                                    <button class="btn btn-danger" type="submit"><i class="far fa-times-circle"></i> Delete</button>
                                     {{method_field('DELETE')}}
                                 </form>
                             </td>
@@ -77,10 +81,10 @@
                             <td>{{$item->donor}}</td>
                             <td>{{$item->donor_url}}</td>
                             <td>{{$item->deleted_at->format('d M Y')}}</td>
-                            <td>
+                            <td class="align-middle">
                                 <form action="{{route('admin.auctionManagement.restore', ['itemID' => $item->id])}}" method="POST">
                                     @csrf
-                                    <button class="btn btn-info mt-2" type="submit"><i class="far fa-check-circle"></i> Restore Item</button>
+                                    <button class="btn btn-info" type="submit"><i class="far fa-check-circle"></i>&nbsp;Restore</button>
                                     {{method_field('PATCH')}}
                                 </form>
                             </td>
