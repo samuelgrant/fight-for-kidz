@@ -26,6 +26,7 @@ $factory->define(App\Applicant::class, function (Faker $faker) {
         'expected_weight' => $faker->numberBetween(60, 140),
         'height' => $faker->numberBetween(130, 220),
         'right_handed' => $faker->numberBetween(0, 1),
+        'fitness_rating' => $faker->numberBetween(1, 5),
         'sporting_exp' => $faker->paragraph(3, true),
         'boxing_exp' => $faker->paragraph(2, true),
         'hobbies' => $faker->paragraph(1, true),

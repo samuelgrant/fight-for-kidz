@@ -63,6 +63,7 @@ class EventApplicationController extends Controller
             'sponsorRadio' => 'required',
             'photo' => 'required|image|mimes:jpeg,png', // accepts jpeg and png - this may not be correct
             'expRadio' => 'required',
+            'fitness_rating' => 'required',
             'fighting_experience' => 'required_if:expRadio,yes',
             'sporting_experience' => 'required',
             'convictedRadio' => 'required',
@@ -125,6 +126,7 @@ class EventApplicationController extends Controller
         $applicant->right_handed = $request->input('hand') == 'right' ? true : false;
         $applicant->preferred_nickname = $request->input('nickname');
         $applicant->can_secure_sponsor = $request->input('sponsorRadio') == 'yes' ? true : false;
+        $applicant->fitness_rating = $request->input('fitness_rating');
         $applicant->boxing_exp = $request->input('fighting_experience');
         $applicant->sporting_exp = $request->input('sporting_experience');
         $applicant->hobbies = $request->input('hobbies');

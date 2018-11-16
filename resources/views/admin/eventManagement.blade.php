@@ -343,6 +343,7 @@
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 px-0">
+                                        <p id="fitnessLevel"></p>
                                         <div class="form-group">
                                             <label>Sporting Experience:</label>
                                             <textarea rows="4" cols="50" id="appSportingExperience" placeholder="" readonly class="form-control-plaintext gray-card" ></textarea>

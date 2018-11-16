@@ -206,6 +206,20 @@
 			<div class="form-section">
 				<h3>Sporting Experience</h3>
 				<hr class="mb-4">
+				{{-- Fitness rating --}}
+				<div class="form-group">
+					<p class="">How would you rate you fitness levels</p>
+					<div class="radio ">
+						Poor &nbsp;
+						<label class="radio-selector"><input type="radio" name="fitness_rating" value="1">1</label>
+						<label class="radio-selector"><input type="radio" name="fitness_rating" value="2">2</label>
+						<label class="radio-selector"><input type="radio" name="fitness_rating" value="3">3</label>
+						<label class="radio-selector"><input type="radio" name="fitness_rating" value="4">4</label>
+						<label class="radio-selector"><input type="radio" name="fitness_rating" value="5">5</label>
+						Excellent
+					</div>
+				</div>
+
 				<!-- Previous boxing experience -->
 
 				<div class="form-group">
