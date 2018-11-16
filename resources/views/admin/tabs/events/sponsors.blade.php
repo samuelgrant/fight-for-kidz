@@ -12,6 +12,13 @@
             </div>
 
             <div class="card-body">
+
+				@if(count($event->sponsors) < 4)
+				<div class="alert alert-warning">
+					<p class="text-center mb-0">Please be aware that sponsors will not display on the event page until at least 4 sponsors have been added.</p>
+				</div>
+				@endif
+
                 <table class="table table-hover" id="event-sponsor-dtable">
 
                     <thead>                        
