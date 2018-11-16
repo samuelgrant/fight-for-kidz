@@ -82,8 +82,8 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        session()->flash('success', 'User created');
+        session()->flash('success', 'User ' . $user->name . ' created successfully. They must reset their password using the link emailed to them - this link will expire after 24 hours.');
 
-        return $this->registered($request, $user) ?: redirect($this->redirectPath());
+        return $this->registered($request, $user) ?: redirect('/a/user-management');
     }
 }
