@@ -23,15 +23,23 @@
                     <th>Logo</th>
                     <th>Website</th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($sponsors as $sponsor)
-                <tr class="clickable-row" data-href="sponsor-management/{{$sponsor->id}}">
+                <tr>
                     <td class="align-middle">{{$sponsor->company_name}}</td>
                     <td><img class="img-fluid" style="max-width: 200px;" src="/storage/images/sponsors/{{file_exists(public_path('storage/images/sponsors/' . $sponsor->id . '.png')) ? $sponsor->id : '0' }}.png"></td>
                     <td class="align-middle">{{$sponsor->url ?? '-'}}</td>
-                    <td class="align-middle"></td>
+                    <td class="align-middle"><form method="GET" action="{{route('admin.sponsorManagement.view', ['sponsorID' => $sponsor->id])}}"><button class="btn btn-primary" type="submit"><i class="fas fa-search"></i>&nbsp;View</button></form></td>
+                    <td class="align-middle">
+                        <form method="POST" action="{{route('admin.sponsorManagement.deleteSponsor', ['sponsorID' => $sponsor->id])}}">
+                        @csrf 
+                        @method('DELETE')
+                        <button class="btn btn-danger" type="submit"><i class="fas fa-trash"></i>&nbsp;Delete</button>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

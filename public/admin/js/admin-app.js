@@ -5,14 +5,6 @@ $(document).ready(function () {
 
         window.history.replaceState(null, null, newURLString);
     })
-
-    // clicking a sponsor dtable row will show that sponsors page
-    $('.clickable-row').on('click', function(){
-
-        window.location = $(this).data('href');
-
-    });
-
 });
 
 
@@ -152,6 +144,7 @@ $(document).ready(function() {
             {"orderable" : false, "searchable" : false},
             null,
             {"orderable" : false, "searchable" : false},
+            {"orderable" : false, "searchable" : false},            
         ],
         'iDisplayLength' : 25
     })
