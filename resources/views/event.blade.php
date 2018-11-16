@@ -55,6 +55,7 @@
 </section>
 
 <!-- Sponsors Section -->
+@if(count($event->sponsors) > 3)
 <section id="sponsors-section">
   <h2 class="text-center text-dark">Event Sponsors</h2>
   <div class="slick-sponsors">
@@ -70,6 +71,7 @@
     @endforeach
   </div>
 </section>
+@endif
 
 <!-- Bouts Section - show if bouts are switched on-->
 @if($event->show_bouts)
