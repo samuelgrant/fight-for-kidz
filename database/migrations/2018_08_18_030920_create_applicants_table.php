@@ -39,6 +39,7 @@ class CreateApplicantsTable extends Migration
             $table->boolean('right_handed');
             $table->mediumText('sporting_exp');
             $table->mediumText('boxing_exp')->nullable(); // null if the applicant ticks 'no' on the form 
+            $table->mediumText('hobbies')->nullable();
 
             $table->string('occupation');
             $table->string('employer');

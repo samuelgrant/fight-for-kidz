@@ -374,12 +374,13 @@ function applicantManagementModal(id){
 
         // Physical Tab
         $("#appHeight").val(data.height + "cm");           $("#appWeightC").val(data.current_weight + "kg");
-        $("#appWeightE").val(data.expected_weight + "kg");  $("#appSportingExperience").attr('Placeholder', data.sporting_exp);
-        $("#appBoxingExperience").attr("Placeholder", data.boxing_exp);
+        $("#appWeightE").val(data.expected_weight + "kg");  $("#appSportingExperience").text(data.sporting_exp);
+        $("#appBoxingExperience").text(data.boxing_exp);
+        $('#hobbies').text(data.hobbies);
 
         // Additional Tab
         $("#appOccupation").val(data.occupation);           $("#appEmployer").val(data.employer);
-        $("appConvictionDetails").attr("Placeholder", data.conviction_details);
+        $("appConvictionDetails").text(data.conviction_details);
 
         // Set Consent
         if(consent_to_test = 0){

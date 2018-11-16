@@ -28,6 +28,7 @@ $factory->define(App\Applicant::class, function (Faker $faker) {
         'right_handed' => $faker->numberBetween(0, 1),
         'sporting_exp' => $faker->paragraph(3, true),
         'boxing_exp' => $faker->paragraph(2, true),
+        'hobbies' => $faker->paragraph(1, true),
         'occupation' => $faker->jobTitle(),
         'employer' => $faker->company(),
         'can_secure_sponsor' => $faker->numberBetween(0, 1),

@@ -354,6 +354,12 @@
                                             <textarea rows="4" cols="50" id="appBoxingExperience" placeholder="" readonly class="form-control-plaintext gray-card" ></textarea>
                                         </div>
                                     </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 px-0">
+                                            <div class="form-group">
+                                                <label>Hobbies/Interests:</label>
+                                                <textarea rows="4" cols="50" id="hobbies" placeholder="" readonly class="form-control-plaintext gray-card" ></textarea>
+                                            </div>
+                                        </div>
                                 </fieldset>
                             </div>
                         </div>
