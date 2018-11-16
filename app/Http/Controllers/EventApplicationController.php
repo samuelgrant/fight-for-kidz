@@ -7,6 +7,7 @@ use App\Applicant, App\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
+use App\Subscriber;
 
 class EventApplicationController extends Controller
 {
@@ -79,6 +80,11 @@ class EventApplicationController extends Controller
     
     );
 
+        // check if subscribe for updates checkbox is checked and subscribe if so
+        if($request->input('subscribeCheckbox')){
+            Subscriber::subscribe($request->input('first_name'), $request->input('email'));
+        }
+
         if($validator->fails()){
 
             return redirect()->back()->withErrors($validator);
@@ -121,6 +127,7 @@ class EventApplicationController extends Controller
         $applicant->can_secure_sponsor = $request->input('sponsorRadio') == 'yes' ? true : false;
         $applicant->boxing_exp = $request->input('fighting_experience');
         $applicant->sporting_exp = $request->input('sporting_experience');
+        $applicant->hobbies = $request->input('hobbies');
         $applicant->conviction_details = $request->input('conviction_details');
         $applicant->consent_to_test = $request->input('drugRadio') == 'yes' ? true : false;
 
@@ -129,10 +136,8 @@ class EventApplicationController extends Controller
 
         $applicant->save(); // generates id number to use when generating image name
 
-        Log::debug('saved applicant');
-
         $image = $request->file('photo');
-        $imagePath = 'private/images/applicants/';
+        $imagePath = 'private\images\applicants\\';
         $imageName = $applicant->id . '.png'; 
         
         // convert to png if not already
@@ -148,7 +153,7 @@ class EventApplicationController extends Controller
         }
 
         if(isset($img)){
-            imagepng($img, storage_path('\app\\' . $imagePath . $imageName));
+            imagepng($img, storage_path('app\\' . $imagePath . $imageName));
         } else{
             // save image to storage
             $image->storeAs($imagePath, $imageName);
