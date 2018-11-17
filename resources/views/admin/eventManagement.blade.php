@@ -434,11 +434,11 @@
 <!-- End add to team modal -->
 
 <!-- Create / edit auction item modal -->
-<div class="modal fade" id="createAuctionItemModal" tabindex="-1" role="dialog" aria-labelledby="Edit Team" aria-hidden="true">
+<div class="modal fade" id="createEditAuctionItemModal" tabindex="-1" role="dialog" aria-labelledby="Edit Team" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
-                <h4 class="modal-title">Create new Auction Item</h4>
+                <h4 class="modal-title" id="AuctionModalTitle">Create Auction Item</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
@@ -478,12 +478,12 @@
                         <small id="itemPictureHelp" class="text-muted d-block">Use png 400H x 400W.</small>
                     </div>
                     
-                    <button type="submit" class="btn btn-success">Confirm</button>
+                    <button type="submit" id="AuctionModalButton" class="btn btn-success float-right">Confirm</button>
 
                     {!! Form::close() !!}
             </div>
         </div>
     </div>
 </div>
-<!-- End add to team modal -->
+<!-- End create / edit auction item modal -->
 @endsection

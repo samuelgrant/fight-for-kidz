@@ -39,7 +39,7 @@ class AuctionManagementController extends Controller
             'description' => 'string|required|lte:150',
             'donor' => 'string|required',
             'donorUrl' => 'string',
-            'itemImage' => 'mimes:jpg,jpeg|max:2000'
+            'itemImage' => 'mimes:jpg,jpeg,png|max:2000'
         ]);
 
         $item = new AuctionItem();
@@ -53,49 +53,34 @@ class AuctionManagementController extends Controller
         return redirect()->back();
     }
 
-    // /**
-    //  *  Updates event
-    //  */
-    // public function update(Request $request, $eventID){
-    //     $validator = Validator::make(Input::all(), [ 
-    //         'name' => 'required',
-    //         'tickets' => 'active_url',
-
-    //     ],        
-    //     // error messages
-    //     [
-    //         'required' => ':attribute must be filled in',
-    //         'accepted' => 'Please confirm that your details are correct',
-    //         'url' => 'Please enter a valid URL'
-    //     ]
-    
-    // )->validate();
+    /**
+     *  Updates auctionItem
+     */
+    public function update(Request $request, $itemId){
+        
+        $this->validate($request,[
+            'name' => 'string|required',
+            'description' => 'string|required|lte:150',
+            'donor' => 'string|required',
+            'donorUrl' => 'string'
+            //itemImage' => 'mimes:jpg,jpeg,png|max:2000'
+        ]);
 
 
-    //     $event = Event::find($eventID);
+        $item = AuctionItem::find($itemId);
 
-    //     $event->name = $request->input('name');
-    //     $event->datetime = $request->input('date');
-    //     $event->venue_name = $request->input('venue');
-    //     $event->venue_address = $request->input('address');
-    //     $event->charity = $request->input('charity');
-    //     $event->ticket_seller_url = $request->input('tickets');
-    //     $event->desc_1 = $request->input('eventDesc');
+        $item->name = $request->input('name');
+        $item->desc = $request->input('description');
+        $item->donor = $request->input('donor');
+        $item->donor_url = $request->input('donorUrl');
+        //Picture code goes here
 
-    //     $event->updateGPS();
+        $item->save();
 
-    //     $event->save();
+        session()->flash('success', $item->name . ' was updated.');
 
-    //     // We will also update the logo if the event is public. 
-    //     // This will only change the logo if the modified event
-    //     // is the 'current' event (i.e. most recent public event)
-    //     $this->updateLogo();
-
-    //     session()->flash('success', $event->name . ' was updated.');
-
-    //     return redirect()->back();
-
-    // }
+        return redirect()->back();
+    }
 
 
     /**

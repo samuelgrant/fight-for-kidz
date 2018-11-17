@@ -88,10 +88,10 @@ Route::get('/event-management/contenders/{contenderID}', 'admin\ContenderManagem
 Route::get('/applicantImages/{imageName}', 'admin\ImageController@getApplicantImage')->where('imageName', '^[^/]+$')->name('admin.getApplicantImage');
 
 //Get Auction item Data
-Route::get('/event-management/auction/{auctionId}', 'admin\AuctiontManagementController@getAuctionItem')->name('admin.auctionManagement.getAuctionItem');
+Route::get('/auction-management/auction/{auctionId}', 'admin\AuctionManagementController@getAuctionItem')->name('admin.auctionManagement.getAuctionItem');
 
 //Create Delete Restore Auction Items
 Route::post('/auction-management', 'admin\AuctionManagementController@store')->name('admin.auctionManagement.store');
-// Route::put('/event-management/{eventID}/update', 'admin\EventManagementController@update')->name('admin.eventManagement.update');
+Route::put('/auction-management/{eventID}/update', 'admin\AuctionManagementController@update')->name('admin.auctionManagement.update');
 Route::delete('/auction-management/{itemID}', 'admin\AuctionManagementController@destroy')->name('admin.auctionManagement.destroy');
 Route::patch('/auction-management/{itemID}', 'admin\AuctionManagementController@restore')->name('admin.auctionManagement.restore');

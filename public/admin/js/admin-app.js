@@ -416,16 +416,33 @@ function applicantManagementModal(id){
     });
 }
 
-function auctionManagementModal($id){
-    
+function auctionManagementModal(id){
     $.ajax({
         method: "get",
         headers:  {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: `/a/event-management/auction/${id}`
+        url: `/a/auction-management/auction/${id}`
     }).done((data) => {
-        console.log(data.id);
+        //console.log(data);
+        //Populate the modal with item info and change form properties to refelect editing
+        $("#createEditAuctionItemModal").attr("action", "/admin/AuctionManagmentController@update");
+        $("#AuctionModalTitle").text("Edit Auction Item");
+
+        $("name-text").val(data.name);
+        $("description-text").val(data.desc);
+        $("donor-text").val(data.donor);
+        $("donorUrl-text").val(data.donor_url);
+        //picture code goes here
+        
+        $("#AuctionModalButton").text("Save");
+
+        //Display the modal
+        $("#createEditAuctionItemModal").modal('show');
+
+        //reset modal code goes here method?
+    }).fail((error) => {
+        console.log(error);
     });
 }
 
