@@ -45,7 +45,7 @@
                             <td>{{$item->donor_url}}</td>
                             <td><img src="{{$item->picture}}" alt="{{$item->picture}}" height=100 width=80></td>
                             <td class="align-middle">
-                                <button class="btn btn-warning" onclick="auctionManagementModal({{$item->id}})"><i class="fas fa-pencil"></i>&nbsp;Edit</button>
+                                <button class="btn btn-warning" onclick="auctionManagementModal(" id=><i class="fas fa-pencil"></i>&nbsp;Edit</button>
                             </td>
                             <td class="align-middle">
                                 <form action="{{route('admin.auctionManagement.destroy', ['itemID' => $item->id])}}" method="POST">

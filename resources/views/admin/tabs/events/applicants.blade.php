@@ -48,7 +48,7 @@
             <td>{{$applicant->current_weight}}</td>
             <td>{{$applicant->expected_weight}}</td>
             <td>
-                <button class="btn btn-info" type="button" onclick="applicantManagementModal({{$applicant->id}})"><i class="fal fa-info-circle"></i> More Info</button>
+                <button class="btn btn-info" type="button" onclick="applicantManagementModal({{$applicant->id}})"><i class="fal fa-info-circle"></i>&nbsp;More Info</button>
             </td>
         </tr>
         @endforeach

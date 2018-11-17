@@ -12,6 +12,20 @@ class AuctionManagementController extends Controller
     {
         $this->middleware('auth.activeUser');
     }
+
+    /**
+     * finds and returns auction item
+     * 
+     * @param id
+     */
+    public function getAuctionItem($id){
+        $item = AuctionItem::find($id);
+        if(isset($item)){
+            return response($item, 200);
+        }
+        
+        return response("No item found", 400);
+    }
     
     /**
      * Creates a new auction item
