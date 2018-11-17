@@ -36,14 +36,24 @@
                             <tr>
                                 <td>{{$user->name}}</td>
                                 <td><a href="mailto:{{$user->email}}">{{$user->email}}</a></td>
-                                <td>{{($user->active)? "Active Account" : "Activation Required"}}</td>
+                                <td>
+                                    @if($user->active)
+                                        @if($user->password_reset_at)
+                                            Active Account
+                                        @else
+                                            New Account
+                                        @endif
+                                    @else
+                                        Inactive Account
+                                    @endif
+                                </td>
                                 <td>{{$user->updated_at->format('d M Y')}}</td>
                                 <td>
                                     {!!Form::open(['action'=>['admin\UserManagementController@toggleActive', $user->id], 'method' => 'POST']) !!}
                                     @if($user->active)
-                                    <button class="btn btn-info" type="submit"><i class="far fa-times-circle"></i> Deactivate Account</button>
+                                    <button class="btn btn-info w-100" type="submit"><i class="far fa-times-circle"></i> Deactivate Account</button>
                                     @else
-                                    <button class="btn btn-info" type="submit"><i class="far fa-check-circle"></i> Activate Account</button>
+                                    <button class="btn btn-info w-100" type="submit"><i class="far fa-check-circle"></i> Activate Account</button>
                                     @endif
                                     {{Form::hidden('_method', 'put')}}
                                     {!! Form::close() !!}

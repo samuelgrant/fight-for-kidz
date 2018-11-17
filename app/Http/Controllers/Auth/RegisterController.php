@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Passwords\PasswordBroker;
 
 class RegisterController extends Controller
 {
@@ -81,6 +82,12 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
+
+        // create reset token for user
+        $token = app(PasswordBroker::class)->createToken($user);
+
+        // send initial password reset link
+        $user->sendPasswordResetNotification($token);
 
         session()->flash('success', 'User ' . $user->name . ' created successfully. They must reset their password using the link emailed to them - this link will expire after 24 hours.');
 
