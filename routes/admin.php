@@ -12,7 +12,7 @@
 
 Route::get('/dashboard', function(){
     return view('admin.dashboard')->with('event', App\Event::current());
-})->name('admin.dashboard');
+})->middleware('auth.activeUser')->name('admin.dashboard');
 
 //View, Activate, Delete, Restore Users.
 Route::get('/user-management', 'admin\UserManagementController@index')->name('admin.userManagement');
