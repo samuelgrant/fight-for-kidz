@@ -6,6 +6,8 @@ use App\Traits\Groupable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\InitialResetPasswordNotification;
+use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
 
 
 class User extends Authenticatable
@@ -20,7 +22,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'password_reset_at',
     ];
 
     protected $dates = [
@@ -64,5 +66,20 @@ class User extends Authenticatable
             //Return account now disabled
         }
         //Return already disabled
+    }
+
+    public function sendPasswordResetNotification($token){
+
+        if($this->password_reset_at){
+            
+            // password reset has been requested by the user
+            $this->notify(new ResetPasswordNotification($token));
+
+        } else{
+            
+            // password reset on initial registration
+            $this->notify(new InitialResetPasswordNotification($token));
+        }
+
     }
 }

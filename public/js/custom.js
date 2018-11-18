@@ -9,7 +9,7 @@ function hideExperience(){
   }
   function hidecriminal(){
     document.getElementById('criminal').style.display ='none';
-} 
+}
 
 $("document").ready(function(){
   $('.slick-sponsors').slick({

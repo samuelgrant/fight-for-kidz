@@ -37,8 +37,10 @@ class CreateApplicantsTable extends Migration
             $table->integer('expected_weight')->unsigned()->nullable();
             $table->integer('height')->unsigned();
             $table->boolean('right_handed');
+            $table->integer('fitness_rating');
             $table->mediumText('sporting_exp');
             $table->mediumText('boxing_exp')->nullable(); // null if the applicant ticks 'no' on the form 
+            $table->mediumText('hobbies')->nullable();
 
             $table->string('occupation');
             $table->string('employer');

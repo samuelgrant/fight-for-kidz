@@ -1,7 +1,10 @@
-@extends('layouts.app')
+@extends('admin.layouts.app')
 
- @section('content')
+ @section('page')
 <div class="container auth">
+
+    <h2 class="text-center my-5">Create New User</h2>
+
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card auth-card">
@@ -32,10 +35,15 @@
                             </div>
                         </div>
                         
+                        <?php
+                            global $password;
+                            $password = str_random(8)
+                        ?>
+
                          <div class="form-group row mb-0">
-                            <label for="password" class="col-md-12 col-form-label text-md-left">{{ __('Password') }}</label>
+                            {{-- <label for="password" class="col-md-12 col-form-label text-md-left">{{ __('Password') }}</label> --}}
                              <div class="col-md-12">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                             <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" value="{{$password}}" required hidden>
                                  @if ($errors->has('password'))
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $errors->first('password') }}</strong>
@@ -45,9 +53,9 @@
                         </div>
 
                          <div class="form-group row">
-                            <label for="password-confirm" class="col-md-12 col-form-label text-md-left">{{ __('Confirm Password') }}</label>
+                            {{-- <label for="password-confirm" class="col-md-12 col-form-label text-md-left">{{ __('Confirm Password') }}</label> --}}
                              <div class="col-md-12">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" value="{{$password}}" required hidden>
                             </div>
                         </div>
                          <div class="form-group row mb-0">
