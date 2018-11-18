@@ -416,7 +416,17 @@ function applicantManagementModal(id){
     });
 }
 
-function auctionManagementModal(id){
+function auctionCreateModal(){
+    //Set modal for creating auction item
+    $("#createEditAuctionItemModal").attr("action", "/admin/AuctionManagmentController@store");
+    $("#auctionModalTitle").text("Create Auction Item");
+    $("#auctionModalButton").text("Confirm");
+
+    //Display the modal
+    $("#createEditAuctionItemModal").modal('show');
+}
+
+function auctionEditModal(id){
     $.ajax({
         method: "get",
         headers:  {
@@ -424,23 +434,20 @@ function auctionManagementModal(id){
         },
         url: `/a/auction-management/auction/${id}`
     }).done((data) => {
-        //console.log(data);
-        //Populate the modal with item info and change form properties to refelect editing
+        //Set modal for editing
         $("#createEditAuctionItemModal").attr("action", "/admin/AuctionManagmentController@update");
-        $("#AuctionModalTitle").text("Edit Auction Item");
+        $("#auctionModalTitle").text("Edit Auction Item");
+        $("#auctionModalButton").text("Save");
 
-        $("name-text").val(data.name);
-        $("description-text").val(data.desc);
-        $("donor-text").val(data.donor);
-        $("donorUrl-text").val(data.donor_url);
-        //picture code goes here
-        
-        $("#AuctionModalButton").text("Save");
+        //Dynamically populate the modal with item info
+        $("auctionName").val(data.name);
+        $("auctionDescription").val(data.desc);
+        $("auctionDonor").val(data.donor);
+        $("auctionDonorUrl").val(data.donor_url);
+        //$("auctionItemImage").attr("src", data.picture);        
 
         //Display the modal
         $("#createEditAuctionItemModal").modal('show');
-
-        //reset modal code goes here method?
     }).fail((error) => {
         console.log(error);
     });

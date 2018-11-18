@@ -1,7 +1,7 @@
 <div class="mt-4">
     <h3 class="d-inline">{{$event->name}} : Auction</h3>
     <span class="float-right">
-        <button class="btn btn-success" data-toggle="modal" data-target="#createEditAuctionItemModal"><i class="fas fa-plus"></i>&nbsp;Add Item</button>
+        <button class="btn btn-success" onclick="auctionCreateModal()"><i class="fas fa-plus"></i>&nbsp;Add Item</button>
     </span>
 </div>
 
@@ -42,10 +42,10 @@
                             <td>{{$item->name}}</td>
                             <td>{{$item->desc}}</td>
                             <td>{{$item->donor}}</td>
-                            <td>{{$item->id}}</td>
+                            <td>{{$item->donor_url}}</td>
                             <td><img src="{{$item->picture}}" alt="{{$item->picture}}" height=100 width=80></td>
                             <td class="align-middle">
-                            <button class="btn btn-warning" onclick="auctionManagementModal({{$item->id}})" id=><i class="fas fa-pencil"></i>&nbsp;Edit</button>
+                            <button class="btn btn-warning" onclick="auctionEditModal({{$item->id}})" id=><i class="fas fa-pencil"></i>&nbsp;Edit</button>
                             </td>
                             <td class="align-middle">
                                 <form action="{{route('admin.auctionManagement.destroy', ['itemID' => $item->id])}}" method="POST">

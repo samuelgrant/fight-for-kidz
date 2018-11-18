@@ -438,47 +438,47 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
-                <h4 class="modal-title" id="AuctionModalTitle">Create Auction Item</h4>
+                <h4 class="modal-title" id="auctionModalTitle"></h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                    {!! Form::open(['action' => 'admin\AuctionManagementController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data'])!!}
+                    {!! Form::open(['method' => 'POST', 'enctype' => 'multipart/form-data'])!!}
                     @csrf
                     <div class="form-group">
-                        <label for="name-text">Item name:</label>
-                        <input  type="text" class="form-control" name="name" id="name-text" placeholder="*required"  required>
+                        <label for="auctionName">Item name:</label>
+                        <input  type="text" class="form-control" name="name" id="auctionName" placeholder="*required"  required>
                     </div>
 
                     <div class="form-group">
-                        <label for="description-text">Item description:</label>
-                        <input  type="text" class="form-control" name="description" id="description-text"  placeholder="*required" required>
+                        <label for="auctionDescription">Item description:</label>
+                        <input  type="text" class="form-control" name="description" id="auctionDescription"  placeholder="*required" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="donor-text">Item donor:</label>
-                        <input  type="text" class="form-control" name="donor" id="donor-text"  placeholder="*required" required>
+                        <label for="auctionDonor">Item donor:</label>
+                        <input  type="text" class="form-control" name="donor" id="auctionDonor"  placeholder="*required" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="donorUrl-text">Item donor url:</label>
-                        <input  type="text" class="form-control" name="donorUrl" id="donorUrl-text">
+                        <label for="auctionDonorUrl">Item donor url:</label>
+                        <input  type="text" class="form-control" name="donorUrl" id="auctionDonorUrl">
                     </div>
 
                     <div class="form-group">
-                        <label for="itemPicture">Optional item picture</label>
+                        <label for="auctionItemPicture">Optional item picture</label>
                         <div>
-                            <img id="imgPreview" src="https://via.placeholder.com/400x400" class="float-left mr-2 group-icon" alt="placeholder">
+                            <img id="auctionImgPreview" src="https://via.placeholder.com/400x400" class="float-left mr-2 group-icon" alt="placeholder">
                             <label class="btn btn-info btn-sm btn-file">
                                 <i class="fas fa-upload"></i> Select Image
-                                <input name="itemImage" id="img" type="file" style="display: none;">
+                                <input name="auctionItemImage" id="img" type="file" style="display: none;">
                             </label>
                             <button class="btn btn-danger btn-sm d-block" type="button" onclick="resetImagePre()"><i class="fas fa-times"></i>
                                 Remove Image</button>
                         </div>
-                        <small id="itemPictureHelp" class="text-muted d-block">Use png 400H x 400W.</small>
+                        <small id="auctionItemPictureHelp" class="text-muted d-block">Use png 400H x 400W.</small>
                     </div>
                     
-                    <button type="submit" id="AuctionModalButton" class="btn btn-success float-right">Confirm</button>
+                    <button type="submit" id="auctionModalButton" class="btn btn-success float-right"></button>
 
                     {!! Form::close() !!}
             </div>
