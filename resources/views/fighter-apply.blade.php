@@ -2,16 +2,14 @@
 @section('content')
 <div class="container conform" id="application-form">
   <div class="push-down p-3">
-    <h1 class="text-center my-3">Application Form - Contenders</h1>
-    <p class="text-center">Thank you for your interest in becoming a Fight for Kidz contender.</p>
-    <p class="text-center mb-5">Before applying, please familiarize yourself with the
-      <a class="" href="#">
-        <u>Applicant Guidelines</u></a>.</p>
+    <h2 class="text-center mb-0 mt-3">{{App\Event::current()->name}}</h2>
+    <h1 class="text-center mb-4">Fighter Application Form</h1>    
+    <p class="text-center mb-4">Thank you for your interest in becoming a Fight for Kidz fighter.</p>
     <form id="application-form" method="POST" action="{{route('application.fight.submit')}}" enctype="multipart/form-data">
       <div class="form-section">
 
         <!-- Contact Information -->
-        <h3>Contact Information</h3>
+        <h3 class="mb-0">Contact Information</h3>
         <hr class="mb-4">
         <div class="form-group-margin">
           <div class="row">
@@ -103,7 +101,7 @@
 
       <!-- Personal Details -->
       <div class="form-section">
-        <h3>Personal Details</h3>
+        <h3 class="mb-0">Personal Details</h3>
         <hr class="mb-4">
         <div class="form-group-margin">
           <div class="row">
