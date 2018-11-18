@@ -464,19 +464,13 @@
                         <input  type="text" class="form-control" name="donorUrl" id="auctionDonorUrl">
                     </div>
 
-                    <div class="form-group">
-                        <label for="auctionItemPicture">Optional item picture</label>
-                        <div>
-                            <img id="auctionImgPreview" src="https://via.placeholder.com/400x400" class="float-left mr-2 group-icon" alt="placeholder">
-                            <label class="btn btn-info btn-sm btn-file">
-                                <i class="fas fa-upload"></i> Select Image
-                                <input name="auctionItemImage" id="img" type="file" style="display: none;">
+                    <div class="card w-50 mx-auto text-center mb-3">
+                            <label for="logo">Logo:</label>
+                            <img class="logoPreview img-fluid" id="logoPreview" src="/storage/images/sponsors/{{file_exists(public_path('storage/images/sponsors/' . $sponsor->id . '.png')) ? $sponsor->id : '0' }}.png">
+                            <label for="logoInput" class="btn btn-primary mb-0">Change
+                                <input type="file" name="logo" id="logoInput" class="form-control" hidden>
                             </label>
-                            <button class="btn btn-danger btn-sm d-block" type="button" onclick="resetImagePre()"><i class="fas fa-times"></i>
-                                Remove Image</button>
                         </div>
-                        <small id="auctionItemPictureHelp" class="text-muted d-block">Use png 400H x 400W.</small>
-                    </div>
                     
                     <button type="submit" id="auctionModalButton" class="btn btn-success float-right"></button>
 
