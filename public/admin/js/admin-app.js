@@ -422,6 +422,13 @@ function auctionCreateModal(){
     $("#auctionModalTitle").text("Create Auction Item");
     $("#auctionModalButton").text("Confirm");
 
+    //Set all text fields placeholders
+    $("#auctionName").val("");
+    $("#auctionDescription").val("");
+    $("#auctionDonor").val("");
+    $("#auctionDonorUrl").val("");
+    //$("auctionItemImage").attr("src", data.picture);
+
     //Display the modal
     $("#createEditAuctionItemModal").modal('show');
 }
@@ -440,10 +447,10 @@ function auctionEditModal(id){
         $("#auctionModalButton").text("Save");
 
         //Dynamically populate the modal with item info
-        $("auctionName").val(data.name);
-        $("auctionDescription").val(data.desc);
-        $("auctionDonor").val(data.donor);
-        $("auctionDonorUrl").val(data.donor_url);
+        $("#auctionName").val(data.name);
+        $("#auctionDescription").val(data.desc);
+        $("#auctionDonor").val(data.donor);
+        $("#auctionDonorUrl").val(data.donor_url);
         //$("auctionItemImage").attr("src", data.picture);        
 
         //Display the modal
