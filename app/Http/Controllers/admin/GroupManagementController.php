@@ -224,4 +224,53 @@ class GroupManagementController extends Controller
 
         Log::debug('Use the copy function to add '. $memberType . ' ' . $memberId . ' to group ' . $groupId);
     }
+
+
+    // REVAMPED GROUP SYSTEM
+
+    /**
+     *  Returns view of all contacts
+     */
+    public function getAll(){
+
+        return view('admin.systemGroupManagement')->with('type', 'All')->with('groups', Group::all());
+
+    }
+
+    /**
+     *  Returns view of all admins
+     */
+    public function getAdmins(){
+
+        return view('admin.systemGroupManagement')->with('type', 'Admins')->with('groups', Group::all());
+
+    }
+
+    /**
+     *  Returns view of all subscribers
+     */
+    public function getSubscribers(){
+
+        return view('admin.systemGroupManagement')->with('type', 'Subscribers')->with('groups', Group::all());
+
+    }
+
+    /**
+     *  Returns view of all applicants
+     */
+    public function getApplicants(){
+
+        return view('admin.systemGroupManagement')->with('type', 'Applicants')->with('groups', Group::all());
+
+    }
+
+    /**
+     *  Returns view of all sponsors
+     */
+    public function getSponsors(){
+
+        return view('admin.systemGroupManagement')->with('type', 'Sponsors')->with('groups', Group::all());
+
+    }
+
 }

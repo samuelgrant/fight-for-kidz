@@ -35,6 +35,13 @@ Route::post('/sponsor-management/{sponsorID}', 'admin\SponsorManagementControlle
 Route::delete('/sponsor-management/{SponsorID}', 'admin\SponsorManagementController@deleteSponsor')->name('admin.sponsorManagement.deleteSponsor');
 Route::delete('/sponsor-management/{SponsorID}/{eventID}', 'admin\SponsorManagementController@removeFromEvent')->name('admin.sponsorManagement.removeFromEvent');
 
+// View system groups
+Route::get('/group-management/all', 'admin\GroupManagementController@getAll')->name('admin.group.all');
+Route::get('/group-management/subscribers', 'admin\GroupManagementController@getSubscribers')->name('admin.group.subscribers');
+Route::get('/group-management/admins', 'admin\GroupManagementController@getAdmins')->name('admin.group.admins');
+Route::get('/group-management/applicants', 'admin\GroupManagementController@getApplicants')->name('admin.group.applicants');
+Route::get('/group-management/sponsors', 'admin\GroupManagementController@getSponsors')->name('admin.group.sponsors');
+
 //View, Update Group
 Route::get('/group-management/{groupID}', 'admin\GroupManagementController@view')->name('admin.group');
 Route::put('/group-management/{groupID}', 'admin\GroupManagementController@update')->name('admin.group.update');
