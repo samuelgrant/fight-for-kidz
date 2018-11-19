@@ -9,6 +9,8 @@
   }); 
 </script>
 
+<script type="text/javascript" src="/js/admin-event.js"></script>
+
   <footer class="bg-black small text-center text-white-50 row py-2">
     <div class="col-sm-4 mb-3">
       <img src="/storage/images/f4k_logo_noyear.png" class="img-fluid w-50">
