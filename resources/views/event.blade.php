@@ -55,6 +55,7 @@
 </section>
 
 <!-- Sponsors Section -->
+@if(count($event->sponsors) > 3)
 <section id="sponsors-section">
   <h2 class="text-center text-dark">Event Sponsors</h2>
   <div class="slick-sponsors">
@@ -70,8 +71,10 @@
     @endforeach
   </div>
 </section>
+@endif
 
-<!-- Bouts Section -->
+<!-- Bouts Section - show if bouts are switched on-->
+@if($event->show_bouts)
 <div class="container pt-5">
 
   <!-- All bouts will be contained within single row -->
@@ -132,6 +135,7 @@
     @endforeach
 
   </div> <!-- end all bouts -->
+
 
 <!-- Dynamic modal -->
 <div id="bio-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
@@ -198,7 +202,7 @@
     </div>
   </div>
 </div> {{-- close bio-modal --}}
-
+@endif
 <script>
   $(document).ready(function () {
     $('.bio-view-button').on('click', function (e) {

@@ -8,6 +8,11 @@ use App\Http\Controllers\Controller;
 
 class SponsorManagementController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth.activeUser');
+    }
+    
     public function index(){
 
         $sponsors = Sponsor::all();
@@ -92,13 +97,11 @@ class SponsorManagementController extends Controller
 
         $sponsor = Sponsor::find($sponsorID);
 
-        if(count($sponsor->events > 0)){
+        if(count($sponsor->events) > 0){
 
             // cannot delete sponsor as they are linked to events
 
-            session()->flash('error', 'This sponsor cannot be deleted as it is linked to ' . count($sponsor->events) . '.');
-             
-            return redirect()->back();
+            session()->flash('error', $sponsor->company_name . ' cannot be deleted as it is linked to ' . count($sponsor->events) . ' events.');           
 
         } else {
 
@@ -107,6 +110,8 @@ class SponsorManagementController extends Controller
             session()->flash('success', $sponsor->company_name . ' was successfully deleted.');
 
         }
+
+        return redirect()->back();
 
     }
     

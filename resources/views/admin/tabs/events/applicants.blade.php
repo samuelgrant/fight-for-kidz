@@ -1,9 +1,19 @@
-<div class="mt-4">
-    <h3 class="d-inline">{{$event->name}} : Applications</h3>
-    <span class="float-right">
-            <button class="btn btn-warning" onclick="removeSelectedFromTeam()"><i class="fas fa-minus"></i>&nbsp;Remove selected from team</button>
-            <button class="btn btn-success" data-toggle="modal" data-target="#editTeamModal" onclick="countSelected('applicants')"><i class="fas fa-plus"></i>&nbsp;Add selected to team</button>
-            <a class="btn btn-info" href="{{route('admin.eventManagment.downloadApplicants', [$event->id])}}"><i class="fas fa-file-excel"></i> Download</a>
+<div class="mt-1">
+    <h3 class="d-inline-block my-3">{{$event->name}} : Applications</h3>
+    <span class="float-right d-inline-block">
+            <div class="d-inline-block gray-card mr-5">
+				<p class="mb-0">Set team for selected applicants:</p>
+				<span>
+						<button class="btn btn-warning" onclick="removeSelectedFromTeam()">No team</button>
+						<button class="btn btn-primary" onclick="addSelectedToTeam('blue')">Blue</button>
+						<button class="btn btn-danger" onclick="addSelectedToTeam('red')">Red</button>
+				</span>
+            </div>
+            
+            <div class="d-inline-block gray-card">
+				<p class="mb-0 text-center">Export All</p>
+				<a class="btn btn-info" href="{{route('admin.eventManagment.downloadApplicants', [$event->id])}}"><i class="fas fa-file-excel"></i>&nbsp; Download</a>
+			</div>
         </span>
 </div>
 

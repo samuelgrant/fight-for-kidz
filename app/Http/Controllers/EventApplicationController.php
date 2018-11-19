@@ -8,6 +8,7 @@ use App\Applicant, App\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
+use App\Subscriber;
 
 class EventApplicationController extends Controller
 {
@@ -63,6 +64,7 @@ class EventApplicationController extends Controller
             'sponsorRadio' => 'required',
             'photo' => 'required|image|mimes:jpeg,png', // accepts jpeg and png - this may not be correct
             'expRadio' => 'required',
+            'fitness_rating' => 'required',
             'fighting_experience' => 'required_if:expRadio,yes',
             'sporting_experience' => 'required',
             'convictedRadio' => 'required',
@@ -79,6 +81,11 @@ class EventApplicationController extends Controller
         ]
     
     );
+
+        // check if subscribe for updates checkbox is checked and subscribe if so
+        if($request->input('subscribeCheckbox')){
+            Subscriber::subscribe($request->input('first_name'), $request->input('email'));
+        }
 
         if($validator->fails()){
 
@@ -120,8 +127,10 @@ class EventApplicationController extends Controller
         $applicant->right_handed = $request->input('hand') == 'right' ? true : false;
         $applicant->preferred_nickname = $request->input('nickname');
         $applicant->can_secure_sponsor = $request->input('sponsorRadio') == 'yes' ? true : false;
+        $applicant->fitness_rating = $request->input('fitness_rating');
         $applicant->boxing_exp = $request->input('fighting_experience');
         $applicant->sporting_exp = $request->input('sporting_experience');
+        $applicant->hobbies = $request->input('hobbies');
         $applicant->conviction_details = $request->input('conviction_details');
         $applicant->consent_to_test = $request->input('drugRadio') == 'yes' ? true : false;
 
@@ -130,15 +139,19 @@ class EventApplicationController extends Controller
 
         $applicant->save(); // generates id number to use when generating image name
 
-        Log::debug('saved applicant');
-
         $image = $request->file('photo');
-        $imagePath = 'private/images/applicants/';
+        $imagePath = 'private\images\applicants\\';
         $imageName = $applicant->id . '.png'; 
         
         // Convert to png if needed and store
         Image::storeAsPng($image, $imagePath, $imageName);
 
+        if(isset($img)){
+            imagepng($img, storage_path('app\\' . $imagePath . $imageName));
+        } else{
+            // save image to storage
+            $image->storeAs($imagePath, $imageName);
+        }
         // return to home page 
         session()->flash('success', 'Application received, thank you. We will be in touch');
         return redirect()->route('index');

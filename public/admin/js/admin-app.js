@@ -5,14 +5,6 @@ $(document).ready(function () {
 
         window.history.replaceState(null, null, newURLString);
     })
-
-    // clicking a sponsor dtable row will show that sponsors page
-    $('.clickable-row').on('click', function(){
-
-        window.location = $(this).data('href');
-
-    });
-
 });
 
 
@@ -20,6 +12,10 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('#groupImage').change(function () {
+        processImage(this);
+    })
+
+    $('#mainPagePhoto').change(function(){
         processImage(this);
     })
 });
@@ -104,7 +100,8 @@ $(document).ready(function() {
             { "orderable": false, "searchable": false },
             null,
             null
-        ]
+        ],
+        'iDisplayLength' : 100
     });
 
     $('#user-dtable').DataTable({
@@ -137,7 +134,8 @@ $(document).ready(function() {
             {"searchable": false},
             {"searchable": false},
             { "orderable": false, "searchable": false }
-        ]
+        ],
+        'iDisplayLength' : 100
     })
 
     $('#auction-dtable').DataTable({
@@ -162,10 +160,31 @@ $(document).ready(function() {
             { "orderable": false, "searchable": false}
         ]
     })
+    $('#event-sponsor-dtable').DataTable({           
+        "columns" : [
+            null,
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+        ],
+        'iDisplayLength' : 25
+    });
+
+    $('#sponsor-dtable').DataTable({           
+        "columns" : [
+            null,
+            { "orderable": false, "searchable": false },
+            null,
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+        ],
+        'iDisplayLength' : 25
+    });
 });
 
 // Count the number of selected datatable rows on a page, and display the result
 // on the remove contacts modal.
+
+// ** No longer used for applicants **
 function countSelected(mode) {
 
     var dtable;
@@ -268,10 +287,8 @@ function copySelectedToGroup() {
  * This function adds selected applicants for an event to 
  * a team for that event.
  */
-function addSelectedToTeam(){
+function addSelectedToTeam(team){
     
-    var team = $('#team-select').val();
-
     var selected = $('#applicant-dtable').find('.dtable-checkbox:checkbox:checked');
 
     selected.each(function(){
@@ -388,12 +405,14 @@ function applicantManagementModal(id){
 
         // Physical Tab
         $("#appHeight").val(data.height + "cm");           $("#appWeightC").val(data.current_weight + "kg");
-        $("#appWeightE").val(data.expected_weight + "kg");  $("#appSportingExperience").attr('Placeholder', data.sporting_exp);
-        $("#appBoxingExperience").attr("Placeholder", data.boxing_exp);
+        $("#appWeightE").val(data.expected_weight + "kg");  $("#appSportingExperience").text(data.sporting_exp);
+        $('#fitnessLevel').text('This applicant rates their fitness at ' + data.fitness_rating + ' out of 5');
+        $("#appBoxingExperience").text(data.boxing_exp);
+        $('#hobbies').text(data.hobbies);
 
         // Additional Tab
         $("#appOccupation").val(data.occupation);           $("#appEmployer").val(data.employer);
-        $("appConvictionDetails").attr("Placeholder", data.conviction_details);
+        $("appConvictionDetails").text(data.conviction_details);
 
         // Set Consent
         if(consent_to_test = 0){
