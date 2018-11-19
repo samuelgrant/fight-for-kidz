@@ -124,6 +124,12 @@ class Event extends Model
         return $this->hasMany('App\Bout');
     }
 
+    // Relationship to auctions - one to many
+    public function auctions()
+    {
+        return $this->hasMany('App\AuctionItem');
+    }
+
     // Relationship to contender applications - one to many
     public function applicants()
     {
