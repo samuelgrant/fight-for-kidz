@@ -104,6 +104,17 @@ $(document).ready(function() {
         'iDisplayLength' : 100
     });
 
+    $('#system-group-dtable').DataTable({
+        "columns": [
+            { "orderable": false, "searchable": false },
+            null,
+            {"orderable" : false},
+            {"orderable" : false},
+            {"orderable" : false},
+        ],
+        'iDisplayLength' : 100
+    });
+
     $('#user-dtable').DataTable({
         "columns": [
             null,
@@ -226,11 +237,21 @@ function removeSelectedFromGroup(groupID) {
  * This method adds all selected group members to another group selected by the 
  * user.
  * 
+ * Mode should be either 'customGroups' or 'systemGroups' as a string
+ * 
  * @param groupID
  */
-function copySelectedToGroup() {
+function copySelectedToGroup(mode) {
 
-    var contacts = $('#group-dtable').find('.dtable-checkbox:checkbox:checked');
+    if(mode == 'customGroups'){
+        var contacts = $('#group-dtable').find('.dtable-checkbox:checkbox:checked');
+    } else if(mode == 'systemGroups'){
+        var contacts = $('#system-group-dtable').find('.dtable-checkbox:checkbox:checked');
+    } else {
+        console.log('Error. Group copy mode invalid');
+        return;
+    }
+
     var toGroupId = $('#groupDropdown').val();
 
     // for each selected contact, add to group
