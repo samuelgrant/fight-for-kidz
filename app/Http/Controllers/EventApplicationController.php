@@ -153,9 +153,9 @@ class EventApplicationController extends Controller
             // save image to storage
             $image->storeAs($imagePath, $imageName);
         }
-        // return to home page 
-        session()->flash('success', 'Application received, thank you. We will be in touch');
-        return redirect()->route('index');
+        
+        // show feedback page
+        return view('feedback.received-app');
     }
 
     /**
