@@ -96,7 +96,7 @@ class EventApplicationController extends Controller
 
         // also need to check if someone has already submitted
         // an application for this email address
-        if(Applicant::where('email', $request->input('email'))->get()->first() != null){
+        if(Applicant::where('email', $request->input('email'))->where('event_id', Event::current()->id)->get()->first() != null){
 
             session()->flash('error', 'An application has already been submitted using this email address,
             please contact Fight for Kidz if this is an error, or if you wish to amend you application details.');
