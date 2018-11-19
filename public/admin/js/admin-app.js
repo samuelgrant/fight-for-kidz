@@ -353,6 +353,12 @@ $('body').on('change', '#dtable-select-all', function () {
     $.each(rows, function () {
         var checkbox = $($(this).find('td').eq(0)).find('input').prop('checked', checked);
     });
+
+    rows = $('#system-group-dtable').find('tbody tr');
+    checked = $(this).prop('checked');
+    $.each(rows, function () {
+        var checkbox = $($(this).find('td').eq(0)).find('input').prop('checked', checked);
+    });
 });
 
 // Uncheck 'select all' checkbox when row checkboxes are clicked or columns sorted.
