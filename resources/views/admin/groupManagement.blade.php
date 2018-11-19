@@ -15,8 +15,8 @@
 <div class="row">
     <!-- Group Settings -->
     <div class="col-lg-4 col-md-6 col-sm-12">
-        <div class="card border-danger">
-            <div class="card-header bg-danger text-white">
+        <div class="card border-primary">
+            <div class="card-header bg-primary text-white">
                 <h5 class="mb-0"><i class="fas fa-exclamation-triangle"></i> Group Settings</h5>
             </div>
             <div class="card-body">
@@ -27,7 +27,6 @@
                         <input type="text" name="groupName" id="name" class="form-control" value="{{$group->name}}"
                             required>
                     </div>
-
 
                     <div class="form-group">
                         <label for="groupAvatar">Optional Group Icon</label>
@@ -217,7 +216,7 @@
 
                 <br>
 
-                <button type="button" class="btn btn-success d-block m-auto" data-dismiss="modal" onclick="copySelectedToGroup()">Confirm</button>
+                <button type="button" class="btn btn-success d-block m-auto" data-dismiss="modal" onclick="copySelectedToGroup('customGroups')">Confirm</button>
 
             </div>
         </div>

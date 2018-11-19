@@ -83,7 +83,7 @@ class EventApplicationController extends Controller
 
         // check if subscribe for updates checkbox is checked and subscribe if so
         if($request->input('subscribeCheckbox')){
-            Subscriber::subscribe($request->input('first_name'), $request->input('email'));
+            Subscriber::subscribe($request->input('first_name') . ' ' . $request->input('last_name'), $request->input('email'));
         }
 
         if($validator->fails()){

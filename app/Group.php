@@ -66,7 +66,7 @@ class Group extends Model
             if ($this->nonUniqueEmail($recipients, $sponsor->email) && $removeDuplicates) {
                 //Log::debug('Duplicate email ' . $sponsor->email . ' omitted from array');
             } else {
-                $recipients[] = ['role' => 'sponsor', 'name' => $sponsor->company_name, 'email' => $sponsor->email, 'id' => $sponsor->id];
+                $recipients[] = ['role' => 'sponsor', 'name' => $sponsor->contact_name . ' (' . $sponsor->company_name . ')' , 'email' => $sponsor->email, 'id' => $sponsor->id];
             }
         }
 
