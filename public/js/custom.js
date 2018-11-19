@@ -76,3 +76,27 @@ function getQueryVariable(url, variable)
       }
       return(false);
 }
+
+function auctionItemModal(id){
+  $.ajax({
+      method: "get",
+      headers:  {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: `/a/auction-management/auction/${id}`
+
+      console.log(url);
+  }).done((data) => {
+      //Dynamically populate the modal with item info
+      $("#auctionItemName").val(data.name);
+      $("#auctionItemDescription").val(data.desc);
+      $("#auctionItemDonor").val(data.donor);
+      $("#auctionItemDonorUrl").val(data.donor_url);
+      $("#auctionItemImage").attr("src", "/storage/images/auction/" + data.id + ".png");        
+
+      //Display the modal
+      $("#auctionItemModal").modal('show');
+  }).fail((error) => {
+      console.log(error);
+  });
+}

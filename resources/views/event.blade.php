@@ -287,7 +287,7 @@
               <div class="auctionItem-name">
                 <h5>{{$auction->name}}</h5>
               </div>
-              <div class="auction-btn auction-btn-red bio-view-button">More Info</div>
+              <div class="auction-btn auction-btn-red" onclick="auctionItemModal({{$auction->id}})">More Info</div>
             </div>
           </div>
           @elseif($a % 2 == 0)
@@ -298,7 +298,7 @@
               <div class="auctionItem-name">
                 <h5>{{$auction->name}}</h5>
               </div>
-              <div class="auction-btn auction-btn-red bio-view-button">More Info</div>
+              <div class="auction-btn auction-btn-red" onclick="auctionItemModal({{$auction->id}})">More Info</div>
             </div>
           </div>
           @endif
@@ -309,4 +309,75 @@
     </div> <!-- end all auctions -->
 </section>
 
+<!-- Dynamic modal for displaying auction item info -->
+<div id="AuctionItem-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+  style="display: none; z-index:4005;">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-body">
+
+        {{-- Dynamic content will load here --}}
+        <div id="dynamic-content" style="color:black;">
+
+
+          <div class="text-center">
+            <h3 id=auctionItem-name class="d-inline mx-2"></h3>
+            <hr>
+
+            <div class="text-justify px-4 py-3">
+              <p id="auctionItemDescription"></p>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6"><img id="auctionItemImage" src="" class="img-fluid"></div>
+              <div class="col-lg-6">
+                <h5 class="text-center">Item Info:</h5>
+                <table class="table table-striped table-bordered table-sm text-center">
+                  <tbody>
+                    <tr>
+                      <td>&nbsp;Name: <span id="auctionItemName"></span></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;Donor: <span id="auctionItemDonor"></span></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;DonorUrl: <span id="auctionItemDonorUrl"></span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div> {{-- End of auction-info-modal --}}
+{{-- <script>
+  function auctionItemModal(id){
+  $.ajax({
+      method: "get",
+      headers:  {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: `/a/auction-management/auction/${id}`
+  }).done((data) => {
+      //Dynamically populate the modal with item info
+      $("#auctionItemName").val(data.name);
+      $("#auctionItemDescription").val(data.desc);
+      $("#auctionItemDonor").val(data.donor);
+      $("#auctionItemDonorUrl").val(data.donor_url);
+      $("#auctionItemImage").attr("src", "/storage/images/auction/" + data.id + ".png");        
+
+      //Display the modal
+      $("#auctionItemModal").modal('show');
+  }).fail((error) => {
+      console.log(error);
+  });
+  }
+</script> --}}
 @endsection
