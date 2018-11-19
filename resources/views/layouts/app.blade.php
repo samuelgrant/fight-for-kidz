@@ -2,7 +2,6 @@
 
 <body class="ring-bg">
     @include('layouts.nav')
-    @include('layouts.messages')
 
     @yield('content')
 

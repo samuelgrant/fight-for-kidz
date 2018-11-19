@@ -54,11 +54,13 @@ Route::put('/event-management/{eventID}/update', 'admin\EventManagementControlle
 Route::delete('/event-management/{eventID}', 'admin\EventManagementController@destroy')->name('admin.eventManagement.destroy');
 Route::patch('/event-management/{eventID}', 'admin\EventManagementController@restore')->name('admin.eventManagement.restore');
 
-//Toggle event visibility
+//Toggle event settings
+// Event visibility
 Route::put('/event-management/togglepublic/{eventID}', 'admin\EventManagementController@togglePublic')->name('admin.eventManagement.togglePublic');
-
-// Toggle event applications on/off
+// Event applications
 Route::put('/event-management/toggleapps/{eventID}', 'admin\EventManagementController@toggleApplications')->name('admin.eventManagement.toggleApplications');
+// Event bout visibility
+Route::put('/event-management/toggleBouts/{eventID}', 'admin\EventManagementController@toggleBouts')->name('admin.eventManagement.toggleBouts');
 
 // Add/remove applicants to/from team
 Route::put('/event-management/team/add', 'admin\ApplicantManagementController@addToTeam')->name('admin.eventManagement.addToTeam');
