@@ -20,7 +20,7 @@
     }
   }
 
-  .bout-card {
+  .bout-card .auction-card {
     color: white;
     background-color: rgba(0, 0, 0, .75);
     border-radius: 5px;
@@ -30,17 +30,17 @@
     margin-bottom: 3rem;
   }
 
-  .bout-header {
+  .bout-header .auction-header {
     margin-bottom: 0.75rem;
     text-align: center;
   }
 
-  .bout-header .sponsored-by {
+  .bout-header .sponsored-by .auction-header {
     display: inline-block;
     margin-right: 15px;
   }
 
-  .bout-header .sponsor-badge {
+  .bout-header .sponsor-badge .auction-header{
     max-width: 50%;
     display: inline-block;
   }

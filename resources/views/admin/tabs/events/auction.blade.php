@@ -39,11 +39,11 @@
                     <tbody>
                         @foreach($event->auction_items as $item)
                         <tr>
-                            <td>{{$item->name}}</td>
-                            <td>{{$item->desc}}</td>
-                            <td>{{$item->donor}}</td>
-                            <td>{{$item->donor_url}}</td>
-                            <td><img src="{{'/storage/images/auction/'. $item->id . '.png'}}" alt="{{'/storage/images/auction/'. $item->id . '.png'}}" height=100 width=80></td>
+                            <td class="align-middle">{{$item->name}}</td>
+                            <td class="align-middle">{{$item->desc}}</td>
+                            <td class="align-middle">{{$item->donor}}</td>
+                            <td class="align-middle">{{$item->donor_url}}</td>
+                            <td><img src="{{file_exists(public_path('storage/images/auction/' . $item->id . '.png')) ? '/storage/images/auction/' . $item->id . '.png' : '/storage/images/noImage.png'}}" height=100 width=80></td>
                             <td class="align-middle">
                             <button class="btn btn-warning" onclick="auctionEditModal({{$item->id}})" id=><i class="fas fa-pencil"></i>&nbsp;Edit</button>
                             </td>
@@ -76,11 +76,11 @@
                     <tbody>
                         @foreach($event->auction_items()->onlyTrashed()->get() as $item)
                         <tr>
-                            <td>{{$item->name}}</td>
-                            <td>{{$item->desc}}</td>
-                            <td>{{$item->donor}}</td>
-                            <td>{{$item->donor_url}}</td>
-                            <td>{{$item->deleted_at->format('d M Y')}}</td>
+                            <td class="align-middle">{{$item->name}}</td>
+                            <td class="align-middle">{{$item->desc}}</td>
+                            <td class="align-middle">{{$item->donor}}</td>
+                            <td class="align-middle">{{$item->donor_url}}</td>
+                            <td class="align-middle">{{$item->deleted_at->format('d M Y')}}</td>
                             <td class="align-middle">
                                 <form action="{{route('admin.auctionManagement.restore', ['itemID' => $item->id])}}" method="POST">
                                     @csrf

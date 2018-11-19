@@ -50,6 +50,22 @@ class Event extends Model
     }
 
     /**
+     * Show auctions on the public event page
+     */
+    public function showAuctions(){
+        $this->show_auctions = true;
+        $this->save();
+    }
+
+    /**
+     * Show auctions on the public event page
+     */
+    public function hideAuctions(){
+        $this->show_auctoins = false;
+        $this->save();
+    }
+
+    /**
      * Show bouts on the public event page
      */
     public function showBouts(){
