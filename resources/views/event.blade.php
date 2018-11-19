@@ -259,27 +259,7 @@
 </script>
 </div>
 
-<!-- Auction section show if bouts are switched on-->
-<div class="container pt-5">
-
-  <!-- All auction cars will be contained within this row -->
-  <div class="row bouts-row">
-
-    <!-- Counter used to name auctions -->
-    <?php global $a ?>
-
-    @foreach($event->auctions as $auction)
-    <!-- Each Auction will create one column -->
-    <div class="col-lg-4 bout-column">
-
-      <div class="bout-card">
-        <!-- Each Auction has a header -->
-        <div class="bout-header">
-          <h2>AUCTION {{$a}}</h2>
-        </div>
-      </div>
-    </div>
-  </div> <!-- End of each auction-->
-</div>
+<!-- Auction section -->
+{{-- <div>  --}}
 
 @endsection
