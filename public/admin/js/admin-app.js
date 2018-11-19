@@ -418,7 +418,7 @@ function applicantManagementModal(id){
 
 function auctionCreateModal(){
     //Set modal for creating auction item
-    $("#createEditAuctionItemModal").attr("action", "/admin/AuctionManagmentController@store");
+    $("#createEditAuctionItemModal").attr("action", "/auction-management");
     $("#auctionModalTitle").text("Create Auction Item");
     $("#auctionModalButton").text("Confirm");
 
@@ -427,7 +427,7 @@ function auctionCreateModal(){
     $("#auctionDescription").val("");
     $("#auctionDonor").val("");
     $("#auctionDonorUrl").val("");
-    //$("auctionItemImage").attr("src", data.picture);
+    $("auctionItemImage").attr("src", '');
 
     //Display the modal
     $("#createEditAuctionItemModal").modal('show');

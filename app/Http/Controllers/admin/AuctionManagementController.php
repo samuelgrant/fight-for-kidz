@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\AuctionItem;
+use App\Image;
 
 class AuctionManagementController extends Controller
 {
@@ -49,6 +50,10 @@ class AuctionManagementController extends Controller
             $item->donor_url = $request->input('donorUrl');
         $item->save();
 
+        $image = $request->file('itemImage');
+
+        Image::storeAsPng($image, '/public/images/auction/', $item->id . '.png');
+
         session()->flash('success', 'The item called '.$item->name.' was created.');
         return redirect()->back();
     }
@@ -62,8 +67,8 @@ class AuctionManagementController extends Controller
             'name' => 'string|required',
             'description' => 'string|required|lte:150',
             'donor' => 'string|required',
-            'donorUrl' => 'string'
-            //itemImage' => 'mimes:jpg,jpeg,png|max:2000'
+            'donorUrl' => 'string',
+            'itemImage' => 'mimes:jpg,jpeg,png|max:2000'
         ]);
 
 
@@ -73,7 +78,11 @@ class AuctionManagementController extends Controller
         $item->desc = $request->input('description');
         $item->donor = $request->input('donor');
         $item->donor_url = $request->input('donorUrl');
-        //Picture code goes here
+                
+        // Update image if a file was uploaded
+        if($image = $request->file('itemImage')){
+            Image::storeAsPng($image, '/public/images/auction/', $item->id . '.png');
+        }
 
         $item->save();
 

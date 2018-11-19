@@ -92,6 +92,6 @@ Route::get('/auction-management/auction/{auctionId}', 'admin\AuctionManagementCo
 
 //Create Delete Restore Auction Items
 Route::post('/auction-management', 'admin\AuctionManagementController@store')->name('admin.auctionManagement.store');
-Route::put('/auction-management/{eventID}/update', 'admin\AuctionManagementController@update')->name('admin.auctionManagement.update');
+Route::put('/auction-management/{itemID}/update', 'admin\AuctionManagementController@update')->name('admin.auctionManagement.update');
 Route::delete('/auction-management/{itemID}', 'admin\AuctionManagementController@destroy')->name('admin.auctionManagement.destroy');
 Route::patch('/auction-management/{itemID}', 'admin\AuctionManagementController@restore')->name('admin.auctionManagement.restore');
