@@ -158,11 +158,7 @@
               allowfullscreen></iframe>
 
             <div class="text-justify px-4 py-3">
-              <p id="bio-text">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi quam cupiditate ea,
-                aliquam voluptate veritatis officiis sequi quaerat aliquid placeat voluptatum
-                nesciunt quod non, velit at inventore sapiente? Quia, quis.
-              </p>
+              <p id="bio-text"></p>
             </div>
 
             <div class="row">
@@ -262,4 +258,8 @@
 
 </script>
 </div>
+
+<!-- Auction section -->
+{{-- <div>  --}}
+
 @endsection

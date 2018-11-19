@@ -441,7 +441,7 @@
 <!-- End add to team modal -->
 
 <!-- Create / edit auction item modal -->
-<div class="modal fade" id="createEditAuctionItemModal" tabindex="-1" role="dialog" aria-labelledby="Edit Team" aria-hidden="true">
+<div class="modal fade" id="createEditAuctionItemModal" tabindex="-1" role="dialog" aria-labelledby="Edit Team" aria-hidden="true" >
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
@@ -449,7 +449,8 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                    {!! Form::open(['method' => 'POST', 'enctype' => 'multipart/form-data'])!!}
+                    <form id="auctionForm" method="POST" action="{{route('admin.auctionManagement.store', ['eventID' => $event->id])}}" enctype="multipart/form-data">
+                    <input id="hiddenMethod" type="hidden" name="_method" value="POST">
                     @csrf
                     <div class="form-group">
                         <label for="auctionName">Item name:</label>
@@ -473,9 +474,9 @@
 
                     <div class="card w-50 mx-auto text-center mb-3">
                             <label for="logo">Item Image:</label>
-                            <img class="logoPreview img-fluid" id="imagePreview" src="/storage/images/noImage.png">
-                            <label for="logoInput" class="btn btn-primary mb-0">Change
-                                <input type="file" name="logo" id="logoInput" class="form-control" hidden>
+                            <img class="logoPreview img-fluid" id="imgPreview" src="/storage/images/noImage.png">
+                            <label for="itemImage" class="btn btn-primary mb-0">Change
+                                <input type="file" name="itemImage" id="itemImage" class="form-control" hidden>
                             </label>
                         </div>
                     

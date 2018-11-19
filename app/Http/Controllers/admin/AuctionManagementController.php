@@ -33,17 +33,18 @@ class AuctionManagementController extends Controller
      * 
      * @param request
      */
-    public function store(request $request){
+    public function store(request $request, $eventID){
 
         $this->validate($request,[
             'name' => 'string|required',
-            'description' => 'string|required|lte:150',
+            'description' => 'string|required|max:150',
             'donor' => 'string|required',
             'donorUrl' => 'string',
             'itemImage' => 'mimes:jpg,jpeg,png|max:2000'
         ]);
 
         $item = new AuctionItem();
+            $item->event_id = $eventID;
             $item->name = $request->input('name');
             $item->desc = $request->input('description');
             $item->donor = $request->input('donor');
@@ -52,7 +53,7 @@ class AuctionManagementController extends Controller
 
         $image = $request->file('itemImage');
 
-        Image::storeAsPng($image, '/public/images/auction/', $item->id . '.png');
+        Image::storeAsPng($image, 'public\images\auction\\', $item->id . '.png');
 
         session()->flash('success', 'The item called '.$item->name.' was created.');
         return redirect()->back();
@@ -65,7 +66,7 @@ class AuctionManagementController extends Controller
         
         $this->validate($request,[
             'name' => 'string|required',
-            'description' => 'string|required|lte:150',
+            'description' => 'string|required|max:150',
             'donor' => 'string|required',
             'donorUrl' => 'string',
             'itemImage' => 'mimes:jpg,jpeg,png|max:2000'
@@ -81,7 +82,7 @@ class AuctionManagementController extends Controller
                 
         // Update image if a file was uploaded
         if($image = $request->file('itemImage')){
-            Image::storeAsPng($image, '/public/images/auction/', $item->id . '.png');
+            Image::storeAsPng($image, 'public\images\auction\\', $item->id . '.png');
         }
 
         $item->save();

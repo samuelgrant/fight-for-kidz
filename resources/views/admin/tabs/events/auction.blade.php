@@ -43,7 +43,7 @@
                             <td>{{$item->desc}}</td>
                             <td>{{$item->donor}}</td>
                             <td>{{$item->donor_url}}</td>
-                            <td><img src="{{$item->picture}}" alt="{{$item->picture}}" height=100 width=80></td>
+                            <td><img src="{{'/storage/images/auction/'. $item->id . '.png'}}" alt="{{'/storage/images/auction/'. $item->id . '.png'}}" height=100 width=80></td>
                             <td class="align-middle">
                             <button class="btn btn-warning" onclick="auctionEditModal({{$item->id}})" id=><i class="fas fa-pencil"></i>&nbsp;Edit</button>
                             </td>

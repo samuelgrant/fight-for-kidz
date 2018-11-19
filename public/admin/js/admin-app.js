@@ -18,6 +18,10 @@ $(document).ready(function () {
     $('#mainPagePhoto').change(function(){
         processImage(this);
     })
+
+    $('#itemImage').change(function(){
+        processImage(this);
+    })
 });
 
 // Populates the other settings modal when user clicks edit 
@@ -437,7 +441,8 @@ function applicantManagementModal(id){
 
 function auctionCreateModal(){
     //Set modal for creating auction item
-    $("#createEditAuctionItemModal").attr("action", "/auction-management");
+    //$("#auctionForm").attr("action", "/");
+    $('#hiddenMethod').val('POST');
     $("#auctionModalTitle").text("Create Auction Item");
     $("#auctionModalButton").text("Confirm");
 
@@ -461,16 +466,17 @@ function auctionEditModal(id){
         url: `/a/auction-management/auction/${id}`
     }).done((data) => {
         //Set modal for editing
-        $("#createEditAuctionItemModal").attr("action", "/admin/AuctionManagmentController@update");
+        $("#auctionForm").attr("action", "http://f4k.localhost/a/auction-management/update/" + id);
         $("#auctionModalTitle").text("Edit Auction Item");
         $("#auctionModalButton").text("Save");
+        $("#hiddenMethod").val("PUT");
 
         //Dynamically populate the modal with item info
         $("#auctionName").val(data.name);
         $("#auctionDescription").val(data.desc);
         $("#auctionDonor").val(data.donor);
         $("#auctionDonorUrl").val(data.donor_url);
-        //$("auctionItemImage").attr("src", data.picture);        
+        $("#imgPreview").attr("src", "/storage/images/auction/" + data.id + ".png");        
 
         //Display the modal
         $("#createEditAuctionItemModal").modal('show');
