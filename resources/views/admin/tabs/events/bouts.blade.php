@@ -5,6 +5,18 @@
 
     <hr>
 
+    <div>
+    <h5>Bouts are currently {{$event->show_bouts ? 'visible' : 'hidden'}} on the public event page.</h5>
+    <form class="d-inline" action="{{route('admin.eventManagement.toggleBouts', ['eventID' => $event->id])}}" method="POST">
+        @csrf
+        @method('PUT')
+    <button type="submit" class="btn btn-primary"><i class="far {{$event->show_bouts ? 'fa-eye-slash' : 'fa-eye'}}"></i>&nbsp;{{$event->show_bouts ? 'Hide bouts' : 'Show bouts'}}</button>    
+    </form>
+    </div>
+
+    <hr>
+
+    @if(count($event->bouts) > 0)
     <div class="row" style="display: flex">
     <?php global $i; ?> {{-- Counter that is used to name bouts --}}                
         @foreach($event->bouts as $bout)
@@ -87,7 +99,10 @@
                     </form>
                 </div>
             </div>
-        </div>
+        </div>        
         @endforeach
 
     </div>
+    @else
+        <h4 class="text-center">There are no bouts set for this event.</h4>
+    @endif

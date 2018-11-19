@@ -9,15 +9,6 @@ class EventsTableSeeder extends Seeder
      *
      * @return void
      * 
-     * factory(App\Event::class)->create([
-            'name' => 'Fight for Kidz 2019',
-            'venue_name' => 'ILT Stadium',
-            'venue_address' => 'ILT Stadium, Invercargill',
-            'venue_gps' => 'lat: -46.4066806, lng: 168.380873',
-            'datetime' => '2019-05-02 13:55:00',
-            'is_public' => '1',
-            'ticket_seller_url' => "https://www.ticketdirect.co.nz"
-        ]);
      */
     public function run()
     {
@@ -28,8 +19,9 @@ class EventsTableSeeder extends Seeder
             'venue_name' => 'Hansen Hall, SIT Invercargill',
             'venue_address' => '133 Tay St, Invercargill, 9810',
             'venue_gps' => 'lat: -46.4037442, lng: 168.3789479',
-            'datetime' => '2018-04-02 13:55:00',
+            'datetime' => '2018-12-12 13:55:00',
             'is_public' => '1',
+            'open' => '1',
             'ticket_seller_url' => "https://www.ticketdirect.co.nz"
         ]);
 

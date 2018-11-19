@@ -54,8 +54,7 @@
                             </div>     
                         </div>
                         
-                        <div class="text-center mt-3">
-                                <p class="message">Not registered? <a href="{{route('register')}}">Create an account</a></p>
+                        <div class="text-center mt-3">                                
                                 <a  href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
                                 </a>   
