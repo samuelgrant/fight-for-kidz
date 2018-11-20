@@ -162,6 +162,7 @@ class GroupManagementController extends Controller
             $contact = new Contact();
                 $contact->name = $request->input('name');
                 $contact->email = $request->input('email');
+                $contact->phone = $request->input('phone');
                 $contact->role = 'Custom Contact';
             $contact->save();
         }
@@ -271,6 +272,75 @@ class GroupManagementController extends Controller
 
         return view('admin.systemGroupManagement')->with('type', 'Sponsors')->with('groups', Group::all());
 
+    }
+
+    /**
+     * Returns view of all other contacts 
+     */
+    public function getOthers(){
+
+        return view('admin.systemGroupManagement')->with('type', 'Others')->with('groups', Group::all());
+
+    }
+
+    /**
+     * Returns contact as JSON 
+     */
+    public function getContact($contactID){
+
+        return response(Contact::find($contactID), 200);
+
+    }
+
+    /**
+     * Updates a contact record 
+     */
+    public function updateContact(Request $request, $contactID){
+
+        $contact = Contact::find($contactID);
+
+        $this->validate($request, [
+            'name' => 'string|required',
+            'email' => 'email|required',
+        ]);
+
+        if($contact)
+        {
+
+            $contact->name = $request->input('name');
+            $contact->phone = $request->input('phone');
+            $contact->email = $request->input('email');
+            $contact->save();
+
+            session()->flash('success', 'Contact updated successfully');
+        }else
+        {            
+            session()->flash('error', 'There was an error updating this contact.');
+        }
+
+        return redirect()->back();
+    }
+
+    /**
+     * Deletes a contact permanently.
+     */
+    public function deleteContact($contactID){
+        $contact = Contact::find($contactID);
+
+        if($contact){
+            
+            // first need to remove contact from all groups
+            foreach($contact->groups as $group){
+                $contact->removeFromGroup($group->id);
+            }
+
+            // then delete contact itself
+            $contact->delete();
+
+            session()->flash('success', 'Contact deleted successfully');
+
+            return redirect()->back();
+        }
     }
 
 }
