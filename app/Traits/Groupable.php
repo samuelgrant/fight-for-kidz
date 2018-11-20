@@ -52,16 +52,6 @@ trait Groupable
     public function removeFromGroup($groupId)
     {
         $this->groups()->detach($groupId);
-
-        // If groupable is type 'contact', delete if it no longer belongs to any groups.
-        
-        if(get_class($this) == 'App\Contact'){
-            Log::debug(get_class($this));
-            $this->removeIfNotGrouped();
-        }
-
-        // Log::debug('Removed ' . get_class($this) . ' ' . $this->id . ' from group ' . $groupId);
-
     }
 
     /**
