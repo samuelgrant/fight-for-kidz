@@ -275,13 +275,16 @@ function copySelectedToGroup(mode) {
 
     });
 
-    // show success modal
-    var modal = $('#successModal');
-    var messageBox = $('#modal-message-success');
+    // show success alert
+    alert = $('#manualAlert');
+    alert.removeClass('d-none');    
+    $('#messageText').text('Successfully copied ' + contacts.length + ' contacts.');
 
-    messageBox.text('Successfully copied ' + contacts.length + ' to group.');
-    $('#successModal').modal('show');
-
+    // untick all checkboxes
+    $('#dtable-select-all').prop('checked', false);
+    contacts.each(function(){
+        $(this).prop('checked', false);
+    });
 }
 
 /**
