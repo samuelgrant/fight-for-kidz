@@ -99,7 +99,8 @@ $(document).ready(function() {
         "columns": [
             { "orderable": false, "searchable": false },
             null,
-            null
+            null,
+            null,
         ],
         'iDisplayLength' : 100
     });
@@ -108,6 +109,7 @@ $(document).ready(function() {
         "columns": [
             { "orderable": false, "searchable": false },
             null,
+            {"orderable" : false},
             {"orderable" : false},
             {"orderable" : false},
             {"orderable" : false},
@@ -375,6 +377,41 @@ $('.dtable-control').on('click', function () {
     }
 });
 
+function editContactModal(id){
+
+    $.ajax({
+        method : "GET",
+        url : `/a/group-management/contacts/${id}`
+    }).done(function(data){
+
+        form = $('#editContactForm');
+        deleteForm = $('#contactDeleteForm');
+
+        deleteForm.attr('action', deleteForm.data('action') + '/' + id);
+        form.attr('action', form.data('action') + '/' + id);
+
+        $('#contactName').val(data.name);
+        $('#contactPhone').val(data.phone);
+        $('#contactEmail').val(data.email);
+
+        $('#editContactModal').modal('show');
+
+    }).fail(function(error){
+        console.log(error);
+    })
+
+}
+
+function confirmAction(){
+    $('#buttonConfirmContact').removeClass('d-none');
+    $('#buttonDeleteContact').addClass('d-none');
+}
+
+function actionConfirmed(){
+    deleteForm = $('#contactDeleteForm');
+    deleteForm.submit();
+}
+
 function applicantManagementModal(id){
     
     $.ajax({
@@ -446,3 +483,4 @@ function calculate_age (data) {
     age = Math.floor(age/1000/60/60/24/365);
     return age;
 };
+
