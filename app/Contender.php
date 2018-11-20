@@ -50,4 +50,14 @@ class Contender extends Model
     {
         return $this->hasMany('App\Bout', 'victor_id');
     }
+
+    /**
+     *  Returns the full name of the applicant for this 
+     *  contender
+     */
+    public function getFullName(){
+        
+        return $this->first_name . ' ' . $this->last_name;
+
+    }
 }

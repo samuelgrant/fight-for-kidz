@@ -34,4 +34,14 @@ class Bout extends Model
     {
         return $this->belongsTo('App\Contender');
     }
+
+    /**
+     * Returns true if bout has both red and blue
+     * contenders set.
+     */
+    public function contendersSet(){
+
+        return isset($this->red_contender, $this->blue_contender);
+
+    }
 }

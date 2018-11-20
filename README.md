@@ -6,7 +6,7 @@ _The new website for Fight for kids, developed in PHP using the Laravel framewor
 
 * [View the wiki for our developers documentation](https://github.com/samuelgrant/fight4kidz/wiki/Developers-Wiki)
 #### Installation 
-This application is intended for the private use by Fight For Kidz. For more information please contact [Samuel Grant](mailto:samueljegrant@outlook.com)
+This application is intended for the private use by Fight for Kidz. For more information please contact [Samuel Grant](mailto:samueljegrant@outlook.com)
 
 ##### Installation Requirements
 _While we recommend that this application is deployed on a Linux, Apache, Mysql & PHP (LAMP) stack, this application may be deployed on any system so long as the following requirements are met_.
@@ -45,6 +45,7 @@ _Hosting can be purchased at [Digital Ocean](https://www.digitalocean.com/) or [
 ___Database Notice:__ Please create a new MySQL user __DO NOT USE ROOT__. Grant that user the following privileges_:
 - Data: `SELECT, INSERT, UPDATE, DELETE, FILE`
 - Structure: `CREATE, ALTER, INDEX, DROP, CREATE TEMPORARY TABLES, CREATE ROUTINE, ALTER ROUTINE, EXECUTE, EVENT, TRIGER`
+- Admin: `REFERENCES`
 ###### Final Things
 Please secure your site with an SSL certificate. You can get a free certificate using [Certbot](https://certbot.eff.org/lets-encrypt/ubuntuartful-apache) from Let's Encrypt.
 
