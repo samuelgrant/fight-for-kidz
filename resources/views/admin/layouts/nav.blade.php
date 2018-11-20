@@ -95,6 +95,12 @@
             <span>User Management</span>
           </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('admin.merchandiseManagement')}}">
+              <i class="fas fa-fw fa-shopping-cart"></i>
+              <span>Merchandise Management</span>
+            </a>
+          </li>
         <hr>
         <li class="nav-item">
           <a class="nav-link" href="{{route('index')}}">
