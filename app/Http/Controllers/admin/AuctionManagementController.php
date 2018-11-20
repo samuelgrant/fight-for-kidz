@@ -37,7 +37,7 @@ class AuctionManagementController extends Controller
 
         $this->validate($request,[
             'name' => 'string|required',
-            'description' => 'string|required|max:150',
+            'description' => 'string|required|max:300',
             'donor' => 'string|required',
             'donorUrl' => 'string',
             'itemImage' => 'mimes:jpg,jpeg,png|max:2000'
@@ -66,7 +66,7 @@ class AuctionManagementController extends Controller
         
         $this->validate($request,[
             'name' => 'string|required',
-            'description' => 'string|required|max:150',
+            'description' => 'string|required|max:300',
             'donor' => 'string|required',
             'donorUrl' => 'string',
             'itemImage' => 'mimes:jpg,jpeg,png|max:2000'

@@ -457,33 +457,33 @@ function auctionCreateModal(){
     $("#createEditAuctionItemModal").modal('show');
 }
 
-function auctionEditModal(id){
-    $.ajax({
-        method: "get",
-        headers:  {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        url: `/a/auction-management/auction/${id}`
-    }).done((data) => {
-        //Set modal for editing
-        $("#auctionForm").attr("action", "http://f4k.localhost/a/auction-management/update/" + id);
-        $("#auctionModalTitle").text("Edit Auction Item");
-        $("#auctionModalButton").text("Save");
-        $("#hiddenMethod").val("PUT");
+// function auctionEditModal(id){
+//     $.ajax({
+//         method: "get",
+//         headers:  {
+//             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//         },
+//         url: `/a/auction-management/auction/${id}`
+//     }).done((data) => {
+//         //Set modal for editing
+//         $("#auctionForm").attr("action", "http://f4k.localhost/a/auction-management/update/" + id);
+//         $("#auctionModalTitle").text("Edit Auction Item");
+//         $("#auctionModalButton").text("Save");
+//         $("#hiddenMethod").val("PUT");
 
-        //Dynamically populate the modal with item info
-        $("#auctionName").val(data.name);
-        $("#auctionDescription").val(data.desc);
-        $("#auctionDonor").val(data.donor);
-        $("#auctionDonorUrl").val(data.donor_url);
-        $("#imgPreview").attr("src", "/storage/images/auction/" + data.id + ".png");        
+//         //Dynamically populate the modal with item info
+//         $("#auctionName").val(data.name);
+//         $("#auctionDescription").val(data.desc);
+//         $("#auctionDonor").val(data.donor);
+//         $("#auctionDonorUrl").val(data.donor_url);
+//         $("#imgPreview").attr("src", "/storage/images/auction/" + data.id + ".png");        
 
-        //Display the modal
-        $("#createEditAuctionItemModal").modal('show');
-    }).fail((error) => {
-        console.log(error);
-    });
-}
+//         //Display the modal
+//         $("#createEditAuctionItemModal").modal('show');
+//     }).fail((error) => {
+//         console.log(error);
+//     });
+// }
 
 function calculate_age (data) {
     var now = new Date();
