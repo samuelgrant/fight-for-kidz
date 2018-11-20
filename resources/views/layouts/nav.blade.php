@@ -1,48 +1,55 @@
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
-    <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="{{route('index')}}">
-        <img src="/img/f4k.png" class="img-fluid" alt="Fight For Kidz">
-      </a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive"
-        aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        Menu
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="index.html#about">About us</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/contenders">Contenders</a>
-          </li>
-          <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="/previous">Previous Years</a>
-          </li>
-          <li class="dropdown">
-            <a class="dropdown-toggle nav-link" data-toggle="dropdown" href="#">Support Us
-              <span class="caret"></span>
-            </a>
-            <ul id="dropdown1" class="dropdown-menu">
-              <li>
-                <a class="js-scroll-trigger" href="#"><p>Reserve Seats</p></a>
-              </li>
-              <li>
-                <a class="js-scroll-trigger" href="#merchandise"><p>Merchandise</p></a>
-              </li>
-              <li>
-                <a href="/auction"><p>Auction</p></a>
-              </li>
-              <li>
-                <a class="js-scroll-trigger" href="{{route('application')}}"><p>Apply</p></a>
-              </li>
+<nav class="navbar navbar-dark navbar-expand-md sticky-top bg-dark navigation-clean">
+    <div class="container"><a href="{{route('index')}}" class="navbar-brand"><img src="/storage/images/f4k_logo_noyear.png" alt="Fight for Kidz Logo"></a><button data-toggle="collapse" data-target="#navcol-1" class="navbar-toggler"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse"
+            id="navcol-1">
+            <ul class="nav navbar-nav ml-auto">
+                <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle nav-link dropdown-toggle">Events</a>
+                    <div role="menu" class="dropdown-menu">
+                        @foreach($events as $event)                        
+                            @if($event->is_public)
+                                <a role="presentation" href="{{route('event', str_replace(' ', '-', $event->name))}}" class="dropdown-item">{{$event->name}}</a>
+                                @if($event == App\Event::current() && $event->isFutureEvent())
+                                    <hr class=" my-0">
+                                @endif
+                            @endif
+                        @endforeach
+                    </div>
+                </li>
+                {{-- Event Applications --}}
+                @if($currentEvent->isFutureEvent() && $currentEvent->open)
+                <!-- Applications Dropdown -->
+                <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle nav-link dropdown-toggle">Apply</a>
+                    <div role="menu" class="dropdown-menu">
+                        <a role="presentation" href="{{route('application.fight')}}" class="dropdown-item">To Fight</a>
+                        <a role="presentation" href="{{route('application.sponsor')}}" class="dropdown-item">To be a Sponsor</a>
+                    </div>
+                </li><!-- End Applications Dropdown -->
+                @endif
+                <!-- End Buy Tickets Dropdown -->
+                
+                {{-- Book Tickets (Seats & Tables) --}}
+                @if($currentEvent->isFutureEvent())
+                <!-- Buy Tickets Dropdown -->
+                    @if(isset($currentEvent->ticket_seller_url))
+                        <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle nav-link dropdown-toggle">Book Tickets</a>
+                            <div role="menu" class="dropdown-menu">
+                                
+                                <a role="presentation" href="{{$currentEvent->ticket_seller_url}}" target="blank" class="dropdown-item">Seats</a>
+                                
+                                <a role="presentation" href="#" class="dropdown-item">Tables</a>
+                            </div>
+                        </li><!-- End Book Tickets -->
+                    @endif
+                @endif
+                
+                @if($settings->display_merch)
+                <!-- Merchandise -->
+                <li role="presentation" class="nav-item"><a href="{{route('merchandise')}}" class="nav-link">Merchandise</a></li>
+                @endif
+
+                <!-- Contact/Subscribe -->
+                <li role="presentation" class="nav-item"><a href="{{route('contact')}}" class="nav-link">Contact Us</a></li>
             </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="/contact"><p>Contact Us</p></a>
-          </li>
-        </ul>
-      </div>
+        </div>
     </div>
-  </nav>
+</nav>

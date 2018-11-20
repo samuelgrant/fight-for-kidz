@@ -9,14 +9,17 @@
   }); 
 </script>
 
-  <footer class="bg-black small text-center text-white-50">
-    <div class="col-sm-4">
-      <img src="img/f4k.png" style="height:50px" alt="Fight for Kidz logo" class="d-none d-md-inline-block">
-    </div>
-    <div class="container">
-      Copyright &copy; {{config('app.name')}} {{ date('Y') }}
-    </div>
-    <div class="text-right mr-3">
+<script type="text/javascript" src="/js/admin-event.js"></script>
+
+  <footer class="bg-black small text-center text-white-50 row py-2">
+    <div class="col-sm-4 mb-3">
+      <img src="/storage/images/f4k_logo_noyear.png" class="img-fluid w-50">
+      </div> 
+    </div>  
+    <div class="col-sm-4 mb-3 my-auto">
+      &copy; {{ date('Y') }} {{config('app.name')}} 
+    </div>     
+    <div class="col-sm-4 mb-3 my-auto">
       <a style="color: grey;" href="{{route('login')}}">Administration Login</a>
     </div>
   </footer>

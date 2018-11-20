@@ -57,7 +57,7 @@ class Group extends Model
             if ($this->nonUniqueEmail($recipients, $applicant->email) && $removeDuplicates) {
                 //Log::debug('Duplicate email ' . $applicant->email . ' omitted from array');
             } else {
-                $recipients[] = ['role' => 'applicant', 'name' => $applicant->first_name, 'email' => $applicant->email];
+                $recipients[] = ['role' => 'applicant', 'name' => $applicant->first_name, 'email' => $applicant->email, 'id' => $applicant->id];
             }
         }
 
@@ -66,7 +66,7 @@ class Group extends Model
             if ($this->nonUniqueEmail($recipients, $sponsor->email) && $removeDuplicates) {
                 //Log::debug('Duplicate email ' . $sponsor->email . ' omitted from array');
             } else {
-                $recipients[] = ['role' => 'sponsor', 'name' => $sponsor->company_name, 'email' => $sponsor->email];
+                $recipients[] = ['role' => 'sponsor', 'name' => $sponsor->company_name, 'email' => $sponsor->email, 'id' => $sponsor->id];
             }
         }
 
@@ -75,7 +75,7 @@ class Group extends Model
             if ($this->nonUniqueEmail($recipients, $user->email) && $removeDuplicates) {
                 //Log::debug('Duplicate email ' . $user->email . ' omitted from array');
             } else {
-                $recipients[] = ['role' => 'admin', 'name' => $user->name, 'email' => $user->email];
+                $recipients[] = ['role' => 'admin', 'name' => $user->name, 'email' => $user->email, 'id' => $user->id];
             }
         }
 
@@ -84,7 +84,7 @@ class Group extends Model
             if ($this->nonUniqueEmail($recipients, $contact->email) && $removeDuplicates) {
                 //Log::debug('Duplicate email ' . $contact->email . ' omitted from array');
             } else {
-                $recipients[] = ['role' => $contact->role, 'name' => $contact->name, 'email' => $contact->email];
+                $recipients[] = ['role' => $contact->role, 'name' => $contact->name, 'email' => $contact->email, 'id' => $contact->id];
             }
         }
 
@@ -93,7 +93,7 @@ class Group extends Model
             if ($this->nonUniqueEmail($recipients, $subscriber->email) && $removeDuplicates) {
                 //Log::debug('Duplicate email ' . $subscriber->email . ' omitted from array');
             } else {
-                $recipients[] = ['role' => 'subscriber', 'name' => $subscriber->name, 'email' => $subscriber->email];
+                $recipients[] = ['role' => 'subscriber', 'name' => $subscriber->name, 'email' => $subscriber->email, 'id' => $subscriber->id];
             }
         }
 

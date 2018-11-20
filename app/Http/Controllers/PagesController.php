@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Event;
 
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
 {
     public function index(){
-        return view('index');
+        $currentEvent = Event::current();
+        return view('index')->with('event', $currentEvent);
     }
 
     public function auction(){
@@ -24,5 +26,9 @@ class PagesController extends Controller
 
     public function contact(){
         return view('contact');
+    }
+
+    public function about(){
+        return view('about');
     }
 }

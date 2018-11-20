@@ -20,12 +20,14 @@ class UsersTableSeeder extends Seeder
             $userOne->name = 'Admin';
             $userOne->email = 'admin@example.com';
             $userOne->password = '$2y$10$6z.fpsPw33atdIbj6mwhKevVR.lYRKrjxNxBBtS4XPmun9r4yOkzi';
+            $userOne->password_reset_at = Carbon\Carbon::now();
         $userOne->save();
 
         $userTwo = new User();
             $userTwo->name = 'Test User';
             $userTwo->email = 'test@example.com';
             $userTwo->password = '$2y$10$6z.fpsPw33atdIbj6mwhKevVR.lYRKrjxNxBBtS4XPmun9r4yOkzi';
+            $userTwo->password_reset_at = Carbon\Carbon::now();
         $userTwo->save();
 
         //Set User One to Admin

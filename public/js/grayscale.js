@@ -28,13 +28,13 @@
 
   // Collapse Navbar
   var navbarCollapse = function() {
-    if ($("#mainNav").offset().top > 50) {
-      $("#mainNav").addClass("navbar-shrink");
-      $("#dropdown1").removeClass("dropdown-transparent");      
-    } else {
-      $("#mainNav").removeClass("navbar-shrink");
-      $("#dropdown1").addClass("dropdown-transparent");
-    }
+    // if ($("#mainNav").offset().top > 50) {
+    //   $("#mainNav").addClass("navbar-shrink");
+    //   $("#dropdown1").removeClass("dropdown-transparent");      
+    // } else {
+    //   $("#mainNav").removeClass("navbar-shrink");
+    //   $("#dropdown1").addClass("dropdown-transparent");
+    // }
   };
   // Collapse now if page is not at top
   navbarCollapse();

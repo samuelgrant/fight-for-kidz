@@ -16,7 +16,8 @@
             <ul class="nav nav-tabs">
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') != 'deleted')? 'active': '' }}" role="tab" data-toggle="tab" href="#tab-1" id="active">Current Accounts</a></li>
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'deleted')? 'active': '' }}" role="tab" data-toggle="tab" href="#tab-2" id="deleted">Deleted Accounts</a></li>
-            </ul>
+                <a href="{{route('register')}}" class="btn btn-success btn-sm ml-1 my-1"><i class="fas fa-plus"></i>&nbsp; Add User</a>
+            </ul>            
             <div class="tab-content">
                 <div class="tab-pane {{ (app('request')->input('tab') != 'deleted')? 'active': '' }}" role="tabpanel" id="tab-1">
                     <table id="user-dtable" class="table table-striped table-hover table-sm">
@@ -35,14 +36,24 @@
                             <tr>
                                 <td>{{$user->name}}</td>
                                 <td><a href="mailto:{{$user->email}}">{{$user->email}}</a></td>
-                                <td>{{($user->active)? "Active Account" : "Activation Required"}}</td>
-                                <td>{{$user->updated_at}}</td>
+                                <td>
+                                    @if($user->active)
+                                        @if($user->password_reset_at)
+                                            Active Account
+                                        @else
+                                            New Account
+                                        @endif
+                                    @else
+                                        Inactive Account
+                                    @endif
+                                </td>
+                                <td>{{$user->updated_at->format('d M Y')}}</td>
                                 <td>
                                     {!!Form::open(['action'=>['admin\UserManagementController@toggleActive', $user->id], 'method' => 'POST']) !!}
                                     @if($user->active)
-                                    <button class="btn btn-info" type="submit"><i class="far fa-times-circle"></i> Deactivate Account</button>
+                                    <button class="btn btn-info w-100" type="submit"><i class="far fa-times-circle"></i> Deactivate Account</button>
                                     @else
-                                    <button class="btn btn-info" type="submit"><i class="far fa-check-circle"></i> Activate Account</button>
+                                    <button class="btn btn-info w-100" type="submit"><i class="far fa-check-circle"></i> Activate Account</button>
                                     @endif
                                     {{Form::hidden('_method', 'put')}}
                                     {!! Form::close() !!}
@@ -73,7 +84,7 @@
                             <tr>
                                 <td>{{$user->name}}</td>
                                 <td><a href="mailto:{{$user->email}}">{{$user->email}}</a></td>
-                                <td>{{$user->deleted_at}}</td>
+                                <td>{{$user->deleted_at->format('d M Y')}}</td>
                                 <td>
                                     {!!Form::open(['action'=>['admin\UserManagementController@restore', $user->id], 'method'=> 'POST']) !!}
                                     <button class="btn btn-info" type="submit"><i class="far fa-times-circle"></i> Restore Account</button>

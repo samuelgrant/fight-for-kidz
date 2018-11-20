@@ -13,7 +13,7 @@ class SubscribersTableSeeder extends Seeder
     public function run()
     {
         //Use the factory to add 500 subscribers
-        factory(App\Subscriber::class, 500)->create();
+        factory(App\Subscriber::class, 50)->create();
 
         $subscribers = Subscriber::get();
             foreach($subscribers as $subscriber){

@@ -5,10 +5,10 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
-
-  <title>Fight For Kidz 2018</title>
+  <meta name="description" content="Fight for Kidz is a non for profit charity based in Invercargill that rasies funds for Southland Kids.">
+  <meta name="author" content="Samuel Grant, Samuel Jackson">
+  
+  <title>Fight for Kidz</title>
 
   <!-- Bootstrap core CSS -->
   <!-- Latest compiled and minified CSS -->
@@ -35,6 +35,10 @@
   <!-- Plugin JavaScript -->
   <script src="/vendor/font-awesome/js/all.js" defer></script>
   <script src="/vendor/jquery-easing/jquery.easing.min.js" defer></script>
+
+
+  <link rel="stylesheet"  href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+  <script  src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>    
 
   <!-- Custom scripts for this template -->
   <script src="/js/grayscale.js" defer></script>

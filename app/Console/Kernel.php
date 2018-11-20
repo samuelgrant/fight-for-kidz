@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        
+        \App\Console\Commands\images\defaults::class,
+        \App\Console\Commands\images\purge::class,
     ];
 
     /**

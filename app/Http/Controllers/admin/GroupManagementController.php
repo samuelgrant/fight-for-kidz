@@ -3,8 +3,13 @@
 namespace App\Http\Controllers\admin;
 
 use Storage;
+use Illuminate\Support\Facades\Log;
 use App\Group;
+use App\User;
+use App\Sponsor;
 use App\Contact;
+use App\Applicant;
+use App\Subscriber;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -37,11 +42,13 @@ class GroupManagementController extends Controller
      */
     public function view($id)
     {
+        $allGroups = Group::all(); // excluding trashed
         $group = Group::withTrashed()->find($id);
         $groupMembers = $group->recipients();
         return view('admin.groupManagement')
             ->with('group', $group)
-            ->with('members', $groupMembers);
+            ->with('members', $groupMembers)
+            ->with('groups', $allGroups);
     }
 
     /**
@@ -55,11 +62,23 @@ class GroupManagementController extends Controller
             'groupImage' => 'mimes:png|dimensions:min_width=80,min_height=100'
         ]);
         
-        
-        $group = new Group();
+        if(Group::where('name', $request->input('groupName'))->first()){
+
+            session()->flash('error', 'A group with this name already exists.');            
+
+        } else if(Group::withTrashed()->where('name', $request->input('groupName'))->first()){
+
+            session()->flash('error', 'A group with this name already exists, but has been disabled. Please restore and use that one.');
+
+        } else{
+
+            $group = new Group();
             $group->name = $request->input('groupName');
             $group->save(); // save now to generate id
-            $group->setImage(($request->file('groupImage')!== null)? $request->file('groupImage') : null);         
+            $group->setImage(($request->file('groupImage')!== null)? $request->file('groupImage') : null);    
+         
+            session()->flash('success', 'Group created successfully');
+        }
 
         return redirect()->back();
     }
@@ -168,5 +187,41 @@ class GroupManagementController extends Controller
      */
     public function removeMember($groupID, $email){
         Group::find($groupID)->removeMembersByEmail($email);
+    }
+
+    /**
+     * Adds an exisiting groupable object to a new group.
+     * 
+     * Firstly, it retrieves the object for the member, which can
+     * be applicant, subscriber, sponsor, user (admin) or contact.
+     * 
+     * Each of the above objects has the 'groupable' trait, and
+     * therefore has the 'addToGroup' method. This method is used
+     * to add the object to the selected group.
+     * 
+     */
+    public function addMemberToAnotherGroup($groupId, $memberType, $memberId){
+
+        $groupable;
+
+        if($memberType == "subscriber"){
+            $groupable = Subscriber::find($memberId);
+        }
+        elseif($memberType == "sponsor"){
+            $groupable = Sponsor::find($memberId);
+        }
+        elseif($memberType == "applicant"){
+            $groupable = Applicant::find($memberId);
+        }
+        elseif($memberType == "admin"){
+            $groupable = User::find($memberId);
+        }
+        else{ // member is a 'contact' object
+            $groupable = Contact::find($memberId);
+        }
+
+        $groupable->addToGroup($groupId);
+
+        Log::debug('Use the copy function to add '. $memberType . ' ' . $memberId . ' to group ' . $groupId);
     }
 }
