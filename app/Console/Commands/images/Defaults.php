@@ -93,5 +93,14 @@ class Defaults extends Command
             $this->info('Copying a no year logo file to public folder. This version will not be changed.');
             Storage::copy("private/images/f4k_logo_noyear.png", "public/images/f4k_logo_noyear.png");
         }
+
+        // copy generic images
+        if(Storage::exists("public/images/mainPagePhoto.jpg")){
+            $this->warn('Main page photo file already in public folder.');
+        } else{
+            $this->info('Copying a generic main page photo to public folder.');
+            Storage::copy("private/images/mainPagePhoto.jpg", "public/images/mainPagePhoto.jpg");
+        }        
+        
     }
 }

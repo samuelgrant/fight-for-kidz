@@ -67,6 +67,14 @@ class Purge extends Command
             $counter++;
         }
 
+        // delete generic images
+        $this->info('Deleting generic images');
+        $files = Storage::files('public/images/mainPagePhoto.jpg');
+        foreach($files as $file){
+            Storage::delete($file);
+            $counter++;
+        }
+
         $this->promptToCopyDefault();
     }
     
