@@ -15,11 +15,6 @@ use App\Http\Controllers\Controller;
 
 class GroupManagementController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth.activeUser');
-    }
-
     /**
      * Displays the usermanagment view.
      * 
