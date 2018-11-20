@@ -37,6 +37,18 @@ class Kernel extends HttpKernel
             Middleware\maintenanceModeOverride::class,
         ],
 
+        'admin' => [
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            // \Illuminate\Session\Middleware\AuthenticateSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \App\Http\Middleware\VerifyCsrfToken::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            Middleware\maintenanceModeOverride::class,
+            Middleware\ActiveUser::class,
+        ],
+
         'api' => [
             'throttle:60,1',
             'bindings',

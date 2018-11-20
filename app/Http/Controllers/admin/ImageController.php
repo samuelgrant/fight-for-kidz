@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\Log;
 
 class ImageController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth.activeUser');
-    }
-
     /**
      * Returns an applicant image from private storage, if the user is
      * logged in.
