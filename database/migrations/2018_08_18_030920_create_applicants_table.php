@@ -46,7 +46,14 @@ class CreateApplicantsTable extends Migration
             $table->string('employer');
             $table->boolean('can_secure_sponsor');
             $table->mediumText('conviction_details')->nullable(); // null if the applicant ticks 'no convictions' and 'not facing charges' on the form
-            $table->boolean('consent_to_test');            
+            $table->boolean('consent_to_test');       
+            
+            // Custom questions answers. Ideally these would be in a separate table to keep the table normalized. 
+            $table->string('custom_one', 500)->nullable();
+            $table->string('custom_two', 500)->nullable();
+            $table->string('custom_three', 500)->nullable();
+            $table->string('custom_four', 500)->nullable();
+            $table->string('custom_five', 500)->nullable();
 
             $table->timestamps();
 
