@@ -93,7 +93,7 @@
                 <div class="row">
                     @foreach($deletedGroups as $group)
                     <div class="col-lg-3 col-md-4 col-sm-6 my-4 px-2">
-                        <a class="btn groups" href="{{ route('admin.group', ['id' => $group->id])}}">
+                        <a class="btn groups border border-primary" href="{{ route('admin.group', ['id' => $group->id])}}">
                             <img class="d-block m-auto group-icon" src="/storage/images/groups/{{($group->custom_icon)?$group->id: 0 }}.png" alt="Group Icon" />
                             <h5>{{$group->name}}</h5>
                             <span class="d-block text-center">{{$group->type}}</span>

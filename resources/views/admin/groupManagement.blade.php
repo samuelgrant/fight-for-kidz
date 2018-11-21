@@ -96,12 +96,13 @@
     </div>
     <div class="col-lg-12">
 
-        {{-- Add selected to group - visible to all groups --}}
+        @if(!$group->deleted_at)
+        {{-- Add selected to group - visible to all undeleted groups --}}
         <button class="btn btn-primary mb-3" type="button" data-toggle="modal" data-target="#copyToGroupModal">
             Copy selected to another group
         </button>
 
-        @if($group->type != "System Group")
+        
         <button class="btn btn-primary mb-3" type="button" data-toggle="modal" data-target="#addToGroupModal">Add new
             contact to Group</button>
         <button class="btn btn-danger mb-3" id="removeFromGroupButton" type="button" data-toggle="modal" data-target="#removeFromGroupModal"
@@ -136,7 +137,7 @@
     </div>
 </div>
 
-@if($group->type != "System Group")
+@if(!$group->deleted_at)
 <!-- Add to group modal -->
 <div class="modal fade" id="addToGroupModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -160,7 +161,7 @@
                         <input type="email" name="email" id="inviteEmail" class="form-control" required>
                     </div>
                     @csrf
-                    <button type="submit" class="btn btn-success"><i class="fas fa-user-plus"></i> Add person to Group</button>
+                    <button type="submit" class="btn btn-success float-right"><i class="fas fa-user-plus"></i> Add person to Group</button>
                 </form>
             </div>
         </div>
@@ -180,13 +181,13 @@
 
                 <p id="modal-message"></p>
 
-                <button type="button" class="btn btn-danger" data-dismiss="modal" onclick="removeSelectedFromGroup({{$group->id}})">Confirm</button>
+                <button type="button" class="btn btn-danger float-right" data-dismiss="modal" onclick="removeSelectedFromGroup({{$group->id}})">Confirm</button>
 
             </div>
         </div>
     </div>
 </div>
-@endif
+
 
 {{-- Copy to another group modal - outside if block as it is available for system groups --}}
 <div class="modal fade" id="copyToGroupModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
@@ -210,7 +211,7 @@
 
                 <br>
 
-                <button type="button" class="btn btn-success d-block m-auto" data-dismiss="modal" onclick="copySelectedToGroup('customGroups')">Confirm</button>
+                <button type="button" class="btn btn-success d-block float-right" data-dismiss="modal" onclick="copySelectedToGroup('customGroups')">Confirm</button>
 
             </div>
         </div>
@@ -221,5 +222,7 @@
         </div>
     </div>
 </div>
+
+@endif
 
 @endsection
