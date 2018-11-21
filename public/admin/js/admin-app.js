@@ -390,7 +390,7 @@ function applicantManagementModal(id){
 
         // Additional Tab
         $("#appOccupation").val(data.occupation);           $("#appEmployer").val(data.employer);
-        $("appConvictionDetails").text(data.conviction_details);
+        $("#appConvictionDetails").text(data.conviction_details);
 
         // Set Consent
         if(consent_to_test = 0){
@@ -405,6 +405,13 @@ function applicantManagementModal(id){
         }else if(consent_to_test = 1){
             $("#appSponsor").val("Yes");
         }
+
+        // Populate custom questions
+        $('#custom_1').val(data.custom_one);
+        $('#custom_2').val(data.custom_two);
+        $('#custom_3').val(data.custom_three);
+        $('#custom_4').val(data.custom_four);
+        $('#custom_5').val(data.custom_five);
 
 
         $("#applicantMoreInfoModal").modal('show');
