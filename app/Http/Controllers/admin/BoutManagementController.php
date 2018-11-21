@@ -11,11 +11,6 @@ use App\Http\Controllers\Controller;
 
 class BoutManagementController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth.activeUser');
-    }
-
     public function removeBout($boutId){
 
         $bout = Bout::find($boutId);
