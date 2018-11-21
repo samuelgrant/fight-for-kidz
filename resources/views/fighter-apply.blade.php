@@ -251,11 +251,43 @@
 
 			</div>
 
-			<!-- Criminal/legal Questions -->
+			<!-- Criminal/legal Questions + custom questions -->
 
 			<div class="form-section">
 				<h3>Additional Information</h3>
 				<hr class="mb-4">
+
+				{{-- Custom questions here --}}
+
+				<?php
+					global $q; // counter for question numbering					
+				?>
+
+				@foreach(App\Event::current()->customQuestions as $question)
+
+					<div class="form-group">
+
+						@if($question->type == 'Text')
+
+						<label for="custom_{{++$q}}">{{$question->text}}</label>
+						<textarea class="form-control" type="text" maxlength="500" name="custom_{{$q}}" id="custom_{{$q}}" rows="3" {{$question->required ? 'required' : ''}}></textarea>
+
+						@elseif($question->type == "Yes/No")
+
+						<p>{{$question->text}}</p>
+						<div class="radio ">
+							<label class="radio-selector"><input type="radio" name="custom_{{++$q}}" value="Yes" {{$question->required ? 'required' : ''}}>Yes</label>
+							<label class="radio-selector"><input type="radio" name="custom_{{$q}}" value="No" {{$question->required ? 'required' : ''}}>No</label>
+						</div>
+
+						@endif
+
+					</div> 
+
+				@endforeach
+
+				{{-- End of custom questions --}}
+
 				<div class="form-group" id="additional_information">
 					<p class="">Do you have any criminal convictions or are facing charges?</p>
 					<div class="radio ">
