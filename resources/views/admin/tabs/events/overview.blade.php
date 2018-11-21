@@ -85,7 +85,7 @@
                             <th>Question</th>
                             <th>Type</th>
                             <th>Required</th>
-                            <th class="text-right">Delete</th>
+                            <th></th>
                         </thead>
                         
                             @foreach($event->customQuestions as $question)

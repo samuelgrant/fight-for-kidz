@@ -19,14 +19,14 @@
 							<label for="first_name">First Name:</label>
 						</div>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="first_name">
+							<input class="form-control" type="text" name="first_name" required>
 						</div>
 
 						<div class="col-md-2 inputLabel">
 							<label for="last_name">Last Name:</label>
 						</div>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="last_name">
+							<input class="form-control" type="text" name="last_name" required>
 						</div>
 					</div>
 				</div>
@@ -37,7 +37,7 @@
 							<label for="address_1">Address 1:</label>
 						</div>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="address_1">
+							<input class="form-control" type="text" name="address_1" required>
 						</div>
 
 
@@ -61,7 +61,7 @@
 							<label for="city">City:</label>
 						</div>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="city">
+							<input class="form-control" type="text" name="city" required>
 						</div>
 					</div>
 
@@ -70,14 +70,14 @@
 							<label for="post_code">Post Code:</label>
 						</div>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="post_code">
+							<input class="form-control" type="text" name="post_code" required>
 						</div>
 
 						<div class="col-md-2 inputLabel">
 							<label for="email">Email:</label>
 						</div>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="email">
+							<input class="form-control" type="text" name="email" required>
 						</div>
 					</div>
 				</div>
@@ -111,21 +111,21 @@
 							<label for="dob">Date of Birth:</label>
 						</div>
 						<div class="col-md-3 input-group date" id="datepicker">
-							<input class="form-control" type="date" name="dob">
+							<input class="form-control" type="date" name="dob" required>
 						</div>
 
 						<div class="col-md-3 inputLabel">
 							<label for="height">Height (cm):</label>
 						</div>
 						<div class="col-md-3">
-							<input class="form-control" type="text" name="height">
+							<input class="form-control" type="text" name="height" required>
 						</div>
 
 						<div class="col-md-3 inputLabel">
 							<label for="current_weight">Current Weight (kg):</label>
 						</div>
 						<div class="col-md-3">
-							<input class="form-control" type="text" name="current_weight">
+							<input class="form-control" type="text" name="current_weight" required>
 						</div>
 
 						<div class="col-md-3 inputLabel">
@@ -143,7 +143,7 @@
 							<label for="occupation">Occupation:</label>
 						</div>
 						<div class="col-md-3">
-							<input class="form-control" type="text" name="occupation">
+							<input class="form-control" type="text" name="occupation" required>
 						</div>
 
 						<div class="col-md-3 inputLabel">
@@ -162,15 +162,15 @@
 						<div class="col-md-6">
 							<p class="">Are you:</p>
 							<div class="radio form-group">
-								<div><label class="radio-selector"><input type="radio" name="gender" value="male">Male</label></div>
-								<div><label class="radio-selector"><input type="radio" name="gender" value="female">Female</label></div>
+								<div><label class="radio-selector"><input type="radio" name="gender" value="male" required>Male</label></div>
+								<div><label class="radio-selector"><input type="radio" name="gender" value="female" required>Female</label></div>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<p>Are you:</p>
 							<div class="radio form-group">
-								<div><label class="radio-selector"><input type="radio" name="hand" value="left">Left-handed</label></div>
-								<div><label class="radio-selector"><input type="radio" name="hand" value="right">Right-handed</label></div>
+								<div><label class="radio-selector"><input type="radio" name="hand" value="left" required>Left-handed</label></div>
+								<div><label class="radio-selector"><input type="radio" name="hand" value="right" required>Right-handed</label></div>
 							</div>
 						</div>
 					</div>
@@ -188,8 +188,8 @@
 				<div class="form-group">
 					<p class="">Can you secure your own sponsor? (not a condition of entry)</p>
 					<div class="radio">
-						<label class="radio-selector"><input type="radio" name="sponsorRadio" value="yes">Yes</label>
-						<label class="radio-selector"><input type="radio" name="sponsorRadio" value="no">No</label>
+						<label class="radio-selector"><input type="radio" name="sponsorRadio" value="yes" required>Yes</label>
+						<label class="radio-selector"><input type="radio" name="sponsorRadio" value="no" required>No</label>
 					</div>
 				</div>
 
@@ -198,7 +198,7 @@
 				<div class="form-group">
 					<label for="upload">Please upload a recent photo of yourself:</label>
 					<br>
-					<input type="file" class="form-control-file" name="photo">
+					<input type="file" class="form-control-file" name="photo" required>
 				</div>
 			</div>
 
@@ -211,11 +211,11 @@
 					<p class="">How would you rate you fitness levels</p>
 					<div class="radio ">
 						Poor &nbsp;
-						<label class="radio-selector"><input type="radio" name="fitness_rating" value="1">1</label>
-						<label class="radio-selector"><input type="radio" name="fitness_rating" value="2">2</label>
-						<label class="radio-selector"><input type="radio" name="fitness_rating" value="3">3</label>
-						<label class="radio-selector"><input type="radio" name="fitness_rating" value="4">4</label>
-						<label class="radio-selector"><input type="radio" name="fitness_rating" value="5">5</label>
+						<label class="radio-selector"><input type="radio" name="fitness_rating" value="1" required>1</label>
+						<label class="radio-selector"><input type="radio" name="fitness_rating" value="2" required>2</label>
+						<label class="radio-selector"><input type="radio" name="fitness_rating" value="3" required>3</label>
+						<label class="radio-selector"><input type="radio" name="fitness_rating" value="4" required>4</label>
+						<label class="radio-selector"><input type="radio" name="fitness_rating" value="5" required>5</label>
 						Excellent
 					</div>
 				</div>
@@ -225,8 +225,8 @@
 				<div class="form-group">
 					<p class="">Have you ever done boxing/kickboxing/martial arts?</p>
 					<div class="radio ">
-						<label class="radio-selector"><input type="radio" name="expRadio" value="yes" onclick="showexperience()">Yes</label>
-						<label class="radio-selector"><input type="radio" name="expRadio" value="no" onclick="hideExperience()">No</label>
+						<label class="radio-selector"><input type="radio" name="expRadio" value="yes" onclick="showexperience()" required>Yes</label>
+						<label class="radio-selector"><input type="radio" name="expRadio" value="no" onclick="hideExperience()" required>No</label>
 					</div>
 				</div>
 				<div id="exeperience" class="form-group" style="display: none;">
@@ -238,7 +238,7 @@
 				<div class="form-group">
 					<label for="summary" class="">Other sporting experience:</label>
 					<textarea id="summary" name="sporting_experience" class="form-control" placeholder="Please describe any other sporting experience you have..."
-					 rows="3"></textarea>
+					 rows="3" required></textarea>
 				</div>
 
 				<!-- Hobbies / interests -->
@@ -246,7 +246,7 @@
 				<div class="form-group">
 					<label for="summary" class="">Hobbies/interests:</label>
 					<textarea id="summary" name="hobbies" class="form-control" placeholder="Please describe any other hobbies/interests you have..."
-					 rows="3"></textarea>
+					 rows="3" required></textarea>
 				</div>
 
 			</div>
@@ -291,8 +291,8 @@
 				<div class="form-group" id="additional_information">
 					<p class="">Do you have any criminal convictions or are facing charges?</p>
 					<div class="radio ">
-						<label class="radio-selector"><input type="radio" name="convictedRadio" value="yes" onclick="showcriminal()">Yes</label>
-						<label class="radio-selector"><input type="radio" name="convictedRadio" value="no" onclick="hidecriminal()">No</label>
+						<label class="radio-selector"><input type="radio" name="convictedRadio" value="yes" onclick="showcriminal()" required>Yes</label>
+						<label class="radio-selector"><input type="radio" name="convictedRadio" value="no" onclick="hidecriminal()" required>No</label>
 					</div>
 
 					<div id="criminal" class="form-group" style="display: none;">
@@ -302,8 +302,8 @@
 					<br>
 					<p class="">Are you happy to take a drug screening test?</p>
 					<div class="radio">
-						<label class="radio-selector"><input type="radio" name="drugRadio" value="yes">Yes</label>
-						<label class="radio-selector"><input type="radio" name="drugRadio" value="no">No</label>
+						<label class="radio-selector"><input type="radio" name="drugRadio" value="yes" required>Yes</label>
+						<label class="radio-selector"><input type="radio" name="drugRadio" value="no" required>No</label>
 					</div>
 				</div>
 
@@ -314,7 +314,7 @@
 						<input class="d-inline-block align-middle" type="checkbox" name="subscribeCheckbox" id="subscribeCheckbox" checked>I would like to receive Fight for Kidz updates via email
 					</label>
 					<label for="guidelinesCheckbox">
-            			<input class="d-inline-block align-middle" type="checkbox" name="declCheckbox" id="guidelinesCheckbox">I have provided true and accurate information in this application
+            			<input class="d-inline-block align-middle" type="checkbox" name="declCheckbox" id="guidelinesCheckbox" required>I have provided true and accurate information in this application
           			</label>
 				</div>
 			</div>

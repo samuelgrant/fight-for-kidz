@@ -56,7 +56,6 @@ class EventApplicationController extends Controller
             'current_weight' => 'required|integer|gt:0', 
             'expected_weight' => 'integer|gt:0',
             'occupation' => 'required',
-            'employer' => 'required_with:occupation', // employer required if occupation not blank
             'gender' => 'required',
             'hand' => 'required',
             // nickname not required
