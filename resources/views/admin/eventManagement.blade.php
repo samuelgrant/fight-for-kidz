@@ -464,7 +464,7 @@
 
                     <div class="form-group">
                         <label for="auctionDonor">Item donor:</label>
-                        <input  type="text" class="form-control" name="donor" id="auctionDonor"  placeholder="*required" required>
+                        <input  type="text" class="form-control" name="donor" id="auctionDonor">
                     </div>
 
                     <div class="form-group">

@@ -446,7 +446,7 @@ function auctionCreateModal(){
     $("#auctionModalTitle").text("Create Auction Item");
     $("#auctionModalButton").text("Confirm");
 
-    //Set all text fields placeholders
+    //Set all text fields to empty
     $("#auctionName").val("");
     $("#auctionDescription").val("");
     $("#auctionDonor").val("");

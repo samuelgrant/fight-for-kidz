@@ -18,7 +18,7 @@ class CreateAuctionItemsTable extends Migration
             $table->integer('event_id')->unsigned();
             $table->string('name');
             $table->string('desc', 300);
-            $table->string('donor');
+            $table->string('donor')->nullable();
             $table->string('donor_url')->nullable();
             $table->float('sale_price', 8, 2)->nullable();
             $table->timestamps();
