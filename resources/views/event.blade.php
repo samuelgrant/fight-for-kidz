@@ -275,7 +275,7 @@
         <!-- Each auction has a auction header -->
         <div class="auction-card">
           <div class="auction-header">
-            <h2>Auction {{++$a}}</h2>
+            <h2>AUCTION {{++$a}}</h2>
           </div>
   
           <!-- Each auction card will contain one auction-card either blue or red -->
@@ -322,7 +322,7 @@
 
 
           <div class="text-center">
-            <h3 id=auctionItem-name class="d-inline mx-2"></h3>
+            <h3 id=auctionItemName class="d-inline mx-2"></h3>
             <hr>
 
             <div class="text-justify px-4 py-3">
@@ -357,7 +357,7 @@
     </div>
   </div>
 </div> {{-- End of auction-info-modal --}}
-{{-- <script>
+<script>
   function auctionItemModal(id){
   $.ajax({
       method: "get",
@@ -366,6 +366,7 @@
       },
       url: `/a/auction-management/auction/${id}`
   }).done((data) => {
+      Console.log(data);
       //Dynamically populate the modal with item info
       $("#auctionItemName").val(data.name);
       $("#auctionItemDescription").val(data.desc);
@@ -379,5 +380,5 @@
       console.log(error);
   });
   }
-</script> --}}
+</script>
 @endsection
