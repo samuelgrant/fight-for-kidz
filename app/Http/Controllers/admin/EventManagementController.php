@@ -199,6 +199,28 @@ class EventManagementController extends Controller
     }
 
     /**
+     *  Toggle bouts visibitiy on event page.
+     */
+    public function toggleAuctions($eventID){
+        
+        $event = Event::find($eventID);
+
+        if($event){ //toggle the auction visibility
+            if($event->show_auctions){
+                $event->hideAuctions();
+                session()->flash('success', $event->name . ' auctions will NOT show on public page');
+            } else{
+                $event->showAuctions();
+                session()->flash('success', $event->name . ' auctions WILL show on public page');
+            }
+        } else{ // if for some reason the eventID does not find an event
+            session()->flash('error', 'Error. The requested action could not be completed.');
+        }
+
+        return redirect()->back();
+    }
+
+    /**
      *  This method toggles whether the event is open for applications or 
      *  not. Visitors to the site will only be able to apply if the current 
      *  event is open for applications.

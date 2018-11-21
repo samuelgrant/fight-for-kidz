@@ -57,6 +57,22 @@ class Event extends Model
         $this->save();
     }
 
+     /**
+     * Show bouts on the public event page
+     */
+    public function hideAuctions(){
+        $this->show_auctions = false;
+        $this->save();
+    }
+
+    /**
+     * Show bouts on the public event page
+     */
+    public function showAuctions(){
+        $this->show_auctions = true;
+        $this->save();
+    }
+
     /** 
      *  Sets the events applications to either on or off
      * 

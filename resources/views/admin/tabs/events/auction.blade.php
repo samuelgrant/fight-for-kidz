@@ -7,6 +7,17 @@
 
 <hr>
 
+<div>
+<h5>Auctions are currently {{$event->show_auctions ? 'visible' : 'hidden'}} on the public event page.</h5>
+<form class="d-inline" action="{{route('admin.eventManagement.toggleAuctions', ['eventID' => $event->id])}}" method="POST">
+    @csrf
+    @method('PUT')
+<button type="submit" class="btn btn-primary"><i class="far {{$event->show_auctions ? 'fa-eye-slash' : 'fa-eye'}}"></i>&nbsp;{{$event->show_auctions ? 'Hide auctions' : 'Show auctions'}}</button>    
+</form>
+</div>
+
+<hr>
+
 <div class="row">
     <div class="col-md-12">
         <!-- Tabs -->

@@ -259,104 +259,106 @@
 </script>
 </div>
 
-<!-- Auction section -->
-<section id="auction-secton">
-  <div class="container pt-5">
-
-    <!-- All auctions will be contained within single row -->
-    <div class="row auctions-row">
+<!-- Auction section - show if auctions switched on -->
+@if($event->show_auctions)
+  <section id="auction-secton">
+    <div class="container pt-5">
   
-      <?php global $a ?>
-      <!-- counter used to name auctions -->
-      @foreach($event->auctions as $auction)
-      <!-- Each auction will create one column -->
-      <div class="col-lg-4 auction-column">
-  
-        <!-- Each auction has a auction header -->
-        <div class="auction-card">
-          <div class="auction-header">
-            <h2>AUCTION {{++$a}}</h2>
-          </div>
-  
-          <!-- Each auction card will contain one auction-card either blue or red -->
-          @if($a % 2 != 0)
-          <div class="auctionItem-card auctionItem-card-red">
-            <div class="auctionItem-card-inner">
-              <img src="{{file_exists(public_path('/storage/images/auction/' . $auction->id . '.png')) ? '/storage/images/auction/' . $auction->id . '.png' : '/storage/images/noImage.png'}}"
-                class="mx-auto auctionItem-img">
-              <div class="auctionItem-name">
-                <h5>{{$auction->name}}</h5>
+      <!-- All auctions will be contained within single row -->
+      <div class="row auctions-row">
+    
+        <?php global $a ?>
+        <!-- counter used to name auctions -->
+        @foreach($event->auctions as $auction)
+        <!-- Each auction will create one column -->
+        <div class="col-lg-4 auction-column">
+    
+          <!-- Each auction has a auction header -->
+          <div class="auction-card">
+            <div class="auction-header">
+              <h2>AUCTION {{++$a}}</h2>
+            </div>
+    
+            <!-- Each auction card will contain one auction-card either blue or red -->
+            @if($a % 2 != 0)
+            <div class="auctionItem-card auctionItem-card-red">
+              <div class="auctionItem-card-inner">
+                <img src="{{file_exists(public_path('/storage/images/auction/' . $auction->id . '.png')) ? '/storage/images/auction/' . $auction->id . '.png' : '/storage/images/noImage.png'}}"
+                  class="mx-auto auctionItem-img">
+                <div class="auctionItem-name">
+                  <h5>{{$auction->name}}</h5>
+                </div>
+                <div class="auction-btn auction-btn-red" onclick="auctionItemModal({{$auction->id}})">More Info</div>
               </div>
-              <div class="auction-btn auction-btn-red" onclick="auctionItemModal({{$auction->id}})">More Info</div>
+            </div>
+            @elseif($a % 2 == 0)
+            <div class="auctionItem-card auctionItem-card-blue ">
+              <div class="auctionItem-card-inner">
+                <img src="{{file_exists(public_path('/storage/images/auction/' . $auction->id . '.png')) ? '/storage/images/auction/' . $auction->id . '.png' : '/storage/images/noImage.png'}}"
+                  class="mx-auto auctionItem-img">
+                <div class="auctionItem-name">
+                  <h5>{{$auction->name}}</h5>
+                </div>
+                <div class="auction-btn auction-btn-red" onclick="auctionItemModal({{$auction->id}})">More Info</div>
+              </div>
+            </div>
+            @endif
+          </div>
+        </div> <!-- end each auction -->
+        @endforeach
+    
+      </div> <!-- end all auctions -->
+  </section>
+  
+  <!-- Dynamic modal for displaying auction item info -->
+  <div id="AuctionItem-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+    style="display: none; z-index:4005;">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+  
+        <div class="modal-body">
+  
+          {{-- Dynamic content will load here --}}
+          <div id="dynamic-content" style="color:black;">
+  
+  
+            <div class="text-center">
+              <h3 id=auctionItemName class="d-inline mx-2"></h3>
+              <hr>
+  
+              <div class="text-justify px-4 py-3">
+                <p id="auctionItemDescription"></p>
+              </div>
+  
+              <div class="row">
+                <div class="col-lg-6"><img id="auctionItemImage" src="" class="img-fluid"></div>
+                <div class="col-lg-6">
+                  <h5 class="text-center">Item Info:</h5>
+                  <table class="table table-striped table-bordered table-sm text-center">
+                    <tbody>
+                      <tr>
+                        <td>&nbsp;Name: <span id="auctionItemName"></span></td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;Donor: <span id="auctionItemDonor"></span></td>
+                      </tr>
+                      <tr>
+                        <td>&nbsp;DonorUrl: <span id="auctionItemDonorUrl"></span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
-          @elseif($a % 2 == 0)
-          <div class="auctionItem-card auctionItem-card-blue ">
-            <div class="auctionItem-card-inner">
-              <img src="{{file_exists(public_path('/storage/images/auction/' . $auction->id . '.png')) ? '/storage/images/auction/' . $auction->id . '.png' : '/storage/images/noImage.png'}}"
-                class="mx-auto auctionItem-img">
-              <div class="auctionItem-name">
-                <h5>{{$auction->name}}</h5>
-              </div>
-              <div class="auction-btn auction-btn-red" onclick="auctionItemModal({{$auction->id}})">More Info</div>
-            </div>
-          </div>
-          @endif
         </div>
-      </div> <!-- end each auction -->
-      @endforeach
-  
-    </div> <!-- end all auctions -->
-</section>
-
-<!-- Dynamic modal for displaying auction item info -->
-<div id="AuctionItem-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-  style="display: none; z-index:4005;">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-
-      <div class="modal-body">
-
-        {{-- Dynamic content will load here --}}
-        <div id="dynamic-content" style="color:black;">
-
-
-          <div class="text-center">
-            <h3 id=auctionItemName class="d-inline mx-2"></h3>
-            <hr>
-
-            <div class="text-justify px-4 py-3">
-              <p id="auctionItemDescription"></p>
-            </div>
-
-            <div class="row">
-              <div class="col-lg-6"><img id="auctionItemImage" src="" class="img-fluid"></div>
-              <div class="col-lg-6">
-                <h5 class="text-center">Item Info:</h5>
-                <table class="table table-striped table-bordered table-sm text-center">
-                  <tbody>
-                    <tr>
-                      <td>&nbsp;Name: <span id="auctionItemName"></span></td>
-                    </tr>
-                    <tr>
-                      <td>&nbsp;Donor: <span id="auctionItemDonor"></span></td>
-                    </tr>
-                    <tr>
-                      <td>&nbsp;DonorUrl: <span id="auctionItemDonorUrl"></span></td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
-  </div>
-</div> {{-- End of auction-info-modal --}}
+  </div> {{-- End of auction-info-modal --}}
+@endif
 <script>
   function auctionItemModal(id){
   $.ajax({

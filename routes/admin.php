@@ -61,6 +61,8 @@ Route::put('/event-management/togglepublic/{eventID}', 'admin\EventManagementCon
 Route::put('/event-management/toggleapps/{eventID}', 'admin\EventManagementController@toggleApplications')->name('admin.eventManagement.toggleApplications');
 // Event bout visibility
 Route::put('/event-management/toggleBouts/{eventID}', 'admin\EventManagementController@toggleBouts')->name('admin.eventManagement.toggleBouts');
+// Event auction visibility
+Route::put('/event-management/toggleAuctions/{eventID}', 'admin\EventManagementController@toggleAuctions')->name('admin.eventManagement.toggleAuctions');
 
 // Add/remove applicants to/from team
 Route::put('/event-management/team/add', 'admin\ApplicantManagementController@addToTeam')->name('admin.eventManagement.addToTeam');

@@ -1,5 +1,5 @@
 <div class="mt-4">
-        <h3 class="d-inline">{{$event->name}} : Bout Management</h3>
+        <h3 class="d-inline">{{$event->name}} : Bout</h3>
         <span class="float-right btn btn-success" onclick="addBout({{$event->id}})"><i class="fas fa-plus"></i>&nbsp;Add Bout</span>
     </div>
 
