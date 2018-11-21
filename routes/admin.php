@@ -35,6 +35,14 @@ Route::post('/sponsor-management/{sponsorID}', 'admin\SponsorManagementControlle
 Route::delete('/sponsor-management/{SponsorID}', 'admin\SponsorManagementController@deleteSponsor')->name('admin.sponsorManagement.deleteSponsor');
 Route::delete('/sponsor-management/{SponsorID}/{eventID}', 'admin\SponsorManagementController@removeFromEvent')->name('admin.sponsorManagement.removeFromEvent');
 
+// View system groups
+Route::get('/group-management/all', 'admin\GroupManagementController@getAll')->name('admin.group.all');
+Route::get('/group-management/subscribers', 'admin\GroupManagementController@getSubscribers')->name('admin.group.subscribers');
+Route::get('/group-management/admins', 'admin\GroupManagementController@getAdmins')->name('admin.group.admins');
+Route::get('/group-management/applicants', 'admin\GroupManagementController@getApplicants')->name('admin.group.applicants');
+Route::get('/group-management/sponsors', 'admin\GroupManagementController@getSponsors')->name('admin.group.sponsors');
+Route::get('/group-management/others', 'admin\GroupManagementController@getOthers')->name('admin.group.others');
+
 //View, Update Group
 Route::get('/group-management/{groupID}', 'admin\GroupManagementController@view')->name('admin.group');
 Route::put('/group-management/{groupID}', 'admin\GroupManagementController@update')->name('admin.group.update');
@@ -42,6 +50,13 @@ Route::put('/group-management/{groupID}', 'admin\GroupManagementController@updat
 //Add, Remove from Group
 Route::post('/group-management/{groupID}', 'admin\GroupManagementController@addMember')->name('admin.group.addMember');
 Route::delete('/group-management/{groupID}/{contact}', 'admin\GroupManagementController@removeMember')->name('admin.group.removeMember');
+
+// Edit and delete other contacts
+Route::patch('/group-management/contacts/{contactID}', 'admin\GroupManagementController@updateContact')->name('admin.contact.update');
+Route::delete('/group-management/contacts/delete/{contactID}', 'admin\GroupManagementController@deleteContact')->name('admin.contact.delete');
+
+// Get contact JSON
+Route::get('/group-management/contacts/{contactID}', 'admin\GroupManagementController@getContact')->name('admin.contact.get');
 
 //Copy member to another Group
 Route::put('/group-management/{groupID}/{memberID}/{memberType}', 'admin\GroupManagementController@addMemberToAnotherGroup')->name('admin.group.addToAnotherGroup');

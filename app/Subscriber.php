@@ -21,8 +21,6 @@ class Subscriber extends Model
             $subscriber->name = $name;
             $subscriber->email = $email;
             $subscriber->save();
-
-            $subscriber->addToGroup(2);
         }
 
     }
@@ -35,8 +33,8 @@ class Subscriber extends Model
         $subscriber = Subscriber::where('email', $email);
 
         if($subscriber){
-            $subscriber->removeFromGroup();
-            return true; // subscriber removed
+            $subscriber->delete();
+            return true;
         }
 
         return false; //subscriber not found
@@ -49,6 +47,6 @@ class Subscriber extends Model
      */
     public function unsubscribe(){
 
-        $this->removeFromGroup(2);
+        $this->delete();
     }
 }   
