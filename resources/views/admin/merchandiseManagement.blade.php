@@ -22,7 +22,11 @@
                 <li class="nav-item">
                     <a class="nav-link" role="tab" data-toggle="tab" href="#tab-deleted" id="deletedItems">Deleted Merchandise</a>
                 </li>
+                <span class="float-right">
+                    <button class="btn btn-success" onclick="merchandiseCreateModal()"><i class="fas fa-plus"></i>&nbsp;Add Item</button>
+                </span>
             </ul>
+            
         </div>
         
         <div class="tab-content">
@@ -45,7 +49,9 @@
                         <tr>
                             <td class="align-middle">{{$item->name}}</td>
                             <td class="align-middle">{{$item->desc}}</td>
-                            <td class="align-middle"></td>
+                            <td><img src="{{file_exists(public_path('storage/images/merchandise/' . $item->id . '.png')) ? '/storage/images/merchandise/' . $item->id . 
+                                '.png' : '/storage/images/noImage.png'}}" height=100 width=80>
+                            </td>
                             <td class="align-middle">{{$item->price}}</td>
                             <td>
                                 {{-- {!!Form::open([ 'method' => 'POST']) !!}
@@ -58,7 +64,7 @@
                                 {!! Form::close() !!} --}}
                             </td>
                             <td class="align-middle">
-                                <button class="btn btn-warning" ><i class="fas fa-pencil"></i>&nbsp;Edit</button>
+                                <button class="btn btn-warning" onclick="merchandiseEditModal({{$item->id}})"><i class="fas fa-pencil"></i>&nbsp;Edit</button>
                             </td>
                             <td class="align-middle">
                                 <form action="{{route('admin.merchandiseManagement.destroy', ['merchandiseID' => $item->id])}}" method="POST">
@@ -103,4 +109,49 @@
         </div>
     </div>
 </div>
+
+<!-- Create / edit merchandise item modal -->
+<div class="modal fade" id="createEditMerchandiseItemModal" tabindex="-1" role="dialog" aria-labelledby="Edit Team" aria-hidden="true" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h4 class="modal-title" id="merchandiseModalTitle"></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form id="merchandiseForm" method="POST" action="{{route('admin.merchandiseManagement.store')}}" enctype="multipart/form-data">
+                <input id="hiddenMethod" type="hidden" name="_method" value="POST">
+                @csrf
+                <div class="form-group">
+                    <label for="merchandiseName">Item name:</label>
+                    <input  type="text" class="form-control" name="name" id="merchandiseName" placeholder="*required"  required>
+                </div>
+
+                <div class="form-group">
+                    <label for="merchandiseDescription">Item description:</label>
+                    <input  type="text" class="form-control" name="description" id="merchandiseDescription"  placeholder="*required" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="merchandisePrice">Item price:</label>
+                    <input  type="text" class="form-control" name="price" id="merchandisePrice">
+                </div>
+
+                <div class="card w-50 mx-auto text-center mb-3">
+                        <label for="logo">Item Image:</label>
+                        <img class="logoPreview img-fluid" id="imgPreview" src="/storage/images/noImage.png">
+                        <label for="itemImage" class="btn btn-primary mb-0">Change
+                            <input type="file" name="itemImage" id="itemImage" class="form-control" hidden>
+                        </label>
+                    </div>
+                
+                <button type="submit" id="merchandiseModalButton" class="btn btn-success float-right"></button>
+
+                {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End create / edit merchandise item modal -->
 @endsection

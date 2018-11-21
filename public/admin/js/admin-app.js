@@ -513,3 +513,48 @@ function calculate_age (data) {
     age = Math.floor(age/1000/60/60/24/365);
     return age;
 };
+
+//Sets the modal for creating merchandise item and then displays it
+function merchandiseCreateModal(){
+    //$("#auctionForm").attr("action", "/");
+    $('#hiddenMethod').val('POST');
+    $("#merchandiseModalTitle").text("Create Merchandise Item");
+    $("#merchandiseModalButton").text("Confirm");
+
+    //Set all text fields placeholders
+    $("#merchandiseName").val("");
+    $("#merchandiseDescription").val("");
+    $("#merchandisePrice").val("");
+    $("#merchandiseItemImage").attr("src", '');
+
+    //Display the modal
+    $("#createEditMerchandiseItemModal").modal('show');
+}
+
+////Sets the modal for editing merchandise item dynamically populates the fields and then displays it
+function merchandiseEditModal(id){
+    $.ajax({
+        method: "get",
+        headers:  {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: `/a/merchandise-management/merchandise/${id}`
+    }).done((data) => {
+        //Set modal for editing
+        $("#merchandiseForm").attr("action", "http://f4k.localhost/a/merchandise-management/update/" + id);
+        $("#merchandiseModalTitle").text("Edit Merchandise Item");
+        $("#merchandiseModalButton").text("Save");
+        $("#hiddenMethod").val("PUT");
+
+        //Dynamically populate the modal with item info
+        $("#merchandiseName").val(data.name);
+        $("#merchandiseDescription").val(data.desc);
+        $("#merchandisePrice").val(data.price);
+        $("#imgPreview").attr("src", "/storage/images/merchandise/" + data.id + ".png");        
+
+        //Display the modal
+        $("#createEditMerchandiseItemModal").modal('show');
+    }).fail((error) => {
+        console.log(error);
+    });
+}
