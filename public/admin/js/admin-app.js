@@ -164,6 +164,7 @@ $(document).ready(function() {
             { "orderable": false, "searchable": false}
         ]
     })
+
     $('#event-sponsor-dtable').DataTable({           
         "columns" : [
             null,
@@ -183,6 +184,27 @@ $(document).ready(function() {
         ],
         'iDisplayLength' : 25
     });
+
+    $('#merchandise-dtable').DataTable({
+        "columns":[
+            null,
+            { "orderable": false, "searchable": true },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false }
+        ]
+    })
+
+    $('#merchandiseDeleted-dtable').DataTable({
+        "columns":[
+            null,
+            { "orderable": false, "searchable": true},
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false}
+        ]
+    })
 });
 
 // Count the number of selected datatable rows on a page, and display the result

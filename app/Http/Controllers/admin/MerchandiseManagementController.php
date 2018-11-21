@@ -4,7 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\MerchamdiseItem;
+use App\MerchandiseItem;
 use App\Image;
 
 class MerchandiseManagementController extends Controller
@@ -21,7 +21,9 @@ class MerchandiseManagementController extends Controller
      */
     public function index()
     {
-        return view('admin.merchandiseManagement');
+        $merch = MerchandiseItem::orderBy('name', 'asc')->get();
+        $deletedMerch = MerchandiseItem::onlyTrashed()->get();
+        return view('admin.merchandiseManagement')->with(['merch' => $merch, 'deletedMerch' => $deletedMerch]);
     }
 
     // /**
@@ -103,31 +105,31 @@ class MerchandiseManagementController extends Controller
     // }
 
 
-    // /**
-    //  * Soft deletes selected auction item
-    //  * 
-    //  * @param $id
-    //  */
-    // public function destroy($id)
-    // {
-    //     $item = AuctionItem::find($id);
-    //     $item->delete();
-    //     session()->flash('success', 'The auction item '.$item->name.' was deleted.'); 
+    /**
+     * Soft deletes selected merchandise item
+     * 
+     * @param $id
+     */
+    public function destroy($id)
+    {
+        $item = MerchandiseItem::find($id);
+        $item->delete();
+        session()->flash('success', 'The merchandise item '.$item->name.' was deleted.'); 
         
-    //     return redirect()->back();
-    // }
+        return redirect()->back();
+    }
 
-    // /**
-    //  * Restores selected soft deleted auction item
-    //  * 
-    //  * @param $id
-    //  */
-    // public function restore($id){
+    /**
+     * Restores selected soft deleted merchandise item
+     * 
+     * @param $id
+     */
+    public function restore($id){
 
-    //     $item = AuctionItem::withTrashed()->find($id);
-    //     $item->restore();
-    //     session()->flash('success', 'The auction item '.$item->name.' was restored');
+        $item = MerchandiseItem::withTrashed()->find($id);
+        $item->restore();
+        session()->flash('success', 'The merchandise item '.$item->name.' was restored');
 
-    //     return redirect()->back();
-    // }
+        return redirect()->back();
+    }
 }

@@ -30,10 +30,10 @@
                             <th>Name:</th>
                             <th>Description:</th>
                             <th>Donor:</th>
-                            <th>Donor Url</th>
+                            <th>Donor Url:</th>
                             <th>Picture:</th>
-                            <th></th>
-                            <th></th>
+                            <th></th><!--Edit-->
+                            <th></th><!--Delete-->
                         </tr>                         
                     </thead>
                     <tbody>
@@ -42,11 +42,11 @@
                             <td class="align-middle">{{$item->name}}</td>
                             <td class="align-middle">{{$item->desc}}</td>
                             <td class="align-middle">{{$item->donor}}</td>
-                            <td>{{$item->donor_url}}</td>
+                            <td class="align-middle">{{$item->donor_url}}</td>
                             <td><img src="{{file_exists(public_path('storage/images/auction/' . $item->id . '.png')) ? '/storage/images/auction/' . $item->id . 
                             '.png' : '/storage/images/noImage.png'}}" height=100 width=80></td>
                             <td class="align-middle">
-                            <button class="btn btn-warning" onclick="auctionEditModal({{$item->id}})" id=><i class="fas fa-pencil"></i>&nbsp;Edit</button>
+                                <button class="btn btn-warning" onclick="auctionEditModal({{$item->id}})"><i class="fas fa-pencil"></i>&nbsp;Edit</button>
                             </td>
                             <td class="align-middle">
                                 <form action="{{route('admin.auctionManagement.destroy', ['itemID' => $item->id])}}" method="POST">
@@ -66,12 +66,12 @@
                 <table id="auctionDeleted-dtable" class="table table-striped table-hover table-sm">
                     <thead>
                         <tr>
-                            <th>Name</th>
-                            <th>Description</th>
-                            <th>Donor</th>
-                            <th>Donor URL</th>
-                            <th>Date Deleted</th>
-                            <th></th>
+                            <th>Name:</th>
+                            <th>Description:</th>
+                            <th>Donor:</th>
+                            <th>Donor URL:</th>
+                            <th>Date Deleted:</th>
+                            <th></th><!--Restore-->
                         </tr>
                     </thead>
                     <tbody>
