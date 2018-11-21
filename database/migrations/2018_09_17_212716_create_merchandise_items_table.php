@@ -19,6 +19,7 @@ class CreateMerchandiseItemsTable extends Migration
             $table->string('desc', 300);
             $table->float('price', 8, 2)->nullable();
             $table->boolean('is_active')->default(true);
+            $table->boolean('item_visible')->default(true);
             $table->softDeletes();
             $table->timestamps();
         });

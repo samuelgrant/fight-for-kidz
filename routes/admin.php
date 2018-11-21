@@ -96,6 +96,10 @@ Route::put('/auction-management/update/{itemID}', 'admin\AuctionManagementContro
 Route::delete('/auction-management/{itemID}', 'admin\AuctionManagementController@destroy')->name('admin.auctionManagement.destroy');
 Route::patch('/auction-management/{itemID}', 'admin\AuctionManagementController@restore')->name('admin.auctionManagement.restore');
 
+// Toggle Merchandise
+// Merchandise item visibility
+Route::put('/merchandise-management/toggleMerchandiseItem/{itemID}', 'admin\MerchandiseManagementController@toggleMerchandiseItem')->name('admin.merchandiseManagement.toggleMerchandiseItem');
+
 //View, Get + CRUD Merchandise
 Route::get('/merchandise-management', 'admin\MerchandiseManagementController@index')->name('admin.merchandiseManagement');
 Route::get('/merchandise-management/merchandise/{merchandiseId}', 'admin\MerchandiseManagementController@getMerchandiseItem')->name('admin.merchandiseManagement.getAuctionItem');

@@ -53,15 +53,12 @@
                                 '.png' : '/storage/images/noImage.png'}}" height=100 width=80>
                             </td>
                             <td class="align-middle">{{$item->price}}</td>
-                            <td>
-                                {{-- {!!Form::open([ 'method' => 'POST']) !!}
-                                @if($user->active)
-                                <button class="btn btn-info w-100" type="submit"><i class="far fa-eye-slash"></i>&nbsp;Hide</button>
-                                @else
-                                <button class="btn btn-info w-100" type="submit"><i class="far fa-eye"></i>&nbsp;Show</button>
-                                @endif
-                                {{Form::hidden('_method', 'put')}}
-                                {!! Form::close() !!} --}}
+                            <td class="align-middle">
+                                <form class="d-inline" action="{{route('admin.merchandiseManagement.toggleMerchandiseItem', ['itemID' => $item->id])}}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <button type="submit" class="btn btn-primary"><i class="far {{$item->item_visible ? 'fa-eye-slash' : 'fa-eye'}}"></i>&nbsp;{{$item->item_visible ? 'Hide' : 'Show'}}</button>    
+                                </form>
                             </td>
                             <td class="align-middle">
                                 <button class="btn btn-warning" onclick="merchandiseEditModal({{$item->id}})"><i class="fas fa-pencil"></i>&nbsp;Edit</button>
