@@ -77,6 +77,11 @@ Route::patch('/event-management/bouts/{boutId}', 'admin\BoutManagementController
 Route::delete('/event-management/bouts/{boutId}', 'admin\BoutManagementController@removeBout')->name('admin.eventManagement.removeBout');
 Route::put('/event-management/bouts/{eventId}', 'admin\BoutManagementController@addBout')->name('admin.eventManagement.addBout');
 
+// Custom questions CRUD functions
+Route::post('/event-management/questions/{eventID}', 'admin\QuestionManagementController@addQuestion')->name('admin.eventManagement.addQuestion');
+Route::delete('/event-management/questions/{questionID}', 'admin\QuestionManagementController@removeQuestion')->name('admin.eventManagement.removeQuestion');
+Route::patch('/event-management/questions/{questionID}', 'admin\QuestionManagementController@updateQuestion')->name('admin.eventManagement.updateQuestion');
+
 // Site settings functions
 Route::patch('/dashboard/settings', 'admin\SiteSettingsController@update')->name('admin.updateSettings');
 

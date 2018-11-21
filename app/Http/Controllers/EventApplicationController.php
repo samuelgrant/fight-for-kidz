@@ -133,6 +133,14 @@ class EventApplicationController extends Controller
         $applicant->conviction_details = $request->input('conviction_details');
         $applicant->consent_to_test = $request->input('drugRadio') == 'yes' ? true : false;
 
+        // Note: Elvis operator used - PHP version 5.3 or greater required.
+        // ?: means 'Uses what comes before if it evaluates true, else use what is after'
+        $applicant->custom_one = $request->input('custom_1') ?: null;
+        $applicant->custom_two = $request->input('custom_2') ?: null;
+        $applicant->custom_three = $request->input('custom_3') ?: null;
+        $applicant->custom_four = $request->input('custom_4') ?: null;
+        $applicant->custom_five = $request->input('custom_5') ?: null;
+
         // set applicant event to current event
         $applicant->event()->associate(Event::current());
 
