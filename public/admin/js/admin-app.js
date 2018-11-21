@@ -498,7 +498,14 @@ function auctionEditModal(id){
         $("#auctionDescription").val(data.desc);
         $("#auctionDonor").val(data.donor);
         $("#auctionDonorUrl").val(data.donor_url);
-        $("#imgPreview").attr("src", "/storage/images/auction/" + data.id + ".png");        
+
+        //checks to see if the image exists and sets the imgPreview otherwise sets it to default
+        $.get("/storage/images/auction/" + data.id + ".png")
+        .done(function(){
+            $("#imgPreview").attr("src", "/storage/images/auction/" + data.id + ".png");
+        }).fail(function(){
+            $("#imgPreview").attr("src", "/storage/images/noImage.png");
+        })                
 
         //Display the modal
         $("#createEditAuctionItemModal").modal('show');
@@ -550,7 +557,14 @@ function merchandiseEditModal(id){
         $("#merchandiseName").val(data.name);
         $("#merchandiseDescription").val(data.desc);
         $("#merchandisePrice").val(data.price);
-        $("#imgPreview").attr("src", "/storage/images/merchandise/" + data.id + ".png");        
+        
+        //checks to see if the image exists and sets the imgPreview otherwise sets it to default
+        $.get("/storage/images/merchandise/" + data.id + ".png")
+        .done(function(){
+            $("#imgPreview").attr("src", "/storage/images/merchandsie/" + data.id + ".png");
+        }).fail(function(){
+            $("#imgPreview").attr("src", "/storage/images/noImage.png");
+        })       
 
         //Display the modal
         $("#createEditMerchandiseItemModal").modal('show');
