@@ -28,9 +28,10 @@ class CreateApplicantsTable extends Migration
             $table->string('suburb')->nullable();
             $table->string('city');
             $table->string('postcode');
+            
             $table->string('phone', 30)->nullable();
             $table->string('mobile', 30)->nullable();
-            $table->string('email')->unique();
+            $table->string('email');
 
             $table->date('dob');
             $table->integer('current_weight')->unsigned();

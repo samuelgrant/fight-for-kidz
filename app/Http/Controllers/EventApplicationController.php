@@ -82,7 +82,7 @@ class EventApplicationController extends Controller
 
         // check if subscribe for updates checkbox is checked and subscribe if so
         if($request->input('subscribeCheckbox')){
-            Subscriber::subscribe($request->input('first_name'), $request->input('email'));
+            Subscriber::subscribe($request->input('first_name') . ' ' . $request->input('last_name'), $request->input('email'));
         }
 
         if($validator->fails()){
@@ -95,7 +95,7 @@ class EventApplicationController extends Controller
 
         // also need to check if someone has already submitted
         // an application for this email address
-        if(Applicant::where('email', $request->input('email'))->get()->first() != null){
+        if(Applicant::where('email', $request->input('email'))->where('event_id', Event::current()->id)->get()->first() != null){
 
             session()->flash('error', 'An application has already been submitted using this email address,
             please contact Fight for Kidz if this is an error, or if you wish to amend you application details.');
@@ -167,9 +167,9 @@ class EventApplicationController extends Controller
             // save image to storage
             $image->storeAs($imagePath, $imageName);
         }
-        // return to home page 
-        session()->flash('success', 'Application received, thank you. We will be in touch');
-        return redirect()->route('index');
+        
+        // show feedback page
+        return view('feedback.received-app');
     }
 
     /**
