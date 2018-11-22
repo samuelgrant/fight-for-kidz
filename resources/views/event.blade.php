@@ -172,7 +172,7 @@
 							<div class="auctionItem-card auctionItem-card-blue ">
 								<div class="auctionItem-card-inner">
 									<img src="{{file_exists(public_path('/storage/images/auction/' . $auction->id . '.png')) ? '/storage/images/auction/' . $auction->id . '.png' : '/storage/images/noImage.png'}}"
-									 class="mx-auto auctionItem-img">
+									class="mx-auto auctionItem-img">
 									<div class="auctionItem-name">
 										<h5>{{$auction->name}}</h5>
 									</div>
@@ -250,7 +250,7 @@
 
 	<!-- Dynamic modal for displaying auction item info -->
 	<div id="AuctionItem-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-	 style="display: none; z-index:4005;">
+	style="display: none; z-index:4005;">
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 

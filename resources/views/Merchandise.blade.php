@@ -12,15 +12,13 @@
             <div class="card">
                 <div  class="mb-4 text-center"><img class="img-fluid" style="height: 250px;" src="" /></div>
                 <div class="item-details-fixed">
-                    <h5 class="">{{$item->name}}</h5>
-                    <img src="">
-                    <p class="">{{$item->tagline}}</p>
-                    <p class="">{{$item->price}}</p>
-                    <a href="#">
-                        <p class="item-link">More Info</p>
-                    </a>
-
-                </div>
+                    <h3 class="mb-2">{{$item->name}}</h5>
+					<img class="mb-2" src="{{file_exists(public_path('/storage/images/merchandise/' . $item->id . '.png')) ? '/storage/images/merchandise/' . $item->id . '.png' : '/storage/images/noImage.png'}}"
+					width="200" max-height="100">
+					<p><i>{{$item->tagline}}</i></p>
+					<p>{{$item->desc}}</p>					
+					<p class="align-bottom">$&nbsp;{{$item->price}}</p>
+				</div>
             </div>
         </div>
         @endif
