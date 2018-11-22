@@ -76,8 +76,12 @@
                     {{-- only show 'add question' button if no applications received and less than 5 questions exist --}}
                     @if(count($event->applicants) == 0 && count($event->customQuestions) < 5)
                         <button type="button" data-toggle="modal" data-target="#addQuestionModal" class="btn btn-sm btn-primary float-right"><i class="fas fa-plus"></i>&nbsp;Add Question</button>                    
-                    @elseif(count($event->customQuestions) == 5)
-                        <button type="button" class="btn btn-secondary btn-sm float-right" disabled>Limit reached!</button>
+                    @else
+                        @if(count($event->applicants) > 0)
+                            <button type="button" class="btn btn-secondary btn-sm float-right" disabled>Applications Received!</button>
+                        @elseif(count($event->customQuestions) == 5)
+                            <button type="button" class="btn btn-secondary btn-sm float-right" disabled>Limit reached!</button>
+                        @endif
                     @endif
 
                     <small class="d-block">You can only edit customs questions until the first application is received.</small>
