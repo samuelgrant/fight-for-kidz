@@ -146,6 +146,7 @@ $(document).ready(function() {
             {"searchable": false},
             {"searchable": false},
             {"searchable": false},
+            { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false }
         ],
         'iDisplayLength' : 100
@@ -486,4 +487,32 @@ function calculate_age (data) {
     age = Math.floor(age/1000/60/60/24/365);
     return age;
 };
+
+// Application delete script
+$(document).ready(function(){
+
+    $('#deleteAppBtn').on('click', function(){
+
+        $(this).addClass('d-none');
+        $(this).removeClass('d-inline');
+        $('#confirmDeleteAppBtn').addClass('d-inline');
+
+    });   
+
+});
+
+function confirmApplicantDelete(app){
+
+    $('#deleteAppBtn').addClass('d-inline');
+    $('#confirmDeleteAppBtn').removeClass('d-inline');
+
+    modal = $('#confirmDeleteApplicantModal');
+    form = $('#confirmDeleteApplicantForm');
+    title = $('#deleteAppName');
+    title.text('Remove: ' + app.first_name + " " + app.last_name);
+
+    form.prop('action', form.data('action') + '/' + app.id);
+
+    modal.modal('show');
+}
 
