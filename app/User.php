@@ -43,9 +43,7 @@ class User extends Authenticatable
         if(!$this->active){
             $this->active = true;
             $this->save();
-
             
-            $this->addToGroup(1);
             //Fire email YOUR ACCOUNT IS NOW ACTIVATED
             //Return WINNING
         }
@@ -59,7 +57,6 @@ class User extends Authenticatable
             $this->active = false;
             $this->save();
 
-            $this->removeFromGroup(1);
             //Remove from admin group (for mailing list things)
             //Fire email account disabled
             

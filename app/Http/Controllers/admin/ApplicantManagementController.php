@@ -9,14 +9,6 @@ use Illuminate\Support\Facades\Log;
 
 class ApplicantManagementController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth.activeUser');
-    }
-
-    /*
-     * 
-     */
     public function getApplicant($id){
         $applicant = Applicant::find($id);
         if(isset($applicant)){

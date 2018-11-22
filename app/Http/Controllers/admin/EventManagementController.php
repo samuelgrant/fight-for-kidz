@@ -17,11 +17,6 @@ use App\Contender, App\Bout, App\Sponsor;
 
 class EventManagementController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth.activeUser');
-    }
-
     /**
      * Displays the eventManagment view.
      * 

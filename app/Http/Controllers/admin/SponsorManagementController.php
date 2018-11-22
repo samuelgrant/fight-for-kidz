@@ -8,11 +8,6 @@ use App\Http\Controllers\Controller;
 
 class SponsorManagementController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth.activeUser');
-    }
-    
     public function index(){
 
         $sponsors = Sponsor::all();
