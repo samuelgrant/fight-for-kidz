@@ -55,6 +55,7 @@ class MerchandiseManagementController extends Controller
 
         $item = new MerchandiseItem();
             $item->name = $request->input('name');
+            $item->tagline = $request->input('tagline');
             $item->desc = $request->input('description');
             $item->price = $request->input('price')            ;
         $item->save();
@@ -82,6 +83,7 @@ class MerchandiseManagementController extends Controller
         $item = MerchandiseItem::find($itemId);
 
         $item->name = $request->input('name');
+        $item->tagline = $request->input('tagline');
         $item->desc = $request->input('description');
         $item->price = $request->input('price');
                 

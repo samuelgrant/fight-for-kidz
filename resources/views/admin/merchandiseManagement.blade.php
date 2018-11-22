@@ -36,6 +36,7 @@
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Tagline:</th>
                             <th>Description</th>
                             <th>Picture</th>
                             <th>Price</th>
@@ -48,6 +49,7 @@
                         @foreach($merch as $item)
                         <tr>
                             <td class="align-middle">{{$item->name}}</td>
+                            <td class="align-middle">{{$item->tagline}}</td>
                             <td class="align-middle">{{$item->desc}}</td>
                             <td><img src="{{file_exists(public_path('storage/images/merchandise/' . $item->id . '.png')) ? '/storage/images/merchandise/' . $item->id . 
                                 '.png' : '/storage/images/noImage.png'}}" height=100>
@@ -81,6 +83,7 @@
                 <table id="merchandiseDeleted-dtable" class="table table-striped table-hover table-sm">
                     <thead>
                             <th>Name</th>
+                            <th>Tagline:</th>
                             <th>Description</th>
                             <th>Date Deleted:</th>
                             <th></th><!--Restore-->
@@ -89,6 +92,7 @@
                         @foreach($deletedMerch as $item)
                         <tr>
                             <td class="align-middle">{{$item->name}}</td>
+                            <td class="align-middle">{{$item->tagline}}</td>
                             <td class="align-middle">{{$item->desc}}</td>
                             <td class="align-middle">{{$item->deleted_at}}</td>
                             <td class="align-middle">
@@ -122,6 +126,11 @@
                 <div class="form-group">
                     <label for="merchandiseName">Item name:</label>
                     <input  type="text" class="form-control" name="name" id="merchandiseName" placeholder="*required"  required>
+                </div>
+
+                <div class="form-group">
+                    <label for="merchandiseTagline">Item tagline:</label>
+                    <input  type="text" class="form-control" name="tagline" id="merchandiseTagline">
                 </div>
 
                 <div class="form-group">

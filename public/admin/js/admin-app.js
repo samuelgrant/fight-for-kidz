@@ -189,6 +189,7 @@ $(document).ready(function() {
         "columns":[
             null,
             { "orderable": false, "searchable": true },
+            { "orderable": false, "searchable": true },
             { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false },
@@ -200,9 +201,10 @@ $(document).ready(function() {
     $('#merchandiseDeleted-dtable').DataTable({
         "columns":[
             null,
-            { "orderable": false, "searchable": true},
-            { "orderable": false, "searchable": false},
-            { "orderable": false, "searchable": false}
+            { "orderable": false, "searchable": true },
+            { "orderable": false, "searchable": true },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false }
         ]
     })
 });
@@ -530,6 +532,7 @@ function merchandiseCreateModal(){
 
     //Set all text fields placeholders
     $("#merchandiseName").val("");
+    $("#merchandiseTagline").val("");
     $("#merchandiseDescription").val("");
     $("#merchandisePrice").val("");
     $("#merchandiseItemImage").attr("src", '');
@@ -555,13 +558,14 @@ function merchandiseEditModal(id){
 
         //Dynamically populate the modal with item info
         $("#merchandiseName").val(data.name);
+        $("#merchandiseTagline").val(data.tagline);
         $("#merchandiseDescription").val(data.desc);
         $("#merchandisePrice").val(data.price);
         
         //checks to see if the image exists and sets the imgPreview otherwise sets it to default
         $.get("/storage/images/merchandise/" + data.id + ".png")
         .done(function(){
-            $("#imgPreview").attr("src", "/storage/images/merchandsie/" + data.id + ".png");
+            $("#imgPreview").attr("src", "/storage/images/merchandise/" + data.id + ".png");
         }).fail(function(){
             $("#imgPreview").attr("src", "/storage/images/noImage.png");
         })       

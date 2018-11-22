@@ -1,8 +1,8 @@
 @extends('layouts.app') 
 @section('content')
 
- <!-- Page Content -->
- <section id="about" class="about-section">
+<!-- Page Content -->
+<section id="about" class="about-section">
     <div class="container">
         <h1 class="text-white text-center mb-5">About Us</h1>
         <div class="row mb-5">
