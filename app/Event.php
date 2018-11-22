@@ -127,6 +127,13 @@ class Event extends Model
         return $this->hasMany('App\Applicant');
     }
 
+    // Relationship to custom questions
+    public function customQuestions(){
+
+        return $this->hasMany('App\CustomQuestion');
+
+    }
+
     /**
      *  Returns true if event is in the future.
      */

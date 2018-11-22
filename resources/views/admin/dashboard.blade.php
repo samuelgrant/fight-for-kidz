@@ -53,13 +53,18 @@
                 <h4 class="text-white d-inline-block mb-0">Pending Applications</h4>
                 <span class="float-right"><a class="btn btn-primary" href="/a/event-management/{{$event->id}}?tab=applicants"><i class="fas fa-search"></i>&nbsp; View Applicants</a></span>
             </div>
-            <div class="card-body">
-                <div class="gray-card">
+            <div class="card-body text-center">
+
+                <h5 class="d-inline-block mb-1">Applications are {{$event->open ? 'OPEN' : 'CLOSED'}}</h5>
+
+                <hr>
+
+                <div class="gray-card mt-2">
                     <h3 class="text-center">Applications Received</h3>
                     <h2 class="text-grey text-center">{{count($event->applicants)}}</h2>
                 </div>
 
-                <br>
+                <hr>
 
                 <div class="row">
                     <div class="col-6">
