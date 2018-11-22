@@ -90,7 +90,7 @@
                         <thead>
                             <th>Question</th>
                             <th>Type</th>
-                            <th>Required</th>
+                            <th class="text-center">Required</th>
                             <th></th>
                         </thead>
                         
