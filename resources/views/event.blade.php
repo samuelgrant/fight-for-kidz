@@ -58,9 +58,7 @@
       </div>
     </div>
     @endif
-</div>
-</div>
-</section>
+  </section>
 
 <!-- Sponsors Section -->
 @if(count($event->sponsors) > 3)
@@ -144,6 +142,58 @@
 
   </div> <!-- end all bouts -->
 
+  <!-- Auction section -->
+<section id="auction-secton">
+    <div class="container pt-5">
+  
+      <!-- All auctions will be contained within single row -->
+      <div class="row auctions-row">
+    
+        <?php global $a ?>
+        <!-- counter used to name auctions -->
+        @foreach($event->auctions as $auction)
+        <!-- Each auction will create one column -->
+        <div class="col-lg-4 auction-column">
+    
+          <!-- Each auction has a auction header -->
+          <div class="auction-card">
+            <div class="auction-header">
+              <h2>AUCTION {{++$a}}</h2>
+            </div>
+    
+            <!-- Each auction card will contain one auction-card either blue or red -->
+            @if($a % 2 != 0)
+            <div class="auctionItem-card auctionItem-card-red">
+              <div class="auctionItem-card-inner">
+                <img src="{{file_exists(public_path('/storage/images/auction/' . $auction->id . '.png')) ? '/storage/images/auction/' . $auction->id . '.png' : '/storage/images/noImage.png'}}"
+                  class="mx-auto auctionItem-img">
+                <div class="auctionItem-name">
+                  <h5>{{$auction->name}}</h5>
+                </div>
+                <div class="auction-btn auction-btn-red" onclick="auctionItemModal({{$auction->id}})">More Info</div>
+              </div>
+            </div>
+            @elseif($a % 2 == 0)
+            <div class="auctionItem-card auctionItem-card-blue ">
+              <div class="auctionItem-card-inner">
+                <img src="{{file_exists(public_path('/storage/images/auction/' . $auction->id . '.png')) ? '/storage/images/auction/' . $auction->id . '.png' : '/storage/images/noImage.png'}}"
+                  class="mx-auto auctionItem-img">
+                <div class="auctionItem-name">
+                  <h5>{{$auction->name}}</h5>
+                </div>
+                <div class="auction-btn auction-btn-red" onclick="auctionItemModal({{$auction->id}})">More Info</div>
+              </div>
+            </div>
+            @endif
+          </div>
+        </div> <!-- end each auction -->
+        @endforeach
+    
+      </div> <!-- end all auctions -->
+  </section>
+
+</div>
+
 
 <!-- Dynamic modal -->
 <div id="bio-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
@@ -208,56 +258,6 @@
 </div> {{-- close bio-modal --}}
 @endif
 </div>
-
-<!-- Auction section -->
-<section id="auction-secton">
-  <div class="container pt-5">
-
-    <!-- All auctions will be contained within single row -->
-    <div class="row auctions-row">
-  
-      <?php global $a ?>
-      <!-- counter used to name auctions -->
-      @foreach($event->auctions as $auction)
-      <!-- Each auction will create one column -->
-      <div class="col-lg-4 auction-column">
-  
-        <!-- Each auction has a auction header -->
-        <div class="auction-card">
-          <div class="auction-header">
-            <h2>AUCTION {{++$a}}</h2>
-          </div>
-  
-          <!-- Each auction card will contain one auction-card either blue or red -->
-          @if($a % 2 != 0)
-          <div class="auctionItem-card auctionItem-card-red">
-            <div class="auctionItem-card-inner">
-              <img src="{{file_exists(public_path('/storage/images/auction/' . $auction->id . '.png')) ? '/storage/images/auction/' . $auction->id . '.png' : '/storage/images/noImage.png'}}"
-                class="mx-auto auctionItem-img">
-              <div class="auctionItem-name">
-                <h5>{{$auction->name}}</h5>
-              </div>
-              <div class="auction-btn auction-btn-red" onclick="auctionItemModal({{$auction->id}})">More Info</div>
-            </div>
-          </div>
-          @elseif($a % 2 == 0)
-          <div class="auctionItem-card auctionItem-card-blue ">
-            <div class="auctionItem-card-inner">
-              <img src="{{file_exists(public_path('/storage/images/auction/' . $auction->id . '.png')) ? '/storage/images/auction/' . $auction->id . '.png' : '/storage/images/noImage.png'}}"
-                class="mx-auto auctionItem-img">
-              <div class="auctionItem-name">
-                <h5>{{$auction->name}}</h5>
-              </div>
-              <div class="auction-btn auction-btn-red" onclick="auctionItemModal({{$auction->id}})">More Info</div>
-            </div>
-          </div>
-          @endif
-        </div>
-      </div> <!-- end each auction -->
-      @endforeach
-  
-    </div> <!-- end all auctions -->
-</section>
 
 <!-- Dynamic modal for displaying auction item info -->
 <div id="AuctionItem-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
