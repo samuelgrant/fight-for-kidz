@@ -6,7 +6,9 @@
 		<div class="container d-flex h-100 align-items-center">
       		<div class="mx-auto text-center">
         		<div>
-         			<img src="{{App\Event::current()->isFutureEvent() ? '/storage/images/f4k_logo.png' : '/storage/images/f4k_logo_nodate.png'}}" class="img-fluid">
+					@if(App\Event::current())
+						<img src="{{App\Event::current()->isFutureEvent() ? '/storage/images/f4k_logo.png' : '/storage/images/f4k_logo_noyear.png'}}" class="img-fluid">
+					@endif
         		</div>  
         		<div class="text-white-50 mx-auto mt-5 mb-5">
             		<a class="btn btn-danger" href="#about">About Us</a>
@@ -17,20 +19,19 @@
   	</header>
   	<!-- Upcoming event -->
 	<div style="background-color: black;">
-    	<section id="about" class="upcoming-section">
-			<div class="container">
-				<div class="row mb-5">
+    	<section id="about" class="upcoming-section pt-5">
+			<div class="container pt-5">
+				<div class="row mb-5 pb-5 d-flex">
 					<div class="col-lg-12 col-ms-12 col-sm-12">
 						<h1 class="text-white underline bar">About</h1>
 						<p class="text-justify">
-							Fight for Kidz is a charity boxing event held in Southland every year to help raise funds for our most vunerable children.
-							Since 2003 boxers have gone head to head in xx events raising money for various charities rasing a total of $xxx,xxx.
+							{{$settings->about_us}}
 						</p>
 					</div>
-					<div class="col-lg-8 col-md-6 col-col-sm-12 py-5">
-						<img src="storage/images/2016Cheque.jpg" class="img-fluid" alt="Fight for Kidz 2016 cheque">
+					<div class="col-lg-8 col-md-6 col-col-sm-12">
+						<img src="storage/images/mainPagePhoto.jpg?{{filemtime(storage_path('app/public/images/mainPagePhoto.jpg'))}}" class="img-fluid" alt="Fight for Kidz 2016 cheque">
 					</div>
-					<div class="col-lg-4 col-md-6 col-sm-12 mt-5 pb-4">
+					<div class="col-lg-4 col-md-6 col-sm-12" style="background-color: lightgray;">
 						<div id="fb-root"></div>
 							<div class="fb-page" data-href="https://www.facebook.com/fightforkidz" data-tabs="timeline" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
 								<blockquote cite="https://www.facebook.com/fightforkidz" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/fightforkidz">Fight For Kidz</a></blockquote>
@@ -43,8 +44,8 @@
 		<!-- Subscriber Section -->
 		<section class="text-center" id="subscriber-section">
 	  
-		  	<div class="container my-5">
-				<h1 class="mb-3">Fight for Kidz Newsletter!</h1>
+		  	<div class="container conform p-3 my-5">
+				<h1 class="mb-3">Fight for Kidz Updates!</h1>
 				@include('layouts.messages')
 				<form method="post" action="{{route('subscribe')}}" class="justify-content-center">
 					<div class="row">

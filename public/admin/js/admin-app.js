@@ -5,16 +5,30 @@ $(document).ready(function () {
 
         window.history.replaceState(null, null, newURLString);
     })
-})
+});
 
 
 // Processes the image preview for group icon uploads.
 
 $(document).ready(function () {
-    $('input:file').change(function () {
+    $('#groupImage').change(function () {
+        processImage(this);
+    })
+
+    $('#mainPagePhoto').change(function(){
         processImage(this);
     })
 });
+
+// Populates the other settings modal when user clicks edit 
+function setSettingsModal(merch, about){
+
+    resetFile('/storage/images/mainPagePhoto.jpg');
+
+    $('#displayMerchCheckbox').prop('checked', merch);
+    $('#aboutUsText').text(about);
+
+}
 
 function processImage(input) {
     if (input.files && input.files[0]) {
@@ -25,6 +39,17 @@ function processImage(input) {
 
         fr.readAsDataURL(input.files[0]);
     }
+}
+
+// set file input back to null if user cancels the update 
+function resetFile(defaultImagePath){
+
+    // set preview back to current
+    $('#imgPreview').prop('src', defaultImagePath);
+
+    // set input to null
+    $('input:file').prop('value', null);    
+    
 }
 
 function resetImagePre() {
@@ -74,8 +99,22 @@ $(document).ready(function() {
         "columns": [
             { "orderable": false, "searchable": false },
             null,
-            null
-        ]
+            null,
+            null,
+        ],
+        'iDisplayLength' : 100
+    });
+
+    $('#system-group-dtable').DataTable({
+        "columns": [
+            { "orderable": false, "searchable": false },
+            null,
+            {"orderable" : false},
+            {"orderable" : false},
+            {"orderable" : false},
+            {"orderable" : false},
+        ],
+        'iDisplayLength' : 100
     });
 
     $('#user-dtable').DataTable({
@@ -108,12 +147,35 @@ $(document).ready(function() {
             {"searchable": false},
             {"searchable": false},
             { "orderable": false, "searchable": false }
-        ]
+        ],
+        'iDisplayLength' : 100
     })
+
+    $('#event-sponsor-dtable').DataTable({           
+        "columns" : [
+            null,
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+        ],
+        'iDisplayLength' : 25
+    });
+
+    $('#sponsor-dtable').DataTable({           
+        "columns" : [
+            null,
+            { "orderable": false, "searchable": false },
+            null,
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+        ],
+        'iDisplayLength' : 25
+    });
 });
 
 // Count the number of selected datatable rows on a page, and display the result
 // on the remove contacts modal.
+
+// ** No longer used for applicants **
 function countSelected(mode) {
 
     var dtable;
@@ -177,11 +239,21 @@ function removeSelectedFromGroup(groupID) {
  * This method adds all selected group members to another group selected by the 
  * user.
  * 
+ * Mode should be either 'customGroups' or 'systemGroups' as a string
+ * 
  * @param groupID
  */
-function copySelectedToGroup() {
+function copySelectedToGroup(mode) {
 
-    var contacts = $('#group-dtable').find('.dtable-checkbox:checkbox:checked');
+    if(mode == 'customGroups'){
+        var contacts = $('#group-dtable').find('.dtable-checkbox:checkbox:checked');
+    } else if(mode == 'systemGroups'){
+        var contacts = $('#system-group-dtable').find('.dtable-checkbox:checkbox:checked');
+    } else {
+        console.log('Error. Group copy mode invalid');
+        return;
+    }
+
     var toGroupId = $('#groupDropdown').val();
 
     // for each selected contact, add to group
@@ -203,16 +275,24 @@ function copySelectedToGroup() {
 
     });
 
+    // show success alert
+    alert = $('#manualAlert');
+    alert.removeClass('d-none');    
+    $('#messageText').text('Successfully copied ' + contacts.length + ' contacts.');
+
+    // untick all checkboxes
+    $('#dtable-select-all').prop('checked', false);
+    contacts.each(function(){
+        $(this).prop('checked', false);
+    });
 }
 
 /**
  * This function adds selected applicants for an event to 
  * a team for that event.
  */
-function addSelectedToTeam(){
+function addSelectedToTeam(team){
     
-    var team = $('#team-select').val();
-
     var selected = $('#applicant-dtable').find('.dtable-checkbox:checkbox:checked');
 
     selected.each(function(){
@@ -278,6 +358,12 @@ $('body').on('change', '#dtable-select-all', function () {
     $.each(rows, function () {
         var checkbox = $($(this).find('td').eq(0)).find('input').prop('checked', checked);
     });
+
+    rows = $('#system-group-dtable').find('tbody tr');
+    checked = $(this).prop('checked');
+    $.each(rows, function () {
+        var checkbox = $($(this).find('td').eq(0)).find('input').prop('checked', checked);
+    });
 });
 
 // Uncheck 'select all' checkbox when row checkboxes are clicked or columns sorted.
@@ -293,6 +379,41 @@ $('.dtable-control').on('click', function () {
         });
     }
 });
+
+function editContactModal(id){
+
+    $.ajax({
+        method : "GET",
+        url : `/a/group-management/contacts/${id}`
+    }).done(function(data){
+
+        form = $('#editContactForm');
+        deleteForm = $('#contactDeleteForm');
+
+        deleteForm.attr('action', deleteForm.data('action') + '/' + id);
+        form.attr('action', form.data('action') + '/' + id);
+
+        $('#contactName').val(data.name);
+        $('#contactPhone').val(data.phone);
+        $('#contactEmail').val(data.email);
+
+        $('#editContactModal').modal('show');
+
+    }).fail(function(error){
+        console.log(error);
+    })
+
+}
+
+function confirmAction(){
+    $('#buttonConfirmContact').removeClass('d-none');
+    $('#buttonDeleteContact').addClass('d-none');
+}
+
+function actionConfirmed(){
+    deleteForm = $('#contactDeleteForm');
+    deleteForm.submit();
+}
 
 function applicantManagementModal(id){
     
@@ -329,12 +450,14 @@ function applicantManagementModal(id){
 
         // Physical Tab
         $("#appHeight").val(data.height + "cm");           $("#appWeightC").val(data.current_weight + "kg");
-        $("#appWeightE").val(data.expected_weight + "kg");  $("#appSportingExperience").attr('Placeholder', data.sporting_exp);
-        $("#appBoxingExperience").attr("Placeholder", data.boxing_exp);
+        $("#appWeightE").val(data.expected_weight + "kg");  $("#appSportingExperience").text(data.sporting_exp);
+        $('#fitnessLevel').text('This applicant rates their fitness at ' + data.fitness_rating + ' out of 5');
+        $("#appBoxingExperience").text(data.boxing_exp);
+        $('#hobbies').text(data.hobbies);
 
         // Additional Tab
         $("#appOccupation").val(data.occupation);           $("#appEmployer").val(data.employer);
-        $("appConvictionDetails").attr("Placeholder", data.conviction_details);
+        $("appConvictionDetails").text(data.conviction_details);
 
         // Set Consent
         if(consent_to_test = 0){
@@ -363,3 +486,4 @@ function calculate_age (data) {
     age = Math.floor(age/1000/60/60/24/365);
     return age;
 };
+

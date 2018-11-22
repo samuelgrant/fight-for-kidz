@@ -15,12 +15,7 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {       
-
-        // Seeds default user groups, Administrators and Subscribers
-        // This has two happen first otherwise
-        $this->call(DefaultGroupsSeeder::class);
-
+    {
         if (!env('app.env') == "production") {
 
             // Generate two sample users. See wiki for credentials
@@ -39,6 +34,7 @@ class DatabaseSeeder extends Seeder
             $this->call(BoutsTableSeeder::class);
             $this->call(AuctionItemsTableSeeder::class);
             $this->call(MerchandiseItemsTableSeeder::class);
+            $this->call(SiteSettingsTableSeeder::class);
         }
     }
 }

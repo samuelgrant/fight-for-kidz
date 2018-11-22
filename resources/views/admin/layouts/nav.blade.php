@@ -1,10 +1,10 @@
-<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
-
-      <a class="navbar-brand mr-1" href="{{route('admin.dashboard')}}">{{config('app.name')}} - Admin Dashboard</a>
+<nav class="navbar navbar-expand navbar-dark bg-dark static-top">      
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
-      </button>
+	  </button>
+	  
+	  <a class="navbar-brand mr-1" href="{{route('admin.dashboard')}}">{{config('app.name')}} - Admin Dashboard (logged in as {{Auth::user()->name}})</a>
 
       <!-- Navbar Search -->
       <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -75,6 +75,12 @@
           <a class="nav-link" href="{{route('admin.eventManagement')}}">
             <i class="fab fa-react"></i>
             <span>Event Management</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('admin.sponsorManagement')}}">
+            <i class="fas fa-money-bill-wave-alt"></i>
+            <span>Sponsor Management</span>
           </a>
         </li>
         <li class="nav-item">

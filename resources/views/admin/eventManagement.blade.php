@@ -20,13 +20,15 @@
             <ul class="nav nav-tabs">
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'overview') || (app('request')->input('tab') == '') ? 'active': '' }}"
                         role="tab" data-toggle="tab" href="#tab-1" id="overview">Overview</a></li>
-                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'bouts')? 'active': '' }}"
+                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'sponsors') ? 'active': '' }}"
+                        role="tab" data-toggle="tab" href="#tab-1-5" id="sponsors">Sponsors</a></li>
+                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'bouts') ? 'active': '' }}"
                         role="tab" data-toggle="tab" href="#tab-2" id="bouts">Bouts</a></li>
-                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'contenders')? 'active': '' }}"
+                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'contenders') ? 'active': '' }}"
                         role="tab" data-toggle="tab" href="#tab-3" id="contenders">Contenders</a></li>
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'applicants') ? 'active': '' }}"
                         role="tab" data-toggle="tab" href="#tab-4" id="applicants">Applicants</a></li>
-                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'auction')? 'active': '' }}"
+                <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'auction') ? 'active': '' }}"
                     role="tab" data-toggle="tab" href="#tab-5" id="auction">Auction</a></li>
             </ul>
         </div>
@@ -35,6 +37,11 @@
 
                 @include('admin.tabs.events.overview')
                 
+            </div>
+            <div class="tab-pane {{(app('request')->input('tab') == 'sponsors') ? 'active': ''}}" role="tabpanel" id="tab-1-5">
+
+                @include('admin.tabs.events.sponsors')
+                    
             </div>
             <div class="tab-pane {{(app('request')->input('tab') == 'bouts') ? 'active': ''}}" role="tabpanel" id="tab-2">
                 
@@ -74,13 +81,22 @@
                     <form method="post" id="editContenderForm" enctype="multipart/form-data" data-action="{{route('admin.eventManagement.updateContender', ['contenderID' => null])}}/" action="">
                         <div class="row">
                             <div class="col-lg-8">
+                            <div class="form-group">
+                                <label for="contenderFirstName">First Name:</label>
+                                <input type="text" name="contenderFirstName" id="contenderFirstName" class="form-control" value="" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contenderLastName">Nickname:</label>
+                                <input type="text" name="contenderLastName" id="contenderLastName" class="form-control" value="" required>
+                            </div>
                                 <div class="form-group">
-                                    <label for="contenderName">Nickname:</label>
+                                    <label for="contenderNickName">Nickname:</label>
                                     <input type="text" name="contenderNickname" id="contenderNickname" class="form-control" value="">
                                 </div>
                                 <div class="form-group">
                                     <label for="contenderSponsor">Sponsor:</label>
                                     <select class="form-control" id="contenderSponsor" name="contenderSponsor">
+                                            <option value="0">--- No sponsor ---</option>
                                         @foreach($event->sponsors as $sponsor)
                                             <option value="{{$sponsor->id}}">{{$sponsor->company_name}}</option>
                                         @endforeach
@@ -191,11 +207,6 @@
                         <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantPhysical" class="nav-link">Physical Information</a></li>
                         <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantAdditional" class="nav-link">Additional Info</a></li>
                         <li class="nav-item mr-auto">
-                            <button class="btn btn-primary btn-sm ml-auto">
-                                    <svg class="svg-inline--fa fa-edit fa-w-18" aria-hidden="true" data-prefix="fas" data-icon="edit" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" data-fa-i2svg=""><path fill="currentColor" d="M402.6 83.2l90.2 90.2c3.8 3.8 3.8 10 0 13.8L274.4 405.6l-92.8 10.3c-12.4 1.4-22.9-9.1-21.5-21.5l10.3-92.8L388.8 83.2c3.8-3.8 10-3.8 13.8 0zm162-22.9l-48.8-48.8c-15.2-15.2-39.9-15.2-55.2 0l-35.4 35.4c-3.8 3.8-3.8 10 0 13.8l90.2 90.2c3.8 3.8 10 3.8 13.8 0l35.4-35.4c15.2-15.3 15.2-40 0-55.2zM384 346.2V448H64V128h229.8c3.2 0 6.2-1.3 8.5-3.5l40-40c7.6-7.6 2.2-20.5-8.5-20.5H48C21.5 64 0 85.5 0 112v352c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V306.2c0-10.7-12.9-16-20.5-8.5l-40 40c-2.2 2.3-3.5 5.3-3.5 8.5z"></path></svg>
-                                Edit
-                            </button>
-                        </li>
                     </ul>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="applicantGeneral">
@@ -212,37 +223,37 @@
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>First Name:</label> 
-                                                    <input type="text" id="appFirstName" value='' readonly class="form-control-plaintext" />
+                                                    <input type="text" id="appFirstName" value='' readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Last Name:</label> 
-                                                    <input type="text" id="appLastName" value='' readonly class="form-control-plaintext" />
+                                                    <input type="text" id="appLastName" value='' readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Fight Name:</label>
-                                                    <input type="text" id="appFightName" value='' readonly class="form-control-plaintext" />
+                                                    <input type="text" id="appFightName" value='' readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Age:</label>
-                                                    <input type="text" id="appAge" value='' readonly class="form-control-plaintext" />
+                                                    <input type="text" id="appAge" value='' readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>DOB:</label>
-                                                    <input type="text" id="appDob" value='' readonly class="form-control-plaintext" />
+                                                    <input type="text" id="appDob" value='' readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Gender:</label>
-                                                    <input type="text" id="appGender" value='' readonly class="form-control-plaintext" />
+                                                    <input type="text" id="appGender" value='' readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                         </div>
@@ -253,19 +264,19 @@
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Email:</label>
-                                                    <input type="text" id="appEmail" value='' readonly class="form-control-plaintext" />
+                                                    <input type="text" id="appEmail" value='' readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Phone:</label>
-                                                    <input type="text" id="appPhone" value='' readonly class="form-control-plaintext" />
+                                                    <input type="text" id="appPhone" value='' readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Mobile:</label>
-                                                    <input type="text" id="appMobile" value='' readonly class="form-control-plaintext" />
+                                                    <input type="text" id="appMobile" value='' readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                         </div>
@@ -276,31 +287,31 @@
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Address 1:</label>
-                                                    <input type="text" id="appAddress1" value='' readonly class="form-control-plaintext" />
+                                                    <input type="text" id="appAddress1" value='' readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Address 2:</label>
-                                                    <input type="text" id="appAddress2" value='' readonly class="form-control-plaintext" />
+                                                    <input type="text" id="appAddress2" value='' readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Suburb:</label>
-                                                    <input type="text" id="appSuburb" value='' readonly class="form-control-plaintext" />
+                                                    <input type="text" id="appSuburb" value='' readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>City:</label>
-                                                    <input type="text" id="appCity" value='' readonly class="form-control-plaintext" />
+                                                    <input type="text" id="appCity" value='' readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Post Code:</label>
-                                                    <input type="text" id="appPostCode" value='' readonly class="form-control-plaintext" />
+                                                    <input type="text" id="appPostCode" value='' readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                         </div>
@@ -315,34 +326,41 @@
                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>Height:</label>
-                                                <input type="text" id="appHeight" value='' readonly class="form-control-plaintext" />
+                                                <input type="text" id="appHeight" value='' readonly class="form-control-plaintext gray-card" />
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>Current Weight:</label>
-                                                <input type="text" id="appWeightC" value='' readonly class="form-control-plaintext" />
+                                                <input type="text" id="appWeightC" value='' readonly class="form-control-plaintext gray-card" />
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>Expected Weight:</label>
-                                                <input type="text" id="appWeightE" value='' readonly class="form-control-plaintext" />
+                                                <input type="text" id="appWeightE" value='' readonly class="form-control-plaintext gray-card" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 px-0">
+                                        <p id="fitnessLevel"></p>
                                         <div class="form-group">
                                             <label>Sporting Experience:</label>
-                                            <textarea rows="4" cols="50" id="appSportingExperience" placeholder="" readonly class="form-control-plaintext" ></textarea>
+                                            <textarea rows="4" cols="50" id="appSportingExperience" placeholder="" readonly class="form-control-plaintext gray-card" ></textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 px-0">
                                         <div class="form-group">
-                                            <label>Boxing Experience:</label>
-                                            <textarea rows="4" cols="50" id="appBoxingExperience" placeholder="" readonly class="form-control-plaintext" ></textarea>
+                                            <label>Boxing/Kickboxing/Martial Arts Experience:</label>
+                                            <textarea rows="4" cols="50" id="appBoxingExperience" placeholder="" readonly class="form-control-plaintext gray-card" ></textarea>
                                         </div>
                                     </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 px-0">
+                                            <div class="form-group">
+                                                <label>Hobbies/Interests:</label>
+                                                <textarea rows="4" cols="50" id="hobbies" placeholder="" readonly class="form-control-plaintext gray-card" ></textarea>
+                                            </div>
+                                        </div>
                                 </fieldset>
                             </div>
                         </div>
@@ -353,33 +371,33 @@
                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>Occupation:</label>
-                                                <input type="text" id="appOccupation" value='' readonly class="form-control-plaintext" />
+                                                <input type="text" id="appOccupation" value='' readonly class="form-control-plaintext gray-card" />
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>Employer:</label>
-                                                <input type="text" id="appEmployer" value='' readonly class="form-control-plaintext" />
+                                                <input type="text" id="appEmployer" value='' readonly class="form-control-plaintext gray-card" />
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>Can Secure Sponsor:</label>
-                                                <input type="text" id="appSponsor" value='' readonly class="form-control-plaintext" />
+                                                <input type="text" id="appSponsor" value='' readonly class="form-control-plaintext gray-card" />
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>Consents to drug test:</label>
-                                                <input type="text" id="appConsent" value='' readonly class="form-control-plaintext" />
+                                                <input type="text" id="appConsent" value='' readonly class="form-control-plaintext gray-card" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="col-12">
                                             <div class="form-group">
                                                 <label>Conviction Details:</label>
-                                                <textarea rows="4" cols="50" id="appConvictionDetails" placeholder='' readonly class="form-control-plaintext"></textarea>
+                                                <textarea rows="4" cols="50" id="appConvictionDetails" placeholder='' readonly class="form-control-plaintext gray-card"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -393,32 +411,4 @@
     </div>
 </div>
 <!-- End More Info Modal -->
-
-<!-- Add applicants to team modal -->
-<div class="modal fade" id="editTeamModal" tabindex="-1" role="dialog" aria-labelledby="Edit Team" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-dark text-white">
-                    <h4 class="modal-title">Edit Team Membership</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <p id="modal-message"></p>
-
-                        <div class="form-group">
-                            <label for="team-select">Select team to add to:</label>
-                            <select class="form-control" name="team" id="team-select">
-                                <option value="red">Red</option>
-                                <option value="blue">Blue</option>
-                            </select>
-                        </div>
-
-                        <button data-dismiss="modal" id="confirmAddToTeam" role="button" onclick="addSelectedToTeam()" class="btn btn-success">Confirm</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-<!-- End add to team modal -->
 @endsection

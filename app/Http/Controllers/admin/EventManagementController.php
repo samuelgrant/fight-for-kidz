@@ -17,11 +17,6 @@ use App\Contender, App\Bout, App\Sponsor;
 
 class EventManagementController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth.activeUser');
-    }
-
     /**
      * Displays the eventManagment view.
      * 
@@ -173,6 +168,28 @@ class EventManagementController extends Controller
 
         $visibility = $event->is_public ? 'public' : 'private';
         session()->flash('success', $event->name.' was made '.$visibility);
+        return redirect()->back();
+    }
+
+    /**
+     *  Toggle bouts visibitiy on event page.
+     */
+    public function toggleBouts($eventID){
+        
+        $event = Event::find($eventID);
+
+        if($event){ //toggle the bout visibility
+            if($event->show_bouts){
+                $event->hideBouts();
+                session()->flash('success', $event->name . ' bouts will NOT show on public page');
+            } else{
+                $event->showBouts();
+                session()->flash('success', $event->name . ' bouts WILL show on public page');
+            }
+        } else{ // if for some reason the eventID does not find an event
+            session()->flash('error', 'Error. The requested action could not be completed.');
+        }
+
         return redirect()->back();
     }
 

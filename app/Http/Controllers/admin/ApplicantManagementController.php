@@ -2,21 +2,13 @@
 
 namespace App\Http\Controllers\admin;
 
-use Illuminate\Http\Request;
 use App\Applicant;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 
 class ApplicantManagementController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth.activeUser');
-    }
-
-    /*
-     * 
-     */
     public function getApplicant($id){
         $applicant = Applicant::find($id);
         if(isset($applicant)){
@@ -61,5 +53,34 @@ class ApplicantManagementController extends Controller
             $bout->save();
         }
 
+    }
+
+    /**
+     * Creates and downloads an excel spreadsheet of applicants
+     * @param EventID
+     * @return ExcellObject || @return error && @return Request
+     */
+    public function downloadExcel(Request $request, $eventID){
+
+        try {
+            $applicants = Applicant::where('event_id', $eventID)->orderBy('last_name')->get();
+        
+            $red_team = Applicant::where('event_id', $eventID)->whereHas('contender', function($q) {
+                $q->where('team', '=', 'red');
+            })->orderBy('last_name')->get();
+    
+            $blue_team = Applicant::where('event_id', $eventID)->whereHas('contender', function($q) {
+                $q->where('team', '=', 'blue');
+            })->orderBy('last_name')->get();
+    
+            $no_team = Applicant::getNonContenders($eventID);
+    
+            Applicant::downloadCsv($applicants, $red_team, $blue_team, $no_team);
+        } catch(Exception $e) {
+            session()->flash('error', 'Something went wrong. The spreadsheet cannot be downloaded.');
+        }
+
+
+        return redirect()->back();
     }
 }

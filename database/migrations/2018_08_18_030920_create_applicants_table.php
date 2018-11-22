@@ -30,15 +30,17 @@ class CreateApplicantsTable extends Migration
             $table->string('postcode');
             $table->string('phone', 30);
             $table->string('mobile', 30);
-            $table->string('email')->unique();
+            $table->string('email');
 
             $table->date('dob');
             $table->integer('current_weight')->unsigned();
             $table->integer('expected_weight')->unsigned()->nullable();
             $table->integer('height')->unsigned();
             $table->boolean('right_handed');
+            $table->integer('fitness_rating');
             $table->mediumText('sporting_exp');
             $table->mediumText('boxing_exp')->nullable(); // null if the applicant ticks 'no' on the form 
+            $table->mediumText('hobbies')->nullable();
 
             $table->string('occupation');
             $table->string('employer');

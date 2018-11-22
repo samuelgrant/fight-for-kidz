@@ -27,6 +27,7 @@ class CreateEventsTable extends Migration
             $table->string('ticket_seller_url')->nullable();  
             $table->boolean('is_public')->default(false);
             $table->boolean('open')->default(false);
+            $table->boolean('show_bouts')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

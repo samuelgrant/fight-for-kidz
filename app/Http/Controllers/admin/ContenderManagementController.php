@@ -11,11 +11,6 @@ use App\Sponsor;
 
 class ContenderManagementController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth.activeUser');
-    }
-
     public function getContender($id){
         
         $contender = Contender::find($id);
@@ -46,6 +41,8 @@ class ContenderManagementController extends Controller
                 
 
         $contender->nickname = $request->input('contenderNickname');
+        $contender->first_name = $request->input('contenderFirstName');
+        $contender->last_name = $request->input('contenderLastName');
         $contender->sponsor()->associate($sponsor);
         $contender->height = $request->input('contenderHeight');
         $contender->weight = $request->input('contenderWeight');
