@@ -122,6 +122,7 @@
 
             <div class="card-body">               
 
+                @if(count(App\Document::all()) > 0)
                 <table class="table table-striped table-sm">
 
                     <thead>
@@ -152,6 +153,11 @@
                     </tbody>
 
                 </table>
+                @else
+                
+                <h5 class="text-center mt-5">There are no files to display!</h5>
+                
+                @endif
 
             </div>
             
