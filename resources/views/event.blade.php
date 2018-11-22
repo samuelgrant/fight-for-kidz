@@ -9,6 +9,14 @@
         <div class="col-lg-8 col-md-6 col-col-sm-12 pt-5">
           <h1 class="text-white underline bar">{{$event->name}}</h1>
           <p class="text-justify">{{$event->desc_1}}</p>
+          	@if(App\Document::where('display_location', 'Event')->get()->count() > 0)
+			<div class="mb-3">
+				<h5>Related files:</h5>
+				@foreach(App\Document::where('display_location', 'Event')->get() as $doc)
+				<a href="{{Storage::disk('documents')->url($doc->filename)}}" download="{{$doc->originalName}}">{{$doc->originalName}}</a>
+				@endforeach
+			</div>
+			@endif
         </div>
         <div class="col-lg-4 col-md-6 col-sm-12 text-white text-right results mt-5">
           <p class="all-caps sidebar-heading">Date/Time</p>
