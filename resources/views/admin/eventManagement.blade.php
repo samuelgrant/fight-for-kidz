@@ -206,6 +206,7 @@
                         <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantGeneral" class="nav-link active">General</a></li>
                         <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantPhysical" class="nav-link">Physical Information</a></li>
                         <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantAdditional" class="nav-link">Additional Info</a></li>
+                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantCustom" class="nav-link">Custom Questions</a></li>
                         <li class="nav-item mr-auto">
                     </ul>
                     <div class="tab-content">
@@ -404,6 +405,33 @@
                                 </fieldset>
                             </div>
                         </div>
+                        {{-- start of custom answers --}}
+                        <div role="tabpanel" class="tab-pane" id="applicantCustom">
+                            <div class="row">
+                                <fieldset class="mx-3 mt-3 px-3" style="border: 1px solid; width:764px;">
+                                    <div class="row pt-3">
+
+                                        <?php
+                                            global $qNum; // counter to keep question and answer tied together
+                                        ?>
+
+                                        @foreach($event->customQuestions as $question)
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label>{{$question->text}}</label>
+                                                @if($question->type == "Yes/No")
+                                                    <input type="text" id="custom_{{++$qNum}}" value='' readonly class="form-control-plaintext gray-card" />
+                                                @elseif($question->type == "Text")
+                                                    <textarea rows="3" id="custom_{{++$qNum}}" readonly class="form-control-plaintext gray-card"></textarea>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        {{-- end of custom answers --}}
                     </div>
                 </div>
             </div>

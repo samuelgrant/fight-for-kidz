@@ -23,12 +23,62 @@
                 </button>
             </ul>
         </div>
-        <div class="tab-content">
+        <div class="tab-content p-2">
             <div class="tab-pane {{ (app('request')->input('tab') != 'deleted')? 'active': '' }}" role="tabpanel" id="tab-1">
+
+                <div class="" id="systemGroups">  
+                    
+                    <h3 class="text-center mt-3">System Groups</h3>
+
+                    <div class="row">
+                        <div class="col-lg-2 col-md-3 col-sm-6 my-3 px-2">
+                            <a class="btn groups border border-primary" href="{{route('admin.group.all')}}">
+                                <h5>All Contacts</h5>
+                            </a>
+                        </div>
+    
+                        <div class="col-lg-2 col-md-3 col-sm-6 my-3 px-2">
+                            <a class="btn groups border border-primary" href="{{route('admin.group.admins')}}">
+                                <h5>Admins</h5>
+                            </a>
+                        </div>                    
+    
+                        <div class="col-lg-2 col-md-3 col-sm-6 my-3 px-2">
+                            <a class="btn groups border border-primary" href="{{route('admin.group.applicants')}}">
+                                <h5>Applicants</h5>
+                            </a>
+                        </div>
+    
+                        <div class="col-lg-2 col-md-3 col-sm-6 my-3 px-2">
+                            <a class="btn groups border border-primary" href="{{route('admin.group.sponsors')}}">
+                                <h5>Sponsors</h5>
+                            </a>
+                        </div>
+
+                        <div class="col-lg-2 col-md-3 col-sm-6 my-3 px-2">
+                            <a class="btn groups border border-primary" href="{{route('admin.group.others')}}">
+                                <h5>Other Contacts</h5>
+                            </a>
+                        </div>
+    
+                        <div class="col-lg-2 col-md-3 col-sm-6 my-3 px-2">
+                            <a class="btn groups border border-primary" href="{{route('admin.group.subscribers')}}">
+                                <h5>Subscribers</h5>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                <hr>
+                {{-- end of system groups --}}
+
+                <h3 class="text-center mt-3">Custom Groups</h3>
+
+                {{-- start of custom groups --}}
                 <div class="row">
                     @foreach($groups as $group)
                     <div class="col-lg-3 col-md-4 col-sm-6 my-4 px-2">
-                        <a class="btn groups" href="{{ route('admin.group', ['id' => $group->id])}}">
+                        <a class="btn groups border border-primary" href="{{ route('admin.group', ['id' => $group->id])}}">
                             <img class="d-block m-auto group-icon" src="/storage/images/groups/{{($group->custom_icon)?$group->id: 0 }}.png" alt="Group Icon" />
                             <h5>{{$group->name}}</h5>
                             <span class="d-block text-center">{{$group->type}}</span>
@@ -37,11 +87,12 @@
                     @endforeach
                 </div>
             </div>
+            {{-- end of active, start of deleted groups --}}
             <div class="tab-pane {{ (app('request')->input('tab') == 'deleted')? 'active': '' }}" role="tabpanel" id="tab-2">
                 <div class="row">
                     @foreach($deletedGroups as $group)
                     <div class="col-lg-3 col-md-4 col-sm-6 my-4 px-2">
-                        <a class="btn groups" href="{{ route('admin.group', ['id' => $group->id])}}">
+                        <a class="btn groups border border-primary" href="{{ route('admin.group', ['id' => $group->id])}}">
                             <img class="d-block m-auto group-icon" src="/storage/images/groups/{{($group->custom_icon)?$group->id: 0 }}.png" alt="Group Icon" />
                             <h5>{{$group->name}}</h5>
                             <span class="d-block text-center">{{$group->type}}</span>
@@ -50,6 +101,7 @@
                     @endforeach
                 </div>
             </div>
+            {{-- end of custom groups --}}
         </div>
     </div>
 </div>

@@ -27,6 +27,14 @@
 						<p class="text-justify">
 							{{$settings->about_us}}
 						</p>
+						@if(App\Document::where('display_location', 'Home/About Us')->get()->count() > 0)
+							<div class="mb-3">
+								<h5>Related files:</h5>
+								@foreach(App\Document::where('display_location', 'Home/About Us')->get() as $doc)
+								<a class="d-block" href="{{Storage::disk('documents')->url($doc->filename)}}" download="{{$doc->originalName}}">{{$doc->originalName}}</a>
+								@endforeach
+							</div>
+						@endif
 					</div>
 					<div class="col-lg-8 col-md-6 col-col-sm-12">
 						<img src="storage/images/mainPagePhoto.jpg?{{filemtime(storage_path('app/public/images/mainPagePhoto.jpg'))}}" class="img-fluid" alt="Fight for Kidz 2016 cheque">

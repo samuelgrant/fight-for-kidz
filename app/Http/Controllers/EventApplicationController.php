@@ -57,7 +57,6 @@ class EventApplicationController extends Controller
             'current_weight' => 'required|integer|gt:0', 
             'expected_weight' => 'integer|gt:0',
             'occupation' => 'required',
-            'employer' => 'required_with:occupation', // employer required if occupation not blank
             'gender' => 'required',
             'hand' => 'required',
             // nickname not required
@@ -84,7 +83,7 @@ class EventApplicationController extends Controller
 
         // check if subscribe for updates checkbox is checked and subscribe if so
         if($request->input('subscribeCheckbox')){
-            Subscriber::subscribe($request->input('first_name'), $request->input('email'));
+            Subscriber::subscribe($request->input('first_name') . ' ' . $request->input('last_name'), $request->input('email'));
         }
 
         if($validator->fails()){
@@ -97,7 +96,7 @@ class EventApplicationController extends Controller
 
         // also need to check if someone has already submitted
         // an application for this email address
-        if(Applicant::where('email', $request->input('email'))->get()->first() != null){
+        if(Applicant::where('email', $request->input('email'))->where('event_id', Event::current()->id)->get()->first() != null){
 
             session()->flash('error', 'An application has already been submitted using this email address,
             please contact Fight for Kidz if this is an error, or if you wish to amend you application details.');
@@ -134,6 +133,14 @@ class EventApplicationController extends Controller
         $applicant->conviction_details = $request->input('conviction_details');
         $applicant->consent_to_test = $request->input('drugRadio') == 'yes' ? true : false;
 
+        // Note: Elvis operator used - PHP version 5.3 or greater required.
+        // ?: means 'Uses what comes before if it evaluates true, else use what is after'
+        $applicant->custom_one = $request->input('custom_1') ?: null;
+        $applicant->custom_two = $request->input('custom_2') ?: null;
+        $applicant->custom_three = $request->input('custom_3') ?: null;
+        $applicant->custom_four = $request->input('custom_4') ?: null;
+        $applicant->custom_five = $request->input('custom_5') ?: null;
+
         // set applicant event to current event
         $applicant->event()->associate(Event::current());
 
@@ -152,9 +159,9 @@ class EventApplicationController extends Controller
             // save image to storage
             $image->storeAs($imagePath, $imageName);
         }
-        // return to home page 
-        session()->flash('success', 'Application received, thank you. We will be in touch');
-        return redirect()->route('index');
+        
+        // show feedback page
+        return view('feedback.received-app');
     }
 
     /**
