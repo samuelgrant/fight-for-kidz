@@ -73,9 +73,11 @@
                 <div>
 
                     <h5 class="d-inline-block">Custom Questions</h5>
-                    {{-- only show 'add question button if no applications received' --}}
-                    @if(count($event->applicants) == 0)
+                    {{-- only show 'add question' button if no applications received and less than 5 questions exist --}}
+                    @if(count($event->applicants) == 0 && count($event->customQuestions) < 5)
                         <button type="button" data-toggle="modal" data-target="#addQuestionModal" class="btn btn-sm btn-primary float-right"><i class="fas fa-plus"></i>&nbsp;Add Question</button>                    
+                    @elseif(count($event->customQuestions) == 5)
+                        <button type="button" class="btn btn-secondary btn-sm float-right" disabled>Limit reached!</button>
                     @endif
 
                     <small class="d-block">You can only edit customs questions until the first application is received.</small>
