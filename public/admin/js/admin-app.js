@@ -487,3 +487,38 @@ function calculate_age (data) {
     return age;
 };
 
+
+// File upload functions
+function fileUpdateModal(id){
+
+    
+
+    form = $('#fileUpdateForm');
+    modal = $('#updateModal');
+
+    url = "/a/dashboard/uploads/" + id;
+
+    form.prop('action', form.data('action') + '/' + id);
+
+    $.ajax({
+        method : 'GET',
+        url : url,
+    }).done(function(data){
+        console.log(data.display_location);
+        $('#updateDisplaySelect').val(data.display_location);
+        modal.modal('show');
+
+    }).fail(function(error){
+        console.log(error);
+    })
+
+}
+
+$(document).ready(function(){
+    $('#fileUpload').change(function(e){
+        var filename = e.target.files[0].name;
+        $('#fileName').text(filename);
+    });
+});
+
+

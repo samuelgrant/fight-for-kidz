@@ -111,8 +111,57 @@
     </div>
     {{-- End of site settings card --}}
 
+    {{-- File uploads card --}}
+    <div class="col-lg-6 pb-4">
+        <div class="card border-primary h-100">
+            
+            <div class="card-header bg-primary text-white">
+                <h4 class="text-white d-inline-block mb-0">File Uploads</h4>                
+                <span class="float-right"><button class="btn btn-primary" data-target="#uploadModal" data-toggle="modal"><i class="fas fa-plus"></i>&nbsp; Upload File</button></span>
+            </div>
+
+            <div class="card-body">               
+
+                <table class="table table-striped table-sm">
+
+                    <thead>
+                        <th>File Name</th>
+                        <th>Location</th>
+                        <th class="text-right">Actions</th>
+                    </thead>
+
+                    <tbody>
+
+                        @foreach(App\Document::all() as $doc)
+
+                            <tr>
+                                <td>{{$doc->originalName}}</td>
+                                <td>{{$doc->display_location}}</td>
+                                <td class="text-right">
+                                    <button type="button" onclick="fileUpdateModal({{$doc->id}})" class="btn btn-primary btn-sm d-inline-block"><i class="fas fa-cogs"></i></button>
+                                    <form class="d-inline-block" action="{{route('admin.deleteFile', ['docID' => $doc->id])}}" method="POST">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                    </form>
+                                </td>
+                            </tr>
+
+                        @endforeach
+
+                    </tbody>
+
+                </table>
+
+            </div>
+            
+        </div>
+    </div>
+    {{-- End of file uploads card --}}
+
 </div>
 
+{{-- site settings modal --}}
 <div id="siteSettingsModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="Site Settings" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -161,5 +210,88 @@
         </div>
     </div>
 </div>
+{{-- end of site settings modal --}}
+
+{{-- file upload modal --}}
+<div id="uploadModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h4 class="modal-title">Upload new file</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form action="{{route('admin.uploadFile')}}" method="POST" enctype="multipart/form-data">
+             
+                <div class="form-group">
+                    <label class="btn btn-success" for="fileUpload">
+                        Select File
+                        <input type="file" id="fileUpload" name="uploaded" hidden required>
+                    </label>
+                    <span id="fileName" class="ml-3">No file selected</span>
+                </div>
+
+                <hr>
+
+                <div class="form-group">
+                    <label for="displaySelect">Where should this file be downloadable from?</label>
+                    <select id="displaySelect" name="location" class="form-control">
+                        <option value="Home/About Us">About Us (Home Page)</option>
+                        <option value="Event">Main Event Page</option>
+                        <option value="Fighter App">Fighter Application Page</option>
+                        <option value="Sponsor Enquiry">Sponsor Enquiry Page</option>
+                        <option value="Table Enquiry">Table Enquiry Page</option>
+                        <option value="General Enquiry">General Enquiry Page</option>
+                    </select>
+                </div>
+
+                <div class="float-right">
+                    <button type="button" data-dismiss="modal" class="btn btn-danger">Cancel</button>
+                    <button class="btn btn-primary" type="submit">Save File</button>
+                </div>     
+                @csrf               
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- end of file upload modal --}}
+
+{{-- file update modal --}}
+<div id="updateModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h4 class="modal-title">Update file download location</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form id="fileUpdateForm" action="" data-action="{{route('admin.updateFile', ['docID' => null])}}" method="POST">
+                       
+                    <div class="form-group">
+                        <label for="updateDisplaySelect">Where should this file be downloadable from?</label>
+                        <select id="updateDisplaySelect" name="location" class="form-control">
+                                <option value="Home/About Us">About Us (Home Page)</option>
+                                <option value="Event">Main Event Page</option>
+                                <option value="Fighter App">Fighter Application Page</option>
+                                <option value="Sponsor Enquiry">Sponsor Enquiry Page</option>
+                                <option value="Table Enquiry">Table Enquiry Page</option>
+                                <option value="General Enquiry">General Enquiry Page</option>
+                        </select>
+                    </div>
+    
+                    <div class="float-right">
+                        <button type="button" data-dismiss="modal" class="btn btn-danger">Cancel</button>
+                        <button class="btn btn-primary" type="submit">Save Changes</button>
+                    </div>     
+                    @csrf  
+                    @method('PATCH')             
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- end of file update modal --}}
+
 
 @endsection
