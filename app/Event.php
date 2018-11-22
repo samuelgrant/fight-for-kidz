@@ -37,6 +37,8 @@ class Event extends Model
     public function makePublic(){
         $this->is_public = true;
         $this->save();
+
+        Event::closePastEventApplications();
         
         Log::debug($this->name.' was added to the public site.');
     }
@@ -160,4 +162,23 @@ class Event extends Model
         return $this->contenders()->where('team', $team)->get();
 
     }    
+
+    /**
+     *  Turns applications off for events that are not the current event.
+     * 
+     *  This is called whenever an event is made public.
+     */
+    public static function closePastEventApplications(){
+
+        $currentEvent = Event::current();
+
+        foreach(Event::all() as $event){
+            if($event->open){
+                if(!$event->is($currentEvent)){
+                    $event->open = false;
+                    $event->save();
+                }
+            }
+        }
+    }
 }

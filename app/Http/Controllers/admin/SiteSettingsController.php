@@ -8,11 +8,6 @@ use App\Http\Controllers\Controller;
 
 class SiteSettingsController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth.activeUser');
-    }
-    
     // Update settings
     public function update(Request $request){
 
