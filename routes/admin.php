@@ -95,6 +95,12 @@ Route::put('/event-management/bouts/{eventId}', 'admin\BoutManagementController@
 // Site settings functions
 Route::patch('/dashboard/settings', 'admin\SiteSettingsController@update')->name('admin.updateSettings');
 
+// File Uploads 
+Route::post('/dashboard/uploads', 'admin\SiteSettingsController@storeFile')->name('admin.uploadFile');
+Route::patch('/dashboard/uploads/{docID}', 'admin\SiteSettingsController@updateFile')->name('admin.updateFile');
+Route::delete('/dashboard/uploads/{docID}', 'admin\SiteSettingsController@deleteFile')->name('admin.deleteFile');
+Route::get('/dashboard/uploads/{docID}', 'admin\SiteSettingsController@getFile')->name('admin.getFile');
+
 //Get Applicant Data
 Route::get('/event-management/applicants/{applicantId}', 'admin\ApplicantManagementController@getApplicant')->name('admin.applicantManagement.getApplicant');
 
