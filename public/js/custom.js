@@ -84,11 +84,7 @@ function auctionItemModal(id){
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
       url: `/a/auction-management/auction/${id}`
-<<<<<<< HEAD
   }).done((data) => {
-=======
-  }).done(function(data)  {
->>>>>>> feature-auction-management
       //Dynamically populate the modal with item info
       $("#auctionItemName").val(data.name);
       $("#auctionItemDescription").val(data.desc);
