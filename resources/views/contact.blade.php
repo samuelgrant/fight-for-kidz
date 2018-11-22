@@ -1,28 +1,132 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="container conform">
-    <div class="mt-5" style="padding: 20px 40px;">
-      <h1 class="text-white text-center">Contact Us</h1>
-      <p class="text-white text-center mb-5">Please feel free to contact us and we will get back to you as soon as possible.</p>
-      <form>
-        <div class="row">
-          <div class="form-group col-md-6">
-            <input id="name" type="text" class="form-control" placeholder="Your name">
-          </div>
-          <div class="form-group col-md-6">
-            <input id="name" type="text" class="form-control" placeholder="Your email address">
-          </div>
-        </div>
-        <div class="form-group">
-          <input id="name" type="text" class="form-control" placeholder="Phone number">
-        </div>
-        <div class="form-group">
-          <label for="message" class="text-white">Your message:</label>
-          <textarea id="message" class="form-control" rows="5"></textarea>
-        </div>
-        <div class="text-center"><input type="submit" role="button" class="btn btn-primary mt-2" value="Send Message"></div>
-      </form>
-    </div>
-  </div>
+  	<div class="container conform">
+    	<div class="mt-5 mb-5" style="padding: 20px 40px;">
+			<h1 class="text-white text-center">Contact Us</h1>
+			<!-- Select Message Type -->
+			<div id="messageTypeContainer" class="pb-3">
+				<p class="text-white text-center mb-5">Why do you want to get in touch with us?</p>
+				<select id="messageType" class="form-control" onchange="toggelForm()">
+					<option value="select" selected>Select</option>
+					<option value="general">General</option>
+					<option value="sponser">Become a Sponser</option>
+					<option value="table">Booking a Table</option>
+				</select>
+			</div>
+
+			<hr />
+
+			<!-- Normal contact us form -->
+			<div id="generalMessage" class="hidden">
+				<h3 class="text-center">General Message</h3>
+				<p class="text-center">Please send us a message and we will get back to you as soon as we can.</p>
+				<form action="{{route('contact.general')}}" method="POST">
+					<div class="row">
+						<div class="form-group col-md-6">
+							<input id="name" type="text" class="form-control" placeholder="Your name" required>
+						</div>
+						<div class="form-group col-md-6">
+							<input id="name" type="text" class="form-control" placeholder="Your email address" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<input id="name" type="text" class="form-control" placeholder="Phone number" required>
+					</div>
+					<div class="form-group">
+						<label for="message" class="text-white">Your message:</label>
+						<textarea id="message" class="form-control" rows="5"></textarea>
+					</div>
+					<button class="btn btn-primary mt-2 d-block mx-auto">Send Message</button>
+					{!! app('captcha')->render(); !!}
+				</form>
+			</div>
+			<!-- End Normal contact us form -->
+
+			<!-- Sponsership contact us form -->
+			<div id="sponserMessage" class="hidden">
+				<h3 class="text-center">Sponsorship Enquiry</h3>
+				<p class="text-center">Fill this out, and we will contact our potential sponsors closer to the event.</p>
+				<p class="text-center">Download our <a href="javascript:void(0);"><i class="fas fa-file-download"></i> Proposal Document</a> for information on sponsership.</p>
+				<form action="{{route('contact.sponser')}}" method="POST">
+					<div class="row">
+						<div class="form-group col-md-6">
+							<input id="name" type="text" class="form-control" placeholder="Your name" required>
+						</div>
+						<div class="form-group col-md-6">
+							<input id="name" type="text" class="form-control" placeholder="Your email address" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<input id="name" type="text" class="form-control" placeholder="Phone number" required>
+					</div>					
+					<div class="form-group">
+						<label for="message" class="text-white">What type/s of sponsorship are you interested in?</label>
+						<input id="name" type="text" class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label for="message" class="text-white">Optional message:</label>
+						<textarea id="message" class="form-control" rows="5"></textarea>
+					</div>
+					<button class="btn btn-primary mt-2 d-block mx-auto">Send Message</button>
+					{!! app('captcha')->render(); !!}
+				</form>
+			</div>
+			<!-- End Sponsership contact us form -->
+
+			<!-- Sponsership contact us form -->
+			<div id="tableMessage" class="hidden">
+				<h3 class="text-center">Enquire about Booking a Table </h3>
+				<p class="text-center">Fill this out, and we will contact you when we can.</p>
+				<form action="{{route('contact.table')}}" method="POST">
+					<div class="row">
+						<div class="form-group col-md-6">
+							<input id="name" type="text" class="form-control" placeholder="Your name" required>
+						</div>
+						<div class="form-group col-md-6">
+							<input id="name" type="text" class="form-control" placeholder="Your email address" required>
+						</div>
+					</div>
+					<div class="form-group">
+						<input id="name" type="text" class="form-control" placeholder="Phone number" required>
+					</div>					
+					<div class="form-group">
+						<label for="message" class="text-white">Optional message:</label>
+						<textarea id="message" class="form-control" rows="5"></textarea>
+					</div>
+					<button class="btn btn-primary mt-2 d-block mx-auto">Send Message</button>
+					{!! app('captcha')->render(); !!}
+				</form>
+			</div>
+		</div>
+		<!-- End Sponsership contact us form -->			
+	</div>
+
+	<style>
+		.hidden{
+			display: none;
+		}
+	</style>
+	<script>
+		function toggelForm(){
+			let selected = $("#messageType").val();
+			console.log(selected);
+
+			$("#generalMessage").addClass("hidden");
+			$("#sponserMessage").addClass("hidden");
+			$("#tableMessage").addClass("hidden");
+
+			if(selected == "general") {
+				$("#generalMessage").removeClass("hidden");
+			}
+
+			if(selected == "sponser") {
+				$("#sponserMessage").removeClass("hidden");
+			}
+
+			if(selected == "table") {
+				$("#tableMessage").removeClass("hidden");
+			}
+		}
+	</script>
 @endsection
