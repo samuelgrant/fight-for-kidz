@@ -271,7 +271,7 @@
         <!-- counter used to name auctions -->
         @foreach($event->auctions as $auction)
         <!-- Each auction will create one column -->
-        <div class="col-lg-4 auction-column">
+        <div class="col-lg-6 auction-column">
     
           <!-- Each auction has a auction header -->
           <div class="auction-card">
@@ -311,7 +311,7 @@
   </section>
   
   <!-- Dynamic modal for displaying auction item info -->
-  <div id="AuctionItem-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+  <div id="auctionItemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
     style="display: none; z-index:4005;">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
@@ -337,13 +337,13 @@
                   <table class="table table-striped table-bordered table-sm text-center">
                     <tbody>
                       <tr>
-                        <td>&nbsp;Name: <span id="auctionItemName"></span></td>
+                        <td>&nbsp;Name: <span id="auctionItemNameSpan"></span></td>
                       </tr>
                       <tr>
-                        <td>&nbsp;Donor: <span id="auctionItemDonor"></span></td>
+                        <td>&nbsp;Donor: <span id="auctionItemDonorSpan"></span></td>
                       </tr>
                       <tr>
-                        <td>&nbsp;DonorUrl: <span id="auctionItemDonorUrl"></span></td>
+                        <td>&nbsp;DonorUrl: <span id="auctionItemDonorUrlSpan"></span></td>
                       </tr>
                     </tbody>
                   </table>
@@ -359,7 +359,7 @@
     </div>
   </div> {{-- End of auction-info-modal --}}
 @endif
-<script>
+{{-- <script>
   function auctionItemModal(id){
   $.ajax({
       method: "get",
@@ -382,5 +382,5 @@
       console.log(error);
   });
   }
-</script>
+</script> --}}
 @endsection

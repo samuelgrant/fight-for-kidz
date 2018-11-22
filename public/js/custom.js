@@ -84,20 +84,28 @@ function auctionItemModal(id){
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
       },
       url: `/a/auction-management/auction/${id}`
-<<<<<<< HEAD
   }).done((data) => {
-=======
-  }).done(function(data)  {
->>>>>>> feature-auction-management
       //Dynamically populate the modal with item info
-      $("#auctionItemName").val(data.name);
-      $("#auctionItemDescription").val(data.desc);
-      $("#auctionItemDonor").val(data.donor);
-      $("#auctionItemDonorUrl").val(data.donor_url);
-      $("#auctionItemImage").attr("src", "/storage/images/auction/" + data.id + ".png");        
+      $("#auctionItemName").text(data.name);
+      $("#auctionItemDescription").text(data.desc);
+
+      //Table text
+      $("#auctionItemNameSpan").text(data.name);
+      $("#auctionItemDonorSpan").text(data.donor);
+      $("#auctionItemDonorUrlSpan").text(data.donor_url);     
+
+      //checks to see if the image exists and uses it to set the auctionItemImage otherwise sets it to default
+      $.get("/storage/images/auction/" + data.id + ".png")
+      .done(function(){
+          $("#auctionItemImage").attr("src", "/storage/images/auction/" + data.id + ".png");
+      }).fail(function(){
+          $("#auctionItemImage").attr("src", "/storage/images/noImage.png");
+      })         
 
       //Display the modal
       $("#auctionItemModal").modal('show');
+
+      console.log("test");
   }).fail(function(error) {
       console.log(error);
   });
