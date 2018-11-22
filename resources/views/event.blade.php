@@ -13,7 +13,7 @@
 			<div class="mb-3">
 				<h5>Related files:</h5>
 				@foreach(App\Document::where('display_location', 'Event')->get() as $doc)
-				<a href="{{Storage::disk('documents')->url($doc->filename)}}" download="{{$doc->originalName}}">{{$doc->originalName}}</a>
+				<a class="d-block" href="{{Storage::disk('documents')->url($doc->filename)}}" download="{{$doc->originalName}}">{{$doc->originalName}}</a>
 				@endforeach
 			</div>
 			@endif
