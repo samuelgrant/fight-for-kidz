@@ -52,7 +52,7 @@
                                     </form>
                                 </td>
                                 <td>
-                                    <a class="btn btn-primary" href="{{route('admin.eventManagement.view', ['eventID' => $event->id])}}"><i class="fas fa-edit"></i> Edit</a>
+                                    <a class="btn btn-primary" href="{{route('admin.eventManagement.view', ['eventID' => $event->id])}}"><i class="fas fa-search"></i> View</a>
                                 </td>
                                 <td>
                                     <form action="{{route('admin.eventManagement.destroy', ['eventID' => $event->id])}}" method="POST">                                    

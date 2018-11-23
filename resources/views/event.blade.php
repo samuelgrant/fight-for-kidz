@@ -9,6 +9,14 @@
         <div class="col-lg-8 col-md-6 col-col-sm-12 pt-5">
           <h1 class="text-white underline bar">{{$event->name}}</h1>
           <p class="text-justify">{{$event->desc_1}}</p>
+          	@if(App\Document::where('display_location', 'Event')->get()->count() > 0)
+			<div class="mb-3">
+				<h5>Related files:</h5>
+				@foreach(App\Document::where('display_location', 'Event')->get() as $doc)
+				<a class="d-block" href="{{Storage::disk('documents')->url($doc->filename)}}" download="{{$doc->originalName}}">{{$doc->originalName}}</a>
+				@endforeach
+			</div>
+			@endif
         </div>
         <div class="col-lg-4 col-md-6 col-sm-12 text-white text-right results mt-5">
           <p class="all-caps sidebar-heading">Date/Time</p>
@@ -199,64 +207,6 @@
   </div>
 </div> {{-- close bio-modal --}}
 @endif
-<script>
-  $(document).ready(function () {
-    $('.bio-view-button').on('click', function (e) {
-
-      var url = '/contenders/bio/' + $(this).attr('data-contenderId');
-
-      console.log(url);
-
-      $.ajax({
-        url: url,
-        method: 'get',
-        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-        dataType: 'json'
-      }).done(function (data) {
-
-
-
-        $('#first-name').text(data['contender']['first_name']);
-        $('#last-name').text(data['contender']['last_name']);
-
-        // show nickname if one is set
-        if (data['contender']['nickname'] != null) {
-          $('#nickname').text('\'' + data['contender']['nickname'] + '\'');
-        }
-
-        // get video id from donate_url
-        if (data['contender']['bio_url'] != null) {
-          vidId = getQueryVariable(data['contender']['bio_url'], 'v')
-          $('#bio-vid').removeClass('d-none');
-          $('#bio-vid').attr('src', 'https://www.youtube-nocookie.com/embed/' + vidId + '?rel=0&modestbranding=1');
-        } else {
-          $('#bio-vid').addClass('d-none');
-        }
-
-        $('#bio-text').text(data['contender']['bio_text']);
-        $('#bio-image').attr('src', '/storage/images/contenders/' + data['contender']['id'] + '.png');
-        $('#contenderAge').html(data['age']);
-        $('#contenderHeight').html(data['contender']['height']);
-        $('#contenderWeight').html(data['contender']['weight']);
-        $('#contenderReach').html(data['contender']['reach']);
-
-
-        console.log(data);
-
-
-      }).fail(function (err) {
-        console.log(err);
-        $('#dynamic-content').html('<p style="color:black;">Something went wrong. Please try again...</p>');
-      });
-    });
-
-    $("#bio-modal").on('hidden.bs.modal', function (e) {
-      $("#bio-modal iframe").attr("src", "");
-    });
-
-  });
-
-</script>
 </div>
 
 <!-- Auction section - show if auctions switched on -->

@@ -77,6 +77,7 @@ function getQueryVariable(url, variable)
       return(false);
 }
 
+
 function auctionItemModal(id){
   $.ajax({
       method: "get",
@@ -110,3 +111,16 @@ function auctionItemModal(id){
       console.log(error);
   });
 }
+
+$(document).ready(function(){
+
+  var vh = $(window).height();
+  var footerPos = $('#f4k-footer').position()['top'];
+
+  if(vh > footerPos){
+    $('#f4k-footer').css('position', 'absolute');
+    $('#f4k-footer').css('bottom', '0');
+    $('#f4k-footer').css('width', '100%');
+  }
+
+})

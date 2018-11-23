@@ -103,7 +103,20 @@ $(document).ready(function() {
         "columns": [
             { "orderable": false, "searchable": false },
             null,
-            null
+            null,
+            null,
+        ],
+        'iDisplayLength' : 100
+    });
+
+    $('#system-group-dtable').DataTable({
+        "columns": [
+            { "orderable": false, "searchable": false },
+            null,
+            {"orderable" : false},
+            {"orderable" : false},
+            {"orderable" : false},
+            {"orderable" : false},
         ],
         'iDisplayLength' : 100
     });
@@ -274,11 +287,21 @@ function removeSelectedFromGroup(groupID) {
  * This method adds all selected group members to another group selected by the 
  * user.
  * 
+ * Mode should be either 'customGroups' or 'systemGroups' as a string
+ * 
  * @param groupID
  */
-function copySelectedToGroup() {
+function copySelectedToGroup(mode) {
 
-    var contacts = $('#group-dtable').find('.dtable-checkbox:checkbox:checked');
+    if(mode == 'customGroups'){
+        var contacts = $('#group-dtable').find('.dtable-checkbox:checkbox:checked');
+    } else if(mode == 'systemGroups'){
+        var contacts = $('#system-group-dtable').find('.dtable-checkbox:checkbox:checked');
+    } else {
+        console.log('Error. Group copy mode invalid');
+        return;
+    }
+
     var toGroupId = $('#groupDropdown').val();
 
     // for each selected contact, add to group
@@ -300,13 +323,16 @@ function copySelectedToGroup() {
 
     });
 
-    // show success modal
-    var modal = $('#successModal');
-    var messageBox = $('#modal-message-success');
+    // show success alert
+    alert = $('#manualAlert');
+    alert.removeClass('d-none');    
+    $('#messageText').text('Successfully copied ' + contacts.length + ' contacts.');
 
-    messageBox.text('Successfully copied ' + contacts.length + ' to group.');
-    $('#successModal').modal('show');
-
+    // untick all checkboxes
+    $('#dtable-select-all').prop('checked', false);
+    contacts.each(function(){
+        $(this).prop('checked', false);
+    });
 }
 
 /**
@@ -380,6 +406,12 @@ $('body').on('change', '#dtable-select-all', function () {
     $.each(rows, function () {
         var checkbox = $($(this).find('td').eq(0)).find('input').prop('checked', checked);
     });
+
+    rows = $('#system-group-dtable').find('tbody tr');
+    checked = $(this).prop('checked');
+    $.each(rows, function () {
+        var checkbox = $($(this).find('td').eq(0)).find('input').prop('checked', checked);
+    });
 });
 
 // Uncheck 'select all' checkbox when row checkboxes are clicked or columns sorted.
@@ -395,6 +427,41 @@ $('.dtable-control').on('click', function () {
         });
     }
 });
+
+function editContactModal(id){
+
+    $.ajax({
+        method : "GET",
+        url : `/a/group-management/contacts/${id}`
+    }).done(function(data){
+
+        form = $('#editContactForm');
+        deleteForm = $('#contactDeleteForm');
+
+        deleteForm.attr('action', deleteForm.data('action') + '/' + id);
+        form.attr('action', form.data('action') + '/' + id);
+
+        $('#contactName').val(data.name);
+        $('#contactPhone').val(data.phone);
+        $('#contactEmail').val(data.email);
+
+        $('#editContactModal').modal('show');
+
+    }).fail(function(error){
+        console.log(error);
+    })
+
+}
+
+function confirmAction(){
+    $('#buttonConfirmContact').removeClass('d-none');
+    $('#buttonDeleteContact').addClass('d-none');
+}
+
+function actionConfirmed(){
+    deleteForm = $('#contactDeleteForm');
+    deleteForm.submit();
+}
 
 function applicantManagementModal(id){
     
@@ -438,7 +505,7 @@ function applicantManagementModal(id){
 
         // Additional Tab
         $("#appOccupation").val(data.occupation);           $("#appEmployer").val(data.employer);
-        $("appConvictionDetails").text(data.conviction_details);
+        $("#appConvictionDetails").text(data.conviction_details);
 
         // Set Consent
         if(consent_to_test = 0){
@@ -453,6 +520,13 @@ function applicantManagementModal(id){
         }else if(consent_to_test = 1){
             $("#appSponsor").val("Yes");
         }
+
+        // Populate custom questions
+        $('#custom_1').val(data.custom_one);
+        $('#custom_2').val(data.custom_two);
+        $('#custom_3').val(data.custom_three);
+        $('#custom_4').val(data.custom_four);
+        $('#custom_5').val(data.custom_five);
 
 
         $("#applicantMoreInfoModal").modal('show');
@@ -572,3 +646,36 @@ function merchandiseEditModal(id){
         console.log(error);
     });
 }
+
+// File upload functions
+function fileUpdateModal(id){
+
+    
+
+    form = $('#fileUpdateForm');
+    modal = $('#updateModal');
+
+    url = "/a/dashboard/uploads/" + id;
+
+    form.prop('action', form.data('action') + '/' + id);
+
+    $.ajax({
+        method : 'GET',
+        url : url,
+    }).done(function(data){
+        console.log(data.display_location);
+        $('#updateDisplaySelect').val(data.display_location);
+        modal.modal('show');
+
+    }).fail(function(error){
+        console.log(error);
+    })
+
+}
+
+$(document).ready(function(){
+    $('#fileUpload').change(function(e){
+        var filename = e.target.files[0].name;
+        $('#fileName').text(filename);
+    });
+});
