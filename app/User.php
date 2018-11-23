@@ -7,7 +7,10 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Notifications\InitialResetPasswordNotification;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
+use App\Mail\AccountActivated;
+use App\Mail\AccountDeactivated;
 
 
 class User extends Authenticatable
@@ -45,10 +48,8 @@ class User extends Authenticatable
             $this->save();
             
             //Fire email YOUR ACCOUNT IS NOW ACTIVATED
-            //Return WINNING
+            Mail::to($this->email)->send(new AccountActivated($this));
         }
-
-        //Return account already active error
     }
     
     public function disable()
@@ -57,12 +58,10 @@ class User extends Authenticatable
             $this->active = false;
             $this->save();
 
-            //Remove from admin group (for mailing list things)
-            //Fire email account disabled
-            
-            //Return account now disabled
+            // Fire email
+            Mail::to($this->email)->send(new AccountDeactivated($this));
+
         }
-        //Return already disabled
     }
 
     public function sendPasswordResetNotification($token){
