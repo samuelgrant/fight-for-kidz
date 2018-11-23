@@ -345,24 +345,24 @@ body{
 .alert {
 	border-radius: 0px;
 	box-shadow: 2px 2px #25252422;
-  }
-  
-  .alert-success {
+}
+
+.alert-success {
 	background-color: #059c29;
 	color: white;
-  }
-  
-  .alert-danger {
+}
+
+.alert-danger {
 	background-color: #C82333;
 	color: white;
-  }
-  
-  .alert-info {
+}
+
+.alert-info {
 	background-color: #138496;
 	color: white;
-  }
-  
-  .alert-tag {
+}
+
+.alert-tag {
 	color :white;
 	opacity: 1.0!important;
-  }
+}
