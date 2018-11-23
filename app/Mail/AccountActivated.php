@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
@@ -30,6 +31,8 @@ class AccountActivated extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.account.activated')->with('recipient', $this->user->name);
+        return $this->view('emails.account.activated')
+                    ->subject('Admin Account Activated - Fight for Kidz')
+                    ->with('recipient', $this->user->name);
     }
 }
