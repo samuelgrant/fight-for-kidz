@@ -106,7 +106,7 @@
 														<table class="center" cellpadding="0" cellspacing="0">
 															<tr>
 																<td style="line-height:0;">
-																	<a target="_blank" style="text-decoration:none;" href="{{config('app.url')}}"><img src="{{config('app.url')}}/storage/images/f4k_logo_nodate.png" border="0" style="font:bold 12px/12px Arial, Helvetica, sans-serif; color:#606060;" align="left" vspace="0" hspace="0" height="80" alt="PSD2HTML.COM" /></a>
+																	<a target="_blank" style="text-decoration:none;" href="{{config('app.url')}}"><img src="{{config('app.url')}}/storage/images/f4k_logo_noyear.png" border="0" style="font:bold 12px/12px Arial, Helvetica, sans-serif; color:#606060;" align="left" vspace="0" hspace="0" height="80" alt="PSD2HTML.COM" /></a>
 																</td>
 															</tr>
 														</table>
@@ -164,7 +164,7 @@
 														<table width="100%" cellpadding="0" cellspacing="0">
 															<tr>
 																<td data-color="text" data-link-color="link text color" data-link-style="text-decoration:underline; color:#797c82;" class="aligncenter" style="font:12px/16px Arial, Helvetica, sans-serif; color:#797c82; padding:0 0 10px;">
-																	{{config('app.name')}}, {{ now()->year }}. &copy; &nbsp; All Rights Reserved. <a target="_blank" style="text-decoration:underline; color:#797c82;" href="{{route('mail.unsubscribe', ['unsubscribe' => $unsubscribe])}}">Unsubscribe.</a>
+																	{{config('app.name')}}, {{ now()->year }}. &copy; &nbsp; All Rights Reserved. @yield('unsubscribe')
 																</td>
 															</tr>
 														</table>
@@ -173,11 +173,11 @@
 														<table class="center" align="right" cellpadding="0" cellspacing="0">
 															<tr>
 																<td class="btn" valign="top" style="line-height:0; padding:3px 0 0;">
-																	<a target="_blank" style="text-decoration:none;" href="{{env('facebook_page_url')}}"><img src="/img/facebook_icon.png" border="0" style="font:12px/15px Arial, Helvetica, sans-serif; color:#797c82;" align="left" vspace="0" hspace="0" height="25" alt="fb" /></a>
+																	<a target="_blank" style="text-decoration:none;" href="{{env('facebook_page_url')}}"><img src="{{env('APP_URL')}}/img/facebook_icon.png" border="0" style="font:12px/15px Arial, Helvetica, sans-serif; color:#797c82;" align="left" vspace="0" hspace="0" height="25" alt="fb" /></a>
 																</td>
 																<td width="20"></td>
 																<td class="btn" valign="top" style="line-height:0; padding:3px 0 0;">
-																<a target="_blank" style="text-decoration:none;" href="mailto:{{env('CONTACT_EMAIL')}}"><img src="/img/mail_icon.png" border="0" style="font:12px/15px Arial, Helvetica, sans-serif; color:#797c82;" align="left" vspace="0" hspace="0" height="28" alt="tw" /></a>
+																<a target="_blank" style="text-decoration:none;" href="mailto:{{env('CONTACT_EMAIL')}}"><img src="{{env('APP_URL')}}/img/mail_icon.png" border="0" style="font:12px/15px Arial, Helvetica, sans-serif; color:#797c82;" align="left" vspace="0" hspace="0" height="28" alt="tw" /></a>
 																</td>
 															</tr>
 														</table>
