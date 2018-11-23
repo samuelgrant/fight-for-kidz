@@ -6,11 +6,12 @@ use App\Traits\Groupable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Notifications\InitialResetPasswordNotification;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
 use App\Mail\AccountActivated;
 use App\Mail\AccountDeactivated;
+use App\Mail\NewAccount;
+use App\Mail\ResetPasswordLink;
 
 
 class User extends Authenticatable
@@ -69,12 +70,15 @@ class User extends Authenticatable
         if($this->password_reset_at){
             
             // password reset has been requested by the user
-            $this->notify(new ResetPasswordNotification($token));
+            Mail::to($this->email)->send(new ResetPasswordLink($this, $token));
+
+
+            //$this->notify(new ResetPasswordNotification($token));
 
         } else{
             
             // password reset on initial registration
-            $this->notify(new InitialResetPasswordNotification($token));
+            Mail::to($this->email)->send(new NewAccount($this, $token));
         }
 
     }
