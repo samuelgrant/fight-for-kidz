@@ -99,14 +99,15 @@
         @if(!$group->deleted_at)
         {{-- Add selected to group - visible to all undeleted groups --}}
         <button class="btn btn-primary mb-3" type="button" data-toggle="modal" data-target="#copyToGroupModal">
+            <i class="fas fa-copy"></i>&nbsp;
             Copy selected to another group
         </button>
 
         
-        <button class="btn btn-primary mb-3" type="button" data-toggle="modal" data-target="#addToGroupModal">Add new
+        <button class="btn btn-primary mb-3" type="button" data-toggle="modal" data-target="#addToGroupModal"><i class="fas fa-plus"></i>&nbsp;Add new
             contact to Group</button>
         <button class="btn btn-danger mb-3" id="removeFromGroupButton" type="button" data-toggle="modal" data-target="#removeFromGroupModal"
-            onclick="countSelected('groups')">Remove selected</button>
+            onclick="countSelected('groups')"><i class="fas fa-trash"></i>&nbsp;Remove selected</button>
         @endif        
 
         <table id="group-dtable" class="table table-striped table-hover table-sm">
