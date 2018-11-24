@@ -86,7 +86,7 @@
                                 <input type="text" name="contenderFirstName" id="contenderFirstName" class="form-control" value="" required>
                             </div>
                             <div class="form-group">
-                                <label for="contenderLastName">Nickname:</label>
+                                <label for="contenderLastName">Last Name:</label>
                                 <input type="text" name="contenderLastName" id="contenderLastName" class="form-control" value="" required>
                             </div>
                                 <div class="form-group">
