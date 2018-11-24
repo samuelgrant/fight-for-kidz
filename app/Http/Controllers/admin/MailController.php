@@ -9,6 +9,7 @@ use App\Mail\CustomMail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
+use App\Jobs\SendCustomMail;
 
 class MailController extends Controller
 {
@@ -33,19 +34,21 @@ class MailController extends Controller
             'subject' => 'required|string',
             'messageText' => 'required|string',
             'target_groups' => 'required',
-        ]);    
+        ]);
+        
+        $subject = $request->input('subject');
+        $messageText = $request->input('messageText');
 
         $recipients = $this->getRecipients($request->input('target_groups'));
 
         foreach($recipients as $recipient){
 
-            Mail::to($recipient['email'])
-                    ->queue(new CustomMail($recipient['name'], $request->input('subject'), $request->input('messageText')));
+            SendCustomMail::dispatch($recipient['email'], $recipient['name'], $subject, $messageText);
                     
         }
 
 
-        session()->flash('success', 'Emails dispatched.');
+        session()->flash('success', 'Emails will send in the background.');
 
         return redirect()->back();
     }
