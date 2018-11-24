@@ -88,6 +88,8 @@ $(document).ready(function () {
       headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
       dataType: 'json'
     }).done(function (data) {
+      //Calls the setModalStyleMethod
+      setBioModalStyle(data);
 
       $('#first-name').text(data['contender']['first_name']);
       $('#last-name').text(data['contender']['last_name']);
@@ -130,6 +132,15 @@ $(document).ready(function () {
   });
 
 });
+
+function setBioModalStyle(data){
+  if(data['contender']['team'] == 'red'){
+    $("#bio-image").css({"border" : "4px solid red"});
+  }else if (data['contender']['team'] == 'blue'){
+    $("#bio-image").css({"border" : "4px solid blue"});
+  }
+}
+
 
 function auctionItemModal(id){
   $.ajax({

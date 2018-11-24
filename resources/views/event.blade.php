@@ -138,34 +138,35 @@
 
 
 <!-- Dynamic modal -->
-<div id="bio-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+<div id="bio-modal" class="modal fade pt-3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
   style="display: none; z-index:4005;">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
 
-      <div class="modal-body pl-0">
+      <div class="modal-body contender-modal-body pl-0">
 
         {{-- Dynamic content will load here --}}
         <div id="dynamic-content" style="color:black;">
 
 
-          <div class="text-center">
+          <div class="text-center text-white">
             <h3 id=first-name class="d-inline mx-2"></h3>
             <h2 id="nickname" class="d-inline"></h2>
             <h3 id="last-name" class="d-inline mx-2"></h3>
-            <hr>
+            <hr class="ml-3">
             <iframe width="638" height="315" id="bio-vid" src="" frameborder="0" allow="autoplay; encrypted-media;"
               allowfullscreen></iframe>
 
-            <div class="text-justify px-4 py-3">
+            <div class=" px-4 py-3 text-white text-justify">
+              <h3>About Me:</h3>
               <p id="bio-text"></p>
             </div>
 
-            <div class="row pl-2">
+            <div class="row pl-3">
               <div class="col-lg-6"><img id="bio-image" class="img-fluid"></div>
               <div class="col-lg-6">
-                <h5 class="text-center">My Stats:</h5>
-                <table class="table table-bordered table-striped table-sm text-center">
+                <h5 class="text-center text-white">My Stats:</h5>
+                <table id="contenderTable" class="table table-sm text-center">
                   <tbody>
                     <tr>
                       <td> Age: <span id="contenderAge"></span></td>
@@ -177,24 +178,18 @@
                       <td> Height (cm): <span id="contenderHeight"></span></td>
                     </tr>
                     <tr>
-                      <td> Reach (cm) <span id="contenderReach"></span></td>
+                      <td> Reach (cm): <span id="contenderReach"></span></td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </div>
-
           </div>
-
-
+          <div class="modal-footer contender-modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
         </div>
-
       </div>
-
-      <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-
     </div>
   </div>
 </div> {{-- close bio-modal --}}
