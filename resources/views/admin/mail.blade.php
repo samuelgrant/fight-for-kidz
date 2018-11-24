@@ -12,7 +12,24 @@
 <!-- Page Content -->
 <div class="row">
     <div class="col-md-12">
-        <form>
+
+        <h3>Send Mail</h3>
+        <form class="form">
+
+            
+
+            {{-- target group selector --}}
+            <select name="target_groups" class="multi-select form-control" multiple>
+                <optgroup label="System Groups">
+                <hr>
+                <option value="all">All Contacts</option>
+                <option value="admins">Administrators</option>
+                <option value="applicants">{{App\Event::current()->name}} Applicants</option>
+                <option value="sponsors">Sponsors</option>
+                <option value="subscribers">Subscribers</option>
+
+            </select>
+
             <div class="form-group">
                 <label for="">Subject</label>
                 <input type="text" name="" id="" class="form-control" placeholder="">
