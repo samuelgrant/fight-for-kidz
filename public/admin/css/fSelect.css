@@ -25,6 +25,7 @@
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    border-radius: 0.25rem;
 }
 
 .fs-label-wrap .fs-label {
@@ -52,6 +53,7 @@
     background-color: #fff;
     border: 1px solid #ddd;
     margin-top: 5px;
+    margin-left: -1px;
     z-index: 1000;
 }
 
