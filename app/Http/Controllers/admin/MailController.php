@@ -23,7 +23,7 @@ class MailController extends Controller
 
     public function previewMail($messageText){
 
-        return new CustomMail('<name here>', $messageText);
+        return new CustomMail('<name here>', '<Subject here>', $messageText);
 
     }
 
@@ -39,9 +39,15 @@ class MailController extends Controller
 
         foreach($recipients as $recipient){
 
-
-
+            Mail::to($recipient['email'])
+                    ->queue(new CustomMail($recipient['name'], $request->input('subject'), $request->input('messageText')));
+                    
         }
+
+
+        session()->flash('success', 'Emails dispatched.');
+
+        return redirect()->back();
     }
 
     /**
@@ -106,8 +112,6 @@ class MailController extends Controller
         $recipients = array_filter($recipients, function($key, $value) use ($emails){
             return in_array($value, array_keys($emails));
         }, ARRAY_FILTER_USE_BOTH);
-
-        dd($recipients);
 
         return $recipients;
     }

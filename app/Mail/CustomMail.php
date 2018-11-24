@@ -13,16 +13,18 @@ class CustomMail extends Mailable
 
     public $messageText;
     public $recipient;
+    public $subject;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($recipient, $messageText)
+    public function __construct($recipient, $subject, $messageText)
     {
         $this->recipient = $recipient;
         $this->messageText = $messageText;
+        $this->subject = $subject;
     }
 
     /**
@@ -32,6 +34,7 @@ class CustomMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.custom');
+        return $this->view('emails.custom')
+                    ->subject($this->subject);
     }
 }
