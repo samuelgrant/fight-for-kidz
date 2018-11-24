@@ -15,12 +15,12 @@
 
         <h3>Send Mail</h3>
         
-        <form class="form" method="POST" action="{{route('admin.mail.send')}}" id="mailForm" data-send-action="{{route('admin.mail.send')}}">            
+        <form class="form" method="POST" action="{{route('admin.mail.send')}}" id="mailForm" data-send-action="{{route('admin.mail.send')}}" data-target-group="{{$targetGroup ?? null}}">            
 
             <div class="form-group my-3">
                 <label for="multipleGroupSelect">Select Email Recipients:</label>
                 {{-- target group selector --}}
-                <select name="target_groups[]" class="multi-select form-control" id="multipleGroupSelect" style="margin-top:-15px" multiple>
+                <select name="target_groups[]" class="multi-select form-control" id="multipleGroupSelect" style="margin-top:-15px" multiple="multiple">
                     <optgroup label="System Groups">                        
                         <option value="admins">Administrators</option>
                         <option value="applicants">{{App\Event::current()->name}} Applicants</option>
@@ -51,4 +51,21 @@
         </form>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+
+    <script>
+        
+        $(document).ready(function(){
+ 
+            groupID = $('#mailForm').data('targetGroup');
+            console.log(groupID);
+            // find the element for the group in the dropdown and add 'selected' class
+            $(`[data-value='${groupID}']`).click();
+
+        })
+
+    </script>
+
 @endsection

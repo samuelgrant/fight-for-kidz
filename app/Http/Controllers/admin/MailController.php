@@ -20,7 +20,11 @@ class MailController extends Controller
 
     public function index(){
         return view('admin.mail');
-    } 
+    }
+    
+    public function presetTarget(Request $request){
+        return view('admin.mail')->with('targetGroup', $request->input('groupID'));
+    }
 
     public function previewMail($messageText){
 

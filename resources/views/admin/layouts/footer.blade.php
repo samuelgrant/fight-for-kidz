@@ -35,7 +35,7 @@
 
 {{-- fSelect --}}
 <script src="/admin/js/fSelect.js" type="text/javascript"></script>
-<script defer>
+<script>
         (function($){
             $(function(){
                 $('.multi-select').fSelect();
