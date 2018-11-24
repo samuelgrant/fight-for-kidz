@@ -516,3 +516,40 @@ function confirmApplicantDelete(app){
     modal.modal('show');
 }
 
+// Custom mail functions
+$(document).ready(function(){
+
+    $('#mailPreviewBtn').on('click', function(){
+        
+        $(this).prop('href', $(this).data('href') + '/' + $('#messageText').val());
+        
+        // form = $('#mailForm');
+
+        // form.attr('action', form.data('previewAction'));
+        // console.log(form.attr('action'));
+        // form.submit();
+    })
+
+    // $('#mailSendBtn').on('click', function(){
+    //     form = $('#mailForm');
+
+    //     form.attr('action', form.data('sendAction'));
+    //     console.log(form.attr('action'));
+    //     form.submit();
+    // })
+
+    $('#multipleGroupSelect').change(function(){
+
+        console.log($(this).val().length);
+
+        if($(this).val().length != 0){
+            $('#hiddenCheck').prop('checked', true);
+            $('#hiddenCheck')[0].oninput();
+        } else{
+            $('#hiddenCheck').prop('checked', false);
+        }
+
+    })
+
+})
+
