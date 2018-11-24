@@ -27,8 +27,8 @@
         }
         else {
             var settings = $.extend({
-                placeholder: 'Select some options',
-                numDisplayed: 3,
+                placeholder: 'Which groups would you like to send the email to?',
+                numDisplayed: 6,
                 overflowText: '{n} selected',
                 searchText: 'Search',
                 noResultsText: 'No results found',
