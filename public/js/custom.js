@@ -88,8 +88,8 @@ $(document).ready(function () {
       headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
       dataType: 'json'
     }).done(function (data) {
-      //Calls the setModalStyleMethod
-      setBioModalStyle(data);
+      //Calls the setBioImageBorder Method
+      setBioImageBorder(data);
 
       $('#first-name').text(data['contender']['first_name']);
       $('#last-name').text(data['contender']['last_name']);
@@ -108,6 +108,9 @@ $(document).ready(function () {
         $('#bio-vid').addClass('d-none');
       }
 
+      if(data['contender']['bio_text'] != null){
+        $("#bio-label").text("About Me:")
+      }
       $('#bio-text').text(data['contender']['bio_text']);
 
       //checks to see if the image exists and uses it to set the auctionItemImage otherwise sets it to default
@@ -133,7 +136,7 @@ $(document).ready(function () {
 
 });
 
-function setBioModalStyle(data){
+function setBioImageBorder(data){
   if(data['contender']['team'] == 'red'){
     $("#bio-image").css({"border" : "4px solid red"});
   }else if (data['contender']['team'] == 'blue'){

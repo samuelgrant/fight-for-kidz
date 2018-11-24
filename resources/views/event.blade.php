@@ -158,7 +158,7 @@
               allowfullscreen></iframe>
 
             <div class=" px-4 py-3 text-white text-justify">
-              <h3>About Me:</h3>
+              <h3 class="bio-label"></h3>
               <p id="bio-text"></p>
             </div>
 
