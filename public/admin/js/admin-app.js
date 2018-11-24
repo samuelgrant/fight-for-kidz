@@ -520,28 +520,25 @@ function confirmApplicantDelete(app){
 $(document).ready(function(){
 
     $('#mailPreviewBtn').on('click', function(){
+
+        message = $('#messageText').val();
+
+        if(message == ''){
+            message = 'Oops, you forgot to add some content!';
+        }
         
-        $(this).prop('href', $(this).data('href') + '/' + $('#messageText').val());
+        $(this).prop('href', $(this).data('href') + '/' + message);
         
-        // form = $('#mailForm');
-
-        // form.attr('action', form.data('previewAction'));
-        // console.log(form.attr('action'));
-        // form.submit();
-    })
-
-    // $('#mailSendBtn').on('click', function(){
-    //     form = $('#mailForm');
-
-    //     form.attr('action', form.data('sendAction'));
-    //     console.log(form.attr('action'));
-    //     form.submit();
-    // })
+    });
 
     $('#multipleGroupSelect').change(function(){
 
         console.log($(this).val().length);
 
+        // this is important as the fSelect doesn't seem to support straightforward
+        // front end validation. So this hidden checkbox (actually not hidden, but transparent)
+        // will enable the validation instead. It ticks when groups are selected, and unticks
+        // when none are selected.
         if($(this).val().length != 0){
             $('#hiddenCheck').prop('checked', true);
             $('#hiddenCheck')[0].oninput();
