@@ -11,11 +11,6 @@ use App\Sponsor;
 
 class ContenderManagementController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth.activeUser');
-    }
-
     public function getContender($id){
         
         $contender = Contender::find($id);

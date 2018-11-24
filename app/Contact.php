@@ -10,11 +10,5 @@ class Contact extends Model
 {
 
     use Groupable;
-
-    public function removeIfNotGrouped(){
-        if(count($this->groups) == 0){
-            $this->delete();
-            Log::debug($this->name.' was deleted from contacts table as they have no group membership.');
-        }
-    }
+    
 }
