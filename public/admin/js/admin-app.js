@@ -572,3 +572,7 @@ function merchandiseEditModal(id){
         console.log(error);
     });
 }
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
