@@ -89,8 +89,6 @@ $(document).ready(function () {
       dataType: 'json'
     }).done(function (data) {
 
-
-
       $('#first-name').text(data['contender']['first_name']);
       $('#last-name').text(data['contender']['last_name']);
 
@@ -133,7 +131,6 @@ $(document).ready(function () {
 
 });
 
-
 function auctionItemModal(id){
   $.ajax({
       method: "get",
@@ -147,9 +144,20 @@ function auctionItemModal(id){
       $("#auctionItemDescription").text(data.desc);
 
       //Table text
-      $("#auctionItemNameSpan").text(data.name);
-      $("#auctionItemDonorSpan").text(data.donor);
-      $("#auctionItemDonorUrlSpan").text(data.donor_url);     
+      if (data.donor != null || data.donor_url != null){
+        $("#auctionItemInfo").text("Item Info:")
+      }
+      if(data.donor != null){
+        $("#auctionItemDonorSpan").text(data.donor);
+      } else if(data.donor == null){
+        $("#auctionTableDonor").remove();
+      }
+
+      if(data.donor_url != null){
+        $("#auctionItemDonorUrlSpan").text(data.donor_url);
+      } else if(data.donor_url == null){
+        $("#auctionTableDonorUrl").remove();
+      }
 
       //checks to see if the image exists and uses it to set the auctionItemImage otherwise sets it to default
       $.get("/storage/images/auction/" + data.id + ".png")
@@ -161,8 +169,6 @@ function auctionItemModal(id){
 
       //Display the modal
       $("#auctionItemModal").modal('show');
-
-      console.log("test");
   }).fail(function(error) {
       console.log(error);
   });

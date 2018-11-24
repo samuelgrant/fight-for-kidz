@@ -100,10 +100,10 @@
         </div>
 
         <!-- Each bout card will contain two contender-cards -->
-        <div class="contender-card contender-card-red">
+        <div id="bout-card" class="contender-card contender-card-red">
           <div class="contender-card-inner">
             <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->red_contender->id . '.png')) ? '/storage/images/contenders/' . $bout->red_contender->id . '.png' : '/storage/images/contenders/0.png'}}"
-              class="mx-auto contender-img">
+              class="mx-auto contender-img" height="89">
             <div class="contender-name">
               <h5>{{$bout->red_contender->first_name}}</h5>
               <h4>{{$bout->red_contender->nickname}}</h4>
@@ -115,10 +115,10 @@
           </div>
         </div>
 
-        <div class="contender-card contender-card-blue">
+        <div id="bout-card" class="contender-card contender-card-blue">
           <div class="contender-card-inner">
             <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->blue_contender->id . '.png')) ? '/storage/images/contenders/' . $bout->blue_contender->id . '.png' : '/storage/images/contenders/0.png'}}"
-              class="mx-auto contender-img">
+              class="mx-auto contender-img" height="89">
             <div class="contender-name">
               <h5>{{$bout->blue_contender->first_name}}</h5>
               <h4>{{$bout->blue_contender->nickname}}</h4>
@@ -143,7 +143,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
 
-      <div class="modal-body">
+      <div class="modal-body pl-0">
 
         {{-- Dynamic content will load here --}}
         <div id="dynamic-content" style="color:black;">
@@ -154,30 +154,30 @@
             <h2 id="nickname" class="d-inline"></h2>
             <h3 id="last-name" class="d-inline mx-2"></h3>
             <hr>
-            <iframe width="560" height="315" id="bio-vid" src="" frameborder="0" allow="autoplay; encrypted-media;"
+            <iframe width="638" height="315" id="bio-vid" src="" frameborder="0" allow="autoplay; encrypted-media;"
               allowfullscreen></iframe>
 
             <div class="text-justify px-4 py-3">
               <p id="bio-text"></p>
             </div>
 
-            <div class="row">
-              <div class="col-lg-6"><img id="bio-image" src="/storage/images/contenders/0.png" class="img-fluid"></div>
+            <div class="row pl-2">
+              <div class="col-lg-6"><img id="bio-image" class="img-fluid"></div>
               <div class="col-lg-6">
                 <h5 class="text-center">My Stats:</h5>
-                <table class="table table-striped table-bordered table-sm text-center">
+                <table class="table table-bordered table-striped table-sm text-center">
                   <tbody>
                     <tr>
-                      <td> Age: <span id="contenderAge">44</span></td>
+                      <td> Age: <span id="contenderAge"></span></td>
                     </tr>
                     <tr>
-                      <td> Weight (kg): <span id="contenderWeight">77</span></td>
+                      <td> Weight (kg): <span id="contenderWeight"></span></td>
                     </tr>
                     <tr>
-                      <td> Height (cm): <span id="contenderHeight">174</span></td>
+                      <td> Height (cm): <span id="contenderHeight"></span></td>
                     </tr>
                     <tr>
-                      <td> Reach (cm) <span id="contenderReach">174</span></td>
+                      <td> Reach (cm) <span id="contenderReach"></span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -192,7 +192,7 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
 
     </div>
@@ -209,7 +209,7 @@
       <!-- All auctions will be contained within single row -->
       <div class="row auctions-row">
     
-        <?php global $a ?>
+        <?php global $a?>
         <!-- counter used to name auctions -->
         @foreach($event->auctions as $auction)
         <!-- Each auction will create one column -->
@@ -253,76 +253,50 @@
   </section>
   
   <!-- Dynamic modal for displaying auction item info -->
-  <div id="auctionItemModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+  <div id="auctionItemModal" class="modal fade pt-3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
     style="display: none; z-index:4005;">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
   
-        <div class="modal-body">
+        <div class="modal-body auction-modal-body pt-2">
   
           {{-- Dynamic content will load here --}}
           <div id="dynamic-content" style="color:black;">
-  
-  
-            <div class="text-center">
-              <h3 id=auctionItemName class="d-inline mx-2"></h3>
+            <div class="text-center mt-2">
+              <h2 id=auctionItemName class="d-inline"></h2>
               <hr>
   
+              <div class="row px-3 pb-2">
+                <div class="col-lg-6 mx-auto image-frame"style="height:333px;"><img id="auctionItemImage" src="" class="img-fluid"></div>
+              </div>
+
+              <h5 id="auctionItemInfo" class="text-center text-white"></h5>
+              <div class="row">
+                    <table id="auctionTable" class="tabletable-sm text-center mx-auto">
+                      <tbody>
+                        <tr id="auctionTableDonor">
+                          <td>&nbsp;Donor: <span id="auctionItemDonorSpan"></span></td>
+                        </tr>
+                        <tr id="auctionTableDonorUrl">
+                          <td>&nbsp;DonorUrl: <span><a href="" id="auctionItemDonorUrlSpan"></span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+              </div>
+              <hr>
+
               <div class="text-justify px-4 py-3">
                 <p id="auctionItemDescription"></p>
               </div>
-  
-              <div class="row">
-                <div class="col-lg-6"><img id="auctionItemImage" src="" class="img-fluid"></div>
-                <div class="col-lg-6">
-                  <h5 class="text-center">Item Info:</h5>
-                  <table class="table table-striped table-bordered table-sm text-center">
-                    <tbody>
-                      <tr>
-                        <td>&nbsp;Name: <span id="auctionItemNameSpan"></span></td>
-                      </tr>
-                      <tr>
-                        <td>&nbsp;Donor: <span id="auctionItemDonorSpan"></span></td>
-                      </tr>
-                      <tr>
-                        <td>&nbsp;DonorUrl: <span id="auctionItemDonorUrlSpan"></span></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+
+              <div class="modal-footer auction-modal-footer">
+                <button id="auctionBtn" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
     </div>
   </div> {{-- End of auction-info-modal --}}
 @endif
-{{-- <script>
-  function auctionItemModal(id){
-  $.ajax({
-      method: "get",
-      headers:  {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-      },
-      url: `/a/auction-management/auction/${id}`
-  }).done((data) => {
-      Console.log(data);
-      //Dynamically populate the modal with item info
-      $("#auctionItemName").val(data.name);
-      $("#auctionItemDescription").val(data.desc);
-      $("#auctionItemDonor").val(data.donor);
-      $("#auctionItemDonorUrl").val(data.donor_url);
-      $("#auctionItemImage").attr("src", "/storage/images/auction/" + data.id + ".png");        
-
-      //Display the modal
-      $("#auctionItemModal").modal('show');
-  }).fail((error) => {
-      console.log(error);
-  });
-  }
-</script> --}}
 @endsection

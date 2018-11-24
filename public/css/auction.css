@@ -71,7 +71,6 @@
 
     .auctionItem-img {
         width: 80%;
-        height: 180px;
         margin-left: auto;
         margin-right: auto;
         margin-bottom: 1.5rem;
@@ -158,4 +157,33 @@
         padding: 0px;
         }
     }
-    
+.auction-modal-body{
+    background-color: rgba(0, 0, 0, .85);
+}
+
+.auction-modal-body{
+    border-bottom-color: transparent;
+    box-shadow: 0px 0px 8px gray;
+}
+
+.auction-modal-footer{
+    border-top-color: transparent;
+    background-color: transparent;
+}
+
+.auction-modal-body hr{
+    border: 1px solid lightgray;
+    border-radius: 0%;
+}
+
+#auctionTable{
+    color: white;
+}
+
+#auctionItemName, #auctionItemDescription{
+    color: white;
+}
+
+.image-frame{
+    padding-top: 30px;
+}
