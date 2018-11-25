@@ -134,7 +134,7 @@
 							<td data-bgcolor="bg-module" bgcolor="#eaeced">
 								<table class="flexible" width="600" align="center" style="margin:0 auto;" cellpadding="0" cellspacing="0">
 									<tr>
-										<td class="img-flex"><img src="images/img-02.jpg" style="vertical-align:top;" width="600" height="249" alt="" /></td>
+										{{-- <td class="img-flex"><img src="images/img-02.jpg" style="vertical-align:top;" width="600" height="249" alt="" /></td> --}}
 									</tr>
 									<tr>
 										<td data-bgcolor="bg-block" class="holder" style="padding:65px 60px 50px;" bgcolor="#f9f9f9">
