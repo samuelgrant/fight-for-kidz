@@ -3,7 +3,7 @@ function editContenderModal(contenderID){
     $.ajax({
         method: "get",
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        url: `/a/event-management/contenders/${contenderID}`
+        url: '/a/event-management/contenders/' + contenderID
     }).done(function(data){
 
         var form = $('#editContenderForm');
