@@ -103,11 +103,6 @@ class Event extends Model
         return $this->hasMany('App\AuctionItem');
     }
 
-    // // Return deleted auction items
-    // public function deleted_auction_items(){
-    //     return $this->hasMany
-    // }
-
     // Relationship to sponsor - many to many
     public function sponsors()
     {
@@ -124,12 +119,6 @@ class Event extends Model
     public function bouts()
     {
         return $this->hasMany('App\Bout');
-    }
-
-    // Relationship to auctions - one to many
-    public function auctions()
-    {
-        return $this->hasMany('App\AuctionItem');
     }
 
     // Relationship to contender applications - one to many
