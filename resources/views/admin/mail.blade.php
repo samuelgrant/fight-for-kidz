@@ -85,7 +85,7 @@
             groupID = $('#mailForm').data('targetGroup');
             console.log(groupID);
             // find the element for the group in the dropdown and add 'selected' class
-            $(`[data-value='${groupID}']`).click();
+            $('[data-value=' + groupID + ']').click();
 
         })
 
