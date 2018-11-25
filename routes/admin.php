@@ -76,6 +76,8 @@ Route::put('/event-management/togglepublic/{eventID}', 'admin\EventManagementCon
 Route::put('/event-management/toggleapps/{eventID}', 'admin\EventManagementController@toggleApplications')->name('admin.eventManagement.toggleApplications');
 // Event bout visibility
 Route::put('/event-management/toggleBouts/{eventID}', 'admin\EventManagementController@toggleBouts')->name('admin.eventManagement.toggleBouts');
+// Event auction visibility
+Route::put('/event-management/toggleAuctions/{eventID}', 'admin\EventManagementController@toggleAuctions')->name('admin.eventManagement.toggleAuctions');
 
 // Add/remove applicants to/from team
 Route::put('/event-management/team/add', 'admin\ApplicantManagementController@addToTeam')->name('admin.eventManagement.addToTeam');
@@ -114,3 +116,22 @@ Route::get('/event-management/contenders/{contenderID}', 'admin\ContenderManagem
 
 //Retrieve private images (https://laravel.io/forum/04-23-2015-securing-filesimages)
 Route::get('/applicantImages/{imageName}', 'admin\ImageController@getApplicantImage')->where('imageName', '^[^/]+$')->name('admin.getApplicantImage');
+
+//Get + CRUD Auction Items
+Route::get('/auction-management/auction/{auctionId}', 'admin\AuctionManagementController@getAuctionItem')->name('admin.auctionManagement.getAuctionItem');
+Route::post('/auction-management/{eventID}', 'admin\AuctionManagementController@store')->name('admin.auctionManagement.store');
+Route::put('/auction-management/update/{itemID}', 'admin\AuctionManagementController@update')->name('admin.auctionManagement.update');
+Route::delete('/auction-management/{itemID}', 'admin\AuctionManagementController@destroy')->name('admin.auctionManagement.destroy');
+Route::patch('/auction-management/{itemID}', 'admin\AuctionManagementController@restore')->name('admin.auctionManagement.restore');
+
+// Toggle Merchandise
+// Merchandise item visibility
+Route::put('/merchandise-management/toggleMerchandiseItem/{itemID}', 'admin\MerchandiseManagementController@toggleMerchandiseItem')->name('admin.merchandiseManagement.toggleMerchandiseItem');
+
+//View, Get + CRUD Merchandise
+Route::get('/merchandise-management', 'admin\MerchandiseManagementController@index')->name('admin.merchandiseManagement');
+Route::get('/merchandise-management/merchandise/{merchandiseId}', 'admin\MerchandiseManagementController@getMerchandiseItem')->name('admin.merchandiseManagement.getAuctionItem');
+Route::post('/merchandise-management', 'admin\MerchandiseManagementController@store')->name('admin.merchandiseManagement.store');
+Route::put('/merchandise-management/update/{merchandiseID}', 'admin\MerchandiseManagementController@update')->name('admin.merchandiseManagement.update');
+Route::delete('/merchandise-management/{merchandiseID}', 'admin\MerchandiseManagementController@destroy')->name('admin.merchandiseManagement.destroy');
+Route::patch('/merchandise-management/{merchandiseID}', 'admin\merchandiseManagementController@restore')->name('admin.merchandiseManagement.restore');

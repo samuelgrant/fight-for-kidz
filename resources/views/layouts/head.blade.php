@@ -22,6 +22,7 @@
   <!-- Custom styles for this template -->  
   <link href="/css/auction-hover.css" rel="stylesheet">
   <link href="/css/contender.css" rel="stylesheet">
+  <link href="/css/auction.css" rel="stylesheet">
   <link href="/css/previous.css" rel="stylesheet">
   <link href="/css/grayscale.css" rel="stylesheet">
   <link href="/css/app-form.css" rel="stylesheet">

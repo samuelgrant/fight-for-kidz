@@ -59,6 +59,22 @@ class Event extends Model
         $this->save();
     }
 
+     /**
+     * Show bouts on the public event page
+     */
+    public function hideAuctions(){
+        $this->show_auctions = false;
+        $this->save();
+    }
+
+    /**
+     * Show bouts on the public event page
+     */
+    public function showAuctions(){
+        $this->show_auctions = true;
+        $this->save();
+    }
+
     /** 
      *  Sets the events applications to either on or off
      * 
@@ -100,8 +116,13 @@ class Event extends Model
     // Relationship to auction items - one to many
     public function auction_items()
     {
-        return $this->hasMany('App\Auction_Item');
+        return $this->hasMany('App\AuctionItem');
     }
+
+    // // Return deleted auction items
+    // public function deleted_auction_items(){
+    //     return $this->hasMany
+    // }
 
     // Relationship to sponsor - many to many
     public function sponsors()
@@ -119,6 +140,12 @@ class Event extends Model
     public function bouts()
     {
         return $this->hasMany('App\Bout');
+    }
+
+    // Relationship to auctions - one to many
+    public function auctions()
+    {
+        return $this->hasMany('App\AuctionItem');
     }
 
     // Relationship to contender applications - one to many

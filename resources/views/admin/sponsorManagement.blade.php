@@ -142,7 +142,7 @@
                     <div class="card w-50 mx-auto text-center mb-3">
                         <label for="logo">Logo:</label>
                         <img class="logoPreview img-fluid" id="logoPreview" src="/storage/images/sponsors/{{file_exists(public_path('storage/images/sponsors/' . $sponsor->id . '.png')) ? $sponsor->id : '0' }}.png">
-                        <label for="logoInput" class="btn btn-primary">Change
+                        <label for="logoInput" class="btn btn-primary mb-0">Change
                             <input type="file" name="logo" id="logoInput" class="form-control" hidden>
                         </label>
                     </div>
