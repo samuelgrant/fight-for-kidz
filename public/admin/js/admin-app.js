@@ -458,7 +458,7 @@ function applicantManagementModal(id){
 
         // Additional Tab
         $("#appOccupation").val(data.occupation);           $("#appEmployer").val(data.employer);
-        $("appConvictionDetails").text(data.conviction_details);
+        $("#appConvictionDetails").text(data.conviction_details);
 
         // Set Consent
         if(consent_to_test = 0){
@@ -473,6 +473,13 @@ function applicantManagementModal(id){
         }else if(consent_to_test = 1){
             $("#appSponsor").val("Yes");
         }
+
+        // Populate custom questions
+        $('#custom_1').val(data.custom_one);
+        $('#custom_2').val(data.custom_two);
+        $('#custom_3').val(data.custom_three);
+        $('#custom_4').val(data.custom_four);
+        $('#custom_5').val(data.custom_five);
 
 
         $("#applicantMoreInfoModal").modal('show');
@@ -549,4 +556,38 @@ $(document).ready(function(){
     })
 
 })
+
+// File upload functions
+function fileUpdateModal(id){
+
+    
+
+    form = $('#fileUpdateForm');
+    modal = $('#updateModal');
+
+    url = "/a/dashboard/uploads/" + id;
+
+    form.prop('action', form.data('action') + '/' + id);
+
+    $.ajax({
+        method : 'GET',
+        url : url,
+    }).done(function(data){
+        console.log(data.display_location);
+        $('#updateDisplaySelect').val(data.display_location);
+        modal.modal('show');
+
+    }).fail(function(error){
+        console.log(error);
+    })
+
+}
+
+$(document).ready(function(){
+    $('#fileUpload').change(function(e){
+        var filename = e.target.files[0].name;
+        $('#fileName').text(filename);
+    });
+});
+
 
