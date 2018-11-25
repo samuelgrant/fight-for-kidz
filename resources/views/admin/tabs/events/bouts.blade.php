@@ -10,8 +10,11 @@
     <form class="d-inline" action="{{route('admin.eventManagement.toggleBouts', ['eventID' => $event->id])}}" method="POST">
         @csrf
         @method('PUT')
-        <button type="submit" class="btn btn-primary"><i class="far {{$event->show_bouts ? 'fa-eye-slash' : 'fa-eye'}}"></i>&nbsp;{{$event->show_bouts ? 'Hide bouts' : 'Show bouts'}}</button>    
-    </form>
+        <label class="switch">
+            <input type="checkbox" {{$event->show_bouts ? 'checked' : ''}} onchange="this.form.submit()">
+            <span class="slider round"></span>
+        </label>
+        </form>
     </div>
 
     <hr>
