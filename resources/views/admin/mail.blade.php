@@ -54,7 +54,7 @@
                 <div class="d-inline-block">
                     <table>
                         <tr>
-                            <td><a data-href="{{route('admin.mail.preview', ['messageText' => null])}}" href="" target="_blank" class="btn btn-info btn-lg px-5" id="mailPreviewBtn"><i class="fas fa-print"></i>&nbsp;&nbsp;Preview Email</a></td>
+                            <td><button type="button" class="btn btn-info btn-lg px-5" id="mailPreviewBtn" data-url="{{route('admin.mail.preview')}}"}><i class="fas fa-print"></i>&nbsp;&nbsp;Preview Email</button></td>
                             <td>
                                 <button type="button" id="sendBtn" class="btn btn-primary btn-lg d-inline px-5" id="mailSendBtn"><i class="fas fa-envelope"></i>&nbsp;&nbsp;Send Email</button>
                                 <button type="button" id="abortSendBtn" style="min-width:150px" class="btn btn-danger btn-lg d-none"><i class="fas fa-times"></i>&nbsp;Abort</button>

@@ -528,13 +528,23 @@ $(document).ready(function(){
 
     $('#mailPreviewBtn').on('click', function(){
 
-        message = $('#messageText').val();
-
-        if(message == ''){
-            message = 'Oops, you forgot to add some content!';
-        }
+        message = CKEDITOR.instances['messageText'].getData();
+        action = $(this).data('url');
         
-        $(this).prop('href', $(this).data('href') + '/' + message);
+        // ajax call to add to team
+        $.ajax({
+            type: 'POST',
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            url: action,
+            data: {'messageText' : message}, 
+        }).done(function(data){
+            // open a new tab/window and write the returned html to it
+            var win = window.open();
+            win.document.write(data);
+        }).fail(function(error){
+            console.log(error);
+        });
+
         
     });
 

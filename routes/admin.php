@@ -121,5 +121,5 @@ Route::get('/applicantImages/{imageName}', 'admin\ImageController@getApplicantIm
 // Mail routes
 Route::get('/emails', 'admin\MailController@index')->name('admin.sendMail');
 Route::post('/emails', 'admin\MailController@presetTarget')->name('admin.mail.preset');
-Route::get('/emails/preview/{messageText}', 'admin\MailController@previewMail')->name('admin.mail.preview');
+Route::post('/emails/preview', 'admin\MailController@previewMail')->name('admin.mail.preview');
 Route::post('/emails/send', 'admin\MailController@sendMail')->name('admin.mail.send');

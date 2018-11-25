@@ -50,7 +50,7 @@ class CustomMail extends Mailable
             ]);
         }
 
-        // plain text version of email
+        // plain text version of email to reduce spam index
         $html2text = new Html2Text($this->messageText);
         $this->plainMessage = $html2text->getText();
         $email->text('emails.customPlain');

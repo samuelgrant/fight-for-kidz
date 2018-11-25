@@ -28,9 +28,13 @@ class MailController extends Controller
         return view('admin.mail')->with('targetGroup', $request->input('groupID'));
     }
 
-    public function previewMail($messageText){
+    /**
+     * Returns the preview as html
+     */
+    public function previewMail(Request $request){
 
         $empty = []; // have to pass an array
+        $messageText = $request->messageText;
 
         return new CustomMail('<name here>', '<Subject here>', $messageText, $empty);
 
