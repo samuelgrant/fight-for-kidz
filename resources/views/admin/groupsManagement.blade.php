@@ -14,7 +14,7 @@
     <div class="col-md-12">
         <!-- Tabs -->
         <div>
-            <ul class="nav nav-tabs">
+            <ul class="nav nav-tabs nav-tabs-persistent">
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') != 'deleted')? 'active': '' }}"
                         role="tab" data-toggle="tab" href="#tab-1" id="active">Current Groups</a></li>
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'deleted')? 'active': '' }}"

@@ -1,6 +1,6 @@
 // adds the tab value to the URL and refreshes page
 $(document).ready(function () {
-    $('.nav-tabs').click(function (event) {
+    $('.nav-tabs-persistent').click(function (event) {
         var newURLString = window.location.pathname + "?tab=" + event.target.id;
 
         window.history.replaceState(null, null, newURLString);
@@ -16,6 +16,10 @@ $(document).ready(function () {
     })
 
     $('#mainPagePhoto').change(function(){
+        processImage(this);
+    })
+
+    $('#itemImage').change(function(){
         processImage(this);
     })
 });
@@ -152,6 +156,29 @@ $(document).ready(function() {
         'iDisplayLength' : 100
     })
 
+    $('#auction-dtable').DataTable({
+        "columns":[
+            null,
+            { "orderable": false, "searchable": true },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false }
+        ]
+    })
+
+    $('#auctionDeleted-dtable').DataTable({
+        "columns":[
+            null,
+            { "orderable": false, "searchable": true},
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false}
+        ]
+    })
+
     $('#event-sponsor-dtable').DataTable({           
         "columns" : [
             null,
@@ -171,6 +198,27 @@ $(document).ready(function() {
         ],
         'iDisplayLength' : 25
     });
+
+    $('#merchandise-dtable').DataTable({
+        "columns":[
+            null,
+            { "orderable": false, "searchable": true },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false }
+        ]
+    })
+
+    $('#merchandiseDeleted-dtable').DataTable({
+        "columns":[
+            null,
+            { "orderable": false, "searchable": true},
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false}
+        ]
+    })
 });
 
 // Count the number of selected datatable rows on a page, and display the result
@@ -488,6 +536,59 @@ function applicantManagementModal(id){
     });
 }
 
+function auctionCreateModal(){
+    //Set modal for creating auction item
+    //$("#auctionForm").attr("action", "/");
+    $('#hiddenMethod').val('POST');
+    $("#auctionModalTitle").text("Create Auction Item");
+    $("#auctionModalButton").text("Confirm");
+
+    //Set all text fields to empty
+    $("#auctionName").val("");
+    $("#auctionDescription").val("");
+    $("#auctionDonor").val("");
+    $("#auctionDonorUrl").val("");
+    $("#imgPreview").attr("src", '');
+
+    //Display the modal
+    $("#createEditAuctionItemModal").modal('show');
+}
+
+function auctionEditModal(id){
+    $.ajax({
+        method: "get",
+        headers:  {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: `/a/auction-management/auction/${id}`
+    }).done((data) => {
+        //Set modal for editing
+        $("#auctionForm").attr("action", "http://f4k.localhost/a/auction-management/update/" + id);
+        $("#auctionModalTitle").text("Edit Auction Item");
+        $("#auctionModalButton").text("Save");
+        $("#hiddenMethod").val("PUT");
+
+        //Dynamically populate the modal with item info
+        $("#auctionName").val(data.name);
+        $("#auctionDescription").val(data.desc);
+        $("#auctionDonor").val(data.donor);
+        $("#auctionDonorUrl").val(data.donor_url);
+
+        //checks to see if the image exists and sets the imgPreview otherwise sets it to default
+        $.get("/storage/images/auction/" + data.id + ".png")
+        .done(function(){
+            $("#imgPreview").attr("src", "/storage/images/auction/" + data.id + ".png");
+        }).fail(function(){
+            $("#imgPreview").attr("src", "/storage/images/noImage.png");
+        })                
+
+        //Display the modal
+        $("#createEditAuctionItemModal").modal('show');
+    }).fail((error) => {
+        console.log(error);
+    });
+}
+
 function calculate_age (data) {
     var now = new Date();
     var age = now - data;
@@ -595,6 +696,59 @@ $(document).ready(function(){
     })
 
 })
+//Sets the modal for creating merchandise item and then displays it
+function merchandiseCreateModal(){
+    //$("#auctionForm").attr("action", "/");
+    $('#hiddenMethod').val('POST');
+    $("#merchandiseModalTitle").text("Create Merchandise Item");
+    $("#merchandiseModalButton").text("Confirm");
+
+    //Set all text fields placeholders
+    $("#merchandiseName").val("");
+    $("#merchandiseDescription").val("");
+    $("#merchandisePrice").val("");
+    $("#imgPreview").attr("src", '');
+
+
+
+    //Display the modal
+    $("#createEditMerchandiseItemModal").modal('show');
+}
+
+////Sets the modal for editing merchandise item dynamically populates the fields and then displays it
+function merchandiseEditModal(id){
+    $.ajax({
+        method: "get",
+        headers:  {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: `/a/merchandise-management/merchandise/${id}`
+    }).done((data) => {
+        //Set modal for editing
+        $("#merchandiseForm").attr("action", "http://f4k.localhost/a/merchandise-management/update/" + id);
+        $("#merchandiseModalTitle").text("Edit Merchandise Item");
+        $("#merchandiseModalButton").text("Save");
+        $("#hiddenMethod").val("PUT");
+
+        //Dynamically populate the modal with item info
+        $("#merchandiseName").val(data.name);
+        $("#merchandiseDescription").val(data.desc);
+        $("#merchandisePrice").val(data.price);
+        
+        //checks to see if the image exists and sets the imgPreview otherwise sets it to default
+        $.get("/storage/images/merchandise/" + data.id + ".png")
+        .done(function(){
+            $("#imgPreview").attr("src", "/storage/images/merchandise/" + data.id + ".png");
+        }).fail(function(){
+            $("#imgPreview").attr("src", "/storage/images/noImage.png");
+        })       
+
+        //Display the modal
+        $("#createEditMerchandiseItemModal").modal('show');
+    }).fail((error) => {
+        console.log(error);
+    });
+}
 
 // File upload functions
 function fileUpdateModal(id){

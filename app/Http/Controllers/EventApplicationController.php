@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Input;
+use App\Image;
 use App\Applicant, App\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -149,17 +150,8 @@ class EventApplicationController extends Controller
         $imagePath = 'private\images\applicants\\';
         $imageName = $applicant->id . '.png'; 
         
-        // convert to png if not already
-        switch (exif_imagetype($image)){
-
-            case IMAGETYPE_PNG:
-                break; // don't need to do anything, already a PNG
-            case IMAGETYPE_JPEG:
-                $img = imagecreatefromjpeg($image);
-                break;
-            default :
-                throw new InvalidArgumentException('Invalid image type'); // validation should prevent this happening
-        }
+        // Convert to png if needed and store
+        Image::storeAsPng($image, $imagePath, $imageName);
 
         if(isset($img)){
             imagepng($img, storage_path('app\\' . $imagePath . $imageName));
