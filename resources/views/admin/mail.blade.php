@@ -15,7 +15,7 @@
 
         <h3>Send Mail</h3>
         
-        <form class="form" method="POST" action="{{route('admin.mail.send')}}" id="mailForm" data-send-action="{{route('admin.mail.send')}}" data-target-group="{{$targetGroup ?? null}}">            
+        <form class="form" enctype="multipart/form-data" method="POST" action="{{route('admin.mail.send')}}" id="mailForm" data-send-action="{{route('admin.mail.send')}}" data-target-group="{{$targetGroup ?? null}}">            
 
             <div class="form-group my-3">
                 <label for="multipleGroupSelect">Select Email Recipients:</label>
@@ -45,7 +45,7 @@
             </div>
             <div class="form-group">
 				<label class="btn btn-primary" for="fileUpload"><i class="fas fa-paperclip"></i>&nbsp;Select Attachments
-					<input type="file" multiple="multiple" id="fileUpload" name="messageAttachments" class="d-none">
+					<input type="file" multiple="multiple" id="fileUpload" name="messageAttachments[]" class="d-none">
 				</label>
 				<span class="ml-3 gray-card d-none" id="fileName"></span>
 				<span id="clearAttachmentsBtn" class="times-circle-btn d-none"><i class="fas fa-times-circle"></i></span>
@@ -84,9 +84,8 @@
  
             groupID = $('#mailForm').data('targetGroup');
             console.log(groupID);
-            // find the element for the group in the dropdown and add 'selected' class
+            // find the element for the group in the dropdown and 'click'
             $('[data-value=' + groupID + ']').click();
-
         })
 
     </script>

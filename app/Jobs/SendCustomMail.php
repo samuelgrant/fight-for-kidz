@@ -9,11 +9,13 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CustomMail;
+use Illuminate\Support\Facades\Storage;
 
 class SendCustomMail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    protected $attachmentDetails;
     protected $messageText;
     protected $recipient;
     protected $subject;
@@ -24,12 +26,13 @@ class SendCustomMail implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($email, $recipient, $subject, $messageText)
+    public function __construct($email, $recipient, $subject, $messageText, $attachmentDetails)
     {
         $this->email = $email;
         $this->recipient = $recipient;
         $this->messageText = $messageText;
         $this->subject = $subject;
+        $this->attachmentDetails = $attachmentDetails;
     }
 
     /**
@@ -39,6 +42,6 @@ class SendCustomMail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->email)->send(new CustomMail($this->recipient, $this->subject, $this->messageText));
+        Mail::to($this->email)->send(new CustomMail($this->recipient, $this->subject, $this->messageText, $this->attachmentDetails));
     }
 }

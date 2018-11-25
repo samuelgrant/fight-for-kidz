@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Jobs\SendCustomMail;
+use Illuminate\Support\Facades\Storage;
 
 class MailController extends Controller
 {
@@ -28,7 +29,9 @@ class MailController extends Controller
 
     public function previewMail($messageText){
 
-        return new CustomMail('<name here>', '<Subject here>', $messageText);
+        $empty = []; // have to pass an array
+
+        return new CustomMail('<name here>', '<Subject here>', $messageText, $empty);
 
     }
 
@@ -38,16 +41,36 @@ class MailController extends Controller
             'subject' => 'required|string',
             'messageText' => 'required|string',
             'target_groups' => 'required',
+            'messageAttachments.*' => 'max:2000|mimes:doc,docx,bmp,gif,jpg,jpeg,png,pdf,rtf,xls,xlsx,txt',
         ]);
         
         $subject = $request->input('subject');
         $messageText = $request->input('messageText');
+        
+        // Start of attachment processing.
+
+        $messageAttachments = $request->messageAttachments;
+        $attachmentDetails = [];
+
+        // store files to disk, temporarily, and pass the path to the job.
+        if($messageAttachments){
+            foreach($messageAttachments as $file){
+                
+                $filename = $file->getClientOriginalName();
+                $fileMime = $file->getClientMimeType();
+                $storedName = Storage::disk('temp')->put('/', $file);
+                $storedPath = storage_path('app/private/temp/') . $storedName;
+                $attachmentDetails[] = ['filename' => $filename, 'fileMime' => $fileMime, 'storedName' => $storedName, 'storedPath' => $storedPath];          
+            }
+        }
+
+        // end of attachment processing
 
         $recipients = $this->getRecipients($request->input('target_groups'));
 
         foreach($recipients as $recipient){
 
-            SendCustomMail::dispatch($recipient['email'], $recipient['name'], $subject, $messageText);
+            SendCustomMail::dispatch($recipient['email'], $recipient['name'], $subject, $messageText, $attachmentDetails);
                     
         }
 

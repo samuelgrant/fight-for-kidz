@@ -165,6 +165,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         App\Providers\NavbarServiceProvider::class,
         App\Providers\SettingsServiceProvider::class,
+        App\Providers\QueueFinishedProvider::class,
 
     ],
 

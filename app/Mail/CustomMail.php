@@ -6,11 +6,14 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 class CustomMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $attachmentDetails;
     public $messageText;
     public $recipient;
     public $subject;
@@ -20,11 +23,12 @@ class CustomMail extends Mailable
      *
      * @return void
      */
-    public function __construct($recipient, $subject, $messageText)
+    public function __construct($recipient, $subject, $messageText, $attachmentDetails)
     {
         $this->recipient = $recipient;
         $this->messageText = $messageText;
         $this->subject = $subject;
+        $this->attachmentDetails = $attachmentDetails;
     }
 
     /**
@@ -34,7 +38,16 @@ class CustomMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.custom')
-                    ->subject($this->subject);
+        $email = $this->view('emails.custom')->subject($this->subject);
+
+        // attach attachments to the email
+        foreach($this->attachmentDetails as $file){
+            $email->attach($file['storedPath'], [ // real path returns temp storage path of uploaded file
+                'as' => $file['filename'],
+                'mime' => $file['fileMime'],
+            ]);
+        }
+
+        return $this;
     }
 }

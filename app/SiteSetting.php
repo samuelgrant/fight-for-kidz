@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class SiteSetting extends Model
 {
@@ -17,5 +18,13 @@ class SiteSetting extends Model
         }
 
         return;
+    }
+
+    public static function deleteTempFiles(){
+
+        Storage::files(storage_path('app/private/temp'));
+
+        
+
     }
 }
