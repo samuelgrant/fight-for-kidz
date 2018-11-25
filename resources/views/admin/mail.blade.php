@@ -84,9 +84,18 @@
  
             groupID = $('#mailForm').data('targetGroup');
             console.log(groupID);
-            // find the element for the group in the dropdown and 'click'
-            $('[data-value=' + groupID + ']').click();
+            if(groupID != null) {
+                // find the element for the group in the dropdown and 'click'
+                $("[data-value=' + groupID + ']").click();
+            }
         })
+
+    </script>
+
+    {{-- Ckeditor --}}
+    <script>
+
+        CKEDITOR.replace('messageText');
 
     </script>
 

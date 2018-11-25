@@ -11,6 +11,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
 use App\Jobs\SendCustomMail;
 use Illuminate\Support\Facades\Storage;
+use Purifier;
 
 class MailController extends Controller
 {
@@ -46,6 +47,9 @@ class MailController extends Controller
         
         $subject = $request->input('subject');
         $messageText = $request->input('messageText');
+
+        // Purify the input to remove malicious scripts / dangerous html tags
+        $messageText = Purifier::clean($messageText);
         
         // Start of attachment processing.
 

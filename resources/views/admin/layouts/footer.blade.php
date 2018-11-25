@@ -42,3 +42,6 @@
             });
         })(jQuery);
 </script>
+
+{{-- Ckeditor --}}
+<script src="{{asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script>
