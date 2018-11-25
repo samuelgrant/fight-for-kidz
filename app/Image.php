@@ -3,8 +3,7 @@
 namespace App;
 
 class Image //extends Model
-{
-    
+{    
 
     /**
      *  Stores a given png or jpg image as a png image, 
@@ -16,6 +15,12 @@ class Image //extends Model
      *  Return true if successful
      */
     public static function storeAsPng($image, $path, $name){
+        
+        $dir = storage_path('app\\' . $path);
+
+        if(!file_exists($dir)){
+            mkdir($dir);
+        }
 
         switch(exif_imagetype($image)){
 
