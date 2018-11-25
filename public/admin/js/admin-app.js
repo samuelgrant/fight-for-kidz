@@ -538,6 +538,37 @@ $(document).ready(function(){
         
     });
 
+    $('#sendBtn').on('click', function(){
+
+        // hide self and preview buttons
+        $('#mailPreviewBtn').addClass('d-none');
+        $('#mailPreviewBtn').removeClass('d-inline');
+        $('#promptText').addClass('d-none');
+        $(this).addClass('d-none');
+        $(this).removeClass('d-inline');
+
+        // show confirm and abort buttons
+        $('#confirmSendBtn').removeClass('d-none');
+        $('#abortSendBtn').removeClass('d-none');
+
+    });
+
+    $('#abortSendBtn').on('click', function(){
+
+        // show send and preview buttons
+        $('#mailPreviewBtn').removeClass('d-none');
+        $('#mailPreviewBtn').addClass('d-inline');
+        $('#sendBtn').removeClass('d-none');
+        $('#sendBtn').addClass('d-inline');
+        $('#promptText').removeClass('d-none');
+
+        // hide confirm and abort buttons
+        $('#confirmSendBtn').addClass('d-none');
+        $(this).addClass('d-none');
+
+    });
+
+
     $('#multipleGroupSelect').change(function(){
 
         console.log($(this).val().length);
