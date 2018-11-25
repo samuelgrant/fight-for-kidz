@@ -43,11 +43,18 @@
               <textarea name="messageText" id="messageText" class="form-control" placeholder="" rows="12" required></textarea>
               <small id="helpId" class="text-muted float-right">0/5000</small>
             </div>
+            <div class="form-group">
+				<label class="btn btn-primary" for="fileUpload"><i class="fas fa-paperclip"></i>&nbsp;Select Attachments
+					<input type="file" multiple="multiple" id="fileUpload" name="messageAttachments" class="d-none">
+				</label>
+				<span class="ml-3 gray-card d-none" id="fileName"></span>
+				<span id="clearAttachmentsBtn" class="times-circle-btn d-none"><i class="fas fa-times-circle"></i></span>
+            </div>
             <div class="form-group w-100">
                 <div class="d-inline-block">
                     <table>
                         <tr>
-                            <td><a data-href="{{route('admin.mail.preview', ['messageText' => null])}}" href="" target="_blank" class="btn btn-info btn-lg d-inline px-5" id="mailPreviewBtn"><i class="fas fa-print"></i>&nbsp;&nbsp;Preview Email</a></td>
+                            <td><a data-href="{{route('admin.mail.preview', ['messageText' => null])}}" href="" target="_blank" class="btn btn-info btn-lg px-5" id="mailPreviewBtn"><i class="fas fa-print"></i>&nbsp;&nbsp;Preview Email</a></td>
                             <td>
                                 <button type="button" id="sendBtn" class="btn btn-primary btn-lg d-inline px-5" id="mailSendBtn"><i class="fas fa-envelope"></i>&nbsp;&nbsp;Send Email</button>
                                 <button type="button" id="abortSendBtn" style="min-width:150px" class="btn btn-danger btn-lg d-none"><i class="fas fa-times"></i>&nbsp;Abort</button>
