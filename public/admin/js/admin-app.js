@@ -385,7 +385,7 @@ function editContactModal(id){
 
     $.ajax({
         method : "GET",
-        url : `/a/group-management/contacts/${id}`
+        url : '/a/group-management/contacts/' + id
     }).done(function(data){
 
         form = $('#editContactForm');
@@ -423,8 +423,8 @@ function applicantManagementModal(id){
         headers:  {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: `/a/event-management/applicants/${id}`
-    }).done((data) => {
+        url: '/a/event-management/applicants/' + id
+    }).done(function(data){
         var dob = new Date(data.dob);
         // Dynamically populate modal
 
@@ -483,7 +483,7 @@ function applicantManagementModal(id){
 
 
         $("#applicantMoreInfoModal").modal('show');
-    }).fail((error) => {
+    }).fail(function(error) {
         console.log(error);
     });
 }
@@ -542,7 +542,6 @@ $(document).ready(function(){
 
         // hide self and preview buttons
         $('#mailPreviewBtn').addClass('d-none');
-        $('#mailPreviewBtn').removeClass('d-inline');
         $('#promptText').addClass('d-none');
         $(this).addClass('d-none');
         $(this).removeClass('d-inline');
@@ -557,7 +556,6 @@ $(document).ready(function(){
 
         // show send and preview buttons
         $('#mailPreviewBtn').removeClass('d-none');
-        $('#mailPreviewBtn').addClass('d-inline');
         $('#sendBtn').removeClass('d-none');
         $('#sendBtn').addClass('d-inline');
         $('#promptText').removeClass('d-none');
@@ -614,11 +612,51 @@ function fileUpdateModal(id){
 
 }
 
+// below works for both file uploads on dashboard and emails
 $(document).ready(function(){
     $('#fileUpload').change(function(e){
-        var filename = e.target.files[0].name;
-        $('#fileName').text(filename);
-    });
+        var clearBtn = $('#clearAttachmentsBtn');
+        
+        var fileCount = e.target.files.length;
+        console.log(fileCount);
+
+        fileNamesString = '';
+
+        for(i = 0; i < fileCount; i++){
+            fileNamesString += ((i > 0 ? ', ' : '') + e.target.files[i].name);
+            console.log(fileNamesString);
+        }
+
+        if(fileNamesString != ''){  
+            $('#fileName').removeClass('d-none');
+            $('#fileName').text(fileNamesString);
+        } else{
+            $('#fileName').addClass('d-none');
+        }
+
+        if(fileCount > 0){
+            clearBtn.removeClass('d-none');
+        }else{
+            clearBtn.addClass('d-none');
+        }
+    });    
+});
+
+$('#clearAttachmentsBtn').on('click', function(e){
+    // to reset the input, we wrap it with a temp form, 
+    // reset that form, then unwrap it. This is because the only 
+    // way to change or clear a file input is by form reset. For security reasons.
+    // https://www.gyrocode.com/articles/how-to-reset-file-input-with-javascript/
+
+    var $file = $('#fileUpload').first();
+
+    $file.wrap('<form>').closest('form').get(0).reset();
+    $file.unwrap();
+
+    console.log($('#fileUpload')[0].files.length);
+
+    $file.change();
+
 });
 
 
