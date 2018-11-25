@@ -78,6 +78,7 @@
 
 @section('scripts')
 
+    {{-- Preselect recipient group when navigating here from a group 'email to group' button --}}
     <script>
         
         $(document).ready(function(){

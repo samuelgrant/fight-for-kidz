@@ -224,6 +224,7 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Input' => Illuminate\Support\Facades\Input::class,
         'Purifier' => Mews\Purifier\Facades\Purifier::class,
+        'Html2Text' => \Html2Text\Html2Text::class,
     ],
 
 ];
