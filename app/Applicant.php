@@ -9,6 +9,7 @@ use App\Contender;
 use App\Traits\Groupable;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Storage;
 
 class Applicant extends Model
 {
@@ -199,5 +200,17 @@ class Applicant extends Model
 				$sheet->fromArray($none);
 	        });
 		})->download('xlsx');
+    }
+
+    /**
+     *  Deletes self and removes applicant image from storage
+     */
+    public function discard(){
+
+        // delete associated applicant image
+        Storage::delete('/private/images/applicants/' . $this->id . '.png');
+
+        // delete database record
+        $this->delete();
     }
 }

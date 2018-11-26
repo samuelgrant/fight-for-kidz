@@ -35,6 +35,11 @@ Route::post('/subscribe', 'SubscribersController@store')->name('subscribe');
 // Contender api
 Route::get('/contenders/bio/{contenderID}', 'EventController@getContender')->name('getContender');
 
+// Unsubscribe
+Route::get('/communication/unsubscribe/{token}', function(Request $request) {
+    return 'test';
+})->name('mail.unsubscribe');
+
 // Contact us
 Route::post('/contact/general', function(){
     return 'general contact us';

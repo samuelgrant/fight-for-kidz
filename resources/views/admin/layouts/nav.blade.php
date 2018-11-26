@@ -88,6 +88,12 @@
             <i class="fas fa-layer-group"></i>
             <span>Group Management</span>
           </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{{route('admin.sendMail')}}">
+            <i class="fas fa-fw fa-envelope"></i>
+            <span>Send Emails</span>
+          </a>
         </li>         
         <li class="nav-item">
           <a class="nav-link" href="{{route('admin.userManagement')}}">
