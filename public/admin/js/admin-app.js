@@ -544,12 +544,12 @@ function auctionCreateModal(){
     $("#auctionModalTitle").text("Create Auction Item");
     $("#auctionModalButton").text("Confirm");
 
-    //Set all text fields placeholders
+    //Set all text fields to empty
     $("#auctionName").val("");
     $("#auctionDescription").val("");
     $("#auctionDonor").val("");
     $("#auctionDonorUrl").val("");
-    $("auctionItemImage").attr("src", '');
+    $("#imgPreview").attr("src", '');
 
     //Display the modal
     $("#createEditAuctionItemModal").modal('show');
@@ -604,12 +604,12 @@ function merchandiseCreateModal(){
     $("#merchandiseModalTitle").text("Create Merchandise Item");
     $("#merchandiseModalButton").text("Confirm");
 
-    //Set all text fields placeholders
+    //Set all text fields to empty
     $("#merchandiseName").val("");
     $("#merchandiseTagline").val("");
     $("#merchandiseDescription").val("");
     $("#merchandisePrice").val("");
-    $("#merchandiseItemImage").attr("src", '');
+    $("#imgPreview").attr("src", '');
 
     //Display the modal
     $("#createEditMerchandiseItemModal").modal('show');
@@ -683,5 +683,3 @@ $(document).ready(function(){
         $('#fileName').text(filename);
     });
 });
-
-
