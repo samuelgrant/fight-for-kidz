@@ -44,7 +44,7 @@ class CustomMail extends Mailable
 
         // attach attachments to the email
         foreach($this->attachmentDetails as $file){
-            $email->attach($file['storedPath'], [ // real path returns temp storage path of uploaded file
+            $email->attach($file['storedPath'], [ 
                 'as' => $file['filename'],
                 'mime' => $file['fileMime'],
             ]);
