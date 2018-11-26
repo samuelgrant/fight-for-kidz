@@ -12,7 +12,10 @@
 <form class="d-inline" action="{{route('admin.eventManagement.toggleAuctions', ['eventID' => $event->id])}}" method="POST">
     @csrf
     @method('PUT')
-<button type="submit" class="btn btn-primary"><i class="far {{$event->show_auctions ? 'fa-eye-slash' : 'fa-eye'}}"></i>&nbsp;{{$event->show_auctions ? 'Hide auctions' : 'Show auctions'}}</button>    
+    <label class="switch">
+        <input type="checkbox" {{$event->show_auctions ? 'checked' : ''}} onchange="this.form.submit()">
+        <span class="slider round"></span>
+    </label>
 </form>
 </div>
 
