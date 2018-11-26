@@ -38,6 +38,4 @@ Route::get('/contenders/bio/{contenderID}', 'EventController@getContender')->nam
 Auth::routes();
 
 // Unsubscribe
-Route::get('/communication/unsubscribe/{token}', function(Request $request) {
-    return 'test';
-})->name('mail.unsubscribe');
+Route::get('/communication/unsubscribe/{token}', 'subscribersController@unsubscribe')->name('mail.unsubscribe');
