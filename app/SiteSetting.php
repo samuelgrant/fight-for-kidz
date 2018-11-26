@@ -19,12 +19,4 @@ class SiteSetting extends Model
 
         return;
     }
-
-    public static function deleteTempFiles(){
-
-        Storage::files(storage_path('app/private/temp'));
-
-        
-
-    }
 }
