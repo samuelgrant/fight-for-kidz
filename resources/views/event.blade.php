@@ -103,7 +103,7 @@
         </div>
 
         <!-- Each bout card will contain two contender-cards -->
-        <div id="bout-card" class="contender-card contender-card-red">
+        <div class="contender-card contender-card-red">
           <div class="contender-card-inner">
             <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->red_contender->id . '.png')) ? '/storage/images/contenders/' . $bout->red_contender->id . '.png' : '/storage/images/contenders/0.png'}}"
               class="mx-auto contender-img" height="89">
@@ -118,7 +118,7 @@
           </div>
         </div>
 
-        <div id="bout-card" class="contender-card contender-card-blue">
+        <div class="contender-card contender-card-blue">
           <div class="contender-card-inner">
             <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->blue_contender->id . '.png')) ? '/storage/images/contenders/' . $bout->blue_contender->id . '.png' : '/storage/images/contenders/0.png'}}"
               class="mx-auto contender-img" height="89">
