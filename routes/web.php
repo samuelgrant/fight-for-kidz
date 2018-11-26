@@ -35,9 +35,22 @@ Route::post('/subscribe', 'SubscribersController@store')->name('subscribe');
 // Contender api
 Route::get('/contenders/bio/{contenderID}', 'EventController@getContender')->name('getContender');
 
-Auth::routes();
-
 // Unsubscribe
 Route::get('/communication/unsubscribe/{token}', function(Request $request) {
     return 'test';
 })->name('mail.unsubscribe');
+
+// Contact us
+Route::post('/contact/general', function(){
+    return 'general contact us';
+})->name('contact.general');
+
+Route::post('/contact/sponser', function(){
+    return 'sponser contact us';
+})->name('contact.sponser');
+
+Route::post('/contact/table', function(){
+    return 'table contact us';
+})->name('contact.table');
+
+Auth::routes();
