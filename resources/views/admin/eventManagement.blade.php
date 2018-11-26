@@ -492,7 +492,7 @@
 
                     <div class="form-group">
                         <label for="auctionDonor">Item donor:</label>
-                        <input  type="text" class="form-control" name="donor" id="auctionDonor"  placeholder="*required" required>
+                        <input  type="text" class="form-control" name="donor" id="auctionDonor">
                     </div>
 
                     <div class="form-group">
@@ -502,7 +502,7 @@
 
                     <div class="card w-50 mx-auto text-center mb-3">
                             <label for="logo">Item Image:</label>
-                            <img class="logoPreview img-fluid" id="imgPreview" src="/storage/images/noImage.png">
+                            <img class="logoPreview img-fluid" id="imgPreview">
                             <label for="itemImage" class="btn btn-primary mb-0">Change
                                 <input type="file" name="itemImage" id="itemImage" class="form-control" hidden>
                             </label>

@@ -7,6 +7,20 @@
 
 <hr>
 
+<div>
+<h5>Auctions are currently {{$event->show_auctions ? 'visible' : 'hidden'}} on the public event page.</h5>
+<form class="d-inline" action="{{route('admin.eventManagement.toggleAuctions', ['eventID' => $event->id])}}" method="POST">
+    @csrf
+    @method('PUT')
+    <label class="switch">
+        <input type="checkbox" {{$event->show_auctions ? 'checked' : ''}} onchange="this.form.submit()">
+        <span class="slider round"></span>
+    </label>
+</form>
+</div>
+
+<hr>
+
 <div class="row">
     <div class="col-md-12">
         <!-- Tabs -->

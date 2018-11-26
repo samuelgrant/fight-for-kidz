@@ -1,5 +1,5 @@
 <div class="mt-4">
-        <h3 class="d-inline">{{$event->name}} : Bout Management</h3>
+        <h3 class="d-inline">{{$event->name}} : Bout</h3>
         <span class="float-right btn btn-success" onclick="addBout({{$event->id}})"><i class="fas fa-plus"></i>&nbsp;Add Bout</span>
     </div>
 
@@ -10,8 +10,11 @@
     <form class="d-inline" action="{{route('admin.eventManagement.toggleBouts', ['eventID' => $event->id])}}" method="POST">
         @csrf
         @method('PUT')
-        <button type="submit" class="btn btn-primary"><i class="far {{$event->show_bouts ? 'fa-eye-slash' : 'fa-eye'}}"></i>&nbsp;{{$event->show_bouts ? 'Hide bouts' : 'Show bouts'}}</button>    
-    </form>
+        <label class="switch">
+            <input type="checkbox" {{$event->show_bouts ? 'checked' : ''}} onchange="this.form.submit()">
+            <span class="slider round"></span>
+        </label>
+        </form>
     </div>
 
     <hr>
