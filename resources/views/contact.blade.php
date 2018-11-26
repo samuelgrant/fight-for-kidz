@@ -21,21 +21,22 @@
 			<div id="generalMessage" class="hidden">
 				<h3 class="text-center">General Message</h3>
 				<p class="text-center">Please send us a message and we will get back to you as soon as we can.</p>
+				<small>* Denotes a required field.</small>
 				<form action="{{route('contact.general')}}" method="POST">
 					<div class="row">
 						<div class="form-group col-md-6">
-							<input id="name" type="text" class="form-control" placeholder="Your name" required>
+							<input id="name" name="name" type="text" class="form-control" placeholder="* Your name" required>
 						</div>
 						<div class="form-group col-md-6">
-							<input id="name" type="text" class="form-control" placeholder="Your email address" required>
+							<input id="email" name="email" type="email" class="form-control" placeholder="* Your email address" required>
 						</div>
 					</div>
 					<div class="form-group">
-						<input id="name" type="text" class="form-control" placeholder="Phone number" required>
+						<input id="phone" name="phone" type="text" class="form-control" placeholder="* Phone number" required>
 					</div>
 					<div class="form-group">
-						<label for="message" class="text-white">Your message:</label>
-						<textarea id="message" class="form-control" rows="5"></textarea>
+						<label for="message" class="text-white">* Your message:</label>
+						<textarea id="message" class="form-control" rows="5" required></textarea>
 					</div>
 					<button class="btn btn-primary mt-2 d-block mx-auto">Send Message</button>
 					{!! app('captcha')->render(); !!}
@@ -48,25 +49,26 @@
 				<h3 class="text-center">Sponsorship Enquiry</h3>
 				<p class="text-center">Fill this out, and we will contact our potential sponsors closer to the event.</p>
 				<p class="text-center">Download our <a href="javascript:void(0);"><i class="fas fa-file-download"></i> Proposal Document</a> for information on sponsership.</p>
+				<small>* Denotes a required field.</small>
 				<form action="{{route('contact.sponser')}}" method="POST">
 					<div class="row">
 						<div class="form-group col-md-6">
-							<input id="name" type="text" class="form-control" placeholder="Your name" required>
+							<input id="name" name="name" type="text" class="form-control" placeholder="* Your name" required>
 						</div>
 						<div class="form-group col-md-6">
-							<input id="name" type="text" class="form-control" placeholder="Your email address" required>
+							<input id="name" name="email" type="email" class="form-control" placeholder="* Your email address" required>
 						</div>
 					</div>
 					<div class="form-group">
-						<input id="name" type="text" class="form-control" placeholder="Phone number" required>
+						<input id="name" name="phone" type="text" class="form-control" placeholder="* Phone number" required>
 					</div>					
 					<div class="form-group">
-						<label for="message" class="text-white">What type/s of sponsorship are you interested in?</label>
-						<input id="name" type="text" class="form-control" required>
+						<label for="message" class="text-white">* What type/s of sponsorship are you interested in?</label>
+						<input id="name" name="type" type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
 						<label for="message" class="text-white">Optional message:</label>
-						<textarea id="message" class="form-control" rows="5"></textarea>
+						<textarea id="message" name="message" class="form-control" rows="5"></textarea>
 					</div>
 					<button class="btn btn-primary mt-2 d-block mx-auto">Send Message</button>
 					{!! app('captcha')->render(); !!}
@@ -78,21 +80,22 @@
 			<div id="tableMessage" class="hidden">
 				<h3 class="text-center">Enquire about Booking a Table </h3>
 				<p class="text-center">Fill this out, and we will contact you when we can.</p>
+				<small>* Denotes a required field.</small>
 				<form action="{{route('contact.table')}}" method="POST">
 					<div class="row">
 						<div class="form-group col-md-6">
-							<input id="name" type="text" class="form-control" placeholder="Your name" required>
+							<input id="name" name="name" type="text" class="form-control" placeholder="* Your name" required>
 						</div>
 						<div class="form-group col-md-6">
-							<input id="name" type="text" class="form-control" placeholder="Your email address" required>
+							<input id="name" name="email" type="email" class="form-control" placeholder="* Your email address" required>
 						</div>
 					</div>
 					<div class="form-group">
-						<input id="name" type="text" class="form-control" placeholder="Phone number" required>
+						<input id="name" name="phone" type="text" class="form-control" placeholder="* Phone number" required>
 					</div>					
 					<div class="form-group">
-						<label for="message" class="text-white">Optional message:</label>
-						<textarea id="message" class="form-control" rows="5"></textarea>
+						<label for="message" class="text-white">Optional message - What type of table are you looking to book?:</label>
+						<textarea id="message" name="message" class="form-control" rows="5"></textarea>
 					</div>
 					<button class="btn btn-primary mt-2 d-block mx-auto">Send Message</button>
 					{!! app('captcha')->render(); !!}
