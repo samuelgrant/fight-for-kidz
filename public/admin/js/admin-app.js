@@ -651,6 +651,10 @@ function merchandiseEditModal(id){
     });
 }
 
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+
 // File upload functions
 function fileUpdateModal(id){
 
