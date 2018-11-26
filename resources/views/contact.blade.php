@@ -36,9 +36,10 @@
 					</div>
 					<div class="form-group">
 						<label for="message" class="text-white">* Your message:</label>
-						<textarea id="message" class="form-control" rows="5" required></textarea>
+						<textarea id="message" class="form-control" name="message" rows="5" required></textarea>
 					</div>
 					<button class="btn btn-primary mt-2 d-block mx-auto">Send Message</button>
+					@csrf
 					{!! app('captcha')->render(); !!}
 				</form>
 			</div>
@@ -71,6 +72,7 @@
 						<textarea id="message" name="message" class="form-control" rows="5"></textarea>
 					</div>
 					<button class="btn btn-primary mt-2 d-block mx-auto">Send Message</button>
+					@csrf
 					{!! app('captcha')->render(); !!}
 				</form>
 			</div>
@@ -98,6 +100,7 @@
 						<textarea id="message" name="message" class="form-control" rows="5"></textarea>
 					</div>
 					<button class="btn btn-primary mt-2 d-block mx-auto">Send Message</button>
+					@csrf
 					{!! app('captcha')->render(); !!}
 				</form>
 			</div>
@@ -114,19 +117,15 @@
 		function toggelForm(){
 			let selected = $("#messageType").val();
 			console.log(selected);
-
 			$("#generalMessage").addClass("hidden");
 			$("#sponserMessage").addClass("hidden");
 			$("#tableMessage").addClass("hidden");
-
 			if(selected == "general") {
 				$("#generalMessage").removeClass("hidden");
 			}
-
 			if(selected == "sponser") {
 				$("#sponserMessage").removeClass("hidden");
 			}
-
 			if(selected == "table") {
 				$("#tableMessage").removeClass("hidden");
 			}
