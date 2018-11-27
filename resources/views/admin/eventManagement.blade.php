@@ -214,8 +214,8 @@
                         <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantGeneral" class="nav-link active">General</a></li>
                         <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantPersonal" class="nav-link">Personal</a></li>
                         <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantEmergency" class="nav-link">Emergency</a></li>
-                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantMedical1" class="nav-link">Medical</a></li>
-                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantMedical2" class="nav-link">Medical</a></li>
+                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantMedical1" class="nav-link">Medical 1</a></li>
+                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantMedical2" class="nav-link">Medical 2</a></li>
                         <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantAdditional" class="nav-link">Additional</a></li>
                         <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantCustom" class="nav-link">Custom</a></li>
                         <li class="nav-item mr-auto">
