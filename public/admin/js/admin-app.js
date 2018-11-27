@@ -502,6 +502,8 @@ function applicantManagementModal(id){
         $("#appHeight").val(data.height + "cm");           $("#appWeightC").val(data.current_weight + "kg");
         $("#appWeightE").val(data.expected_weight + "kg");  $("#appSportingExperience").text(data.sporting_exp);
         $('#fitnessLevel').text('This applicant rates their fitness at ' + data.fitness_rating + ' out of 5');
+        var isRight = data.right_handed ? "right" : "left";
+        $("#dominantHand").text("This applicant is " + isRight + "-handed");
         $("#appBoxingExperience").text(data.boxing_exp);
         $('#hobbies').text(data.hobbies);
 
