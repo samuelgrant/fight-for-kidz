@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
-class SubscribersController extends Controller
+class SubscriberController extends Controller
 {
     /**
      * Adds a person to the subscribers table
@@ -42,8 +42,7 @@ class SubscribersController extends Controller
 
             // send mail notification of subscription
             Mail::to($subscriber->email)->send(new Subscribed($subscriber));
-
-            $subscriber->addToGroup(2);
+            
             session()->flash('success', 'You have successfully subscribed');
         }else{
             session()->flash('error', 'This email address has already been signed up');
@@ -52,9 +51,45 @@ class SubscribersController extends Controller
         return Redirect::to(URL::previous(). "#subscriber-section");
     }
 
-    public function showUnsubscribeForm($token){
+    public function showUnsubscribeForm(Request $request){
 
-        return view('unsubscribeForm')->with('token', $token);
+        return view('unsubscribeForm')->with('token', $request->token);
+
+    }
+
+    public function unsubscribe(Request $request){
+
+        $this->validate($request, [
+            'email' => 'required|email',
+        ]);
+
+        $token = $request->token;
+        $email = $request->email;        
+
+        $subscriber = Subscriber::where('email', $email)->get()->first();
+        
+        if($subscriber){
+
+            if($subscriber->unsubscribe_token == $token)
+            {               
+                $subscriber->unsubscribe();
+
+                // send mail notification
+                Mail::to($email)->send(new Unsubscribed());
+
+                return view('feedback.unsubscribed');
+            } 
+            else
+            {
+                session()->flash('error', 'There was an error. Please try again using the \'unsubscribe\' link on an email you have received.');
+                return redirect()->back();
+            }
+        } 
+        else
+        {
+            session()->flash('error', 'This address is not on our mailing lists. Please contact Fight for Kidz if you are still receiving mail from us');
+            return redirect()->back();
+        }
 
     }
 }

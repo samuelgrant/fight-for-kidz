@@ -30,12 +30,12 @@ Route::get('/sponsor-application', 'EventApplicationController@sponsorForm')->na
 Route::post('/sponsor-application', 'EventApplicationController@storeSponsorApp')->name('application.sponsor.submit');
 
 // Subscriber route
-Route::post('/subscribe', 'SubscribersController@store')->name('subscribe');
+Route::post('/subscribe', 'SubscriberController@store')->name('subscribe');
+Route::get('/unsubscribe', 'SubscriberController@showUnsubscribeForm')->name('mail.showUnsubscribeForm');
+Route::post('/unsubscribe', 'SubscriberController@unsubscribe')->name('mail.unsubscribe');
+
 
 // Contender api
 Route::get('/contenders/bio/{contenderID}', 'EventController@getContender')->name('getContender');
 
 Auth::routes();
-
-// Unsubscribe
-Route::get('/communication/unsubscribe/{token}', 'subscribersController@unsubscribe')->name('mail.unsubscribe');
