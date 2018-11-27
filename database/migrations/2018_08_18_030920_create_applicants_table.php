@@ -67,25 +67,25 @@ class CreateApplicantsTable extends Migration
             $table->boolean('cancer');
             $table->boolean('irregular_heartbeat');
             $table->boolean('smoking');
-            $table->boolean('joint_pain/problems');
-            $table->boolean('chest_pain/discomfort');
+            $table->boolean('joint_pain_problems');
+            $table->boolean('chest_pain_discomfort');
             $table->boolean('hypertension');
             $table->boolean('surgery');
-            $table->boolean('dizziness/fainting');
+            $table->boolean('dizziness_fainting');
             $table->boolean('high_cholesterol');
 
             $table->mediumText('other')->nullable(); // null if the applicant ticks 'no' on the form
             $table->mediumText('hand_injuries')->nullable(); // null if the applicant ticks 'no' on the form
-            $table->mediumText('previous/current_injuries')->nullable(); // null if the applicant ticks 'no' on the form
+            $table->mediumText('previous_current_injuries')->nullable(); // null if the applicant ticks 'no' on the form
             $table->mediumText('current_medication')->nullable(); // null if the applicant ticks 'no' on the form
 
             $table->boolean('heart_condition');
             $table->boolean('chest_pain_physical_activity');
             $table->boolean('chest_pain_recent');
             $table->boolean('lost_consciousness');
-            $table->boolean('bone/joint_problems');
+            $table->boolean('bone_joint_problems');
             $table->boolean('recommended_medication');
-            $table->boolean('concussed/knocked_out');
+            $table->boolean('concussed_knocked_out');
             $table->mediumText('other_reasons')->nullable(); // null if the applicant ticks 'no' on the form            
 
             //Section 6 - Additional Information
