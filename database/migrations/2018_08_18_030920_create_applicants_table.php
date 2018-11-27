@@ -44,11 +44,12 @@ class CreateApplicantsTable extends Migration
             $table->boolean('can_secure_sponsor');
 
             //Section 3 - Emergency Contact
-            $table->string('emergency_contact_name', 30);
-            $table->string('emergency_contact_relationship', 30);
-            $table->string('emergency_contact_phone', 30);
-            $table->string('emergency_contact_mobile', 30);
-            $table->string('emergency_contact_email');
+            $table->string('emergency_first_name', 30);
+            $table->string('emergency_last_name', 30);
+            $table->string('emergency_relationship', 30);
+            $table->string('emergency_phone', 30);
+            $table->string('emergency_mobile', 30);
+            $table->string('emergency_email');
 
             //Section 4 - Sporting Experience
             $table->integer('fitness_rating');

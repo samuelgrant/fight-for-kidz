@@ -39,11 +39,12 @@ $factory->define(App\Applicant::class, function (Faker $faker) {
         'can_secure_sponsor' => $faker->numberBetween(0, 1),
 
         //Section 3 - Emergency Contact
-        'emergency_contact_name' => $e_firstName . ' ' . $lastName,
-        'emergency_contact_relationship' => $relationship,
-        'emergency_contact_phone' => $faker->phoneNumber(),
-        'emergency_contact_mobile' => $faker->phoneNumber(),
-        'emergency_contact_email' => $faker->unique()->email(),
+        'emergency_first_name' => $e_firstName,
+        'emergency_last_name' => $lastName,
+        'emergency_relationship' => $relationship,
+        'emergency_phone' => $faker->phoneNumber(),
+        'emergency_mobile' => $faker->phoneNumber(),
+        'emergency_email' => $faker->unique()->email(),
 
         //Section 4 - Sporting Experience
         'fitness_rating' => $faker->numberBetween(1, 5),
