@@ -12,16 +12,14 @@ class Unsubscribed extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $subscriber;
-
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Subscriber $subscriber)
+    public function __construct()
     {
-        $this->subscriber = $subscriber;
+        //
     }
 
     /**
@@ -31,6 +29,6 @@ class Unsubscribed extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.subscribers.unsubscribed');
+        return $this->view('emails.subscribers.unsubscribed')->subject('Unsubscribed from Fight for Kidz');
     }
 }
