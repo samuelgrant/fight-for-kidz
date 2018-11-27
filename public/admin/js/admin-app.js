@@ -498,17 +498,46 @@ function applicantManagementModal(id){
         $("#appAddress2").val(data.address_2);              $("#appSuburb").val(data.suburb);
         $("#appCity").val(data.city);                       $("#appPostCode").val(data.postcode);
 
-        // Physical Tab
-        $("#appHeight").val(data.height + "cm");           $("#appWeightC").val(data.current_weight + "kg");
-        $("#appWeightE").val(data.expected_weight + "kg");  $("#appSportingExperience").text(data.sporting_exp);
+        // Pesonal Tab
+        $("#appHeight").val(data.height + "cm");            $("#appWeightC").val(data.current_weight + "kg");
+        $("#appWeightE").val(data.expected_weight + "kg");  
         $('#fitnessLevel').text('This applicant rates their fitness at ' + data.fitness_rating + ' out of 5');
         var isRight = data.right_handed ? "right" : "left";
         $("#dominantHand").text("This applicant is " + isRight + "-handed");
         $("#appBoxingExperience").text(data.boxing_exp);
+        $("#appSportingExperience").text(data.sporting_exp);
         $('#hobbies').text(data.hobbies);
 
+        //Emergency Tab
+        $("#appEmergencyFirstName").val(data.emergency_first_name);             $("#appEmergencyLastName").val(data.emergency_last_name);
+        $("#appEmergencyRelationship").val(data.emergency_relationship);        $("#appEmergencyPhone").val(data.emergency_phone);                     
+        $("#appEmergencyMobile").val(data.emergency_mobile);                    $("#appEmergencyEmail").val(data.emergency_email);                   
+
+        // Medical Tab 1
+        $("#appHeartDisease").val(data.heart_disease);                          $("#appBreathlessness").val(data.breathlessness);
+        $("#appEpilepsy").val(data.epilepsy);                                   $("#appHeartAttack").val(data.heart_attack);
+        $("#appStroke").val(data.stroke);                                       $("#appHeartSurgery").val(data.heart_surgery);
+        $("#appRespiratoryProblems").val(data.respiratory_problems);            $("#appCancer").val(data.cancer);
+        $("#appIrregularHeatbeat").val(data.irregular_heartbeat);               $("#appSmoking").val(data.smoking);
+        $("#appJointProblems").val(data.joint_pain_problems);                   $("#appChestPain").val(data.chest_pain_discomfort);
+        $("#appHypertension").val(data.hypertension);                           $("#appSurgery").val(data.surgery);
+        $("#appDizzinessFainting").val(data.dizziness_fainting);                $("#appCholesterol").val(data.high_cholesterol);
+
+        $("#appOther").text(data.other);
+
+        // Medical Tab 2
+        $("#appHeartCondtion").val(data.heart_condition);                       $("#appPhysicalChestPain").val(data.chest_pain_physical_activity);
+        $("#appRecentChestPain").val(data.chest_pain_recent);                   $("#appPassedOut").val(data.lost_consciousness);
+        $("#appBoneJointProblems").val(data.bone_joint_problems);               $("#appMedicationBloodHeart").val(data.recommended_medication);
+        $("#appKnockedOut").val(data.concussed_knocked_out);                    $("#appReason").val(data.other_reasons);
+
+        $("#appReason").text(data.other_reasons);
+        $("#appHandInjuries").text(data.hand_injuries);
+        $("#appPreviousCurrentInjuries").text(data.previous_current_injuries);
+        $("#appCurrentMedicaton").text(data.current_medication);
+
         // Additional Tab
-        $("#appOccupation").val(data.occupation);           $("#appEmployer").val(data.employer);
+        $("#appOccupation").val(data.occupation);                               $("#appEmployer").val(data.employer);
         $("#appConvictionDetails").text(data.conviction_details);
 
         // Set Consent
@@ -525,7 +554,7 @@ function applicantManagementModal(id){
             $("#appSponsor").val("Yes");
         }
 
-        // Populate custom questions
+        //Custom Tab
         $('#custom_1').val(data.custom_one);
         $('#custom_2').val(data.custom_two);
         $('#custom_3').val(data.custom_three);
