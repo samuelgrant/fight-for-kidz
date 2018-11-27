@@ -565,7 +565,7 @@
                                     </div>
                                     <div class="col-lg-3 col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label>Recent Chest Pain:</label>
+                                            <label>Onset of Recent Chest Pain:</label>
                                             <input type="text" id="appRecentChestPain" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
                                         </div>
                                     </div>
@@ -595,10 +595,12 @@
                                             <input type="text" id="appKnockedOut" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
                                         </div>
                                     </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
                                         <div class="form-group">
-                                            <label>A reason why you shouldn't participate:</label>
-                                            <input type="text" id="appReason" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                            <label>Is there any reason why you shouldn't participate:</label>
+                                            <textarea rows="4" cols="50" id="appHandInjuries"  readonly class="form-control-plaintext gray-card"></textarea>
                                         </div>
                                     </div>
                                 </div>
