@@ -502,8 +502,7 @@ function applicantManagementModal(id){
         $("#appHeight").val(data.height + "cm");            $("#appWeightC").val(data.current_weight + "kg");
         $("#appWeightE").val(data.expected_weight + "kg");  
         $('#fitnessLevel').text('This applicant rates their fitness at ' + data.fitness_rating + ' out of 5');
-        var isRight = data.right_handed ? "right" : "left";
-        $("#dominantHand").text("This applicant is " + isRight + "-handed");
+        $("#dominantHand").text("This applicant is " + (data.right_handed ? 'right' : 'left') + "-handed");
         $("#appBoxingExperience").text(data.boxing_exp);
         $("#appSportingExperience").text(data.sporting_exp);
         $('#hobbies').text(data.hobbies);
@@ -514,22 +513,22 @@ function applicantManagementModal(id){
         $("#appEmergencyMobile").val(data.emergency_mobile);                    $("#appEmergencyEmail").val(data.emergency_email);                   
 
         // Medical Tab 1
-        $("#appHeartDisease").val(data.heart_disease);                          $("#appBreathlessness").val(data.breathlessness);
-        $("#appEpilepsy").val(data.epilepsy);                                   $("#appHeartAttack").val(data.heart_attack);
-        $("#appStroke").val(data.stroke);                                       $("#appHeartSurgery").val(data.heart_surgery);
-        $("#appRespiratoryProblems").val(data.respiratory_problems);            $("#appCancer").val(data.cancer);
-        $("#appIrregularHeatbeat").val(data.irregular_heartbeat);               $("#appSmoking").val(data.smoking);
-        $("#appJointProblems").val(data.joint_pain_problems);                   $("#appChestPain").val(data.chest_pain_discomfort);
-        $("#appHypertension").val(data.hypertension);                           $("#appSurgery").val(data.surgery);
-        $("#appDizzinessFainting").val(data.dizziness_fainting);                $("#appCholesterol").val(data.high_cholesterol);
+        $("#appHeartDisease").val(data.heart_disease ? 'Yes' : 'No');                          $("#appBreathlessness").val(data.breathlessness ? 'Yes' : 'No');
+        $("#appEpilepsy").val(data.epilepsy ? 'Yes' : 'No');                                   $("#appHeartAttack").val(data.heart_attack ? 'Yes' : 'No');
+        $("#appStroke").val(data.stroke ? 'Yes' : 'No');                                       $("#appHeartSurgery").val(data.heart_surgery ? 'Yes' : 'No');
+        $("#appRespiratoryProblems").val(data.respiratory_problems ? 'Yes' : 'No');            $("#appCancer").val(data.cancer ? 'Yes' : 'No');
+        $("#appIrregularHeatbeat").val(data.irregular_heartbeat ? 'Yes' : 'No');               $("#appSmoking").val(data.smoking ? 'Yes' : 'No');
+        $("#appJointProblems").val(data.joint_pain_problems ? 'Yes' : 'No');                   $("#appChestPain").val(data.chest_pain_discomfort ? 'Yes' : 'No');
+        $("#appHypertension").val(data.hypertension ? 'Yes' : 'No');                           $("#appSurgery").val(data.surgery ? 'Yes' : 'No');
+        $("#appDizzinessFainting").val(data.dizziness_fainting ? 'Yes' : 'No');                $("#appCholesterol").val(data.high_cholesterol ? 'Yes' : 'No');
 
         $("#appOther").text(data.other);
 
         // Medical Tab 2
-        $("#appHeartCondtion").val(data.heart_condition);                       $("#appPhysicalChestPain").val(data.chest_pain_physical_activity);
-        $("#appRecentChestPain").val(data.chest_pain_recent);                   $("#appPassedOut").val(data.lost_consciousness);
-        $("#appBoneJointProblems").val(data.bone_joint_problems);               $("#appMedicationBloodHeart").val(data.recommended_medication);
-        $("#appKnockedOut").val(data.concussed_knocked_out);                    $("#appReason").val(data.other_reasons);
+        $("#appHeartCondtion").val(data.heart_condition ? 'Yes' : 'No');                       $("#appPhysicalChestPain").val(data.chest_pain_physical_activity ? 'Yes' : 'No');
+        $("#appRecentChestPain").val(data.chest_pain_recent ? 'Yes' : 'No');                   $("#appPassedOut").val(data.lost_consciousness ? 'Yes' : 'No');
+        $("#appBoneJointProblems").val(data.bone_joint_problems ? 'Yes' : 'No');               $("#appMedicationBloodHeart").val(data.recommended_medication ? 'Yes' : 'No');
+        $("#appKnockedOut").val(data.concussed_knocked_out ? 'Yes' : 'No');                    $("#appReason").val(data.other_reasons ? 'Yes' : 'No');
 
         $("#appReason").text(data.other_reasons);
         $("#appHandInjuries").text(data.hand_injuries);
