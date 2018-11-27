@@ -18,34 +18,77 @@ class CreateApplicantsTable extends Migration
             $table->integer('event_id')->unsigned();                
 
             // Application form fields:
+
+            // Section 1 - Contact Information
             $table->string('first_name', 30);
             $table->string('last_name', 30);
-            $table->string('preferred_nickname')->nullable();
-            $table->boolean('is_male');
-
             $table->string('address_1');
             $table->string('address_2')->nullable();
             $table->string('suburb')->nullable();
             $table->string('city');
             $table->string('postcode');
-            
             $table->string('phone', 30)->nullable();
             $table->string('mobile', 30)->nullable();
             $table->string('email');
 
+            //Section 2 - Personal Details
             $table->date('dob');
+            $table->integer('height')->unsigned();
             $table->integer('current_weight')->unsigned();
             $table->integer('expected_weight')->unsigned()->nullable();
-            $table->integer('height')->unsigned();
-            $table->boolean('right_handed');
-            $table->integer('fitness_rating');
-            $table->mediumText('sporting_exp');
-            $table->mediumText('boxing_exp')->nullable(); // null if the applicant ticks 'no' on the form 
-            $table->mediumText('hobbies')->nullable();
-
             $table->string('occupation');
             $table->string('employer');
+            $table->boolean('is_male');
+            $table->boolean('right_handed');
+            $table->string('preferred_fight_name')->nullable();
             $table->boolean('can_secure_sponsor');
+
+            //Section 3 - Emergency Contact
+            $table->string('emergency_contact_name', 30);
+            $table->string('emergency_contact_relationship', 30);
+            $table->string('emergency_contact_phone', 30);
+            $table->string('emergency_contact_mobile', 30);
+            $table->string('emergency_contact_email');
+
+            //Section 4 - Sporting Experience
+            $table->integer('fitness_rating');
+            $table->mediumText('boxing_exp')->nullable(); // null if the applicant ticks 'no' on the form 
+            $table->mediumText('sporting_exp');
+            
+            //Section 5 - Medical Questions
+            $table->boolean('heart_disease');
+            $table->boolean('breathlessness');
+            $table->boolean('epilepsy');
+            $table->boolean('heart_attack');
+            $table->boolean('stroke');
+            $table->boolean('heart_surgery');
+            $table->boolean('repiratory_problems');
+            $table->boolean('cancer');
+            $table->boolean('irregular_heartbeat');
+            $table->boolean('smoking');
+            $table->boolean('joint_pain/problems');
+            $table->boolean('chest_pain/discomfort');
+            $table->boolean('hypertension');
+            $table->boolean('surgery');
+            $table->boolean('dizziness/fainting');
+            $table->boolean('high_cholesterol');
+
+            $table->mediumText('other')->nullable(); // null if the applicant ticks 'no' on the form
+            $table->mediumText('hand_injuries')->nullable(); // null if the applicant ticks 'no' on the form
+            $table->mediumText('previous/current_injuries')->nullable(); // null if the applicant ticks 'no' on the form
+            $table->mediumText('current_medication')->nullable(); // null if the applicant ticks 'no' on the form
+
+            $table->boolean('heart_condition');
+            $table->boolean('chest_pain_physical_activity');
+            $table->boolean('chest_pain_recent');
+            $table->boolean('lost_consciousness');
+            $table->boolean('bone/joint_problems');
+            $table->boolean('recommened_medication');
+            $table->boolean('concussed/knocked_out');
+            $table->boolean('other_reasons');            
+
+            //Section 6 - Additional Information
+            $table->mediumText('hobbies')->nullable();
             $table->mediumText('conviction_details')->nullable(); // null if the applicant ticks 'no convictions' and 'not facing charges' on the form
             $table->boolean('consent_to_test');       
             
