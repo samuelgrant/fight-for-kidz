@@ -489,7 +489,7 @@
                                 <div class="row">
                                     <div class="col-lg-3 col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label>Irregular Heart:</label>
+                                            <label>Irregular Heartbeat:</label>
                                             <input type="text" id="appIrregularHeatbeat" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
                                         </div>
                                     </div>
