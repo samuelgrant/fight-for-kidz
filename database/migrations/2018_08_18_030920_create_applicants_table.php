@@ -62,7 +62,7 @@ class CreateApplicantsTable extends Migration
             $table->boolean('heart_attack');
             $table->boolean('stroke');
             $table->boolean('heart_surgery');
-            $table->boolean('repiratory_problems');
+            $table->boolean('respiratory_problems');
             $table->boolean('cancer');
             $table->boolean('irregular_heartbeat');
             $table->boolean('smoking');
@@ -83,7 +83,7 @@ class CreateApplicantsTable extends Migration
             $table->boolean('chest_pain_recent');
             $table->boolean('lost_consciousness');
             $table->boolean('bone/joint_problems');
-            $table->boolean('recommened_medication');
+            $table->boolean('recommended_medication');
             $table->boolean('concussed/knocked_out');
             $table->mediumText('other_reasons')->nullable(); // null if the applicant ticks 'no' on the form            
 
