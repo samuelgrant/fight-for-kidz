@@ -16,7 +16,7 @@ $factory->define(App\Applicant::class, function (Faker $faker) {
         'event_id' => 1,
         //Section 1 - Contact Information
         'first_name' => $firstName,
-        'last_name' => $lastName),
+        'last_name' => $lastName,
         'address_1' => $faker->streetAddress(),
         'address_2' => null,
         'suburb' => $faker->city(),
@@ -79,7 +79,7 @@ $factory->define(App\Applicant::class, function (Faker $faker) {
         'lost_consciousness' => $faker->numberBetween(0, 1),
         'bone/joint_problems' => $faker->numberBetween(0, 1),
         'recommended_medication' => $faker->numberBetween(0, 1),
-        'concussed/knkocked_out' => $faker->numberBetween(0, 1),
+        'concussed/knocked_out' => $faker->numberBetween(0, 1),
         'other_reasons' => null,    
 
         //Section 6 - Additional Information
