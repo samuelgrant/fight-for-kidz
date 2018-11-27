@@ -39,7 +39,7 @@ $factory->define(App\Applicant::class, function (Faker $faker) {
         'can_secure_sponsor' => $faker->numberBetween(0, 1),
 
         //Section 3 - Emergency Contact
-        'emergency_contact_name' => $e_firstName . $lastName,
+        'emergency_contact_name' => $e_firstName . ' ' . $lastName,
         'emergency_contact_relationship' => $relationship,
         'emergency_contact_phone' => $faker->phoneNumber(),
         'emergency_contact_mobile' => $faker->phoneNumber(),
