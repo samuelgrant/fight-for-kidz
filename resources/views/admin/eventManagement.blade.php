@@ -212,7 +212,10 @@
                 <div>
                     <ul class="nav nav-tabs">
                         <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantGeneral" class="nav-link active">General</a></li>
-                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantPhysical" class="nav-link">Physical Information</a></li>
+                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantPersonal" class="nav-link">Personal Details</a></li>
+                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantEmergency" class="nav-link">Emergency Contact</a></li>
+                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantMedical1" class="nav-link">Medical 1</a></li>
+                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantMedical2" class="nav-link">Medical 2</a></li>
                         <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantAdditional" class="nav-link">Additional Info</a></li>
                         <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantCustom" class="nav-link">Custom Questions</a></li>
                         <li class="nav-item mr-auto">
@@ -232,37 +235,37 @@
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>First Name:</label> 
-                                                    <input type="text" id="appFirstName" value='' readonly class="form-control-plaintext gray-card" />
+                                                    <input type="text" id="appFirstName"  readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Last Name:</label> 
-                                                    <input type="text" id="appLastName" value='' readonly class="form-control-plaintext gray-card" />
+                                                    <input type="text" id="appLastName"  readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Fight Name:</label>
-                                                    <input type="text" id="appFightName" value='' readonly class="form-control-plaintext gray-card" />
+                                                    <input type="text" id="appFightName"  readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Age:</label>
-                                                    <input type="text" id="appAge" value='' readonly class="form-control-plaintext gray-card" />
+                                                    <input type="text" id="appAge"  readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>DOB:</label>
-                                                    <input type="text" id="appDob" value='' readonly class="form-control-plaintext gray-card" />
+                                                    <input type="text" id="appDob"  readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Gender:</label>
-                                                    <input type="text" id="appGender" value='' readonly class="form-control-plaintext gray-card" />
+                                                    <input type="text" id="appGender"  readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                         </div>
@@ -272,20 +275,20 @@
                                         <div class="row">
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
-                                                    <label>Email:</label>
-                                                    <input type="text" id="appEmail" value='' readonly class="form-control-plaintext gray-card" />
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-4 col-md-6 col-sm-12">
-                                                <div class="form-group">
                                                     <label>Phone:</label>
-                                                    <input type="text" id="appPhone" value='' readonly class="form-control-plaintext gray-card" />
+                                                    <input type="text" id="appPhone"  readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Mobile:</label>
-                                                    <input type="text" id="appMobile" value='' readonly class="form-control-plaintext gray-card" />
+                                                    <input type="text" id="appMobile"  readonly class="form-control-plaintext gray-card" />
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Email:</label>
+                                                    <input type="text" id="appEmail"  readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                         </div>
@@ -296,31 +299,31 @@
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Address 1:</label>
-                                                    <input type="text" id="appAddress1" value='' readonly class="form-control-plaintext gray-card" />
+                                                    <input type="text" id="appAddress1"  readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Address 2:</label>
-                                                    <input type="text" id="appAddress2" value='' readonly class="form-control-plaintext gray-card" />
+                                                    <input type="text" id="appAddress2"  readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Suburb:</label>
-                                                    <input type="text" id="appSuburb" value='' readonly class="form-control-plaintext gray-card" />
+                                                    <input type="text" id="appSuburb"  readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>City:</label>
-                                                    <input type="text" id="appCity" value='' readonly class="form-control-plaintext gray-card" />
+                                                    <input type="text" id="appCity"  readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
                                                     <label>Post Code:</label>
-                                                    <input type="text" id="appPostCode" value='' readonly class="form-control-plaintext gray-card" />
+                                                    <input type="text" id="appPostCode"  readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                         </div>
@@ -328,51 +331,249 @@
                                 </div>
                             </form>
                         </div>
-                        <div role="tabpanel" class="tab-pane" id="applicantPhysical">
+                        <div role="tabpanel" class="tab-pane" id="applicantPersonal">
                             <div class="row">
                                 <fieldset class="mx-3 mt-3 px-3" style="border: 1px solid; width:764px;">
                                     <div class="row pt-3">
                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>Height:</label>
-                                                <input type="text" id="appHeight" value='' readonly class="form-control-plaintext gray-card" />
+                                                <input type="text" id="appHeight"  readonly class="form-control-plaintext gray-card" />
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>Current Weight:</label>
-                                                <input type="text" id="appWeightC" value='' readonly class="form-control-plaintext gray-card" />
+                                                <input type="text" id="appWeightC"  readonly class="form-control-plaintext gray-card" />
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>Expected Weight:</label>
-                                                <input type="text" id="appWeightE" value='' readonly class="form-control-plaintext gray-card" />
+                                                <input type="text" id="appWeightE"  readonly class="form-control-plaintext gray-card" />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 px-0">
-                                        <p id="fitnessLevel"></p>
+                                        <div class="row">
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <p id="fitnessLevel"></p>
+                                            </div >
+                                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                                <p id="dominantHand"></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 px-0">
+                                            <div class="form-group">
+                                                <label>Boxing/Kickboxing/Martial Arts Experience:</label>
+                                                <textarea rows="4" cols="50" id="appBoxingExperience"  readonly class="form-control-plaintext gray-card" ></textarea>
+                                            </div>
+                                        </div>
                                         <div class="form-group">
                                             <label>Sporting Experience:</label>
-                                            <textarea rows="4" cols="50" id="appSportingExperience" placeholder="" readonly class="form-control-plaintext gray-card" ></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-12 col-md-12 col-sm-12 px-0">
-                                        <div class="form-group">
-                                            <label>Boxing/Kickboxing/Martial Arts Experience:</label>
-                                            <textarea rows="4" cols="50" id="appBoxingExperience" placeholder="" readonly class="form-control-plaintext gray-card" ></textarea>
+                                            <textarea rows="4" cols="50" id="appSportingExperience"  readonly class="form-control-plaintext gray-card" ></textarea>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 px-0">
                                             <div class="form-group">
                                                 <label>Hobbies/Interests:</label>
-                                                <textarea rows="4" cols="50" id="hobbies" placeholder="" readonly class="form-control-plaintext gray-card" ></textarea>
+                                                <textarea rows="4" cols="50" id="hobbies"  readonly class="form-control-plaintext gray-card" ></textarea>
                                             </div>
                                         </div>
                                 </fieldset>
                             </div>
                         </div>
+                        <div role="tabpane" class="tab-pane" id="applicantEmergency">
+                            <fieldset class="mx-3 mt-3 mb-2 px-3" style="border: 1px solid;">
+                                <legend style="width:150px;">Personal Info</legend>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>First Name:</label> 
+                                            <input type="text" id="appEmergencyFirstName"  readonly class="form-control-plaintext gray-card" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Last Name:</label> 
+                                            <input type="text" id="appEmergencyLastName"  readonly class="form-control-plaintext gray-card" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Relationship</label> 
+                                            <input type="text" id="appEmergencyRelationship"  readonly class="form-control-plaintext gray-card" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <fieldset class="mx-3 my-1 px-3" style="border: 1px solid;">
+                                <legend style="width: 140px;">Contact Info</legend>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Phone:</label>
+                                            <input type="text" id="appEmergencyPhone"  readonly class="form-control-plaintext gray-card" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Mobile:</label>
+                                            <input type="text" id="appEmergencyMobile"  readonly class="form-control-plaintext gray-card" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Email:</label>
+                                            <input type="text" id="appEmergencyEmail"  readonly class="form-control-plaintext gray-card" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="applicantMedical1">
+                            <fieldset class="mx-3 my-1 px-3" style="border: 1px solid;">
+                                <legend style="width: 180px;">Previous History</legend>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Heart Disease:</label>
+                                            <input type="text" id="appHeartDisease" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Breathlessness:</label>
+                                            <input type="text" id="appBreathlessness" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Epilepsy:</label>
+                                            <input type="text" id="apEpilepsy" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Heart Attack:</label>
+                                            <input type="text" id="appHeartAttack" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Stroke:</label>
+                                            <input type="text" id="appStroke" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Heart Surgery:</label>
+                                            <input type="text" id="appHeartSurgery" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Respiratory:</label>
+                                            <input type="text" id="appRespiratoryProblems" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Cancer:</label>
+                                            <input type="text" id="appCancer" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Irregular Heart:</label>
+                                            <input type="text" id="appIrregularHeatbeat" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Smoking:</label>
+                                            <input type="text" id="appSmoking" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Joint Problems:</label>
+                                            <input type="text" id="appJointProblems" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Chest Pain:</label>
+                                            <input type="text" id="appChestPain" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Hypertension:</label>
+                                            <input type="text" id="appHypertension" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Surgery:</label>
+                                            <input type="text" id="appSurgery" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Dizziness/fainting:</label>
+                                            <input type="text" id="appDizzinessFainting" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>High Cholesterol:</label>
+                                            <input type="text" id="appCholesterol" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Other:</label>
+                                            <textarea rows="4" cols="50" id="appOther"  readonly class="form-control-plaintext gray-card"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="applicantMedical2">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Hand injuries:</label>
+                                        <textarea rows="4" cols="50" id="appConvictionDetails"  readonly class="form-control-plaintext gray-card"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Previous or current injuries:</label>
+                                        <textarea rows="4" cols="50" id="appConvictionDetails"  readonly class="form-control-plaintext gray-card"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <label>Current Medication:</label>
+                                        <textarea rows="4" cols="50" id="appConvictionDetails"  readonly class="form-control-plaintext gray-card"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
                         <div role="tabpanel" class="tab-pane" id="applicantAdditional">
                             <div class="row">
                                 <fieldset class="mx-3 mt-3 px-3" style="border: 1px solid; width:764px;">
@@ -380,25 +581,25 @@
                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>Occupation:</label>
-                                                <input type="text" id="appOccupation" value='' readonly class="form-control-plaintext gray-card" />
+                                                <input type="text" id="appOccupation"  readonly class="form-control-plaintext gray-card" />
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>Employer:</label>
-                                                <input type="text" id="appEmployer" value='' readonly class="form-control-plaintext gray-card" />
+                                                <input type="text" id="appEmployer"  readonly class="form-control-plaintext gray-card" />
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>Can Secure Sponsor:</label>
-                                                <input type="text" id="appSponsor" value='' readonly class="form-control-plaintext gray-card" />
+                                                <input type="text" id="appSponsor"  readonly class="form-control-plaintext gray-card" />
                                             </div>
                                         </div>
                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                             <div class="form-group">
                                                 <label>Consents to drug test:</label>
-                                                <input type="text" id="appConsent" value='' readonly class="form-control-plaintext gray-card" />
+                                                <input type="text" id="appConsent"  readonly class="form-control-plaintext gray-card" />
                                             </div>
                                         </div>
                                     </div>
@@ -406,7 +607,7 @@
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label>Conviction Details:</label>
-                                                <textarea rows="4" cols="50" id="appConvictionDetails" placeholder='' readonly class="form-control-plaintext gray-card"></textarea>
+                                                <textarea rows="4" cols="50" id="appConvictionDetails"  readonly class="form-control-plaintext gray-card"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -428,7 +629,7 @@
                                             <div class="form-group">
                                                 <label>{{$question->text}}</label>
                                                 @if($question->type == "Yes/No")
-                                                    <input type="text" id="custom_{{++$qNum}}" value='' readonly class="form-control-plaintext gray-card" />
+                                                    <input type="text" id="custom_{{++$qNum}}"  readonly class="form-control-plaintext gray-card" />
                                                 @elseif($question->type == "Text")
                                                     <textarea rows="3" id="custom_{{++$qNum}}" readonly class="form-control-plaintext gray-card"></textarea>
                                                 @endif
