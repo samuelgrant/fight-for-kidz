@@ -212,12 +212,12 @@
                 <div>
                     <ul class="nav nav-tabs">
                         <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantGeneral" class="nav-link active">General</a></li>
-                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantPersonal" class="nav-link">Personal Details</a></li>
-                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantEmergency" class="nav-link">Emergency Contact</a></li>
-                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantMedical1" class="nav-link">Medical 1</a></li>
-                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantMedical2" class="nav-link">Medical 2</a></li>
-                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantAdditional" class="nav-link">Additional Info</a></li>
-                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantCustom" class="nav-link">Custom Questions</a></li>
+                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantPersonal" class="nav-link">Personal</a></li>
+                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantEmergency" class="nav-link">Emergency</a></li>
+                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantMedical1" class="nav-link">Medical</a></li>
+                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantMedical2" class="nav-link">Medical</a></li>
+                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantAdditional" class="nav-link">Additional</a></li>
+                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantCustom" class="nav-link">Custom</a></li>
                         <li class="nav-item mr-auto">
                     </ul>
                     <div class="tab-content">
@@ -384,7 +384,7 @@
                             </div>
                         </div>
                         <div role="tabpane" class="tab-pane" id="applicantEmergency">
-                            <fieldset class="mx-3 mt-3 mb-2 px-3" style="border: 1px solid;">
+                            <fieldset class="mx-0 mt-3 mb-2 px-3" style="border: 1px solid;">
                                 <legend style="width:150px;">Personal Info</legend>
                                 <div class="row">
                                     <div class="col-lg-4 col-md-6 col-sm-12">
@@ -407,7 +407,7 @@
                                     </div>
                                 </div>
                             </fieldset>
-                            <fieldset class="mx-3 my-1 px-3" style="border: 1px solid;">
+                            <fieldset class="mx-0 mt-3 mb-1 px-3" style="border: 1px solid;">
                                 <legend style="width: 140px;">Contact Info</legend>
                                 <div class="row">
                                     <div class="col-lg-4 col-md-6 col-sm-12">
@@ -432,7 +432,7 @@
                             </fieldset>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="applicantMedical1">
-                            <fieldset class="mx-3 my-1 px-3" style="border: 1px solid;">
+                            <fieldset class="mx-0 my-1 px-3" style="border: 1px solid;">
                                 <legend style="width: 180px;">Previous History</legend>
                                 <div class="row">
                                     <div class="col-lg-3 col-md-6 col-sm-12">
@@ -549,30 +549,84 @@
                             </fieldset>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="applicantMedical2">
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label>Hand injuries:</label>
-                                        <textarea rows="4" cols="50" id="appConvictionDetails"  readonly class="form-control-plaintext gray-card"></textarea>
+                            <fieldset class="mx-0 my-1 mt-3 px-3" style="border: 1px solid; width:764px;">
+                                <div class="row pt-3">
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Medically Supervised Activity:</label>
+                                            <input type="text" id="appHeartCondtion" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Chest pain brought on by physical activity:</label>
+                                            <input type="text" id="appPhysicalChestPain" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Recent Chest Pain:</label>
+                                            <input type="text" id="appRecentChestPain" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Passed out due to dizziness:</label>
+                                            <input type="text" id="appPassedOut" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label>Previous or current injuries:</label>
-                                        <textarea rows="4" cols="50" id="appConvictionDetails"  readonly class="form-control-plaintext gray-card"></textarea>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Bone or Joint Problems:</label>
+                                            <input type="text" id="appBoneJointProblems" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Medication for Blood Pressure or Heart:</label>
+                                            <input type="text" id="appMedicationBloodHeart" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>Knocked Out/Concussed</label>
+                                            <input type="text" id="appKnockedOut" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="form-group">
+                                            <label>A reason why you shouldn't participate:</label>
+                                            <input type="text" id="appReason" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="form-group">
-                                        <label>Current Medication:</label>
-                                        <textarea rows="4" cols="50" id="appConvictionDetails"  readonly class="form-control-plaintext gray-card"></textarea>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Hand injuries:</label>
+                                            <textarea rows="4" cols="50" id="appHandInjuries"  readonly class="form-control-plaintext gray-card"></textarea>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Previous or current injuries:</label>
+                                            <textarea rows="4" cols="50" id="appPreviousCurrentInjuries"  readonly class="form-control-plaintext gray-card"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Current Medication:</label>
+                                            <textarea rows="4" cols="50" id="appCurrentMedicaton"  readonly class="form-control-plaintext gray-card"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
                         </div> 
                         <div role="tabpanel" class="tab-pane" id="applicantAdditional">
                             <div class="row">
