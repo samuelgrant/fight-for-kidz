@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\PasswordReset as CustomPasswordReset;
+use App\Jobs\SendPasswordResetEmail;
 
 class ResetPasswordController extends Controller
 {
@@ -58,7 +58,7 @@ class ResetPasswordController extends Controller
         $user->save();
 
         // notify user that their password was reset
-        Mail::to($user->email)->send(new CustomPasswordReset($user));
+        SendPasswordResetEmail::dispatch($user);
 
         event(new PasswordReset($user));
         $this->guard()->login($user);
