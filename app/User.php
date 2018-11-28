@@ -12,6 +12,7 @@ use App\Jobs\SendActivatedAccountEmail;
 use App\Jobs\SendDeactivatedAccountEmail;
 use App\Mail\NewAccount;
 use App\Mail\ResetPasswordLink;
+use App\Jobs\SendNewAccountEmail;
 
 
 class User extends Authenticatable
@@ -78,7 +79,7 @@ class User extends Authenticatable
         } else{
             
             // password reset on initial registration
-            Mail::to($this->email)->send(new NewAccount($this, $token));
+            SendNewAccountEmail::dispatch($this, $token);
         }
 
     }
