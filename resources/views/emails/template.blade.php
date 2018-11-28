@@ -173,7 +173,7 @@
 														<table class="center" align="right" cellpadding="0" cellspacing="0">
 															<tr>
 																<td class="btn" valign="top" style="line-height:0; padding:3px 0 0;">
-																	<a target="_blank" style="text-decoration:none;" href="{{env('facebook_page_url')}}"><img src="{{env('APP_URL')}}/img/facebook_icon.png" border="0" style="font:12px/15px Arial, Helvetica, sans-serif; color:#797c82;" align="left" vspace="0" hspace="0" height="25" alt="fb" /></a>
+																	<a target="_blank" style="text-decoration:none;" href="{{env('FACEBOOK_PAGE_URL')}}"><img src="{{env('APP_URL')}}/img/facebook_icon.png" border="0" style="font:12px/15px Arial, Helvetica, sans-serif; color:#797c82;" align="left" vspace="0" hspace="0" height="25" alt="fb" /></a>
 																</td>
 																<td width="20"></td>
 																<td class="btn" valign="top" style="line-height:0; padding:3px 0 0;">

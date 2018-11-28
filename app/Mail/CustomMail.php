@@ -19,18 +19,20 @@ class CustomMail extends Mailable
     public $messageText;
     public $recipient;
     public $subject;
+    public $email;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($recipient, $subject, $messageText, $attachmentDetails)
+    public function __construct($email, $recipient, $subject, $messageText, $attachmentDetails)
     {
         $this->recipient = $recipient;
         $this->messageText = $messageText;
         $this->subject = $subject;
         $this->attachmentDetails = $attachmentDetails;
+        $this->email = $email;
     }
 
     /**
@@ -44,7 +46,7 @@ class CustomMail extends Mailable
 
         // attach attachments to the email
         foreach($this->attachmentDetails as $file){
-            $email->attach($file['storedPath'], [ // real path returns temp storage path of uploaded file
+            $email->attach($file['storedPath'], [ 
                 'as' => $file['filename'],
                 'mime' => $file['fileMime'],
             ]);

@@ -6,12 +6,11 @@ use App\Traits\Groupable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
-use App\Mail\AccountActivated;
-use App\Mail\AccountDeactivated;
-use App\Mail\NewAccount;
-use App\Mail\ResetPasswordLink;
+use App\Jobs\SendActivatedAccountEmail;
+use App\Jobs\SendDeactivatedAccountEmail;
+use App\Jobs\SendNewAccountEmail;
+use App\Jobs\SendPasswordResetLink;
 
 
 class User extends Authenticatable
@@ -49,7 +48,7 @@ class User extends Authenticatable
             $this->save();
             
             //Fire email YOUR ACCOUNT IS NOW ACTIVATED
-            Mail::to($this->email)->send(new AccountActivated($this));
+            SendActivatedAccountEmail::dispatch($this);
         }
     }
     
@@ -60,7 +59,7 @@ class User extends Authenticatable
             $this->save();
 
             // Fire email
-            Mail::to($this->email)->send(new AccountDeactivated($this));
+            SendDeactivatedAccountEmail::dispatch($this);
 
         }
     }
@@ -70,7 +69,7 @@ class User extends Authenticatable
         if($this->password_reset_at){
             
             // password reset has been requested by the user
-            Mail::to($this->email)->send(new ResetPasswordLink($this, $token));
+            SendPasswordResetLink::dispatch($this, $token);
 
 
             //$this->notify(new ResetPasswordNotification($token));
@@ -78,7 +77,7 @@ class User extends Authenticatable
         } else{
             
             // password reset on initial registration
-            Mail::to($this->email)->send(new NewAccount($this, $token));
+            SendNewAccountEmail::dispatch($this, $token);
         }
 
     }

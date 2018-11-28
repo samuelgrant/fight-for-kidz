@@ -2,26 +2,24 @@
 
 namespace App\Mail;
 
-use App\User;
+use App\Subscriber;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class AccountActivated extends Mailable
+class Unsubscribed extends Mailable
 {
     use Queueable, SerializesModels;
-
-    protected $user;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct()
     {
-        $this->user = $user;
+        //
     }
 
     /**
@@ -31,9 +29,8 @@ class AccountActivated extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.account.activated')
-                    ->subject('Admin Account Activated - Fight for Kidz')
-                    ->with('recipient', $this->user->name)
-                    ->text('emails.account.plaintext.activated');
+        return $this->view('emails.subscribers.unsubscribed')
+                    ->subject('Unsubscribed from Fight for Kidz')
+                    ->text('emails.subscribers.plaintext.unsubscribed');
     }
 }
