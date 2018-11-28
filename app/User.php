@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
-use App\Mail\AccountActivated;
-use App\Mail\AccountDeactivated;
+use App\Jobs\SendActivatedAccountEmail;
+use App\Jobs\SendDeactivatedAccountEmail;
 use App\Mail\NewAccount;
 use App\Mail\ResetPasswordLink;
 
@@ -49,7 +49,7 @@ class User extends Authenticatable
             $this->save();
             
             //Fire email YOUR ACCOUNT IS NOW ACTIVATED
-            Mail::to($this->email)->send(new AccountActivated($this));
+            SendActivatedAccountEmail::dispatch($this);
         }
     }
     
@@ -60,7 +60,7 @@ class User extends Authenticatable
             $this->save();
 
             // Fire email
-            Mail::to($this->email)->send(new AccountDeactivated($this));
+            SendDeactivatedAccountEmail::dispatch($this);
 
         }
     }
