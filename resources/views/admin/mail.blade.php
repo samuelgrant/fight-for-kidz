@@ -84,10 +84,10 @@
         $(document).ready(function(){
  
             groupID = $('#mailForm').data('targetGroup');
-            console.log(groupID);
             if(groupID != null) {
                 // find the element for the group in the dropdown and 'click'
-                $("[data-value=' + groupID + ']").click();
+                option = $("[data-value='" + groupID + "']");
+                option.click();
             }
         })
 
