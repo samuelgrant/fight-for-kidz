@@ -38,4 +38,17 @@ Route::post('/unsubscribe', 'SubscriberController@unsubscribe')->name('mail.unsu
 // Contender api
 Route::get('/contenders/bio/{contenderID}', 'EventController@getContender')->name('getContender');
 
+
+// Contact us
+Route::post('/contact/general', function(){
+    return 'general contact us';
+})->name('contact.general');
+
+Route::post('/contact/sponser', function(){
+    return 'sponser contact us';
+})->name('contact.sponser');
+
+Route::post('/contact/table', function(){
+    return 'table contact us';
+})->name('contact.table');
 Auth::routes();
