@@ -36,6 +36,13 @@
             <button class="btn btn-success" type="button" data-toggle="modal" data-target="#copyToGroupModal">
                 <i class="fas fa-copy"></i>&nbsp; Copy to group
             </button>
+            @if($type != 'All' && $type != 'Others')
+                <form action="{{route('admin.mail.preset')}}" method="POST" class="float-right">
+                    <input name="groupID" type="hidden" value="{{strtolower($type)}}">
+                    <button class="btn btn-success" type="submit"><i class="fas fa-envelope"></i>&nbsp;Email All</button>
+                    @csrf
+                </form> 
+            @endif
         </div>
 
         <table id="system-group-dtable" class="table table-striped table-hover table-sm">

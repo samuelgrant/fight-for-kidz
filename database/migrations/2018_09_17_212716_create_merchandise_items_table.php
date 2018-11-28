@@ -16,10 +16,10 @@ class CreateMerchandiseItemsTable extends Migration
         Schema::create('merchandise_items', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('desc')->nullable();
-            $table->string('picture'); // uri to image
-            $table->float('price', 8, 2);
+            $table->string('desc', 300);
+            $table->float('price', 8, 2)->nullable();
             $table->boolean('is_active')->default(true);
+            $table->boolean('item_visible')->default(true);
             $table->softDeletes();
             $table->timestamps();
         });

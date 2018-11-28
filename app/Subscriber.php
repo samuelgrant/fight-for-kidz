@@ -32,6 +32,10 @@ class Subscriber extends Model
 
         $subscriber = Subscriber::where('email', $email);
 
+        foreach($subscriber->groups as $group){
+            $subscriber->removeFromGroup($group->id);
+        }
+
         if($subscriber){
             $subscriber->delete();
             return true;
@@ -46,6 +50,10 @@ class Subscriber extends Model
      *  group. The database record will be maintained.
      */
     public function unsubscribe(){
+
+        foreach($this->groups as $group){
+            $this->removeFromGroup($group->id);
+        }
 
         $this->delete();
     }

@@ -55,7 +55,7 @@ $(document).ready(function(){
       $('html, body').animate({
         scrollTop: $(hash).offset().top - 100
       }, 800, function(){
-   
+  
         // Add hash (#) to URL when done scrolling (default click behavior)
         window.location.hash = hash;
       });
@@ -67,14 +67,49 @@ $(document).ready(function(){
 // returns URL query string with the given name - used with contender bio videos
 function getQueryVariable(url, variable)
 {   
-       var query = url.split("?")[1];
-       
-       var vars = query.split("&");
-       for (var i=0;i<vars.length;i++) {
-               var pair = vars[i].split("=");
-               if(pair[0] == variable){return pair[1];}
-       }
-       return(false);
+      var query = url.split("?")[1];
+      
+      var vars = query.split("&");
+      for (var i=0;i<vars.length;i++) {
+        var pair = vars[i].split("=");
+        if(pair[0] == variable){return pair[1];}
+      }
+      return(false);
+}
+
+
+function auctionItemModal(id){
+  $.ajax({
+      method: "get",
+      headers:  {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: `/a/auction-management/auction/${id}`
+  }).done((data) => {
+      //Dynamically populate the modal with item info
+      $("#auctionItemName").text(data.name);
+      $("#auctionItemDescription").text(data.desc);
+
+      //Table text
+      $("#auctionItemNameSpan").text(data.name);
+      $("#auctionItemDonorSpan").text(data.donor);
+      $("#auctionItemDonorUrlSpan").text(data.donor_url);     
+
+      //checks to see if the image exists and uses it to set the auctionItemImage otherwise sets it to default
+      $.get("/storage/images/auction/" + data.id + ".png")
+      .done(function(){
+          $("#auctionItemImage").attr("src", "/storage/images/auction/" + data.id + ".png");
+      }).fail(function(){
+          $("#auctionItemImage").attr("src", "/storage/images/noImage.png");
+      })         
+
+      //Display the modal
+      $("#auctionItemModal").modal('show');
+
+      console.log("test");
+  }).fail(function(error) {
+      console.log(error);
+  });
 }
 
 $(document).ready(function(){

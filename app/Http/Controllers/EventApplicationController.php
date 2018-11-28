@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Input;
+use App\Image;
 use App\Applicant, App\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -56,7 +57,6 @@ class EventApplicationController extends Controller
             'current_weight' => 'required|integer|gt:0', 
             'expected_weight' => 'integer|gt:0',
             'occupation' => 'required',
-            'employer' => 'required_with:occupation', // employer required if occupation not blank
             'gender' => 'required',
             'hand' => 'required',
             // nickname not required
@@ -133,6 +133,14 @@ class EventApplicationController extends Controller
         $applicant->conviction_details = $request->input('conviction_details');
         $applicant->consent_to_test = $request->input('drugRadio') == 'yes' ? true : false;
 
+        // Note: Elvis operator used - PHP version 5.3 or greater required.
+        // ?: means 'Uses what comes before if it evaluates true, else use what is after'
+        $applicant->custom_one = $request->input('custom_1') ?: null;
+        $applicant->custom_two = $request->input('custom_2') ?: null;
+        $applicant->custom_three = $request->input('custom_3') ?: null;
+        $applicant->custom_four = $request->input('custom_4') ?: null;
+        $applicant->custom_five = $request->input('custom_5') ?: null;
+
         // set applicant event to current event
         $applicant->event()->associate(Event::current());
 
@@ -142,17 +150,8 @@ class EventApplicationController extends Controller
         $imagePath = 'private\images\applicants\\';
         $imageName = $applicant->id . '.png'; 
         
-        // convert to png if not already
-        switch (exif_imagetype($image)){
-
-            case IMAGETYPE_PNG:
-                break; // don't need to do anything, already a PNG
-            case IMAGETYPE_JPEG:
-                $img = imagecreatefromjpeg($image);
-                break;
-            default :
-                throw new InvalidArgumentException('Invalid image type'); // validation should prevent this happening
-        }
+        // Convert to png if needed and store
+        Image::storeAsPng($image, $imagePath, $imageName);
 
         if(isset($img)){
             imagepng($img, storage_path('app\\' . $imagePath . $imageName));

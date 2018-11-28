@@ -1,6 +1,6 @@
 // adds the tab value to the URL and refreshes page
 $(document).ready(function () {
-    $('.nav-tabs').click(function (event) {
+    $('.nav-tabs-persistent').click(function (event) {
         var newURLString = window.location.pathname + "?tab=" + event.target.id;
 
         window.history.replaceState(null, null, newURLString);
@@ -16,6 +16,10 @@ $(document).ready(function () {
     })
 
     $('#mainPagePhoto').change(function(){
+        processImage(this);
+    })
+
+    $('#itemImage').change(function(){
         processImage(this);
     })
 });
@@ -146,9 +150,33 @@ $(document).ready(function() {
             {"searchable": false},
             {"searchable": false},
             {"searchable": false},
+            { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false }
         ],
         'iDisplayLength' : 100
+    })
+
+    $('#auction-dtable').DataTable({
+        "columns":[
+            null,
+            { "orderable": false, "searchable": true },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false }
+        ]
+    })
+
+    $('#auctionDeleted-dtable').DataTable({
+        "columns":[
+            null,
+            { "orderable": false, "searchable": true},
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false}
+        ]
     })
 
     $('#event-sponsor-dtable').DataTable({           
@@ -170,6 +198,27 @@ $(document).ready(function() {
         ],
         'iDisplayLength' : 25
     });
+
+    $('#merchandise-dtable').DataTable({
+        "columns":[
+            null,
+            { "orderable": false, "searchable": true },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false }
+        ]
+    })
+
+    $('#merchandiseDeleted-dtable').DataTable({
+        "columns":[
+            null,
+            { "orderable": false, "searchable": true},
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false}
+        ]
+    })
 });
 
 // Count the number of selected datatable rows on a page, and display the result
@@ -384,7 +433,7 @@ function editContactModal(id){
 
     $.ajax({
         method : "GET",
-        url : `/a/group-management/contacts/${id}`
+        url : '/a/group-management/contacts/' + id
     }).done(function(data){
 
         form = $('#editContactForm');
@@ -422,8 +471,8 @@ function applicantManagementModal(id){
         headers:  {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: `/a/event-management/applicants/${id}`
-    }).done((data) => {
+        url: '/a/event-management/applicants/' + id
+    }).done(function(data){
         var dob = new Date(data.dob);
         // Dynamically populate modal
 
@@ -457,7 +506,7 @@ function applicantManagementModal(id){
 
         // Additional Tab
         $("#appOccupation").val(data.occupation);           $("#appEmployer").val(data.employer);
-        $("appConvictionDetails").text(data.conviction_details);
+        $("#appConvictionDetails").text(data.conviction_details);
 
         // Set Consent
         if(consent_to_test = 0){
@@ -473,8 +522,68 @@ function applicantManagementModal(id){
             $("#appSponsor").val("Yes");
         }
 
+        // Populate custom questions
+        $('#custom_1').val(data.custom_one);
+        $('#custom_2').val(data.custom_two);
+        $('#custom_3').val(data.custom_three);
+        $('#custom_4').val(data.custom_four);
+        $('#custom_5').val(data.custom_five);
+
 
         $("#applicantMoreInfoModal").modal('show');
+    }).fail(function(error) {
+        console.log(error);
+    });
+}
+
+function auctionCreateModal(){
+    //Set modal for creating auction item
+    //$("#auctionForm").attr("action", "/");
+    $('#hiddenMethod').val('POST');
+    $("#auctionModalTitle").text("Create Auction Item");
+    $("#auctionModalButton").text("Confirm");
+
+    //Set all text fields to empty
+    $("#auctionName").val("");
+    $("#auctionDescription").val("");
+    $("#auctionDonor").val("");
+    $("#auctionDonorUrl").val("");
+    $("#imgPreview").attr("src", '');
+
+    //Display the modal
+    $("#createEditAuctionItemModal").modal('show');
+}
+
+function auctionEditModal(id){
+    $.ajax({
+        method: "get",
+        headers:  {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: `/a/auction-management/auction/${id}`
+    }).done((data) => {
+        //Set modal for editing
+        $("#auctionForm").attr("action", "http://f4k.localhost/a/auction-management/update/" + id);
+        $("#auctionModalTitle").text("Edit Auction Item");
+        $("#auctionModalButton").text("Save");
+        $("#hiddenMethod").val("PUT");
+
+        //Dynamically populate the modal with item info
+        $("#auctionName").val(data.name);
+        $("#auctionDescription").val(data.desc);
+        $("#auctionDonor").val(data.donor);
+        $("#auctionDonorUrl").val(data.donor_url);
+
+        //checks to see if the image exists and sets the imgPreview otherwise sets it to default
+        $.get("/storage/images/auction/" + data.id + ".png")
+        .done(function(){
+            $("#imgPreview").attr("src", "/storage/images/auction/" + data.id + ".png");
+        }).fail(function(){
+            $("#imgPreview").attr("src", "/storage/images/noImage.png");
+        })                
+
+        //Display the modal
+        $("#createEditAuctionItemModal").modal('show');
     }).fail((error) => {
         console.log(error);
     });
@@ -486,4 +595,232 @@ function calculate_age (data) {
     age = Math.floor(age/1000/60/60/24/365);
     return age;
 };
+
+// Application delete script
+$(document).ready(function(){
+
+    $('#deleteAppBtn').on('click', function(){
+
+        $(this).addClass('d-none');
+        $(this).removeClass('d-inline');
+        $('#confirmDeleteAppBtn').addClass('d-inline');
+
+    });   
+
+});
+
+function confirmApplicantDelete(app){
+
+    $('#deleteAppBtn').addClass('d-inline');
+    $('#confirmDeleteAppBtn').removeClass('d-inline');
+
+    modal = $('#confirmDeleteApplicantModal');
+    form = $('#confirmDeleteApplicantForm');
+    title = $('#deleteAppName');
+    title.text('Remove: ' + app.first_name + " " + app.last_name);
+
+    form.prop('action', form.data('action') + '/' + app.id);
+
+    modal.modal('show');
+}
+
+// Custom mail functions
+$(document).ready(function(){
+
+    $('#mailPreviewBtn').on('click', function(){
+
+        message = CKEDITOR.instances['messageText'].getData();
+        action = $(this).data('url');
+        
+        // ajax call to add to team
+        $.ajax({
+            type: 'POST',
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            url: action,
+            data: {'messageText' : message}, 
+        }).done(function(data){
+            // open a new tab/window and write the returned html to it
+            var win = window.open();
+            win.document.write(data);
+        }).fail(function(error){
+            console.log(error);
+        });
+
+        
+    });
+
+    $('#sendBtn').on('click', function(){
+
+        // hide self and preview buttons
+        $('#mailPreviewBtn').addClass('d-none');
+        $('#promptText').addClass('d-none');
+        $(this).addClass('d-none');
+        $(this).removeClass('d-inline');
+
+        // show confirm and abort buttons
+        $('#confirmSendBtn').removeClass('d-none');
+        $('#abortSendBtn').removeClass('d-none');
+
+    });
+
+    $('#abortSendBtn').on('click', function(){
+
+        // show send and preview buttons
+        $('#mailPreviewBtn').removeClass('d-none');
+        $('#sendBtn').removeClass('d-none');
+        $('#sendBtn').addClass('d-inline');
+        $('#promptText').removeClass('d-none');
+
+        // hide confirm and abort buttons
+        $('#confirmSendBtn').addClass('d-none');
+        $(this).addClass('d-none');
+
+    });
+
+
+    $('#multipleGroupSelect').change(function(){
+
+        console.log($(this).val().length);
+
+        // this is important as the fSelect doesn't seem to support straightforward
+        // front end validation. So this hidden checkbox (actually not hidden, but transparent)
+        // will enable the validation instead. It ticks when groups are selected, and unticks
+        // when none are selected.
+        if($(this).val().length != 0){
+            $('#hiddenCheck').prop('checked', true);
+            $('#hiddenCheck')[0].oninput();
+        } else{
+            $('#hiddenCheck').prop('checked', false);
+        }
+
+    })
+
+})
+//Sets the modal for creating merchandise item and then displays it
+function merchandiseCreateModal(){
+    //$("#auctionForm").attr("action", "/");
+    $('#hiddenMethod').val('POST');
+    $("#merchandiseModalTitle").text("Create Merchandise Item");
+    $("#merchandiseModalButton").text("Confirm");
+
+    //Set all text fields placeholders
+    $("#merchandiseName").val("");
+    $("#merchandiseDescription").val("");
+    $("#merchandisePrice").val("");
+    $("#imgPreview").attr("src", '');
+
+
+
+    //Display the modal
+    $("#createEditMerchandiseItemModal").modal('show');
+}
+
+////Sets the modal for editing merchandise item dynamically populates the fields and then displays it
+function merchandiseEditModal(id){
+    $.ajax({
+        method: "get",
+        headers:  {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: `/a/merchandise-management/merchandise/${id}`
+    }).done((data) => {
+        //Set modal for editing
+        $("#merchandiseForm").attr("action", "http://f4k.localhost/a/merchandise-management/update/" + id);
+        $("#merchandiseModalTitle").text("Edit Merchandise Item");
+        $("#merchandiseModalButton").text("Save");
+        $("#hiddenMethod").val("PUT");
+
+        //Dynamically populate the modal with item info
+        $("#merchandiseName").val(data.name);
+        $("#merchandiseDescription").val(data.desc);
+        $("#merchandisePrice").val(data.price);
+        
+        //checks to see if the image exists and sets the imgPreview otherwise sets it to default
+        $.get("/storage/images/merchandise/" + data.id + ".png")
+        .done(function(){
+            $("#imgPreview").attr("src", "/storage/images/merchandise/" + data.id + ".png");
+        }).fail(function(){
+            $("#imgPreview").attr("src", "/storage/images/noImage.png");
+        })       
+
+        //Display the modal
+        $("#createEditMerchandiseItemModal").modal('show');
+    }).fail((error) => {
+        console.log(error);
+    });
+}
+
+// File upload functions
+function fileUpdateModal(id){
+
+    
+
+    form = $('#fileUpdateForm');
+    modal = $('#updateModal');
+
+    url = "/a/dashboard/uploads/" + id;
+
+    form.prop('action', form.data('action') + '/' + id);
+
+    $.ajax({
+        method : 'GET',
+        url : url,
+    }).done(function(data){
+        console.log(data.display_location);
+        $('#updateDisplaySelect').val(data.display_location);
+        modal.modal('show');
+
+    }).fail(function(error){
+        console.log(error);
+    })
+
+}
+
+// below works for both file uploads on dashboard and emails
+$(document).ready(function(){
+    $('#fileUpload').change(function(e){
+        var clearBtn = $('#clearAttachmentsBtn');
+        
+        var fileCount = e.target.files.length;
+        console.log(fileCount);
+
+        fileNamesString = '';
+
+        for(i = 0; i < fileCount; i++){
+            fileNamesString += ((i > 0 ? ', ' : '') + e.target.files[i].name);
+            console.log(fileNamesString);
+        }
+
+        if(fileNamesString != ''){  
+            $('#fileName').removeClass('d-none');
+            $('#fileName').text(fileNamesString);
+        } else{
+            $('#fileName').addClass('d-none');
+        }
+
+        if(fileCount > 0){
+            clearBtn.removeClass('d-none');
+        }else{
+            clearBtn.addClass('d-none');
+        }
+    });    
+});
+
+$('#clearAttachmentsBtn').on('click', function(e){
+    // to reset the input, we wrap it with a temp form, 
+    // reset that form, then unwrap it. This is because the only 
+    // way to change or clear a file input is by form reset. For security reasons.
+    // https://www.gyrocode.com/articles/how-to-reset-file-input-with-javascript/
+
+    var $file = $('#fileUpload').first();
+
+    $file.wrap('<form>').closest('form').get(0).reset();
+    $file.unwrap();
+
+    console.log($('#fileUpload')[0].files.length);
+
+    $file.change();
+
+});
+
 

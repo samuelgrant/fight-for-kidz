@@ -14,10 +14,5 @@ class SubscribersTableSeeder extends Seeder
     {
         //Use the factory to add 500 subscribers
         factory(App\Subscriber::class, 50)->create();
-
-        $subscribers = Subscriber::get();
-            foreach($subscribers as $subscriber){
-                $subscriber->addToGroup(2);
-            }
     }
 }

@@ -32,3 +32,16 @@
 <!-- Datatable -->
 <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+{{-- fSelect --}}
+<script src="/admin/js/fSelect.js" type="text/javascript"></script>
+<script>
+        (function($){
+            $(function(){
+                $('.multi-select').fSelect();
+            });
+        })(jQuery);
+</script>
+
+{{-- Ckeditor --}}
+<script src="{{asset('/vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script>

@@ -17,7 +17,7 @@
     <div class="col-md-12">
         <!-- Tabs -->
         <div>
-            <ul class="nav nav-tabs">
+            <ul class="nav nav-tabs nav-tabs-persistent">
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'overview') || (app('request')->input('tab') == '') ? 'active': '' }}"
                         role="tab" data-toggle="tab" href="#tab-1" id="overview">Overview</a></li>
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'sponsors') ? 'active': '' }}"
@@ -206,6 +206,7 @@
                         <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantGeneral" class="nav-link active">General</a></li>
                         <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantPhysical" class="nav-link">Physical Information</a></li>
                         <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantAdditional" class="nav-link">Additional Info</a></li>
+                        <li class="nav-item"><a role="tab" data-toggle="tab" href="#applicantCustom" class="nav-link">Custom Questions</a></li>
                         <li class="nav-item mr-auto">
                     </ul>
                     <div class="tab-content">
@@ -404,6 +405,33 @@
                                 </fieldset>
                             </div>
                         </div>
+                        {{-- start of custom answers --}}
+                        <div role="tabpanel" class="tab-pane" id="applicantCustom">
+                            <div class="row">
+                                <fieldset class="mx-3 mt-3 px-3" style="border: 1px solid; width:764px;">
+                                    <div class="row pt-3">
+
+                                        <?php
+                                            global $qNum; // counter to keep question and answer tied together
+                                        ?>
+
+                                        @foreach($event->customQuestions as $question)
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <label>{{$question->text}}</label>
+                                                @if($question->type == "Yes/No")
+                                                    <input type="text" id="custom_{{++$qNum}}" value='' readonly class="form-control-plaintext gray-card" />
+                                                @elseif($question->type == "Text")
+                                                    <textarea rows="3" id="custom_{{++$qNum}}" readonly class="form-control-plaintext gray-card"></textarea>
+                                                @endif
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                        {{-- end of custom answers --}}
                     </div>
                 </div>
             </div>
@@ -411,4 +439,81 @@
     </div>
 </div>
 <!-- End More Info Modal -->
+
+<!-- Add applicants to team modal -->
+<div class="modal fade" id="editTeamModal" tabindex="-1" role="dialog" aria-labelledby="Edit Team" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h4 class="modal-title">Edit Team Membership</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <p id="modal-message"></p>
+
+                        <div class="form-group">
+                            <label for="team-select">Select team to add to:</label>
+                            <select class="form-control" name="team" id="team-select">
+                                <option value="red">Red</option>
+                                <option value="blue">Blue</option>
+                            </select>
+                        </div>
+
+                        <button data-dismiss="modal" id="confirmAddToTeam" role="button" onclick="addSelectedToTeam()" class="btn btn-success">Confirm</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- End add to team modal -->
+
+<!-- Create / edit auction item modal -->
+<div class="modal fade" id="createEditAuctionItemModal" tabindex="-1" role="dialog" aria-labelledby="Edit Team" aria-hidden="true" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h4 class="modal-title" id="auctionModalTitle"></h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                    <form id="auctionForm" method="POST" action="{{route('admin.auctionManagement.store', ['eventID' => $event->id])}}" enctype="multipart/form-data">
+                    <input id="hiddenMethod" type="hidden" name="_method" value="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="auctionName">Item name:</label>
+                        <input  type="text" class="form-control" name="name" id="auctionName" placeholder="*required"  required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="auctionDescription">Item description:</label>
+                        <input  type="text" class="form-control" name="description" id="auctionDescription"  placeholder="*required" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="auctionDonor">Item donor:</label>
+                        <input  type="text" class="form-control" name="donor" id="auctionDonor">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="auctionDonorUrl">Item donor url:</label>
+                        <input  type="text" class="form-control" name="donorUrl" id="auctionDonorUrl">
+                    </div>
+
+                    <div class="card w-50 mx-auto text-center mb-3">
+                            <label for="logo">Item Image:</label>
+                            <img class="logoPreview img-fluid" id="imgPreview">
+                            <label for="itemImage" class="btn btn-primary mb-0">Change
+                                <input type="file" name="itemImage" id="itemImage" class="form-control" hidden>
+                            </label>
+                        </div>
+                    
+                    <button type="submit" id="auctionModalButton" class="btn btn-success float-right"></button>
+
+                    {!! Form::close() !!}
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End create / edit auction item modal -->
 @endsection

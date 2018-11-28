@@ -10,7 +10,7 @@
 				<select id="messageType" class="form-control" onchange="toggelForm()">
 					<option value="select" selected>Select</option>
 					<option value="general">General</option>
-					<option value="sponser">Become a Sponser</option>
+					<option value="sponsor">Become a Sponsor</option>
 					<option value="table">Booking a Table</option>
 				</select>
 			</div>
@@ -45,13 +45,13 @@
 			</div>
 			<!-- End Normal contact us form -->
 
-			<!-- Sponsership contact us form -->
-			<div id="sponserMessage" class="hidden">
+			<!-- Sponsorship contact us form -->
+			<div id="sponsorMessage" class="hidden">
 				<h3 class="text-center">Sponsorship Enquiry</h3>
 				<p class="text-center">Fill this out, and we will contact our potential sponsors closer to the event.</p>
-				<p class="text-center">Download our <a href="javascript:void(0);"><i class="fas fa-file-download"></i> Proposal Document</a> for information on sponsership.</p>
+				<p class="text-center">Download our <a href="javascript:void(0);"><i class="fas fa-file-download"></i> Proposal Document</a> for information on sponsorship.</p>
 				<small>* Denotes a required field.</small>
-				<form action="{{route('contact.sponser')}}" method="POST">
+				<form action="{{route('contact.sponsor')}}" method="POST">
 					<div class="row">
 						<div class="form-group col-md-6">
 							<input id="name" name="name" type="text" class="form-control" placeholder="* Your name" required>
@@ -76,9 +76,9 @@
 					{!! app('captcha')->render(); !!}
 				</form>
 			</div>
-			<!-- End Sponsership contact us form -->
+			<!-- End Sponsorship contact us form -->
 
-			<!-- Sponsership contact us form -->
+			<!-- Sponsorship contact us form -->
 			<div id="tableMessage" class="hidden">
 				<h3 class="text-center">Enquire about Booking a Table </h3>
 				<p class="text-center">Fill this out, and we will contact you when we can.</p>
@@ -105,7 +105,7 @@
 				</form>
 			</div>
 		</div>
-		<!-- End Sponsership contact us form -->			
+		<!-- End Sponsorship contact us form -->			
 	</div>
 
 	<style>
@@ -118,13 +118,14 @@
 			let selected = $("#messageType").val();
 			console.log(selected);
 			$("#generalMessage").addClass("hidden");
-			$("#sponserMessage").addClass("hidden");
+			$("#sponsorMessage").addClass("hidden");
 			$("#tableMessage").addClass("hidden");
 			if(selected == "general") {
 				$("#generalMessage").removeClass("hidden");
 			}
-			if(selected == "sponser") {
-				$("#sponserMessage").removeClass("hidden");
+
+			if(selected == "sponsor") {
+				$("#sponsorMessage").removeClass("hidden");
 			}
 			if(selected == "table") {
 				$("#tableMessage").removeClass("hidden");
