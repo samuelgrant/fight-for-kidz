@@ -5,7 +5,7 @@
 
     {{-- edit / remove buttons --}}
     <div class="mb-2">
-        <button class="btn btn-primary" onclick="editContenderModal({{$contender->id}})">Edit Details</button> 
+        <button class="btn btn-{{$contender->team == 'blue' ? 'primary' : 'danger'}}" onclick="editContenderModal({{$contender->id}})">Edit Details</button> 
         <input type="submit" class="btn btn-warning" onclick="removeApplicantFromTeam({{$contender->applicant->id}})" value="Remove from team">            
     </div>
 

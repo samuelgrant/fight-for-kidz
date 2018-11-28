@@ -29,7 +29,6 @@
 
                 <div class="" id="systemGroups">  
                     
-                    <h3 class="text-center mt-3">System Groups</h3>
 
                     <div class="row">
                         <div class="col-lg-2 col-md-3 col-sm-6 my-3 px-2">
@@ -45,14 +44,14 @@
                         </div>                    
     
                         <div class="col-lg-2 col-md-3 col-sm-6 my-3 px-2">
-                            <a class="btn groups border border-primary" href="{{route('admin.group.applicants')}}">
-                                <h5>Applicants</h5>
+                            <a class="btn groups border border-primary" href="{{route('admin.group.allApplicants')}}">
+                                <h5>All Applicants</h5>
                             </a>
                         </div>
     
                         <div class="col-lg-2 col-md-3 col-sm-6 my-3 px-2">
-                            <a class="btn groups border border-primary" href="{{route('admin.group.sponsors')}}">
-                                <h5>Sponsors</h5>
+                            <a class="btn groups border border-primary" href="{{route('admin.group.allSponsors')}}">
+                                <h5>All Sponsors</h5>
                             </a>
                         </div>
 
@@ -72,6 +71,40 @@
                 </div>
                 <hr>
                 {{-- end of system groups --}}
+
+                {{-- start of event grous --}}
+                <h3 class="text-center mt-3">{{App\Event::current()->name}} Groups</h3>
+
+                <div class="row">
+
+                    <div class="col-lg-2 col-md-3 col-sm-6 my-3 px-2">
+                        <a class="btn groups border border-primary" href="{{route('admin.group.applicants')}}">
+                            <h5>Applicants</h5>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-2 col-md-3 col-sm-6 my-3 px-2">
+                        <a class="btn groups border border-primary" href="{{route('admin.group.red')}}">
+                            <h5>Red Contenders</h5>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-2 col-md-3 col-sm-6 my-3 px-2">
+                        <a class="btn groups border border-primary" href="{{route('admin.group.blue')}}">
+                            <h5>Blue Contenders</h5>
+                        </a>
+                    </div>
+
+                    <div class="col-lg-2 col-md-3 col-sm-6 my-3 px-2">
+                        <a class="btn groups border border-primary" href="{{route('admin.group.sponsors')}}">
+                            <h5>Sponsors</h5>
+                        </a>
+                    </div>
+
+                </div>
+                {{-- end of event groups --}}
+
+                <hr>
 
                 <h3 class="text-center mt-3">Custom Groups</h3>
 

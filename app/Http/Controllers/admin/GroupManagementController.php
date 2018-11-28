@@ -254,19 +254,33 @@ class GroupManagementController extends Controller
     /**
      *  Returns view of all applicants
      */
+    public function getAllApplicants(){
+
+        return view('admin.systemGroupManagement')->with('type', 'All Applicants')->with('groups', Group::all());
+
+    }
+
+    /**
+     * Returns view of all applicants from current event
+     */
     public function getApplicants(){
-
         return view('admin.systemGroupManagement')->with('type', 'Applicants')->with('groups', Group::all());
-
     }
 
     /**
      *  Returns view of all sponsors
      */
+    public function getAllSponsors(){
+
+        return view('admin.systemGroupManagement')->with('type', 'All Sponsors')->with('groups', Group::all());
+
+    }
+
+    /**
+     * Returns view of all sponsors from current event
+     */
     public function getSponsors(){
-
         return view('admin.systemGroupManagement')->with('type', 'Sponsors')->with('groups', Group::all());
-
     }
 
     /**
@@ -276,6 +290,20 @@ class GroupManagementController extends Controller
 
         return view('admin.systemGroupManagement')->with('type', 'Others')->with('groups', Group::all());
 
+    }
+
+    /**
+     * Returns view of red team for current event
+     */
+    public function getRed(){
+        return view('admin.systemGroupManagement')->with('type', 'Red Contenders')->with('groups', Group::all());
+    }
+
+    /**
+     * Returns view of blue team for current event
+     */
+    public function getBlue(){
+        return view('admin.systemGroupManagement')->with('type', 'Blue Contenders')->with('groups', Group::all());
     }
 
     /**
