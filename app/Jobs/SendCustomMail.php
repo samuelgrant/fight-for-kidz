@@ -42,6 +42,6 @@ class SendCustomMail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->email)->send(new CustomMail($this->recipient, $this->subject, $this->messageText, $this->attachmentDetails));
+        Mail::to($this->email)->send(new CustomMail($this->email, $this->recipient, $this->subject, $this->messageText, $this->attachmentDetails));
     }
 }

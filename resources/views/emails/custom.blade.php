@@ -16,3 +16,9 @@
         </td>        
     </tr> 
 @endsection
+
+@if($subscriber = App\Subscriber::where('email', $email)->get()->first())
+    @section('unsubscribe')
+    <a href="{{env('APP_URL') . '/unsubscribe?token=' . $subscriber->unsubscribe_token}}">Unsubscribe</a>
+    @endsection
+@endif
