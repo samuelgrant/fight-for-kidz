@@ -26,7 +26,7 @@ class ContactController extends Controller
         session()->flash('success', 'Thanks, we\'ll get back to you asap!');
         return redirect()->back();
     }
-    public function sponser(request $request) {
+    public function sponsor(request $request) {
         $validator = Validator::make(Input::all(), [ // should this be $request->all() instead of Input::all()?
             'g-recaptcha-response' => 'required|captcha',
             'name' => 'required',
