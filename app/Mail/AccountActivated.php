@@ -33,6 +33,7 @@ class AccountActivated extends Mailable
     {
         return $this->view('emails.account.activated')
                     ->subject('Admin Account Activated - Fight for Kidz')
-                    ->with('recipient', $this->user->name);
+                    ->with('recipient', $this->user->name)
+                    ->text('emails.account.plaintext.activated');
     }
 }

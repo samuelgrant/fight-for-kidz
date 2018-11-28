@@ -34,6 +34,7 @@ class PasswordReset extends Mailable
         return $this->view('emails.account.passwordReset')
                     ->subject('Password Reset - Fight for Kidz')
                     ->with('recipient', $this->user->name)
-                    ->with('reset_time', $this->user->password_reset_at);
+                    ->with('reset_time', $this->user->password_reset_at)
+                    ->text('emails.account.plaintext.passwordReset');
     }
 }

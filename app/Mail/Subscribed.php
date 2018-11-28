@@ -31,6 +31,8 @@ class Subscribed extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.subscribers.subscribed')->subject('Subscribed to Fight for Kidz updates');
+        return $this->view('emails.subscribers.subscribed')
+                    ->subject('Subscribed to Fight for Kidz updates')
+                    ->text('emails.subscribers.plaintext.subscribed');
     }
 }

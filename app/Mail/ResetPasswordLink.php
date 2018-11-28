@@ -36,6 +36,7 @@ class ResetPasswordLink extends Mailable
         return $this->view('emails.account.resetPasswordLink')
                     ->subject('Password Reset Link - Fight for Kidz')
                     ->with('recipient', $this->user->name)
-                    ->with('token', $this->token);
+                    ->with('token', $this->token)
+                    ->text('emails.account.plaintext.resetPasswordLink');
     }
 }

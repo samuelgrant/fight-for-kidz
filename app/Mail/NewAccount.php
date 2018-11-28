@@ -36,6 +36,7 @@ class NewAccount extends Mailable
         return $this->view('emails.account.newAccount')
                     ->subject('New Account Registration - Fight for Kidz')
                     ->with('recipient', $this->user->name)
-                    ->with('token', $this->token);
+                    ->with('token', $this->token)
+                    ->text('emails.account.plaintext.newAccount');
     }
 }
