@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use Input;
 use App\Subscriber;
-use App\Mail\Subscribed;
-use App\Mail\Unsubscribed;
+use App\Jobs\SendSubscribedEmail;
+use App\Jobs\SendUnsubscribedEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -41,7 +41,7 @@ class SubscriberController extends Controller
             $subscriber->save();
 
             // send mail notification of subscription
-            Mail::to($subscriber->email)->send(new Subscribed($subscriber));
+            SendSubscribedEmail::dispatch($subscriber);
             
             session()->flash('success', 'You have successfully subscribed');
         }else{
@@ -75,7 +75,7 @@ class SubscriberController extends Controller
                 $subscriber->unsubscribe();
 
                 // send mail notification
-                Mail::to($email)->send(new Unsubscribed());
+                SendUnsubscribedEmail::dispatch($email);
 
                 return view('feedback.unsubscribed');
             } 
