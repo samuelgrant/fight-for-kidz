@@ -69,6 +69,7 @@ class EventApplicationController extends Controller
             //Emergency Contact Section
             'emergency_first' => 'required',
             'emergency_last' => 'required',
+            'emergency_relationship' => 'required',
             'emergency_phone' => 'required',
             'emergency_mobile' => 'required',
             'emergency_email' => 'required',
@@ -178,9 +179,10 @@ class EventApplicationController extends Controller
         //Emergency Contact Section
         $applicant->emergency_first_name = $request->input('emergency_first');
         $applicant->emergency_last_name = $request->input('emergency_last');
-        $applicant->emergency_relationship = $request->input('emergency_');
-        $applicant->emergency_phone = $request->input('emergency_');
-        $applicant->emergency_mobile = $request->input('emergency_');
+        $applicant->emergency_relationship = $request->input('emergency_relationship');
+        $applicant->emergency_phone = $request->input('emergency_phone');
+        $applicant->emergency_mobile = $request->input('emergency_mobile');
+        $applicant->emergency_email = $request->input('emergency_email');
         
         //Sporting Experience Section
         $applicant->fitness_rating = $request->input('fitness_rating');
@@ -189,34 +191,34 @@ class EventApplicationController extends Controller
         $applicant->hobbies = $request->input('hobbies');
 
         //Medical Info Section
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
-        // $applicant-> = $request->input('');
+        $applicant->heart_disease = $request->input('');
+        $applicant->breathlessness = $request->input('');
+        $applicant->epilepsy = $request->input('');
+        $applicant->heart_attack = $request->input('');
+        $applicant->stroke = $request->input('');
+        $applicant->heart_surgery = $request->input('');
+        $applicant->respiratory_problems = $request->input('');
+        $applicant->cancer = $request->input('');
+        $applicant->irregular_heartbeat = $request->input('');
+        $applicant->smoking = $request->input('');
+        $applicant->joint_pain_problems = $request->input('');
+        $applicant->chest_pain_discomfort = $request->input('');
+        $applicant->hypertension = $request->input('');
+        $applicant->surgery = $request->input('');
+        $applicant->dizziness_fainting = $request->input('');
+        $applicant->high_cholesterol = $request->input('');
+        $applicant->other = $request->input('');
+        $applicant->hand_injuries = $request->input('');
+        $applicant->previous_current_injuries = $request->input('');
+        $applicant->current_medication = $request->input('');
+        $applicant->heart_condition = $request->input('');
+        $applicant->chest_pain_activity = $request->input('');
+        $applicant->chest_pain_recent = $request->input('');
+        $applicant->lost_consciousness = $request->input('');
+        $applicant->bone_joint_problems = $request->input('');
+        $applicant->recommended_medication = $request->input('');
+        $applicant->concussed_knocked_out = $request->input('');
+        $applicant->other_reasons = $request->input('');
         
         //Additonal Info Section
         $applicant->conviction_details = $request->input('conviction_details');
