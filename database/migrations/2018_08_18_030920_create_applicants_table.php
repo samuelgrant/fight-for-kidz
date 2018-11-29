@@ -80,7 +80,7 @@ class CreateApplicantsTable extends Migration
             $table->mediumText('current_medication')->nullable(); // null if the applicant ticks 'no' on the form
 
             $table->boolean('heart_condition');
-            $table->boolean('chest_pain_physical_activity');
+            $table->boolean('chest_pain_activity');
             $table->boolean('chest_pain_recent');
             $table->boolean('lost_consciousness');
             $table->boolean('bone_joint_problems');
