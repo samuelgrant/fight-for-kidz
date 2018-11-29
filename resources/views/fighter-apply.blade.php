@@ -96,7 +96,7 @@
 							<label for="phone">Phone:</label>
 						</div>
 						<div class="col-md-4" id="phoneInput">
-							<input class="form-control" type="text" name="phone">
+							<input class="form-control" type="text" name="phone" required>
 						</div>
 
 						<div class="col-md-2 inputLabel">
