@@ -414,7 +414,7 @@
 					<p class="">Have you ever had any hand injuries?</p>
 					<div class="radio ">
 						<label class="radio-selector"><input type="radio" name="handRadio" value="yes" onclick="showHand()" required>Yes</label>
-						<label class="radio-selector"><input type="radio" name="handRadio" value="no" onclick="hideHand()" checked  required>No</label>
+						<label class="radio-selector"><input type="radio" name="handRadio" value="no" onclick="hideHand()" required>No</label>
 					</div>
 
 					<div id="hand" class="form-group" style="display: none;">
@@ -425,7 +425,7 @@
 					<p class="">Have you ever had any injuries (expecially head injuries)?</p>
 					<div class="radio ">
 						<label class="radio-selector"><input type="radio" name="injuryRadio" value="yes" onclick="showInjury()" required>Yes</label>
-						<label class="radio-selector"><input type="radio" name="injurydRadio" value="no" onclick="hideInjury()" checked  required>No</label>
+						<label class="radio-selector"><input type="radio" name="injurydRadio" value="no" onclick="hideInjury()" required>No</label>
 					</div>
 
 					<div id="injury" class="form-group" style="display: none;">
@@ -436,7 +436,7 @@
 					<p class="">Are you currently taking any medications?</p>
 					<div class="radio ">
 						<label class="radio-selector"><input type="radio" name="medsRadio" value="yes" onclick="showMeds()" required>Yes</label>
-						<label class="radio-selector"><input type="radio" name="medsRadio" value="no" onclick="hideMeds()" checked  required>No</label>
+						<label class="radio-selector"><input type="radio" name="medsRadio" value="no" onclick="hideMeds()" required>No</label>
 					</div>
 
 					<div id="meds" class="form-group" style="display: none;">
@@ -452,42 +452,42 @@
 					<p class="">1. Has a physician ever said that you have a heart condition and recommended only medically supervised activity?</p>
 					<div class="radio ">
 						<label class="radio-selector"><input type="radio" name="heartRadio" value="yes" required>Yes</label>
-						<label class="radio-selector"><input type="radio" name="heartRadio" value="no" checked required>No</label>
+						<label class="radio-selector"><input type="radio" name="heartRadio" value="no" required>No</label>
 					</div>
 					<p class="">2. Do you have chest pain that’s brought on by physical activity? </p>
 					<div class="radio ">
 						<label class="radio-selector"><input type="radio" name="activityRadio" value="yes" required>Yes</label>
-						<label class="radio-selector"><input type="radio" name="activityRadio" value="no" checked  required>No</label>
+						<label class="radio-selector"><input type="radio" name="activityRadio" value="no" required>No</label>
 					</div>
 					<p class="">3. Have you developed chest pain in the past month? </p>
 					<div class="radio ">
 						<label class="radio-selector"><input type="radio" name="monthRadio" value="yes" required>Yes</label>
-						<label class="radio-selector"><input type="radio" name="monthRadio" value="no" checked  required>No</label>
+						<label class="radio-selector"><input type="radio" name="monthRadio" value="no" required>No</label>
 					</div>
 					<p class="">4. Have you on one or more occasions lost consciousness or fallen over as a result of dizziness?</p>
 					<div class="radio ">
 						<label class="radio-selector"><input type="radio" name="consciousnessRadio" value="yes" required>Yes</label>
-						<label class="radio-selector"><input type="radio" name="consciousnessRadio" checked  value="no" required>No</label>
+						<label class="radio-selector"><input type="radio" name="consciousnessRadio" value="no" required>No</label>
 					</div>
 					<p class="">5. Do you have a bone or joint problem that could be aggravated by the proposed physical activity?</p>
 					<div class="radio ">
 						<label class="radio-selector"><input type="radio" name="boneRadio" value="yes" required>Yes</label>
-						<label class="radio-selector"><input type="radio" name="boneRadio" value="no" checked  required>No</label>
+						<label class="radio-selector"><input type="radio" name="boneRadio" value="no" required>No</label>
 					</div>
 					<p class="">6. Has a physician ever recommended medication for your blood pressure or a heart condition?</p>
 					<div class="radio ">
 						<label class="radio-selector"><input type="radio" name="bloodRadio" value="yes" required>Yes</label>
-						<label class="radio-selector"><input type="radio" name="bloodRadio" value="no" checked required>No</label>
+						<label class="radio-selector"><input type="radio" name="bloodRadio" value="no" required>No</label>
 					</div>
 					<p class="">7. Have you ever been knocked out or concussed?</p>
 					<div class="radio ">
 						<label class="radio-selector"><input type="radio" name="concussedRadio" value="yes" required>Yes</label>
-						<label class="radio-selector"><input type="radio" name="concussedRadio" value="no" checked required>No</label>
+						<label class="radio-selector"><input type="radio" name="concussedRadio" value="no" required>No</label>
 					</div>
 					<p class="">8. Are you aware, through your own experience or a physician’s advice, of any other reason that would prohibit you from exercising without medical supervision?</p>
 					<div class="radio ">
 						<label class="radio-selector"><input type="radio" name="reasonsRadio" value="yes" onclick="showReason()" required>Yes</label>
-						<label class="radio-selector"><input type="radio" name="reasonsRadio" value="no" onclick="hideReason()" checked required>No</label>
+						<label class="radio-selector"><input type="radio" name="reasonsRadio" value="no" onclick="hideReason()" required>No</label>
 					</div>
 
 					<div id="reason" class="form-group" style="display: none;">
