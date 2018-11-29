@@ -329,77 +329,77 @@
 							</div>
 							<div class="col-md-4">
 								<label for="heart_surgery">Heart Surgery:</label>
-								<input class="float-right" type="checkbox" name="heart_surgery">
+								<input class="float-right" type="checkbox" name="heart_surgery" required>
 							</div>
 							<div class="col-md-4">
 								<label for="heart_attack">Heart Attack:</label>
-								<input class="float-right" type="checkbox" name="heart_attack">
+								<input class="float-right" type="checkbox" name="heart_attack" required>
 							</div>
 						</div>
 						<div class="row px-auto">
 							<div class="col-md-4">
 								<label class=" pl-3" for="stroke">Stroke:</label>
-								<input class="float-right" type="checkbox" name="stroke">
+								<input class="float-right" type="checkbox" name="stroke" required>
 							</div>
 							<div class="col-md-4">
 									<label for="smoking">Smoking:</label>
-									<input class="float-right" type="checkbox" name="smoking">
+									<input class="float-right" type="checkbox" name="smoking" required>
 								</div>
 							<div class="col-md-4">
 								<label for="cancer">Cancer:</label>
-								<input class="float-right" type="checkbox" name="cancer">
+								<input class="float-right" type="checkbox" name="cancer" required>
 							</div>
 						</div>
 						<div class="row px-auto">
 							<div class="col-md-4">
 								<label class="pl-3" for="breathlessness">Breathlessness:</label>
-								<input class="float-right" type="checkbox" name="breathlessness">
+								<input class="float-right" type="checkbox" name="breathlessness" required>
 							</div>
 							<div class="col-md-4">
 								<label for="epilepsy">Epilepsy:</label>
-								<input class="float-right" type="checkbox" name="epilepsy">
+								<input class="float-right" type="checkbox" name="epilepsy" required>
 							</div>
 							<div class="col-md-4">
 								<label for="chest_pain_discomfort">Chest Pain/Discomfort:</label>
-								<input class="float-right" type="checkbox" name="chest_pain_discomfort">
+								<input class="float-right" type="checkbox" name="chest_pain_discomfort" required>
 								</div>
 						</div>
 						<div class="row px-auto">
 							<div class="col-md-4">
 								<label class=" pl-3" for="irregular_heartbeat">Irregular Heartbeat:</label>
-								<input class="float-right" type="checkbox" name="irregular_heartbeat">
+								<input class="float-right" type="checkbox" name="irregular_heartbeat" required>
 							</div>
 							<div class="col-md-4">
 								<label for="respiratory_problems">Respiratory Problems:</label>
-								<input class="float-right" type="checkbox" name="respiratory_problems">
+								<input class="float-right" type="checkbox" name="respiratory_problems" required>
 							</div>
 							<div class="col-md-4">
 								<label for="joint_pain_problems">Joint Pain/Problems:</label>
-								<input class="float-right" type="checkbox" name="joint_pain_problems">
+								<input class="float-right" type="checkbox" name="joint_pain_problems" required>
 							</div>
 						</div>
 						<div class="row px-auto">
 							<div class="col-md-4">
 								<label class="pl-3" for="surgery">Surgery:</label>
-								<input class="float-right" type="checkbox" name="surgery">
+								<input class="float-right" type="checkbox" name="surgery" required>
 							</div>
 							<div class="col-md-4">
 								<label for="dizziness_fainting">Dizziness or Fainting:</label>
-								<input class="float-right" type="checkbox" name="dizziness_fainting">
+								<input class="float-right" type="checkbox" name="dizziness_fainting" required>
 							</div>
 							<div class="col-md-4">
 								<label for="high_cholesterol">High Cholesterol (>240):</label>
-								<input class="float-right" type="checkbox" name="high_cholesterol">
+								<input class="float-right" type="checkbox" name="high_cholesterol" required>
 							</div>
 						</div>
 						<div class="row px-auto">
 							<div class="col-md-4">
 								<label class=" pl-3" for="hypertension">Hypertension (>140/90):</label>
-								<input class="float-right" type="checkbox" name="hypertension">
+								<input class="float-right" type="checkbox" name="hypertension" required>
 							</div>
 							<div class="col-md-4">
 								<label for="heart_disease">Other:</label>
-								<input class="float-right" id="otherCheck" type="checkbox" name="heart_disease" onclick="showOther()">
+								<input class="float-right" id="otherCheck" type="checkbox" name="heart_disease" onclick="showOther()" required>
 							</div>
 						</div> 
 						<div class="row px-auto">
