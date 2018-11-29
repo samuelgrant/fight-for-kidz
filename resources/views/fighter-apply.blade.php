@@ -235,26 +235,32 @@
 					</div>
 					<div class="row">
 						<div class="col-md-2 inputLabel">
-							<label for="emergency_phone">Phone:</label>
+							<label for="emergency_relationship">Relationship:</label>
 						</div>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="emergency_phone"  required>
+							<input class="form-control" type="text" name="emergency_relationship"  required>
 						</div>
 
+						<div class="col-md-2 inputLabel">
+								<label for="emergency_phone">Phone:</label>
+							</div>
+							<div class="col-md-4">
+								<input class="form-control" type="text" name="emergency_phone"  required>
+							</div>
+						
+					</div>
+					<div class="row">
 						<div class="col-md-2 inputLabel">
 							<label for="emergency_mobile">Mobile:</label>
 						</div>
 						<div class="col-md-4">
 							<input class="form-control" type="text" name="emergency_mobile"  required>
 						</div>
-					</div>
-				</div>
-				<div class="form-group-margin">
-					<div class="row">
+
 						<div class="col-md-2 inputLabel">
 							<label for="emergency_email">Email:</label>
 						</div>
-						<div class="col-md-6">
+						<div class="col-md-4">
 							<input class="form-control" type="text" name="emergency_email"  required>
 						</div>
 					</div>
@@ -399,7 +405,7 @@
 							</div>
 							<div class="col-md-4">
 								<label for="other">Other:</label>
-								<input class="float-right" id="otherCheck" type="checkbox" name="other" onclick="showOther()" required>
+								<input class="float-right" id="otherCheck" type="checkbox" name="other" onclick="showOther()" required>p
 							</div>
 						</div> 
 						<div class="row px-auto">

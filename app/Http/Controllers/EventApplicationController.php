@@ -151,6 +151,7 @@ class EventApplicationController extends Controller
 
         // validator has not failed, so make the applicant record
         $applicant = new Applicant;
+        //Contact Info Section
         $applicant->first_name = $request->input('first_name');
         $applicant->last_name = $request->input('last_name');
         $applicant->address_1 = $request->input('address_1');
@@ -161,6 +162,8 @@ class EventApplicationController extends Controller
         $applicant->phone = $request->input('phone');
         $applicant->mobile = $request->input('mobile');
         $applicant->email = $request->input('email');
+
+        //Personal Details Section
         $applicant->dob = $request->input('dob'); // need to confirm that date is being stored appropriately
         $applicant->height = $request->input('height');
         $applicant->current_weight = $request->input('current_weight');
@@ -171,10 +174,51 @@ class EventApplicationController extends Controller
         $applicant->right_handed = $request->input('hand') == 'right' ? true : false;
         $applicant->preferred_nickname = $request->input('nickname');
         $applicant->can_secure_sponsor = $request->input('sponsorRadio') == 'yes' ? true : false;
+
+        //Emergency Contact Section
+        $applicant->emergency_first_name = $request->input('emergency_first');
+        $applicant->emergency_last_name = $request->input('emergency_last');
+        $applicant->emergency_relationship = $request->input('emergency_');
+        $applicant->emergency_phone = $request->input('emergency_');
+        $applicant->emergency_mobile = $request->input('emergency_');
+        
+        //Sporting Experience Section
         $applicant->fitness_rating = $request->input('fitness_rating');
         $applicant->boxing_exp = $request->input('fighting_experience');
         $applicant->sporting_exp = $request->input('sporting_experience');
         $applicant->hobbies = $request->input('hobbies');
+
+        //Medical Info Section
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        // $applicant-> = $request->input('');
+        
+        //Additonal Info Section
         $applicant->conviction_details = $request->input('conviction_details');
         $applicant->consent_to_test = $request->input('drugRadio') == 'yes' ? true : false;
 
