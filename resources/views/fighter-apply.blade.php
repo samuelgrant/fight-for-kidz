@@ -238,14 +238,14 @@
 							<label for="emergency_phone">Phone:</label>
 						</div>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="emergency_phone">
+							<input class="form-control" type="text" name="emergency_phone"  required>
 						</div>
 
 						<div class="col-md-2 inputLabel">
 							<label for="emergency_mobile">Mobile:</label>
 						</div>
 						<div class="col-md-4">
-							<input class="form-control" type="text" name="emergency_mobile">
+							<input class="form-control" type="text" name="emergency_mobile"  required>
 						</div>
 					</div>
 				</div>
@@ -255,7 +255,7 @@
 							<label for="emergency_email">Email:</label>
 						</div>
 						<div class="col-md-6">
-							<input class="form-control" type="text" name="emergency_email">
+							<input class="form-control" type="text" name="emergency_email"  required>
 						</div>
 					</div>
 				</div>
@@ -312,7 +312,7 @@
 			</div>
 {{-- End Sporting Section --}}
 
-{{-- Medical Innfo Section --}}
+{{-- Medical Info Section --}}
 			<div class="form-section">
 				<h3>Medical Information</h3>
 				<hr class="mb-4">
@@ -398,8 +398,8 @@
 								<input class="float-right" type="checkbox" name="hypertension" required>
 							</div>
 							<div class="col-md-4">
-								<label for="heart_disease">Other:</label>
-								<input class="float-right" id="otherCheck" type="checkbox" name="heart_disease" onclick="showOther()" required>
+								<label for="other">Other:</label>
+								<input class="float-right" id="otherCheck" type="checkbox" name="other" onclick="showOther()" required>
 							</div>
 						</div> 
 						<div class="row px-auto">
@@ -425,7 +425,7 @@
 					<p class="">Have you ever had any injuries (expecially head injuries)?</p>
 					<div class="radio ">
 						<label class="radio-selector"><input type="radio" name="injuryRadio" value="yes" onclick="showInjury()" required>Yes</label>
-						<label class="radio-selector"><input type="radio" name="injurydRadio" value="no" onclick="hideInjury()" required>No</label>
+						<label class="radio-selector"><input type="radio" name="injuryRadio" value="no" onclick="hideInjury()" required>No</label>
 					</div>
 
 					<div id="injury" class="form-group" style="display: none;">
