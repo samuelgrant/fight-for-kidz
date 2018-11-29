@@ -1,4 +1,4 @@
-@extends('layouts.app') 
+-@extends('layouts.app') 
 @section('content')
 
 @include('layouts.messages')
@@ -18,7 +18,7 @@
 		<form id="application-form" method="POST" action="{{route('application.fight.submit')}}" enctype="multipart/form-data">
 			<div class="form-section">
 
-				<!-- Contact Information -->
+{{-- Contact Info Section --}}
 				<h3>Contact Information</h3>
 				<hr class="mb-4">
 				<div class="form-group-margin">
@@ -108,8 +108,9 @@
 					</div>
 				</div>
 			</div>
+{{-- End Contact Info Section --}}
 
-			<!-- Personal Details -->
+{{-- Personal Details Section --}}
 			<div class="form-section">
 				<h3>Personal Details</h3>
 				<hr class="mb-4">
@@ -209,8 +210,59 @@
 					<input type="file" class="form-control-file" name="photo" required>
 				</div>
 			</div>
+{{-- End of Persoal Details --}}
 
+{{-- Emergency Contact Section --}}
+			<div class="form-section">
+				<h3>Emergency Contact</h3>
+				<hr class="mb-4">
 
+				<div class="form-group-margin">
+					<div class="row">
+						<div class="col-md-2 inputLabel">
+							<label for="emergency_first">First Name:</label>
+						</div>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="emergency_first" required>
+						</div>
+
+						<div class="col-md-2 inputLabel">
+							<label for="emergency_last">Last Name:</label>
+						</div>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="emergency_last" required>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-2 inputLabel">
+							<label for="emergency_phone">Phone:</label>
+						</div>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="emergency_phone">
+						</div>
+
+						<div class="col-md-2 inputLabel">
+							<label for="emergency_mobile">Mobile:</label>
+						</div>
+						<div class="col-md-4">
+							<input class="form-control" type="text" name="emergency_mobile">
+						</div>
+					</div>
+				</div>
+				<div class="form-group-margin">
+					<div class="row">
+						<div class="col-md-2 inputLabel">
+							<label for="emergency_email">Email:</label>
+						</div>
+						<div class="col-md-6">
+							<input class="form-control" type="text" name="emergency_email">
+						</div>
+					</div>
+				</div>
+			</div>
+{{-- End Emergency Contact Section --}}
+
+{{-- Sporting Experience Section --}}
 			<div class="form-section">
 				<h3>Sporting Experience</h3>
 				<hr class="mb-4">
@@ -233,7 +285,7 @@
 				<div class="form-group">
 					<p class="">Have you ever done boxing/kickboxing/martial arts?</p>
 					<div class="radio ">
-						<label class="radio-selector"><input type="radio" name="expRadio" value="yes" onclick="showexperience()" required>Yes</label>
+						<label class="radio-selector"><input type="radio" name="expRadio" value="yes" onclick="showExperience()" required>Yes</label>
 						<label class="radio-selector"><input type="radio" name="expRadio" value="no" onclick="hideExperience()" required>No</label>
 					</div>
 				</div>
@@ -246,7 +298,7 @@
 				<div class="form-group">
 					<label for="summary" class="">Other sporting experience:</label>
 					<textarea id="summary" name="sporting_experience" class="form-control" placeholder="Please describe any other sporting experience you have..."
-					 rows="3" required></textarea>
+					rows="3" required></textarea>
 				</div>
 
 				<!-- Hobbies / interests -->
@@ -254,13 +306,202 @@
 				<div class="form-group">
 					<label for="summary" class="">Hobbies/interests:</label>
 					<textarea id="summary" name="hobbies" class="form-control" placeholder="Please describe any other hobbies/interests you have..."
-					 rows="3" required></textarea>
+					rows="3" required></textarea>
 				</div>
 
 			</div>
+{{-- End Sporting Section --}}
 
+{{-- Medical Innfo Section --}}
+			<div class="form-section">
+				<h3>Medical Information</h3>
+				<hr class="mb-4">
+
+				<div class="form-group-margin">
+					<fieldset style="border: 1px solid;   border-top-left-radius: 15px; border-top-right-radius: 15px;">
+						<legend class="ml-3" style="width :200px;">Previous History</legend>
+						<h5 class="mt-2 mb-3 ml-3">Do you have a past history of the following?</h5>
+
+						<div class="row px-auto">
+							<div class="col-md-4">
+								<label class=" pl-3" for="heart_disease">Heart Disease:</label>
+								<input class="float-right" type="checkbox" name="heart_disease" required>
+							</div>
+							<div class="col-md-4">
+								<label for="heart_surgery">Heart Surgery:</label>
+								<input class="float-right" type="checkbox" name="heart_surgery">
+							</div>
+							<div class="col-md-4">
+								<label for="heart_attack">Heart Attack:</label>
+								<input class="float-right" type="checkbox" name="heart_attack">
+							</div>
+						</div>
+						<div class="row px-auto">
+							<div class="col-md-4">
+								<label class=" pl-3" for="stroke">Stroke:</label>
+								<input class="float-right" type="checkbox" name="stroke">
+							</div>
+							<div class="col-md-4">
+									<label for="smoking">Smoking:</label>
+									<input class="float-right" type="checkbox" name="smoking">
+								</div>
+							<div class="col-md-4">
+								<label for="cancer">Cancer:</label>
+								<input class="float-right" type="checkbox" name="cancer">
+							</div>
+						</div>
+						<div class="row px-auto">
+							<div class="col-md-4">
+								<label class="pl-3" for="breathlessness">Breathlessness:</label>
+								<input class="float-right" type="checkbox" name="breathlessness">
+							</div>
+							<div class="col-md-4">
+								<label for="epilepsy">Epilepsy:</label>
+								<input class="float-right" type="checkbox" name="epilepsy">
+							</div>
+							<div class="col-md-4">
+								<label for="chest_pain_discomfort">Chest Pain/Discomfort:</label>
+								<input class="float-right" type="checkbox" name="chest_pain_discomfort">
+								</div>
+						</div>
+						<div class="row px-auto">
+							<div class="col-md-4">
+								<label class=" pl-3" for="irregular_heartbeat">Irregular Heartbeat:</label>
+								<input class="float-right" type="checkbox" name="irregular_heartbeat">
+							</div>
+							<div class="col-md-4">
+								<label for="respiratory_problems">Respiratory Problems:</label>
+								<input class="float-right" type="checkbox" name="respiratory_problems">
+							</div>
+							<div class="col-md-4">
+								<label for="joint_pain_problems">Joint Pain/Problems:</label>
+								<input class="float-right" type="checkbox" name="joint_pain_problems">
+							</div>
+						</div>
+						<div class="row px-auto">
+							<div class="col-md-4">
+								<label class="pl-3" for="surgery">Surgery:</label>
+								<input class="float-right" type="checkbox" name="surgery">
+							</div>
+							<div class="col-md-4">
+								<label for="dizziness_fainting">Dizziness or Fainting:</label>
+								<input class="float-right" type="checkbox" name="dizziness_fainting">
+							</div>
+							<div class="col-md-4">
+								<label for="high_cholesterol">High Cholesterol (>240):</label>
+								<input class="float-right" type="checkbox" name="high_cholesterol">
+							</div>
+						</div>
+						<div class="row px-auto">
+							<div class="col-md-4">
+								<label class=" pl-3" for="hypertension">Hypertension (>140/90):</label>
+								<input class="float-right" type="checkbox" name="hypertension">
+							</div>
+							<div class="col-md-4">
+								<label for="heart_disease">Other:</label>
+								<input class="float-right" id="otherCheck" type="checkbox" name="heart_disease" onclick="showOther()">
+							</div>
+						</div> 
+						<div class="row px-auto">
+							<div id="other" class="form-group" style="display: none;">
+								<textarea id="other_info" name="other_details" class="form-control ml-4 mt-3" rows="3"  cols="93" placeholder="Please explain..."></textarea>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+
+				<div class="form-group">
+					<p class="">Have you ever had any hand injuries?</p>
+					<div class="radio ">
+						<label class="radio-selector"><input type="radio" name="handRadio" value="yes" onclick="showHand()" required>Yes</label>
+						<label class="radio-selector"><input type="radio" name="handRadio" value="no" onclick="hideHand()" checked  required>No</label>
+					</div>
+
+					<div id="hand" class="form-group" style="display: none;">
+						<textarea id="handInjury" name="hand_details" class="form-control" rows="3" placeholder="Please explain..."></textarea>
+					</div>
+					<br>
+
+					<p class="">Have you ever had any injuries (expecially head injuries)?</p>
+					<div class="radio ">
+						<label class="radio-selector"><input type="radio" name="injuryRadio" value="yes" onclick="showInjury()" required>Yes</label>
+						<label class="radio-selector"><input type="radio" name="injurydRadio" value="no" onclick="hideInjury()" checked  required>No</label>
+					</div>
+
+					<div id="injury" class="form-group" style="display: none;">
+						<textarea id="injuries" name="injury_details" class="form-control" rows="3" placeholder="Please explain..."></textarea>
+					</div>
+					<br>
+
+					<p class="">Are you currently taking any medications?</p>
+					<div class="radio ">
+						<label class="radio-selector"><input type="radio" name="medsRadio" value="yes" onclick="showMeds()" required>Yes</label>
+						<label class="radio-selector"><input type="radio" name="medsRadio" value="no" onclick="hideMeds()" checked  required>No</label>
+					</div>
+
+					<div id="meds" class="form-group" style="display: none;">
+						<textarea id="medication" name="meds_details" class="form-control" rows="3" placeholder="Please list medication as well as the reasons for taking..."></textarea>
+					</div>
+					<br>
+				</div>
+
+				<div class="form-group">
+					<h5><i>Please read the following eight questions carefully and answer each one honestly.</i></h5>
+					<br>
+
+					<p class="">1. Has a physician ever said that you have a heart condition and recommended only medically supervised activity?</p>
+					<div class="radio ">
+						<label class="radio-selector"><input type="radio" name="heartRadio" value="yes" required>Yes</label>
+						<label class="radio-selector"><input type="radio" name="heartRadio" value="no" checked required>No</label>
+					</div>
+					<p class="">2. Do you have chest pain that’s brought on by physical activity? </p>
+					<div class="radio ">
+						<label class="radio-selector"><input type="radio" name="activityRadio" value="yes" required>Yes</label>
+						<label class="radio-selector"><input type="radio" name="activityRadio" value="no" checked  required>No</label>
+					</div>
+					<p class="">3. Have you developed chest pain in the past month? </p>
+					<div class="radio ">
+						<label class="radio-selector"><input type="radio" name="monthRadio" value="yes" required>Yes</label>
+						<label class="radio-selector"><input type="radio" name="monthRadio" value="no" checked  required>No</label>
+					</div>
+					<p class="">4. Have you on one or more occasions lost consciousness or fallen over as a result of dizziness?</p>
+					<div class="radio ">
+						<label class="radio-selector"><input type="radio" name="consciousnessRadio" value="yes" required>Yes</label>
+						<label class="radio-selector"><input type="radio" name="consciousnessRadio" checked  value="no" required>No</label>
+					</div>
+					<p class="">5. Do you have a bone or joint problem that could be aggravated by the proposed physical activity?</p>
+					<div class="radio ">
+						<label class="radio-selector"><input type="radio" name="boneRadio" value="yes" required>Yes</label>
+						<label class="radio-selector"><input type="radio" name="boneRadio" value="no" checked  required>No</label>
+					</div>
+					<p class="">6. Has a physician ever recommended medication for your blood pressure or a heart condition?</p>
+					<div class="radio ">
+						<label class="radio-selector"><input type="radio" name="bloodRadio" value="yes" required>Yes</label>
+						<label class="radio-selector"><input type="radio" name="bloodRadio" value="no" checked required>No</label>
+					</div>
+					<p class="">7. Have you ever been knocked out or concussed?</p>
+					<div class="radio ">
+						<label class="radio-selector"><input type="radio" name="concussedRadio" value="yes" required>Yes</label>
+						<label class="radio-selector"><input type="radio" name="concussedRadio" value="no" checked required>No</label>
+					</div>
+					<p class="">8. Are you aware, through your own experience or a physician’s advice, of any other reason that would prohibit you from exercising without medical supervision?</p>
+					<div class="radio ">
+						<label class="radio-selector"><input type="radio" name="reasonsRadio" value="yes" onclick="showReason()" required>Yes</label>
+						<label class="radio-selector"><input type="radio" name="reasonsRadio" value="no" onclick="hideReason()" checked required>No</label>
+					</div>
+
+					<div id="reason" class="form-group" style="display: none;">
+						<textarea id="reasons" name="reason_details" class="form-control" rows="3" placeholder="Please explain..."></textarea>
+					</div>
+
+					<br>
+					<h5><i>If you answered “yes” to any of these eight questions you should consult your Physician before participation in any physical training can begin.</i></h5>
+				</div>
+			</div>
+{{-- End Medical Info Section --}}
+
+{{-- Additional Info Section --}}
 			<!-- Criminal/legal Questions + custom questions -->
-
 			<div class="form-section">
 				<h3>Additional Information</h3>
 				<hr class="mb-4">
@@ -299,8 +540,8 @@
 				<div class="form-group" id="additional_information">
 					<p class="">Do you have any criminal convictions or are facing charges?</p>
 					<div class="radio ">
-						<label class="radio-selector"><input type="radio" name="convictedRadio" value="yes" onclick="showcriminal()" required>Yes</label>
-						<label class="radio-selector"><input type="radio" name="convictedRadio" value="no" onclick="hidecriminal()" required>No</label>
+						<label class="radio-selector"><input type="radio" name="convictedRadio" value="yes" onclick="showCriminal()" required>Yes</label>
+						<label class="radio-selector"><input type="radio" name="convictedRadio" value="no" onclick="hideCriminal()" required>No</label>
 					</div>
 
 					<div id="criminal" class="form-group" style="display: none;">
@@ -314,6 +555,7 @@
 						<label class="radio-selector"><input type="radio" name="drugRadio" value="no" required>No</label>
 					</div>
 				</div>
+{{--End Additonal Information Section --}}
 
 				<hr class="mb-4">
 
@@ -322,8 +564,8 @@
 						<input class="d-inline-block align-middle" type="checkbox" name="subscribeCheckbox" id="subscribeCheckbox" checked>I would like to receive Fight for Kidz updates via email
 					</label>
 					<label for="guidelinesCheckbox">
-            			<input class="d-inline-block align-middle" type="checkbox" name="declCheckbox" id="guidelinesCheckbox" required>I have provided true and accurate information in this application
-          			</label>
+						<input class="d-inline-block align-middle" type="checkbox" name="declCheckbox" id="guidelinesCheckbox" required>I have provided true and accurate information in this application
+					</label>
 				</div>
 			</div>
 
