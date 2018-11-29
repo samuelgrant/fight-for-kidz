@@ -1,14 +1,41 @@
-function showexperience(){
-    document.getElementById('exeperience').style.display ='block';
-  }
+function showExperience(){
+  document.getElementById('exeperience').style.display ='block';
+}
 function hideExperience(){
-    document.getElementById('exeperience').style.display ='none';
+  document.getElementById('exeperience').style.display ='none';
 }  
-  function showcriminal(){
-    document.getElementById('criminal').style.display = 'block';
-  }
-  function hidecriminal(){
-    document.getElementById('criminal').style.display ='none';
+function showCriminal(){
+  document.getElementById('criminal').style.display = 'block';
+}
+function hideCriminal(){
+  document.getElementById('criminal').style.display ='none';
+}
+function showOther(){
+  document.getElementById('otherCheck').checked ? document.getElementById('other').style.display = 'block' : document.getElementById('other').style.display = 'none';
+}
+function showHand(){
+  document.getElementById('hand').style.display = 'block';
+}
+function hideHand(){
+  document.getElementById('hand').style.display ='none';
+}
+function showInjury(){
+  document.getElementById('injury').style.display = 'block';
+}
+function hideInjury(){
+  document.getElementById('injury').style.display ='none';
+}
+function showMeds(){
+  document.getElementById('meds').style.display = 'block';
+}
+function hideMeds(){
+  document.getElementById('meds').style.display ='none';
+}
+function showReason(){
+  document.getElementById('reason').style.display = 'block';
+}
+function hideReason(){
+  document.getElementById('reason').style.display ='none';
 }
 
 $("document").ready(function(){
