@@ -42,6 +42,7 @@ class EventApplicationController extends Controller
         $validator = Validator::make(Input::all(), [ // should this be $request->all() instead of Input::all()?
             // 'g-recaptcha-response' => 'required|captcha',
 
+            //Contact Info Section
             'first_name' => 'required',
             'last_name' => 'required',
             'address_1' => 'required',
@@ -52,6 +53,8 @@ class EventApplicationController extends Controller
             'email' => 'required|email',
             'phone' => 'required',
             // mobile not required
+
+            //Personal Details Section
             'dob' => 'required|date', // string must be date according to PHP strtotime() function
             'height' => 'required|integer|gt:0',
             'current_weight' => 'required|integer|gt:0', 
@@ -62,10 +65,52 @@ class EventApplicationController extends Controller
             // nickname not required
             'sponsorRadio' => 'required',
             'photo' => 'required|image|mimes:jpeg,png', // accepts jpeg and png - this may not be correct
+
+            //Emergency Contact Section
+            'emergency_first' => 'required',
+            'emergency_last' => 'required',
+            'emergency_phone' => 'required',
+            'emergency_mobile' => 'required',
+            'emergency_email' => 'required',
+
+            //Sporting Experience Section
             'expRadio' => 'required',
             'fitness_rating' => 'required',
             'fighting_experience' => 'required_if:expRadio,yes',
             'sporting_experience' => 'required',
+            'hobbies' => 'required',
+
+            //Medical Info Section
+            'heart_disease' => 'required',
+            'heart_surgery' => 'required',
+            'heart_attack' => 'required',
+            'stroke' => 'required',
+            'smoking' => 'required',
+            'cancer' => 'required',
+            'breathlessness' => 'required',
+            'epilepsy' => 'required',
+            'chest_pain_discomfort' => 'required',
+            'irregular_heartbeat' => 'required',
+            'respiratory_problems' => 'required',
+            'joint_pain_problems' => 'required',
+            'surgery' => 'required',
+            'dizziness_fainting' => 'required',
+            'high_cholesterol' => 'required',
+            'hypertension' => 'required',
+            'other' => 'required',
+            'hand_details' => 'required_if:handRadio,yes',
+            'injury_details' => 'required_if:injuryRadio,yes',
+            'meds_details' => 'required_if:medsRadio,yes',
+            'heartRadio' => 'required',
+            'activityRadio' => 'required',
+            'monthRadio' => 'required',
+            'consciousnessRadio' => 'required',
+            'boneRadio' => 'required',
+            'bloodRadio' => 'required',
+            'concussedRadio' => 'required',
+            'reason_details' => 'required_if:reasonsRadio,yes',
+
+            //Additional Info Section
             'convictedRadio' => 'required',
             'conviction_details' => 'required_if:convictedRadio,yes',
             'drugRadio' => 'required',
