@@ -600,7 +600,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label>Is there any reason why you shouldn't participate:</label>
-                                            <textarea rows="4" cols="50" id="appHandInjuries"  readonly class="form-control-plaintext gray-card"></textarea>
+                                            <textarea rows="4" cols="50" id="appReason"  readonly class="form-control-plaintext gray-card"></textarea>
                                         </div>
                                     </div>
                                 </div>
