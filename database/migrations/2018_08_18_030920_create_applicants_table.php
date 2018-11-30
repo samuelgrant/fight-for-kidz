@@ -48,7 +48,7 @@ class CreateApplicantsTable extends Migration
             $table->string('emergency_last_name', 30);
             $table->string('emergency_relationship', 30);
             $table->string('emergency_phone', 30);
-            $table->string('emergency_mobile', 30);
+            $table->string('emergency_mobile', 30)->nullable();
             $table->string('emergency_email');
 
             //Section 4 - Sporting Experience
