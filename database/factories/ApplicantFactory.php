@@ -75,7 +75,7 @@ $factory->define(App\Applicant::class, function (Faker $faker) {
         'current_medication' => $faker->paragraph(1, true),
 
         'heart_condition' => $faker->numberBetween(0, 1),
-        'chest_pain_physical_activity' => $faker->numberBetween(0, 1),
+        'chest_pain_activity' => $faker->numberBetween(0, 1),
         'chest_pain_recent' => $faker->numberBetween(0, 1),
         'lost_consciousness' => $faker->numberBetween(0, 1),
         'bone_joint_problems' => $faker->numberBetween(0, 1),
