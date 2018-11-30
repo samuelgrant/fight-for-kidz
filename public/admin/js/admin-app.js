@@ -530,10 +530,10 @@ function applicantManagementModal(id){
         $("#appBoneJointProblems").val(data.bone_joint_problems ? 'Yes' : 'No');               $("#appMedicationBloodHeart").val(data.recommended_medication ? 'Yes' : 'No');
         $("#appKnockedOut").val(data.concussed_knocked_out ? 'Yes' : 'No');                    $("#appReason").val(data.other_reasons ? 'Yes' : 'No');
 
-        $("#appReason").text(data.other_reasons);
-        $("#appHandInjuries").text(data.hand_injuries);
-        $("#appPreviousCurrentInjuries").text(data.previous_current_injuries);
-        $("#appCurrentMedicaton").text(data.current_medication);
+        $("#appReason").val(data.other_reasons);
+        $("#appHandInjuries").val(data.hand_injuries);
+        $("#appPreviousCurrentInjuries").val(data.previous_current_injuries);
+        $("#appCurrentMedicaton").val(data.current_medication);
 
         // Additional Tab
         $("#appOccupation").val(data.occupation);                               $("#appEmployer").val(data.employer);
