@@ -71,7 +71,7 @@ class EventApplicationController extends Controller
             'emergency_last' => 'required',
             'emergency_relationship' => 'required',
             'emergency_phone' => 'required',
-            'emergency_mobile' => 'required',
+            //emergency_mobile not required
             'emergency_email' => 'required',
 
             //Sporting Experience Section
@@ -82,23 +82,8 @@ class EventApplicationController extends Controller
             'hobbies' => 'required',
 
             //Medical Info Section
-            'heart_disease' => 'required',
-            'heart_surgery' => 'required',
-            'heart_attack' => 'required',
-            'stroke' => 'required',
-            'smoking' => 'required',
-            'cancer' => 'required',
-            'breathlessness' => 'required',
-            'epilepsy' => 'required',
-            'chest_pain_discomfort' => 'required',
-            'irregular_heartbeat' => 'required',
-            'respiratory_problems' => 'required',
-            'joint_pain_problems' => 'required',
-            'surgery' => 'required',
-            'dizziness_fainting' => 'required',
-            'high_cholesterol' => 'required',
-            'hypertension' => 'required',
-            'other' => 'required',
+            //checkboxes aren't required
+            'other_details' => 'required_if:other,on',
             'hand_details' => 'required_if:handRadio,yes',
             'injury_details' => 'required_if:injuryRadio,yes',
             'meds_details' => 'required_if:medsRadio,yes',
@@ -173,7 +158,7 @@ class EventApplicationController extends Controller
         $applicant->employer = $request->input('employer');
         $applicant->is_male = $request->input('gender') == 'male' ? true : false;
         $applicant->right_handed = $request->input('hand') == 'right' ? true : false;
-        $applicant->preferred_nickname = $request->input('nickname');
+        $applicant->preferred_fight_name = $request->input('nickname');
         $applicant->can_secure_sponsor = $request->input('sponsorRadio') == 'yes' ? true : false;
 
         //Emergency Contact Section
@@ -191,34 +176,34 @@ class EventApplicationController extends Controller
         $applicant->hobbies = $request->input('hobbies');
 
         //Medical Info Section
-        $applicant->heart_disease = $request->input('');
-        $applicant->breathlessness = $request->input('');
-        $applicant->epilepsy = $request->input('');
-        $applicant->heart_attack = $request->input('');
-        $applicant->stroke = $request->input('');
-        $applicant->heart_surgery = $request->input('');
-        $applicant->respiratory_problems = $request->input('');
-        $applicant->cancer = $request->input('');
-        $applicant->irregular_heartbeat = $request->input('');
-        $applicant->smoking = $request->input('');
-        $applicant->joint_pain_problems = $request->input('');
-        $applicant->chest_pain_discomfort = $request->input('');
-        $applicant->hypertension = $request->input('');
-        $applicant->surgery = $request->input('');
-        $applicant->dizziness_fainting = $request->input('');
-        $applicant->high_cholesterol = $request->input('');
-        $applicant->other = $request->input('');
-        $applicant->hand_injuries = $request->input('');
-        $applicant->previous_current_injuries = $request->input('');
-        $applicant->current_medication = $request->input('');
-        $applicant->heart_condition = $request->input('');
-        $applicant->chest_pain_activity = $request->input('');
-        $applicant->chest_pain_recent = $request->input('');
-        $applicant->lost_consciousness = $request->input('');
-        $applicant->bone_joint_problems = $request->input('');
-        $applicant->recommended_medication = $request->input('');
-        $applicant->concussed_knocked_out = $request->input('');
-        $applicant->other_reasons = $request->input('');
+        $applicant->heart_disease = $request->input('heart_disease') == 'on' ? true : false;
+        $applicant->breathlessness = $request->input('heart_surgery') == 'on' ? true : false;
+        $applicant->epilepsy = $request->input('heart_attack') == 'on' ? true : false;
+        $applicant->heart_attack = $request->input('stroke') == 'on' ? true : false;
+        $applicant->stroke = $request->input('smoking') == 'on' ? true : false;
+        $applicant->heart_surgery = $request->input('cancer') == 'on' ? true : false;
+        $applicant->respiratory_problems = $request->input('breathlessness') == 'on' ? true : false;
+        $applicant->cancer = $request->input('epilepsy') == 'on' ? true : false;
+        $applicant->irregular_heartbeat = $request->input('chest_pain_discomfort') == 'on' ? true : false;
+        $applicant->smoking = $request->input('irregular_heartbeat') == 'on' ? true : false;
+        $applicant->joint_pain_problems = $request->input('joint_pain_problems') == 'on' ? true : false;
+        $applicant->chest_pain_discomfort = $request->input('respiratory_problems') == 'on' ? true : false;
+        $applicant->hypertension = $request->input('surgery') == 'on' ? true : false;
+        $applicant->surgery = $request->input('dizziness_fainting') == 'on' ? true : false;
+        $applicant->dizziness_fainting = $request->input('high_cholesterol') == 'on' ? true : false;
+        $applicant->high_cholesterol = $request->input('hypertension') == 'on' ? true : false;
+        $applicant->other = $request->input('other_details');
+        $applicant->hand_injuries = $request->input('hand_details');
+        $applicant->previous_current_injuries = $request->input('injury_details');
+        $applicant->current_medication = $request->input('meds_details');
+        $applicant->heart_condition = $request->input('heartRadio') == 'yes' ? true : false;
+        $applicant->chest_pain_activity = $request->input('activityRadio') == 'yes' ? true : false;
+        $applicant->chest_pain_recent = $request->input('monthRadio') == 'yes' ? true : false;
+        $applicant->lost_consciousness = $request->input('consciousnessRadio') == 'yes' ? true : false;
+        $applicant->bone_joint_problems = $request->input('boneRadio') == 'yes' ? true : false;
+        $applicant->recommended_medication = $request->input('bloodRadio') == 'yes' ? true : false;
+        $applicant->concussed_knocked_out = $request->input('concussedRadio') == 'yes' ? true : false;
+        $applicant->other_reasons = $request->input('reason_details');
         
         //Additonal Info Section
         $applicant->conviction_details = $request->input('conviction_details');
