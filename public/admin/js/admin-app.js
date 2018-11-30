@@ -525,7 +525,7 @@ function applicantManagementModal(id){
         $("#appOther").text(data.other);
 
         // Medical Tab 2
-        $("#appHeartCondtion").val(data.heart_condition ? 'Yes' : 'No');                       $("#appPhysicalChestPain").val(data.chest_pain_physical_activity ? 'Yes' : 'No');
+        $("#appHeartCondtion").val(data.heart_condition ? 'Yes' : 'No');                       $("#appPhysicalChestPain").val(data.chest_pain_activity ? 'Yes' : 'No');
         $("#appRecentChestPain").val(data.chest_pain_recent ? 'Yes' : 'No');                   $("#appPassedOut").val(data.lost_consciousness ? 'Yes' : 'No');
         $("#appBoneJointProblems").val(data.bone_joint_problems ? 'Yes' : 'No');               $("#appMedicationBloodHeart").val(data.recommended_medication ? 'Yes' : 'No');
         $("#appKnockedOut").val(data.concussed_knocked_out ? 'Yes' : 'No');                    $("#appReason").val(data.other_reasons ? 'Yes' : 'No');
