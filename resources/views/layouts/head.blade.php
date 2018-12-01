@@ -36,13 +36,12 @@
   <!-- Plugin JavaScript -->
   <script src="/vendor/font-awesome/js/all.js" defer></script>
   <script src="/vendor/jquery-easing/jquery.easing.min.js" defer></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap-wizard/1.2/jquery.bootstrap.wizard.js" defer></script>
 
   <link rel="stylesheet"  href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
   <script  src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>    
 
   <!-- Custom scripts for this template -->
-  <script src="/js/grayscale.js" defer></script>
   <script src="/js/custom.js" defer></script>
 
   <!-- Cookie -->
