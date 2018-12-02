@@ -366,3 +366,11 @@ body{
 	color :white;
 	opacity: 1.0!important;
 }
+
+a.active {
+	color: white;
+}
+
+a.active:hover {
+	color: #BBBBBB;
+}
