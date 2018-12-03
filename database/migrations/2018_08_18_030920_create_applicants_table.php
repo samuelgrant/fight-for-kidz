@@ -26,7 +26,7 @@ class CreateApplicantsTable extends Migration
             $table->string('address_2')->nullable();
             $table->string('suburb')->nullable();
             $table->string('city');
-            $table->string('postcode');
+            $table->string('postcode' ,10);
             $table->string('phone', 30);
             $table->string('mobile', 30)->nullable();
             $table->string('email');
