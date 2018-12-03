@@ -593,7 +593,7 @@
 						</div>
 						{{-- End Tab Additional --}}
 						<div class="tab-pane" id="tabSubmit">
-							{{-- Sebmit Section --}}
+							{{-- Submit Section --}}
 							<div class="form-section mt-5 mt-5">
 
 								<div class="form-group text-center">
