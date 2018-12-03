@@ -224,3 +224,290 @@ $(document).ready(function() {
   $('#rootwizard .progress-bar').css({width:$percent+'%'});
   }});
 });
+
+$(document).ready(function() {
+  var $validator = $("#application-form").validate({
+    rules: {
+      //Contact
+      first_name: {
+        required: true,
+        minlength: 3,
+        maxlength: 30
+      },
+      last_name: {
+        required: true,
+        minlength: 3,
+        maxlength: 30
+      },
+      address_1:{
+        required: true,
+        minlength: 3,
+        maxlength: 191
+      },
+      address_2:{
+        required: false,
+        minlength: 3,
+        maxlength: 191
+      },
+      suburb:{
+        required: true,
+        minlength: 3,
+        maxlength: 191
+      },
+      city:{
+        required: true,
+        minlength: 3,
+        maxlength: 191
+      },
+      post_code:{
+        required: true,
+        maxlength: 10,
+      },
+      email:{
+        required: true,
+        email: true,
+        minlength: 3,
+        maxlength: 191
+      },
+      phone:{
+        required: true,
+        minlength: 3,
+        maxlength: 30
+      },
+      mobile:{
+        required: false,
+        minlength: 3,
+        maxlength: 30
+      },
+      //Personal
+      dob:{
+        required: true,
+        date: true
+      },
+      height:{
+        required: true,
+        number: true,
+        range: [1,300],
+        minlength: 3,
+        maxlength: 191
+      },
+      current_weight:{
+        required: true,
+        number: true,
+        range: [1,300],
+        minlength: 3,
+        maxlength: 191
+      },
+      expected_weight:{
+        required: false,
+        number: true,
+        range: [1,300],
+        minlength: 3,
+        maxlength: 191
+      },
+      occupation:{
+        required: true,
+        minlength: 3,
+        maxlength: 191
+      },
+      employer:{
+        required: false,
+        minlength: 3,
+        maxlength: 191
+      },
+      gender:{
+        required
+      },
+      hand:{
+        required
+      },
+      nickname:{
+        required: false,
+        minlength: 3,
+        maxlength: 191
+      },
+      sponsorRadio:{
+        required
+      },
+      
+      //Picture validation to go here
+
+      //Emergency
+      emergency_first:{
+        required: true,
+        minlength: 3,
+        maxlength: 30
+      },
+      emergency_last:{
+        required: true,
+        minlength: 3,
+        maxlength: 30
+      },
+      emergency_relationship:{
+        required: true,
+        minlength: 3,
+        maxlength: 30
+      },
+      emergency_email:{
+        required: true,
+        email: true,
+        minlength: 3,
+        maxlength: 191
+      },
+      emergency_phone:{
+        required: true,
+        minlength: 3,
+        maxlength: 30
+      },
+      emergecy_mobile:{
+        required: false,
+        minlength: 3,
+        maxlength: 191
+      },
+      //Sporting
+      fitness_rating:{
+        required: true
+      },
+      expRadio:{
+        required: true
+      },
+      //Makes fighting experience required if expRadio is yes
+      fighting_experience:{
+        required: $("#expRadio").val() == "yes"
+      },
+      sporting_experience:{
+        required: true
+      },
+      hobbies:{
+        required: true
+      },
+      handRadio:{
+        required: true
+      },
+      injuryRadio:{
+        required: true
+      },
+      medsRadio:{
+        required: true
+      },
+      
+      //Medical 1
+      //Dont need to validate checkboxes
+      //Makes other details required if expRadio is yes
+      other_details:{
+        required: $("#other").val() == "yes"
+      },
+      
+      //Medical 2
+      heartRadio:{
+        required: true
+      },
+      activityRadio:{
+        required: true
+      },
+      monthRadio:{
+        required: true
+      },
+      consciousnessRadio:{
+        required: true
+      },
+      boneRadio:{
+        required: true
+      },
+      bloodRadio:{
+        required: true
+      },
+      concussedRadio:{
+        required: true
+      },
+      reasonsRadio:{
+        required: true
+      },
+      reason_details:{
+        required: $("#reasonsRadio").val() == "yes"//change this and all others as need to give all yes radios an id and test for checked not val
+      },
+
+      //Additional
+      //Custom Question Validation to go here
+
+      convictedRadio:{
+        required: true
+      },
+      conviction_details:{
+        required: $("#")
+      },
+      drugRadio:{
+        required: true,
+      },
+
+      //Submit
+      declCheckbox:{
+        required: true
+      }
+    },
+    messages: {
+      //Contact
+      first_name:{
+        reequired: "Please enter your firstname",
+        minlength: "You name needs to be greater than 2 characters",
+        maxlength: "Your name needs to be less than 31 characters"
+      },
+      last_name: {
+        required: "Please enter your firstname",
+        minlength: "You name needs to be greater than 2 characters",
+        maxlength: "Your name needs to be less than 31 characters"
+      },
+      address_1:{
+        required: "Please enter you address",
+        minlength: "Your address needs to be greater than 2 charcters",
+        maxlength: "The address you entered is too long"
+      },
+      address_2:{
+        minlength: "Your address needs to be greater than 2 charcters",
+        maxlength: "The address you entered is too long"
+      },
+      suburb:{
+        required: "Please enter your suburb",
+        minlength: "Your suburb needs to be greater than 2 charcters",
+        maxlength: "The suburb you entered is too long"
+      },
+      city:{
+        required: "Please enter your city",
+        minlength: "Your city needs to be greater than 2 charcters",
+        maxlength: "The city you entered is too long"
+      },
+      post_code:{
+        required: "Please enter your post code",
+        maxlength: "The post code you entered is too long"
+      },
+      email:{
+        required: "Please enter your email address",
+        email: "You must an email",
+        minlength: "Your email needs to be greater than 2 charcters",
+        maxlength: "The email you entered is too long"
+      },
+      phone:{
+        required: "Please enter your phone number",
+        minlength: "Your phone number needs to be greater than 2 charcters",
+        maxlength: "The phone number you entered is too long"
+      },
+      mobile:{
+        minlength: "Your cell phone number needs to be greater than 2 charcters",
+        maxlength: "The cell phone number you entered is too long"
+      },
+
+      //Personal
+    }
+  });
+
+    $('#rootwizard').bootstrapWizard({
+      'onNext': function(tab, navigation, index) {
+        var $valid = $("#application-form").valid();
+        if(!$valid) {
+          console.log("test");
+          $validator.focusInvalid();
+          return false;
+        }
+      }
+    });
+});
