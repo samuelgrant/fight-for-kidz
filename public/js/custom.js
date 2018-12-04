@@ -279,6 +279,7 @@ $(document).ready(function() {
         minlength: 3,
         maxlength: 30
       },
+
       //Personal
       dob:{
         required: true,
@@ -288,22 +289,16 @@ $(document).ready(function() {
         required: true,
         number: true,
         range: [1,300],
-        minlength: 3,
-        maxlength: 191
       },
       current_weight:{
         required: true,
         number: true,
         range: [1,300],
-        minlength: 3,
-        maxlength: 191
       },
       expected_weight:{
         required: false,
         number: true,
         range: [1,300],
-        minlength: 3,
-        maxlength: 191
       },
       occupation:{
         required: true,
@@ -316,10 +311,10 @@ $(document).ready(function() {
         maxlength: 191
       },
       gender:{
-        required
+        required: true
       },
       hand:{
-        required
+        required: true
       },
       nickname:{
         required: false,
@@ -327,7 +322,7 @@ $(document).ready(function() {
         maxlength: 191
       },
       sponsorRadio:{
-        required
+        required: true
       },
       
       //Picture validation to go here
@@ -364,6 +359,7 @@ $(document).ready(function() {
         minlength: 3,
         maxlength: 191
       },
+
       //Sporting
       fitness_rating:{
         required: true
@@ -449,12 +445,12 @@ $(document).ready(function() {
       //Contact
       first_name:{
         reequired: "Please enter your firstname",
-        minlength: "You name needs to be greater than 2 characters",
+        minlength: "Your name needs to be greater than 2 characters",
         maxlength: "Your name needs to be less than 31 characters"
       },
       last_name: {
         required: "Please enter your firstname",
-        minlength: "You name needs to be greater than 2 characters",
+        minlength: "Your name needs to be greater than 2 characters",
         maxlength: "Your name needs to be less than 31 characters"
       },
       address_1:{
@@ -482,7 +478,7 @@ $(document).ready(function() {
       },
       email:{
         required: "Please enter your email address",
-        email: "You must an email",
+        email: "You must enter an email",
         minlength: "Your email needs to be greater than 2 charcters",
         maxlength: "The email you entered is too long"
       },
@@ -497,6 +493,79 @@ $(document).ready(function() {
       },
 
       //Personal
+      dob:{
+        required: "please enter your birthdate",
+      },
+      height:{
+        required:"Please enter your height",
+        number: "Your height must be a number",
+        range: "Your height is outside of the accepted range"
+      },
+      current_weight:{
+        required: "Please enter your current weight",
+        number: "Your current weight must be a number",
+        range: "Your current weight is outside of the accepted range"
+      },
+      expected_weight:{
+        number: "Your expected weight must be a number",
+        range: "Your expected weight is outside of the accepted range"
+      },
+      occupation:{
+        required: "Please enter your occupation",
+        minlength: "Your occupation needs to be greater than 2 charcters",
+        maxlength: "The occupation you entered is too long"
+      },
+      employer:{
+        minlength: "Your employer needs to be greater than 2 charcters",
+        maxlength: "The employer you entered is too long"
+      },
+      gender:{
+        required: "Please choose your gender"
+      },
+      hand:{
+        required: "Please choose your dominant hand"
+      },
+      nickname:{
+        minlength: "Your fight name needs to be greater than 2 charcters",
+        maxlength: "The fight name you entered is too long"
+      },
+      sponsorRadio:{
+        required: "Are you able to secure your own sponsor?"
+      },
+      
+      //Picture messages to go here
+
+      //Emergency
+      emergency_first:{
+        required: "Please enter your emergency contact's firstname",
+        minlength: "Your emergency contact's firstname needs to be greater than 2 characters",
+        maxlength: "Your emergency contact's firstname needs to be less than 31 characters"
+      },
+      emergency_last:{
+        required: "Please enter your emergency contact's last name",
+        minlength: "Your emergency contact's lastname needs to be greater than 2 characters",
+        maxlength: "Your emergency contact's last name needs to be less than 31 characters"
+      },
+      emergency_relationship:{
+        required: "What is your emergency contacts realtionship to you?",
+        minlength: "Your emergency contact's relationship needs to be greater than 2 characters",
+        maxlength: "Your emergency contact's relationship needs to be less than 31 characters"
+      },
+      emergency_email:{
+        required: "Please enter your emergency contact's email address",
+        email: "Your must enter an email",
+        minlength: "Your emergency contact's email needs to be greater than 2 charcters",
+        maxlength: "The emergency contact's email you entered is too long"
+      },
+      emergency_phone:{
+        required: "Please enter your emergency contact's phone number",
+        minlength: "Your emergency contact's phone number needs to be greater than 2 characters",
+        maxlength: "The emergency contact's phone number you entered is too long"
+      },
+      emergecy_mobile:{
+        minlength: "Your emergency contact's mobile phone number needs to be greater than 2 characters",
+        maxlength: "The emergency contact's mobile phone number you entered is too long"
+      },
     }
   });
 
