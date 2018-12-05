@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\Groupable;
+use Illuminate\Support\Facades\Hash;
 
 class Subscriber extends Model
 {
@@ -20,6 +21,7 @@ class Subscriber extends Model
             $subscriber = new Subscriber;
             $subscriber->name = $name;
             $subscriber->email = $email;
+            $subscriber->unsubscribe_token = Hash::make($email . uniqid());
             $subscriber->save();
         }
 

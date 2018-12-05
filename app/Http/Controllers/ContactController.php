@@ -6,6 +6,7 @@ use App\Jobs\SendTableEnquiry;
 use App\Jobs\SendSponsorEnquiry;
 use App\Jobs\SendGeneralEnquiry;
 use App\Jobs\SendContactReceived;
+use App\Subscriber;
 
 class ContactController extends Controller
 {
