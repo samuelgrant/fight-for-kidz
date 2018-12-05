@@ -25,18 +25,18 @@
 				<form action="{{route('contact.general')}}" method="POST">
 					<div class="row">
 						<div class="form-group col-md-6">
-							<input id="name" name="name" type="text" class="form-control" placeholder="* Your name" required>
+							<input id="gen_name" name="name" type="text" class="form-control" placeholder="* Your name" required>
 						</div>
 						<div class="form-group col-md-6">
-							<input id="email" name="email" type="email" class="form-control" placeholder="* Your email address" required>
+							<input id="gen_email" name="email" type="email" class="form-control" placeholder="* Your email address" required>
 						</div>
 					</div>
 					<div class="form-group">
-						<input id="phone" name="phone" type="text" class="form-control" placeholder="* Phone number" required>
+						<input id="gen_phone" name="phone" type="text" class="form-control" placeholder="* Phone number" required>
 					</div>
 					<div class="form-group">
-						<label for="message" class="text-white">* Your message:</label>
-						<textarea id="message" class="form-control" name="message" rows="5" required></textarea>
+						<label for="gen_message" class="text-white">* Your message:</label>
+						<textarea id="gen_message" class="form-control" name="message" rows="5" required></textarea>
 					</div>
 					<button class="btn btn-primary mt-2 d-block mx-auto">Send Message</button>
 					@csrf
@@ -54,22 +54,22 @@
 				<form action="{{route('contact.sponsor')}}" method="POST">
 					<div class="row">
 						<div class="form-group col-md-6">
-							<input id="name" name="name" type="text" class="form-control" placeholder="* Your name" required>
+							<input id="spon_name" name="name" type="text" class="form-control" placeholder="* Your name" required>
 						</div>
 						<div class="form-group col-md-6">
-							<input id="name" name="email" type="email" class="form-control" placeholder="* Your email address" required>
+							<input id="spon_name" name="email" type="email" class="form-control" placeholder="* Your email address" required>
 						</div>
 					</div>
 					<div class="form-group">
-						<input id="name" name="phone" type="text" class="form-control" placeholder="* Phone number" required>
+						<input id="spon_phone" name="phone" type="text" class="form-control" placeholder="* Phone number" required>
 					</div>					
 					<div class="form-group">
 						<label for="message" class="text-white">* What type/s of sponsorship are you interested in?</label>
-						<input id="name" name="type" type="text" class="form-control" required>
+						<input id="spon_type" name="type" type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
 						<label for="message" class="text-white">Optional message:</label>
-						<textarea id="message" name="message" class="form-control" rows="5"></textarea>
+						<textarea id="spon_message" name="message" class="form-control" rows="5"></textarea>
 					</div>
 					<button class="btn btn-primary mt-2 d-block mx-auto">Send Message</button>
 					@csrf
@@ -86,18 +86,18 @@
 				<form action="{{route('contact.table')}}" method="POST">
 					<div class="row">
 						<div class="form-group col-md-6">
-							<input id="name" name="name" type="text" class="form-control" placeholder="* Your name" required>
+							<input id="tbl_name" name="name" type="text" class="form-control" placeholder="* Your name" required>
 						</div>
 						<div class="form-group col-md-6">
-							<input id="name" name="email" type="email" class="form-control" placeholder="* Your email address" required>
+							<input id="tbl_name" name="email" type="email" class="form-control" placeholder="* Your email address" required>
 						</div>
 					</div>
 					<div class="form-group">
-						<input id="name" name="phone" type="text" class="form-control" placeholder="* Phone number" required>
+						<input id="tbl_name" name="phone" type="text" class="form-control" placeholder="* Phone number" required>
 					</div>					
 					<div class="form-group">
-						<label for="message" class="text-white">Optional message - What type of table are you looking to book?:</label>
-						<textarea id="message" name="message" class="form-control" rows="5"></textarea>
+						<label for="tbl_message" class="text-white">Optional message - What type of table are you looking to book?:</label>
+						<textarea id="tbl_message" name="message" class="form-control" rows="5"></textarea>
 					</div>
 					<button class="btn btn-primary mt-2 d-block mx-auto">Send Message</button>
 					@csrf
