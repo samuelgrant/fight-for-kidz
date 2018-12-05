@@ -12,7 +12,7 @@ class SponsorEnquiry extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $name, $email, $phone, $type, $message;
+    public $name, $email, $phone, $type, $messageText;
 
     /**
      * Create a new message instance.
@@ -25,7 +25,7 @@ class SponsorEnquiry extends Mailable
         $this->email = $email;
         $this->phone = $phone;
         $this->type = $type;
-        $this->message = $message;
+        $this->messageText = $message;
     }
 
     /**
@@ -35,8 +35,8 @@ class SponsorEnquiry extends Mailable
      */
     public function build()
     {
-        return $this->view('view.emails.contact.sponsorEnquiry')
-                    ->text('view.emails.contact.sponsorEnquiryPlain')
+        return $this->view('emails.contact.sponsorEnquiry')
+                    ->text('emails.contact.sponsorEnquiryPlain')
                     ->subject('New Sponsorship Enquiry Received');
     }
 }

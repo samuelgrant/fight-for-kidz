@@ -8,5 +8,5 @@ Phone: {{$phone}}
 Sponsorship Type : {{$type}}
 ------------------
 @if($message)
-Message: {{$message}}
+Message: {{$messageText}}
 @endif

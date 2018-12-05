@@ -9,7 +9,7 @@ use App\Jobs\SendGeneralEnquiry;
 class ContactController extends Controller
 {
     public function general(request $request) {
-        $validator = Validator::make(Input::all(), [ // should this be $request->all() instead of Input::all()?
+        $validator = Validator::make($request->all(), [
             'g-recaptcha-response' => 'required|captcha',
             'name' => 'required',
             'email' => 'required|email',
@@ -28,11 +28,10 @@ class ContactController extends Controller
         // Send email notificaiton to admin email address
         SendGeneralEnquiry::dispatch($request->input('name'), $request->input('email'), $request->input('phone'), $request->input('message'));        
         
-        session()->flash('success', 'Thanks, we\'ll get back to you asap!');
-        return redirect()->back();
+        return view('feedback.received-contact');
     }
     public function sponsor(request $request) {
-        $validator = Validator::make(Input::all(), [ // should this be $request->all() instead of Input::all()?
+        $validator = Validator::make($request->all(), [ 
             'g-recaptcha-response' => 'required|captcha',
             'name' => 'required',
             'email' => 'required|email',
@@ -51,11 +50,10 @@ class ContactController extends Controller
         // Send message to the admin email account
         SendSponsorEnquiry::dispatch($request->input('name'), $request->input('email'), $request->input('phone'), $request->input('type'), $request->input('message'));
         
-        session()->flash('success', 'Thanks, we\'ll get back to you asap!');
-        return redirect()->back();
+        return view('feedback.received-contact');
     }
     public function table(request $request) {
-        $validator = Validator::make(Input::all(), [ // should this be $request->all() instead of Input::all()?
+        $validator = Validator::make($request->all(), [ 
             'g-recaptcha-response' => 'required|captcha',
             'name' => 'required',
             'email' => 'required|email',
@@ -73,7 +71,6 @@ class ContactController extends Controller
         // Send message to the admin email account
         SendTableEnquiry::dispatch($request->input('name'), $request->input('email'), $request->input('phone'), $request->input('message'));
 
-        session()->flash('success', 'Thanks, we\'ll get back to you asap!');
-        return redirect()->back();
+        return view('feedback.received-contact');
     }
 }

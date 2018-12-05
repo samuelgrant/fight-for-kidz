@@ -7,5 +7,5 @@ Email: {{$email}}
 Phone: {{$phone}}
 ------------------
 @if($message)
-Message: {{$message}}
+Message: {{$messageText}}
 @endif

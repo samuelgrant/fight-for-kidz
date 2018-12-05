@@ -152,5 +152,10 @@
 				$("#tableMessage").removeClass("hidden");
 			}
 		}
+
+		$(document).ready(function(){
+			// Set the form to display initially
+			toggelForm();
+		});
 	</script>
 @endsection

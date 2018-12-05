@@ -11,7 +11,7 @@ class GeneralEnquiry extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $name, $email, $phone, $message;
+    public $name, $email, $phone, $messageText;
 
     /**
      * Create a new message instance.
@@ -23,7 +23,7 @@ class GeneralEnquiry extends Mailable
         $this->email = $email;
         $this->name = $name;
         $this->phone = $phone;
-        $this->message = $message;
+        $this->messageText = $message;
     }
 
     /**
@@ -33,8 +33,8 @@ class GeneralEnquiry extends Mailable
      */
     public function build()
     {
-        return $this->view('view.emails.contact.generalEnquiry')
-                    ->text('view.emails.contact.generalEnquiryPlain')
+        return $this->view('emails.contact.generalEnquiry')
+                    ->text('emails.contact.generalEnquiryPlain')
                     ->subject('New Enquiry Received');
     }
 }
