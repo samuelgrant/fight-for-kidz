@@ -2,6 +2,9 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Jobs\SendTableEnquiry;
+use App\Jobs\SendSponsorEnquiry;
+use App\Jobs\SendGeneralEnquiry;
 
 class ContactController extends Controller
 {
@@ -21,7 +24,9 @@ class ContactController extends Controller
         ]
     
     );
-        
+
+        // Send email notificaiton to admin email address
+        SendGeneralEnquiry::dispatch($request->input('name'), $request->input('email'), $request->input('phone'), $request->input('message'));        
         
         session()->flash('success', 'Thanks, we\'ll get back to you asap!');
         return redirect()->back();
@@ -42,6 +47,9 @@ class ContactController extends Controller
         ]
     
     );
+
+        // Send message to the admin email account
+        SendSponsorEnquiry::dispatch($request->input('name'), $request->input('email'), $request->input('phone'), $request->input('type'), $request->input('message'));
         
         session()->flash('success', 'Thanks, we\'ll get back to you asap!');
         return redirect()->back();
@@ -61,6 +69,10 @@ class ContactController extends Controller
         ]
     
     );        
+
+        // Send message to the admin email account
+        SendTableEnquiry::dispatch($request->input('name'), $request->input('email'), $request->input('phone'), $request->input('message'));
+
         session()->flash('success', 'Thanks, we\'ll get back to you asap!');
         return redirect()->back();
     }
