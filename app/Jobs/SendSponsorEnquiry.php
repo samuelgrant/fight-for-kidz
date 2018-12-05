@@ -38,6 +38,6 @@ class SendSponsorEnquiry implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to(env('ADMIN_EMAIL')->send(new SponsorEnquiry($this->name, $this->companyName, $this->email, $this->phone, $this->type, $this->message)));
+        Mail::to(env('ADMIN_EMAIL'))->send(new SponsorEnquiry($this->name, $this->companyName, $this->email, $this->phone, $this->type, $this->message));
     }
 }
