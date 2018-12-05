@@ -12,20 +12,21 @@ class SponsorEnquiry extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $name, $email, $phone, $type, $messageText;
+    public $name, $companyName, $email, $phone, $type, $messageText;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name, $email, $phone, $type, $message)
+    public function __construct($name, $companyName, $email, $phone, $type, $message)
     {
         $this->name = $name;
         $this->email = $email;
         $this->phone = $phone;
         $this->type = $type;
         $this->messageText = $message;
+        $this->companyName = $companyName;
     }
 
     /**

@@ -8,27 +8,23 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\SponsorEnquiry;
+use App\Mail\ContactReceived;
 
-class SendSponsorEnquiry implements ShouldQueue
+class SendContactReceived implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $name, $companyName, $email, $phone, $type, $message;
+    protected $name, $email;    
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($name,$companyName, $email, $phone, $type, $message)
+    public function __construct($name, $email)
     {
         $this->name = $name;
         $this->email = $email;
-        $this->phone = $phone;
-        $this->type = $type;
-        $this->message = $message;
-        $this->companyName = $companyName;
     }
 
     /**
@@ -38,6 +34,6 @@ class SendSponsorEnquiry implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to(env('ADMIN_EMAIL')->send(new SponsorEnquiry($this->name, $this->companyName, $this->email, $this->phone, $this->type, $this->message)));
+        Mail::to($this->email)->send(new ContactReceived($this->name));
     }
 }

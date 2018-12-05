@@ -38,6 +38,9 @@
 						<label for="message" class="text-white">* Your message:</label>
 						<textarea id="message" class="form-control" name="message" rows="5" required></textarea>
 					</div>
+					<label for="subscribeCheckbox">
+						<input class="d-inline-block align-middle" type="checkbox" name="subscribeCheckbox" id="subscribeCheckbox" checked>I would like to receive Fight for Kidz updates via email
+					</label>
 					<button class="btn btn-primary mt-2 d-block mx-auto">Send Message</button>
 					@csrf
 					{!! app('captcha')->render(); !!}
@@ -67,6 +70,9 @@
 							<input id="name" name="name" type="text" class="form-control" placeholder="* Your name" required>
 						</div>
 						<div class="form-group col-md-6">
+							<input id="companyName" name="companyName" type="text" class="form-control" placeholder="* Company name" required>
+						</div>
+						<div class="form-group col-md-6">
 							<input id="name" name="email" type="email" class="form-control" placeholder="* Your email address" required>
 						</div>
 					</div>
@@ -81,6 +87,9 @@
 						<label for="message" class="text-white">Optional message:</label>
 						<textarea id="message" name="message" class="form-control" rows="5"></textarea>
 					</div>
+					<label for="subscribeCheckbox">
+						<input class="d-inline-block align-middle" type="checkbox" name="subscribeCheckbox" id="subscribeCheckbox" checked>I would like to receive Fight for Kidz updates via email
+					</label>
 					<button class="btn btn-primary mt-2 d-block mx-auto">Send Message</button>
 					@csrf
 					{!! app('captcha')->render(); !!}
@@ -120,6 +129,9 @@
 						<label for="message" class="text-white">Optional message - What type of table are you looking to book?:</label>
 						<textarea id="message" name="message" class="form-control" rows="5"></textarea>
 					</div>
+					<label for="subscribeCheckbox">
+						<input class="d-inline-block align-middle" type="checkbox" name="subscribeCheckbox" id="subscribeCheckbox" checked>I would like to receive Fight for Kidz updates via email
+					</label>
 					<button class="btn btn-primary mt-2 d-block mx-auto">Send Message</button>
 					@csrf
 					{!! app('captcha')->render(); !!}
