@@ -15,7 +15,7 @@ class Image //extends Model
      *  Return true if successful
      */
     public static function storeAsPng($image, $path, $name){
-        
+        //this checks to see if the supplied directory exists, if it doesn't it creates it
         $dir = storage_path('app\\' . $path);
 
         if(!file_exists($dir)){

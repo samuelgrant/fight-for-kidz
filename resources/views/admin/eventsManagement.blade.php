@@ -16,7 +16,7 @@
             <ul class="nav nav-tabs nav-tabs-persistent">
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') != 'deleted')? 'active': '' }}" role="tab" data-toggle="tab" href="#tab-1" id="active">Current Events</a></li>
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'deleted')? 'active': '' }}" role="tab" data-toggle="tab" href="#tab-2" id="deleted">Deleted Events</a></li>
-                <button class="btn btn-primary btn-sm ml-1 my-1 tab-modal" data-toggle="modal" data-target="#newEvent">New Event</button>
+                <button class="btn btn-success btn-sm ml-1 my-1" data-toggle="modal" data-target="#newEvent"><i class="fas fa-plus"></i>&nbsp;New Event</button>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane {{ (app('request')->input('tab') != 'deleted')? 'active': '' }}" role="tabpanel" id="tab-1">

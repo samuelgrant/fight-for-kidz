@@ -203,6 +203,7 @@ $(document).ready(function() {
         "columns":[
             null,
             { "orderable": false, "searchable": true },
+            { "orderable": false, "searchable": true },
             { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false },
@@ -214,9 +215,10 @@ $(document).ready(function() {
     $('#merchandiseDeleted-dtable').DataTable({
         "columns":[
             null,
-            { "orderable": false, "searchable": true},
-            { "orderable": false, "searchable": false},
-            { "orderable": false, "searchable": false}
+            { "orderable": false, "searchable": true },
+            { "orderable": false, "searchable": true },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false }
         ]
     })
 });
@@ -703,13 +705,12 @@ function merchandiseCreateModal(){
     $("#merchandiseModalTitle").text("Create Merchandise Item");
     $("#merchandiseModalButton").text("Confirm");
 
-    //Set all text fields placeholders
+    //Set all text fields to empty
     $("#merchandiseName").val("");
+    $("#merchandiseTagline").val("");
     $("#merchandiseDescription").val("");
     $("#merchandisePrice").val("");
     $("#imgPreview").attr("src", '');
-
-
 
     //Display the modal
     $("#createEditMerchandiseItemModal").modal('show');
@@ -732,6 +733,7 @@ function merchandiseEditModal(id){
 
         //Dynamically populate the modal with item info
         $("#merchandiseName").val(data.name);
+        $("#merchandiseTagline").val(data.tagline);
         $("#merchandiseDescription").val(data.desc);
         $("#merchandisePrice").val(data.price);
         
@@ -749,6 +751,10 @@ function merchandiseEditModal(id){
         console.log(error);
     });
 }
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
 
 // File upload functions
 function fileUpdateModal(id){

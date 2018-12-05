@@ -12,7 +12,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="mb-3">
-            <button class="btn btn-success" data-toggle="modal" data-target="#addSponsorModal"><i class="fas fa-plus"></i>&nbsp; Add New Sponsor</button>
+            <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#addSponsorModal"><i class="fas fa-plus"></i>&nbsp;Add New Sponsor</button>
         </div>
     </div>
     <div class="col-md-12">

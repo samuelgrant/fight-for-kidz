@@ -16,7 +16,7 @@ class CreateAuctionItemsTable extends Migration
         Schema::create('auction_items', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('event_id')->unsigned();
-            $table->string('name');
+            $table->string('name',65);
             $table->string('desc', 300);
             $table->string('donor')->nullable();
             $table->string('donor_url')->nullable();

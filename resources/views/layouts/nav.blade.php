@@ -36,7 +36,7 @@
                                 
                                 <a href="{{$currentEvent->ticket_seller_url}}" target="blank" class="dropdown-item">Seats</a>
                                 
-                                <a href="#" class="dropdown-item">Tables</a>
+                                <a href="{{route('contact')}}?option=table" class="dropdown-item">Tables</a>
                             </div>
                         </li><!-- End Book Tickets -->
                     @endif
