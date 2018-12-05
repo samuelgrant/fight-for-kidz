@@ -17,6 +17,9 @@
 <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" rel="stylesheet">
 
+{{-- fSelect stylesheet --}}
+<link href="/admin/css/fSelect.css" rel="stylesheet">
+
 <!-- Custom styles for this template-->
 <link href="/admin/css/sb-admin.css" rel="stylesheet">
 <link href="/admin/css/admin_custom.css" rel="stylesheet">

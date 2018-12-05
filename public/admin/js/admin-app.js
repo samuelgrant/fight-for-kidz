@@ -150,6 +150,7 @@ $(document).ready(function() {
             {"searchable": false},
             {"searchable": false},
             {"searchable": false},
+            { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false }
         ],
         'iDisplayLength' : 100
@@ -434,7 +435,7 @@ function editContactModal(id){
 
     $.ajax({
         method : "GET",
-        url : `/a/group-management/contacts/${id}`
+        url : '/a/group-management/contacts/' + id
     }).done(function(data){
 
         form = $('#editContactForm');
@@ -472,8 +473,8 @@ function applicantManagementModal(id){
         headers:  {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: `/a/event-management/applicants/${id}`
-    }).done((data) => {
+        url: '/a/event-management/applicants/' + id
+    }).done(function(data){
         var dob = new Date(data.dob);
         // Dynamically populate modal
 
@@ -532,7 +533,7 @@ function applicantManagementModal(id){
 
 
         $("#applicantMoreInfoModal").modal('show');
-    }).fail((error) => {
+    }).fail(function(error) {
         console.log(error);
     });
 }
@@ -597,6 +598,106 @@ function calculate_age (data) {
     return age;
 };
 
+// Application delete script
+$(document).ready(function(){
+
+    $('#deleteAppBtn').on('click', function(){
+
+        $(this).addClass('d-none');
+        $(this).removeClass('d-inline');
+        $('#confirmDeleteAppBtn').addClass('d-inline');
+
+    });   
+
+});
+
+function confirmApplicantDelete(app){
+
+    $('#deleteAppBtn').addClass('d-inline');
+    $('#confirmDeleteAppBtn').removeClass('d-inline');
+
+    modal = $('#confirmDeleteApplicantModal');
+    form = $('#confirmDeleteApplicantForm');
+    title = $('#deleteAppName');
+    title.text('Remove: ' + app.first_name + " " + app.last_name);
+
+    form.prop('action', form.data('action') + '/' + app.id);
+
+    modal.modal('show');
+}
+
+// Custom mail functions
+$(document).ready(function(){
+
+    $('#mailPreviewBtn').on('click', function(){
+
+        message = CKEDITOR.instances['messageText'].getData();
+        action = $(this).data('url');
+        
+        // ajax call to add to team
+        $.ajax({
+            type: 'POST',
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            url: action,
+            data: {'messageText' : message}, 
+        }).done(function(data){
+            // open a new tab/window and write the returned html to it
+            var win = window.open();
+            win.document.write(data);
+        }).fail(function(error){
+            console.log(error);
+        });
+
+        
+    });
+
+    $('#sendBtn').on('click', function(){
+
+        // hide self and preview buttons
+        $('#mailPreviewBtn').addClass('d-none');
+        $('#promptText').addClass('d-none');
+        $(this).addClass('d-none');
+        $(this).removeClass('d-inline');
+
+        // show confirm and abort buttons
+        $('#confirmSendBtn').removeClass('d-none');
+        $('#abortSendBtn').removeClass('d-none');
+
+    });
+
+    $('#abortSendBtn').on('click', function(){
+
+        // show send and preview buttons
+        $('#mailPreviewBtn').removeClass('d-none');
+        $('#sendBtn').removeClass('d-none');
+        $('#sendBtn').addClass('d-inline');
+        $('#promptText').removeClass('d-none');
+
+        // hide confirm and abort buttons
+        $('#confirmSendBtn').addClass('d-none');
+        $(this).addClass('d-none');
+
+    });
+
+
+    $('#multipleGroupSelect').change(function(){
+
+        console.log($(this).val().length);
+
+        // this is important as the fSelect doesn't seem to support straightforward
+        // front end validation. So this hidden checkbox (actually not hidden, but transparent)
+        // will enable the validation instead. It ticks when groups are selected, and unticks
+        // when none are selected.
+        if($(this).val().length != 0){
+            $('#hiddenCheck').prop('checked', true);
+            $('#hiddenCheck')[0].oninput();
+        } else{
+            $('#hiddenCheck').prop('checked', false);
+        }
+
+    })
+
+})
 //Sets the modal for creating merchandise item and then displays it
 function merchandiseCreateModal(){
     //$("#auctionForm").attr("action", "/");
@@ -681,9 +782,51 @@ function fileUpdateModal(id){
 
 }
 
+// below works for both file uploads on dashboard and emails
 $(document).ready(function(){
     $('#fileUpload').change(function(e){
-        var filename = e.target.files[0].name;
-        $('#fileName').text(filename);
-    });
+        var clearBtn = $('#clearAttachmentsBtn');
+        
+        var fileCount = e.target.files.length;
+        console.log(fileCount);
+
+        fileNamesString = '';
+
+        for(i = 0; i < fileCount; i++){
+            fileNamesString += ((i > 0 ? ', ' : '') + e.target.files[i].name);
+            console.log(fileNamesString);
+        }
+
+        if(fileNamesString != ''){  
+            $('#fileName').removeClass('d-none');
+            $('#fileName').text(fileNamesString);
+        } else{
+            $('#fileName').addClass('d-none');
+        }
+
+        if(fileCount > 0){
+            clearBtn.removeClass('d-none');
+        }else{
+            clearBtn.addClass('d-none');
+        }
+    });    
 });
+
+$('#clearAttachmentsBtn').on('click', function(e){
+    // to reset the input, we wrap it with a temp form, 
+    // reset that form, then unwrap it. This is because the only 
+    // way to change or clear a file input is by form reset. For security reasons.
+    // https://www.gyrocode.com/articles/how-to-reset-file-input-with-javascript/
+
+    var $file = $('#fileUpload').first();
+
+    $file.wrap('<form>').closest('form').get(0).reset();
+    $file.unwrap();
+
+    console.log($('#fileUpload')[0].files.length);
+
+    $file.change();
+
+});
+
+
