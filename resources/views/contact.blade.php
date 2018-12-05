@@ -9,7 +9,7 @@
 				<p class="text-white text-center mb-5">Why do you want to get in touch with us?</p>
 				<select id="messageType" class="form-control" onchange="toggelForm()">
 					<option value="select" selected>Select</option>
-					<option value="general">General</option>
+					<option value="general">General Enquiry</option>
 					<option value="sponsor">Become a Sponsor</option>
 					<option value="table">Booking a Table</option>
 				</select>
@@ -49,7 +49,17 @@
 			<div id="sponsorMessage" class="hidden">
 				<h3 class="text-center">Sponsorship Enquiry</h3>
 				<p class="text-center">Fill this out, and we will contact our potential sponsors closer to the event.</p>
-				<p class="text-center">Download our <a href="javascript:void(0);"><i class="fas fa-file-download"></i> Proposal Document</a> for information on sponsorship.</p>
+
+				{{-- Files for download --}}
+				@if(App\Document::where('display_location', 'Sponsor Enquiry')->get()->count() > 0)
+					<div class="mb-3 w-100 text-center">
+						<h5>Related files:</h5>
+						@foreach(App\Document::where('display_location', 'Sponsor Enquiry')->get() as $doc)
+						<a class="d-block" href="{{Storage::disk('documents')->url($doc->filename)}}" download="{{$doc->originalName}}">{{$doc->originalName}}</a>
+						@endforeach
+					</div>
+				@endif
+
 				<small>* Denotes a required field.</small>
 				<form action="{{route('contact.sponsor')}}" method="POST">
 					<div class="row">
@@ -78,10 +88,21 @@
 			</div>
 			<!-- End Sponsorship contact us form -->
 
-			<!-- Sponsorship contact us form -->
+			<!-- Table contact us form -->
 			<div id="tableMessage" class="hidden">
 				<h3 class="text-center">Enquire about Booking a Table </h3>
 				<p class="text-center">Fill this out, and we will contact you when we can.</p>
+
+				{{-- Files for download --}}
+				@if(App\Document::where('display_location', 'Table Enquiry')->get()->count() > 0)
+					<div class="mb-3 w-100 text-center">
+						<h5>Related files:</h5>
+						@foreach(App\Document::where('display_location', 'Table Enquiry')->get() as $doc)
+						<a class="d-block" href="{{Storage::disk('documents')->url($doc->filename)}}" download="{{$doc->originalName}}">{{$doc->originalName}}</a>
+						@endforeach
+					</div>
+				@endif
+
 				<small>* Denotes a required field.</small>
 				<form action="{{route('contact.table')}}" method="POST">
 					<div class="row">
@@ -105,7 +126,7 @@
 				</form>
 			</div>
 		</div>
-		<!-- End Sponsorship contact us form -->			
+		<!-- End Table contact us form -->			
 	</div>
 
 	<style>
