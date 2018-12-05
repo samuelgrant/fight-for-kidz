@@ -28,6 +28,17 @@
             </ul>
             
         </div>
+
+        <div class="w-100 p-3">
+        <div class="mx-auto text-center">
+            {{Form::open(['action' => ['admin\MerchandiseManagementController@toggleAll'], 'method' => 'PUT'])}}
+            <h5 class="d-inline-block mr-3">Merchandise page is {{App\SiteSetting::getSettings()->display_merch ? 'ENABLED' : 'DISABLED'}}</h5>
+            <label class="switch align-middle">
+                    <input type="checkbox" {{App\SiteSetting::getSettings()->display_merch ? 'checked' : ''}} onchange="this.form.submit()">
+                    <span class="slider round"></span>
+            </label> {{Form::close()}}
+        </div>
+        </div>
         
         <div class="tab-content">
             <!-- Tab 1 -->
@@ -140,15 +151,15 @@
 
 
                 <div class="form-group">
-                    <label for="merchandisePrice">Item price:</label>
-                    <input  type="text" class="form-control" name="price" id="merchandisePrice">
+                    <label for="merchandisePrice">Item price:</label><br>
+                    <span>$&nbsp;</span><input  type="text" class="form-control d-inline w-50" name="price" id="merchandisePrice" required>
                 </div>
 
-                <div class="card w-50 mx-auto text-center mb-3">
+                <div class="form-group card w-50 mx-auto text-center mb-3">
                         <label for="logo">Item Image:</label>
                         <img class="logoPreview img-fluid" id="imgPreview" src="/storage/images/noImage.png">
-                        <label for="itemImage" class="btn btn-primary mb-0">Change
-                            <input type="file" name="itemImage" id="itemImage" class="form-control" hidden>
+                        <label for="itemImage" class="btn btn-primary btn-sm mb-0">Change
+                            <input type="file" name="itemImage" id="itemImage" class="form-control d-inline m-0" style="opacity: 0;" required>
                         </label>
                     </div>
                 

@@ -8,10 +8,10 @@
 			<div id="messageTypeContainer" class="pb-3">
 				<p class="text-white text-center mb-5">Why do you want to get in touch with us?</p>
 				<select id="messageType" class="form-control" onchange="toggelForm()">
-					<option value="select" selected>Select</option>
-					<option value="general">General</option>
-					<option value="sponsor">Become a Sponsor</option>
-					<option value="table">Booking a Table</option>
+					<option value="select" {{app('request')->input('option') == null ? 'selected' : null}}>Select</option>
+					<option value="general" {{app('request')->input('option') == 'general' ? 'selected' : null}}>General</option>
+					<option value="sponsor" {{app('request')->input('option') == 'sponsor' ? 'selected' : null}}>Become a Sponsor</option>
+					<option value="table" {{app('request')->input('option') == 'table' ? 'selected' : null}}>Booking a Table</option>
 				</select>
 			</div>
 
