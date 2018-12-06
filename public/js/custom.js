@@ -377,21 +377,29 @@ $(document).ready(function() {
       hobbies:{
         required: true
       },
+      
+      //Medical 1
+      //Dont need to validate checkboxes
+      other_details:{
+        required: $("#other").val() == "yes"
+      },
       handRadio:{
         required: true
+      },
+      hand_details:{
+        required: $("#handRadio").val() == 'yes'
       },
       injuryRadio:{
         required: true
       },
+      injury_details:{
+        required: $("#injuryRadio").val() == 'yes'
+      },
       medsRadio:{
         required: true
       },
-      
-      //Medical 1
-      //Dont need to validate checkboxes
-      //Makes other details required if expRadio is yes
-      other_details:{
-        required: $("#other").val() == "yes"
+      meds_details:{
+        required: $("#medsRadio").val() == 'yes'
       },
       
       //Medical 2
@@ -420,7 +428,7 @@ $(document).ready(function() {
         required: true
       },
       reason_details:{
-        required: $("#reasonsRadio").val() == "yes"//change this and all others as need to give all yes radios an id and test for checked not val
+        required: $("#reasonsRadio").val() == "yes"
       },
 
       //Additional
@@ -430,10 +438,10 @@ $(document).ready(function() {
         required: true
       },
       conviction_details:{
-        required: $("#")
+        required: $("#convictedRadio").val() =='true'
       },
       drugRadio:{
-        required: true,
+        required: true
       },
 
       //Submit
@@ -441,6 +449,7 @@ $(document).ready(function() {
         required: true
       }
     },
+
     messages: {
       //Contact
       first_name:{
@@ -566,6 +575,95 @@ $(document).ready(function() {
         minlength: "Your emergency contact's mobile phone number needs to be greater than 2 characters",
         maxlength: "The emergency contact's mobile phone number you entered is too long"
       },
+
+      //Sporting
+      fitness_rating:{
+        required: "Please choose your fitness level"
+      },
+      expRadio:{
+        required: "Have you had previous experience in boxing/kickboxing/martial arts?"
+      },
+      //Makes fighting experience required if expRadio is yes
+      fighting_experience:{
+        required: "Please describe your boxing/kickboxing/martial arts experience"
+      },
+      sporting_experience:{
+        required: "Please describe your sporting experience"
+      },
+      hobbies:{
+        required: "Please describe your hobbies"
+      },
+      
+      //Medical 1
+      //Dont need to validate checkboxes
+      other_details:{
+        required: "Please elaborate about your other medical history"
+      },
+      handRadio:{
+        required: "Have you ever had any hand injuries?"
+      },
+      hand_details:{
+        required: "Please explain your hand injuries"
+      },
+      injuryRadio:{
+        required: "Have you ever had any injuries (expecially head injuries)?"
+      },
+      injury_details:{
+        required: "Please explain your previous injuries"
+      },
+      medsRadio:{
+        required: "Are you currently taking any medications?"
+      },
+      meds_details:{
+        required: "Please list medication as well as the reasons for taking..."
+      },
+      
+      //Medical 2
+      heartRadio:{
+        required: "Has a physician ever said that you have a heart condition and recommended only medically supervised activity?"
+      },
+      activityRadio:{
+        required: "Have you have chest pain that’s brought on by physical activity?"
+      },
+      monthRadio:{
+        required: "Have you developed chest pain in the past month?"
+      },
+      consciousnessRadio:{
+        required: "Have you on one or more occasions lost consciousness or fallen over as a result of dizziness?"
+      },
+      boneRadio:{
+        required: "Do you have a bone or joint problem that could be aggravated by the proposed physical activity?"
+      },
+      bloodRadio:{
+        required: "Has a physician ever recommended medication for your blood pressure or a heart condition?"
+      },
+      concussedRadio:{
+        required: "Have you ever been knocked out or concussed?"
+      },
+      reasonsRadio:{
+        required: "Are you aware, through your own experience or a physician’s advice, of any other reason that would prohibit you from exercising without medical supervision?"
+      },
+      reason_details:{
+        required: "Please explain why you think that you should not be exercising"
+      },
+
+      //Additional
+      //Custom Question Validation to go here
+
+      convictedRadio:{
+        required: "Do you have any criminal convictions or are facing charges?"
+      },
+      conviction_details:{
+        required: "Please about your covictions/charges"
+      },
+      drugRadio:{
+        required: "do you consent to taking a drug screening test?"
+      },
+
+      //Submit
+      declCheckbox:{
+        required: "Please declare that you have provided true and accurate information"
+      }
     }
   });
 
