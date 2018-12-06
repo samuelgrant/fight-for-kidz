@@ -41,7 +41,7 @@ Route::get('/contenders/bio/{contenderID}', 'EventController@getContender')->nam
 // Contact us
 Route::post('/contact/general', 'ContactController@general')->name('contact.general');
 Route::post('/contact/sponsor', 'ContactController@sponsor')->name('contact.sponsor');
-Route::post('/contact/table', 'ContactContoller@table')->name('contact.table');
+Route::post('/contact/table', 'ContactController@table')->name('contact.table');
 
 // Auth routes
 Auth::routes();

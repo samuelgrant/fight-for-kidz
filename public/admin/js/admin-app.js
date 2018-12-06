@@ -220,7 +220,29 @@ $(document).ready(function() {
             { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false }
         ]
-    })
+    });
+
+    $('#messages-dtable').DataTable({
+        "columns": [
+            {"visible" : false, "type" : "num"},
+            {"orderData" : 0},
+            null,
+            null,
+            null,
+            { "orderable": false, "searchable": false }
+        ]
+    });
+
+    $('#deleted-messages-dtable').DataTable({
+        "columns": [
+            {"visible" : false, "type" : "num"},
+            {"orderData" : 0},
+            null,
+            null,
+            null,
+            { "orderable": false, "searchable": false }
+        ]
+    });
 });
 
 // Count the number of selected datatable rows on a page, and display the result

@@ -7,6 +7,7 @@ use App\Jobs\SendSponsorEnquiry;
 use App\Jobs\SendGeneralEnquiry;
 use App\Jobs\SendContactReceived;
 use App\Subscriber;
+use App\ReceivedMessage;
 
 class ContactController extends Controller
 {
@@ -26,6 +27,9 @@ class ContactController extends Controller
         ]
     
     );
+
+        // Store the message in the database
+        $this->storeMessage('General', $request);
 
         // Send email notificaiton to admin email address
         SendGeneralEnquiry::dispatch($request->input('name'), $request->input('email'), $request->input('phone'), $request->input('message'));  
@@ -56,6 +60,9 @@ class ContactController extends Controller
     
     );
 
+        // Store the message in the database
+        $this->storeMessage('Sponsor', $request);
+
         // Send message to the admin email account
         SendSponsorEnquiry::dispatch($request->input('name'),$request->input('companyName'), $request->input('email'), $request->input('phone'), $request->input('type'), $request->input('message'));
 
@@ -82,6 +89,9 @@ class ContactController extends Controller
         ]
     
     );        
+    
+        // Store the message details in the database
+        $this->storeMessage('Table', $request);
 
         // Send message to the admin email account
         SendTableEnquiry::dispatch($request->input('name'), $request->input('email'), $request->input('phone'), $request->input('message'));
@@ -111,5 +121,25 @@ class ContactController extends Controller
         if($request->input('subscribeCheckbox')){
             Subscriber::subscribe($request->input('name'), $request->input('email'));
         }
+    }
+
+    /**
+     *  Stores the message associated with the request in the database, 
+     *  for future viewing.
+     */
+    public function storeMessage($type, $request){
+
+        $message = new ReceivedMessage();
+
+        $message->message_type = $type;
+        $message->name = $request->input('name');
+        $message->company_name = $request->input('companyName');
+        $message->email = $request->input('email');
+        $message->phone = $request->input('phone');
+        $message->sponsorship_type = $request->input('type');
+        $message->message = $request->input('message');
+
+        $message->save();
+
     }
 }
