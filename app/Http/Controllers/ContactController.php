@@ -8,6 +8,7 @@ use App\Jobs\SendGeneralEnquiry;
 use App\Jobs\SendContactReceived;
 use App\Subscriber;
 use App\ReceivedMessage;
+use App\Event;
 
 class ContactController extends Controller
 {
@@ -138,6 +139,7 @@ class ContactController extends Controller
         $message->phone = $request->input('phone');
         $message->sponsorship_type = $request->input('type');
         $message->message = $request->input('message');
+        $message->event_id = Event::current()->id;
 
         $message->save();
 

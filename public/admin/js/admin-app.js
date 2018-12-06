@@ -229,6 +229,7 @@ $(document).ready(function() {
             null,
             null,
             null,
+            null,
             { "orderable": false, "searchable": false }
         ]
     });
@@ -237,6 +238,7 @@ $(document).ready(function() {
         "columns": [
             {"visible" : false, "type" : "num"},
             {"orderData" : 0},
+            null,
             null,
             null,
             null,

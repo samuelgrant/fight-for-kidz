@@ -30,6 +30,7 @@
 							<tr>
 								<th></th>
 								<th>Date</th>
+								<th>Event</th>
 								<th>Type</th>
 								<th>Email</th>
 								<th>Name</th>
@@ -41,6 +42,7 @@
 							<tr>
 								<td>{{strtotime($msg->created_at)}}</td>
 								<td>{{$msg->created_at}}</td>
+								<td>{{App\Event::find($msg->event_id)->name}}</td>
 								<td>{{$msg->message_type}}</td>
 								<td>{{$msg->email}}</td>
 								<td>{{$msg->name}}</td>
@@ -66,6 +68,7 @@
 							<tr>
 								<th></th>
 								<th>Date</th>
+								<th>Event</th>
 								<th>Type</th>
 								<th>Email</th>
 								<th>Name</th>
@@ -77,6 +80,7 @@
 							<tr>
 								<td>{{strtotime($msg->created_at)}}</td>
 								<td>{{$msg->created_at}}</td>
+								<td>{{App\Event::find($msg->event_id)->name}}</td>
 								<td>{{$msg->message_type}}</td>
 								<td>{{$msg->email}}</td>
 								<td>{{$msg->name}}</td>

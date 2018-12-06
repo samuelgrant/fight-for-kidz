@@ -15,6 +15,7 @@ class CreateReceivedMessagesTable extends Migration
     {
         Schema::create('received_messages', function (Blueprint $table) {
             $table->increments('id');
+            $table->unsignedInteger('event_id');
             $table->string('message_type');
             $table->string('name');
             $table->string('company_name')->nullable();
@@ -24,6 +25,8 @@ class CreateReceivedMessagesTable extends Migration
             $table->longText('message')->nullable();
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');
         });
     }
 

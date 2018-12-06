@@ -36,6 +36,10 @@
                         <td>{{$msg->created_at}}</td>
                     </tr>
                     <tr>
+                        <td>Event:</td>
+                        <td>{{App\Event::find($msg->event_id)->name}}</td>
+                    </tr>
+                    <tr>
                         <td>Message Type:</td>
                         <td>{{$msg->message_type}}</td>
                     </tr>
