@@ -8,10 +8,10 @@
 			<div id="messageTypeContainer" class="pb-3">
 				<p class="text-white text-center mb-5">Why do you want to get in touch with us?</p>
 				<select id="messageType" class="form-control" onchange="toggelForm()">
-					<option value="select" selected>Select</option>
-					<option value="general">General Enquiry</option>
-					<option value="sponsor">Become a Sponsor</option>
-					<option value="table">Booking a Table</option>
+					<option value="select" {{app('request')->input('option') == null ? 'selected' : null}}>Select</option>
+					<option value="general" {{app('request')->input('option') == 'general' ? 'selected' : null}}>General</option>
+					<option value="sponsor" {{app('request')->input('option') == 'sponsor' ? 'selected' : null}}>Become a Sponsor</option>
+					<option value="table" {{app('request')->input('option') == 'table' ? 'selected' : null}}>Booking a Table</option>
 				</select>
 			</div>
 
@@ -25,18 +25,18 @@
 				<form action="{{route('contact.general')}}" method="POST">
 					<div class="row">
 						<div class="form-group col-md-6">
-							<input id="name" name="name" type="text" class="form-control" placeholder="* Your name" required>
+							<input id="gen_name" name="name" type="text" class="form-control" placeholder="* Your name" required>
 						</div>
 						<div class="form-group col-md-6">
-							<input id="email" name="email" type="email" class="form-control" placeholder="* Your email address" required>
+							<input id="gen_email" name="email" type="email" class="form-control" placeholder="* Your email address" required>
 						</div>
 					</div>
 					<div class="form-group">
-						<input id="phone" name="phone" type="text" class="form-control" placeholder="* Phone number" required>
+						<input id="gen_phone" name="phone" type="text" class="form-control" placeholder="* Phone number" required>
 					</div>
 					<div class="form-group">
-						<label for="message" class="text-white">* Your message:</label>
-						<textarea id="message" class="form-control" name="message" rows="5" required></textarea>
+						<label for="gen_message" class="text-white">* Your message:</label>
+						<textarea id="gen_message" class="form-control" name="message" rows="5" required></textarea>
 					</div>
 					<label for="subscribeCheckbox">
 						<input class="d-inline-block align-middle" type="checkbox" name="subscribeCheckbox" id="subscribeCheckbox" checked>I would like to receive Fight for Kidz updates via email
@@ -67,25 +67,25 @@
 				<form action="{{route('contact.sponsor')}}" method="POST">
 					<div class="row">
 						<div class="form-group col-md-6">
-							<input id="name" name="name" type="text" class="form-control" placeholder="* Your name" required>
+							<input id="spon_name" name="name" type="text" class="form-control" placeholder="* Your name" required>
 						</div>
 						<div class="form-group col-md-6">
 							<input id="companyName" name="companyName" type="text" class="form-control" placeholder="* Company name" required>
 						</div>
 						<div class="form-group col-md-6">
-							<input id="name" name="email" type="email" class="form-control" placeholder="* Your email address" required>
+							<input id="spon_name" name="email" type="email" class="form-control" placeholder="* Your email address" required>
 						</div>
 					</div>
 					<div class="form-group">
-						<input id="name" name="phone" type="text" class="form-control" placeholder="* Phone number" required>
+						<input id="spon_phone" name="phone" type="text" class="form-control" placeholder="* Phone number" required>
 					</div>					
 					<div class="form-group">
 						<label for="message" class="text-white">* What type/s of sponsorship are you interested in?</label>
-						<input id="name" name="type" type="text" class="form-control" required>
+						<input id="spon_type" name="type" type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
 						<label for="message" class="text-white">Optional message:</label>
-						<textarea id="message" name="message" class="form-control" rows="5"></textarea>
+						<textarea id="spon_message" name="message" class="form-control" rows="5"></textarea>
 					</div>
 					<label for="subscribeCheckbox">
 						<input class="d-inline-block align-middle" type="checkbox" name="subscribeCheckbox" id="subscribeCheckbox" checked>I would like to receive Fight for Kidz updates via email
@@ -116,18 +116,18 @@
 				<form action="{{route('contact.table')}}" method="POST">
 					<div class="row">
 						<div class="form-group col-md-6">
-							<input id="name" name="name" type="text" class="form-control" placeholder="* Your name" required>
+							<input id="tbl_name" name="name" type="text" class="form-control" placeholder="* Your name" required>
 						</div>
 						<div class="form-group col-md-6">
-							<input id="name" name="email" type="email" class="form-control" placeholder="* Your email address" required>
+							<input id="tbl_name" name="email" type="email" class="form-control" placeholder="* Your email address" required>
 						</div>
 					</div>
 					<div class="form-group">
-						<input id="name" name="phone" type="text" class="form-control" placeholder="* Phone number" required>
+						<input id="tbl_name" name="phone" type="text" class="form-control" placeholder="* Phone number" required>
 					</div>					
 					<div class="form-group">
-						<label for="message" class="text-white">Optional message - What type of table are you looking to book?:</label>
-						<textarea id="message" name="message" class="form-control" rows="5"></textarea>
+						<label for="tbl_message" class="text-white">Optional message - What type of table are you looking to book?:</label>
+						<textarea id="tbl_message" name="message" class="form-control" rows="5"></textarea>
 					</div>
 					<label for="subscribeCheckbox">
 						<input class="d-inline-block align-middle" type="checkbox" name="subscribeCheckbox" id="subscribeCheckbox" checked>I would like to receive Fight for Kidz updates via email

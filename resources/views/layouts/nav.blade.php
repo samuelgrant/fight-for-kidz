@@ -7,7 +7,7 @@
                     <div role="menu" class="dropdown-menu">
                         @foreach($events as $event)                        
                             @if($event->is_public)
-                                <a role="presentation" href="{{route('event', str_replace(' ', '-', $event->name))}}" class="dropdown-item">{{$event->name}}</a>
+                                <a href="{{route('event', str_replace(' ', '-', $event->name))}}" class="dropdown-item">{{$event->name}}</a>
                                 @if($event == App\Event::current() && $event->isFutureEvent())
                                     <hr class=" my-0">
                                 @endif
@@ -20,8 +20,8 @@
                 <!-- Applications Dropdown -->
                 <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle nav-link dropdown-toggle">Apply</a>
                     <div role="menu" class="dropdown-menu">
-                        <a role="presentation" href="{{route('application.fight')}}" class="dropdown-item">To Fight</a>
-                        <a role="presentation" href="{{route('application.sponsor')}}" class="dropdown-item">To be a Sponsor</a>
+                        <a href="{{route('application.fight')}}" class="dropdown-item">To Fight</a>
+                        <a href="{{route('application.sponsor')}}" class="dropdown-item">To be a Sponsor</a>
                     </div>
                 </li><!-- End Applications Dropdown -->
                 @endif
@@ -34,9 +34,9 @@
                         <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle nav-link dropdown-toggle">Book Tickets</a>
                             <div role="menu" class="dropdown-menu">
                                 
-                                <a role="presentation" href="{{$currentEvent->ticket_seller_url}}" target="blank" class="dropdown-item">Seats</a>
+                                <a href="{{$currentEvent->ticket_seller_url}}" target="blank" class="dropdown-item">Seats</a>
                                 
-                                <a role="presentation" href="#" class="dropdown-item">Tables</a>
+                                <a href="{{route('contact')}}?option=table" class="dropdown-item">Tables</a>
                             </div>
                         </li><!-- End Book Tickets -->
                     @endif
@@ -44,11 +44,11 @@
                 
                 @if($settings->display_merch)
                 <!-- Merchandise -->
-                <li role="presentation" class="nav-item"><a href="{{route('merchandise')}}" class="nav-link">Merchandise</a></li>
+                <li class="nav-item"><a href="{{route('merchandise')}}" class="nav-link">Merchandise</a></li>
                 @endif
 
                 <!-- Contact/Subscribe -->
-                <li role="presentation" class="nav-item"><a href="{{route('contact')}}" class="nav-link">Contact Us</a></li>
+                <li class="nav-item"><a href="{{route('contact')}}" class="nav-link">Contact Us</a></li>
             </ul>
         </div>
     </div>

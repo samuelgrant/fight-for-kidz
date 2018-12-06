@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\MerchandiseItem;
 use App\Image;
+use App\SiteSetting;
 
 class MerchandiseManagementController extends Controller
 {
@@ -50,11 +51,13 @@ class MerchandiseManagementController extends Controller
         $this->validate($request,[
             'name' => 'string|required',
             'description' => 'string|required|max:300',
-            'itemImage' => 'mimes:jpg,jpeg,png|max:2000'
+            'itemImage' => 'mimes:jpg,jpeg,png|max:2000',
+            'price' => 'numeric|required',
         ]);
 
         $item = new MerchandiseItem();
             $item->name = $request->input('name');
+            $item->tagline = $request->input('tagline');
             $item->desc = $request->input('description');
             $item->price = $request->input('price')            ;
         $item->save();
@@ -75,13 +78,15 @@ class MerchandiseManagementController extends Controller
         $this->validate($request,[
             'name' => 'string|required',
             'description' => 'string|required|max:300',
-            'itemImage' => 'mimes:jpg,jpeg,png|max:2000'
+            'itemImage' => 'mimes:jpg,jpeg,png|max:2000',
+            'price' => 'numeric|required'
         ]);
 
 
         $item = MerchandiseItem::find($itemId);
 
         $item->name = $request->input('name');
+        $item->tagline = $request->input('tagline');
         $item->desc = $request->input('description');
         $item->price = $request->input('price');
                 
@@ -122,6 +127,25 @@ class MerchandiseManagementController extends Controller
         $item = MerchandiseItem::withTrashed()->find($id);
         $item->restore();
         session()->flash('success', 'The merchandise item '.$item->name.' was restored');
+
+        return redirect()->back();
+    }
+
+    /**
+     *  Toggle visibility of the merchandise page.
+     */
+    public function toggleAll(){
+        $settings = SiteSetting::getSettings();
+
+        if($settings->display_merch){
+            $settings->display_merch = false;
+            session()->flash('success', 'The merchandise page has been disabled. It will NOT show on the public website.');
+        } else{
+            $settings->display_merch = true;
+            session()->flash('success', 'The merchandise page has been enabled. It WILL show on the public website.');
+        }
+
+        $settings->save();
 
         return redirect()->back();
     }

@@ -12,6 +12,7 @@ $factory->define(App\Applicant::class, function (Faker $faker) {
         'event_id' => 1,
         'first_name' => $firstName,
         'last_name' => $faker->lastName(),
+        'preferred_nickname' => $faker->words(2, true),
         'is_male' => $isMale,
         'address_1' => $faker->streetAddress(),
         'address_2' => null,
