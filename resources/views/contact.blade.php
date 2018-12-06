@@ -57,14 +57,14 @@
 							<input id="spon_name" name="name" type="text" class="form-control" placeholder="* Your name" required>
 						</div>
 						<div class="form-group col-md-6">
-							<input id="spon_name" name="email" type="email" class="form-control" placeholder="* Your email address" required>
+							<input id="spon_email" name="email" type="email" class="form-control" placeholder="* Your email address" required>
 						</div>
 					</div>
 					<div class="form-group">
 						<input id="spon_phone" name="phone" type="text" class="form-control" placeholder="* Phone number" required>
 					</div>					
 					<div class="form-group">
-						<label for="message" class="text-white">* What type/s of sponsorship are you interested in?</label>
+						<label for="spon_type" class="text-white">* What type/s of sponsorship are you interested in?</label>
 						<input id="spon_type" name="type" type="text" class="form-control" required>
 					</div>
 					<div class="form-group">
@@ -89,11 +89,11 @@
 							<input id="tbl_name" name="name" type="text" class="form-control" placeholder="* Your name" required>
 						</div>
 						<div class="form-group col-md-6">
-							<input id="tbl_name" name="email" type="email" class="form-control" placeholder="* Your email address" required>
+							<input id="tbl_email" name="email" type="email" class="form-control" placeholder="* Your email address" required>
 						</div>
 					</div>
 					<div class="form-group">
-						<input id="tbl_name" name="phone" type="text" class="form-control" placeholder="* Phone number" required>
+						<input id="tbl_phone" name="phone" type="text" class="form-control" placeholder="* Phone number" required>
 					</div>					
 					<div class="form-group">
 						<label for="tbl_message" class="text-white">Optional message - What type of table are you looking to book?:</label>
@@ -107,12 +107,6 @@
 		</div>
 		<!-- End Sponsorship contact us form -->			
 	</div>
-
-	<style>
-		.hidden{
-			display: none;
-		}
-	</style>
 	<script>
 		function toggelForm(){
 			let selected = $("#messageType").val();
