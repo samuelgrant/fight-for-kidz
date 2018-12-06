@@ -366,3 +366,7 @@ body{
 	color :white;
 	opacity: 1.0!important;
 }
+
+.hidden{
+	display: none;
+}
