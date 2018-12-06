@@ -136,6 +136,8 @@ Route::patch('/auction-management/{itemID}', 'admin\AuctionManagementController@
 // Toggle Merchandise
 // Merchandise item visibility
 Route::put('/merchandise-management/toggleMerchandiseItem/{itemID}', 'admin\MerchandiseManagementController@toggleMerchandiseItem')->name('admin.merchandiseManagement.toggleMerchandiseItem');
+// Merchandise page visibility
+Route::put('/merchandise-management/toggleAll', 'admin\MerchandiseManagementController@toggleAll')->name('admin.merchandiseManagement.toggleAll');
 
 //View, Get + CRUD Merchandise
 Route::get('/merchandise-management', 'admin\MerchandiseManagementController@index')->name('admin.merchandiseManagement');

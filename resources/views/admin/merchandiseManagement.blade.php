@@ -23,10 +23,21 @@
                     <a class="nav-link" role="tab" data-toggle="tab" href="#tab-deleted" id="deletedItems">Deleted Merchandise</a>
                 </li>
                 <span class="float-right">
-                    <button class="btn btn-success" onclick="merchandiseCreateModal()"><i class="fas fa-plus"></i>&nbsp;Add Item</button>
+                    <button class="btn btn-sm btn-success" onclick="merchandiseCreateModal()"><i class="fas fa-plus"></i>&nbsp;Add Item</button>
                 </span>
             </ul>
             
+        </div>
+
+        <div class="w-100 p-3">
+        <div class="mx-auto text-center">
+            {{Form::open(['action' => ['admin\MerchandiseManagementController@toggleAll'], 'method' => 'PUT'])}}
+            <h5 class="d-inline-block mr-3">Merchandise page is {{App\SiteSetting::getSettings()->display_merch ? 'ENABLED' : 'DISABLED'}}</h5>
+            <label class="switch align-middle">
+                    <input type="checkbox" {{App\SiteSetting::getSettings()->display_merch ? 'checked' : ''}} onchange="this.form.submit()">
+                    <span class="slider round"></span>
+            </label> {{Form::close()}}
+        </div>
         </div>
         
         <div class="tab-content">
@@ -36,6 +47,7 @@
                     <thead>
                         <tr>
                             <th>Name</th>
+                            <th>Tagline:</th>
                             <th>Description</th>
                             <th>Picture</th>
                             <th>Price</th>
@@ -48,9 +60,10 @@
                         @foreach($merch as $item)
                         <tr>
                             <td class="align-middle">{{$item->name}}</td>
+                            <td class="align-middle">{{$item->tagline}}</td>
                             <td class="align-middle">{{$item->desc}}</td>
                             <td><img src="{{file_exists(public_path('storage/images/merchandise/' . $item->id . '.png')) ? '/storage/images/merchandise/' . $item->id . 
-                                '.png' : '/storage/images/noImage.png'}}" height=100 width=80>
+                                '.png' : '/storage/images/noImage.png'}}" height=100>
                             </td>
                             <td class="align-middle">{{$item->price}}</td>
                             <td class="align-middle">
@@ -81,6 +94,7 @@
                 <table id="merchandiseDeleted-dtable" class="table table-striped table-hover table-sm">
                     <thead>
                             <th>Name</th>
+                            <th>Tagline:</th>
                             <th>Description</th>
                             <th>Date Deleted:</th>
                             <th></th><!--Restore-->
@@ -89,6 +103,7 @@
                         @foreach($deletedMerch as $item)
                         <tr>
                             <td class="align-middle">{{$item->name}}</td>
+                            <td class="align-middle">{{$item->tagline}}</td>
                             <td class="align-middle">{{$item->desc}}</td>
                             <td class="align-middle">{{$item->deleted_at}}</td>
                             <td class="align-middle">
@@ -125,21 +140,26 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="merchandiseTagline">Item tagline:</label>
+                    <input  type="text" class="form-control" name="tagline" id="merchandiseTagline">
+                </div>
+
+                <div class="form-group">
                     <label for="merchandiseDescription">Item description:</label>
                     <input  type="text" class="form-control" name="description" id="merchandiseDescription"  placeholder="*required" required>
                 </div>
 
 
                 <div class="form-group">
-                    <label for="merchandisePrice">Item price:</label>
-                    <input  type="text" class="form-control" name="price" id="merchandisePrice">
+                    <label for="merchandisePrice">Item price:</label><br>
+                    <span>$&nbsp;</span><input  type="text" class="form-control d-inline w-50" name="price" id="merchandisePrice" required>
                 </div>
 
-                <div class="card w-50 mx-auto text-center mb-3">
+                <div class="form-group card w-50 mx-auto text-center mb-3">
                         <label for="logo">Item Image:</label>
                         <img class="logoPreview img-fluid" id="imgPreview" src="/storage/images/noImage.png">
-                        <label for="itemImage" class="btn btn-primary mb-0">Change
-                            <input type="file" name="itemImage" id="itemImage" class="form-control" hidden>
+                        <label for="itemImage" class="btn btn-primary btn-sm mb-0">Change
+                            <input type="file" name="itemImage" id="itemImage" class="form-control d-inline m-0" style="opacity: 0;" required>
                         </label>
                     </div>
                 

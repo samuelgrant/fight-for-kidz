@@ -86,7 +86,7 @@
                                 <input type="text" name="contenderFirstName" id="contenderFirstName" class="form-control" value="" required>
                             </div>
                             <div class="form-group">
-                                <label for="contenderLastName">Nickname:</label>
+                                <label for="contenderLastName">Last Name:</label>
                                 <input type="text" name="contenderLastName" id="contenderLastName" class="form-control" value="" required>
                             </div>
                                 <div class="form-group">
@@ -103,8 +103,12 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="contenderDonateUrl">Donate URL:</label>
-                                    <input type="text" name="contenderDonateUrl" id="contenderDonateUrl" class="form-control" value="">
+                                        <label for="contenderDonateUrl">Donate URL:</label>
+                                    <div class="input-group">
+                                        <input type="text" name="contenderDonateUrl" id="contenderDonateUrl" class="form-control" value="">
+                                        <span class="ml-3" data-toggle="tooltip" data-placement="top" 
+                                        title="Required format: https://www.example.com"><i class="fas fa-info-circle float-right"></i></span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-lg-4">
@@ -125,7 +129,11 @@
 
                         <div class="form-group">
                             <label for="contenderBioUrl">Bio URL:</label>
-                            <input type="text" name="contenderBioUrl" id="contenderBioUrl" class="form-control" value="">
+                            <div class="input-group">
+                                <input type="text" name="contenderBioUrl" id="contenderBioUrl" class="form-control" value="">
+                                <span class="ml-3" data-toggle="tooltip" data-placement="top" title="This must go to a youtube video url only!">
+                                    <i class="fas fa-exclamation-circle float-right"></i></span>
+                            </div>
                         </div>
 
                         <label for="contenderBio">Contender Bio:</label>

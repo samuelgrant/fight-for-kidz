@@ -7,6 +7,6 @@ $factory->define(App\MerchandiseItem::class, function (Faker $faker) {
         'name' => $faker->text(15),
         'desc' => $faker->sentence(6, true),
         'price' => 29.99,
-        'is_active' => true
+        'item_visible' => true
     ];
 });
