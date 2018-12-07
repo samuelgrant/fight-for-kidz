@@ -3,7 +3,7 @@
 
 @include('layouts.messages')
 
-<div class="container conform" id="application-form">
+<div class="container conform" id="application">
 	<div class="my-3 p-3">
 		<h1 class="text-center my-3">Fighter Application - {{App\Event::current()->name}}</h1>
 		<p class="text-center">Thank you for your interest in becoming a Fight for Kidz contender.</p>
@@ -615,8 +615,8 @@
 						</div>
 						{{-- End Submit Tab --}}
 						<ul class="pager wizard my-auto">
-							<li type="button" class="previous d-inline-block btn-sm btn-info" style="width: 80px;"><a href="#" class="text-white">Previous</a></li>
-							<li type="button" class="next d-inline-block btn-sm btn-info text-center float-right" style="width: 80px;"><a href="#" class="text-white">Next</a></li>
+							<li type="button" class="previous d-inline-block btn-sm btn-info" style="width: 80px;"><a class="text-white">Previous</a></li>
+							<li type="button" class="next d-inline-block btn-sm btn-info text-center float-right" style="width: 80px;"><a class="text-white">Next</a></li>
 						</ul>
 					</div>
 					{{-- End of Tabs --}}
