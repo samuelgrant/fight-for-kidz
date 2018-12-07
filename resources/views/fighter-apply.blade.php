@@ -194,6 +194,8 @@
 												<div><label class="radio-selector"><input type="radio" name="gender" value="male" required>Male</label></div>
 												<div><label class="radio-selector"><input type="radio" name="gender" value="female" required>Female</label></div>
 											</div>
+
+											<label for="gender" class="error" style="display: none;"></label>
 										</div>
 										<div class="col-md-6">
 											<p>Are you:</p>
@@ -201,6 +203,8 @@
 												<div><label class="radio-selector"><input type="radio" name="hand" value="left" required>Left-handed</label></div>
 												<div><label class="radio-selector"><input type="radio" name="hand" value="right" required>Right-handed</label></div>
 											</div>
+
+											<label for="hand" class="error" style="display: none;"></label>
 										</div>
 									</div>
 								</div>
@@ -220,6 +224,8 @@
 										<label class="radio-selector"><input type="radio" name="sponsorRadio" value="yes" required>Yes</label>
 										<label class="radio-selector"><input type="radio" name="sponsorRadio" value="no" required>No</label>
 									</div>
+
+									<label for="sponsorRadio" class="error" style="display: none;"></label>
 								</div>
 				
 								<!-- Photo upload -->
@@ -305,8 +311,11 @@
 										<label class="radio-selector"><input type="radio" name="fitness_rating" value="5" required>5</label>
 										Excellent
 									</div>
+
+									<label for="fitness_rating" class="error" style="display: none;"></label>
 								</div>
-				
+								
+								
 								<!-- Previous boxing experience -->
 				
 								<div class="form-group">
@@ -315,6 +324,8 @@
 										<label class="radio-selector"><input type="radio" name="expRadio" value="yes" onclick="showExperience()" required>Yes</label>
 										<label class="radio-selector"><input type="radio" name="expRadio" value="no" onclick="hideExperience()" required>No</label>
 									</div>
+
+									<label for="expRadio" class="error" style="display: none;"></label>
 								</div>
 								<div id="exeperience" class="form-group" style="display: none;">
 									<textarea id="experience" name="fighting_experience" class="form-control" rows="3" placeholder="Please describe any prior boxing/kickboxing/martial arts experience..."></textarea>
@@ -324,7 +335,7 @@
 				
 								<div class="form-group">
 									<label for="summary" class="">Other sporting experience:</label>
-									<textarea id="summary" name="sporting_experience" class="form-control" placeholder="Please describe any other sporting experience you have..."
+									<textarea id="sportingSummary" name="sporting_experience" class="form-control" placeholder="Please describe any other sporting experience you have..."
 									rows="3" required></textarea>
 								</div>
 				
@@ -332,7 +343,7 @@
 				
 								<div class="form-group">
 									<label for="summary" class="">Hobbies/interests:</label>
-									<textarea id="summary" name="hobbies" class="form-control" placeholder="Please describe any other hobbies/interests you have..."
+									<textarea id="hobbiesSummary" name="hobbies" class="form-control" placeholder="Please describe any other hobbies/interests you have..."
 									rows="3" required></textarea>
 								</div>
 							</div>
@@ -442,6 +453,8 @@
 										<label class="radio-selector"><input type="radio" name="handRadio" value="yes" onclick="showHand()" required>Yes</label>
 										<label class="radio-selector"><input type="radio" name="handRadio" value="no" onclick="hideHand()" required>No</label>
 									</div>
+
+									<label for="handRadio" class="error" style="display: none;"></label>
 				
 									<div id="hand" class="form-group" style="display: none;">
 										<textarea id="handInjury" name="hand_details" class="form-control" rows="3" placeholder="Please explain..."></textarea>
@@ -453,6 +466,8 @@
 										<label class="radio-selector"><input type="radio" name="injuryRadio" value="yes" onclick="showInjury()" required>Yes</label>
 										<label class="radio-selector"><input type="radio" name="injuryRadio" value="no" onclick="hideInjury()" required>No</label>
 									</div>
+
+									<label for="injuryRadio" class="error" style="display: none;"></label>
 				
 									<div id="injury" class="form-group" style="display: none;">
 										<textarea id="injuries" name="injury_details" class="form-control" rows="3" placeholder="Please explain..."></textarea>
@@ -464,6 +479,8 @@
 										<label class="radio-selector"><input type="radio" name="medsRadio" value="yes" onclick="showMeds()" required>Yes</label>
 										<label class="radio-selector"><input type="radio" name="medsRadio" value="no" onclick="hideMeds()" required>No</label>
 									</div>
+
+									<label for="medsRadio" class="error" style="display: none;"></label>
 				
 									<div id="meds" class="form-group" style="display: none;">
 										<textarea id="medication" name="meds_details" class="form-control" rows="3" placeholder="Please list medication as well as the reasons for taking..."></textarea>
@@ -486,41 +503,64 @@
 										<label class="radio-selector"><input type="radio" name="heartRadio" value="yes" required>Yes</label>
 										<label class="radio-selector"><input type="radio" name="heartRadio" value="no" required>No</label>
 									</div>
+
+									<label for="heartRadio" class="error" style="display: none;"></label>
+
 									<p class="">2. Do you have chest pain that’s brought on by physical activity? </p>
 									<div class="radio ">
 										<label class="radio-selector"><input type="radio" name="activityRadio" value="yes" required>Yes</label>
 										<label class="radio-selector"><input type="radio" name="activityRadio" value="no" required>No</label>
 									</div>
+
+									<label for="activtyRadio" class="error" style="display: none;"></label>
+
 									<p class="">3. Have you developed chest pain in the past month? </p>
 									<div class="radio ">
 										<label class="radio-selector"><input type="radio" name="monthRadio" value="yes" required>Yes</label>
 										<label class="radio-selector"><input type="radio" name="monthRadio" value="no" required>No</label>
 									</div>
+
+									<label for="monthRadio" class="error" style="display: none;"></label>
+									
 									<p class="">4. Have you on one or more occasions lost consciousness or fallen over as a result of dizziness?</p>
 									<div class="radio ">
 										<label class="radio-selector"><input type="radio" name="consciousnessRadio" value="yes" required>Yes</label>
 										<label class="radio-selector"><input type="radio" name="consciousnessRadio" value="no" required>No</label>
 									</div>
+
+									<label for="consciousnessRadio" class="error" style="display: none;"></label>
+
 									<p class="">5. Do you have a bone or joint problem that could be aggravated by the proposed physical activity?</p>
 									<div class="radio ">
 										<label class="radio-selector"><input type="radio" name="boneRadio" value="yes" required>Yes</label>
 										<label class="radio-selector"><input type="radio" name="boneRadio" value="no" required>No</label>
 									</div>
+
+									<label for="boneRadio" class="error" style="display: none;"></label>
+
 									<p class="">6. Has a physician ever recommended medication for your blood pressure or a heart condition?</p>
 									<div class="radio ">
 										<label class="radio-selector"><input type="radio" name="bloodRadio" value="yes" required>Yes</label>
 										<label class="radio-selector"><input type="radio" name="bloodRadio" value="no" required>No</label>
 									</div>
+
+									<label for="bloodRadio" class="error" style="display: none;"></label>
+
 									<p class="">7. Have you ever been knocked out or concussed?</p>
 									<div class="radio ">
 										<label class="radio-selector"><input type="radio" name="concussedRadio" value="yes" required>Yes</label>
 										<label class="radio-selector"><input type="radio" name="concussedRadio" value="no" required>No</label>
 									</div>
+
+									<label for="concussedRadio" class="error" style="display: none;"></label>
+
 									<p class="">8. Are you aware, through your own experience or a physician’s advice, of any other reason that would prohibit you from exercising without medical supervision?</p>
 									<div class="radio ">
 										<label class="radio-selector"><input type="radio" name="reasonsRadio" value="yes" onclick="showReason()" required>Yes</label>
 										<label class="radio-selector"><input type="radio" name="reasonsRadio" value="no" onclick="hideReason()" required>No</label>
 									</div>
+
+									<label for="reasonsRadio" class="error" style="display: none;"></label>
 				
 									<div id="reason" class="form-group" style="display: none;">
 										<textarea id="reasons" name="reason_details" class="form-control" rows="3" placeholder="Please explain..."></textarea>
@@ -561,6 +601,8 @@
 											<label class="radio-selector"><input type="radio" name="custom_{{$q}}" value="No" {{$question->required ? 'required' : ''}}>No</label>
 										</div>
 
+										<label for="custom_{{$q}}" class="error" style="display: none;">Please choose an option</label>
+
 										@endif
 
 									</div> 
@@ -576,6 +618,8 @@
 										<label class="radio-selector"><input type="radio" name="convictedRadio" value="no" onclick="hideCriminal()" required>No</label>
 									</div>
 
+									<label for="convictedRadio" class="error" style="display: none;"></label>
+
 									<div id="criminal" class="form-group" style="display: none;">
 										<textarea id="convictions" name="conviction_details" class="form-control" rows="3" placeholder="Please explain..."></textarea>
 									</div>
@@ -586,6 +630,8 @@
 										<label class="radio-selector"><input type="radio" name="drugRadio" value="yes" required>Yes</label>
 										<label class="radio-selector"><input type="radio" name="drugRadio" value="no" required>No</label>
 									</div>
+
+									<label for="drugRadio" class="error" style="display: none;"></label>
 								</div>
 							</div>
 							<hr>
@@ -603,6 +649,8 @@
 									<label for="guidelinesCheckbox">
 										<input class="d-inline-block align-middle" type="checkbox" name="declCheckbox" id="guidelinesCheckbox" required>I have provided true and accurate information in this application
 									</label>
+
+									<label for="declCheckbox" class="error" style="display: none;"></label>
 								</div>
 				
 								<div class="text-center">
