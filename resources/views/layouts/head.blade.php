@@ -46,6 +46,8 @@
   
   <!-- Custom scripts for this template -->
   <script src="/js/custom.js" defer></script>
+  <script src="/js/app-form.js" defer></script>
+
 
   <!-- Cookie -->
   <link href="/css/jquery.gdrp.css" rel="stylesheet">
