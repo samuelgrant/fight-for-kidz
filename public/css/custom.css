@@ -62,8 +62,8 @@ body{
 }
 
 /* .heading-container{
-  background-color: rgba(22, 22, 22, 0.5);
-  padding: 2.5em;
+	background-color: rgba(22, 22, 22, 0.5);
+	padding: 2.5em;
 } */
 
 .heading-container h1{
@@ -373,4 +373,8 @@ a.active {
 
 a.active:hover {
 	color: #BBBBBB;
+}
+
+.error {
+	color: red;
 }
