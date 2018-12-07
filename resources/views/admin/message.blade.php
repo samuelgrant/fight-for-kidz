@@ -20,13 +20,6 @@
 
             <div class="card-header bg-primary text-white">
                 <h4 class="mb-0 d-inline-block">Message Details</h4>
-                <span class="float-right">
-                    <form action="{{route('admin.messages.delete', ['messageID' => $msg->id])}}" method="POST">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
-                    </form>
-                </span>
             </div>
 
             <div class="card-body">
