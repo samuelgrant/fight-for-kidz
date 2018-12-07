@@ -205,9 +205,7 @@ $(document).ready(function() {
               required: $("#reasonsRadio").val() == "yes"
             },
       
-            //Additional
-            //Custom Question Validation to go here
-      
+            //Additional      
             convictedRadio:{
               required: true
             },
@@ -277,7 +275,7 @@ $(document).ready(function() {
       
             //Personal
             dob:{
-              required: "please enter your birthdate",
+              required: "Please enter your birthdate",
             },
             height:{
               required:"Please enter your height",
@@ -313,7 +311,7 @@ $(document).ready(function() {
               maxlength: "The fight name you entered is too long"
             },
             sponsorRadio:{
-              required: "Are you able to secure your own sponsor?"
+              required: "Please choose an option"
             },
             
             //Picture messages to go here
@@ -355,7 +353,7 @@ $(document).ready(function() {
               required: "Please choose your fitness level"
             },
             expRadio:{
-              required: "Have you had previous experience in boxing/kickboxing/martial arts?"
+              required: "Please choose an option"
             },
             //Makes fighting experience required if expRadio is yes
             fighting_experience:{
@@ -374,19 +372,19 @@ $(document).ready(function() {
               required: "Please elaborate about your other medical history"
             },
             handRadio:{
-              required: "Have you ever had any hand injuries?"
+              required: "Please choose an option"
             },
             hand_details:{
               required: "Please explain your hand injuries"
             },
             injuryRadio:{
-              required: "Have you ever had any injuries (expecially head injuries)?"
+              required: "Please choose an option"
             },
             injury_details:{
               required: "Please explain your previous injuries"
             },
             medsRadio:{
-              required: "Are you currently taking any medications?"
+              required: "Please choose an option"
             },
             meds_details:{
               required: "Please list medication as well as the reasons for taking..."
@@ -394,44 +392,47 @@ $(document).ready(function() {
             
             //Medical 2
             heartRadio:{
-              required: "Has a physician ever said that you have a heart condition and recommended only medically supervised activity?"
+              required: "Please choose an option"
             },
             activityRadio:{
-              required: "Have you have chest pain that’s brought on by physical activity?"
+              required: "Please choose an option"
             },
             monthRadio:{
-              required: "Have you developed chest pain in the past month?"
+              required: "Please choose an option"
             },
             consciousnessRadio:{
-              required: "Have you on one or more occasions lost consciousness or fallen over as a result of dizziness?"
+              required: "Please choose an option"
             },
             boneRadio:{
-              required: "Do you have a bone or joint problem that could be aggravated by the proposed physical activity?"
+              required: "Please choose an option"
             },
             bloodRadio:{
-              required: "Has a physician ever recommended medication for your blood pressure or a heart condition?"
+              required: "Please choose an option"
             },
             concussedRadio:{
-              required: "Have you ever been knocked out or concussed?"
+              required: "Please choose an option"
             },
             reasonsRadio:{
-              required: "Are you aware, through your own experience or a physician’s advice, of any other reason that would prohibit you from exercising without medical supervision?"
+              required: "Please choose an option"
             },
             reason_details:{
               required: "Please explain why you think that you should not be exercising"
             },
       
-            //Additional
-            //Custom Question Validation to go here
-      
+            //Additional      
             convictedRadio:{
-              required: "Do you have any criminal convictions or are facing charges?"
+              required: "Please choose an option"
             },
             conviction_details:{
               required: "Please about your covictions/charges"
             },
             drugRadio:{
-              required: "do you consent to taking a drug screening test?"
+              required: "Please choose an option"
+            },
+
+            //Custom Questions
+            question_1:{
+              required: "Please answer this question"
             },
       
             //Submit
@@ -441,18 +442,23 @@ $(document).ready(function() {
           }
         });
     
-    $('#rootwizard').bootstrapWizard({onTabShow: function(navigation, index) {
+  $('#rootwizard').bootstrapWizard({
+    onTabShow: function(navigation, index) {
       var $total = navigation.find('li').length;
       var $current = index+1;
       var $percent = ($current/$total) * 100;
       $('#rootwizard .progress-bar').css({width:$percent+'%'});
     },
     'onNext': function(tab, navigation, index){
+      if(index == 8){
+        return false;
+      }
+
       var $valid = $("#application-form").valid();
       if(!$valid) {
         $validator.focusInvalid();
         return false;
       }
     }
-    });
   });
+});
