@@ -375,6 +375,15 @@ a.active:hover {
 	color: #BBBBBB;
 }
 
+#wizardBtn:hover {
+	cursor: pointer;
+}
+
+.inactiveLink{
+	pointer-events: none;
+	cursor: default;
+}
+
 label.error {
 	color: red;
 	padding-bottom: 0;
