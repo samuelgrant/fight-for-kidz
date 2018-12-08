@@ -233,7 +233,7 @@
 								<div class="form-group">
 									<label for="upload">Please upload a recent photo of yourself:</label>
 									<br>
-									<input type="file" class="form-control-file" name="photo" required>
+									<input type="file" class="form-control-file" name="photo">
 								</div>
 							</div>
 							<hr>
