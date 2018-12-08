@@ -99,7 +99,10 @@ $(document).ready(function() {
               required: true
             },
             
-            //Picture validation to go here
+            photo:{
+              required: true,
+              extension: "jpg|jpeg|png",
+            },
       
             //Emergency
             emergency_first:{
@@ -338,8 +341,11 @@ $(document).ready(function() {
               required: "Please choose an option"
             },
             
-            //Picture messages to go here
-      
+            photo:{
+              required: "Please upload an image of yourself",
+              extension: "Incorrect extension must be either jpg, jpeg or png",
+            },
+
             //Emergency
             emergency_first:{
               required: "Please enter your emergency contact's firstname",
