@@ -21,14 +21,14 @@
 						<div class="navbar-inner">
 							<div class="container">
 								<ul>
-									<li><a href="#tabContact" data-toggle="tab">Contact</a></li>
-									<li><a href="#tabPersonal" data-toggle="tab">Personal</a></li>
-									<li><a href="#tabEmergency" data-toggle="tab">Emergency</a></li>
-									<li><a href="#tabSporting" data-toggle="tab">Sporting</a></li>
-									<li><a href="#tabMedical1" data-toggle="tab">Medical 1</a></li>
-									<li><a href="#tabMedical2" data-toggle="tab">Medical 2</a></li>
-									<li><a href="#tabAdditional" data-toggle="tab">Additional</a></li>
-									<li><a href="#tabSubmit" data-toggle="tab">Submit</a></li>
+									<li><a href="#tabContact" data-toggle="tab" class="inactiveLink">Contact</a></li>
+									<li><a href="#tabPersonal" data-toggle="tab" class="inactiveLink">Personal</a></li>
+									<li><a href="#tabEmergency" data-toggle="tab" class="inactiveLink">Emergency</a></li>
+									<li><a href="#tabSporting" data-toggle="tab" class="inactiveLink">Sporting</a></li>
+									<li><a href="#tabMedical1" data-toggle="tab" class="inactiveLink">Medical 1</a></li>
+									<li><a href="#tabMedical2" data-toggle="tab" class="inactiveLink">Medical 2</a></li>
+									<li><a href="#tabAdditional" data-toggle="tab" class="inactiveLink">Additional</a></li>
+									<li><a href="#tabSubmit" data-toggle="tab" class="inactiveLink">Submit</a></li>
 								</ul>
 							</div>
 						</div>
