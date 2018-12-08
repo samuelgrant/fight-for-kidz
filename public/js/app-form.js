@@ -143,7 +143,8 @@ $(document).ready(function() {
             },
             //Makes fighting experience required if expRadio is yes
             fighting_experience:{
-              required: $("#expRadio").val() == "yes"
+              required: $("#expRadio").val() == "yes",
+              minlength: 3   
             },
             sporting_experience:{
               required: true
@@ -155,24 +156,29 @@ $(document).ready(function() {
             //Medical 1
             //Dont need to validate checkboxes
             other_details:{
-              required: $("#other:checked")           },
+              required: $("#other:checked"),
+              minlength: 3   
+            },
             handRadio:{
               required: true
             },
             hand_details:{
-              required: $("#handRadio").val() == 'yes'
+              required: $("#handRadio").val() == 'yes',
+              minlength: 3   
             },
             injuryRadio:{
               required: true
             },
             injury_details:{
-              required: $("#injuryRadio").val() == 'yes'
+              required: $("#injuryRadio").val() == 'yes',
+              minlength: 3   
             },
             medsRadio:{
               required: true
             },
             meds_details:{
-              required: $("#medsRadio").val() == 'yes'
+              required: $("#medsRadio").val() == 'yes',
+              minlength: 3
             },
             
             //Medical 2
@@ -201,7 +207,8 @@ $(document).ready(function() {
               required: true
             },
             reason_details:{
-              required: $("#reasonsRadio").val() == "yes"
+              required: $("#reasonsRadio").val() == "yes",
+              minlength: 3   
             },
       
             //Additional      
@@ -209,7 +216,8 @@ $(document).ready(function() {
               required: true
             },
             conviction_details:{
-              required: $("#convictedRadio").val() =='yes'
+              required: $("#convictedRadio").val() =='yes',
+              minlength: 3   
             },
             drugRadio:{
               required: true
@@ -373,7 +381,8 @@ $(document).ready(function() {
             },
             //Makes fighting experience required if expRadio is yes
             fighting_experience:{
-              required: "Please describe your boxing/kickboxing/martial arts experience"
+              required: "Please describe your boxing/kickboxing/martial arts experience",
+              minlength: "Your answer needs to be greater than 2 characters"
             },
             sporting_experience:{
               required: "Please describe your sporting experience"
@@ -385,25 +394,29 @@ $(document).ready(function() {
             //Medical 1
             //Dont need to validate checkboxes
             other_details:{
-              required: "Please elaborate about your other medical history"
+              required: "Please elaborate about your other medical history",
+              minlength: "Your answer needs to be greater than 2 characters"
             },
             handRadio:{
               required: "Please choose an option"
             },
             hand_details:{
-              required: "Please explain your hand injuries"
+              required: "Please explain your hand injuries",
+              minlength: "Your answer needs to be greater than 2 characters"
             },
             injuryRadio:{
               required: "Please choose an option"
             },
             injury_details:{
-              required: "Please explain your previous injuries"
+              required: "Please explain your previous injuries",
+              minlength: "Your answer needs to be greater than 2 characters"
             },
             medsRadio:{
               required: "Please choose an option"
             },
             meds_details:{
-              required: "Please list medication as well as the reasons for taking..."
+              required: "Please list medication as well as the reasons for taking...",
+              minlength: "Your answer needs to be greater than 2 characters"
             },
             
             //Medical 2
@@ -432,7 +445,8 @@ $(document).ready(function() {
               required: "Please choose an option"
             },
             reason_details:{
-              required: "Please explain why you think that you should not be exercising"
+              required: "Please explain why you think that you should not be exercising",
+              minlength: "Your answer needs to be greater than 2 characters"
             },
       
             //Additional      
@@ -440,7 +454,8 @@ $(document).ready(function() {
               required: "Please choose an option"
             },
             conviction_details:{
-              required: "Please explain your covictions/charges"
+              required: "Please explain your covictions/charges",
+              minlength: "Your answer needs to be greater than 2 characters"
             },
             drugRadio:{
               required: "Please choose an option"
