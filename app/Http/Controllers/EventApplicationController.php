@@ -112,8 +112,8 @@ class EventApplicationController extends Controller
     
     );
 
-        // check if subscribe for updates checkbox is checked and subscribe if so
-        if($request->input('subscribeCheckbox')){
+        // check if subscribe for updates checkbox is checked and that there is an email in the email field subscribe if so
+        if($request->input('subscribeCheckbox') && $request->input('email')!= '' ){
             Subscriber::subscribe($request->input('first_name') . ' ' . $request->input('last_name'), $request->input('email'));
         }
 
