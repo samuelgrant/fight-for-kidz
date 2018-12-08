@@ -595,7 +595,7 @@
 										@if($question->type == 'Text')
 
 										<label for="custom_{{++$q}}">{{$question->text}}</label>
-										<textarea class="form-control" type="text" maxlength="500" name="custom_{{$q}}" id="custom_{{$q}}" rows="3" {{$question->required ? 'required' : ''}}></textarea>
+										<textarea class="form-control" type="text" minlength="3" maxlength="500" name="custom_{{$q}}" id="custom_{{$q}}" rows="3" {{$question->required ? 'required' : ''}}></textarea>
 
 										@elseif($question->type == "Yes/No")
 
