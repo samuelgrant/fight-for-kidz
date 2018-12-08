@@ -601,8 +601,8 @@
 
 										<p>{{$question->text}}</p>
 										<div class="radio ">
-											<label class="radio-selector"><input type="radio" name="custom_{{++$q}}" value="Yes" {{$question->required ? 'required' : ''}}>Yes</label>
-											<label class="radio-selector"><input type="radio" name="custom_{{$q}}" value="No" {{$question->required ? 'required' : ''}}>No</label>
+											<label class="radio-selector"><input type="radio" name="custom_{{++$q}}" id="custom_{{$q}}" value="Yes" {{$question->required ? 'required' : ''}}>Yes</label>
+											<label class="radio-selector"><input type="radio" name="custom_{{$q}}" id="custom_{{$q}}" value="No" {{$question->required ? 'required' : ''}}>No</label>
 										</div>
 
 										<label for="custom_{{$q}}" class="error" style="display: none;">Please choose an option</label>
