@@ -377,4 +377,7 @@ a.active:hover {
 
 .error {
 	color: red;
+	padding-bottom: 0;
+	font-size: 13px;
+	font-style: italic;
 }
