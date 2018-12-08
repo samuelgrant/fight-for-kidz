@@ -1,5 +1,10 @@
 //Application form wizard
 $(document).ready(function() {
+
+    $.validator.addMethod('filesize', function (value, element, param) {
+      return this.optional(element) || (element.files[0].size <= param)
+    }, 'File size must be less than {0}');
+
     var $validator = $("#application-form").validate({
           rules: {
             //Contact
@@ -102,6 +107,7 @@ $(document).ready(function() {
             photo:{
               required: true,
               extension: "jpg|jpeg|png",
+              filesize : 2097152
             },
       
             //Emergency
@@ -344,6 +350,7 @@ $(document).ready(function() {
             photo:{
               required: "Please upload an image of yourself",
               extension: "Incorrect extension must be either jpg, jpeg or png",
+              filesize: "Image must be less than 2MB"
             },
 
             //Emergency
@@ -501,13 +508,14 @@ $(document).ready(function() {
     'onNext': function(tab, navigation, index){
       if(index == 8){
         return false;
-      }
+      }    
 
       var $valid = $("#application-form").valid();
       if(!$valid) {
         $validator.focusInvalid();
         return false;
       }
+
     }
   });
 });
