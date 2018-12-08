@@ -321,8 +321,8 @@
 								<div class="form-group">
 									<p class="">Have you ever done boxing/kickboxing/martial arts?</p>
 									<div class="radio ">
-										<label class="radio-selector"><input type="radio" name="expRadio" value="yes" onclick="showExperience()" required>Yes</label>
-										<label class="radio-selector"><input type="radio" name="expRadio" value="no" onclick="hideExperience()" required>No</label>
+										<label class="radio-selector"><input type="radio" id="expRadio" name="expRadio" value="yes" onclick="showExperience()" required>Yes</label>
+										<label class="radio-selector"><input type="radio" id="expRadio" name="expRadio" value="no" onclick="hideExperience()" required>No</label>
 									</div>
 
 									<label for="expRadio" class="error" style="display: none;"></label>
@@ -431,18 +431,22 @@
 										</div>
 										<div class="row px-auto">
 											<div class="col-md-4">
-												<label class=" pl-3" for="hypertension">Hypertension (>140/90):</label>
+												<label class="pl-3" for="hypertension">Hypertension (>140/90):</label>
 												<input class="float-right" type="checkbox" name="hypertension">
 											</div>
 											<div class="col-md-4">
 												<label for="other">Other:</label>
-												<input class="float-right" id="otherCheck" type="checkbox" name="other" onclick="showOther()">
+												<input class="float-right" id="otherCheck" type="checkbox" name="other" id="other" onclick="showOther()">
 											</div>
 										</div> 
 										<div class="row px-auto">
-											<div id="other" class="form-group" style="display: none;">
+											<div id="other" class="form-group mb-1" style="display: none;">
 												<textarea id="other_info" name="other_details" class="form-control ml-4 mt-3" rows="3"  cols="93" placeholder="Please explain..."></textarea>
+
+												<label for="other_info" class="ml-3 pl-3 error" style="display: none;"></label>
 											</div>
+
+											
 										</div>
 									</fieldset>
 								</div>
@@ -450,8 +454,8 @@
 								<div class="form-group">
 									<p class="">Have you ever had any hand injuries?</p>
 									<div class="radio ">
-										<label class="radio-selector"><input type="radio" name="handRadio" value="yes" onclick="showHand()" required>Yes</label>
-										<label class="radio-selector"><input type="radio" name="handRadio" value="no" onclick="hideHand()" required>No</label>
+										<label class="radio-selector"><input type="radio" name="handRadio" id="handRadio" value="yes" onclick="showHand()" required>Yes</label>
+										<label class="radio-selector"><input type="radio" name="handRadio" id="handRadio" value="no" onclick="hideHand()" required>No</label>
 									</div>
 
 									<label for="handRadio" class="error" style="display: none;"></label>
@@ -463,8 +467,8 @@
 				
 									<p class="">Have you ever had any injuries (expecially head injuries)?</p>
 									<div class="radio ">
-										<label class="radio-selector"><input type="radio" name="injuryRadio" value="yes" onclick="showInjury()" required>Yes</label>
-										<label class="radio-selector"><input type="radio" name="injuryRadio" value="no" onclick="hideInjury()" required>No</label>
+										<label class="radio-selector"><input type="radio" name="injuryRadio" id="injuryRadio" value="yes" onclick="showInjury()" required>Yes</label>
+										<label class="radio-selector"><input type="radio" name="injuryRadio" id="injuryRadio" value="no" onclick="hideInjury()" required>No</label>
 									</div>
 
 									<label for="injuryRadio" class="error" style="display: none;"></label>
@@ -476,8 +480,8 @@
 				
 									<p class="">Are you currently taking any medications?</p>
 									<div class="radio ">
-										<label class="radio-selector"><input type="radio" name="medsRadio" value="yes" onclick="showMeds()" required>Yes</label>
-										<label class="radio-selector"><input type="radio" name="medsRadio" value="no" onclick="hideMeds()" required>No</label>
+										<label class="radio-selector"><input type="radio" name="medsRadio" id="medsRadio" value="yes" onclick="showMeds()" required>Yes</label>
+										<label class="radio-selector"><input type="radio" name="medsRadio" id="medsRadio" value="no" onclick="hideMeds()" required>No</label>
 									</div>
 
 									<label for="medsRadio" class="error" style="display: none;"></label>
@@ -556,8 +560,8 @@
 
 									<p class="">8. Are you aware, through your own experience or a physician’s advice, of any other reason that would prohibit you from exercising without medical supervision?</p>
 									<div class="radio ">
-										<label class="radio-selector"><input type="radio" name="reasonsRadio" value="yes" onclick="showReason()" required>Yes</label>
-										<label class="radio-selector"><input type="radio" name="reasonsRadio" value="no" onclick="hideReason()" required>No</label>
+										<label class="radio-selector"><input type="radio" name="reasonsRadio" id="reasonsRadio" value="yes" onclick="showReason()" required>Yes</label>
+										<label class="radio-selector"><input type="radio" name="reasonsRadio" id="reasonsRadio" value="no" onclick="hideReason()" required>No</label>
 									</div>
 
 									<label for="reasonsRadio" class="error" style="display: none;"></label>
@@ -614,8 +618,8 @@
 								<div class="form-group" id="additional_information">
 									<p class="">Do you have any criminal convictions or are facing charges?</p>
 									<div class="radio ">
-										<label class="radio-selector"><input type="radio" name="convictedRadio" value="yes" onclick="showCriminal()" required>Yes</label>
-										<label class="radio-selector"><input type="radio" name="convictedRadio" value="no" onclick="hideCriminal()" required>No</label>
+										<label class="radio-selector"><input type="radio" name="convictedRadio" id="convictedRadio" value="yes" onclick="showCriminal()" required>Yes</label>
+										<label class="radio-selector"><input type="radio" name="convictedRadio" id="convictedRadio" value="no" onclick="hideCriminal()" required>No</label>
 									</div>
 
 									<label for="convictedRadio" class="error" style="display: none;"></label>
@@ -650,7 +654,9 @@
 										<input class="d-inline-block align-middle" type="checkbox" name="declCheckbox" id="guidelinesCheckbox" required>I have provided true and accurate information in this application
 									</label>
 
-									<label for="declCheckbox" class="error" style="display: none;"></label>
+									<div class="form-group text-center">
+										<label for="declCheckbox" class="error" style="display: none;"></label>
+									</div>
 								</div>
 				
 								<div class="text-center">
