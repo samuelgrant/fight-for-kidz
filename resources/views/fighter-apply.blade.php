@@ -669,8 +669,8 @@
 						</div>
 						{{-- End Submit Tab --}}
 						<ul class="pager wizard my-auto">
-							<li type="button" class="previous d-inline-block btn-sm btn-info" style="width: 80px;"><a class="text-white">Previous</a></li>
-							<li type="button" class="next d-inline-block btn-sm btn-info text-center float-right" style="width: 80px;"><a class="text-white">Next</a></li>
+							<li type="button" class="previous d-inline-block btn-sm btn-info" style="width: 80px;"><a class="text-white" id="wizardBtn">Previous</a></li>
+							<li type="button" class="next d-inline-block btn-sm btn-info text-center float-right" style="width: 80px;"><a class="text-white" id="wizardBtn">Next</a></li>
 						</ul>
 					</div>
 					{{-- End of Tabs --}}
