@@ -155,8 +155,7 @@ $(document).ready(function() {
             //Medical 1
             //Dont need to validate checkboxes
             other_details:{
-              required: $("#other").val() == "yes"
-            },
+              required: $("#other:checked")           },
             handRadio:{
               required: true
             },
@@ -210,7 +209,7 @@ $(document).ready(function() {
               required: true
             },
             conviction_details:{
-              required: $("#convictedRadio").val() =='true'
+              required: $("#convictedRadio").val() =='yes'
             },
             drugRadio:{
               required: true
@@ -424,7 +423,7 @@ $(document).ready(function() {
               required: "Please choose an option"
             },
             conviction_details:{
-              required: "Please about your covictions/charges"
+              required: "Please explain your covictions/charges"
             },
             drugRadio:{
               required: "Please choose an option"
@@ -437,7 +436,7 @@ $(document).ready(function() {
       
             //Submit
             declCheckbox:{
-              required: "Please declare that you have provided true and accurate information"
+              required: "Please acknowledge"
             }
           }
         });
