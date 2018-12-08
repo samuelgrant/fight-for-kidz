@@ -214,7 +214,24 @@ $(document).ready(function() {
             drugRadio:{
               required: true
             },
-      
+
+            //Custom Questions
+            custom_1:{ 
+              required: $("#custom_1").prop("required")
+            },
+            custom_2:{ 
+              required: $("#custom_2").prop("required")
+            },
+            custom_3:{ 
+              required: $("#custom_3").prop("required")
+            },
+            custom_4:{ 
+              required: $("#custom_4").prop("required")
+            },
+            custom_5:{ 
+              required: $("#custom_5").prop("required")
+            },
+            
             //Submit
             declCheckbox:{
               required: true
@@ -430,7 +447,19 @@ $(document).ready(function() {
             },
 
             //Custom Questions
-            question_1:{
+            custom_1:{
+              required: "Please answer this question"
+            },
+            custom_2:{
+              required: "Please answer this question"
+            },
+            custom_3:{
+              required: "Please answer this question"
+            },
+            custom_4:{
+              required: "Please answer this question"
+            },
+            custom_5:{
               required: "Please answer this question"
             },
       
