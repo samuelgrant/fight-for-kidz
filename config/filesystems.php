@@ -55,6 +55,12 @@ return [
             'visibility' => 'public',
         ],
 
+        'temp' => [
+            'driver' =>'local',
+            'root' => storage_path('app/private/temp'),
+            'visibility' => 'private',
+        ],
+
         'documents' => [
             'driver' => 'local',
             'root' => storage_path('app/public/documents'),

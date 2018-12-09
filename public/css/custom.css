@@ -389,3 +389,7 @@ label.error {
 	padding-bottom: 0;
 	font-size: 13px;
 }
+
+.hidden{
+	display: none;
+}

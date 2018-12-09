@@ -111,11 +111,20 @@ Route::get('/dashboard/uploads/{docID}', 'admin\SiteSettingsController@getFile')
 //Get Applicant Data
 Route::get('/event-management/applicants/{applicantId}', 'admin\ApplicantManagementController@getApplicant')->name('admin.applicantManagement.getApplicant');
 
+// Delete applicants
+Route::delete('/event-management/applicants/{applicantID}', 'admin\ApplicantManagementController@deleteApplicant')->name('admin.applicantManagement.deleteApplicant');
+
 //Get contender data
 Route::get('/event-management/contenders/{contenderID}', 'admin\ContenderManagementController@getContender')->name('admin.contenderManagement.getContender');
 
 //Retrieve private images (https://laravel.io/forum/04-23-2015-securing-filesimages)
 Route::get('/applicantImages/{imageName}', 'admin\ImageController@getApplicantImage')->where('imageName', '^[^/]+$')->name('admin.getApplicantImage');
+
+// Mail routes
+Route::get('/emails', 'admin\MailController@index')->name('admin.sendMail');
+Route::post('/emails', 'admin\MailController@presetTarget')->name('admin.mail.preset');
+Route::post('/emails/preview', 'admin\MailController@previewMail')->name('admin.mail.preview');
+Route::post('/emails/send', 'admin\MailController@sendMail')->name('admin.mail.send');
 
 //Get + CRUD Auction Items
 Route::get('/auction-management/auction/{auctionId}', 'admin\AuctionManagementController@getAuctionItem')->name('admin.auctionManagement.getAuctionItem');
@@ -127,6 +136,8 @@ Route::patch('/auction-management/{itemID}', 'admin\AuctionManagementController@
 // Toggle Merchandise
 // Merchandise item visibility
 Route::put('/merchandise-management/toggleMerchandiseItem/{itemID}', 'admin\MerchandiseManagementController@toggleMerchandiseItem')->name('admin.merchandiseManagement.toggleMerchandiseItem');
+// Merchandise page visibility
+Route::put('/merchandise-management/toggleAll', 'admin\MerchandiseManagementController@toggleAll')->name('admin.merchandiseManagement.toggleAll');
 
 //View, Get + CRUD Merchandise
 Route::get('/merchandise-management', 'admin\MerchandiseManagementController@index')->name('admin.merchandiseManagement');

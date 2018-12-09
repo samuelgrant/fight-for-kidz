@@ -18,7 +18,7 @@ Route::get('/contenders', 'PagesController@contenders')->name('contenders');
 Route::get('/contact', 'PagesController@contact')->name('contact');
 Route::get('/about', 'PagesController@about')->name('about');
 Route::get('/event/{eventId}', 'EventController@index')->name('event');
-Route::get('/Merchandise', 'MerchandiseController@Merchandise')->name('merchandise');
+Route::get('/merchandise', 'MerchandiseController@index')->name('merchandise');
 
 // Fighter application form and submission
 Route::get('/fighter-application', 'EventApplicationController@fighterForm')->name('application.fight');
@@ -29,9 +29,25 @@ Route::get('/sponsor-application', 'EventApplicationController@sponsorForm')->na
 Route::post('/sponsor-application', 'EventApplicationController@storeSponsorApp')->name('application.sponsor.submit');
 
 // Subscriber route
-Route::post('/subscribe', 'SubscribersController@store')->name('subscribe');
+Route::post('/subscribe', 'SubscriberController@store')->name('subscribe');
+Route::get('/unsubscribe', 'SubscriberController@showUnsubscribeForm')->name('mail.showUnsubscribeForm');
+Route::post('/unsubscribe', 'SubscriberController@unsubscribe')->name('mail.unsubscribe');
+
 
 // Contender api
 Route::get('/contenders/bio/{contenderID}', 'EventController@getContender')->name('getContender');
 
+
+// Contact us
+Route::post('/contact/general', function(){
+    return 'general contact us';
+})->name('contact.general');
+
+Route::post('/contact/sponsor', function(){
+    return 'sponsor contact us';
+})->name('contact.sponsor');
+
+Route::post('/contact/table', function(){
+    return 'table contact us';
+})->name('contact.table');
 Auth::routes();

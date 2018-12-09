@@ -153,6 +153,8 @@ return [
         AlbertCht\InvisibleReCaptcha\InvisibleReCaptchaServiceProvider::class,
         GoogleMaps\ServiceProvider\GoogleMapsServiceProvider::class,
         Maatwebsite\Excel\ExcelServiceProvider::class,
+        Mews\Purifier\PurifierServiceProvider::class,
+        Unisharp\Ckeditor\ServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -165,6 +167,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
         App\Providers\NavbarServiceProvider::class,
         App\Providers\SettingsServiceProvider::class,
+        App\Providers\QueueFinishedProvider::class,
 
     ],
 
@@ -220,6 +223,8 @@ return [
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Input' => Illuminate\Support\Facades\Input::class,
+        'Purifier' => Mews\Purifier\Facades\Purifier::class,
+        'Html2Text' => \Html2Text\Html2Text::class,
     ],
 
 ];

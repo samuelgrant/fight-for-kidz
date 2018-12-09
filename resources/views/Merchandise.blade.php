@@ -2,7 +2,8 @@
 @section('content')
 <div id="merchandise" class="container mb-5 " style="background-color: rgba(0,0,0,0.7);">
     <div class="heading-container push-down pt-3">
-        <h1 class="text-center ">Merchandise</h1>
+        <h1 class="text-center mb-2">Merchandise</h1>
+        <p class="text-center">Our merchandise is available for purchase on the day of the event.</p>
     </div>
 
     <div class="row">

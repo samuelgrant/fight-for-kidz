@@ -76,7 +76,7 @@ class RegisterController extends Controller
 
     /**
      * Override default register behaviour so that newly created
-     * user does not log in by after creation.
+     * user does not log in by default after creation.
      */
     public function register(Request $request){
         $this->validator($request->all())->validate();
