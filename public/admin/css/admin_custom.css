@@ -93,3 +93,12 @@
     border-radius: 5px;
     padding: 0.5em;
   }
+
+  /* Mail attachment clear button */
+  .times-circle-btn{
+    color: #ff0000;
+  }
+
+  .times-circle-btn:hover{
+    color: #ff8181
+  }

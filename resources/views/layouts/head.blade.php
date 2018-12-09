@@ -2,11 +2,10 @@
 <html lang="en">
 
 <head>
-
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Fight for Kidz is a non for profit charity based in Invercargill that rasies funds for Southland Kids.">
-  <meta name="author" content="Samuel Grant, Samuel Jackson">
+	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  	<meta name="description" content="Fight for Kidz is a non for profit charity based in Invercargill that rasies funds for Southland Kids.">
+  	<meta name="author" content="Mitchell Quarrie, Samuel Grant, Samuel Jackson">
   
   <title>Fight for Kidz</title>
 
@@ -52,5 +51,5 @@
 
   <!-- Cookie -->
   <link href="/css/jquery.gdrp.css" rel="stylesheet">
-  <script type="text/javascript" src="/jquery/jquery.gdrp.js"></script>
+  <script src="/jquery/jquery.gdrp.js"></script>
 </head>

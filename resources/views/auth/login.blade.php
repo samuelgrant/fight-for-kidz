@@ -55,10 +55,9 @@
                         </div>
                         
                         <div class="text-center mt-3">                                
-                                <a  href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>   
-                            </div>
+                            <a  href="{{ route('password.request') }}">
+                                {{ __('Forgot Your Password?') }}
+                            </a>   
                         </div>   
                     </form>
                 </div>

@@ -12,9 +12,9 @@ class MerchandiseController extends Controller
         $this->middleware('merchandise');
     }
 
-    public function Merchandise(){
+    public function index(){
         $merch = MerchandiseItem::all();
-        return view('Merchandise')->with('merch', $merch);
+        return view('merchandise')->with('merch', $merch);
     }
 
 }
