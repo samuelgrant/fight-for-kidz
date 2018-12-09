@@ -499,13 +499,7 @@ $(document).ready(function() {
         });
     
   $('#rootwizard').bootstrapWizard({
-    onTabShow: function(navigation, index) {
-      var $total = navigation.find('li').length;
-      var $current = index+1;
-      var $percent = ($current/$total) * 100;
-      $('#rootwizard .progress-bar').css({width:$percent+'%'});
-    },
-    'onNext': function(tab, navigation, index){
+    'onNext': function(index){
       if(index == 8){
         return false;
       }    

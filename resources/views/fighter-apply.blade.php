@@ -33,9 +33,6 @@
 							</div>
 						</div>
 					</div>
-					<div id="bar" class="progress">
-						<div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 14.2857%;"></div>
-					</div>
 					<div class="tab-content">
 						<div class="tab-pane" id="tabContact">
 							{{-- Contact Info Section --}}
