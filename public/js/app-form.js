@@ -48,12 +48,12 @@ $(document).ready(function() {
               minlength: 3,
               maxlength: 191
             },
-            phone:{
+            phone_1:{
               required: true,
               minlength: 3,
               maxlength: 30
             },
-            mobile:{
+            phone_2:{
               required: false,
               minlength: 3,
               maxlength: 30
@@ -132,15 +132,15 @@ $(document).ready(function() {
               minlength: 3,
               maxlength: 191
             },
-            emergency_phone:{
+            emergency_phone_1:{
               required: true,
               minlength: 3,
               maxlength: 30
             },
-            emergecy_mobile:{
+            emergecy_phone_2:{
               required: false,
               minlength: 3,
-              maxlength: 191
+              maxlength: 30
             },
       
             //Sporting
@@ -296,14 +296,14 @@ $(document).ready(function() {
               minlength: "Your email needs to be greater than 2 charcters",
               maxlength: "The email you entered is too long"
             },
-            phone:{
+            phone_1:{
               required: "Please enter your phone number",
               minlength: "Your phone number needs to be greater than 2 charcters",
               maxlength: "The phone number you entered is too long"
             },
-            mobile:{
-              minlength: "Your cell phone number needs to be greater than 2 charcters",
-              maxlength: "The cell phone number you entered is too long"
+            phone_2:{
+              minlength: "Your phone number needs to be greater than 2 charcters",
+              maxlength: "The phone number you entered is too long"
             },
       
             //Personal
@@ -375,14 +375,14 @@ $(document).ready(function() {
               minlength: "Your emergency contact's email needs to be greater than 2 charcters",
               maxlength: "The emergency contact's email you entered is too long"
             },
-            emergency_phone:{
+            emergency_phone_1:{
               required: "Please enter your emergency contact's phone number",
               minlength: "Your emergency contact's phone number needs to be greater than 2 characters",
               maxlength: "The emergency contact's phone number you entered is too long"
             },
-            emergecy_mobile:{
-              minlength: "Your emergency contact's mobile phone number needs to be greater than 2 characters",
-              maxlength: "The emergency contact's mobile phone number you entered is too long"
+            emergecy_phone_2:{
+              minlength: "Your emergency contact's phone number needs to be greater than 2 characters",
+              maxlength: "The emergency contact's phone number you entered is too long"
             },
       
             //Sporting
@@ -497,7 +497,7 @@ $(document).ready(function() {
             }
           }
         });
-    
+
   $('#rootwizard').bootstrapWizard({
     'onNext': function(index){
       if(index == 8){

@@ -494,8 +494,8 @@ function applicantManagementModal(id){
             $("#appGender").val("Female");
         }
         
-        $("#appEmail").val(data.email);                     $("#appPhone").val(data.phone);
-        $("#appMobile").val(data.mobile);                   $("#appAddress1").val(data.address_1);
+        $("#appEmail").val(data.email);                     $("#appPhone1").val(data.phone_1);
+        $("#appPhone2").val(data.phone_2);                   $("#appAddress1").val(data.address_1);
         $("#appAddress2").val(data.address_2);              $("#appSuburb").val(data.suburb);
         $("#appCity").val(data.city);                       $("#appPostCode").val(data.postcode);
 
@@ -510,8 +510,8 @@ function applicantManagementModal(id){
 
         //Emergency Tab
         $("#appEmergencyFirstName").val(data.emergency_first_name);             $("#appEmergencyLastName").val(data.emergency_last_name);
-        $("#appEmergencyRelationship").val(data.emergency_relationship);        $("#appEmergencyPhone").val(data.emergency_phone);                     
-        $("#appEmergencyMobile").val(data.emergency_mobile);                    $("#appEmergencyEmail").val(data.emergency_email);                   
+        $("#appEmergencyRelationship").val(data.emergency_relationship);        $("#appEmergencyPhone1").val(data.emergency_phone_1);                     
+        $("#appEmergencyPhone2").val(data.emergency_phone_2);                    $("#appEmergencyEmail").val(data.emergency_email);                   
 
         // Medical Tab 1
         $("#appHeartDisease").val(data.heart_disease ? 'Yes' : 'No');                          $("#appBreathlessness").val(data.breathlessness ? 'Yes' : 'No');

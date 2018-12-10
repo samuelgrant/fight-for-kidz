@@ -27,8 +27,8 @@ class CreateApplicantsTable extends Migration
             $table->string('suburb')->nullable();
             $table->string('city');
             $table->string('postcode' ,10);
-            $table->string('phone', 30);
-            $table->string('mobile', 30)->nullable();
+            $table->string('phone_1', 30);
+            $table->string('phone_2', 30)->nullable();
             $table->string('email');
 
             //Section 2 - Personal Details
@@ -47,8 +47,8 @@ class CreateApplicantsTable extends Migration
             $table->string('emergency_first_name', 30);
             $table->string('emergency_last_name', 30);
             $table->string('emergency_relationship', 30);
-            $table->string('emergency_phone', 30);
-            $table->string('emergency_mobile', 30)->nullable();
+            $table->string('emergency_phone_1', 30);
+            $table->string('emergency_phone_2', 30)->nullable();
             $table->string('emergency_email');
 
             //Section 4 - Sporting Experience

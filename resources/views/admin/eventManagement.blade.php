@@ -275,14 +275,14 @@
                                         <div class="row">
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
-                                                    <label>Phone:</label>
-                                                    <input type="text" id="appPhone"  readonly class="form-control-plaintext gray-card" />
+                                                    <label>Phone 1:</label>
+                                                    <input type="text" id="appPhone1"  readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
-                                                    <label>Mobile:</label>
-                                                    <input type="text" id="appMobile"  readonly class="form-control-plaintext gray-card" />
+                                                    <label>Phone 2:</label>
+                                                    <input type="text" id="appPhone2"  readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
@@ -412,14 +412,14 @@
                                 <div class="row">
                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label>Phone:</label>
-                                            <input type="text" id="appEmergencyPhone"  readonly class="form-control-plaintext gray-card" />
+                                            <label>Phone 1:</label>
+                                            <input type="text" id="appEmergencyPhone1"  readonly class="form-control-plaintext gray-card" />
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label>Mobile:</label>
-                                            <input type="text" id="appEmergencyMobile"  readonly class="form-control-plaintext gray-card" />
+                                            <label>Phone 2:</label>
+                                            <input type="text" id="appEmergencyPhone2"  readonly class="form-control-plaintext gray-card" />
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-12">

@@ -109,17 +109,17 @@
 								<div class="form-group-margin">
 									<div class="row">
 										<div class="col-md-2 inputLabel">
-											<label for="phone">Phone:</label>
+											<label for="phone_1">Phone 1:</label>
 										</div>
-										<div class="col-md-4" id="phoneInput">
-											<input class="form-control" type="text" name="phone" required>
+										<div class="col-md-4" id="phone1Input">
+											<input class="form-control" type="text" name="phone_1" required>
 										</div>
 
 										<div class="col-md-2 inputLabel">
-											<label for="mobile">Mobile:</label>
+											<label for="phone_2">Phone 2:</label>
 										</div>
-										<div class="col-md-4" id="mobileInput">
-											<input class="form-control" type="text" name="mobile">
+										<div class="col-md-4" id="phone2Input">
+											<input class="form-control" type="text" name="phone_2">
 										</div>
 									</div>
 								</div>
@@ -265,19 +265,19 @@
 										</div>
 				
 										<div class="col-md-2 inputLabel">
-												<label for="emergency_phone">Phone:</label>
+												<label for="emergency_phone_1">Phone 1:</label>
 											</div>
 											<div class="col-md-4">
-												<input class="form-control" type="text" name="emergency_phone"  required>
+												<input class="form-control" type="text" name="emergency_phone_1"  required>
 											</div>
 										
 									</div>
 									<div class="row">
 										<div class="col-md-2 inputLabel">
-											<label for="emergency_mobile">Mobile:</label>
+											<label for="emergency_phone_2">Phone 2:</label>
 										</div>
 										<div class="col-md-4">
-											<input class="form-control" type="text" name="emergency_mobile">
+											<input class="form-control" type="text" name="emergency_phone_2">
 										</div>
 				
 										<div class="col-md-2 inputLabel">

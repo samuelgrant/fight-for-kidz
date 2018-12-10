@@ -51,8 +51,8 @@ class EventApplicationController extends Controller
             'city' => 'required',
             'post_code' => 'required',
             'email' => 'required|email',
-            'phone' => 'required',
-            // mobile not required
+            'phone_1' => 'required',
+            //phone_2 not required
 
             //Personal Details Section
             'dob' => 'required|date', // string must be date according to PHP strtotime() function
@@ -70,8 +70,8 @@ class EventApplicationController extends Controller
             'emergency_first' => 'required',
             'emergency_last' => 'required',
             'emergency_relationship' => 'required',
-            'emergency_phone' => 'required',
-            //emergency_mobile not required
+            'emergency_phone_1' => 'required',
+            //emergency_phone_2 not required
             'emergency_email' => 'required',
 
             //Sporting Experience Section
@@ -145,8 +145,8 @@ class EventApplicationController extends Controller
         $applicant->suburb  = $request->input('suburb');
         $applicant->city = $request->input('city');
         $applicant->postcode = $request->input('post_code');
-        $applicant->phone = $request->input('phone');
-        $applicant->mobile = $request->input('mobile');
+        $applicant->phone_1 = $request->input('phone_1');
+        $applicant->phone_2 = $request->input('phone_2');
         $applicant->email = $request->input('email');
 
         //Personal Details Section
@@ -165,8 +165,8 @@ class EventApplicationController extends Controller
         $applicant->emergency_first_name = $request->input('emergency_first');
         $applicant->emergency_last_name = $request->input('emergency_last');
         $applicant->emergency_relationship = $request->input('emergency_relationship');
-        $applicant->emergency_phone = $request->input('emergency_phone');
-        $applicant->emergency_mobile = $request->input('emergency_mobile');
+        $applicant->emergency_phone_1 = $request->input('emergency_phone_1');
+        $applicant->emergency_phone_2 = $request->input('emergency_phone_2');
         $applicant->emergency_email = $request->input('emergency_email');
         
         //Sporting Experience Section
