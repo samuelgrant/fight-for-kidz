@@ -17,13 +17,8 @@
                 </li>
                 {{-- Event Applications --}}
                 @if($currentEvent->isFutureEvent() && $currentEvent->open)
-                <!-- Applications Dropdown -->
-                <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle nav-link dropdown-toggle">Apply</a>
-                    <div role="menu" class="dropdown-menu">
-                        <a href="{{route('application.fight')}}" class="dropdown-item">To Fight</a>
-                        <a href="{{route('application.sponsor')}}" class="dropdown-item">To be a Sponsor</a>
-                    </div>
-                </li><!-- End Applications Dropdown -->
+                <!-- Applications-->
+                    <li class="nav-item"><a href="{{route('application.fight')}}" class="nav-link">Apply to Fight</a></li>
                 @endif
                 <!-- End Buy Tickets Dropdown -->
                 
