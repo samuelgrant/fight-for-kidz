@@ -19,7 +19,7 @@ class BoutManagementController extends Controller
         $bout = Bout::find($boutId);
         $bout->delete();
 
-        Mail::to('jacksos101@gmail.com')->subject('test')->queue(new Subscribed(Subscriber::all()->first()));
+        Mail::to('jacksos101@gmail.com')->queue(new Subscribed(Subscriber::all()->first()));
     }
 
     public function addBout($eventId){
