@@ -615,7 +615,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label>Previous or current injuries:</label>
+                                            <label>Previous significant injuries (especially head injuries):</label>
                                             <textarea rows="4" cols="50" id="appPreviousCurrentInjuries"  readonly class="form-control-plaintext gray-card"></textarea>
                                         </div>
                                     </div>

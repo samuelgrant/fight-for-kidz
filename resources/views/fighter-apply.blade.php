@@ -462,7 +462,7 @@
 									</div>
 									<br>
 				
-									<p class="">Have you ever had any injuries (expecially head injuries)?</p>
+									<p class="">Have you ever had any significant injuries (especially head injuries)?</p>
 									<div class="radio ">
 										<label class="radio-selector"><input type="radio" name="injuryRadio" id="injuryRadio" value="yes" onclick="showInjury()" required>Yes</label>
 										<label class="radio-selector"><input type="radio" name="injuryRadio" id="injuryRadio" value="no" onclick="hideInjury()" required>No</label>
