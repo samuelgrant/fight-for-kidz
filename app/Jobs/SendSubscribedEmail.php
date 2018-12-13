@@ -8,6 +8,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 use App\Mail\Subscribed;
 use App\Subscriber;
 
@@ -34,6 +35,8 @@ class SendSubscribedEmail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->subscriber->email)->send(new Subscribed($this->subscriber));
+        Log::debug('Sending mail to ' . $this->subscriber->email);
+        $msg = Mail::to($this->subscriber->email)->send(new Subscribed($this->subscriber));
+        Log::debug('Mail sent. Message: ' . $msg);
     }
 }
