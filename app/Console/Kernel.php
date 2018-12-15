@@ -47,11 +47,11 @@ class Kernel extends ConsoleKernel
             return strpos($var, $needle);
         });
 
-        // if result is not empty, process exists
-        if(!empty($result)){
-            return true;
-        } else{
+        // if less than 3 workers 
+        if(count($result) < 3){
             return false;
+        } else{
+            return true;
         }
 
     }
