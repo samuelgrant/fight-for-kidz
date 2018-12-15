@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Log;
 
 class Kernel extends ConsoleKernel
 {
@@ -28,9 +29,9 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
-        if(!$this->isProcessRunning('queue:work')){
-            $schedule->command('queue:work')->everyMinute();
-        }
+        Log::debug('scheduler run at ' . now());
+
+        $schedule->command('queue:work')->everyMinute()->withoutOverlapping();
     }
 
     /**
