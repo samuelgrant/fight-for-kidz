@@ -28,21 +28,32 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
-	$path = base_path();
-	$schedule->call(function() use($path) {
-		if (file_exists($path . '/queue.pid')) {
-			$pid = file_get_contents($path . '/queue.pid');
-			$result = exec("ps -p $pid --no-heading | awk '{print $1}'");
-			$run = $result == '' ? true : false;
-		} else {
-			$run = true;
-		}
-		if($run) {
-			$command = '/usr/bin/php -c ' . $path .'/php.ini ' . $path . '/artisan queue:listen --tries=3 > /dev/null & echo $!';
-			$number = exec($command);
-			file_put_contents($path . '/queue.pid', $number);
-		}
-	})->name('monitor_queue_listener')->everyFiveMinutes();
+        if(!$this->isProcessRunning('queue:work')){
+            $schedule->command('queue:work')->everyMinute();
+        }
+    }
+
+    /**
+     *  Checks if a proces with $needle in the name is running
+     *  https://gist.github.com/mauris/11375869
+     */
+    protected function isProcessRunning($needle){
+
+        // get process status
+        exec('ps aux -ww', $process_status);
+
+        // search for $needle
+        $result = array_filter($process_status, function($var) use ($needle){
+            return strpos($var, $needle);
+        });
+
+        // if result is not empty, process exists
+        if(!empty($result)){
+            return true;
+        } else{
+            return false;
+        }
+
     }
 
     /**
