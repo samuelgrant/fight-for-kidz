@@ -47,8 +47,8 @@ class Kernel extends ConsoleKernel
             return strpos($var, $needle);
         });
 
-        // if less than 3 workers 
-        if(count($result) < 3){
+        // if less than 3 workers (each instance will result in 2 array entries) 
+        if(count($result) < 6){
             return false;
         } else{
             return true;
