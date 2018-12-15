@@ -37,6 +37,7 @@ class Kernel extends ConsoleKernel
     /**
      *  Checks if a proces with $needle in the name is running
      *  https://gist.github.com/mauris/11375869
+     * (not currently being used)
      */
     protected function isProcessRunning($needle){
 
