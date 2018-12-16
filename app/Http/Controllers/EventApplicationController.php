@@ -42,6 +42,7 @@ class EventApplicationController extends Controller
         $validator = Validator::make(Input::all(), [ // should this be $request->all() instead of Input::all()?
             // 'g-recaptcha-response' => 'required|captcha',
 
+            //Contact Info Section
             'first_name' => 'required',
             'last_name' => 'required',
             'address_1' => 'required',
@@ -50,8 +51,10 @@ class EventApplicationController extends Controller
             'city' => 'required',
             'post_code' => 'required',
             'email' => 'required|email',
-            'phone' => 'required',
-            // mobile not required
+            'phone_1' => 'required',
+            //phone_2 not required
+
+            //Personal Details Section
             'dob' => 'required|date', // string must be date according to PHP strtotime() function
             'height' => 'required|integer|gt:0',
             'current_weight' => 'required|integer|gt:0', 
@@ -62,10 +65,38 @@ class EventApplicationController extends Controller
             // nickname not required
             'sponsorRadio' => 'required',
             'photo' => 'required|image|mimes:jpeg,png', // accepts jpeg and png - this may not be correct
+
+            //Emergency Contact Section
+            'emergency_first' => 'required',
+            'emergency_last' => 'required',
+            'emergency_relationship' => 'required',
+            'emergency_phone_1' => 'required',
+            //emergency_phone_2 not required
+            'emergency_email' => 'required',
+
+            //Sporting Experience Section
             'expRadio' => 'required',
             'fitness_rating' => 'required',
             'fighting_experience' => 'required_if:expRadio,yes',
             'sporting_experience' => 'required',
+            'hobbies' => 'required',
+
+            //Medical Info Section
+            //checkboxes aren't required
+            'other_details' => 'required_if:other,on',
+            'hand_details' => 'required_if:handRadio,yes',
+            'injury_details' => 'required_if:injuryRadio,yes',
+            'meds_details' => 'required_if:medsRadio,yes',
+            'heartRadio' => 'required',
+            'activityRadio' => 'required',
+            'monthRadio' => 'required',
+            'consciousnessRadio' => 'required',
+            'boneRadio' => 'required',
+            'bloodRadio' => 'required',
+            'concussedRadio' => 'required',
+            'reason_details' => 'required_if:reasonsRadio,yes',
+
+            //Additional Info Section
             'convictedRadio' => 'required',
             'conviction_details' => 'required_if:convictedRadio,yes',
             'drugRadio' => 'required',
@@ -81,8 +112,8 @@ class EventApplicationController extends Controller
     
     );
 
-        // check if subscribe for updates checkbox is checked and subscribe if so
-        if($request->input('subscribeCheckbox')){
+        // check if subscribe for updates checkbox is checked and that there is an email in the email field subscribe if so
+        if($request->input('subscribeCheckbox') && $request->input('email')!= '' ){
             Subscriber::subscribe($request->input('first_name') . ' ' . $request->input('last_name'), $request->input('email'));
         }
 
@@ -106,6 +137,7 @@ class EventApplicationController extends Controller
 
         // validator has not failed, so make the applicant record
         $applicant = new Applicant;
+        //Contact Info Section
         $applicant->first_name = $request->input('first_name');
         $applicant->last_name = $request->input('last_name');
         $applicant->address_1 = $request->input('address_1');
@@ -113,9 +145,11 @@ class EventApplicationController extends Controller
         $applicant->suburb  = $request->input('suburb');
         $applicant->city = $request->input('city');
         $applicant->postcode = $request->input('post_code');
-        $applicant->phone = $request->input('phone');
-        $applicant->mobile = $request->input('mobile');
+        $applicant->phone_1 = $request->input('phone_1');
+        $applicant->phone_2 = $request->input('phone_2');
         $applicant->email = $request->input('email');
+
+        //Personal Details Section
         $applicant->dob = $request->input('dob'); // need to confirm that date is being stored appropriately
         $applicant->height = $request->input('height');
         $applicant->current_weight = $request->input('current_weight');
@@ -124,12 +158,54 @@ class EventApplicationController extends Controller
         $applicant->employer = $request->input('employer');
         $applicant->is_male = $request->input('gender') == 'male' ? true : false;
         $applicant->right_handed = $request->input('hand') == 'right' ? true : false;
-        $applicant->preferred_nickname = $request->input('nickname');
+        $applicant->preferred_fight_name = $request->input('nickname');
         $applicant->can_secure_sponsor = $request->input('sponsorRadio') == 'yes' ? true : false;
+
+        //Emergency Contact Section
+        $applicant->emergency_first_name = $request->input('emergency_first');
+        $applicant->emergency_last_name = $request->input('emergency_last');
+        $applicant->emergency_relationship = $request->input('emergency_relationship');
+        $applicant->emergency_phone_1 = $request->input('emergency_phone_1');
+        $applicant->emergency_phone_2 = $request->input('emergency_phone_2');
+        $applicant->emergency_email = $request->input('emergency_email');
+        
+        //Sporting Experience Section
         $applicant->fitness_rating = $request->input('fitness_rating');
         $applicant->boxing_exp = $request->input('fighting_experience');
         $applicant->sporting_exp = $request->input('sporting_experience');
         $applicant->hobbies = $request->input('hobbies');
+
+        //Medical Info Section
+        $applicant->heart_disease = $request->input('heart_disease') == 'on' ? true : false;
+        $applicant->breathlessness = $request->input('heart_surgery') == 'on' ? true : false;
+        $applicant->epilepsy = $request->input('heart_attack') == 'on' ? true : false;
+        $applicant->heart_attack = $request->input('stroke') == 'on' ? true : false;
+        $applicant->stroke = $request->input('smoking') == 'on' ? true : false;
+        $applicant->heart_surgery = $request->input('cancer') == 'on' ? true : false;
+        $applicant->respiratory_problems = $request->input('breathlessness') == 'on' ? true : false;
+        $applicant->cancer = $request->input('epilepsy') == 'on' ? true : false;
+        $applicant->irregular_heartbeat = $request->input('chest_pain_discomfort') == 'on' ? true : false;
+        $applicant->smoking = $request->input('irregular_heartbeat') == 'on' ? true : false;
+        $applicant->joint_pain_problems = $request->input('joint_pain_problems') == 'on' ? true : false;
+        $applicant->chest_pain_discomfort = $request->input('respiratory_problems') == 'on' ? true : false;
+        $applicant->hypertension = $request->input('surgery') == 'on' ? true : false;
+        $applicant->surgery = $request->input('dizziness_fainting') == 'on' ? true : false;
+        $applicant->dizziness_fainting = $request->input('high_cholesterol') == 'on' ? true : false;
+        $applicant->high_cholesterol = $request->input('hypertension') == 'on' ? true : false;
+        $applicant->other = $request->input('other_details');
+        $applicant->hand_injuries = $request->input('hand_details');
+        $applicant->previous_current_injuries = $request->input('injury_details');
+        $applicant->current_medication = $request->input('meds_details');
+        $applicant->heart_condition = $request->input('heartRadio') == 'yes' ? true : false;
+        $applicant->chest_pain_activity = $request->input('activityRadio') == 'yes' ? true : false;
+        $applicant->chest_pain_recent = $request->input('monthRadio') == 'yes' ? true : false;
+        $applicant->lost_consciousness = $request->input('consciousnessRadio') == 'yes' ? true : false;
+        $applicant->bone_joint_problems = $request->input('boneRadio') == 'yes' ? true : false;
+        $applicant->recommended_medication = $request->input('bloodRadio') == 'yes' ? true : false;
+        $applicant->concussed_knocked_out = $request->input('concussedRadio') == 'yes' ? true : false;
+        $applicant->other_reasons = $request->input('reason_details');
+        
+        //Additonal Info Section
         $applicant->conviction_details = $request->input('conviction_details');
         $applicant->consent_to_test = $request->input('drugRadio') == 'yes' ? true : false;
 

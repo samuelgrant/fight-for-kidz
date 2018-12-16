@@ -62,8 +62,8 @@ body{
 }
 
 /* .heading-container{
-  background-color: rgba(22, 22, 22, 0.5);
-  padding: 2.5em;
+	background-color: rgba(22, 22, 22, 0.5);
+	padding: 2.5em;
 } */
 
 .heading-container h1{
@@ -365,6 +365,29 @@ body{
 .alert-tag {
 	color :white;
 	opacity: 1.0!important;
+}
+
+a.active {
+	color: white;
+}
+
+a.active:hover {
+	color: #BBBBBB;
+}
+
+#wizardBtn:hover {
+	cursor: pointer;
+}
+
+.inactiveLink{
+	pointer-events: none;
+	cursor: default;
+}
+
+label.error {
+	color: red;
+	padding-bottom: 0;
+	font-size: 13px;
 }
 
 .hidden{
