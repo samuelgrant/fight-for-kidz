@@ -809,13 +809,11 @@ $(document).ready(function(){
         var clearBtn = $('#clearAttachmentsBtn');
         
         var fileCount = e.target.files.length;
-        console.log(fileCount);
 
         fileNamesString = '';
 
         for(i = 0; i < fileCount; i++){
             fileNamesString += ((i > 0 ? ', ' : '') + e.target.files[i].name);
-            console.log(fileNamesString);
         }
 
         if(fileNamesString != ''){  
@@ -844,10 +842,7 @@ $('#clearAttachmentsBtn').on('click', function(e){
     $file.wrap('<form>').closest('form').get(0).reset();
     $file.unwrap();
 
-    console.log($('#fileUpload')[0].files.length);
-
     $file.change();
-
 });
 
 
