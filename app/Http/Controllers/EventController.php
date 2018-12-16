@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
-use App\Contender;
+use App\Contender, App\Bout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -31,5 +31,16 @@ class EventController extends Controller
             return response('No contender found', 400);
         }
 
+    }
+
+    public function getBout($boutID){
+        
+        $bout =  Bout::find($boutID);
+
+        if($bout){
+            return ['bout' => $bout];
+        } else{
+            return response('No bout found', 400);
+        }
     }
 }
