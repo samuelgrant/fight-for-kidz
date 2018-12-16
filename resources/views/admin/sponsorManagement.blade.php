@@ -6,7 +6,7 @@
     <li class="breadcrumb-item">
         <a href="{{route('admin.dashboard')}}">Dashboard</a>
     </li>
-    <li class="breadcrumb-item active"><a href="{{route('admin.sponsorManagement')}}">Sponsor Management</a></li>
+    <li class="breadcrumb-item"><a href="{{route('admin.sponsorManagement')}}">Sponsor Management</a></li>
     <li class="breadcrumb-item active">{{$sponsor->company_name}}</li>
 </ol>
 
