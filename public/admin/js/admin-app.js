@@ -705,9 +705,6 @@ $(document).ready(function(){
 
 
     $('#multipleGroupSelect').change(function(){
-
-        console.log($(this).val().length);
-
         // this is important as the fSelect doesn't seem to support straightforward
         // front end validation. So this hidden checkbox (actually not hidden, but transparent)
         // will enable the validation instead. It ticks when groups are selected, and unticks
