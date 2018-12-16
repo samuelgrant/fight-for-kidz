@@ -182,7 +182,7 @@
         </div>
         
         <div class="bout-footer mx-auto">
-            <div class="bout-btn bout-btn-blue fight-view-btn"  data-toggle="modal" data-target="#fight-video-modal"
+            <div class="bout-btn bout-btn-fight fight-view-btn"  data-toggle="modal" data-target="#fight-video-modal"
             data-contenderBoutIds="{{$bout->blue_contender->id . ' ' . $bout->red_contender->id . ' ' . $bout->id}}">Watch the Fight!</div>
         </div>
       </div>
