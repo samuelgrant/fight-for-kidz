@@ -6,7 +6,7 @@ $('body').ihavecookies({
 		cookieTypes: []
 	}); 
 </script>
-<script src="/js/admin-event.js"></script>
+
 <!-- Footer -->
 <footer id="f4k-footer" class="bg-black small text-center text-white-50 row py-2">
 	<div class="col-sm-4 mb-3">
