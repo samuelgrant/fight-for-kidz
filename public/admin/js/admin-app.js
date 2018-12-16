@@ -518,20 +518,50 @@ function applicantManagementModal(id){
             $("#appGender").val("Female");
         }
         
-        $("#appEmail").val(data.email);                     $("#appPhone").val(data.phone);
-        $("#appMobile").val(data.mobile);                   $("#appAddress1").val(data.address_1);
+        $("#appEmail").val(data.email);                     $("#appPhone1").val(data.phone_1);
+        $("#appPhone2").val(data.phone_2);                   $("#appAddress1").val(data.address_1);
         $("#appAddress2").val(data.address_2);              $("#appSuburb").val(data.suburb);
         $("#appCity").val(data.city);                       $("#appPostCode").val(data.postcode);
 
-        // Physical Tab
-        $("#appHeight").val(data.height + "cm");           $("#appWeightC").val(data.current_weight + "kg");
-        $("#appWeightE").val(data.expected_weight + "kg");  $("#appSportingExperience").text(data.sporting_exp);
+        // Pesonal Tab
+        $("#appHeight").val(data.height + "cm");            $("#appWeightC").val(data.current_weight + "kg");
+        $("#appWeightE").val(data.expected_weight + "kg");  
         $('#fitnessLevel').text('This applicant rates their fitness at ' + data.fitness_rating + ' out of 5');
+        $("#dominantHand").text("This applicant is " + (data.right_handed ? 'right' : 'left') + "-handed");
         $("#appBoxingExperience").text(data.boxing_exp);
+        $("#appSportingExperience").text(data.sporting_exp);
         $('#hobbies').text(data.hobbies);
 
+        //Emergency Tab
+        $("#appEmergencyFirstName").val(data.emergency_first_name);             $("#appEmergencyLastName").val(data.emergency_last_name);
+        $("#appEmergencyRelationship").val(data.emergency_relationship);        $("#appEmergencyPhone1").val(data.emergency_phone_1);                     
+        $("#appEmergencyPhone2").val(data.emergency_phone_2);                    $("#appEmergencyEmail").val(data.emergency_email);                   
+
+        // Medical Tab 1
+        $("#appHeartDisease").val(data.heart_disease ? 'Yes' : 'No');                          $("#appBreathlessness").val(data.breathlessness ? 'Yes' : 'No');
+        $("#appEpilepsy").val(data.epilepsy ? 'Yes' : 'No');                                   $("#appHeartAttack").val(data.heart_attack ? 'Yes' : 'No');
+        $("#appStroke").val(data.stroke ? 'Yes' : 'No');                                       $("#appHeartSurgery").val(data.heart_surgery ? 'Yes' : 'No');
+        $("#appRespiratoryProblems").val(data.respiratory_problems ? 'Yes' : 'No');            $("#appCancer").val(data.cancer ? 'Yes' : 'No');
+        $("#appIrregularHeatbeat").val(data.irregular_heartbeat ? 'Yes' : 'No');               $("#appSmoking").val(data.smoking ? 'Yes' : 'No');
+        $("#appJointProblems").val(data.joint_pain_problems ? 'Yes' : 'No');                   $("#appChestPain").val(data.chest_pain_discomfort ? 'Yes' : 'No');
+        $("#appHypertension").val(data.hypertension ? 'Yes' : 'No');                           $("#appSurgery").val(data.surgery ? 'Yes' : 'No');
+        $("#appDizzinessFainting").val(data.dizziness_fainting ? 'Yes' : 'No');                $("#appCholesterol").val(data.high_cholesterol ? 'Yes' : 'No');
+
+        $("#appOther").text(data.other);
+
+        // Medical Tab 2
+        $("#appHeartCondtion").val(data.heart_condition ? 'Yes' : 'No');                       $("#appPhysicalChestPain").val(data.chest_pain_activity ? 'Yes' : 'No');
+        $("#appRecentChestPain").val(data.chest_pain_recent ? 'Yes' : 'No');                   $("#appPassedOut").val(data.lost_consciousness ? 'Yes' : 'No');
+        $("#appBoneJointProblems").val(data.bone_joint_problems ? 'Yes' : 'No');               $("#appMedicationBloodHeart").val(data.recommended_medication ? 'Yes' : 'No');
+        $("#appKnockedOut").val(data.concussed_knocked_out ? 'Yes' : 'No');                    $("#appReason").val(data.other_reasons ? 'Yes' : 'No');
+
+        $("#appReason").val(data.other_reasons);
+        $("#appHandInjuries").val(data.hand_injuries);
+        $("#appPreviousCurrentInjuries").val(data.previous_current_injuries);
+        $("#appCurrentMedicaton").val(data.current_medication);
+
         // Additional Tab
-        $("#appOccupation").val(data.occupation);           $("#appEmployer").val(data.employer);
+        $("#appOccupation").val(data.occupation);                               $("#appEmployer").val(data.employer);
         $("#appConvictionDetails").text(data.conviction_details);
 
         // Set Consent
@@ -548,7 +578,7 @@ function applicantManagementModal(id){
             $("#appSponsor").val("Yes");
         }
 
-        // Populate custom questions
+        //Custom Tab
         $('#custom_1').val(data.custom_one);
         $('#custom_2').val(data.custom_two);
         $('#custom_3').val(data.custom_three);
