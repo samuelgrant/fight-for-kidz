@@ -87,6 +87,8 @@
     <!-- counter used to name bouts -->
     @foreach($event->bouts as $bout)
     @if($bout->contendersSet()) {{-- Only use bouts that have contenders set, this prevents crash --}}
+
+    @if($event->isFutureEvent()) {{--Sets the bout cards of an upcoming event --}}
     <!-- Each bout will create one column -->
     <div class="col-lg-6 bout-column">
 
@@ -134,13 +136,65 @@
         </div>
       </div>
     </div> <!-- end each bout -->
+    @elseif(!$event->isFutureEvent())
+    <!-- Each bout will create one column -->
+    <div class="col-lg-6 bout-column">
+
+      <!-- Each bout has a bout header -->
+      <div class="bout-card">
+        <div class="bout-header">
+          <h2>BOUT {{++$i}}</h2>
+          {{-- <p class="sponsored-by">sponsored by</p> --}}
+          @if($bout->sponsor)
+            <div class="sponsor-badge">
+              <div class="vertical-aligner"></div><a href="{{$bout->sponsor->url}}" target="_blank"><img style="max-height:60px;" src="{{'/storage/images/sponsors/' . $bout->sponsor->id . '.png'}}" class="img-fluid bout-sponsor"></a>
+            </div>
+          @endif
+        </div>
+
+        <!-- Each bout card will contain two contender-cards -->
+        <div class="contender-card contender-card-red">
+          <div class="contender-card-inner">
+            <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->red_contender->id . '.png')) ? '/storage/images/contenders/' . $bout->red_contender->id . '.png' : '/storage/images/contenders/0.png'}}"
+              class="mx-auto contender-img" height="89">
+            <div class="contender-name">
+              <h5>{{$bout->red_contender->first_name}}</h5>
+              <h4>{{$bout->red_contender->nickname}}</h4>
+              <h5>{{$bout->red_contender->last_name}}</h5>
+            </div>
+            <div class="bout-btn bout-btn-red bio-view-button" data-toggle="modal" data-target="#bio-modal"
+              data-contenderId="{{$bout->red_contender->id}}">View Bio</div>
+          </div>
+        </div>
+
+        <div class="contender-card contender-card-blue">
+          <div class="contender-card-inner">
+            <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->blue_contender->id . '.png')) ? '/storage/images/contenders/' . $bout->blue_contender->id . '.png' : '/storage/images/contenders/0.png'}}"
+              class="mx-auto contender-img" height="89">
+            <div class="contender-name">
+              <h5>{{$bout->blue_contender->first_name}}</h5>
+              <h4>{{$bout->blue_contender->nickname}}</h4>
+              <h5>{{$bout->blue_contender->last_name}}</h5>
+              <div class="bout-btn bout-btn-blue bio-view-button" data-toggle="modal" data-target="#bio-modal"
+                data-contenderId="{{$bout->blue_contender->id}}">View Bio</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="bout-footer mx-auto">
+            <div class="bout-btn bout-btn-blue fight-view-btn"  data-toggle="modal" data-target="#fight-video-modal"
+            data-contenderBoutIds="{{$bout->blue_contender->id . ' ' . $bout->red_contender->id . ' ' . $bout->id}}">Watch the Fight!</div>
+        </div>
+      </div>
+    </div> <!-- end each bout -->
+    @endif
     @endif
     @endforeach
 
   </div> <!-- end all bouts -->
 
 
-<!-- Dynamic modal -->
+<!-- Dynamic bio modal -->
 <div id="bio-modal" class="modal fade pt-3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
   style="display: none; z-index:4005;">
   <div class="modal-dialog modal-lg">
@@ -297,4 +351,35 @@
     </div>
   </div> {{-- End of auction-info-modal --}}
 @endif
+
+<!-- Dynamic fight video modal -->
+<div id="fight-video-modal" class="modal fade pt-3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+  style="display: none; z-index:4005;">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-body contender-modal-body pl-0">
+
+        {{-- Dynamic content will load here --}}
+        <div id="dynamic-content" style="color:black;">
+
+
+          <div class="text-center text-white">
+            <h3 id="red-corner" class="d-inline mx-2"></h3>
+            <h5 class="d-inline">V.</h5>
+            <h3 id="blue-corner" class="d-inline mx-2"></h3>
+            <hr class="ml-3">
+            <iframe width="638" height="315" id="fight-vid" src="" frameborder="0" allow="autoplay; encrypted-media;"
+              allowfullscreen></iframe>
+
+          </div>
+          <div class="modal-footer contender-modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> {{-- close bio-modal --}}
+</div>
 @endsection
