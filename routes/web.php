@@ -37,6 +37,8 @@ Route::post('/unsubscribe', 'SubscriberController@unsubscribe')->name('mail.unsu
 // Contender api
 Route::get('/contenders/bio/{contenderID}', 'EventController@getContender')->name('getContender');
 
+Route::get('/bout/{boutID}', 'EventController@getBout')->name('getBout');
+
 
 // Contact us
 Route::post('/contact/general', function(){
