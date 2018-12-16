@@ -137,7 +137,11 @@
                     </div>
                     <div class="form-group">
                         <label for="url">Website URL:</label>
-                        <input type="url" name="url" id="url" class="form-control" value="{{$sponsor->url}}">
+                        <div class="input-group">
+                            <input type="url" name="url" id="url" class="form-control" value="{{$sponsor->url}}">
+                            <span class="ml-3" data-toggle="tooltip" data-placement="top" 
+                            title="Required format: https://www.example.com"><i class="fas fa-info-circle float-right"></i></span>
+                        </div>
                     </div>
                     <div class="card w-50 mx-auto text-center mb-3">
                         <label for="logo">Logo:</label>
