@@ -171,7 +171,6 @@ function setBioImageBorder(data){
   }
 }
 
-
 function auctionItemModal(id){
   $.ajax({
       method: "get",
@@ -214,3 +213,66 @@ function auctionItemModal(id){
       console.log(error);
   });
 }
+
+$(document).ready(function () {
+  $('.fight-view-btn').on('click', function (e) {
+
+    var split = $(this).attr('data-contenderBoutIds').split(" ");
+
+    var urlBlue = '/contenders/bio/' + split[0];
+    var urlRed = '/contenders/bio/' + split[1];
+    var urlBout = '/bout/' + split[2];
+
+    $.ajax({
+      url: urlBlue,
+      method: 'get',
+      headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+      dataType: 'json'
+    }).done(function (data) {
+
+      $('#blue-corner').text(data['contender']['first_name'] + ' ' + data['contender']['last_name']);
+
+    }).fail(function (err) {
+      console.log(err);
+      $('#dynamic-content').html('<p style="color:black;">Something went wrong. Please try again...</p>');
+    });
+
+    $.ajax({
+      url: urlRed,
+      method: 'get',
+      headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+      dataType: 'json'
+    }).done(function (data) {
+
+      $('#red-corner').text(data['contender']['first_name'] + ' ' + data['contender']['last_name']);
+
+    }).fail(function (err) {
+      console.log(err);
+      $('#dynamic-content').html('<p style="color:black;">Something went wrong. Please try again...</p>');
+    });
+    $.ajax({
+      url: urlBout,
+      method: 'get',
+      headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+      dataType: 'json'
+    }).done(function (data) {
+    // get video id from video_url
+    if (data['bout']['video_url'] != null) {
+      vidId = getQueryVariable(data['bout']['video_url'], 'v');
+      $('#fight-vid').removeClass('d-none');
+      $('#fight-vid').attr('src', 'https://www.youtube-nocookie.com/embed/' + vidId + '?rel=0&modestbranding=1');
+    } else {
+      $('#fight-vid').addClass('d-none');
+    }
+
+    }).fail(function (err) {
+      console.log(err);
+      $('#dynamic-content').html('<p style="color:black;">Something went wrong. Please try again...</p>');
+    });
+  });  
+
+  $("#fight-video-modal").on('hidden.bs.modal', function (e) {
+    $("#fight-video-modal iframe").attr("src", "");
+  });
+
+});
