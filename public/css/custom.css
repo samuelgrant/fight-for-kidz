@@ -375,7 +375,7 @@ a.active:hover {
 	color: #BBBBBB;
 }
 
-#wizardBtn:hover {
+#wizardBtnPrevious:hover, #wizardBtnNext:hover {
 	cursor: pointer;
 }
 

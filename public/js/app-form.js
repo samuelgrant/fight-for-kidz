@@ -499,17 +499,46 @@ $(document).ready(function() {
         });
 
   $('#rootwizard').bootstrapWizard({
-    'onNext': function(index){
-      if(index == 8){
-        return false;
-      }    
+    //These fuctions fires when the next vbutton is clicked
+    'onNext': function(tab, navigation, index){
+      //hides the next btn on tab index 7 
+      if(index == 7){
+        $("#liNext").removeClass("d-inline-block");
+        $("#liNext").addClass("d-none");
+
+        $("#wizardBtnNext").addClass("d-none");
+      }
 
       var $valid = $("#application-form").valid();
       if(!$valid) {
         $validator.focusInvalid();
         return false;
-      }
+      } else{
+        //shows previous button on tab change if tab index is one but only if validator passes
+        if (index == 1){
+          $("#liPrevious").removeClass("d-none");
+          $("#liPrevious").addClass("d-inline-block");
 
+          $("#wizardBtnPrevious").removeClass("d-none");
+        }
+      }
+    },
+
+    //These functions fires when the previous button is clicked
+    'onPrevious': function(tab, navigation, index){
+      //shows the previous btn on tab index 0
+      if(index == 0){
+        $("#liPrevious").removeClass("d-inline-block");
+        $("#liPrevious").addClass("d-none");
+
+        $("#wizardBtnPrevious").addClass("d-none");
+      } 
+      //shows the next btn on tab index 6
+      if (index == 6) {
+        $("#liNext").removeClass("d-none")
+        $("#liNext").addClass("d-inline-block");
+        $("#wizardBtnNext").removeClass("d-none");
+      }   
     }
   });
 });
