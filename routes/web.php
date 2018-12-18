@@ -41,15 +41,9 @@ Route::get('/bout/{boutID}', 'EventController@getBout')->name('getBout');
 
 
 // Contact us
-Route::post('/contact/general', function(){
-    return 'general contact us';
-})->name('contact.general');
+Route::post('/contact/general', 'ContactController@general')->name('contact.general');
+Route::post('/contact/sponsor', 'ContactController@sponsor')->name('contact.sponsor');
+Route::post('/contact/table', 'ContactController@table')->name('contact.table');
 
-Route::post('/contact/sponsor', function(){
-    return 'sponsor contact us';
-})->name('contact.sponsor');
-
-Route::post('/contact/table', function(){
-    return 'table contact us';
-})->name('contact.table');
+// Auth routes
 Auth::routes();

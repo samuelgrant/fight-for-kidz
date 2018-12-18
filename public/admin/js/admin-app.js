@@ -220,7 +220,31 @@ $(document).ready(function() {
             { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false }
         ]
-    })
+    });
+
+    $('#messages-dtable').DataTable({
+        "columns": [
+            {"visible" : false, "type" : "num"},
+            {"orderData" : 0},
+            null,
+            null,
+            null,
+            null,
+            { "orderable": false, "searchable": false }
+        ]
+    });
+
+    $('#deleted-messages-dtable').DataTable({
+        "columns": [
+            {"visible" : false, "type" : "num"},
+            {"orderData" : 0},
+            null,
+            null,
+            null,
+            null,
+            { "orderable": false, "searchable": false }
+        ]
+    });
 });
 
 // Count the number of selected datatable rows on a page, and display the result
@@ -711,9 +735,6 @@ $(document).ready(function(){
 
 
     $('#multipleGroupSelect').change(function(){
-
-        console.log($(this).val().length);
-
         // this is important as the fSelect doesn't seem to support straightforward
         // front end validation. So this hidden checkbox (actually not hidden, but transparent)
         // will enable the validation instead. It ticks when groups are selected, and unticks
@@ -818,13 +839,11 @@ $(document).ready(function(){
         var clearBtn = $('#clearAttachmentsBtn');
         
         var fileCount = e.target.files.length;
-        console.log(fileCount);
 
         fileNamesString = '';
 
         for(i = 0; i < fileCount; i++){
             fileNamesString += ((i > 0 ? ', ' : '') + e.target.files[i].name);
-            console.log(fileNamesString);
         }
 
         if(fileNamesString != ''){  
@@ -853,10 +872,7 @@ $('#clearAttachmentsBtn').on('click', function(e){
     $file.wrap('<form>').closest('form').get(0).reset();
     $file.unwrap();
 
-    console.log($('#fileUpload')[0].files.length);
-
     $file.change();
-
 });
 
 
