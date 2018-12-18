@@ -23,7 +23,7 @@ function editContenderModal(contenderID){
 
         $('#editContenderModal').modal('show');
 
-    }).error(function(error){
+    }).fail(function(error){
         console.log(error);
     });
 }
