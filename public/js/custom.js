@@ -91,17 +91,24 @@ $(document).ready(function(){
 });
 
 
-// returns URL query string with the given name - used with contender bio videos
-function getQueryVariable(url, variable)
-{   
-      var query = url.split("?")[1];
-      
-      var vars = query.split("&");
-      for (var i=0;i<vars.length;i++) {
-        var pair = vars[i].split("=");
-        if(pair[0] == variable){return pair[1];}
-      }
-      return(false);
+// returns youtube video id using the URL query string with the given name - used with contender bio and fight videos
+function getQueryVariable(url)
+{ //Checks to see if url is a standard full length youtube url
+  if(url.indexOf("=") > -1){
+    var query = url.split("?")[1];
+    
+    var vars = query.split("&");
+    for (var i=0;i<vars.length;i++) {
+      var pair = vars[i].split("=");
+      if(pair[0] == 'v'){return pair[1];}
+    }
+  //Checks to see if the url is a shortened youtube url
+  } else if (url.indexOf("u.b") > -1){
+    var query2 = url.split("/");
+    console.log(query2[3]);
+    return query2[3];
+  }
+  return(false);
 }
 
 $(document).ready(function () {
@@ -128,7 +135,7 @@ $(document).ready(function () {
 
       // get video id from donate_url
       if (data['contender']['bio_url'] != null) {
-        vidId = getQueryVariable(data['contender']['bio_url'], 'v')
+        vidId = getQueryVariable(data['contender']['bio_url'])
         $('#bio-vid').removeClass('d-none');
         $('#bio-vid').attr('src', 'https://www.youtube-nocookie.com/embed/' + vidId + '?rel=0&modestbranding=1');
       } else {
@@ -258,7 +265,7 @@ $(document).ready(function () {
     }).done(function (data) {
     // get video id from video_url
     if (data['bout']['video_url'] != null) {
-      vidId = getQueryVariable(data['bout']['video_url'], 'v');
+      vidId = getQueryVariable(data['bout']['video_url']);
       $('#fight-vid').removeClass('d-none');
       $('#fight-vid').attr('src', 'https://www.youtube-nocookie.com/embed/' + vidId + '?rel=0&modestbranding=1');
     } else {
