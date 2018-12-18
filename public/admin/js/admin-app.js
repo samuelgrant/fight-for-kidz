@@ -302,7 +302,6 @@ function removeSelectedFromGroup(groupID) {
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             url: '/a/group-management/' + groupID + '/' + rowId
         }).done(function (data) {
-            console.log(data);
             table.row($('*[id="' + rowId + '"').parents('tr')[0]).remove().draw();
         }).fail(function (err) {
             console.error(err);
@@ -325,7 +324,6 @@ function copySelectedToGroup(mode) {
     } else if(mode == 'systemGroups'){
         var contacts = $('#system-group-dtable').find('.dtable-checkbox:checkbox:checked');
     } else {
-        console.log('Error. Group copy mode invalid');
         return;
     }
 
@@ -343,11 +341,10 @@ function copySelectedToGroup(mode) {
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             url: '/a/group-management/' + toGroupId + '/' + type + '/' + memberId 
         }).done(function (data){
-            console.log(data);
+
         }).fail(function(err){
             console.error(err);
         });
-
     });
 
     // show success alert
@@ -823,7 +820,6 @@ function fileUpdateModal(id){
         method : 'GET',
         url : url,
     }).done(function(data){
-        console.log(data.display_location);
         $('#updateDisplaySelect').val(data.display_location);
         modal.modal('show');
 
