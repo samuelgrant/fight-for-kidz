@@ -36,6 +36,18 @@ body{
 	border: 1px solid aqua;
 }
 
+/* Forces wordwarp on buttons */
+.btn {
+	white-space:normal !important; 
+	word-wrap: break-word;
+}
+
+@media (max-width: 480px) { 
+	.btn {
+		margin-bottom: 10px;
+	}
+ }
+
 .auctions-section{
 	padding: 10rem 0;
 }
