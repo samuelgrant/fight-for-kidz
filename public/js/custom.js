@@ -91,24 +91,23 @@ $(document).ready(function(){
 });
 
 
-// returns youtube video id using the URL query string with the given name - used with contender bio and fight videos
-function getQueryVariable(url)
-{ //Checks to see if url is a standard full length youtube url
-  if(url.indexOf("=") > -1){
+// returns youtube video id using the full length URL query string with the given variable - used with contender bio and fight videos
+function getQueryVariableFullLength(url, variable)
+{ 
     var query = url.split("?")[1];
     
     var vars = query.split("&");
     for (var i=0;i<vars.length;i++) {
       var pair = vars[i].split("=");
-      if(pair[0] == 'v'){return pair[1];}
+      if(pair[0] == variable){return pair[1];}
     }
-  //Checks to see if the url is a shortened youtube url
-  } else if (url.indexOf("u.b") > -1){
-    var query2 = url.split("/");
-    console.log(query2[3]);
-    return query2[3];
-  }
   return(false);
+}
+
+// returns youtube video id using the shortened UQL query string - used with contender bio and fight videos
+function getQueryVariableShortened(url){
+
+  return url.split("/")[3];
 }
 
 $(document).ready(function () {
@@ -135,7 +134,13 @@ $(document).ready(function () {
 
       // get video id from donate_url
       if (data['contender']['bio_url'] != null) {
-        vidId = getQueryVariable(data['contender']['bio_url'])
+
+        if(data['contender']['bio_url'].indexOf("=") > -1){
+          vidId = getQueryVariableFullLength(data['contender']['bio_url'], 'v');
+        } else if (data['contender']['bio_url'].indexOf("u.b") > -1){
+          vidId = getQueryVariableShortened(data['contender']['bio_url']);
+        }
+
         $('#bio-vid').removeClass('d-none');
         $('#bio-vid').attr('src', 'https://www.youtube-nocookie.com/embed/' + vidId + '?rel=0&modestbranding=1');
       } else {
@@ -263,14 +268,20 @@ $(document).ready(function () {
       headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
       dataType: 'json'
     }).done(function (data) {
-    // get video id from video_url
-    if (data['bout']['video_url'] != null) {
-      vidId = getQueryVariable(data['bout']['video_url']);
-      $('#fight-vid').removeClass('d-none');
-      $('#fight-vid').attr('src', 'https://www.youtube-nocookie.com/embed/' + vidId + '?rel=0&modestbranding=1');
-    } else {
-      $('#fight-vid').addClass('d-none');
-    }
+      var vidId;
+      // get video id from video_url  
+      if (data['bout']['video_url'] != null) {
+        if(data['bout']['video_url'].indexOf("=") > -1){
+          vidId = getQueryVariableFullLength(data['bout']['video_url']);
+        } else if (data['bout']['video_url'].indexOf("u.b") > -1){
+          vidId = getQueryVariableShortened(data['bout']['video_url']);
+        }
+
+        $('#fight-vid').removeClass('d-none');
+        $('#fight-vid').attr('src', 'https://www.youtube-nocookie.com/embed/' + vidId + '?rel=0&modestbranding=1');
+      } else {
+        $('#fight-vid').addClass('d-none');
+      }
 
     }).fail(function (err) {
       console.log(err);
