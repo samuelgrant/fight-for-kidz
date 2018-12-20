@@ -6,6 +6,7 @@ use App\Event;
 use App\Contender, App\Bout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Http\Response;
 
 class EventController extends Controller
 {  
@@ -42,5 +43,24 @@ class EventController extends Controller
         } else{
             return response('No bout found', 400);
         }
+    }
+
+    public function fightVideoModal($boutID){
+
+        $bout = Bout::find($boutID);
+        $red = Contender::find($bout->red_contender_id);
+        $blue = Contender::find($bout->blue_contender_id);
+
+        if($bout == null){
+            return response("No bout found", 404);
+        }
+
+        $varPayload = new Response();
+            $varPayload->red_contender = $red->first_name . ' ' . $red->last_name;
+            $varPayload->blue_contender = $blue->first_name . ' ' . $blue->last_name;
+            $varPayload->video_URL = $bout->video_url;
+        
+        return response($varPayload, 200);
+    
     }
 }

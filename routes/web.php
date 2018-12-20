@@ -37,6 +37,9 @@ Route::post('/unsubscribe', 'SubscriberController@unsubscribe')->name('mail.unsu
 // Contender api
 Route::get('/contenders/bio/{contenderID}', 'EventController@getContender')->name('getContender');
 
+//Fight video api
+Route::get('/bout/watch-fight/{boutID}', 'EventController@fightVideoModal')->name('fightVideoModal');
+
 Route::get('/bout/{boutID}', 'EventController@getBout')->name('getBout');
 
 

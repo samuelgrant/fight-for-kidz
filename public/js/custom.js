@@ -163,9 +163,11 @@ $(document).ready(function () {
       $('#contenderAge').html(data['age']);
       $('#contenderHeight').html(data['contender']['height']);
       $('#contenderWeight').html(data['contender']['weight']);
+
       $('#contenderReach').html(data['contender']['reach']);
     }).fail(function (err) {
-      $('#dynamic-content').html('<p style="color:black;">Something went wrong. Please try again...</p>');
+      console.error(`Error getting bout information in the custom/bio-view-button method: ${err}`);
+      $('.dynamic-content').html('<p class="my-auto" style="color:white; text-align: center;"><i class="fa fa-exclamation-triangle"></i>&nbsp;Something went wrong. Please try again...</p> <div class="modal-footer contender-modal-footer"><button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button></div>');
     });
   });
 
@@ -221,59 +223,31 @@ function auctionItemModal(id){
 
       //Display the modal
       $("#auctionItemModal").modal('show');
-  }).fail(function(error) {
-      console.log(error);
+  }).fail(function(err) {
+    console.error(`Error getting auction information in the custom/auctionItemModal method: ${err}`);
   });
 }
 
 $(document).ready(function () {
   $('.fight-view-btn').on('click', function (e) {
 
-    var split = $(this).attr('data-contenderBoutIds').split(" ");
-
-    var urlBlue = '/contenders/bio/' + split[0];
-    var urlRed = '/contenders/bio/' + split[1];
-    var urlBout = '/bout/' + split[2];
+    var url = '/bout/watch-fight/' + $(this).data('boutId');
 
     $.ajax({
-      url: urlBlue,
+      url: url,
       method: 'get',
       headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
       dataType: 'json'
     }).done(function (data) {
+      
+      $('#blue-corner').text(data['varPayload']['blueContender']);
+      $('#red-corner').text(data['varPayload']['redContender']);
 
-      $('#blue-corner').text(data['contender']['first_name'] + ' ' + data['contender']['last_name']);
-
-    }).fail(function (err) {
-      console.log(err);
-      $('#dynamic-content').html('<p style="color:black;">Something went wrong. Please try again...</p>');
-    });
-
-    $.ajax({
-      url: urlRed,
-      method: 'get',
-      headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-      dataType: 'json'
-    }).done(function (data) {
-
-      $('#red-corner').text(data['contender']['first_name'] + ' ' + data['contender']['last_name']);
-
-    }).fail(function (err) {
-      console.log(err);
-      $('#dynamic-content').html('<p style="color:black;">Something went wrong. Please try again...</p>');
-    });
-    $.ajax({
-      url: urlBout,
-      method: 'get',
-      headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-      dataType: 'json'
-    }).done(function (data) {
-      var vidId;
       // get video id from video_url  
       if (data['bout']['video_url'] != null) {
-        if(data['bout']['video_url'].indexOf("=") > -1){
+        if(data['varPayload']['video_url'].indexOf("=") > -1){
           vidId = getQueryVariableFullLength(data['bout']['video_url']);
-        } else if (data['bout']['video_url'].indexOf("u.b") > -1){
+        } else if (data['varPayload']['video_url'].indexOf("u.b") > -1){
           vidId = getQueryVariableShortened(data['bout']['video_url']);
         }
 
@@ -285,7 +259,8 @@ $(document).ready(function () {
 
     }).fail(function (err) {
       console.log(err);
-      $('#dynamic-content').html('<p style="color:black;">Something went wrong. Please try again...</p>');
+      console.error(`Error getting bout and contender info in the custom/fight-view-btn method: ${err}`);
+      $('.dynamic-content').html('<p class="my-auto" style="color:white; text-align: center;"><i class="fa fa-exclamation-triangle"></i>&nbsp;Something went wrong. Please try again...</p> <div class="modal-footer contender-modal-footer"><button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button></div>');
     });
   });  
 

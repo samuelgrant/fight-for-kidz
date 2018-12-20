@@ -184,7 +184,7 @@
         @if($bout->video_url != null)
         <div class="bout-footer mx-auto">
             <div class="bout-btn bout-btn-fight fight-view-btn"  data-toggle="modal" data-target="#fight-video-modal"
-            data-contenderBoutIds="{{$bout->blue_contender->id . ' ' . $bout->red_contender->id . ' ' . $bout->id}}">Watch the Fight!</div>
+            data-bout-id="{{$bout->id}}">Watch the Fight!</div>
         </div>
         @endif
       </div>
@@ -205,7 +205,7 @@
       <div class="modal-body contender-modal-body pl-0">
 
         {{-- Dynamic content will load here --}}
-        <div id="dynamic-content" style="color:black;">
+        <div class="dynamic-content" style="color:black;">
 
 
           <div class="text-center text-white">
@@ -315,7 +315,7 @@
         <div class="modal-body auction-modal-body pt-2">
   
           {{-- Dynamic content will load here --}}
-          <div id="dynamic-content" style="color:black;">
+          <div class="dynamic-content" style="color:black;">
             <div class="text-center mt-2">
               <h2 id=auctionItemName class="d-inline"></h2>
               <hr>
@@ -363,7 +363,7 @@
       <div class="modal-body contender-modal-body pl-0">
 
         {{-- Dynamic content will load here --}}
-        <div id="dynamic-content" style="color:black;">
+        <div class="dynamic-content" style="color:black;">
 
 
           <div class="text-center text-white">
