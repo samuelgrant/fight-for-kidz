@@ -240,15 +240,15 @@ $(document).ready(function () {
       dataType: 'json'
     }).done(function (data) {
       
-      $('#blue-corner').text(data['varPayload']['blueContender']);
-      $('#red-corner').text(data['varPayload']['redContender']);
+      $('#blue-corner').text(data['blue_contender']);
+      $('#red-corner').text(data['red_contender']);
 
       // get video id from video_url  
-      if (data['bout']['video_url'] != null) {
-        if(data['varPayload']['video_url'].indexOf("=") > -1){
-          vidId = getQueryVariableFullLength(data['bout']['video_url']);
-        } else if (data['varPayload']['video_url'].indexOf("u.b") > -1){
-          vidId = getQueryVariableShortened(data['bout']['video_url']);
+      if (data['video_URL'] != null) {
+        if(data['video_URL'].indexOf("=") > -1){
+          vidId = getQueryVariableFullLength(data['video_URL'], 'v');
+        } else if (data['video_URL'].indexOf("u.b") > -1){
+          vidId = getQueryVariableShortened(data['video_URL']);
         }
 
         $('#fight-vid').removeClass('d-none');
