@@ -23,7 +23,7 @@ function editContenderModal(contenderID){
 
         $('#editContenderModal').modal('show');
 
-    }).fail(function(error){
-        console.log(error);
+    }).fail(function(err){
+        console.error(`Error getting bout information in the admin-contenders/editContenderModal method: ${err}`);
     });
 }

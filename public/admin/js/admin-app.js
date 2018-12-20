@@ -379,8 +379,8 @@ function addSelectedToTeam(team){
             data: {'applicantId' : appId, 'team' : team}, 
         }).done(function(){
             location.reload();
-        }).fail(function(error){
-            console.log(error);
+        }).fail(function(err){
+            console.error(`Error adding applicant(s) to team in the admin-app/addSelectedToTeam method: ${err}`);
         });
 
     });
@@ -416,8 +416,8 @@ function removeApplicantFromTeam(applicantId){
         data: {'applicantId' : applicantId}, 
     }).done(function(){
         location.reload();
-    }).fail(function(error){
-        console.log(error);
+    }).fail(function(err){
+        console.error(`Error removing applicant from team in the admin-app/removeApplicantFromTeam - method: ${err}`);
     });
 }
 
@@ -471,8 +471,8 @@ function editContactModal(id){
 
         $('#editContactModal').modal('show');
 
-    }).fail(function(error){
-        console.log(error);
+    }).fail(function(err){
+        console.error(`Error getting contact information in the admin-app/editContactModal method: ${err}`);
     })
 
 }
@@ -584,8 +584,8 @@ function applicantManagementModal(id){
 
 
         $("#applicantMoreInfoModal").modal('show');
-    }).fail(function(error) {
-        console.log(error);
+    }).fail(function(err) {
+        console.error(`Error applicant info in the admin-app/applicantManagementModal method: ${err}`);
     });
 }
 
@@ -637,8 +637,8 @@ function auctionEditModal(id){
 
         //Display the modal
         $("#createEditAuctionItemModal").modal('show');
-    }).fail((error) => {
-        console.log(error);
+    }).fail((err) => {
+        console.error(`Error getting auction item information in the admin-app/auctionEditModal method: ${err}`);
     });
 }
 
@@ -695,8 +695,8 @@ $(document).ready(function(){
             // open a new tab/window and write the returned html to it
             var win = window.open();
             win.document.write(data);
-        }).fail(function(error){
-            console.log(error);
+        }).fail(function(err){
+            console.error(`Error getting mail content in the admin-app/mailPreviewBtn method: ${err}`);
         });
 
         
@@ -795,8 +795,8 @@ function merchandiseEditModal(id){
 
         //Display the modal
         $("#createEditMerchandiseItemModal").modal('show');
-    }).fail((error) => {
-        console.log(error);
+    }).fail((err) => {
+        console.error(`Error getting merchandise information in the admin-app/nerchandiseEditModal method: ${err}`);
     });
 }
 
@@ -823,8 +823,8 @@ function fileUpdateModal(id){
         $('#updateDisplaySelect').val(data.display_location);
         modal.modal('show');
 
-    }).fail(function(error){
-        console.log(error);
+    }).fail(function(err){
+        console.error(`Error adding file in the admin-app/fileUpdateModal method: ${err}`);
     })
 
 }
