@@ -54,6 +54,10 @@ class EventManagementController extends Controller
     public function view($eventID){
 
         $event = Event::find($eventID);
+        if($event == null) {
+            session()->flash('error', 'We could not find that event.');
+            return redirect(route('admin.eventManagement'));
+        }
 
         return view('admin.eventManagement')->with('event', $event);
 
