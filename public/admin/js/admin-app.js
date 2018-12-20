@@ -304,7 +304,7 @@ function removeSelectedFromGroup(groupID) {
         }).done(function (data) {
             table.row($('*[id="' + rowId + '"').parents('tr')[0]).remove().draw();
         }).fail(function (err) {
-            console.error(err);
+            console.error(`Error removing contact(s) to team in the admin-app/removeSelectedFromGroup method: ${err}`);
         });
     });
 }
@@ -343,7 +343,7 @@ function copySelectedToGroup(mode) {
         }).done(function (data){
 
         }).fail(function(err){
-            console.error(err);
+            console.error(`Error copying contact(s) to group in the admin-app/copySelectedToGroup method: ${err}`);
         });
     });
 
