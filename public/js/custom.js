@@ -258,7 +258,6 @@ $(document).ready(function () {
       }
 
     }).fail(function (err) {
-      console.log(err);
       console.error(`Error getting bout and contender info in the custom/fight-view-btn method: ${err}`);
       $('.dynamic-content').html('<p class="my-auto" style="color:white; text-align: center;"><i class="fa fa-exclamation-triangle"></i>&nbsp;Something went wrong. Please try again...</p> <div class="modal-footer contender-modal-footer"><button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button></div>');
     });
