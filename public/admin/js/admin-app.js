@@ -870,5 +870,3 @@ $('#clearAttachmentsBtn').on('click', function(e){
 
     $file.change();
 });
-
-
