@@ -128,10 +128,10 @@
               <h5>{{$bout->blue_contender->first_name}}</h5>
               <h4>{{$bout->blue_contender->nickname}}</h4>
               <h5>{{$bout->blue_contender->last_name}}</h5>
-              <div class="bout-btn bout-btn-blue bio-view-button" data-toggle="modal" data-target="#bio-modal"
-                data-contenderId="{{$bout->blue_contender->id}}">View Bio</div>
-              <div class="bout-btn bout-btn-blue" onclick="window.open('{{$bout->blue_contender->donate_url ?? 'https://givealittle.co.nz'}}', '_blank')">Donate</div>
             </div>
+            <div class="bout-btn bout-btn-blue bio-view-button" data-toggle="modal" data-target="#bio-modal"
+              data-contenderId="{{$bout->blue_contender->id}}">View Bio</div>
+            <div class="bout-btn bout-btn-blue" onclick="window.open('{{$bout->blue_contender->donate_url ?? 'https://givealittle.co.nz'}}', '_blank')">Donate</div>
           </div>
         </div>
       </div>
@@ -175,8 +175,9 @@
               <h5>{{$bout->blue_contender->first_name}}</h5>
               <h4>{{$bout->blue_contender->nickname}}</h4>
               <h5>{{$bout->blue_contender->last_name}}</h5>
-              <div class="bout-btn bout-btn-blue bio-view-button" data-toggle="modal" data-target="#bio-modal"
-                data-contenderId="{{$bout->blue_contender->id}}">View Bio</div>
+            </div>
+            <div class="bout-btn bout-btn-blue bio-view-button" data-toggle="modal" data-target="#bio-modal"
+              data-contenderId="{{$bout->blue_contender->id}}">View Bio
             </div>
           </div>
         </div>
