@@ -23,7 +23,7 @@
                     <a class="nav-link" role="tab" data-toggle="tab" href="#tab-deleted" id="deletedItems">Deleted Merchandise</a>
                 </li>
                 <span class="float-right">
-                    <button class="btn btn-sm btn-success" onclick="merchandiseCreateModal()"><i class="fas fa-plus"></i>&nbsp;Add Item</button>
+                    <button class="btn btn-sm btn-success my-1 ml-1" onclick="merchandiseCreateModal()"><i class="fas fa-plus"></i>&nbsp;Add Item</button>
                 </span>
             </ul>
             
