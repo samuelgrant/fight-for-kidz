@@ -155,11 +155,11 @@
                     <span>$&nbsp;</span><input  type="text" class="form-control d-inline w-50" name="price" id="merchandisePrice" required>
                 </div>
 
-                <div class="form-group card w-50 mx-auto text-center mb-3">
+                <div class="card w-50 mx-auto text-center mb-3">
                         <label for="logo">Item Image:</label>
                         <img class="logoPreview img-fluid" id="imgPreview" src="/storage/images/noImage.png">
                         <label for="itemImage" class="btn btn-primary btn-sm mb-0">Change
-                            <input type="file" name="itemImage" id="itemImage" class="form-control d-inline m-0" style="opacity: 0;" required>
+                            <input type="file" name="itemImage" id="itemImage" class="form-control" hidden>
                         </label>
                     </div>
                 
