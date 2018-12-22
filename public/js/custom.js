@@ -123,7 +123,7 @@ $(document).ready(function () {
     }).done(function (data) {
       //Calls the setBioImageBorder Method
       setBioImageBorder(data);
-
+      
       $('#first-name').text(data['contender']['first_name']);
       $('#last-name').text(data['contender']['last_name']);
 
@@ -151,14 +151,29 @@ $(document).ready(function () {
         $("#bio-label").text("About Me:")
       }
       $('#bio-text').text(data['contender']['bio_text']);
-
-      //checks to see if the image exists and uses it to set the auctionItemImage otherwise sets it to default
+      
+      //checks to see if the image exists and uses it to set the contender image otherwise sets it to default
       $.get('/storage/images/contenders/' + data['contender']['id'] + '.png')
       .done(function(){
           $("#bio-image").attr('src', '/storage/images/contenders/' + data['contender']['id'] + '.png');
       }).fail(function(){
           $("#bio-image").attr("src", "/storage/images/contenders/0.png");
       }) 
+
+      //checks to see if the image exists and uses it to set the sponsor image otherwise sets it to default
+      if(data['contender']['sponsor_id'] != null){
+        $("#bio-sponsor-div").removeClass('d-none');      
+
+        $.get('/storage/images/sponsors/' + data['contender']['sponsor_id'] + '.png')
+        .done(function(){
+            $("#bio-sponsor").attr('src', '/storage/images/sponsors/' + data['contender']['sponsor_id'] + '.png');
+        }).fail(function(){
+            $("#bio-sponsor").attr("src", "/storage/images/sponsors/0.png");
+        }) 
+      } else if(data['contender']['sponsor_id'] == null){
+        $("#bio-sponsor-div").addClass('d-none');
+      }
+      
 
       $('#contenderAge').html(data['age']);
       $('#contenderHeight').html(data['contender']['height']);
@@ -228,6 +243,7 @@ function auctionItemModal(id){
   });
 }
 
+//gets information to dynamically populate fight modal
 $(document).ready(function () {
   $('.fight-view-btn').on('click', function (e) {
 
@@ -266,5 +282,4 @@ $(document).ready(function () {
   $("#fight-video-modal").on('hidden.bs.modal', function (e) {
     $("#fight-video-modal iframe").attr("src", "");
   });
-
 });
