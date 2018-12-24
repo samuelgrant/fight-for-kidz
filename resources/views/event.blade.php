@@ -244,9 +244,10 @@
             <iframe width="638" height="315" id="bio-vid" src="" frameborder="0" allow="autoplay; encrypted-media;"
               allowfullscreen style="border-bottom: 1px solid white; border-top: 1px solid white;">
           </iframe>
+
             {{-- Sponsor logo --}}
             <div id="bio-sponsor-div" class="col-lg-6 pt-2 mx-auto text-center d-none">
-              <label for="bio-sponsor">Sponsored by...</label>
+              <label for="bio-sponsor" style="width:100%;">Sponsored by...</label>
               <img id="bio-sponsor" class="img-fluid" style="height: 100px;">
             </div>
 
