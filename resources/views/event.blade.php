@@ -115,10 +115,11 @@
               <h5>{{$bout->red_contender->last_name}}</h5>
             </div>
 
-            @if( ['red_fighter_sponsor_id'][0] != null)
-            <img src="{{file_exists(public_path('/storage/images/sponsors/' . ['red_fighter_sponsor_id'][0] . '.png')) ? '/storage/images/sponsors/'
-              . ['red_fighter_sponsor_id'][0] . '.png' : '/storage/images/sponsors/0.png'}}" class="mx-auto contender-img" height="89">
-            @endif
+            {{-- Sponsor Logo --}}
+            <label for="red-sponsor" style="font-size:14px">Sponsored by</label>
+            <img id="red-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png')) ?
+              '/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png' : '/storage/images/sponsors/0.png'}}"
+              class="mx-auto contender-img" style="height:89px;">
 
             <div class="bout-btn bout-btn-red bio-view-button" data-toggle="modal" data-target="#bio-modal"
               data-contenderId="{{$bout->red_contender->id}}">View Bio</div>
@@ -135,6 +136,13 @@
               <h4>{{$bout->blue_contender->nickname}}</h4>
               <h5>{{$bout->blue_contender->last_name}}</h5>
             </div>
+
+            {{-- Sponsor Logo --}}
+            <label for="red-sponsor" style="font-size:14px">Sponsored by</label>
+            <img id="red-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png')) ?
+              '/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png' : '/storage/images/sponsors/0.png'}}"
+              class="mx-auto contender-img" style="height:89px;">
+
             <div class="bout-btn bout-btn-blue bio-view-button" data-toggle="modal" data-target="#bio-modal"
               data-contenderId="{{$bout->blue_contender->id}}">View Bio</div>
             <div class="bout-btn bout-btn-blue" onclick="window.open('{{$bout->blue_contender->donate_url ?? 'https://givealittle.co.nz'}}', '_blank')">Donate</div>
@@ -166,14 +174,14 @@
             <div class="contender-name">
               <h5>{{$bout->red_contender->first_name}}</h5>
               <h4>{{$bout->red_contender->nickname}}</h4>
-              {{-- <h5>{{$bout->red_contender->last_name}}</h5> --}}
-              <h5>{{App\Contender::find($bout->red_contender->id)->sponsor_id}}</h5>
+              <h5>{{$bout->red_contender->last_name}}</h5>
             </div>
 
+            {{-- Sponsor Logo --}}
             <label for="red-sponsor" style="font-size:14px">Sponsored by</label>
             <img id="red-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png')) ?
               '/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png' : '/storage/images/sponsors/0.png'}}"
-              class="mx-auto contender-img" style="width:114px;">
+              class="mx-auto contender-img" style="height:89px;">
 
             <div class="bout-btn bout-btn-red bio-view-button" data-toggle="modal" data-target="#bio-modal"
               data-contenderId="{{$bout->red_contender->id}}">View Bio</div>
@@ -187,14 +195,14 @@
             <div class="contender-name">
               <h5>{{$bout->blue_contender->first_name}}</h5>
               <h4>{{$bout->blue_contender->nickname}}</h4>
-              {{-- <h5>{{$bout->blue_contender->last_name}}</h5> --}}
-              <h5>{{App\Contender::find($bout->blue_contender_id)->sponsor_id}}</h5>
+              <h5>{{$bout->blue_contender->last_name}}</h5>
             </div>
 
+            {{-- Sponsor Logo --}}
             <label for="blue-sponsor" style="font-size:14px">Sponsored by</label>
             <img id="blue-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->blue_contender_id)->sponsor_id . '.png')) ?
               '/storage/images/sponsors/' . App\Contender::find($bout->blue_contender_id)->sponsor_id . '.png' : '/storage/images/sponsors/0.png'}}"
-              class="mx-auto contender-img" style="width:114px;">
+              class="mx-auto contender-img" style="height:89px;">
 
             <div class="bout-btn bout-btn-blue bio-view-button" data-toggle="modal" data-target="#bio-modal"
               data-contenderId="{{$bout->blue_contender->id}}">View Bio
