@@ -513,7 +513,7 @@
 										<label class="radio-selector"><input type="radio" name="activityRadio" value="no" required>No</label>
 									</div>
 
-									<label for="activtyRadio" class="error" style="display: none;"></label>
+									<label for="activityRadio" class="error" style="display: none;"></label>
 
 									<p class="">3. Have you developed chest pain in the past month? </p>
 									<div class="radio ">
