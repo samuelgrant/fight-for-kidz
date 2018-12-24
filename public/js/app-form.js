@@ -501,13 +501,6 @@ $(document).ready(function() {
   $('#rootwizard').bootstrapWizard({
     //These fuctions fires when the next vbutton is clicked
     'onNext': function(tab, navigation, index){
-      //hides the next btn on tab index 7 
-      if(index == 7){
-        $("#liNext").removeClass("d-inline-block");
-        $("#liNext").addClass("d-none");
-
-        $("#wizardBtnNext").addClass("d-none");
-      }
 
       var $valid = $("#application-form").valid();
       if(!$valid) {
@@ -520,6 +513,14 @@ $(document).ready(function() {
           $("#liPrevious").addClass("d-inline-block");
 
           $("#wizardBtnPrevious").removeClass("d-none");
+        }
+
+        //hides the next btn on tab index 7 but only if the validator passes
+        if(index == 7){
+          $("#liNext").removeClass("d-inline-block");
+          $("#liNext").addClass("d-none");
+
+          $("#wizardBtnNext").addClass("d-none");
         }
       }
     },
