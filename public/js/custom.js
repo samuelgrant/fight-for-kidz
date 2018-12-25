@@ -37,6 +37,12 @@ function showReason(){
 function hideReason(){
   document.getElementById('reason').style.display ='none';
 }
+function showConcussed(){
+  document.getElementById('concussed').style.display = 'block';
+}
+function hideConcussed(){
+  document.getElementById('concussed').style.display ='none';
+}
 
 $("document").ready(function(){
   $('.slick-sponsors').slick({

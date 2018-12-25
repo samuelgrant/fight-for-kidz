@@ -550,8 +550,8 @@ function applicantManagementModal(id){
         $("#appHeartCondtion").val(data.heart_condition ? 'Yes' : 'No');                       $("#appPhysicalChestPain").val(data.chest_pain_activity ? 'Yes' : 'No');
         $("#appRecentChestPain").val(data.chest_pain_recent ? 'Yes' : 'No');                   $("#appPassedOut").val(data.lost_consciousness ? 'Yes' : 'No');
         $("#appBoneJointProblems").val(data.bone_joint_problems ? 'Yes' : 'No');               $("#appMedicationBloodHeart").val(data.recommended_medication ? 'Yes' : 'No');
-        $("#appKnockedOut").val(data.concussed_knocked_out ? 'Yes' : 'No');                    $("#appReason").val(data.other_reasons ? 'Yes' : 'No');
 
+        $("#appConcussed").val(data.concussed_knocked_out);
         $("#appReason").val(data.other_reasons);
         $("#appHandInjuries").val(data.hand_injuries);
         $("#appPreviousCurrentInjuries").val(data.previous_current_injuries);

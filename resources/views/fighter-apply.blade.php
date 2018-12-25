@@ -549,11 +549,15 @@
 
 									<p class="">7. Have you ever been knocked out or concussed?</p>
 									<div class="radio ">
-										<label class="radio-selector"><input type="radio" name="concussedRadio" value="yes" required>Yes</label>
-										<label class="radio-selector"><input type="radio" name="concussedRadio" value="no" required>No</label>
+										<label class="radio-selector"><input type="radio" name="concussedRadio" onclick="showConcussed()" value="yes" required>Yes</label>
+										<label class="radio-selector"><input type="radio" name="concussedRadio" onclick="hideConcussed()" value="no" required>No</label>
 									</div>
 
 									<label for="concussedRadio" class="error" style="display: none;"></label>
+
+									<div id="concussed" class="form-group" style="display: none;">
+										<textarea id="concussedReason" name="concussed_details" class="form-control" rows="3" placeholder="Please explain..."></textarea>
+									</div>
 
 									<p class="">8. Are you aware, through your own experience or a physician’s advice, of any other reason that would prohibit you from exercising without medical supervision?</p>
 									<div class="radio ">

@@ -85,7 +85,7 @@ class CreateApplicantsTable extends Migration
             $table->boolean('lost_consciousness');
             $table->boolean('bone_joint_problems');
             $table->boolean('recommended_medication');
-            $table->boolean('concussed_knocked_out');
+            $table->mediumText('concussed_knocked_out')->nullable();//null if the applicant ticks 'no' on the form
             $table->mediumText('other_reasons')->nullable(); // null if the applicant ticks 'no' on the form            
 
             //Section 6 - Additional Information

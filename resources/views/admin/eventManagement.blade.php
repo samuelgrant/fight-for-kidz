@@ -546,53 +546,55 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Medically Supervised Activity:</label>
+                                                <input type="text" id="appHeartCondtion" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Chest pain brought on by physical activity:</label>
+                                                <input type="text" id="appPhysicalChestPain" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Onset of Recent Chest Pain:</label>
+                                                <input type="text" id="appRecentChestPain" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Passed out due to dizziness:</label>
+                                                    <input type="text" id="appPassedOut" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                                </div>
+                                            </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Bone or Joint Problems:</label>
+                                                <input type="text" id="appBoneJointProblems" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Medication for Blood Pressure or Heart:</label>
+                                                <input type="text" id="appMedicationBloodHeart" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                            </div>
+                                        </div>
+                                    </div>
                             </fieldset>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="applicantMedical2">
                             <fieldset class="mx-0 my-1 mt-3 px-3" style="border: 1px solid; width:764px;">
-                                <div class="row pt-3">
-                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="row  pt-3">
+                                    <div class="col-12">
                                         <div class="form-group">
-                                            <label>Medically Supervised Activity:</label>
-                                            <input type="text" id="appHeartCondtion" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Chest pain brought on by physical activity:</label>
-                                            <input type="text" id="appPhysicalChestPain" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Onset of Recent Chest Pain:</label>
-                                            <input type="text" id="appRecentChestPain" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Passed out due to dizziness:</label>
-                                            <input type="text" id="appPassedOut" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Bone or Joint Problems:</label>
-                                            <input type="text" id="appBoneJointProblems" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Medication for Blood Pressure or Heart:</label>
-                                            <input type="text" id="appMedicationBloodHeart" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Knocked Out/Concussed</label>
-                                            <input type="text" id="appKnockedOut" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                            <label>Explain your losses of consciousness:</label>
+                                            <textarea rows="4" cols="50" id="appConcussed"  readonly class="form-control-plaintext gray-card"></textarea>
                                         </div>
                                     </div>
                                 </div>

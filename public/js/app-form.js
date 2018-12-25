@@ -215,6 +215,10 @@ $(document).ready(function() {
             reasonsRadio:{
               required: true
             },
+            concussed_details:{
+              required: $("#concussedRadio").val() == "yes",
+              minlength: 3
+            },
             reason_details:{
               required: $("#reasonsRadio").val() == "yes",
               minlength: 3   
@@ -453,6 +457,10 @@ $(document).ready(function() {
             },
             concussedRadio:{
               required: "Please choose an option"
+            },
+            concussed_details:{
+              required: "Please explain about your loss of consciousness",
+              minlength: "Your answer needs to be greater than 2 characters"
             },
             reasonsRadio:{
               required: "Please choose an option"
