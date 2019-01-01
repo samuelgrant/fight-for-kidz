@@ -549,8 +549,8 @@
 
 									<p class="">7. Have you ever been knocked out or concussed?</p>
 									<div class="radio ">
-										<label class="radio-selector"><input type="radio" name="concussedRadio" onclick="showConcussed()" value="yes" required>Yes</label>
-										<label class="radio-selector"><input type="radio" name="concussedRadio" onclick="hideConcussed()" value="no" required>No</label>
+										<label class="radio-selector"><input type="radio" name="concussedRadio" id="concussedRadio" value="yes"  onclick="showConcussed()" required>Yes</label>
+										<label class="radio-selector"><input type="radio" name="concussedRadio" id="concussedRadio" value="no" onclick="hideConcussed()" required>No</label>
 									</div>
 
 									<label for="concussedRadio" class="error" style="display: none;"></label>
