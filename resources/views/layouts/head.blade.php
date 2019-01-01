@@ -11,7 +11,7 @@
 
   <!-- Bootstrap core CSS -->
   <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="/css/bootsrap.css">
+  <link rel="stylesheet" href="/css/bootstrap.css">
 
   <!-- Custom fonts for this template -->
   <link href="/css/varela-round.css" rel="stylesheet">
