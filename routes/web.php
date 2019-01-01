@@ -33,13 +33,14 @@ Route::post('/subscribe', 'SubscriberController@store')->name('subscribe');
 Route::get('/unsubscribe', 'SubscriberController@showUnsubscribeForm')->name('mail.showUnsubscribeForm');
 Route::post('/unsubscribe', 'SubscriberController@unsubscribe')->name('mail.unsubscribe');
 
+//Get Auction info
+Route::get('auction/{auctionId}', 'EventController@getAuctionItem')->name('getAuctionItem');
 
 // Contender api
 Route::get('/contenders/bio/{contenderID}', 'EventController@getContender')->name('getContender');
 
 //Fight video api
 Route::get('/bout/watch-fight/{boutID}', 'EventController@fightVideoModal')->name('fightVideoModal');
-
 Route::get('/bout/{boutID}', 'EventController@getBout')->name('getBout');
 
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
-use App\Contender, App\Bout;
+use App\Contender, App\Bout, App\AuctionItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Response;
@@ -44,6 +44,20 @@ class EventController extends Controller
         } else{
             return response('No bout found', 400);
         }
+    }
+
+    /**
+     * finds and returns auction item
+     * 
+     * @param id
+     */
+    public function getAuctionItem($id){
+        $item = AuctionItem::find($id);
+        if(isset($item)){
+            return response($item, 200);
+        }
+        
+        return response("No item found", 400);
     }
 
     public function fightVideoModal($boutID){
