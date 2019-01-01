@@ -188,7 +188,8 @@ $(document).ready(function () {
       $('#contenderReach').html(data.reach);
     }).fail(function (err) {
       console.error(`Error getting bout information in the custom/bio-view-button method: ${err}`);
-      $('.dynamic-content').html('<p class="my-auto" style="color:white; text-align: center;"><i class="fa fa-exclamation-triangle"></i>&nbsp;Something went wrong. Please try again...</p> <div class="modal-footer contender-modal-footer"><button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button></div>');
+      $('.dynamic-content').html('<p class="my-auto" style="color:white; text-align: center;"><i class="fa fa-exclamation-triangle"></i>&nbsp;Something went wrong. ' +  
+      'Please try again...</p> <div class="modal-footer contender-modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div>');
     });
   });
 
@@ -281,7 +282,8 @@ $(document).ready(function () {
 
     }).fail(function (err) {
       console.error(`Error getting bout and contender info in the custom/fight-view-btn method: ${err}`);
-      $('.dynamic-content').html('<p class="my-auto" style="color:white; text-align: center;"><i class="fa fa-exclamation-triangle"></i>&nbsp;Something went wrong. Please try again...</p> <div class="modal-footer contender-modal-footer"><button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button></div>');
+      $('.dynamic-content').html('<p class="my-auto" style="color:white; text-align: center;"><i class="fa fa-exclamation-triangle"></i>&nbsp;Something went wrong. ' +  
+      'Please try again...</p> <div class="modal-footer contender-modal-footer"><button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button></div>');
     });
   });  
 
