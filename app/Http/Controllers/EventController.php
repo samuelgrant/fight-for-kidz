@@ -28,7 +28,20 @@ class EventController extends Controller
         
 
         if($contender){
-            return ['contender' => $contender, 'age' => $contender->applicant->getAge()];
+            return [
+                'id' => $contender->id,
+                'first_name' => $contender->first_name,
+                'last_name' => $contender->last_name,
+                'nickname' => $contender->nickname,
+                'bio_url' => $contender->bio_url,
+                'bio_text' => $contender->bio_text,
+                'sponsor_id' => $contender->sponsor_id,
+                'team' => $contender->team,
+                'height' => $contender->height,
+                'weight' => $contender->weight,
+                'reach' => $contender->reach,
+                'age' => $contender->applicant->getAge()
+            ];
         } else{
             return response('No contender found', 400);
         }
@@ -53,11 +66,17 @@ class EventController extends Controller
      */
     public function getAuctionItem($id){
         $item = AuctionItem::find($id);
-        if(isset($item)){
-            return response($item, 200);
+        if($item == null){
+            return response("No item found", 400);
         }
         
-        return response("No item found", 400);
+        return [
+            'id' => $item->id,
+            'name' => $item->name,
+            'desc' => $item->desc,
+            'donor' => $item->donor,
+            'donor_url' => $item->donor_url
+        ];
     }
 
     public function fightVideoModal($boutID){

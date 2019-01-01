@@ -130,21 +130,21 @@ $(document).ready(function () {
       //Calls the setBioImageBorder Method
       setBioImageBorder(data);
       
-      $('#first-name').text(data['contender']['first_name']);
-      $('#last-name').text(data['contender']['last_name']);
+      $('#first-name').text(data.first_name);
+      $('#last-name').text(data.last_name);
 
       // show nickname if one is set
-      if (data['contender']['nickname'] != null) {
-        $('#nickname').text('\'' + data['contender']['nickname'] + '\'');
+      if (data.nickname != null) {
+        $('#nickname').text('\'' + data.nickname + '\'');
       }
 
       // get video id from donate_url
-      if (data['contender']['bio_url'] != null) {
+      if (data.bio_url != null) {
 
-        if(data['contender']['bio_url'].indexOf("=") > -1){
-          vidId = getQueryVariableFullLength(data['contender']['bio_url'], 'v');
-        } else if (data['contender']['bio_url'].indexOf("u.b") > -1){
-          vidId = getQueryVariableShortened(data['contender']['bio_url']);
+        if(data.bio_url.indexOf("=") > -1){
+          vidId = getQueryVariableFullLength(data.bio_url, 'v');
+        } else if (data.bio_url.indexOf("u.b") > -1){
+          vidId = getQueryVariableShortened(data.bio_url);
         }
 
         $('#bio-vid').removeClass('d-none');
@@ -153,39 +153,39 @@ $(document).ready(function () {
         $('#bio-vid').addClass('d-none');
       }
 
-      if(data['contender']['bio_text'] != null){
+      if(data.bio_text != null){
         $("#bio-label").text("About Me:")
       }
-      $('#bio-text').text(data['contender']['bio_text']);
+      $('#bio-text').text(data.bio_text);
       
       //checks to see if the image exists and uses it to set the contender image otherwise sets it to default
-      $.get('/storage/images/contenders/' + data['contender']['id'] + '.png')
+      $.get('/storage/images/contenders/' + data.id + '.png')
       .done(function(){
-          $("#bio-image").attr('src', '/storage/images/contenders/' + data['contender']['id'] + '.png');
+          $("#bio-image").attr('src', '/storage/images/contenders/' + data.id + '.png');
       }).fail(function(){
           $("#bio-image").attr("src", "/storage/images/contenders/0.png");
       }) 
 
       //checks to see if the image exists and uses it to set the sponsor image otherwise sets it to default
-      if(data['contender']['sponsor_id'] != null){
+      if(data.sponsor_id != null){
         $("#bio-sponsor-div").removeClass('d-none');      
 
-        $.get('/storage/images/sponsors/' + data['contender']['sponsor_id'] + '.png')
+        $.get('/storage/images/sponsors/' + data.sponsor_id + '.png')
         .done(function(){
-            $("#bio-sponsor").attr('src', '/storage/images/sponsors/' + data['contender']['sponsor_id'] + '.png');
+            $("#bio-sponsor").attr('src', '/storage/images/sponsors/' + data.sponsor_id + '.png');
         }).fail(function(){
             $("#bio-sponsor").attr("src", "/storage/images/sponsors/0.png");
         }) 
-      } else if(data['contender']['sponsor_id'] == null){
+      } else if(data.sponsor_id == null){
         $("#bio-sponsor-div").addClass('d-none');
       }
       
 
-      $('#contenderAge').html(data['age']);
-      $('#contenderHeight').html(data['contender']['height']);
-      $('#contenderWeight').html(data['contender']['weight']);
+      $('#contenderAge').html(data.age);
+      $('#contenderHeight').html(data.height);
+      $('#contenderWeight').html(data.weight);
 
-      $('#contenderReach').html(data['contender']['reach']);
+      $('#contenderReach').html(data.reach);
     }).fail(function (err) {
       console.error(`Error getting bout information in the custom/bio-view-button method: ${err}`);
       $('.dynamic-content').html('<p class="my-auto" style="color:white; text-align: center;"><i class="fa fa-exclamation-triangle"></i>&nbsp;Something went wrong. Please try again...</p> <div class="modal-footer contender-modal-footer"><button type="button" class="btn btn-secondary btn-xs" data-dismiss="modal">Close</button></div>');
@@ -199,9 +199,9 @@ $(document).ready(function () {
 });
 
 function setBioImageBorder(data){
-  if(data['contender']['team'] == 'red'){
+  if(data.team == 'red'){
     $("#bio-image").css({"border" : "4px solid red"});
-  }else if (data['contender']['team'] == 'blue'){
+  }else if (data.team == 'blue'){
     $("#bio-image").css({"border" : "4px solid blue"});
   }
 }
