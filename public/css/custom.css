@@ -405,3 +405,9 @@ label.error {
 .hidden{
 	display: none;
 }
+
+@media(max-width: 770px){
+	.upcoming-section, .sidebar-heading, .stat{
+		text-align: center;
+	}
+}
