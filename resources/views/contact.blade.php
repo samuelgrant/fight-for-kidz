@@ -143,7 +143,7 @@
 	<script>
 		function toggelForm(){
 			let selected = $("#messageType").val();
-			console.log(selected);
+
 			$("#generalMessage").addClass("hidden");
 			$("#sponsorMessage").addClass("hidden");
 			$("#tableMessage").addClass("hidden");

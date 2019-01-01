@@ -36,10 +36,10 @@
 						</div>
 						@endif
 					</div>
-					<div class="col-lg-8 col-md-6 col-col-sm-12">
+					<div class="col-lg-8 col-md-6 col-sm-12">
 						<img src="storage/images/mainPagePhoto.jpg?{{filemtime(storage_path('app/public/images/mainPagePhoto.jpg'))}}" class="img-fluid" alt="Fight for Kidz 2016 cheque" />
 					</div>
-					<div class="col-lg-4 col-md-6 col-sm-12" style="background-color: lightgray;">
+					<div class="col-lg-4 col-md-6 d-md-block d-sm-none d-none">
 						<div id="fb-root"></div>
 						<div class="fb-page" data-href="https://www.facebook.com/fightforkidz" data-tabs="timeline" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true">
 							<blockquote cite="https://www.facebook.com/fightforkidz" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/fightforkidz">Fight For Kidz</a></blockquote>
@@ -51,7 +51,7 @@
 		
 		<!-- Subscriber Section -->
 		<section class="text-center" id="subscriber-section">
-		  	<div class="container conform p-3 my-5">
+		  	<div class="container conform p-3 mt-5">
 				<h1 class="mb-3">Fight for Kidz Updates!</h1>
 				@include('layouts.messages')
 				<form method="post" action="{{route('subscribe')}}" class="justify-content-center">

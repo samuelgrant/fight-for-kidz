@@ -60,7 +60,7 @@
 
 	<!-- Sponsors Section -->
 	@if(count($event->sponsors) > 3)
-	<section id="sponsors-section">
+	<section id="sponsors-section" style="border-top: 2px solid black;">
 		<h2 class="text-center text-dark">Event Sponsors</h2>
 		<div class="slick-sponsors">
 			@foreach($event->sponsors as $sponsor) {{-- only show logo in sponsors bar if the image file for it exists --}} @if(file_exists(public_path('storage/images/sponsors/'
@@ -126,10 +126,10 @@
               <h5>{{$bout->blue_contender->first_name}}</h5>
               <h4>{{$bout->blue_contender->nickname}}</h4>
               <h5>{{$bout->blue_contender->last_name}}</h5>
-              <div class="bout-btn bout-btn-blue bio-view-button" data-toggle="modal" data-target="#bio-modal"
-                data-contenderId="{{$bout->blue_contender->id}}">View Bio</div>
-              <div class="bout-btn bout-btn-blue" onclick="window.open('{{$bout->blue_contender->donate_url ?? 'https://givealittle.co.nz'}}', '_blank')">Donate</div>
             </div>
+            <div class="bout-btn bout-btn-blue bio-view-button" data-toggle="modal" data-target="#bio-modal"
+              data-contenderId="{{$bout->blue_contender->id}}">View Bio</div>
+            <div class="bout-btn bout-btn-blue" onclick="window.open('{{$bout->blue_contender->donate_url ?? 'https://givealittle.co.nz'}}', '_blank')">Donate</div>
           </div>
         </div>
       </div>
