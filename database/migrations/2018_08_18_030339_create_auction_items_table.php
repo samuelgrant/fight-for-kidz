@@ -20,7 +20,6 @@ class CreateAuctionItemsTable extends Migration
             $table->string('desc', 300);
             $table->string('donor')->nullable();
             $table->string('donor_url')->nullable();
-            $table->float('sale_price', 8, 2)->nullable();
             $table->timestamps();
             $table->softDeletes();
 
