@@ -190,6 +190,14 @@
                         <label for="ticketsWebsite">Buy Tickets (Seats) URL</label>
                         <input type="text" name="tickets" id="ticketWebsite" class="form-control" value="{{$event->ticket_seller_url}}">
                     </div>
+                    <div class="card w-50 mx-auto text-center mb-3">
+                        <label for="logo">Charity Logo:</label>
+                        <img class="logoPreview img-fluid" id="imgPreview">
+                        <label for="charityLogo" class="btn btn-primary mb-0">Change
+                            <input type="file" name="charityLogo" id="charityLogo" class="form-control" hidden>
+                        </label>
+                    </div>
+
                     @csrf
                     {{method_field('PUT')}}
                     <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
@@ -768,12 +776,12 @@
                     </div>
 
                     <div class="card w-50 mx-auto text-center mb-3">
-                            <label for="logo">Item Image:</label>
-                            <img class="logoPreview img-fluid" id="imgPreview">
-                            <label for="itemImage" class="btn btn-primary mb-0">Change
-                                <input type="file" name="itemImage" id="itemImage" class="form-control" hidden>
-                            </label>
-                        </div>
+                        <label for="logo">Item Image:</label>
+                        <img class="logoPreview img-fluid" id="imgPreview">
+                        <label for="itemImage" class="btn btn-primary mb-0">Change
+                            <input type="file" name="itemImage" id="itemImage" class="form-control" hidden>
+                        </label>
+                    </div>
                     
                     <button type="submit" id="auctionModalButton" class="btn btn-success float-right"></button>
 
