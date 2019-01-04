@@ -22,7 +22,13 @@ class AuctionManagementController extends Controller
     public function getAuctionItem($id){
         $item = AuctionItem::find($id);
         if(isset($item)){
-            return response($item, 200);
+            return [
+                'id' => $item->id,
+                'name' => $item->name,
+                'desc' => $item->desc,
+                'donor' => $item->donor,
+                'donor_url' => $item->donor_url
+            ];
         }
         
         return response("No item found", 400);
