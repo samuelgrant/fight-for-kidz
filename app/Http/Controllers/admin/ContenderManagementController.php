@@ -25,7 +25,7 @@ class ContenderManagementController extends Controller
                 'reach' => $contender->reach,
                 'donate_url' => $contender->donate_url,
                 'bio_text' => $contender->bio_text,
-                'bio_url' => $contender->bio_url,
+                'bio_url' => $contender->bio_url
             ];
         }
         
