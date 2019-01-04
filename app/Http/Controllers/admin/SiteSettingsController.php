@@ -98,6 +98,8 @@ class SiteSettingsController extends Controller
 
         $doc = Document::find($docID);
 
-        return $doc;
+        return [
+            'display_location' => $doc->display_location
+        ];
     }
 }
