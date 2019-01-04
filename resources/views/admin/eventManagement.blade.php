@@ -192,7 +192,7 @@
                     </div>
                     <div class="card w-50 mx-auto text-center mb-3">
                         <label for="logo">Charity Logo:</label>
-                        <img class="logoPreview img-fluid" id="imgPreview">
+                        <img class="logoPreview img-fluid" id="logoPreview" src="/storage/images/charity/{{file_exists(public_path('storage/images/charity/' . $event->id . '.png')) ? $event->id : '0' }}.png">
                         <label for="charityLogo" class="btn btn-primary mb-0">Change
                             <input type="file" name="charityLogo" id="charityLogo" class="form-control" hidden>
                         </label>
@@ -777,7 +777,7 @@
 
                     <div class="card w-50 mx-auto text-center mb-3">
                         <label for="logo">Item Image:</label>
-                        <img class="logoPreview img-fluid" id="imgPreview">
+                        <img class="imgPreview img-fluid" id="imgPreview">
                         <label for="itemImage" class="btn btn-primary mb-0">Change
                             <input type="file" name="itemImage" id="itemImage" class="form-control" hidden>
                         </label>
