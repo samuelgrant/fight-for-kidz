@@ -5,7 +5,7 @@ namespace App\Http\Controllers\admin;
 use Auth;
 use Input;
 use Validator;
-use App\Event;
+use App\Event, App\Image;
 use App\Applicant;
 use GDText\Box;
 use GDText\Color;
@@ -92,7 +92,11 @@ class EventManagementController extends Controller
         $event->ticket_seller_url = $request->input('tickets');
         $event->desc_1 = $request->input('eventDesc');
 
-        $event->updateGPS();
+        //$event->updateGPS();
+
+        $image = $request->file('charityLogo');
+
+        Image::storeAsPng($image, 'public\images\charity\\', $event->id . '.png');
 
         $event->save();
 
