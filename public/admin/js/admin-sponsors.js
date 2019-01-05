@@ -2,19 +2,13 @@ $(document).ready(function(){
 
     $('#logoInput').change(function(){
 
-        processImage(this)
-
-    });
-
-    $('#charityLogo').change(function(){
-
-        processImage(this)
+        previewLogo(this)
 
     });
 
 });
 
-function processImage(input){
+function previewLogo(input){
 
     if(input.files && input.files[0]){
 
