@@ -8,7 +8,7 @@ $(document).ready(function () {
 });
 
 
-// Processes the image preview for group icon uploads.
+// Processes the image preview for group icon, main page and auction item image uploads.
 
 $(document).ready(function () {
     $('#groupImage').change(function () {
