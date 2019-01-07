@@ -84,7 +84,8 @@ $(document).ready(function() {
             { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false }
-            ]
+            ],
+        "order" : [0, 'desc']
     });
 
     $("#eventDeleted-dtable").DataTable({
@@ -96,7 +97,7 @@ $(document).ready(function() {
             null,
             { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false }
-        ]
+        ],
     });
     
     $('#group-dtable').DataTable({
