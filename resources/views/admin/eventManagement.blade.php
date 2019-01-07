@@ -188,11 +188,19 @@
                     </div>
                     <div class="form-group">
                         <label for="eventCharitUrly">Charity Url</label>
-                        <input type="text" name="charityUrl" id="eventCharityUrl" class="form-control" value="{{$event->charity_url}}">
+                        <div class="input-group">
+                            <input type="text" name="charityUrl" id="eventCharityUrl" class="form-control" value="{{$event->charity_url}}">
+                            <span class="ml-3" data-toggle="tooltip" data-placement="top" title="Required format: https://www.example.com">
+                                <i class="fas fa-exclamation-circle float-right"></i></span>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="ticketsWebsite">Buy Tickets (Seats) URL</label>
-                        <input type="text" name="tickets" id="ticketWebsite" class="form-control" value="{{$event->ticket_seller_url}}">
+                        <div class="input-group">
+                            <input type="text" name="tickets" id="ticketWebsite" class="form-control" value="{{$event->ticket_seller_url}}">
+                            <span class="ml-3" data-toggle="tooltip" data-placement="top" title="Required format: https://www.example.com">
+                                <i class="fas fa-exclamation-circle float-right"></i></span>
+                        </div>
                     </div>
                     <div class="card w-50 mx-auto text-center mb-3">
                         <label for="logo">Charity Logo:</label>
