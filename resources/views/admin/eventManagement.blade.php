@@ -187,17 +187,21 @@
                         <input type="text" name="charity" id="eventCharity" class="form-control" value="{{$event->charity}}" required>
                     </div>
                     <div class="form-group">
+                        <label for="eventCharitUrly">Charity Url</label>
+                        <input type="text" name="charityUrl" id="eventCharityUrl" class="form-control" value="{{$event->charity_url}}">
+                    </div>
+                    <div class="form-group">
                         <label for="ticketsWebsite">Buy Tickets (Seats) URL</label>
                         <input type="text" name="tickets" id="ticketWebsite" class="form-control" value="{{$event->ticket_seller_url}}">
                     </div>
                     <div class="card w-50 mx-auto text-center mb-3">
                         <label for="logo">Charity Logo:</label>
-                        <img class="logoPreview img-fluid" id="logoPreview">
+                        <img class="logoPreview img-fluid" id="logoPreview" src="/storage/images/charity/{{file_exists(public_path('storage/images/charity/' . $event->id . '.png')) ? $event->id : '0' }}.png">
                         <label for="charityLogo" class="btn btn-primary mb-0">Change
                             <input type="file" name="charityLogo" id="charityLogo" class="form-control" hidden>
                         </label>
                     </div>
-
+                    
                     @csrf
                     {{method_field('PUT')}}
                     <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
