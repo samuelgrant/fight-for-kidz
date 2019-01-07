@@ -161,7 +161,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="{{route('admin.eventManagement.update', ['eventID' => $event->id])}}">
+                <form method="post" action="{{route('admin.eventManagement.update', ['eventID' => $event->id])}}"  enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="eventName">Name:</label>
                         <input type="text" name="name" id="eventName" class="form-control" value="{{$event->name}}" required>
@@ -192,7 +192,7 @@
                     </div>
                     <div class="card w-50 mx-auto text-center mb-3">
                         <label for="logo">Charity Logo:</label>
-                        <img class="logoPreview img-fluid" id="logoPreview" src="/storage/images/charity/{{file_exists(public_path('storage/images/charity/' . $event->id . '.png')) ? $event->id : '0' }}.png">
+                        <img class="logoPreview img-fluid" id="logoPreview">
                         <label for="charityLogo" class="btn btn-primary mb-0">Change
                             <input type="file" name="charityLogo" id="charityLogo" class="form-control" hidden>
                         </label>
