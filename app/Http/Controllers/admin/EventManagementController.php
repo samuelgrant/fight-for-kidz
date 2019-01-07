@@ -70,7 +70,6 @@ class EventManagementController extends Controller
         $validator = Validator::make(Input::all(), [ 
             'name' => 'required',
             'tickets' => 'active_url',
-
         ],        
         // error messages
         [
@@ -89,14 +88,16 @@ class EventManagementController extends Controller
         $event->venue_name = $request->input('venue');
         $event->venue_address = $request->input('address');
         $event->charity = $request->input('charity');
+        $event->charity_url = $request->input('charityUrl');
         $event->ticket_seller_url = $request->input('tickets');
         $event->desc_1 = $request->input('eventDesc');
 
-        //$event->updateGPS();
+        $event->updateGPS();
 
-        $image = $request->file('charityLogo');
-
-        Image::storeAsPng($image, 'public\images\charity\\', $event->id . '.png');
+        if($image = $request->file('charityLogo'))
+        {
+            Image::storeAsPng($image, 'public\images\charity\\', $event->id . '.png');
+        }
 
         $event->save();
 

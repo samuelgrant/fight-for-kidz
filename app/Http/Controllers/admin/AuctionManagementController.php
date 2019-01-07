@@ -55,9 +55,10 @@ class AuctionManagementController extends Controller
             $item->donor_url = $request->input('donorUrl');
         $item->save();
 
-        $image = $request->file('itemImage');
-
-        Image::storeAsPng($image, 'public\images\auction\\', $item->id . '.png');
+        if($image = $request->file('itemImage'))
+        {
+            Image::storeAsPng($image, 'public\images\auction\\', $item->id . '.png');
+        }
 
         session()->flash('success', 'The item called '.$item->name.' was created.');
         return redirect()->back();
