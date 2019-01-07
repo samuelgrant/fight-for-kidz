@@ -27,7 +27,10 @@
             <i class="fas fa-link"></i> {{$event->charity}}
           </a> @else
 					<p class="stat">{{$event->charity}}</p>
-					@endif
+          @endif
+          @if(file_exists(public_path('storage/images/charity/'. $event->id . '.png')))
+          <img id="charityLogo" src="{{'/storage/images/charity/' .  $event->id . '.png'}}" style="width: 150px;">
+          @endif
 				</div>
 			</div>
 		</div>
