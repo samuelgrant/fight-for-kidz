@@ -870,3 +870,31 @@ $('#clearAttachmentsBtn').on('click', function(e){
 
     $file.change();
 });
+
+//This method resets the charity logo after the modal is dismissed
+$(document).ready(function(){
+    $("#eventDetailsModal").on('hidden.bs.modal', function (e){
+        $id = location.href.split('/')[5].slice(0,1);
+
+        $.get('/storage/images/charity/' + $id + '.png')
+        .done(function(){
+            $("#logoPreview").attr("src", "/storage/images/charity/" + $id + ".png");
+        }).fail(function(){
+            $("#logoPreview").attr("src", "/storage/images/charity/0.png");
+        })
+    })
+});
+
+//This method sets the sponsor logo after the modal is dismissed
+$(document).ready(function(){
+    $("#sponsorDetailsModal").on('hidden.bs.modal', function (e){
+        $id = location.href.split('/')[5].slice(0,1);
+
+        $.get('/storage/images/sponsors/' + $id + '.png')
+        .done(function(){
+            $("#logoPreview").attr("src", "/storage/images/sponsors/" + $id + ".png");
+        }).fail(function(){
+            $("#logoPreview").attr("src", "/storage/images/sponsors/0.png");
+        })
+    })
+});
