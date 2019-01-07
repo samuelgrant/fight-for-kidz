@@ -29,7 +29,11 @@
 					<p class="stat">{{$event->charity}}</p>
           @endif
           @if(file_exists(public_path('storage/images/charity/'. $event->id . '.png')))
-          <img id="charityLogo" src="{{'/storage/images/charity/' .  $event->id . '.png'}}" style="width: 150px;">
+            @if($event->charity_url)
+              <a href="{{$event->charity_url}}"><img id="charityLogo" src="{{'/storage/images/charity/' .  $event->id . '.png'}}" style="width: 150px;"></a>
+            @else
+              <img id="charityLogo" src="{{'/storage/images/charity/' .  $event->id . '.png'}}" style="width: 150px;">
+            @endif
           @endif
 				</div>
 			</div>
