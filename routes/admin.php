@@ -89,6 +89,9 @@ Route::get('/event-managment/{eventID}/applicants', 'admin\ApplicantManagementCo
 // Contender update
 Route::patch('/event-management/contenders/{contenderID}', 'admin\ContenderManagementController@update')->name('admin.eventManagement.updateContender');
 
+//Get contender data
+Route::get('/event-management/contenders/{contenderID}', 'admin\ContenderManagementController@getContender')->name('admin.contenderManagement.getContender');
+
 // Bouts CRUD functions
 Route::patch('/event-management/bouts/{boutId}', 'admin\BoutManagementController@updateBoutDetails')->name('admin.eventManagement.updateBoutDetails');
 Route::delete('/event-management/bouts/{boutId}', 'admin\BoutManagementController@removeBout')->name('admin.eventManagement.removeBout');
@@ -113,9 +116,6 @@ Route::get('/event-management/applicants/{applicantId}', 'admin\ApplicantManagem
 
 // Delete applicants
 Route::delete('/event-management/applicants/{applicantID}', 'admin\ApplicantManagementController@deleteApplicant')->name('admin.applicantManagement.deleteApplicant');
-
-//Get contender data
-Route::get('/event-management/contenders/{contenderID}', 'admin\ContenderManagementController@getContender')->name('admin.contenderManagement.getContender');
 
 //Retrieve private images (https://laravel.io/forum/04-23-2015-securing-filesimages)
 Route::get('/applicantImages/{imageName}', 'admin\ImageController@getApplicantImage')->where('imageName', '^[^/]+$')->name('admin.getApplicantImage');

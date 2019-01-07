@@ -1,9 +1,11 @@
 $(document).ready(function(){
 
     $('#logoInput').change(function(){
-
         previewLogo(this)
+    });
 
+    $('#charityLogo').change(function(){
+        previewLogo(this)
     });
 
 });

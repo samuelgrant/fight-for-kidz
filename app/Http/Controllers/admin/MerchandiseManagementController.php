@@ -35,7 +35,13 @@ class MerchandiseManagementController extends Controller
     public function getMerchandiseItem($id){
         $item = MerchandiseItem::find($id);
         if(isset($item)){
-            return response($item, 200);
+            return [
+                'id' => $item->id,
+                'name' => $item->name,
+                'desc' => $item->desc,
+                'tagline' => $item->tagline,
+                'price' => $item->price
+            ];
         }
         
         return response("No item found", 400);
@@ -62,9 +68,10 @@ class MerchandiseManagementController extends Controller
             $item->price = $request->input('price')            ;
         $item->save();
 
-        $image = $request->file('itemImage');
-
-        Image::storeAsPng($image, 'public\images\merchandise\\', $item->id . '.png');
+        if($image = $request->file('itemImage'))
+        {
+            Image::storeAsPng($image, 'public\images\merchandise\\', $item->id . '.png');
+        }        
 
         session()->flash('success', 'The item called '.$item->name.' was created.');
         return redirect()->back();

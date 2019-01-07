@@ -215,6 +215,10 @@ $(document).ready(function() {
             reasonsRadio:{
               required: true
             },
+            concussed_details:{
+              required: $("#concussedRadio").val() == "yes",
+              minlength: 3
+            },
             reason_details:{
               required: $("#reasonsRadio").val() == "yes",
               minlength: 3   
@@ -454,6 +458,10 @@ $(document).ready(function() {
             concussedRadio:{
               required: "Please choose an option"
             },
+            concussed_details:{
+              required: "Please explain about your loss of consciousness",
+              minlength: "Your answer needs to be greater than 2 characters"
+            },
             reasonsRadio:{
               required: "Please choose an option"
             },
@@ -499,17 +507,47 @@ $(document).ready(function() {
         });
 
   $('#rootwizard').bootstrapWizard({
-    'onNext': function(index){
-      if(index == 8){
-        return false;
-      }    
+    //These fuctions fires when the next vbutton is clicked
+    'onNext': function(tab, navigation, index){
 
       var $valid = $("#application-form").valid();
       if(!$valid) {
         $validator.focusInvalid();
         return false;
-      }
+      } else{
+        //shows previous button on tab change if tab index is one but only if validator passes
+        if (index == 1){
+          $("#liPrevious").removeClass("d-none");
+          $("#liPrevious").addClass("d-inline-block");
 
+          $("#wizardBtnPrevious").removeClass("d-none");
+        }
+
+        //hides the next btn on tab index 7 but only if the validator passes
+        if(index == 7){
+          $("#liNext").removeClass("d-inline-block");
+          $("#liNext").addClass("d-none");
+
+          $("#wizardBtnNext").addClass("d-none");
+        }
+      }
+    },
+
+    //These functions fires when the previous button is clicked
+    'onPrevious': function(tab, navigation, index){
+      //shows the previous btn on tab index 0
+      if(index == 0){
+        $("#liPrevious").removeClass("d-inline-block");
+        $("#liPrevious").addClass("d-none");
+
+        $("#wizardBtnPrevious").addClass("d-none");
+      } 
+      //shows the next btn on tab index 6
+      if (index == 6) {
+        $("#liNext").removeClass("d-none")
+        $("#liNext").addClass("d-inline-block");
+        $("#wizardBtnNext").removeClass("d-none");
+      }   
     }
   });
 });

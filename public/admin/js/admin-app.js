@@ -8,7 +8,7 @@ $(document).ready(function () {
 });
 
 
-// Processes the image preview for group icon uploads.
+// Processes the image preview for group icon, main page and auction item image uploads.
 
 $(document).ready(function () {
     $('#groupImage').change(function () {
@@ -303,10 +303,9 @@ function removeSelectedFromGroup(groupID) {
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             url: '/a/group-management/' + groupID + '/' + rowId
         }).done(function (data) {
-            console.log(data);
             table.row($('*[id="' + rowId + '"').parents('tr')[0]).remove().draw();
         }).fail(function (err) {
-            console.error(err);
+            console.error(`Error removing contact(s) to team in the admin-app/removeSelectedFromGroup method: ${err}`);
         });
     });
 }
@@ -326,7 +325,6 @@ function copySelectedToGroup(mode) {
     } else if(mode == 'systemGroups'){
         var contacts = $('#system-group-dtable').find('.dtable-checkbox:checkbox:checked');
     } else {
-        console.log('Error. Group copy mode invalid');
         return;
     }
 
@@ -344,11 +342,10 @@ function copySelectedToGroup(mode) {
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             url: '/a/group-management/' + toGroupId + '/' + type + '/' + memberId 
         }).done(function (data){
-            console.log(data);
-        }).fail(function(err){
-            console.error(err);
-        });
 
+        }).fail(function(err){
+            console.error(`Error copying contact(s) to group in the admin-app/copySelectedToGroup method: ${err}`);
+        });
     });
 
     // show success alert
@@ -383,8 +380,8 @@ function addSelectedToTeam(team){
             data: {'applicantId' : appId, 'team' : team}, 
         }).done(function(){
             location.reload();
-        }).fail(function(error){
-            console.log(error);
+        }).fail(function(err){
+            console.error(`Error adding applicant(s) to team in the admin-app/addSelectedToTeam method: ${err}`);
         });
 
     });
@@ -420,8 +417,8 @@ function removeApplicantFromTeam(applicantId){
         data: {'applicantId' : applicantId}, 
     }).done(function(){
         location.reload();
-    }).fail(function(error){
-        console.log(error);
+    }).fail(function(err){
+        console.error(`Error removing applicant from team in the admin-app/removeApplicantFromTeam - method: ${err}`);
     });
 }
 
@@ -475,8 +472,8 @@ function editContactModal(id){
 
         $('#editContactModal').modal('show');
 
-    }).fail(function(error){
-        console.log(error);
+    }).fail(function(err){
+        console.error(`Error getting contact information in the admin-app/editContactModal method: ${err}`);
     })
 
 }
@@ -554,8 +551,8 @@ function applicantManagementModal(id){
         $("#appHeartCondtion").val(data.heart_condition ? 'Yes' : 'No');                       $("#appPhysicalChestPain").val(data.chest_pain_activity ? 'Yes' : 'No');
         $("#appRecentChestPain").val(data.chest_pain_recent ? 'Yes' : 'No');                   $("#appPassedOut").val(data.lost_consciousness ? 'Yes' : 'No');
         $("#appBoneJointProblems").val(data.bone_joint_problems ? 'Yes' : 'No');               $("#appMedicationBloodHeart").val(data.recommended_medication ? 'Yes' : 'No');
-        $("#appKnockedOut").val(data.concussed_knocked_out ? 'Yes' : 'No');                    $("#appReason").val(data.other_reasons ? 'Yes' : 'No');
 
+        $("#appConcussed").val(data.concussed_knocked_out);
         $("#appReason").val(data.other_reasons);
         $("#appHandInjuries").val(data.hand_injuries);
         $("#appPreviousCurrentInjuries").val(data.previous_current_injuries);
@@ -588,8 +585,8 @@ function applicantManagementModal(id){
 
 
         $("#applicantMoreInfoModal").modal('show');
-    }).fail(function(error) {
-        console.log(error);
+    }).fail(function(err) {
+        console.error(`Error applicant info in the admin-app/applicantManagementModal method: ${err}`);
     });
 }
 
@@ -641,8 +638,8 @@ function auctionEditModal(id){
 
         //Display the modal
         $("#createEditAuctionItemModal").modal('show');
-    }).fail((error) => {
-        console.log(error);
+    }).fail((err) => {
+        console.error(`Error getting auction item information in the admin-app/auctionEditModal method: ${err}`);
     });
 }
 
@@ -699,8 +696,8 @@ $(document).ready(function(){
             // open a new tab/window and write the returned html to it
             var win = window.open();
             win.document.write(data);
-        }).fail(function(error){
-            console.log(error);
+        }).fail(function(err){
+            console.error(`Error getting mail content in the admin-app/mailPreviewBtn method: ${err}`);
         });
 
         
@@ -799,8 +796,8 @@ function merchandiseEditModal(id){
 
         //Display the modal
         $("#createEditMerchandiseItemModal").modal('show');
-    }).fail((error) => {
-        console.log(error);
+    }).fail((err) => {
+        console.error(`Error getting merchandise information in the admin-app/nerchandiseEditModal method: ${err}`);
     });
 }
 
@@ -824,12 +821,11 @@ function fileUpdateModal(id){
         method : 'GET',
         url : url,
     }).done(function(data){
-        console.log(data.display_location);
         $('#updateDisplaySelect').val(data.display_location);
         modal.modal('show');
 
-    }).fail(function(error){
-        console.log(error);
+    }).fail(function(err){
+        console.error(`Error adding file in the admin-app/fileUpdateModal method: ${err}`);
     })
 
 }
@@ -876,4 +872,30 @@ $('#clearAttachmentsBtn').on('click', function(e){
     $file.change();
 });
 
+//This method resets the charity logo after the modal is dismissed
+$(document).ready(function(){
+    $("#eventDetailsModal").on('hidden.bs.modal', function (e){
+        $id = location.href.split('/')[5].slice(0,1);
 
+        $.get('/storage/images/charity/' + $id + '.png')
+        .done(function(){
+            $("#logoPreview").attr("src", "/storage/images/charity/" + $id + ".png");
+        }).fail(function(){
+            $("#logoPreview").attr("src", "/storage/images/charity/0.png");
+        })
+    })
+});
+
+//This method sets the sponsor logo after the modal is dismissed
+$(document).ready(function(){
+    $("#sponsorDetailsModal").on('hidden.bs.modal', function (e){
+        $id = location.href.split('/')[5].slice(0,1);
+
+        $.get('/storage/images/sponsors/' + $id + '.png')
+        .done(function(){
+            $("#logoPreview").attr("src", "/storage/images/sponsors/" + $id + ".png");
+        }).fail(function(){
+            $("#logoPreview").attr("src", "/storage/images/sponsors/0.png");
+        })
+    })
+});

@@ -38,6 +38,12 @@
                         <td>Charity:</td>
                         <td>{{$event->charity}}</td>
                     </tr>
+                    <tr>
+                        <td>Charity logo:</td>
+                        <td>
+                            <img class="img-fluid" style="max-width: 160px; max-height: 100px"  src="/storage/images/charity/{{file_exists(public_path('storage/images/charity/' . $event->id . '.png')) ? $event->id : '0' }}.png">
+                        </td>
+                    </tr>
                 </table>
             </div>
         </div>

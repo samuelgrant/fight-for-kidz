@@ -93,7 +93,7 @@ class EventApplicationController extends Controller
             'consciousnessRadio' => 'required',
             'boneRadio' => 'required',
             'bloodRadio' => 'required',
-            'concussedRadio' => 'required',
+            'concussed_details' => 'required_if:concussedRadio,yes',
             'reason_details' => 'required_if:reasonsRadio,yes',
 
             //Additional Info Section
@@ -202,7 +202,7 @@ class EventApplicationController extends Controller
         $applicant->lost_consciousness = $request->input('consciousnessRadio') == 'yes' ? true : false;
         $applicant->bone_joint_problems = $request->input('boneRadio') == 'yes' ? true : false;
         $applicant->recommended_medication = $request->input('bloodRadio') == 'yes' ? true : false;
-        $applicant->concussed_knocked_out = $request->input('concussedRadio') == 'yes' ? true : false;
+        $applicant->concussed_knocked_out = $request->input('concussed_details');
         $applicant->other_reasons = $request->input('reason_details');
         
         //Additonal Info Section

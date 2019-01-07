@@ -387,7 +387,7 @@ a.active:hover {
 	color: #BBBBBB;
 }
 
-#wizardBtn:hover {
+#wizardBtnPrevious:hover, #wizardBtnNext:hover {
 	cursor: pointer;
 }
 
@@ -404,6 +404,10 @@ label.error {
 
 .hidden{
 	display: none;
+}
+
+#bio-sponsor{
+	box-shadow: 1px 1px 3px 4px rgba(136, 136, 136, 0.4);
 }
 
 @media(max-width: 770px){

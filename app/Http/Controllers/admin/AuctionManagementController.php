@@ -22,7 +22,13 @@ class AuctionManagementController extends Controller
     public function getAuctionItem($id){
         $item = AuctionItem::find($id);
         if(isset($item)){
-            return response($item, 200);
+            return [
+                'id' => $item->id,
+                'name' => $item->name,
+                'desc' => $item->desc,
+                'donor' => $item->donor,
+                'donor_url' => $item->donor_url
+            ];
         }
         
         return response("No item found", 400);
@@ -49,9 +55,10 @@ class AuctionManagementController extends Controller
             $item->donor_url = $request->input('donorUrl');
         $item->save();
 
-        $image = $request->file('itemImage');
-
-        Image::storeAsPng($image, 'public\images\auction\\', $item->id . '.png');
+        if($image = $request->file('itemImage'))
+        {
+            Image::storeAsPng($image, 'public\images\auction\\', $item->id . '.png');
+        }
 
         session()->flash('success', 'The item called '.$item->name.' was created.');
         return redirect()->back();

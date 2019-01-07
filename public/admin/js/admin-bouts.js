@@ -73,7 +73,7 @@ function removeBout(boutId){
     }).done(function (data) {
         location.reload();
     }).fail(function(err){
-        console.log(err);
+        console.error(`Error removing bout in the admin-bouts/removeBout method: ${err}`);
     });
 
 }
@@ -87,7 +87,7 @@ function addBout(eventId){
     }).done(function (data) {
         location.reload();
     }).fail(function(err){
-        console.log(err);
+        console.error(`Error adding bout in the admin-bouts/addBout method: ${err}`);
     });
 
 }

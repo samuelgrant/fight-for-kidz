@@ -78,6 +78,19 @@ class Defaults extends Command
             Storage::copy($file, "public/images/sponsors/" . $filename);
         }
 
+        // copy charity default
+        $files = Storage::files("private/images/charity-default");
+        foreach ($files as $file) {
+            $filename = pathinfo($file, PATHINFO_FILENAME) . '.' . pathinfo($file, PATHINFO_EXTENSION);
+            
+            // Delete the public image if it exists
+            if (Storage::exists("public/images/charity/" . $filename)) {
+                Storage::delete("public/images/charity/" . $filename);
+                $this->info('public/images/charity/'.$filename.' already exists, replacing.');
+            }
+            Storage::copy($file, "public/images/charity/" . $filename);
+        }
+
         // ensure that a logo file exists in public dir
         if(Storage::exists("public/images/f4k_logo.png")){
             $this->warn('Logo file already in public folder.');

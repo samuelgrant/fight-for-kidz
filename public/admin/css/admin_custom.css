@@ -102,3 +102,12 @@
   .times-circle-btn:hover{
     color: #ff8181
   }
+
+  #logout{
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none !important;
+  }
+  
+  #logout:hover{
+    color: rgba(255, 255, 255, 0.75);
+  }

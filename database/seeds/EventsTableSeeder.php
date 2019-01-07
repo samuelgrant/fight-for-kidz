@@ -36,7 +36,7 @@ class EventsTableSeeder extends Seeder
         ]);
 
         factory(App\Event::class)->create([
-            'name' => 'Fight for Kidz 2022',
+            'name' => 'Fight for Kidz 2019',
             'venue_name' => 'ILT Stadium',
             'venue_address' => 'ILT Stadium, Invercargill',
             'venue_gps' => 'lat: -46.4066806, lng: 168.380873',

@@ -80,7 +80,7 @@ $factory->define(App\Applicant::class, function (Faker $faker) {
         'lost_consciousness' => $faker->numberBetween(0, 1),
         'bone_joint_problems' => $faker->numberBetween(0, 1),
         'recommended_medication' => $faker->numberBetween(0, 1),
-        'concussed_knocked_out' => $faker->numberBetween(0, 1),
+        'concussed_knocked_out' => null,
         'other_reasons' => null,    
 
         //Section 6 - Additional Information
