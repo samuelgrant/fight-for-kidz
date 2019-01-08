@@ -321,7 +321,7 @@
             @if($a % 2 != 0)
             <div class="auctionItem-card auctionItem-card-red">
               <div class="auctionItem-card-inner">
-                <img src="{{file_exists(public_path('/storage/images/auction/' . $auction->id . '.png')) ? '/storage/images/auction/' . $auction->id . '.png' : '/storage/images/noImage.png'}}"
+                <img src="{{file_exists(public_path('/storage/images/auction/' . $auction->id . '.png')) ? '/storage/images/auction/' . $auction->id . '.png' : '/storage/images/auction/0.png'}}"
                   class="mx-auto auctionItem-img">
                 <div class="auctionItem-name">
                   <h5>{{$auction->name}}</h5>
@@ -332,7 +332,7 @@
             @elseif($a % 2 == 0)
             <div class="auctionItem-card auctionItem-card-blue ">
               <div class="auctionItem-card-inner">
-                <img src="{{file_exists(public_path('/storage/images/auction/' . $auction->id . '.png')) ? '/storage/images/auction/' . $auction->id . '.png' : '/storage/images/noImage.png'}}"
+                <img src="{{file_exists(public_path('/storage/images/auction/' . $auction->id . '.png')) ? '/storage/images/auction/' . $auction->id . '.png' : '/storage/images/auction/0.png'}}"
                   class="mx-auto auctionItem-img">
                 <div class="auctionItem-name">
                   <h5>{{$auction->name}}</h5>
