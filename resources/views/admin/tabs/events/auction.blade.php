@@ -58,7 +58,7 @@
                             <td class="align-middle">{{$item->donor}}</td>
                             <td class="align-middle">{{$item->donor_url}}</td>
                             <td><img src="{{file_exists(public_path('storage/images/auction/' . $item->id . '.png')) ? '/storage/images/auction/' . $item->id . 
-                            '.png' : '/storage/images/auction/0.png'}}" height=100 >
+                            '.png' : '/storage/images/noImage.png'}}" height=100 >
                             </td>
                             <td class="align-middle">
                                 <button class="btn btn-warning" onclick="auctionEditModal({{$item->id}})"><i class="fas fa-pencil"></i>&nbsp;Edit</button>

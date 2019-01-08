@@ -240,7 +240,7 @@ function auctionItemModal(id){
       .done(function(){
           $("#auctionItemImage").attr("src", "/storage/images/auction/" + data.id + ".png");
       }).fail(function(){
-          $("#auctionItemImage").attr("src", "/storage/images/auction/0.png");
+          $("#auctionItemImage").attr("src", "/storage/images/noImage.png");
       })         
 
       //Display the modal

@@ -63,7 +63,7 @@
                             <td class="align-middle">{{$item->tagline}}</td>
                             <td class="align-middle">{{$item->desc}}</td>
                             <td><img src="{{file_exists(public_path('storage/images/merchandise/' . $item->id . '.png')) ? '/storage/images/merchandise/' . $item->id . 
-                                '.png' : '/storage/images/merchandise/0.png'}}" height=100>
+                                '.png' : '/storage/images/noImage.png'}}" height=100>
                             </td>
                             <td class="align-middle">{{$item->price}}</td>
                             <td class="align-middle">
@@ -157,7 +157,7 @@
 
                 <div class="card w-50 mx-auto text-center mb-3">
                         <label for="logo">Item Image:</label>
-                        <img class="logoPreview img-fluid" id="imgPreview" src="/storage/images/merchandise/0.png">
+                        <img class="logoPreview img-fluid" id="imgPreview" src="/storage/images/noImage.png">
                         <label for="itemImage" class="btn btn-primary btn-sm mb-0">Change
                             <input type="file" name="itemImage" id="itemImage" class="form-control" hidden>
                         </label>
