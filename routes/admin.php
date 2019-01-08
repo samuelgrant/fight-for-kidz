@@ -145,7 +145,7 @@ Route::get('/merchandise-management/merchandise/{merchandiseId}', 'admin\Merchan
 Route::post('/merchandise-management', 'admin\MerchandiseManagementController@store')->name('admin.merchandiseManagement.store');
 Route::put('/merchandise-management/update/{merchandiseID}', 'admin\MerchandiseManagementController@update')->name('admin.merchandiseManagement.update');
 Route::delete('/merchandise-management/{merchandiseID}', 'admin\MerchandiseManagementController@destroy')->name('admin.merchandiseManagement.destroy');
-Route::patch('/merchandise-management/{merchandiseID}', 'admin\merchandiseManagementController@restore')->name('admin.merchandiseManagement.restore');
+Route::patch('/merchandise-management/{merchandiseID}', 'admin\MerchandiseManagementController@restore')->name('admin.merchandiseManagement.restore');
 
 // View received messages
 Route::get('/messages', 'admin\MessagesController@index')->name('admin.messages');
