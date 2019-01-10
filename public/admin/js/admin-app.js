@@ -769,7 +769,7 @@ function merchandiseCreateModal(){
 //Sets the modal for editing merchandise item dynamically populates the fields and then displays it
 function merchandiseEditModal(id){
     $.ajax({
-        method: "get",
+        type: "get",
         headers:  {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
