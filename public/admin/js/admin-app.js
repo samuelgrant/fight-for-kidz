@@ -750,7 +750,7 @@ $(document).ready(function(){
 
 //Sets the modal for creating merchandise item and then displays it
 function merchandiseCreateModal(){
-    $("#auctionForm").attr("action", "/a/merchandise-management");
+    $("#merchandiseForm").attr("action", "/a/merchandise-management/" + $id);
     $('#hiddenMethod').val('POST');
     $("#merchandiseModalTitle").text("Create Merchandise Item");
     $("#merchandiseModalButton").text("Confirm");
