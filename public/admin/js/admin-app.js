@@ -592,7 +592,7 @@ function applicantManagementModal(id){
 
 function auctionCreateModal(){
     //Set modal for creating auction item
-    //$("#auctionForm").attr("action", "/");
+    $("#auctionForm").attr("action", "/a/auction-management");
     $('#hiddenMethod').val('POST');
     $("#auctionModalTitle").text("Create Auction Item");
     $("#auctionModalButton").text("Confirm");
@@ -617,7 +617,7 @@ function auctionEditModal(id){
         url: `/a/auction-management/auction/${id}`
     }).done((data) => {
         //Set modal for editing
-        $("#auctionForm").attr("action", "http://f4k.localhost/a/auction-management/update/" + id);
+        $("#auctionForm").attr("action", "/a/auction-management/update/" + id);
         $("#auctionModalTitle").text("Edit Auction Item");
         $("#auctionModalButton").text("Save");
         $("#hiddenMethod").val("PUT");
@@ -747,9 +747,10 @@ $(document).ready(function(){
     })
 
 })
+
 //Sets the modal for creating merchandise item and then displays it
 function merchandiseCreateModal(){
-    //$("#auctionForm").attr("action", "/");
+    $("#auctionForm").attr("action", "/a/merchandise-management");
     $('#hiddenMethod').val('POST');
     $("#merchandiseModalTitle").text("Create Merchandise Item");
     $("#merchandiseModalButton").text("Confirm");
@@ -765,7 +766,7 @@ function merchandiseCreateModal(){
     $("#createEditMerchandiseItemModal").modal('show');
 }
 
-////Sets the modal for editing merchandise item dynamically populates the fields and then displays it
+//Sets the modal for editing merchandise item dynamically populates the fields and then displays it
 function merchandiseEditModal(id){
     $.ajax({
         method: "get",
@@ -775,7 +776,7 @@ function merchandiseEditModal(id){
         url: `/a/merchandise-management/merchandise/${id}`
     }).done((data) => {
         //Set modal for editing
-        $("#merchandiseForm").attr("action", "http://f4k.localhost/a/merchandise-management/update/" + id);
+        $("#merchandiseForm").attr("action", "/a/merchandise-management/update/" + id);
         $("#merchandiseModalTitle").text("Edit Merchandise Item");
         $("#merchandiseModalButton").text("Save");
         $("#hiddenMethod").val("PUT");
