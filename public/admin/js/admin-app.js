@@ -591,8 +591,10 @@ function applicantManagementModal(id){
 }
 
 function auctionCreateModal(){
+    $eventID = location.href.split('/')[5].slice(0,1);
+
     //Set modal for creating auction item
-    //$("#auctionForm").attr("action", "/");
+    $("#auctionForm").attr("action", "/a/auction-management/" + $eventID);
     $('#hiddenMethod').val('POST');
     $("#auctionModalTitle").text("Create Auction Item");
     $("#auctionModalButton").text("Confirm");
@@ -617,7 +619,7 @@ function auctionEditModal(id){
         url: `/a/auction-management/auction/${id}`
     }).done((data) => {
         //Set modal for editing
-        $("#auctionForm").attr("action", "http://f4k.localhost/a/auction-management/update/" + id);
+        $("#auctionForm").attr("action", "/a/auction-management/update/" + id);
         $("#auctionModalTitle").text("Edit Auction Item");
         $("#auctionModalButton").text("Save");
         $("#hiddenMethod").val("PUT");
@@ -747,9 +749,10 @@ $(document).ready(function(){
     })
 
 })
+
 //Sets the modal for creating merchandise item and then displays it
 function merchandiseCreateModal(){
-    //$("#auctionForm").attr("action", "/");
+    $("#merchandiseForm").attr("action", "/a/merchandise-management");
     $('#hiddenMethod').val('POST');
     $("#merchandiseModalTitle").text("Create Merchandise Item");
     $("#merchandiseModalButton").text("Confirm");
@@ -765,17 +768,17 @@ function merchandiseCreateModal(){
     $("#createEditMerchandiseItemModal").modal('show');
 }
 
-////Sets the modal for editing merchandise item dynamically populates the fields and then displays it
+//Sets the modal for editing merchandise item dynamically populates the fields and then displays it
 function merchandiseEditModal(id){
     $.ajax({
-        method: "get",
+        type: "get",
         headers:  {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         url: `/a/merchandise-management/merchandise/${id}`
     }).done((data) => {
         //Set modal for editing
-        $("#merchandiseForm").attr("action", "http://f4k.localhost/a/merchandise-management/update/" + id);
+        $("#merchandiseForm").attr("action", "/a/merchandise-management/update/" + id);
         $("#merchandiseModalTitle").text("Edit Merchandise Item");
         $("#merchandiseModalButton").text("Save");
         $("#hiddenMethod").val("PUT");
