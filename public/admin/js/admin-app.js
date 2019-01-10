@@ -633,7 +633,7 @@ function auctionEditModal(id){
         .done(function(){
             $("#imgPreview").attr("src", "/storage/images/auction/" + data.id + ".png");
         }).fail(function(){
-            $("#imgPreview").attr("src", "/storage/images/noImage.png");
+            $("#imgPreview").attr("src", "/storage/images/auction/0.png");
         })                
 
         //Display the modal
@@ -791,7 +791,7 @@ function merchandiseEditModal(id){
         .done(function(){
             $("#imgPreview").attr("src", "/storage/images/merchandise/" + data.id + ".png");
         }).fail(function(){
-            $("#imgPreview").attr("src", "/storage/images/noImage.png");
+            $("#imgPreview").attr("src", "/storage/images/merchandise/0.png");
         })       
 
         //Display the modal
