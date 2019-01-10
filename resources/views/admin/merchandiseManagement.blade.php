@@ -63,7 +63,7 @@
                             <td class="align-middle">{{$item->tagline}}</td>
                             <td class="align-middle">{{$item->desc}}</td>
                             <td><img src="{{file_exists(public_path('storage/images/merchandise/' . $item->id . '.png')) ? '/storage/images/merchandise/' . $item->id . 
-                                '.png' : '/storage/images/noImage.png'}}" height=100>
+                                '.png' : '/storage/images/merchandise/0.png'}}" height=100>
                             </td>
                             <td class="align-middle">{{$item->price}}</td>
                             <td class="align-middle">
