@@ -591,8 +591,10 @@ function applicantManagementModal(id){
 }
 
 function auctionCreateModal(){
+    $eventID = location.href.split('/')[5].slice(0,1);
+
     //Set modal for creating auction item
-    $("#auctionForm").attr("action", "/a/auction-management");
+    $("#auctionForm").attr("action", "/a/auction-management/" + $eventID);
     $('#hiddenMethod').val('POST');
     $("#auctionModalTitle").text("Create Auction Item");
     $("#auctionModalButton").text("Confirm");
@@ -750,7 +752,7 @@ $(document).ready(function(){
 
 //Sets the modal for creating merchandise item and then displays it
 function merchandiseCreateModal(){
-    $("#merchandiseForm").attr("action", "/a/merchandise-management/" + $id);
+    $("#merchandiseForm").attr("action", "/a/merchandise-management");
     $('#hiddenMethod').val('POST');
     $("#merchandiseModalTitle").text("Create Merchandise Item");
     $("#merchandiseModalButton").text("Confirm");
