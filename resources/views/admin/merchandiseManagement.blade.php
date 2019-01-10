@@ -157,7 +157,7 @@
 
                 <div class="card w-50 mx-auto text-center mb-3">
                         <label for="logo">Item Image:</label>
-                        <img class="logoPreview img-fluid" id="imgPreview" src="/storage/images/noImage.png">
+                        <img class="logoPreview img-fluid" id="imgPreview" src="/storage/images/merchandise/0.png">
                         <label for="itemImage" class="btn btn-primary btn-sm mb-0">Change
                             <input type="file" name="itemImage" id="itemImage" class="form-control" hidden>
                         </label>

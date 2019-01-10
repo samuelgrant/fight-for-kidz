@@ -91,6 +91,31 @@ class Defaults extends Command
             Storage::copy($file, "public/images/charity/" . $filename);
         }
 
+        // copy merchandise default
+        $files = Storage::files("private/images/merchandise-default");
+        foreach ($files as $file) {
+            $filename = pathinfo($file, PATHINFO_FILENAME) . '.' . pathinfo($file, PATHINFO_EXTENSION);
+            
+            // Delete the public image if it exists
+            if (Storage::exists("public/images/merchandise/" . $filename)) {
+                Storage::delete("public/images/merchandise/" . $filename);
+                $this->info('public/images/merchandise/'.$filename.' already exists, replacing.');
+            }
+            Storage::copy($file, "public/images/merchandise/" . $filename);
+        }
+        // copy auction default
+        $files = Storage::files("private/images/auction-default");
+        foreach ($files as $file) {
+            $filename = pathinfo($file, PATHINFO_FILENAME) . '.' . pathinfo($file, PATHINFO_EXTENSION);
+            
+            // Delete the public image if it exists
+            if (Storage::exists("public/images/auction/" . $filename)) {
+                Storage::delete("public/images/auction/" . $filename);
+                $this->info('public/images/auction/'.$filename.' already exists, replacing.');
+            }
+            Storage::copy($file, "public/images/auction/" . $filename);
+        }
+        
         // ensure that a logo file exists in public dir
         if(Storage::exists("public/images/f4k_logo.png")){
             $this->warn('Logo file already in public folder.');
