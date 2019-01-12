@@ -11,16 +11,22 @@ use App\Sponsor;
 
 class ContenderManagementController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth.activeUser');
-    }
-
     public function getContender($id){
         
         $contender = Contender::find($id);
         if(isset($contender)){
-            return response($contender, 200);
+            return [
+                'first_name' => $contender->first_name,
+                'last_name' => $contender->last_name,
+                'nickname' => $contender->nickname,
+                'sponsor_id' => $contender->sponsor_id,
+                'height' => $contender->height,
+                'weight' => $contender->weight,
+                'reach' => $contender->reach,
+                'donate_url' => $contender->donate_url,
+                'bio_text' => $contender->bio_text,
+                'bio_url' => $contender->bio_url
+            ];
         }
         
         return response("No contender found", 400);

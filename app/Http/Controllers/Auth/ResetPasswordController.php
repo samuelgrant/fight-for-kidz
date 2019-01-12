@@ -8,6 +8,8 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Facades\Mail;
+use App\Jobs\SendPasswordResetEmail;
 
 class ResetPasswordController extends Controller
 {
@@ -54,6 +56,10 @@ class ResetPasswordController extends Controller
         $user->setRememberToken(Str::random(60));
         $user->password_reset_at = Carbon::now();
         $user->save();
+
+        // notify user that their password was reset
+        SendPasswordResetEmail::dispatch($user);
+
         event(new PasswordReset($user));
         $this->guard()->login($user);
     }

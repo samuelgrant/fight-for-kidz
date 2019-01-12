@@ -12,7 +12,7 @@
 <div class="row">
     <div class="col-md-12">
         <div class="mb-3">
-            <button class="btn btn-success" data-toggle="modal" data-target="#addSponsorModal"><i class="fas fa-plus"></i>&nbsp; Add New Sponsor</button>
+            <button class="btn btn-sm btn-success" data-toggle="modal" data-target="#addSponsorModal"><i class="fas fa-plus"></i>&nbsp;Add New Sponsor</button>
         </div>
     </div>
     <div class="col-md-12">
@@ -79,7 +79,11 @@
                     </div>
                     <div class="form-group">
                         <label for="url">Website URL:</label>
-                        <input type="url" name="url" id="url" class="form-control">
+                        <div class="input-group">
+                            <input type="url" name="url" id="url" class="form-control">
+                            <span class="ml-3" data-toggle="tooltip" data-placement="top" 
+                            title="Required format: https://www.example.com"><i class="fas fa-info-circle float-right"></i></span>
+                        </div>
                     </div>
                     <div class="card w-50 mx-auto text-center mb-3">
                         <label for="logo">Logo:</label>                        

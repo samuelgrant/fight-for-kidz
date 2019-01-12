@@ -16,12 +16,12 @@ class CreateAuctionItemsTable extends Migration
         Schema::create('auction_items', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('event_id')->unsigned();
-            $table->string('name');
-            $table->string('desc');
-            $table->string('donor');
-            $table->string('picture'); // uri to image
-            $table->float('sale_price', 8, 2)->nullable();
+            $table->string('name',65);
+            $table->string('desc', 300);
+            $table->string('donor')->nullable();
+            $table->string('donor_url')->nullable();
             $table->timestamps();
+            $table->softDeletes();
 
             // Foreign key constraint definition
             $table->foreign('event_id')->references('id')->on('events')->onDelete('cascade');

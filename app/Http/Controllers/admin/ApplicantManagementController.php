@@ -6,17 +6,10 @@ use App\Applicant;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class ApplicantManagementController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth.activeUser');
-    }
-
-    /*
-     * 
-     */
     public function getApplicant($id){
         $applicant = Applicant::find($id);
         if(isset($applicant)){
@@ -91,4 +84,28 @@ class ApplicantManagementController extends Controller
 
         return redirect()->back();
     }
+
+    /**
+     *  Deletes the applicant/application from the database. This allows the applicant to reapply 
+     *  if they misentered information in their initial application. 
+     * 
+     *  It also allows the admins to remove spam applications and applications that they deem 
+     *  inappropriate. 
+	 */
+	public function deleteApplicant($applicantID){
+
+		$applicant = Applicant::find($applicantID);
+
+		// check that the applicant isn't on a team.
+		if(!$applicant->isContender()){
+
+			// delete application and remove image from storage
+			$applicant->discard();
+			session()->flash('success', $applicant->first_name . ' ' . $applicant->last_name . '\'s application was discarded.');
+		} else {
+			session()->flash('error', 'Cannot delete this applicant, they are currently in a team. Please remove them and try again.');
+		}
+
+		return redirect()->back();
+	}
 }

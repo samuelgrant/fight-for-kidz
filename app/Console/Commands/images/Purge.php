@@ -51,9 +51,17 @@ class Purge extends Command
     protected function deleteAll(){
         $counter = 0;
 
-        // delete all group icons
-        $this->info('Deleting group icons');
-        $files = Storage::files('public/images/groups');
+        // delete all auction images
+        $this->info('Deleting auction icons');
+        $files = Storage::files('public/images/auction');
+        foreach($files as $file){
+            Storage::delete($file);
+            $counter++;
+        }
+
+        // delete all charity images
+        $this->info('Deleting charity icons');
+        $files = Storage::files('public/images/charity');
         foreach($files as $file){
             Storage::delete($file);
             $counter++;
@@ -62,6 +70,38 @@ class Purge extends Command
         // delete all contender images
         $this->info('Deleting contender icons');
         $files = Storage::files('public/images/contenders');
+        foreach($files as $file){
+            Storage::delete($file);
+            $counter++;
+        }
+
+        // delete all group icons
+        $this->info('Deleting group icons');
+        $files = Storage::files('public/images/groups');
+        foreach($files as $file){
+            Storage::delete($file);
+            $counter++;
+        }
+
+        // delete all merchandise images
+        $this->info('Deleting merchandise icons');
+        $files = Storage::files('public/images/merchandise');
+        foreach($files as $file){
+            Storage::delete($file);
+            $counter++;
+        }
+
+        // delete all sponsor images
+        $this->info('Deleting sponsors icons');
+        $files = Storage::files('public/images/sponsors');
+        foreach($files as $file){
+            Storage::delete($file);
+            $counter++;
+        }
+
+        // delete generic images
+        $this->info('Deleting generic images');
+        $files = Storage::files('public/images/mainPagePhoto.jpg');
         foreach($files as $file){
             Storage::delete($file);
             $counter++;
