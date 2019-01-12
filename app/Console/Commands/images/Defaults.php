@@ -38,44 +38,17 @@ class Defaults extends Command
      */
     public function handle()
     {
-
-        $files = Storage::files("private/images/group-defaults");
+        // copy auction default
+        $files = Storage::files("private/images/auction-default");
         foreach ($files as $file) {
             $filename = pathinfo($file, PATHINFO_FILENAME) . '.' . pathinfo($file, PATHINFO_EXTENSION);
             
             // Delete the public image if it exists
-            if (Storage::exists("public/images/groups/" . $filename)) {
-                Storage::delete("public/images/groups/" . $filename);
-                $this->info('public/images/groups/'.$filename.' already exists, replacing.');
-                
+            if (Storage::exists("public/images/auction/" . $filename)) {
+                Storage::delete("public/images/auction/" . $filename);
+                $this->info('public/images/auction/'.$filename.' already exists, replacing.');
             }
-            Storage::copy($file, "public/images/groups/" . $filename);
-        }
-
-        // copy contender default
-        $files = Storage::files("private/images/contender-default");
-        foreach ($files as $file) {
-            $filename = pathinfo($file, PATHINFO_FILENAME) . '.' . pathinfo($file, PATHINFO_EXTENSION);
-            
-            // Delete the public image if it exists
-            if (Storage::exists("public/images/contenders/" . $filename)) {
-                Storage::delete("public/images/contenders/" . $filename);
-                $this->info('public/images/contenders/'.$filename.' already exists, replacing.');
-            }
-            Storage::copy($file, "public/images/contenders/" . $filename);
-        }
-
-        // copy sponsor default
-        $files = Storage::files("private/images/sponsor-defaults");
-        foreach ($files as $file) {
-            $filename = pathinfo($file, PATHINFO_FILENAME) . '.' . pathinfo($file, PATHINFO_EXTENSION);
-            
-            // Delete the public image if it exists
-            if (Storage::exists("public/images/sponsors/" . $filename)) {
-                Storage::delete("public/images/sponsors/" . $filename);
-                $this->info('public/images/sponsors/'.$filename.' already exists, replacing.');
-            }
-            Storage::copy($file, "public/images/sponsors/" . $filename);
+            Storage::copy($file, "public/images/auction/" . $filename);
         }
 
         // copy charity default
@@ -91,6 +64,33 @@ class Defaults extends Command
             Storage::copy($file, "public/images/charity/" . $filename);
         }
 
+        // copy contender default
+        $files = Storage::files("private/images/contender-default");
+        foreach ($files as $file) {
+            $filename = pathinfo($file, PATHINFO_FILENAME) . '.' . pathinfo($file, PATHINFO_EXTENSION);
+            
+            // Delete the public image if it exists
+            if (Storage::exists("public/images/contenders/" . $filename)) {
+                Storage::delete("public/images/contenders/" . $filename);
+                $this->info('public/images/contenders/'.$filename.' already exists, replacing.');
+            }
+            Storage::copy($file, "public/images/contenders/" . $filename);
+        }
+
+        //copy group defautl
+        $files = Storage::files("private/images/group-defaults");
+        foreach ($files as $file) {
+            $filename = pathinfo($file, PATHINFO_FILENAME) . '.' . pathinfo($file, PATHINFO_EXTENSION);
+            
+            // Delete the public image if it exists
+            if (Storage::exists("public/images/groups/" . $filename)) {
+                Storage::delete("public/images/groups/" . $filename);
+                $this->info('public/images/groups/'.$filename.' already exists, replacing.');
+                
+            }
+            Storage::copy($file, "public/images/groups/" . $filename);
+        }
+
         // copy merchandise default
         $files = Storage::files("private/images/merchandise-default");
         foreach ($files as $file) {
@@ -103,17 +103,18 @@ class Defaults extends Command
             }
             Storage::copy($file, "public/images/merchandise/" . $filename);
         }
-        // copy auction default
-        $files = Storage::files("private/images/auction-default");
+
+        // copy sponsor default
+        $files = Storage::files("private/images/sponsor-defaults");
         foreach ($files as $file) {
             $filename = pathinfo($file, PATHINFO_FILENAME) . '.' . pathinfo($file, PATHINFO_EXTENSION);
             
             // Delete the public image if it exists
-            if (Storage::exists("public/images/auction/" . $filename)) {
-                Storage::delete("public/images/auction/" . $filename);
-                $this->info('public/images/auction/'.$filename.' already exists, replacing.');
+            if (Storage::exists("public/images/sponsors/" . $filename)) {
+                Storage::delete("public/images/sponsors/" . $filename);
+                $this->info('public/images/sponsors/'.$filename.' already exists, replacing.');
             }
-            Storage::copy($file, "public/images/auction/" . $filename);
+            Storage::copy($file, "public/images/sponsors/" . $filename);
         }
         
         // ensure that a logo file exists in public dir
