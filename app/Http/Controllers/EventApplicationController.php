@@ -229,12 +229,17 @@ class EventApplicationController extends Controller
         // Convert to png if needed and store
         Image::storeAsPng($image, $imagePath, $imageName);
 
+        /* Remove below pending testing - do not think it is needed as the above call
+           handles this
+
         if(isset($img)){
-            imagepng($img, storage_path('app\\' . $imagePath . $imageName));
+            imagepng($img, storage_path('app/' . $imagePath . $imageName));
         } else{
             // save image to storage
             $image->storeAs($imagePath, $imageName);
         }
+
+        */
         
         // show feedback page
         return view('feedback.received-app');

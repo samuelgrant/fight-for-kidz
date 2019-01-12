@@ -70,7 +70,7 @@ class MerchandiseManagementController extends Controller
 
         if($image = $request->file('itemImage'))
         {
-            Image::storeAsPng($image, 'public\images\merchandise\\', $item->id . '.png');
+            Image::storeAsPng($image, 'public/images/merchandise/', $item->id . '.png');
         }        
 
         session()->flash('success', 'The item called '.$item->name.' was created.');
@@ -99,7 +99,7 @@ class MerchandiseManagementController extends Controller
                 
         // Update image if a file was uploaded
         if($image = $request->file('itemImage')){
-            Image::storeAsPng($image, 'public\images\merchandise\\', $item->id . '.png');
+            Image::storeAsPng($image, 'public/images/merchandise/', $item->id . '.png');
         }
 
         $item->save();
