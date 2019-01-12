@@ -96,7 +96,7 @@ class EventManagementController extends Controller
 
         if($image = $request->file('charityLogo'))
         {
-            Image::storeAsPng($image, 'public\images\charity\\', $event->id . '.png');
+            Image::storeAsPng($image, 'public/images/charity/', $event->id . '.png');
         }
 
         $event->save();

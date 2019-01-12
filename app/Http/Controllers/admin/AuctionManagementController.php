@@ -57,7 +57,7 @@ class AuctionManagementController extends Controller
 
         if($image = $request->file('itemImage'))
         {
-            Image::storeAsPng($image, 'public\images\auction\\', $item->id . '.png');
+            Image::storeAsPng($image, 'public/images/auction/', $item->id . '.png');
         }
 
         session()->flash('success', 'The item called '.$item->name.' was created.');
@@ -85,7 +85,7 @@ class AuctionManagementController extends Controller
                 
         // Update image if a file was uploaded
         if($image = $request->file('itemImage')){
-            Image::storeAsPng($image, 'public\images\auction\\', $item->id . '.png');
+            Image::storeAsPng($image, 'public/images/auction/', $item->id . '.png');
         }
 
         $item->save();
