@@ -279,7 +279,7 @@ class EventManagementController extends Controller
         $box = new Box($image);
 
         // Set font .ttf file. Feel free to change the nested dirnames if you can find something that definitely works.
-        $box->setFontFace(dirname(dirname(dirname(dirname(dirname(__FILE__))))).'\storage\app\private\fonts\Ubuntu-BoldItalic.ttf');
+        $box->setFontFace(dirname(dirname(dirname(dirname(dirname(__FILE__))))).'/storage/app/private/fonts/Ubuntu-BoldItalic.ttf');
 
         // Set the text properties
         $box->setFontColor(new Color(255,255,255));    
@@ -302,7 +302,7 @@ class EventManagementController extends Controller
         $box->draw($currentEventYear);
 
         // Output the image to the public storage directory
-        imagepng($image, '..\storage\app\public\images\f4k_logo.png');
+        imagepng($image, '../storage/app/public/images/f4k_logo.png');
 
         // Remove the image from memory
         imagedestroy($image);
