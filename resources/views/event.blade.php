@@ -3,7 +3,7 @@
 
 <div class="container-fluid" style="background-color: black;">
 	<section class="upcoming-section">
-		<div class="container-fluid">
+		<div class="container">
 			<div class="row pb-5">
 				<div class="col-lg-8 col-md-6 col-col-sm-12 pt-5">
 					<h1 class="text-white underline bar">{{$event->name}}</h1>
