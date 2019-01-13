@@ -1,9 +1,9 @@
 @extends('layouts.app') 
 @section('content')
 
-<div style="background-color: black;">
+<div class="container-fluid" style="background-color: black;">
 	<section class="upcoming-section">
-		<div class="container">
+		<div class="container-fluid">
 			<div class="row pb-5">
 				<div class="col-lg-8 col-md-6 col-col-sm-12 pt-5">
 					<h1 class="text-white underline bar">{{$event->name}}</h1>

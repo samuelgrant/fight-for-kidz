@@ -20,7 +20,7 @@
   	<!-- Upcoming event -->
 	<div style="background-color: black;">
 		<section id="about" class="upcoming-section pt-5">
-			<div class="container pt-5">
+			<div class="container-fluid pt-5">
 				<div class="row mb-5 pb-5 d-flex">
 					<div class="col-lg-12 col-ms-12 col-sm-12">
 						<h1 class="text-white underline bar">About</h1>
