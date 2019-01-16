@@ -107,7 +107,7 @@ class EventApplicationController extends Controller
         // error messages
         [
             'required' => ':attribute must be filled in',
-            'accepted' => 'Please confirm that your details are correct'
+            'accepted' => 'Please check the declaration checkbox'
         ]
     
     );
