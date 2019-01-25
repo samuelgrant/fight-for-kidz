@@ -93,3 +93,21 @@
     border-radius: 5px;
     padding: 0.5em;
   }
+
+  /* Mail attachment clear button */
+  .times-circle-btn{
+    color: #ff0000;
+  }
+
+  .times-circle-btn:hover{
+    color: #ff8181
+  }
+
+  #logout{
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none !important;
+  }
+  
+  #logout:hover{
+    color: rgba(255, 255, 255, 0.75);
+  }

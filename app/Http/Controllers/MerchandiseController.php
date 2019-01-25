@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\MerchandiseItem;
 
 class MerchandiseController extends Controller
 {
@@ -11,8 +12,9 @@ class MerchandiseController extends Controller
         $this->middleware('merchandise');
     }
 
-    public function Merchandise(){
-        return view('Merchandise');
+    public function index(){
+        $merch = MerchandiseItem::all();
+        return view('merchandise')->with('merch', $merch);
     }
 
 }

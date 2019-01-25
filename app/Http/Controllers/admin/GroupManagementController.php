@@ -15,11 +15,6 @@ use App\Http\Controllers\Controller;
 
 class GroupManagementController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth.activeUser');
-    }
-
     /**
      * Displays the usermanagment view.
      * 
@@ -162,6 +157,7 @@ class GroupManagementController extends Controller
             $contact = new Contact();
                 $contact->name = $request->input('name');
                 $contact->email = $request->input('email');
+                $contact->phone = $request->input('phone');
                 $contact->role = 'Custom Contact';
             $contact->save();
         }
@@ -224,4 +220,127 @@ class GroupManagementController extends Controller
 
         Log::debug('Use the copy function to add '. $memberType . ' ' . $memberId . ' to group ' . $groupId);
     }
+
+
+    // REVAMPED GROUP SYSTEM
+
+    /**
+     *  Returns view of all contacts
+     */
+    public function getAll(){
+
+        return view('admin.systemGroupManagement')->with('type', 'All')->with('groups', Group::all());
+
+    }
+
+    /**
+     *  Returns view of all admins
+     */
+    public function getAdmins(){
+
+        return view('admin.systemGroupManagement')->with('type', 'Admins')->with('groups', Group::all());
+
+    }
+
+    /**
+     *  Returns view of all subscribers
+     */
+    public function getSubscribers(){
+
+        return view('admin.systemGroupManagement')->with('type', 'Subscribers')->with('groups', Group::all());
+
+    }
+
+    /**
+     *  Returns view of all applicants
+     */
+    public function getApplicants(){
+
+        return view('admin.systemGroupManagement')->with('type', 'Applicants')->with('groups', Group::all());
+
+    }
+
+    /**
+     *  Returns view of all sponsors
+     */
+    public function getSponsors(){
+
+        return view('admin.systemGroupManagement')->with('type', 'Sponsors')->with('groups', Group::all());
+
+    }
+
+    /**
+     * Returns view of all other contacts 
+     */
+    public function getOthers(){
+
+        return view('admin.systemGroupManagement')->with('type', 'Others')->with('groups', Group::all());
+
+    }
+
+    /**
+     * Returns contact as JSON 
+     */
+    public function getContact($contactID){
+
+        $contact = Contact::find($contactID);
+        return [
+            'name' => $contact->name,
+            'phone' => $contact->phone,
+            'email' => $contact->email
+        ];
+
+    }
+
+    /**
+     * Updates a contact record 
+     */
+    public function updateContact(Request $request, $contactID){
+
+        $contact = Contact::find($contactID);
+
+        $this->validate($request, [
+            'name' => 'string|required',
+            'email' => 'email|required',
+        ]);
+
+        if($contact)
+        {
+
+            $contact->name = $request->input('name');
+            $contact->phone = $request->input('phone');
+            $contact->email = $request->input('email');
+            $contact->save();
+
+            session()->flash('success', 'Contact updated successfully');
+        }else
+        {            
+            session()->flash('error', 'There was an error updating this contact.');
+        }
+
+        return redirect()->back();
+    }
+
+    /**
+     * Deletes a contact permanently.
+     */
+    public function deleteContact($contactID){
+        $contact = Contact::find($contactID);
+
+        if($contact){
+            
+            // first need to remove contact from all groups
+            foreach($contact->groups as $group){
+                $contact->removeFromGroup($group->id);
+            }
+
+            // then delete contact itself
+            $contact->delete();
+
+            session()->flash('success', 'Contact deleted successfully');
+
+            return redirect()->back();
+        }
+    }
+
 }

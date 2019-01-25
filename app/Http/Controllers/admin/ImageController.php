@@ -9,11 +9,6 @@ use Illuminate\Support\Facades\Log;
 
 class ImageController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth.activeUser');
-    }
-
     /**
      * Returns an applicant image from private storage, if the user is
      * logged in.
@@ -24,12 +19,12 @@ class ImageController extends Controller
      */
     public function getApplicantImage($filename){
 
-        $fullpath = "\private\images\applicants\\" . $filename;
+        $fullpath = "/private/images/applicants/" . $filename;
 
         if(Storage::exists($fullpath)){       
-            return response()->download(storage_path("app\\" . $fullpath), null, [], null);
+            return response()->download(storage_path("app/" . $fullpath), null, [], null);
         } else{
-            return response()->download(storage_path("app\public\images\\noImage.png"));
+            return response()->download(storage_path("app/public/images/noImage.png"));
         }
     }
 }

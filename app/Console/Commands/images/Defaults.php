@@ -38,18 +38,30 @@ class Defaults extends Command
      */
     public function handle()
     {
-
-        $files = Storage::files("private/images/group-defaults");
+        // copy auction default
+        $files = Storage::files("private/images/auction-default");
         foreach ($files as $file) {
             $filename = pathinfo($file, PATHINFO_FILENAME) . '.' . pathinfo($file, PATHINFO_EXTENSION);
             
             // Delete the public image if it exists
-            if (Storage::exists("public/images/groups/" . $filename)) {
-                Storage::delete("public/images/groups/" . $filename);
-                $this->info('public/images/groups/'.$filename.' already exists, replacing.');
-                
+            if (Storage::exists("public/images/auction/" . $filename)) {
+                Storage::delete("public/images/auction/" . $filename);
+                $this->info('public/images/auction/'.$filename.' already exists, replacing.');
             }
-            Storage::copy($file, "public/images/groups/" . $filename);
+            Storage::copy($file, "public/images/auction/" . $filename);
+        }
+
+        // copy charity default
+        $files = Storage::files("private/images/charity-default");
+        foreach ($files as $file) {
+            $filename = pathinfo($file, PATHINFO_FILENAME) . '.' . pathinfo($file, PATHINFO_EXTENSION);
+            
+            // Delete the public image if it exists
+            if (Storage::exists("public/images/charity/" . $filename)) {
+                Storage::delete("public/images/charity/" . $filename);
+                $this->info('public/images/charity/'.$filename.' already exists, replacing.');
+            }
+            Storage::copy($file, "public/images/charity/" . $filename);
         }
 
         // copy contender default
@@ -65,6 +77,33 @@ class Defaults extends Command
             Storage::copy($file, "public/images/contenders/" . $filename);
         }
 
+        //copy group defautl
+        $files = Storage::files("private/images/group-defaults");
+        foreach ($files as $file) {
+            $filename = pathinfo($file, PATHINFO_FILENAME) . '.' . pathinfo($file, PATHINFO_EXTENSION);
+            
+            // Delete the public image if it exists
+            if (Storage::exists("public/images/groups/" . $filename)) {
+                Storage::delete("public/images/groups/" . $filename);
+                $this->info('public/images/groups/'.$filename.' already exists, replacing.');
+                
+            }
+            Storage::copy($file, "public/images/groups/" . $filename);
+        }
+
+        // copy merchandise default
+        $files = Storage::files("private/images/merchandise-default");
+        foreach ($files as $file) {
+            $filename = pathinfo($file, PATHINFO_FILENAME) . '.' . pathinfo($file, PATHINFO_EXTENSION);
+            
+            // Delete the public image if it exists
+            if (Storage::exists("public/images/merchandise/" . $filename)) {
+                Storage::delete("public/images/merchandise/" . $filename);
+                $this->info('public/images/merchandise/'.$filename.' already exists, replacing.');
+            }
+            Storage::copy($file, "public/images/merchandise/" . $filename);
+        }
+
         // copy sponsor default
         $files = Storage::files("private/images/sponsor-defaults");
         foreach ($files as $file) {
@@ -77,7 +116,7 @@ class Defaults extends Command
             }
             Storage::copy($file, "public/images/sponsors/" . $filename);
         }
-
+        
         // ensure that a logo file exists in public dir
         if(Storage::exists("public/images/f4k_logo.png")){
             $this->warn('Logo file already in public folder.');
@@ -93,5 +132,14 @@ class Defaults extends Command
             $this->info('Copying a no year logo file to public folder. This version will not be changed.');
             Storage::copy("private/images/f4k_logo_noyear.png", "public/images/f4k_logo_noyear.png");
         }
+
+        // copy generic images
+        if(Storage::exists("public/images/mainPagePhoto.jpg")){
+            $this->warn('Main page photo file already in public folder.');
+        } else{
+            $this->info('Copying a generic main page photo to public folder.');
+            Storage::copy("private/images/mainPagePhoto.jpg", "public/images/mainPagePhoto.jpg");
+        }        
+        
     }
 }

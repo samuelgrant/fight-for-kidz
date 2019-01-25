@@ -6,8 +6,11 @@ use App\Traits\Groupable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Notifications\InitialResetPasswordNotification;
 use Illuminate\Auth\Notifications\ResetPassword as ResetPasswordNotification;
+use App\Jobs\SendActivatedAccountEmail;
+use App\Jobs\SendDeactivatedAccountEmail;
+use App\Jobs\SendNewAccountEmail;
+use App\Jobs\SendPasswordResetLink;
 
 
 class User extends Authenticatable
@@ -43,14 +46,10 @@ class User extends Authenticatable
         if(!$this->active){
             $this->active = true;
             $this->save();
-
             
-            $this->addToGroup(1);
             //Fire email YOUR ACCOUNT IS NOW ACTIVATED
-            //Return WINNING
+            SendActivatedAccountEmail::dispatch($this);
         }
-
-        //Return account already active error
     }
     
     public function disable()
@@ -59,13 +58,10 @@ class User extends Authenticatable
             $this->active = false;
             $this->save();
 
-            $this->removeFromGroup(1);
-            //Remove from admin group (for mailing list things)
-            //Fire email account disabled
-            
-            //Return account now disabled
+            // Fire email
+            SendDeactivatedAccountEmail::dispatch($this);
+
         }
-        //Return already disabled
     }
 
     public function sendPasswordResetNotification($token){
@@ -73,12 +69,15 @@ class User extends Authenticatable
         if($this->password_reset_at){
             
             // password reset has been requested by the user
-            $this->notify(new ResetPasswordNotification($token));
+            SendPasswordResetLink::dispatch($this, $token);
+
+
+            //$this->notify(new ResetPasswordNotification($token));
 
         } else{
             
             // password reset on initial registration
-            $this->notify(new InitialResetPasswordNotification($token));
+            SendNewAccountEmail::dispatch($this, $token);
         }
 
     }

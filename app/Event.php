@@ -37,6 +37,8 @@ class Event extends Model
     public function makePublic(){
         $this->is_public = true;
         $this->save();
+
+        Event::closePastEventApplications();
         
         Log::debug($this->name.' was added to the public site.');
     }
@@ -54,6 +56,22 @@ class Event extends Model
      */
     public function showBouts(){
         $this->show_bouts = true;
+        $this->save();
+    }
+
+     /**
+     * Show bouts on the public event page
+     */
+    public function hideAuctions(){
+        $this->show_auctions = false;
+        $this->save();
+    }
+
+    /**
+     * Show bouts on the public event page
+     */
+    public function showAuctions(){
+        $this->show_auctions = true;
         $this->save();
     }
 
@@ -98,7 +116,7 @@ class Event extends Model
     // Relationship to auction items - one to many
     public function auction_items()
     {
-        return $this->hasMany('App\Auction_Item');
+        return $this->hasMany('App\AuctionItem');
     }
 
     // Relationship to sponsor - many to many
@@ -119,10 +137,23 @@ class Event extends Model
         return $this->hasMany('App\Bout');
     }
 
+    // Relationship to auctions - one to many
+    public function auctions()
+    {
+        return $this->hasMany('App\AuctionItem');
+    }
+
     // Relationship to contender applications - one to many
     public function applicants()
     {
         return $this->hasMany('App\Applicant');
+    }
+
+    // Relationship to custom questions
+    public function customQuestions(){
+
+        return $this->hasMany('App\CustomQuestion');
+
     }
 
     /**
@@ -160,4 +191,23 @@ class Event extends Model
         return $this->contenders()->where('team', $team)->get();
 
     }    
+
+    /**
+     *  Turns applications off for events that are not the current event.
+     * 
+     *  This is called whenever an event is made public.
+     */
+    public static function closePastEventApplications(){
+
+        $currentEvent = Event::current();
+
+        foreach(Event::all() as $event){
+            if($event->open){
+                if(!$event->is($currentEvent)){
+                    $event->open = false;
+                    $event->save();
+                }
+            }
+        }
+    }
 }

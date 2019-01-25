@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Traits\Groupable;
+use Illuminate\Support\Facades\Hash;
 
 class Subscriber extends Model
 {
@@ -20,9 +21,8 @@ class Subscriber extends Model
             $subscriber = new Subscriber;
             $subscriber->name = $name;
             $subscriber->email = $email;
+            $subscriber->unsubscribe_token = Hash::make($email . uniqid());
             $subscriber->save();
-
-            $subscriber->addToGroup(2);
         }
 
     }
@@ -34,9 +34,13 @@ class Subscriber extends Model
 
         $subscriber = Subscriber::where('email', $email);
 
+        foreach($subscriber->groups as $group){
+            $subscriber->removeFromGroup($group->id);
+        }
+
         if($subscriber){
-            $subscriber->removeFromGroup();
-            return true; // subscriber removed
+            $subscriber->delete();
+            return true;
         }
 
         return false; //subscriber not found
@@ -49,6 +53,10 @@ class Subscriber extends Model
      */
     public function unsubscribe(){
 
-        $this->removeFromGroup(2);
+        foreach($this->groups as $group){
+            $this->removeFromGroup($group->id);
+        }
+
+        $this->delete();
     }
 }   

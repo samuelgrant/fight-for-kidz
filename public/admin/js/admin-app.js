@@ -1,6 +1,6 @@
 // adds the tab value to the URL and refreshes page
 $(document).ready(function () {
-    $('.nav-tabs').click(function (event) {
+    $('.nav-tabs-persistent').click(function (event) {
         var newURLString = window.location.pathname + "?tab=" + event.target.id;
 
         window.history.replaceState(null, null, newURLString);
@@ -8,7 +8,7 @@ $(document).ready(function () {
 });
 
 
-// Processes the image preview for group icon uploads.
+// Processes the image preview for group icon, main page and auction item image uploads.
 
 $(document).ready(function () {
     $('#groupImage').change(function () {
@@ -16,6 +16,10 @@ $(document).ready(function () {
     })
 
     $('#mainPagePhoto').change(function(){
+        processImage(this);
+    })
+
+    $('#itemImage').change(function(){
         processImage(this);
     })
 });
@@ -80,7 +84,8 @@ $(document).ready(function() {
             { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false }
-            ]
+            ],
+        "order" : [0, 'desc']
     });
 
     $("#eventDeleted-dtable").DataTable({
@@ -92,14 +97,27 @@ $(document).ready(function() {
             null,
             { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false }
-        ]
+        ],
     });
     
     $('#group-dtable').DataTable({
         "columns": [
             { "orderable": false, "searchable": false },
             null,
-            null
+            null,
+            null,
+        ],
+        'iDisplayLength' : 100
+    });
+
+    $('#system-group-dtable').DataTable({
+        "columns": [
+            { "orderable": false, "searchable": false },
+            null,
+            {"orderable" : false},
+            {"orderable" : false},
+            {"orderable" : false},
+            {"orderable" : false},
         ],
         'iDisplayLength' : 100
     });
@@ -133,9 +151,33 @@ $(document).ready(function() {
             {"searchable": false},
             {"searchable": false},
             {"searchable": false},
+            { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false }
         ],
         'iDisplayLength' : 100
+    })
+
+    $('#auction-dtable').DataTable({
+        "columns":[
+            null,
+            { "orderable": false, "searchable": true },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false }
+        ]
+    })
+
+    $('#auctionDeleted-dtable').DataTable({
+        "columns":[
+            null,
+            { "orderable": false, "searchable": true},
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false},
+            { "orderable": false, "searchable": false}
+        ]
     })
 
     $('#event-sponsor-dtable').DataTable({           
@@ -156,6 +198,53 @@ $(document).ready(function() {
             { "orderable": false, "searchable": false },
         ],
         'iDisplayLength' : 25
+    });
+
+    $('#merchandise-dtable').DataTable({
+        "columns":[
+            null,
+            { "orderable": false, "searchable": true },
+            { "orderable": false, "searchable": true },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false }
+        ]
+    })
+
+    $('#merchandiseDeleted-dtable').DataTable({
+        "columns":[
+            null,
+            { "orderable": false, "searchable": true },
+            { "orderable": false, "searchable": true },
+            { "orderable": false, "searchable": false },
+            { "orderable": false, "searchable": false }
+        ]
+    });
+
+    $('#messages-dtable').DataTable({
+        "columns": [
+            {"visible" : false, "type" : "num"},
+            {"orderData" : 0},
+            null,
+            null,
+            null,
+            null,
+            { "orderable": false, "searchable": false }
+        ]
+    });
+
+    $('#deleted-messages-dtable').DataTable({
+        "columns": [
+            {"visible" : false, "type" : "num"},
+            {"orderData" : 0},
+            null,
+            null,
+            null,
+            null,
+            { "orderable": false, "searchable": false }
+        ]
     });
 });
 
@@ -214,10 +303,9 @@ function removeSelectedFromGroup(groupID) {
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             url: '/a/group-management/' + groupID + '/' + rowId
         }).done(function (data) {
-            console.log(data);
             table.row($('*[id="' + rowId + '"').parents('tr')[0]).remove().draw();
         }).fail(function (err) {
-            console.error(err);
+            console.error(`Error removing contact(s) to team in the admin-app/removeSelectedFromGroup method: ${err}`);
         });
     });
 }
@@ -226,11 +314,20 @@ function removeSelectedFromGroup(groupID) {
  * This method adds all selected group members to another group selected by the 
  * user.
  * 
+ * Mode should be either 'customGroups' or 'systemGroups' as a string
+ * 
  * @param groupID
  */
-function copySelectedToGroup() {
+function copySelectedToGroup(mode) {
 
-    var contacts = $('#group-dtable').find('.dtable-checkbox:checkbox:checked');
+    if(mode == 'customGroups'){
+        var contacts = $('#group-dtable').find('.dtable-checkbox:checkbox:checked');
+    } else if(mode == 'systemGroups'){
+        var contacts = $('#system-group-dtable').find('.dtable-checkbox:checkbox:checked');
+    } else {
+        return;
+    }
+
     var toGroupId = $('#groupDropdown').val();
 
     // for each selected contact, add to group
@@ -245,20 +342,22 @@ function copySelectedToGroup() {
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             url: '/a/group-management/' + toGroupId + '/' + type + '/' + memberId 
         }).done(function (data){
-            console.log(data);
-        }).fail(function(err){
-            console.error(err);
-        });
 
+        }).fail(function(err){
+            console.error(`Error copying contact(s) to group in the admin-app/copySelectedToGroup method: ${err}`);
+        });
     });
 
-    // show success modal
-    var modal = $('#successModal');
-    var messageBox = $('#modal-message-success');
+    // show success alert
+    alert = $('#manualAlert');
+    alert.removeClass('d-none');    
+    $('#messageText').text('Successfully copied ' + contacts.length + ' contacts.');
 
-    messageBox.text('Successfully copied ' + contacts.length + ' to group.');
-    $('#successModal').modal('show');
-
+    // untick all checkboxes
+    $('#dtable-select-all').prop('checked', false);
+    contacts.each(function(){
+        $(this).prop('checked', false);
+    });
 }
 
 /**
@@ -281,8 +380,8 @@ function addSelectedToTeam(team){
             data: {'applicantId' : appId, 'team' : team}, 
         }).done(function(){
             location.reload();
-        }).fail(function(error){
-            console.log(error);
+        }).fail(function(err){
+            console.error(`Error adding applicant(s) to team in the admin-app/addSelectedToTeam method: ${err}`);
         });
 
     });
@@ -318,8 +417,8 @@ function removeApplicantFromTeam(applicantId){
         data: {'applicantId' : applicantId}, 
     }).done(function(){
         location.reload();
-    }).fail(function(error){
-        console.log(error);
+    }).fail(function(err){
+        console.error(`Error removing applicant from team in the admin-app/removeApplicantFromTeam - method: ${err}`);
     });
 }
 
@@ -328,6 +427,12 @@ function removeApplicantFromTeam(applicantId){
 $('body').on('change', '#dtable-select-all', function () {
     var rows, checked;
     rows = $('#group-dtable').find('tbody tr');
+    checked = $(this).prop('checked');
+    $.each(rows, function () {
+        var checkbox = $($(this).find('td').eq(0)).find('input').prop('checked', checked);
+    });
+
+    rows = $('#system-group-dtable').find('tbody tr');
     checked = $(this).prop('checked');
     $.each(rows, function () {
         var checkbox = $($(this).find('td').eq(0)).find('input').prop('checked', checked);
@@ -348,6 +453,41 @@ $('.dtable-control').on('click', function () {
     }
 });
 
+function editContactModal(id){
+
+    $.ajax({
+        method : "GET",
+        url : '/a/group-management/contacts/' + id
+    }).done(function(data){
+
+        form = $('#editContactForm');
+        deleteForm = $('#contactDeleteForm');
+
+        deleteForm.attr('action', deleteForm.data('action') + '/' + id);
+        form.attr('action', form.data('action') + '/' + id);
+
+        $('#contactName').val(data.name);
+        $('#contactPhone').val(data.phone);
+        $('#contactEmail').val(data.email);
+
+        $('#editContactModal').modal('show');
+
+    }).fail(function(err){
+        console.error(`Error getting contact information in the admin-app/editContactModal method: ${err}`);
+    })
+
+}
+
+function confirmAction(){
+    $('#buttonConfirmContact').removeClass('d-none');
+    $('#buttonDeleteContact').addClass('d-none');
+}
+
+function actionConfirmed(){
+    deleteForm = $('#contactDeleteForm');
+    deleteForm.submit();
+}
+
 function applicantManagementModal(id){
     
     $.ajax({
@@ -355,8 +495,8 @@ function applicantManagementModal(id){
         headers:  {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: `/a/event-management/applicants/${id}`
-    }).done((data) => {
+        url: '/a/event-management/applicants/' + id
+    }).done(function(data){
         var dob = new Date(data.dob);
         // Dynamically populate modal
 
@@ -376,21 +516,51 @@ function applicantManagementModal(id){
             $("#appGender").val("Female");
         }
         
-        $("#appEmail").val(data.email);                     $("#appPhone").val(data.phone);
-        $("#appMobile").val(data.mobile);                   $("#appAddress1").val(data.address_1);
+        $("#appEmail").val(data.email);                     $("#appPhone1").val(data.phone_1);
+        $("#appPhone2").val(data.phone_2);                   $("#appAddress1").val(data.address_1);
         $("#appAddress2").val(data.address_2);              $("#appSuburb").val(data.suburb);
         $("#appCity").val(data.city);                       $("#appPostCode").val(data.postcode);
 
-        // Physical Tab
-        $("#appHeight").val(data.height + "cm");           $("#appWeightC").val(data.current_weight + "kg");
-        $("#appWeightE").val(data.expected_weight + "kg");  $("#appSportingExperience").text(data.sporting_exp);
+        // Pesonal Tab
+        $("#appHeight").val(data.height + "cm");            $("#appWeightC").val(data.current_weight + "kg");
+        $("#appWeightE").val(data.expected_weight + "kg");  
         $('#fitnessLevel').text('This applicant rates their fitness at ' + data.fitness_rating + ' out of 5');
+        $("#dominantHand").text("This applicant is " + (data.right_handed ? 'right' : 'left') + "-handed");
         $("#appBoxingExperience").text(data.boxing_exp);
+        $("#appSportingExperience").text(data.sporting_exp);
         $('#hobbies').text(data.hobbies);
 
+        //Emergency Tab
+        $("#appEmergencyFirstName").val(data.emergency_first_name);             $("#appEmergencyLastName").val(data.emergency_last_name);
+        $("#appEmergencyRelationship").val(data.emergency_relationship);        $("#appEmergencyPhone1").val(data.emergency_phone_1);                     
+        $("#appEmergencyPhone2").val(data.emergency_phone_2);                    $("#appEmergencyEmail").val(data.emergency_email);                   
+
+        // Medical Tab 1
+        $("#appHeartDisease").val(data.heart_disease ? 'Yes' : 'No');                          $("#appBreathlessness").val(data.breathlessness ? 'Yes' : 'No');
+        $("#appEpilepsy").val(data.epilepsy ? 'Yes' : 'No');                                   $("#appHeartAttack").val(data.heart_attack ? 'Yes' : 'No');
+        $("#appStroke").val(data.stroke ? 'Yes' : 'No');                                       $("#appHeartSurgery").val(data.heart_surgery ? 'Yes' : 'No');
+        $("#appRespiratoryProblems").val(data.respiratory_problems ? 'Yes' : 'No');            $("#appCancer").val(data.cancer ? 'Yes' : 'No');
+        $("#appIrregularHeatbeat").val(data.irregular_heartbeat ? 'Yes' : 'No');               $("#appSmoking").val(data.smoking ? 'Yes' : 'No');
+        $("#appJointProblems").val(data.joint_pain_problems ? 'Yes' : 'No');                   $("#appChestPain").val(data.chest_pain_discomfort ? 'Yes' : 'No');
+        $("#appHypertension").val(data.hypertension ? 'Yes' : 'No');                           $("#appSurgery").val(data.surgery ? 'Yes' : 'No');
+        $("#appDizzinessFainting").val(data.dizziness_fainting ? 'Yes' : 'No');                $("#appCholesterol").val(data.high_cholesterol ? 'Yes' : 'No');
+
+        $("#appOther").text(data.other);
+
+        // Medical Tab 2
+        $("#appHeartCondtion").val(data.heart_condition ? 'Yes' : 'No');                       $("#appPhysicalChestPain").val(data.chest_pain_activity ? 'Yes' : 'No');
+        $("#appRecentChestPain").val(data.chest_pain_recent ? 'Yes' : 'No');                   $("#appPassedOut").val(data.lost_consciousness ? 'Yes' : 'No');
+        $("#appBoneJointProblems").val(data.bone_joint_problems ? 'Yes' : 'No');               $("#appMedicationBloodHeart").val(data.recommended_medication ? 'Yes' : 'No');
+
+        $("#appConcussed").val(data.concussed_knocked_out);
+        $("#appReason").val(data.other_reasons);
+        $("#appHandInjuries").val(data.hand_injuries);
+        $("#appPreviousCurrentInjuries").val(data.previous_current_injuries);
+        $("#appCurrentMedicaton").val(data.current_medication);
+
         // Additional Tab
-        $("#appOccupation").val(data.occupation);           $("#appEmployer").val(data.employer);
-        $("appConvictionDetails").text(data.conviction_details);
+        $("#appOccupation").val(data.occupation);                               $("#appEmployer").val(data.employer);
+        $("#appConvictionDetails").text(data.conviction_details);
 
         // Set Consent
         if(consent_to_test = 0){
@@ -406,10 +576,72 @@ function applicantManagementModal(id){
             $("#appSponsor").val("Yes");
         }
 
+        //Custom Tab
+        $('#custom_1').val(data.custom_one);
+        $('#custom_2').val(data.custom_two);
+        $('#custom_3').val(data.custom_three);
+        $('#custom_4').val(data.custom_four);
+        $('#custom_5').val(data.custom_five);
+
 
         $("#applicantMoreInfoModal").modal('show');
-    }).fail((error) => {
-        console.log(error);
+    }).fail(function(err) {
+        console.error(`Error applicant info in the admin-app/applicantManagementModal method: ${err}`);
+    });
+}
+
+function auctionCreateModal(){
+    $eventID = location.href.split('/')[5].slice(0,1);
+
+    //Set modal for creating auction item
+    $("#auctionForm").attr("action", "/a/auction-management/" + $eventID);
+    $('#hiddenMethod').val('POST');
+    $("#auctionModalTitle").text("Create Auction Item");
+    $("#auctionModalButton").text("Confirm");
+
+    //Set all text fields to empty
+    $("#auctionName").val("");
+    $("#auctionDescription").val("");
+    $("#auctionDonor").val("");
+    $("#auctionDonorUrl").val("");
+    $("#imgPreview").attr("src", '');
+
+    //Display the modal
+    $("#createEditAuctionItemModal").modal('show');
+}
+
+function auctionEditModal(id){
+    $.ajax({
+        method: "get",
+        headers:  {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: `/a/auction-management/auction/${id}`
+    }).done((data) => {
+        //Set modal for editing
+        $("#auctionForm").attr("action", "/a/auction-management/update/" + id);
+        $("#auctionModalTitle").text("Edit Auction Item");
+        $("#auctionModalButton").text("Save");
+        $("#hiddenMethod").val("PUT");
+
+        //Dynamically populate the modal with item info
+        $("#auctionName").val(data.name);
+        $("#auctionDescription").val(data.desc);
+        $("#auctionDonor").val(data.donor);
+        $("#auctionDonorUrl").val(data.donor_url);
+
+        //checks to see if the image exists and sets the imgPreview otherwise sets it to default
+        $.get("/storage/images/auction/" + data.id + ".png")
+        .done(function(){
+            $("#imgPreview").attr("src", "/storage/images/auction/" + data.id + ".png");
+        }).fail(function(){
+            $("#imgPreview").attr("src", "/storage/images/auction/0.png");
+        })                
+
+        //Display the modal
+        $("#createEditAuctionItemModal").modal('show');
+    }).fail((err) => {
+        console.error(`Error getting auction item information in the admin-app/auctionEditModal method: ${err}`);
     });
 }
 
@@ -419,3 +651,254 @@ function calculate_age (data) {
     age = Math.floor(age/1000/60/60/24/365);
     return age;
 };
+
+// Application delete script
+$(document).ready(function(){
+
+    $('#deleteAppBtn').on('click', function(){
+
+        $(this).addClass('d-none');
+        $(this).removeClass('d-inline');
+        $('#confirmDeleteAppBtn').addClass('d-inline');
+
+    });   
+
+});
+
+function confirmApplicantDelete(app){
+
+    $('#deleteAppBtn').addClass('d-inline');
+    $('#confirmDeleteAppBtn').removeClass('d-inline');
+
+    modal = $('#confirmDeleteApplicantModal');
+    form = $('#confirmDeleteApplicantForm');
+    title = $('#deleteAppName');
+    title.text('Remove: ' + app.first_name + " " + app.last_name);
+
+    form.prop('action', form.data('action') + '/' + app.id);
+
+    modal.modal('show');
+}
+
+// Custom mail functions
+$(document).ready(function(){
+
+    $('#mailPreviewBtn').on('click', function(){
+
+        message = CKEDITOR.instances['messageText'].getData();
+        action = $(this).data('url');
+        
+        // ajax call to add to team
+        $.ajax({
+            type: 'POST',
+            headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+            url: action,
+            data: {'messageText' : message}, 
+        }).done(function(data){
+            // open a new tab/window and write the returned html to it
+            var win = window.open();
+            win.document.write(data);
+        }).fail(function(err){
+            console.error(`Error getting mail content in the admin-app/mailPreviewBtn method: ${err}`);
+        });
+
+        
+    });
+
+    $('#sendBtn').on('click', function(){
+
+        // hide self and preview buttons
+        $('#mailPreviewBtn').addClass('d-none');
+        $('#promptText').addClass('d-none');
+        $(this).addClass('d-none');
+        $(this).removeClass('d-inline');
+
+        // show confirm and abort buttons
+        $('#confirmSendBtn').removeClass('d-none');
+        $('#abortSendBtn').removeClass('d-none');
+
+    });
+
+    $('#abortSendBtn').on('click', function(){
+
+        // show send and preview buttons
+        $('#mailPreviewBtn').removeClass('d-none');
+        $('#sendBtn').removeClass('d-none');
+        $('#sendBtn').addClass('d-inline');
+        $('#promptText').removeClass('d-none');
+
+        // hide confirm and abort buttons
+        $('#confirmSendBtn').addClass('d-none');
+        $(this).addClass('d-none');
+
+    });
+
+
+    $('#multipleGroupSelect').change(function(){
+        // this is important as the fSelect doesn't seem to support straightforward
+        // front end validation. So this hidden checkbox (actually not hidden, but transparent)
+        // will enable the validation instead. It ticks when groups are selected, and unticks
+        // when none are selected.
+        if($(this).val().length != 0){
+            $('#hiddenCheck').prop('checked', true);
+            $('#hiddenCheck')[0].oninput();
+        } else{
+            $('#hiddenCheck').prop('checked', false);
+        }
+
+    })
+
+})
+
+//Sets the modal for creating merchandise item and then displays it
+function merchandiseCreateModal(){
+    $("#merchandiseForm").attr("action", "/a/merchandise-management");
+    $('#hiddenMethod').val('POST');
+    $("#merchandiseModalTitle").text("Create Merchandise Item");
+    $("#merchandiseModalButton").text("Confirm");
+
+    //Set all text fields to empty
+    $("#merchandiseName").val("");
+    $("#merchandiseTagline").val("");
+    $("#merchandiseDescription").val("");
+    $("#merchandisePrice").val("");
+    $("#imgPreview").attr("src", '');
+
+    //Display the modal
+    $("#createEditMerchandiseItemModal").modal('show');
+}
+
+//Sets the modal for editing merchandise item dynamically populates the fields and then displays it
+function merchandiseEditModal(id){
+    $.ajax({
+        type: "get",
+        headers:  {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: `/a/merchandise-management/merchandise/${id}`
+    }).done((data) => {
+        //Set modal for editing
+        $("#merchandiseForm").attr("action", "/a/merchandise-management/update/" + id);
+        $("#merchandiseModalTitle").text("Edit Merchandise Item");
+        $("#merchandiseModalButton").text("Save");
+        $("#hiddenMethod").val("PUT");
+
+        //Dynamically populate the modal with item info
+        $("#merchandiseName").val(data.name);
+        $("#merchandiseTagline").val(data.tagline);
+        $("#merchandiseDescription").val(data.desc);
+        $("#merchandisePrice").val(data.price);
+        
+        //checks to see if the image exists and sets the imgPreview otherwise sets it to default
+        $.get("/storage/images/merchandise/" + data.id + ".png")
+        .done(function(){
+            $("#imgPreview").attr("src", "/storage/images/merchandise/" + data.id + ".png");
+        }).fail(function(){
+            $("#imgPreview").attr("src", "/storage/images/merchandise/0.png");
+        })       
+
+        //Display the modal
+        $("#createEditMerchandiseItemModal").modal('show');
+    }).fail((err) => {
+        console.error(`Error getting merchandise information in the admin-app/nerchandiseEditModal method: ${err}`);
+    });
+}
+
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+})
+
+// File upload functions
+function fileUpdateModal(id){
+
+    
+
+    form = $('#fileUpdateForm');
+    modal = $('#updateModal');
+
+    url = "/a/dashboard/uploads/" + id;
+
+    form.prop('action', form.data('action') + '/' + id);
+
+    $.ajax({
+        method : 'GET',
+        url : url,
+    }).done(function(data){
+        $('#updateDisplaySelect').val(data.display_location);
+        modal.modal('show');
+
+    }).fail(function(err){
+        console.error(`Error adding file in the admin-app/fileUpdateModal method: ${err}`);
+    })
+
+}
+
+// below works for both file uploads on dashboard and emails
+$(document).ready(function(){
+    $('#fileUpload').change(function(e){
+        var clearBtn = $('#clearAttachmentsBtn');
+        
+        var fileCount = e.target.files.length;
+
+        fileNamesString = '';
+
+        for(i = 0; i < fileCount; i++){
+            fileNamesString += ((i > 0 ? ', ' : '') + e.target.files[i].name);
+        }
+
+        if(fileNamesString != ''){  
+            $('#fileName').removeClass('d-none');
+            $('#fileName').text(fileNamesString);
+        } else{
+            $('#fileName').addClass('d-none');
+        }
+
+        if(fileCount > 0){
+            clearBtn.removeClass('d-none');
+        }else{
+            clearBtn.addClass('d-none');
+        }
+    });    
+});
+
+$('#clearAttachmentsBtn').on('click', function(e){
+    // to reset the input, we wrap it with a temp form, 
+    // reset that form, then unwrap it. This is because the only 
+    // way to change or clear a file input is by form reset. For security reasons.
+    // https://www.gyrocode.com/articles/how-to-reset-file-input-with-javascript/
+
+    var $file = $('#fileUpload').first();
+
+    $file.wrap('<form>').closest('form').get(0).reset();
+    $file.unwrap();
+
+    $file.change();
+});
+
+//This method resets the charity logo after the modal is dismissed
+$(document).ready(function(){
+    $("#eventDetailsModal").on('hidden.bs.modal', function (e){
+        $id = location.href.split('/')[5].slice(0,1);
+
+        $.get('/storage/images/charity/' + $id + '.png')
+        .done(function(){
+            $("#logoPreview").attr("src", "/storage/images/charity/" + $id + ".png");
+        }).fail(function(){
+            $("#logoPreview").attr("src", "/storage/images/charity/0.png");
+        })
+    })
+});
+
+//This method sets the sponsor logo after the modal is dismissed
+$(document).ready(function(){
+    $("#sponsorDetailsModal").on('hidden.bs.modal', function (e){
+        $id = location.href.split('/')[5].slice(0,1);
+
+        $.get('/storage/images/sponsors/' + $id + '.png')
+        .done(function(){
+            $("#logoPreview").attr("src", "/storage/images/sponsors/" + $id + ".png");
+        }).fail(function(){
+            $("#logoPreview").attr("src", "/storage/images/sponsors/0.png");
+        })
+    })
+});
