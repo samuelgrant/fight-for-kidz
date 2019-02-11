@@ -121,7 +121,7 @@
 
                     <div class="form-group">
                         <label for="dateTime">
-                                <i class="fas fa-info-circle" data-toggle="tooltip" title="The date and time of the main event; This can be used to display a countdown on the main page."></i>  
+                                <i class="fas fa-info-circle" data-toggle="tooltip" title="The date and time of the main event."></i>  
                             Date Time
                         </label>
                         <input type="datetime-local" name="dateTime" id="dateTime" class="form-control" required>
