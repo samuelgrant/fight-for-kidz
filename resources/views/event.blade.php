@@ -374,7 +374,7 @@
                           <td>&nbsp;Donor: <span id="auctionItemDonorSpan"></span></td>
                         </tr>
                         <tr id="auctionTableDonorUrl">
-                          <td>&nbsp;DonorUrl: <span><a href="" id="auctionItemDonorUrlSpan"></span></td>
+                          <td>&nbsp;Donor Url: <span><a href="" id="auctionItemDonorUrlSpan"></span></td>
                         </tr>
                       </tbody>
                     </table>
