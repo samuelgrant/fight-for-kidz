@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
 
         Log::debug('scheduler run at ' . now());
 
-        $schedule->command('queue:work')->everyMinute()->withoutOverlapping();
+        $schedule->command('queue:work --tries=3')->everyMinute()->withoutOverlapping();
     }
 
     /**
