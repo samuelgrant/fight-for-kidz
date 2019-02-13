@@ -39,6 +39,10 @@
                         <td>{{$event->venue_address}}</td>
                     </tr>
                     <tr>
+                        <td>Event Sponsor:</td>
+                        <td>{{$event->event_sponsor}}</td>
+                    </tr>
+                    <tr>
                         <td>Charity:</td>
                         <td>{{$event->charity}}</td>
                     </tr>
