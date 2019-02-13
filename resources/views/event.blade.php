@@ -15,12 +15,16 @@
 						<a class="d-block" href="{{Storage::disk('documents')->url($doc->filename)}}" download="{{$doc->originalName}}">{{$doc->originalName}}</a>						@endforeach
 					</div>
           @endif
+          {{-- if event sponsor is set show this section --}}
+          @if()
           <div>
             <h3>Proudly sponsored by</h3>
           </div>
           <div>
-            <img src="http://www.007museum.com/cessna172h_dk.jpg" alt="" max-width="400px;">
+            <img src="" alt="" max-width="400px;">
+            {{-- src="{{file_exists(public_path('/storage/images/contenders/' . $bout->blue_contender->id . '.png')) ? '/storage/images/contenders/' . $bout->blue_contender->id . '.png' : '/storage/images/contenders/0.png'}}" --}}
           </div>
+          @endif
 				</div>
 				<div class="col-lg-4 col-md-6 col-sm-12 text-white text-right results mt-5">
 					<p class="all-caps sidebar-heading">Date/Time</p>
