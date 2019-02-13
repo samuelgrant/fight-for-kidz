@@ -98,7 +98,7 @@
                                     <select class="form-control" id="contenderSponsor" name="contenderSponsor">
                                             <option value="0">--- No sponsor ---</option>
                                         @foreach($event->sponsors as $sponsor)
-                                            <option value="{{$sponsor->id}}">{{$sponsor->company_name}}</option>
+                                            <option value="{{$sponsor->id}}" @if($event_sponsor = $sponsor->id)selected="selected" @endif>{{$sponsor->company_name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -193,6 +193,15 @@
                             <span class="ml-3" data-toggle="tooltip" data-placement="top" title="Required format: https://www.example.com">
                                 <i class="fas fa-exclamation-circle float-right"></i></span>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="contenderSponsor">Sponsor:</label>
+                        <select class="form-control" id="eventSponsor" name="eventSponsor">
+                                <option value="0">--- No sponsor ---</option>
+                            @foreach($event->sponsors as $sponsor)
+                                <option value="{{$sponsor->id}}">{{$sponsor->company_name}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="ticketsWebsite">Buy Tickets (Seats) URL</label>
