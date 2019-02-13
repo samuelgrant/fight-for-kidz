@@ -161,7 +161,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <form method="post" action="{{route('admin.eventManagement.update', ['eventID' => $event->id])}}">
+                <form method="post" action="{{route('admin.eventManagement.update', ['eventID' => $event->id])}}"  enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="eventName">Name:</label>
                         <input type="text" name="name" id="eventName" class="form-control" value="{{$event->name}}" required>
@@ -187,9 +187,29 @@
                         <input type="text" name="charity" id="eventCharity" class="form-control" value="{{$event->charity}}" required>
                     </div>
                     <div class="form-group">
-                        <label for="ticketsWebsite">Buy Tickets (Seats) URL</label>
-                        <input type="text" name="tickets" id="ticketWebsite" class="form-control" value="{{$event->ticket_seller_url}}">
+                        <label for="eventCharitUrly">Charity Url</label>
+                        <div class="input-group">
+                            <input type="text" name="charityUrl" id="eventCharityUrl" class="form-control" value="{{$event->charity_url}}">
+                            <span class="ml-3" data-toggle="tooltip" data-placement="top" title="Required format: https://www.example.com">
+                                <i class="fas fa-exclamation-circle float-right"></i></span>
+                        </div>
                     </div>
+                    <div class="form-group">
+                        <label for="ticketsWebsite">Buy Tickets (Seats) URL</label>
+                        <div class="input-group">
+                            <input type="text" name="tickets" id="ticketWebsite" class="form-control" value="{{$event->ticket_seller_url}}">
+                            <span class="ml-3" data-toggle="tooltip" data-placement="top" title="Required format: https://www.example.com">
+                                <i class="fas fa-exclamation-circle float-right"></i></span>
+                        </div>
+                    </div>
+                    <div class="card w-50 mx-auto text-center mb-3">
+                        <label for="logo">Charity Logo:</label>
+                        <img class="logoPreview img-fluid" id="logoPreview" src="/storage/images/charity/{{file_exists(public_path('storage/images/charity/' . $event->id . '.png')) ? $event->id : '0' }}.png">
+                        <label for="charityLogo" class="btn btn-primary mb-0">Change
+                            <input type="file" name="charityLogo" id="charityLogo" class="form-control" hidden>
+                        </label>
+                    </div>
+                    
                     @csrf
                     {{method_field('PUT')}}
                     <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
@@ -275,14 +295,14 @@
                                         <div class="row">
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
-                                                    <label>Phone:</label>
-                                                    <input type="text" id="appPhone"  readonly class="form-control-plaintext gray-card" />
+                                                    <label>Phone 1:</label>
+                                                    <input type="text" id="appPhone1"  readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
                                                 <div class="form-group">
-                                                    <label>Mobile:</label>
-                                                    <input type="text" id="appMobile"  readonly class="form-control-plaintext gray-card" />
+                                                    <label>Phone 2:</label>
+                                                    <input type="text" id="appPhone2"  readonly class="form-control-plaintext gray-card" />
                                                 </div>
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-sm-12">
@@ -412,14 +432,14 @@
                                 <div class="row">
                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label>Phone:</label>
-                                            <input type="text" id="appEmergencyPhone"  readonly class="form-control-plaintext gray-card" />
+                                            <label>Phone 1:</label>
+                                            <input type="text" id="appEmergencyPhone1"  readonly class="form-control-plaintext gray-card" />
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                         <div class="form-group">
-                                            <label>Mobile:</label>
-                                            <input type="text" id="appEmergencyMobile"  readonly class="form-control-plaintext gray-card" />
+                                            <label>Phone 2:</label>
+                                            <input type="text" id="appEmergencyPhone2"  readonly class="form-control-plaintext gray-card" />
                                         </div>
                                     </div>
                                     <div class="col-lg-4 col-md-6 col-sm-12">
@@ -546,53 +566,55 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row">
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Medically Supervised Activity:</label>
+                                                <input type="text" id="appHeartCondtion" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Chest pain brought on by physical activity:</label>
+                                                <input type="text" id="appPhysicalChestPain" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Onset of Recent Chest Pain:</label>
+                                                <input type="text" id="appRecentChestPain" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                                <div class="form-group">
+                                                    <label>Passed out due to dizziness:</label>
+                                                    <input type="text" id="appPassedOut" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                                </div>
+                                            </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Bone or Joint Problems:</label>
+                                                <input type="text" id="appBoneJointProblems" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="form-group">
+                                                <label>Medication for Blood Pressure or Heart:</label>
+                                                <input type="text" id="appMedicationBloodHeart" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                            </div>
+                                        </div>
+                                    </div>
                             </fieldset>
                         </div>
                         <div role="tabpanel" class="tab-pane" id="applicantMedical2">
                             <fieldset class="mx-0 my-1 mt-3 px-3" style="border: 1px solid; width:764px;">
-                                <div class="row pt-3">
-                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="row  pt-3">
+                                    <div class="col-12">
                                         <div class="form-group">
-                                            <label>Medically Supervised Activity:</label>
-                                            <input type="text" id="appHeartCondtion" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Chest pain brought on by physical activity:</label>
-                                            <input type="text" id="appPhysicalChestPain" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Onset of Recent Chest Pain:</label>
-                                            <input type="text" id="appRecentChestPain" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Passed out due to dizziness:</label>
-                                            <input type="text" id="appPassedOut" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Bone or Joint Problems:</label>
-                                            <input type="text" id="appBoneJointProblems" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Medication for Blood Pressure or Heart:</label>
-                                            <input type="text" id="appMedicationBloodHeart" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-3 col-md-6 col-sm-12">
-                                        <div class="form-group">
-                                            <label>Knocked Out/Concussed</label>
-                                            <input type="text" id="appKnockedOut" readonly class="form-control-plaintext gray-card" style="width: 40px;" />
+                                            <label>Explain your losses of consciousness:</label>
+                                            <textarea rows="4" cols="50" id="appConcussed"  readonly class="form-control-plaintext gray-card"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -615,7 +637,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="form-group">
-                                            <label>Previous or current injuries:</label>
+                                            <label>Previous significant injuries (especially head injuries):</label>
                                             <textarea rows="4" cols="50" id="appPreviousCurrentInjuries"  readonly class="form-control-plaintext gray-card"></textarea>
                                         </div>
                                     </div>
@@ -766,12 +788,12 @@
                     </div>
 
                     <div class="card w-50 mx-auto text-center mb-3">
-                            <label for="logo">Item Image:</label>
-                            <img class="logoPreview img-fluid" id="imgPreview">
-                            <label for="itemImage" class="btn btn-primary mb-0">Change
-                                <input type="file" name="itemImage" id="itemImage" class="form-control" hidden>
-                            </label>
-                        </div>
+                        <label for="logo">Item Image:</label>
+                        <img class="imgPreview img-fluid" id="imgPreview">
+                        <label for="itemImage" class="btn btn-primary mb-0">Change
+                            <input type="file" name="itemImage" id="itemImage" class="form-control" hidden>
+                        </label>
+                    </div>
                     
                     <button type="submit" id="auctionModalButton" class="btn btn-success float-right"></button>
 

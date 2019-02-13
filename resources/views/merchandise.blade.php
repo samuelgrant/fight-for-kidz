@@ -13,7 +13,7 @@
             <div class="card">
                 <div class="item-details-fixed">
                     <h3 class="mb-5">{{$item->name}}</h5>
-					<img class="mb-2" src="{{file_exists(public_path('/storage/images/merchandise/' . $item->id . '.png')) ? '/storage/images/merchandise/' . $item->id . '.png' : '/storage/images/noImage.png'}}"
+					<img class="mb-2" src="{{file_exists(public_path('/storage/images/merchandise/' . $item->id . '.png')) ? '/storage/images/merchandise/' . $item->id . '.png' : '/storage/images/merchandise/0.png'}}"
 					width="200" max-height="100">
 					<p><i>{{$item->tagline}}</i></p>
 					<p>{{$item->desc}}</p>					
@@ -25,4 +25,4 @@
         @endforeach
     </div>
 </div>
-@endsection
+@endsection 

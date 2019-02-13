@@ -1,11 +1,11 @@
 @extends('layouts.app') 
 @section('content')
 
-<div style="background-color: black;">
+<div class="container-fluid" style="background-color: black;">
 	<section class="upcoming-section">
 		<div class="container">
 			<div class="row pb-5">
-				<div class="col-lg-8 col-md-6 col-col-sm-12 pt-5">
+				<div class="col-lg-8 col-md-6 col-col-sm-12 pt-5 px-4">
 					<h1 class="text-white underline bar">{{$event->name}}</h1>
 					<p class="text-justify">{{$event->desc_1}}</p>
 					@if(App\Document::where('display_location', 'Event')->get()->count() > 0)
@@ -27,7 +27,14 @@
             <i class="fas fa-link"></i> {{$event->charity}}
           </a> @else
 					<p class="stat">{{$event->charity}}</p>
-					@endif
+          @endif
+          @if(file_exists(public_path('storage/images/charity/'. $event->id . '.png')))
+            @if($event->charity_url)
+              <a href="{{$event->charity_url}}"><img id="charityLogo" src="{{'/storage/images/charity/' .  $event->id . '.png'}}" style="width: 150px;"></a>
+            @else
+              <img id="charityLogo" src="{{'/storage/images/charity/' .  $event->id . '.png'}}" style="width: 150px;">
+            @endif
+          @endif
 				</div>
 			</div>
 		</div>
@@ -60,7 +67,7 @@
 
 	<!-- Sponsors Section -->
 	@if(count($event->sponsors) > 3)
-	<section id="sponsors-section">
+	<section id="sponsors-section" style="border-top: 2px solid black;">
 		<h2 class="text-center text-dark">Event Sponsors</h2>
 		<div class="slick-sponsors">
 			@foreach($event->sponsors as $sponsor) {{-- only show logo in sponsors bar if the image file for it exists --}} @if(file_exists(public_path('storage/images/sponsors/'
@@ -87,6 +94,70 @@
     <!-- counter used to name bouts -->
     @foreach($event->bouts as $bout)
     @if($bout->contendersSet()) {{-- Only use bouts that have contenders set, this prevents crash --}}
+
+    @if($event->isFutureEvent()) {{--Sets the bout cards of an upcoming event --}}
+    <!-- Each bout will create one column -->
+    <div class="col-lg-6 bout-column">
+
+      <!-- Each bout has a bout header -->
+      <div class="bout-card">
+        <div class="bout-header">
+          <h2>BOUT {{++$i}}</h2>
+          {{-- <p class="sponsored-by">sponsored by</p> --}}
+          @if($bout->sponsor)
+            <div class="sponsor-badge">
+              <div class="vertical-aligner"></div><a href="{{$bout->sponsor->url}}" target="_blank"><img style="max-height:60px;" src="{{'/storage/images/sponsors/' . $bout->sponsor->id . '.png'}}" class="img-fluid bout-sponsor"></a>
+            </div>
+          @endif
+        </div>
+
+        <!-- Each bout card will contain two contender-cards -->
+        <div class="contender-card contender-card-red">
+          <div class="contender-card-inner">
+            <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->red_contender->id . '.png')) ? '/storage/sponsors/contenders/' . $bout->red_contender->id . '.png' : '/storage/images/contenders/0.png'}}"
+              class="mx-auto contender-img" height="89">
+            <div class="contender-name">
+              <h5>{{$bout->red_contender->first_name}}</h5>
+              <h4>{{$bout->red_contender->nickname}}</h4>
+              <h5>{{$bout->red_contender->last_name}}</h5>
+            </div>
+
+            {{-- Sponsor Logo --}}
+            <label for="red-sponsor" style="font-size:14px">Sponsored by</label>
+            <img id="red-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png')) ?
+              '/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png' : '/storage/images/sponsors/0.png'}}"
+              class="mx-auto contender-img" style="height:89px;">
+
+            <div class="bout-btn bout-btn-red bio-view-button" data-toggle="modal" data-target="#bio-modal"
+              data-contenderId="{{$bout->red_contender->id}}">View Bio</div>
+            <div class="bout-btn bout-btn-red" onclick="window.open('{{$bout->red_contender->donate_url ?? 'https://givealittle.co.nz'}}', '_blank')">Donate</div>
+          </div>
+        </div>
+
+        <div class="contender-card contender-card-blue">
+          <div class="contender-card-inner">
+            <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->blue_contender->id . '.png')) ? '/storage/images/contenders/' . $bout->blue_contender->id . '.png' : '/storage/images/contenders/0.png'}}"
+              class="mx-auto contender-img" height="89">
+            <div class="contender-name">
+              <h5>{{$bout->blue_contender->first_name}}</h5>
+              <h4>{{$bout->blue_contender->nickname}}</h4>
+              <h5>{{$bout->blue_contender->last_name}}</h5>
+            </div>
+
+            {{-- Sponsor Logo --}}
+            <label for="red-sponsor" style="font-size:14px">Sponsored by</label>
+            <img id="red-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png')) ?
+              '/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png' : '/storage/images/sponsors/0.png'}}"
+              class="mx-auto contender-img" style="height:89px;">
+
+            <div class="bout-btn bout-btn-blue bio-view-button" data-toggle="modal" data-target="#bio-modal"
+              data-contenderId="{{$bout->blue_contender->id}}">View Bio</div>
+            <div class="bout-btn bout-btn-blue" onclick="window.open('{{$bout->blue_contender->donate_url ?? 'https://givealittle.co.nz'}}', '_blank')">Donate</div>
+          </div>
+        </div>
+      </div>
+    </div> <!-- end each bout -->
+    @elseif(!$event->isFutureEvent())
     <!-- Each bout will create one column -->
     <div class="col-lg-6 bout-column">
 
@@ -112,9 +183,15 @@
               <h4>{{$bout->red_contender->nickname}}</h4>
               <h5>{{$bout->red_contender->last_name}}</h5>
             </div>
+
+            {{-- Sponsor Logo --}}
+            <label for="red-sponsor" style="font-size:14px">Sponsored by</label>
+            <img id="red-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png')) ?
+              '/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png' : '/storage/images/sponsors/0.png'}}"
+              class="mx-auto contender-img" style="height:89px;">
+
             <div class="bout-btn bout-btn-red bio-view-button" data-toggle="modal" data-target="#bio-modal"
               data-contenderId="{{$bout->red_contender->id}}">View Bio</div>
-            <div class="bout-btn bout-btn-red" onclick="window.open('{{$bout->red_contender->donate_url ?? 'https://givealittle.co.nz'}}', '_blank')">Donate</div>
           </div>
         </div>
 
@@ -126,21 +203,36 @@
               <h5>{{$bout->blue_contender->first_name}}</h5>
               <h4>{{$bout->blue_contender->nickname}}</h4>
               <h5>{{$bout->blue_contender->last_name}}</h5>
-              <div class="bout-btn bout-btn-blue bio-view-button" data-toggle="modal" data-target="#bio-modal"
-                data-contenderId="{{$bout->blue_contender->id}}">View Bio</div>
-              <div class="bout-btn bout-btn-blue" onclick="window.open('{{$bout->blue_contender->donate_url ?? 'https://givealittle.co.nz'}}', '_blank')">Donate</div>
+            </div>
+
+            {{-- Sponsor Logo --}}
+            <label for="blue-sponsor" style="font-size:14px">Sponsored by</label>
+            <img id="blue-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->blue_contender_id)->sponsor_id . '.png')) ?
+              '/storage/images/sponsors/' . App\Contender::find($bout->blue_contender_id)->sponsor_id . '.png' : '/storage/images/sponsors/0.png'}}"
+              class="mx-auto contender-img" style="height:89px;">
+
+            <div class="bout-btn bout-btn-blue bio-view-button" data-toggle="modal" data-target="#bio-modal"
+              data-contenderId="{{$bout->blue_contender->id}}">View Bio
             </div>
           </div>
         </div>
+        
+        @if($bout->video_url != null)
+        <div class="bout-footer mx-auto">
+            <div class="bout-btn bout-btn-fight fight-view-btn"  data-toggle="modal" data-target="#fight-video-modal"
+            data-bout-id="{{$bout->id}}">Watch the Fight!</div>
+        </div>
+        @endif
       </div>
     </div> <!-- end each bout -->
+    @endif
     @endif
     @endforeach
 
   </div> <!-- end all bouts -->
 
 
-<!-- Dynamic modal -->
+<!-- Dynamic bio modal -->
 <div id="bio-modal" class="modal fade pt-3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
   style="display: none; z-index:4005;">
   <div class="modal-dialog modal-lg">
@@ -149,16 +241,22 @@
       <div class="modal-body contender-modal-body pl-0">
 
         {{-- Dynamic content will load here --}}
-        <div id="dynamic-content" style="color:black;">
+        <div class="dynamic-content" style="color:black;">
 
 
           <div class="text-center text-white">
             <h3 id=first-name class="d-inline mx-2"></h3>
             <h2 id="nickname" class="d-inline"></h2>
             <h3 id="last-name" class="d-inline mx-2"></h3>
-            <hr class="ml-3">
             <iframe width="638" height="315" id="bio-vid" src="" frameborder="0" allow="autoplay; encrypted-media;"
-              allowfullscreen></iframe>
+              allowfullscreen style="border-bottom: 1px solid white; border-top: 1px solid white;">
+          </iframe>
+
+            {{-- Sponsor logo --}}
+            <div id="bio-sponsor-div" class="col-lg-6 pt-2 mx-auto text-center d-none">
+              <label for="bio-sponsor" style="width:100%;">Sponsored by...</label>
+              <img id="bio-sponsor" class="img-fluid" style="height: 100px;">
+            </div>
 
             <div class=" px-4 py-3 text-white text-justify">
               <h3 class="bio-label"></h3>
@@ -166,7 +264,7 @@
             </div>
 
             <div class="row pl-3">
-              <div class="col-lg-6"><img id="bio-image" class="img-fluid"></div>
+              <div class="col-lg-4"><img id="bio-image" class="img-fluid"></div>
               <div class="col-lg-6">
                 <h5 class="text-center text-white">My Stats:</h5>
                 <table id="contenderTable" class="table table-sm text-center">
@@ -223,7 +321,7 @@
             @if($a % 2 != 0)
             <div class="auctionItem-card auctionItem-card-red">
               <div class="auctionItem-card-inner">
-                <img src="{{file_exists(public_path('/storage/images/auction/' . $auction->id . '.png')) ? '/storage/images/auction/' . $auction->id . '.png' : '/storage/images/noImage.png'}}"
+                <img src="{{file_exists(public_path('/storage/images/auction/' . $auction->id . '.png')) ? '/storage/images/auction/' . $auction->id . '.png' : '/storage/images/auction/0.png'}}"
                   class="mx-auto auctionItem-img">
                 <div class="auctionItem-name">
                   <h5>{{$auction->name}}</h5>
@@ -234,7 +332,7 @@
             @elseif($a % 2 == 0)
             <div class="auctionItem-card auctionItem-card-blue ">
               <div class="auctionItem-card-inner">
-                <img src="{{file_exists(public_path('/storage/images/auction/' . $auction->id . '.png')) ? '/storage/images/auction/' . $auction->id . '.png' : '/storage/images/noImage.png'}}"
+                <img src="{{file_exists(public_path('/storage/images/auction/' . $auction->id . '.png')) ? '/storage/images/auction/' . $auction->id . '.png' : '/storage/images/auction/0.png'}}"
                   class="mx-auto auctionItem-img">
                 <div class="auctionItem-name">
                   <h5>{{$auction->name}}</h5>
@@ -259,7 +357,7 @@
         <div class="modal-body auction-modal-body pt-2">
   
           {{-- Dynamic content will load here --}}
-          <div id="dynamic-content" style="color:black;">
+          <div class="dynamic-content" style="color:black;">
             <div class="text-center mt-2">
               <h2 id=auctionItemName class="d-inline"></h2>
               <hr>
@@ -276,7 +374,7 @@
                           <td>&nbsp;Donor: <span id="auctionItemDonorSpan"></span></td>
                         </tr>
                         <tr id="auctionTableDonorUrl">
-                          <td>&nbsp;DonorUrl: <span><a href="" id="auctionItemDonorUrlSpan"></span></td>
+                          <td>&nbsp;Donor Url: <span><a href="" id="auctionItemDonorUrlSpan"></span></td>
                         </tr>
                       </tbody>
                     </table>
@@ -297,4 +395,35 @@
     </div>
   </div> {{-- End of auction-info-modal --}}
 @endif
+
+<!-- Dynamic fight video modal -->
+<div id="fight-video-modal" class="modal fade pt-3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
+  style="display: none; z-index:4005;">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+
+      <div class="modal-body contender-modal-body pl-0">
+
+        {{-- Dynamic content will load here --}}
+        <div class="dynamic-content" style="color:black;">
+
+
+          <div class="text-center text-white">
+            <h3 id="red-corner" class="d-inline mx-2"></h3>
+            <h5 class="d-inline">V.</h5>
+            <h3 id="blue-corner" class="d-inline mx-2"></h3>
+            <hr class="ml-3">
+            <iframe width="638" height="315" id="fight-vid" src="" frameborder="0" allow="autoplay; encrypted-media;"
+              allowfullscreen></iframe>
+
+          </div>
+          <div class="modal-footer contender-modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> {{-- close bio-modal --}}
+</div>
 @endsection

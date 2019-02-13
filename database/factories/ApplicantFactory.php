@@ -22,8 +22,8 @@ $factory->define(App\Applicant::class, function (Faker $faker) {
         'suburb' => $faker->city(),
         'city' => $faker->city(),
         'postcode' => $faker->randomNumber(4, true),
-        'phone' => $faker->phoneNumber(),
-        'mobile' => $faker->phoneNumber(),
+        'phone_1' => $faker->phoneNumber(),
+        'phone_2' => $faker->phoneNumber(),
         'email' => $faker->unique()->email(),
 
         //Section 2 - Personal Details
@@ -42,8 +42,8 @@ $factory->define(App\Applicant::class, function (Faker $faker) {
         'emergency_first_name' => $e_firstName,
         'emergency_last_name' => $lastName,
         'emergency_relationship' => $relationship,
-        'emergency_phone' => $faker->phoneNumber(),
-        'emergency_mobile' => $faker->phoneNumber(),
+        'emergency_phone_1' => $faker->phoneNumber(),
+        'emergency_phone_2' => $faker->phoneNumber(),
         'emergency_email' => $faker->unique()->email(),
 
         //Section 4 - Sporting Experience
@@ -80,7 +80,7 @@ $factory->define(App\Applicant::class, function (Faker $faker) {
         'lost_consciousness' => $faker->numberBetween(0, 1),
         'bone_joint_problems' => $faker->numberBetween(0, 1),
         'recommended_medication' => $faker->numberBetween(0, 1),
-        'concussed_knocked_out' => $faker->numberBetween(0, 1),
+        'concussed_knocked_out' => null,
         'other_reasons' => null,    
 
         //Section 6 - Additional Information

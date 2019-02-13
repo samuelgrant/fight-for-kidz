@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \App\Console\Commands\images\defaults::class,
         \App\Console\Commands\images\purge::class,
+        \App\Console\Commands\setupscript::class,
     ];
 
     /**

@@ -16,8 +16,8 @@ class Image //extends Model
      */
     public static function storeAsPng($image, $path, $name){
         //this checks to see if the supplied directory exists, if it doesn't it creates it
-        $dir = storage_path('app\\' . $path);
-
+        $dir = storage_path('app/' . $path);
+        
         if(!file_exists($dir)){
             mkdir($dir);
         }
@@ -36,7 +36,7 @@ class Image //extends Model
 
         if(isset($jpgImage)){
             // Create a png from the jpg image and output to file
-            imagepng($jpgImage, storage_path('\app\\' . $path . $name));
+            imagepng($jpgImage, storage_path('app/' . $path . $name));
         } else {
             // Save png to file
             $image->storeAs($path, $name);

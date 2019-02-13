@@ -38,6 +38,12 @@
                         <td>Charity:</td>
                         <td>{{$event->charity}}</td>
                     </tr>
+                    <tr>
+                        <td>Charity logo:</td>
+                        <td>
+                            <img class="img-fluid" style="max-width: 160px; max-height: 100px"  src="/storage/images/charity/{{file_exists(public_path('storage/images/charity/' . $event->id . '.png')) ? $event->id : '0' }}.png">
+                        </td>
+                    </tr>
                 </table>
             </div>
         </div>
@@ -233,7 +239,7 @@
             </div>
             <div class="modal-body">
                 <form action="{{route('admin.uploadFile')}}" method="POST" enctype="multipart/form-data">
-             
+            
                 <div class="form-group">
                     <label class="btn btn-success" for="fileUpload">
                         Select File
@@ -252,7 +258,6 @@
                         <option value="Fighter App">Fighter Application Page</option>
                         <option value="Sponsor Enquiry">Sponsor Enquiry Page</option>
                         <option value="Table Enquiry">Table Enquiry Page</option>
-                        <option value="General Enquiry">General Enquiry Page</option>
                     </select>
                 </div>
 
@@ -278,7 +283,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="fileUpdateForm" action="" data-action="{{route('admin.updateFile', ['docID' => null])}}" method="POST">
-                       
+                    
                     <div class="form-group">
                         <label for="updateDisplaySelect">Where should this file be downloadable from?</label>
                         <select id="updateDisplaySelect" name="location" class="form-control">

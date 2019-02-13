@@ -9,8 +9,8 @@
                             @if($event->is_public)
                                 <a href="{{route('event', str_replace(' ', '-', $event->name))}}" class="dropdown-item">{{$event->name}}</a>
                                 @if($event == App\Event::current() && $event->isFutureEvent())
-                                    <hr class=" my-0">
-                                @endif
+                                    <hr class=" my-0 mx-auto" style="border-color: white; width: 80%;">
+                                @endif 
                             @endif
                         @endforeach
                     </div>

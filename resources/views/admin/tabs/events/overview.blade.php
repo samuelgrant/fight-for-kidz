@@ -43,6 +43,16 @@
                         <td>{{$event->charity}}</td>
                     </tr>
                     <tr>
+                        <td>Charity Url:</td>
+                        <td><a href="{{$event->charity_url}}">{{$event->charity_url}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Charity logo:</td>
+                        <td>
+                            <img class="img-fluid" style="max-width: 160px; max-height: 100px"  src="/storage/images/charity/{{file_exists(public_path('storage/images/charity/' . $event->id . '.png')) ? $event->id : '0' }}.png">
+                        </td>
+                    </tr>
+                    <tr>
                         <td>Buy Tickets (Seats) URL:</td>
                         <td><a href="{{$event->ticket_seller_url}}">{{$event->ticket_seller_url}}</a></td>
                     </tr>

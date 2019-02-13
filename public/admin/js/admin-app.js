@@ -8,7 +8,7 @@ $(document).ready(function () {
 });
 
 
-// Processes the image preview for group icon uploads.
+// Processes the image preview for group icon, main page and auction item image uploads.
 
 $(document).ready(function () {
     $('#groupImage').change(function () {
@@ -84,7 +84,8 @@ $(document).ready(function() {
             { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false }
-            ]
+            ],
+        "order" : [0, 'desc']
     });
 
     $("#eventDeleted-dtable").DataTable({
@@ -96,7 +97,7 @@ $(document).ready(function() {
             null,
             { "orderable": false, "searchable": false },
             { "orderable": false, "searchable": false }
-        ]
+        ],
     });
     
     $('#group-dtable').DataTable({
@@ -302,10 +303,9 @@ function removeSelectedFromGroup(groupID) {
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             url: '/a/group-management/' + groupID + '/' + rowId
         }).done(function (data) {
-            console.log(data);
             table.row($('*[id="' + rowId + '"').parents('tr')[0]).remove().draw();
         }).fail(function (err) {
-            console.error(err);
+            console.error(`Error removing contact(s) to team in the admin-app/removeSelectedFromGroup method: ${err}`);
         });
     });
 }
@@ -325,7 +325,6 @@ function copySelectedToGroup(mode) {
     } else if(mode == 'systemGroups'){
         var contacts = $('#system-group-dtable').find('.dtable-checkbox:checkbox:checked');
     } else {
-        console.log('Error. Group copy mode invalid');
         return;
     }
 
@@ -343,11 +342,10 @@ function copySelectedToGroup(mode) {
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
             url: '/a/group-management/' + toGroupId + '/' + type + '/' + memberId 
         }).done(function (data){
-            console.log(data);
-        }).fail(function(err){
-            console.error(err);
-        });
 
+        }).fail(function(err){
+            console.error(`Error copying contact(s) to group in the admin-app/copySelectedToGroup method: ${err}`);
+        });
     });
 
     // show success alert
@@ -382,8 +380,8 @@ function addSelectedToTeam(team){
             data: {'applicantId' : appId, 'team' : team}, 
         }).done(function(){
             location.reload();
-        }).fail(function(error){
-            console.log(error);
+        }).fail(function(err){
+            console.error(`Error adding applicant(s) to team in the admin-app/addSelectedToTeam method: ${err}`);
         });
 
     });
@@ -419,8 +417,8 @@ function removeApplicantFromTeam(applicantId){
         data: {'applicantId' : applicantId}, 
     }).done(function(){
         location.reload();
-    }).fail(function(error){
-        console.log(error);
+    }).fail(function(err){
+        console.error(`Error removing applicant from team in the admin-app/removeApplicantFromTeam - method: ${err}`);
     });
 }
 
@@ -474,8 +472,8 @@ function editContactModal(id){
 
         $('#editContactModal').modal('show');
 
-    }).fail(function(error){
-        console.log(error);
+    }).fail(function(err){
+        console.error(`Error getting contact information in the admin-app/editContactModal method: ${err}`);
     })
 
 }
@@ -518,8 +516,8 @@ function applicantManagementModal(id){
             $("#appGender").val("Female");
         }
         
-        $("#appEmail").val(data.email);                     $("#appPhone").val(data.phone);
-        $("#appMobile").val(data.mobile);                   $("#appAddress1").val(data.address_1);
+        $("#appEmail").val(data.email);                     $("#appPhone1").val(data.phone_1);
+        $("#appPhone2").val(data.phone_2);                   $("#appAddress1").val(data.address_1);
         $("#appAddress2").val(data.address_2);              $("#appSuburb").val(data.suburb);
         $("#appCity").val(data.city);                       $("#appPostCode").val(data.postcode);
 
@@ -534,8 +532,8 @@ function applicantManagementModal(id){
 
         //Emergency Tab
         $("#appEmergencyFirstName").val(data.emergency_first_name);             $("#appEmergencyLastName").val(data.emergency_last_name);
-        $("#appEmergencyRelationship").val(data.emergency_relationship);        $("#appEmergencyPhone").val(data.emergency_phone);                     
-        $("#appEmergencyMobile").val(data.emergency_mobile);                    $("#appEmergencyEmail").val(data.emergency_email);                   
+        $("#appEmergencyRelationship").val(data.emergency_relationship);        $("#appEmergencyPhone1").val(data.emergency_phone_1);                     
+        $("#appEmergencyPhone2").val(data.emergency_phone_2);                    $("#appEmergencyEmail").val(data.emergency_email);                   
 
         // Medical Tab 1
         $("#appHeartDisease").val(data.heart_disease ? 'Yes' : 'No');                          $("#appBreathlessness").val(data.breathlessness ? 'Yes' : 'No');
@@ -553,8 +551,8 @@ function applicantManagementModal(id){
         $("#appHeartCondtion").val(data.heart_condition ? 'Yes' : 'No');                       $("#appPhysicalChestPain").val(data.chest_pain_activity ? 'Yes' : 'No');
         $("#appRecentChestPain").val(data.chest_pain_recent ? 'Yes' : 'No');                   $("#appPassedOut").val(data.lost_consciousness ? 'Yes' : 'No');
         $("#appBoneJointProblems").val(data.bone_joint_problems ? 'Yes' : 'No');               $("#appMedicationBloodHeart").val(data.recommended_medication ? 'Yes' : 'No');
-        $("#appKnockedOut").val(data.concussed_knocked_out ? 'Yes' : 'No');                    $("#appReason").val(data.other_reasons ? 'Yes' : 'No');
 
+        $("#appConcussed").val(data.concussed_knocked_out);
         $("#appReason").val(data.other_reasons);
         $("#appHandInjuries").val(data.hand_injuries);
         $("#appPreviousCurrentInjuries").val(data.previous_current_injuries);
@@ -587,14 +585,16 @@ function applicantManagementModal(id){
 
 
         $("#applicantMoreInfoModal").modal('show');
-    }).fail(function(error) {
-        console.log(error);
+    }).fail(function(err) {
+        console.error(`Error applicant info in the admin-app/applicantManagementModal method: ${err}`);
     });
 }
 
 function auctionCreateModal(){
+    $eventID = location.href.split('/')[5].slice(0,1);
+
     //Set modal for creating auction item
-    //$("#auctionForm").attr("action", "/");
+    $("#auctionForm").attr("action", "/a/auction-management/" + $eventID);
     $('#hiddenMethod').val('POST');
     $("#auctionModalTitle").text("Create Auction Item");
     $("#auctionModalButton").text("Confirm");
@@ -619,7 +619,7 @@ function auctionEditModal(id){
         url: `/a/auction-management/auction/${id}`
     }).done((data) => {
         //Set modal for editing
-        $("#auctionForm").attr("action", "http://f4k.localhost/a/auction-management/update/" + id);
+        $("#auctionForm").attr("action", "/a/auction-management/update/" + id);
         $("#auctionModalTitle").text("Edit Auction Item");
         $("#auctionModalButton").text("Save");
         $("#hiddenMethod").val("PUT");
@@ -635,13 +635,13 @@ function auctionEditModal(id){
         .done(function(){
             $("#imgPreview").attr("src", "/storage/images/auction/" + data.id + ".png");
         }).fail(function(){
-            $("#imgPreview").attr("src", "/storage/images/noImage.png");
+            $("#imgPreview").attr("src", "/storage/images/auction/0.png");
         })                
 
         //Display the modal
         $("#createEditAuctionItemModal").modal('show');
-    }).fail((error) => {
-        console.log(error);
+    }).fail((err) => {
+        console.error(`Error getting auction item information in the admin-app/auctionEditModal method: ${err}`);
     });
 }
 
@@ -698,8 +698,8 @@ $(document).ready(function(){
             // open a new tab/window and write the returned html to it
             var win = window.open();
             win.document.write(data);
-        }).fail(function(error){
-            console.log(error);
+        }).fail(function(err){
+            console.error(`Error getting mail content in the admin-app/mailPreviewBtn method: ${err}`);
         });
 
         
@@ -735,9 +735,6 @@ $(document).ready(function(){
 
 
     $('#multipleGroupSelect').change(function(){
-
-        console.log($(this).val().length);
-
         // this is important as the fSelect doesn't seem to support straightforward
         // front end validation. So this hidden checkbox (actually not hidden, but transparent)
         // will enable the validation instead. It ticks when groups are selected, and unticks
@@ -752,9 +749,10 @@ $(document).ready(function(){
     })
 
 })
+
 //Sets the modal for creating merchandise item and then displays it
 function merchandiseCreateModal(){
-    //$("#auctionForm").attr("action", "/");
+    $("#merchandiseForm").attr("action", "/a/merchandise-management");
     $('#hiddenMethod').val('POST');
     $("#merchandiseModalTitle").text("Create Merchandise Item");
     $("#merchandiseModalButton").text("Confirm");
@@ -770,17 +768,17 @@ function merchandiseCreateModal(){
     $("#createEditMerchandiseItemModal").modal('show');
 }
 
-////Sets the modal for editing merchandise item dynamically populates the fields and then displays it
+//Sets the modal for editing merchandise item dynamically populates the fields and then displays it
 function merchandiseEditModal(id){
     $.ajax({
-        method: "get",
+        type: "get",
         headers:  {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
         url: `/a/merchandise-management/merchandise/${id}`
     }).done((data) => {
         //Set modal for editing
-        $("#merchandiseForm").attr("action", "http://f4k.localhost/a/merchandise-management/update/" + id);
+        $("#merchandiseForm").attr("action", "/a/merchandise-management/update/" + id);
         $("#merchandiseModalTitle").text("Edit Merchandise Item");
         $("#merchandiseModalButton").text("Save");
         $("#hiddenMethod").val("PUT");
@@ -796,13 +794,13 @@ function merchandiseEditModal(id){
         .done(function(){
             $("#imgPreview").attr("src", "/storage/images/merchandise/" + data.id + ".png");
         }).fail(function(){
-            $("#imgPreview").attr("src", "/storage/images/noImage.png");
+            $("#imgPreview").attr("src", "/storage/images/merchandise/0.png");
         })       
 
         //Display the modal
         $("#createEditMerchandiseItemModal").modal('show');
-    }).fail((error) => {
-        console.log(error);
+    }).fail((err) => {
+        console.error(`Error getting merchandise information in the admin-app/nerchandiseEditModal method: ${err}`);
     });
 }
 
@@ -826,12 +824,11 @@ function fileUpdateModal(id){
         method : 'GET',
         url : url,
     }).done(function(data){
-        console.log(data.display_location);
         $('#updateDisplaySelect').val(data.display_location);
         modal.modal('show');
 
-    }).fail(function(error){
-        console.log(error);
+    }).fail(function(err){
+        console.error(`Error adding file in the admin-app/fileUpdateModal method: ${err}`);
     })
 
 }
@@ -842,13 +839,11 @@ $(document).ready(function(){
         var clearBtn = $('#clearAttachmentsBtn');
         
         var fileCount = e.target.files.length;
-        console.log(fileCount);
 
         fileNamesString = '';
 
         for(i = 0; i < fileCount; i++){
             fileNamesString += ((i > 0 ? ', ' : '') + e.target.files[i].name);
-            console.log(fileNamesString);
         }
 
         if(fileNamesString != ''){  
@@ -877,10 +872,33 @@ $('#clearAttachmentsBtn').on('click', function(e){
     $file.wrap('<form>').closest('form').get(0).reset();
     $file.unwrap();
 
-    console.log($('#fileUpload')[0].files.length);
-
     $file.change();
-
 });
 
+//This method resets the charity logo after the modal is dismissed
+$(document).ready(function(){
+    $("#eventDetailsModal").on('hidden.bs.modal', function (e){
+        $id = location.href.split('/')[5].slice(0,1);
 
+        $.get('/storage/images/charity/' + $id + '.png')
+        .done(function(){
+            $("#logoPreview").attr("src", "/storage/images/charity/" + $id + ".png");
+        }).fail(function(){
+            $("#logoPreview").attr("src", "/storage/images/charity/0.png");
+        })
+    })
+});
+
+//This method sets the sponsor logo after the modal is dismissed
+$(document).ready(function(){
+    $("#sponsorDetailsModal").on('hidden.bs.modal', function (e){
+        $id = location.href.split('/')[5].slice(0,1);
+
+        $.get('/storage/images/sponsors/' + $id + '.png')
+        .done(function(){
+            $("#logoPreview").attr("src", "/storage/images/sponsors/" + $id + ".png");
+        }).fail(function(){
+            $("#logoPreview").attr("src", "/storage/images/sponsors/0.png");
+        })
+    })
+});

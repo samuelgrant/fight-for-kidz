@@ -19,12 +19,12 @@ class ImageController extends Controller
      */
     public function getApplicantImage($filename){
 
-        $fullpath = "\private\images\applicants\\" . $filename;
+        $fullpath = "/private/images/applicants/" . $filename;
 
         if(Storage::exists($fullpath)){       
-            return response()->download(storage_path("app\\" . $fullpath), null, [], null);
+            return response()->download(storage_path("app/" . $fullpath), null, [], null);
         } else{
-            return response()->download(storage_path("app\public\images\\noImage.png"));
+            return response()->download(storage_path("app/public/images/noImage.png"));
         }
     }
 }

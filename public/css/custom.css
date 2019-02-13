@@ -36,6 +36,18 @@ body{
 	border: 1px solid aqua;
 }
 
+/* Forces wordwarp on buttons */
+.btn {
+	white-space:normal !important; 
+	word-wrap: break-word;
+}
+
+@media (max-width: 480px) { 
+	.btn {
+		margin-bottom: 10px;
+	}
+ }
+
 .auctions-section{
 	padding: 10rem 0;
 }
@@ -375,7 +387,7 @@ a.active:hover {
 	color: #BBBBBB;
 }
 
-#wizardBtn:hover {
+#wizardBtnPrevious:hover, #wizardBtnNext:hover {
 	cursor: pointer;
 }
 
@@ -392,4 +404,14 @@ label.error {
 
 .hidden{
 	display: none;
+}
+
+#bio-sponsor{
+	box-shadow: 1px 1px 3px 4px rgba(136, 136, 136, 0.4);
+}
+
+@media(max-width: 770px){
+	.upcoming-section, .sidebar-heading, .stat{
+		text-align: center;
+	}
 }

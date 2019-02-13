@@ -3,7 +3,7 @@
 
 @include('layouts.messages')
 
-<div class="container conform" id="application">
+<div class="container conform pb-2 mb-2" id="application">
 	<div class="my-3 p-3">
 		<h1 class="text-center my-3">Fighter Application - {{App\Event::current()->name}}</h1>
 		<p class="text-center">Thank you for your interest in becoming a Fight for Kidz contender.</p>
@@ -109,17 +109,17 @@
 								<div class="form-group-margin">
 									<div class="row">
 										<div class="col-md-2 inputLabel">
-											<label for="phone">Phone:</label>
+											<label for="phone_1">Phone 1:</label>
 										</div>
-										<div class="col-md-4" id="phoneInput">
-											<input class="form-control" type="text" name="phone" required>
+										<div class="col-md-4" id="phone1Input">
+											<input class="form-control" type="text" name="phone_1" required>
 										</div>
 
 										<div class="col-md-2 inputLabel">
-											<label for="mobile">Mobile:</label>
+											<label for="phone_2">Phone 2:</label>
 										</div>
-										<div class="col-md-4" id="mobileInput">
-											<input class="form-control" type="text" name="mobile">
+										<div class="col-md-4" id="phone2Input">
+											<input class="form-control" type="text" name="phone_2">
 										</div>
 									</div>
 								</div>
@@ -265,19 +265,19 @@
 										</div>
 				
 										<div class="col-md-2 inputLabel">
-												<label for="emergency_phone">Phone:</label>
+												<label for="emergency_phone_1">Phone 1:</label>
 											</div>
 											<div class="col-md-4">
-												<input class="form-control" type="text" name="emergency_phone"  required>
+												<input class="form-control" type="text" name="emergency_phone_1"  required>
 											</div>
 										
 									</div>
 									<div class="row">
 										<div class="col-md-2 inputLabel">
-											<label for="emergency_mobile">Mobile:</label>
+											<label for="emergency_phone_2">Phone 2:</label>
 										</div>
 										<div class="col-md-4">
-											<input class="form-control" type="text" name="emergency_mobile">
+											<input class="form-control" type="text" name="emergency_phone_2">
 										</div>
 				
 										<div class="col-md-2 inputLabel">
@@ -462,7 +462,7 @@
 									</div>
 									<br>
 				
-									<p class="">Have you ever had any injuries (expecially head injuries)?</p>
+									<p class="">Have you ever had any significant injuries (especially head injuries)?</p>
 									<div class="radio ">
 										<label class="radio-selector"><input type="radio" name="injuryRadio" id="injuryRadio" value="yes" onclick="showInjury()" required>Yes</label>
 										<label class="radio-selector"><input type="radio" name="injuryRadio" id="injuryRadio" value="no" onclick="hideInjury()" required>No</label>
@@ -513,7 +513,7 @@
 										<label class="radio-selector"><input type="radio" name="activityRadio" value="no" required>No</label>
 									</div>
 
-									<label for="activtyRadio" class="error" style="display: none;"></label>
+									<label for="activityRadio" class="error" style="display: none;"></label>
 
 									<p class="">3. Have you developed chest pain in the past month? </p>
 									<div class="radio ">
@@ -549,11 +549,15 @@
 
 									<p class="">7. Have you ever been knocked out or concussed?</p>
 									<div class="radio ">
-										<label class="radio-selector"><input type="radio" name="concussedRadio" value="yes" required>Yes</label>
-										<label class="radio-selector"><input type="radio" name="concussedRadio" value="no" required>No</label>
+										<label class="radio-selector"><input type="radio" name="concussedRadio" id="concussedRadio" value="yes"  onclick="showConcussed()" required>Yes</label>
+										<label class="radio-selector"><input type="radio" name="concussedRadio" id="concussedRadio" value="no" onclick="hideConcussed()" required>No</label>
 									</div>
 
 									<label for="concussedRadio" class="error" style="display: none;"></label>
+
+									<div id="concussed" class="form-group" style="display: none;">
+										<textarea id="concussedReason" name="concussed_details" class="form-control" rows="3" placeholder="Please explain..."></textarea>
+									</div>
 
 									<p class="">8. Are you aware, through your own experience or a physician’s advice, of any other reason that would prohibit you from exercising without medical supervision?</p>
 									<div class="radio ">
@@ -666,8 +670,8 @@
 						</div>
 						{{-- End Submit Tab --}}
 						<ul class="pager wizard my-auto">
-							<li type="button" class="previous d-inline-block btn-sm btn-info" style="width: 80px;"><a class="text-white" id="wizardBtn">Previous</a></li>
-							<li type="button" class="next d-inline-block btn-sm btn-info text-center float-right" style="width: 80px;"><a class="text-white" id="wizardBtn">Next</a></li>
+							<li type="button" class="previous btn-sm btn-info text-center d-none" id="liPrevious" style="width: 80px;"><a class="text-white d-none" id="wizardBtnPrevious">Previous</a></li>
+							<li type="button" class="next d-inline-block btn-sm btn-info text-center float-right" id="liNext" style="width: 80px;"><a class="text-white" id="wizardBtnNext">Next</a></li>
 						</ul>
 					</div>
 					{{-- End of Tabs --}}

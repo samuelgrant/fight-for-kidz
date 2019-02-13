@@ -27,8 +27,8 @@ class CreateApplicantsTable extends Migration
             $table->string('suburb')->nullable();
             $table->string('city');
             $table->string('postcode' ,10);
-            $table->string('phone', 30);
-            $table->string('mobile', 30)->nullable();
+            $table->string('phone_1', 30);
+            $table->string('phone_2', 30)->nullable();
             $table->string('email');
 
             //Section 2 - Personal Details
@@ -47,8 +47,8 @@ class CreateApplicantsTable extends Migration
             $table->string('emergency_first_name', 30);
             $table->string('emergency_last_name', 30);
             $table->string('emergency_relationship', 30);
-            $table->string('emergency_phone', 30);
-            $table->string('emergency_mobile', 30)->nullable();
+            $table->string('emergency_phone_1', 30);
+            $table->string('emergency_phone_2', 30)->nullable();
             $table->string('emergency_email');
 
             //Section 4 - Sporting Experience
@@ -85,7 +85,7 @@ class CreateApplicantsTable extends Migration
             $table->boolean('lost_consciousness');
             $table->boolean('bone_joint_problems');
             $table->boolean('recommended_medication');
-            $table->boolean('concussed_knocked_out');
+            $table->mediumText('concussed_knocked_out')->nullable();//null if the applicant ticks 'no' on the form
             $table->mediumText('other_reasons')->nullable(); // null if the applicant ticks 'no' on the form            
 
             //Section 6 - Additional Information
