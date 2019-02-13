@@ -14,7 +14,13 @@
 						@foreach(App\Document::where('display_location', 'Event')->get() as $doc)
 						<a class="d-block" href="{{Storage::disk('documents')->url($doc->filename)}}" download="{{$doc->originalName}}">{{$doc->originalName}}</a>						@endforeach
 					</div>
-					@endif
+          @endif
+          <div>
+            <h3>Proudly sponsored by</h3>
+          </div>
+          <div>
+            <img src="http://www.007museum.com/cessna172h_dk.jpg" alt="" max-width="400px;">
+          </div>
 				</div>
 				<div class="col-lg-4 col-md-6 col-sm-12 text-white text-right results mt-5">
 					<p class="all-caps sidebar-heading">Date/Time</p>
