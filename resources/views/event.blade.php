@@ -15,8 +15,7 @@
 						<a class="d-block" href="{{Storage::disk('documents')->url($doc->filename)}}" download="{{$doc->originalName}}">{{$doc->originalName}}</a>						@endforeach
 					</div>
           @endif
-          {{-- if event sponsor is set show this section --}}
-          @if()
+          @if($event->event_sponsor)
           <div>
             <h3>Proudly sponsored by</h3>
           </div>
