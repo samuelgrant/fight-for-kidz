@@ -98,7 +98,7 @@
                                     <select class="form-control" id="contenderSponsor" name="contenderSponsor">
                                             <option value="0">--- No sponsor ---</option>
                                         @foreach($event->sponsors as $sponsor)
-                                            <option value="{{$sponsor->id}}" @if($event_sponsor = $sponsor->id)selected="selected" @endif>{{$sponsor->company_name}}</option>
+                                            <option value="{{$sponsor->id}}">{{$sponsor->company_name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
