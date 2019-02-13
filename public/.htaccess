@@ -18,9 +18,5 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
-
-    # Redirect to HTTPS
-    RewriteEngine On
-    RewriteCond %{SERVER_PORT} 80
-    RewriteRule ^(.*)$ https://mylittleblue.xyz/$1 [R=301,L]
+    
 </IfModule>
