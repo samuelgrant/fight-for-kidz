@@ -8,9 +8,6 @@ use App\Contender;
 use App\Sponsor;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\Subscribed;
-use App\Subscriber;
 
 class BoutManagementController extends Controller
 {
@@ -18,8 +15,6 @@ class BoutManagementController extends Controller
 
         $bout = Bout::find($boutId);
         $bout->delete();
-
-        Mail::to('jacksos101@gmail.com')->queue(new Subscribed(Subscriber::all()->first()));
     }
 
     public function addBout($eventId){
