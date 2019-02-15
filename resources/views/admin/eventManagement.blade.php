@@ -195,7 +195,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="contenderSponsor">Sponsor:</label>
+                        <label for="eventSponsor">Sponsor:</label>
                         <select class="form-control" id="eventSponsor" name="eventSponsor">
                                 <option value="0">--- No sponsor ---</option>
                             @foreach($event->sponsors as $sponsor)
