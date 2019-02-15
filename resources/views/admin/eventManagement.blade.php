@@ -153,7 +153,7 @@
     </div> <!-- End Edit Contender Details Modal -->
 
 <!-- Edit Event Details Modal -->
-<div class="modal fade" id="eventDetailsModal" tabindex="-1" role="dialog" aria-labelledby="Edit Event Details" aria-hidden="true">
+<div class="modal fade" id="eventDetailsModal" data-sponsor="{{$event->event_sponsor}}" tabindex="-1" role="dialog" aria-labelledby="Edit Event Details" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
