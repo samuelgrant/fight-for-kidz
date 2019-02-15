@@ -91,6 +91,7 @@ class EventManagementController extends Controller
         $event->charity_url = $request->input('charityUrl');
         $event->ticket_seller_url = $request->input('tickets');
         $event->desc_1 = $request->input('eventDesc');
+        $event->event_sponsor = $request->input('eventSponsor');
 
         $event->updateGPS();
 
@@ -307,7 +308,7 @@ class EventManagementController extends Controller
         // Remove the image from memory
         imagedestroy($image);
 
-        Log::debug('Logo updated. New logo year is '.$currentEventYear);
+        Log::info('Logo updated. New logo year is '.$currentEventYear);
     }    
         
 }

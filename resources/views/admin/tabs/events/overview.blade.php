@@ -39,6 +39,10 @@
                         <td>{{$event->venue_address}}</td>
                     </tr>
                     <tr>
+                        <td>Event Sponsor:</td>
+                        <td>{{App\Sponsor::find($event->event_sponsor)->company_name}}</td>
+                    </tr>
+                    <tr>
                         <td>Charity:</td>
                         <td>{{$event->charity}}</td>
                     </tr>

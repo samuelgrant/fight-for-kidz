@@ -79,11 +79,17 @@
                             <a class="float-right" data-toggle="collapse" href="#{{$event->id}}-collapse"><i class="fas fa-caret-down"></i></a>
                             <div class="collapse mt-3" id="{{$event->id}}-collapse">
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
+                                        <h5 class="mb-1">Event:</h5>
+                                        @if($event->event_sponsor == $sponsor->id)
+                                        <p>Major Sponsor</p>
+                                        @endif
+                                    </div>
+                                    <div class="col-sm-4">
                                         <h5 class="mb-1">Bouts:</h5>
                                         <p>{{count($sponsor->bouts()->where('event_id', $event->id)->get())}} bouts sponsored</p>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <h5 class="mb-1">Fighters:</h5>
                                         @if(count($sponsor->contenders()->where('event_id', $event->id)->get()) > 0)
                                         @foreach($sponsor->contenders()->where('event_id', $event->id)->get() as $contender)

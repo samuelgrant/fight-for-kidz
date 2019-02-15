@@ -153,7 +153,7 @@
     </div> <!-- End Edit Contender Details Modal -->
 
 <!-- Edit Event Details Modal -->
-<div class="modal fade" id="eventDetailsModal" tabindex="-1" role="dialog" aria-labelledby="Edit Event Details" aria-hidden="true">
+<div class="modal fade" id="eventDetailsModal" data-sponsor="{{$event->event_sponsor}}" tabindex="-1" role="dialog" aria-labelledby="Edit Event Details" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
@@ -193,6 +193,15 @@
                             <span class="ml-3" data-toggle="tooltip" data-placement="top" title="Required format: https://www.example.com">
                                 <i class="fas fa-exclamation-circle float-right"></i></span>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventSponsor">Sponsor:</label>
+                        <select class="form-control" id="eventSponsor" name="eventSponsor">
+                                <option value="0">--- No sponsor ---</option>
+                            @foreach($event->sponsors as $sponsor)
+                                <option value="{{$sponsor->id}}">{{$sponsor->company_name}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="ticketsWebsite">Buy Tickets (Seats) URL</label>

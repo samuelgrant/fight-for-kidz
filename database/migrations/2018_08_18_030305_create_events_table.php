@@ -19,6 +19,7 @@ class CreateEventsTable extends Migration
             $table->datetime('datetime');
             $table->string('charity')->nullable();
             $table->string('charity_url')->nullable();
+            $table->string("event_sponsor")->nullable();
             $table->string('venue_name');
             $table->string('venue_address');
             $table->string('venue_gps')->nullable();
