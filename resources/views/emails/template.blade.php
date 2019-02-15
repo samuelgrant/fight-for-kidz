@@ -106,7 +106,7 @@
 														<table class="center" cellpadding="0" cellspacing="0">
 															<tr>
 																<td style="line-height:0;">
-																	<a target="_blank" style="text-decoration:none;" href="{{config('app.url')}}"><img src="{{config('app.url')}}/storage/images/f4k_logo_noyear.png" border="0" style="font:bold 12px/12px Arial, Helvetica, sans-serif; color:#606060;" align="left" vspace="0" hspace="0" height="80" alt="PSD2HTML.COM" /></a>
+																	<a target="_blank" style="text-decoration:none;" href="{{config('app.url')}}"><img src="{{config('app.url')}}/storage/images/f4k_logo_noyear.png" border="0" style="font:bold 12px/12px Arial, Helvetica, sans-serif; color:#606060;" align="left" vspace="0" hspace="0" height="80" alt="Fight for Kidz" /></a>
 																</td>
 															</tr>
 														</table>

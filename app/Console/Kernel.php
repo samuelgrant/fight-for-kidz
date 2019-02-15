@@ -28,6 +28,8 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+
+        $schedule->command('queue:work --sansdaemon --tries=3')->everyMinute();
     }
 
     /**
