@@ -81,7 +81,7 @@
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <h5 class="mb-1">Event:</h5>
-                                        @if($event->event_sponsor)
+                                        @if($event->event_sponsor == $sponsor->id)
                                         <p>Major Sponsor</p>
                                         @endif
                                     </div>
