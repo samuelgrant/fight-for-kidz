@@ -29,7 +29,7 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')
         //          ->hourly();
 
-        $schedule->command('logtest')->everyMinute();
+        $schedule->command('queue:work --sansdaemon --tries=3')->everyMinute();
     }
 
     /**

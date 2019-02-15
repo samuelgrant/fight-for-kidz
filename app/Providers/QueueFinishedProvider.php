@@ -25,13 +25,13 @@ class QueueFinishedProvider extends ServiceProvider
         Queue::after(function(JobProcessed $event){
 
             if(DB::table('jobs')->count() == 0){
-                Log::debug('Job queue finished. Clearing temp directory.');
                 $files = Storage::files('private/temp');
-                Log::debug($files);
+                $count = 0;
                     foreach($files as $file){
                         Storage::delete($file);
+                        $count++;
                     }
-                Log::debug('Temporary files deleted');
+                Log::debug('Email queue processed, ' . $count . ' temp files deleted.');
                 }
         });
     }
