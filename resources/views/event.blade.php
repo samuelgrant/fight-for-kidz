@@ -20,8 +20,7 @@
             <h3>Proudly sponsored by</h3>
           </div>
           <div>
-            <img src="" alt="" max-width="400px;">
-            {{-- src="{{file_exists(public_path('/storage/images/contenders/' . $bout->blue_contender->id . '.png')) ? '/storage/images/contenders/' . $bout->blue_contender->id . '.png' : '/storage/images/contenders/0.png'}}" --}}
+            <img src="{{file_exists(public_path('/storage/images/sponsors/' . $event->event_sponsor . '.png')) ? '/storage/images/sponsors/' . $event->event_sponsor . '.png' : '/storage/images/sponsors/0.png'}}" style="max-width:400px;">
           </div>
           @endif
 				</div>
