@@ -110,8 +110,8 @@ class ContactController extends Controller
      * Sends a notification to the given email and name, letting them
      * know that their enquiry has been received.
      */
-    protected function sendContactReceivedMail($email, $name){
-        SendContactReceived::dispatch($name, $email);
+    protected function sendContactReceivedMail($email, $name, $type){
+        SendContactReceived::dispatch($name, $email, $type);
     }
 
     /**
