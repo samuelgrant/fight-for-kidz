@@ -93,7 +93,13 @@ class EventManagementController extends Controller
         $event->desc_1 = $request->input('eventDesc');
         $event->event_sponsor = $request->input('eventSponsor');
 
-        $event->updateGPS();
+        if($event->venue_address == $request->input('address')){
+            try{
+                $event->updateGPS();
+            } catch (Excepton $e){
+                echo 'Caught exception: ',  $e->getMessage(), "\n";
+            }            
+        }        
 
         if($image = $request->file('charityLogo'))
         {
