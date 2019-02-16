@@ -119,16 +119,11 @@ class Event extends Model
         return $this->hasMany('App\AuctionItem');
     }
 
-    // // Return deleted auction items
-    // public function deleted_auction_items(){
-    //     return $this->hasMany
-    // }
-
     // Relationship to sponsor - many to many
     public function sponsors()
     {
         return $this->belongsToMany('App\Sponsor');
-    }
+    } 
 
     // Relation to contenders - one to many
     public function contenders()
@@ -179,12 +174,16 @@ class Event extends Model
      * modified.
      */
     public function updateGPS(){
-        $response = GoogleMaps::load('geocoding')
-        ->setParam (['address' => $this->venue_address])->get();
-        $json = json_decode($response, TRUE);
+        try{
+            $response = GoogleMaps::load('geocoding')
+            ->setParam (['address' => $this->venue_address])->get();
+            $json = json_decode($response, TRUE);
 
-        $this->venue_gps = 'lat: '.$json['results'][0]['geometry']['location']['lat'].", lng: ".$json['results'][0]['geometry']['location']['lng'];
-        $this->save(); 
+            $this->venue_gps = 'lat: '.$json['results'][0]['geometry']['location']['lat'].", lng: ".$json['results'][0]['geometry']['location']['lng'];
+            $this->save(); 
+        } catch (Excepton $e){
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }      
     }
 
     /**

@@ -31,6 +31,10 @@ class Subscribed extends Mailable
      */
     public function build()
     {
+        $this->withSwiftMessage(function ($message){
+            $message->getHeaders()->addTextHeader('List-Unsubscribe', '<' . env('APP_URL') . '/unsubscribe?token=' . $this->subscriber->unsubscribe_token . '>');
+        });
+
         return $this->view('emails.subscribers.subscribed')
                     ->subject('Subscribed to Fight for Kidz updates')
                     ->text('emails.subscribers.plaintext.subscribed');

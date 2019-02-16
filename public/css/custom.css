@@ -36,6 +36,18 @@ body{
 	border: 1px solid aqua;
 }
 
+/* Forces wordwarp on buttons */
+.btn {
+	white-space:normal !important; 
+	word-wrap: break-word;
+}
+
+@media (max-width: 480px) { 
+	.btn {
+		margin-bottom: 10px;
+	}
+ }
+
 .auctions-section{
 	padding: 10rem 0;
 }
@@ -62,8 +74,8 @@ body{
 }
 
 /* .heading-container{
-  background-color: rgba(22, 22, 22, 0.5);
-  padding: 2.5em;
+	background-color: rgba(22, 22, 22, 0.5);
+	padding: 2.5em;
 } */
 
 .heading-container h1{
@@ -345,24 +357,61 @@ body{
 .alert {
 	border-radius: 0px;
 	box-shadow: 2px 2px #25252422;
-  }
-  
-  .alert-success {
+}
+
+.alert-success {
 	background-color: #059c29;
 	color: white;
-  }
-  
-  .alert-danger {
+}
+
+.alert-danger {
 	background-color: #C82333;
 	color: white;
-  }
-  
-  .alert-info {
+}
+
+.alert-info {
 	background-color: #138496;
 	color: white;
-  }
-  
-  .alert-tag {
+}
+
+.alert-tag {
 	color :white;
 	opacity: 1.0!important;
-  }
+}
+
+a.active {
+	color: white;
+}
+
+a.active:hover {
+	color: #BBBBBB;
+}
+
+#wizardBtnPrevious:hover, #wizardBtnNext:hover {
+	cursor: pointer;
+}
+
+.inactiveLink{
+	pointer-events: none;
+	cursor: default;
+}
+
+label.error {
+	color: red;
+	padding-bottom: 0;
+	font-size: 13px;
+}
+
+.hidden{
+	display: none;
+}
+
+#bio-sponsor{
+	box-shadow: 1px 1px 3px 4px rgba(136, 136, 136, 0.4);
+}
+
+@media(max-width: 770px){
+	.upcoming-section, .sidebar-heading, .stat{
+		text-align: center;
+	}
+}

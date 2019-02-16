@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 use App\Traits\Groupable;
+use Illuminate\Support\Facades\Hash;
 
 class Subscriber extends Model
 {

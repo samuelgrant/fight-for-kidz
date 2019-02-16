@@ -6,7 +6,7 @@
     <li class="breadcrumb-item">
         <a href="{{route('admin.dashboard')}}">Dashboard</a>
     </li>
-    <li class="breadcrumb-item active"><a href="{{route('admin.sponsorManagement')}}">Sponsor Management</a></li>
+    <li class="breadcrumb-item"><a href="{{route('admin.sponsorManagement')}}">Sponsor Management</a></li>
     <li class="breadcrumb-item active">{{$sponsor->company_name}}</li>
 </ol>
 
@@ -79,11 +79,17 @@
                             <a class="float-right" data-toggle="collapse" href="#{{$event->id}}-collapse"><i class="fas fa-caret-down"></i></a>
                             <div class="collapse mt-3" id="{{$event->id}}-collapse">
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
+                                        <h5 class="mb-1">Event:</h5>
+                                        @if($event->event_sponsor == $sponsor->id)
+                                        <p>Major Sponsor</p>
+                                        @endif
+                                    </div>
+                                    <div class="col-sm-4">
                                         <h5 class="mb-1">Bouts:</h5>
                                         <p>{{count($sponsor->bouts()->where('event_id', $event->id)->get())}} bouts sponsored</p>
                                     </div>
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <h5 class="mb-1">Fighters:</h5>
                                         @if(count($sponsor->contenders()->where('event_id', $event->id)->get()) > 0)
                                         @foreach($sponsor->contenders()->where('event_id', $event->id)->get() as $contender)
@@ -137,7 +143,11 @@
                     </div>
                     <div class="form-group">
                         <label for="url">Website URL:</label>
-                        <input type="url" name="url" id="url" class="form-control" value="{{$sponsor->url}}">
+                        <div class="input-group">
+                            <input type="url" name="url" id="url" class="form-control" value="{{$sponsor->url}}">
+                            <span class="ml-3" data-toggle="tooltip" data-placement="top" 
+                            title="Required format: https://www.example.com"><i class="fas fa-info-circle float-right"></i></span>
+                        </div>
                     </div>
                     <div class="card w-50 mx-auto text-center mb-3">
                         <label for="logo">Logo:</label>

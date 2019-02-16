@@ -39,8 +39,26 @@
                         <td>{{$event->venue_address}}</td>
                     </tr>
                     <tr>
+                        <td>Event Sponsor:</td>
+                        <td>
+                            @if(!$event->event_sponsor == "")
+                            {{App\Sponsor::find($event->event_sponsor)->company_name}}
+                            @endif
+                        </td>
+                    </tr>
+                    <tr>
                         <td>Charity:</td>
                         <td>{{$event->charity}}</td>
+                    </tr>
+                    <tr>
+                        <td>Charity Url:</td>
+                        <td><a href="{{$event->charity_url}}">{{$event->charity_url}}</a></td>
+                    </tr>
+                    <tr>
+                        <td>Charity logo:</td>
+                        <td>
+                            <img class="img-fluid" style="max-width: 160px; max-height: 100px"  src="/storage/images/charity/{{file_exists(public_path('storage/images/charity/' . $event->id . '.png')) ? $event->id : '0' }}.png">
+                        </td>
                     </tr>
                     <tr>
                         <td>Buy Tickets (Seats) URL:</td>

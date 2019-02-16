@@ -16,7 +16,7 @@
             <ul class="nav nav-tabs nav-tabs-persistent">
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') != 'deleted')? 'active': '' }}" role="tab" data-toggle="tab" href="#tab-1" id="active">Current Events</a></li>
                 <li class="nav-item"><a class="nav-link {{ (app('request')->input('tab') == 'deleted')? 'active': '' }}" role="tab" data-toggle="tab" href="#tab-2" id="deleted">Deleted Events</a></li>
-                <button class="btn btn-primary btn-sm ml-1 my-1 tab-modal" data-toggle="modal" data-target="#newEvent">New Event</button>
+                <button class="btn btn-success btn-sm ml-1 my-1" data-toggle="modal" data-target="#newEvent"><i class="fas fa-plus"></i>&nbsp;New Event</button>
             </ul>
             <div class="tab-content">
                 <div class="tab-pane {{ (app('request')->input('tab') != 'deleted')? 'active': '' }}" role="tabpanel" id="tab-1">
@@ -121,7 +121,7 @@
 
                     <div class="form-group">
                         <label for="dateTime">
-                                <i class="fas fa-info-circle" data-toggle="tooltip" title="The date and time of the main event; This can be used to display a countdown on the main page."></i>  
+                                <i class="fas fa-info-circle" data-toggle="tooltip" title="The date and time of the main event."></i>  
                             Date Time
                         </label>
                         <input type="datetime-local" name="dateTime" id="dateTime" class="form-control" required>

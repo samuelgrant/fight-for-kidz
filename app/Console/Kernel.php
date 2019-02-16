@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         \App\Console\Commands\images\defaults::class,
         \App\Console\Commands\images\purge::class,
+        \App\Console\Commands\setupscript::class,
     ];
 
     /**
@@ -27,6 +28,8 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+
+        $schedule->command('queue:work --sansdaemon --tries=3')->everyMinute();
     }
 
     /**

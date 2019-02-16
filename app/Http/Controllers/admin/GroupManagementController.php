@@ -311,7 +311,12 @@ class GroupManagementController extends Controller
      */
     public function getContact($contactID){
 
-        return response(Contact::find($contactID), 200);
+        $contact = Contact::find($contactID);
+        return [
+            'name' => $contact->name,
+            'phone' => $contact->phone,
+            'email' => $contact->email
+        ];
 
     }
 

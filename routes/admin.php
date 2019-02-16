@@ -93,6 +93,9 @@ Route::get('/event-managment/{eventID}/applicants', 'admin\ApplicantManagementCo
 // Contender update
 Route::patch('/event-management/contenders/{contenderID}', 'admin\ContenderManagementController@update')->name('admin.eventManagement.updateContender');
 
+//Get contender data
+Route::get('/event-management/contenders/{contenderID}', 'admin\ContenderManagementController@getContender')->name('admin.contenderManagement.getContender');
+
 // Bouts CRUD functions
 Route::patch('/event-management/bouts/{boutId}', 'admin\BoutManagementController@updateBoutDetails')->name('admin.eventManagement.updateBoutDetails');
 Route::delete('/event-management/bouts/{boutId}', 'admin\BoutManagementController@removeBout')->name('admin.eventManagement.removeBout');
@@ -118,9 +121,6 @@ Route::get('/event-management/applicants/{applicantId}', 'admin\ApplicantManagem
 // Delete applicants
 Route::delete('/event-management/applicants/{applicantID}', 'admin\ApplicantManagementController@deleteApplicant')->name('admin.applicantManagement.deleteApplicant');
 
-//Get contender data
-Route::get('/event-management/contenders/{contenderID}', 'admin\ContenderManagementController@getContender')->name('admin.contenderManagement.getContender');
-
 //Retrieve private images (https://laravel.io/forum/04-23-2015-securing-filesimages)
 Route::get('/applicantImages/{imageName}', 'admin\ImageController@getApplicantImage')->where('imageName', '^[^/]+$')->name('admin.getApplicantImage');
 
@@ -140,11 +140,19 @@ Route::patch('/auction-management/{itemID}', 'admin\AuctionManagementController@
 // Toggle Merchandise
 // Merchandise item visibility
 Route::put('/merchandise-management/toggleMerchandiseItem/{itemID}', 'admin\MerchandiseManagementController@toggleMerchandiseItem')->name('admin.merchandiseManagement.toggleMerchandiseItem');
+// Merchandise page visibility
+Route::put('/merchandise-management/toggleAll', 'admin\MerchandiseManagementController@toggleAll')->name('admin.merchandiseManagement.toggleAll');
 
 //View, Get + CRUD Merchandise
 Route::get('/merchandise-management', 'admin\MerchandiseManagementController@index')->name('admin.merchandiseManagement');
-Route::get('/merchandise-management/merchandise/{merchandiseId}', 'admin\MerchandiseManagementController@getMerchandiseItem')->name('admin.merchandiseManagement.getAuctionItem');
+Route::get('/merchandise-management/merchandise/{merchandiseId}', 'admin\MerchandiseManagementController@getMerchandiseItem')->name('admin.merchandiseManagement.getMerchandiseItem');
 Route::post('/merchandise-management', 'admin\MerchandiseManagementController@store')->name('admin.merchandiseManagement.store');
 Route::put('/merchandise-management/update/{merchandiseID}', 'admin\MerchandiseManagementController@update')->name('admin.merchandiseManagement.update');
 Route::delete('/merchandise-management/{merchandiseID}', 'admin\MerchandiseManagementController@destroy')->name('admin.merchandiseManagement.destroy');
-Route::patch('/merchandise-management/{merchandiseID}', 'admin\merchandiseManagementController@restore')->name('admin.merchandiseManagement.restore');
+Route::patch('/merchandise-management/{merchandiseID}', 'admin\MerchandiseManagementController@restore')->name('admin.merchandiseManagement.restore');
+
+// View received messages
+Route::get('/messages', 'admin\MessagesController@index')->name('admin.messages');
+Route::get('/messages/{messageID}', 'admin\MessagesController@view')->name('admin.messages.view');
+Route::delete('/messages/{messageID}', 'admin\MessagesController@delete')->name('admin.messages.delete');
+Route::put('/messages/{messageID}', 'admin\MessagesController@restore')->name('admin.messages.restore');

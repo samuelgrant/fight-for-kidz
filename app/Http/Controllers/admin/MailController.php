@@ -36,7 +36,7 @@ class MailController extends Controller
         $empty = []; // have to pass an array
         $messageText = $request->messageText;
 
-        return new CustomMail('<name here>', '<Subject here>', $messageText, $empty);
+        return new CustomMail('test@example.com', '<name here>', '<Subject here>', $messageText, $empty);
 
     }
 

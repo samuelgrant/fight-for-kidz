@@ -50,6 +50,12 @@
     margin-bottom: 1.5rem;
   }
 
+  .bout-footer{
+    clear: both;
+    text-align:center;
+    width:222px;
+  }
+
   .sponsored-by {
     text-align: center;
     margin-bottom: 0.5rem;
@@ -158,6 +164,14 @@
     margin-bottom: 0.5rem;
   }
 
+  .bout-btn-fight{
+    border: 2px solid #039240;
+  }
+  
+  .bout-btn-fight:hover{
+    border: 2px solid white;
+  }
+
   .bout-btn-blue:hover {
     /* background-color: #2762D6; */
     /* border: 1px solid #2762D6; */
@@ -200,4 +214,30 @@
       margin: 20px;
     }
   }
-  
+
+  .contender-modal-body{
+    background-color: rgba(0, 0, 0, .85);
+}
+
+.contender-modal-body{
+    border-bottom-color: transparent;
+    box-shadow: 0px 0px 8px gray;
+}
+
+.contender-modal-footer{
+    border-top-color: transparent;
+    background-color: transparent;
+}
+
+.contender-modal-body hr{
+    border: 1px solid lightgray;
+    border-radius: 0%;
+}
+
+#contenderTable{
+    color: white;
+}
+
+#contenderItemName, #contenderItemDescription{
+    color: white;
+}

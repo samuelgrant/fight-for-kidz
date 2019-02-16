@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container push-down">
+<div class="container-fluid push-down">
         <h1 class="text-white text-center mb-5">Previous Events</h1>
         <div class="dropdown" style="display: block !important; margin:auto !important; width:fit-content;">
             <button class="btn btn-primary dropdown-toggle" type="button" id="yearSelectionButton" data-toggle="dropdown" aria-haspopup="true"

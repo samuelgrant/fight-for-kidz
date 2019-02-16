@@ -5,7 +5,7 @@ namespace App\Http\Controllers\admin;
 use Auth;
 use Input;
 use Validator;
-use App\Event;
+use App\Event, App\Image;
 use App\Applicant;
 use GDText\Box;
 use GDText\Color;
@@ -42,7 +42,7 @@ class EventManagementController extends Controller
             $event->venue_address = $request->input('venueAddress');
         $event->save();
 
-        $event->updateGPS();
+        $event->updateGPS();         
 
         session()->flash('success', 'The event called '.$event->name.' was created.');
         return redirect()->back();
@@ -54,6 +54,10 @@ class EventManagementController extends Controller
     public function view($eventID){
 
         $event = Event::find($eventID);
+        if($event == null) {
+            session()->flash('error', 'We could not find that event.');
+            return redirect(route('admin.eventManagement'));
+        }
 
         return view('admin.eventManagement')->with('event', $event);
 
@@ -66,7 +70,6 @@ class EventManagementController extends Controller
         $validator = Validator::make(Input::all(), [ 
             'name' => 'required',
             'tickets' => 'active_url',
-
         ],        
         // error messages
         [
@@ -85,10 +88,19 @@ class EventManagementController extends Controller
         $event->venue_name = $request->input('venue');
         $event->venue_address = $request->input('address');
         $event->charity = $request->input('charity');
+        $event->charity_url = $request->input('charityUrl');
         $event->ticket_seller_url = $request->input('tickets');
         $event->desc_1 = $request->input('eventDesc');
+        $event->event_sponsor = $request->input('eventSponsor');
 
-        $event->updateGPS();
+        if($event->venue_address != $request->input('address')){
+            $event->updateGPS();      
+        }        
+
+        if($image = $request->file('charityLogo'))
+        {
+            Image::storeAsPng($image, 'public/images/charity/', $event->id . '.png');
+        }
 
         $event->save();
 
@@ -270,7 +282,7 @@ class EventManagementController extends Controller
         $box = new Box($image);
 
         // Set font .ttf file. Feel free to change the nested dirnames if you can find something that definitely works.
-        $box->setFontFace(dirname(dirname(dirname(dirname(dirname(__FILE__))))).'\storage\app\private\fonts\Ubuntu-BoldItalic.ttf');
+        $box->setFontFace(dirname(dirname(dirname(dirname(dirname(__FILE__))))).'/storage/app/private/fonts/Ubuntu-BoldItalic.ttf');
 
         // Set the text properties
         $box->setFontColor(new Color(255,255,255));    
@@ -293,12 +305,12 @@ class EventManagementController extends Controller
         $box->draw($currentEventYear);
 
         // Output the image to the public storage directory
-        imagepng($image, '..\storage\app\public\images\f4k_logo.png');
+        imagepng($image, '../storage/app/public/images/f4k_logo.png');
 
         // Remove the image from memory
         imagedestroy($image);
 
-        Log::debug('Logo updated. New logo year is '.$currentEventYear);
+        Log::info('Logo updated. New logo year is '.$currentEventYear);
     }    
         
 }

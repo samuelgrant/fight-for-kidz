@@ -18,8 +18,7 @@ Route::get('/contenders', 'PagesController@contenders')->name('contenders');
 Route::get('/contact', 'PagesController@contact')->name('contact');
 Route::get('/about', 'PagesController@about')->name('about');
 Route::get('/event/{eventId}', 'EventController@index')->name('event');
-
-Route::get('/Merchandise', 'MerchandiseController@Merchandise')->name('merchandise');
+Route::get('/merchandise', 'MerchandiseController@index')->name('merchandise');
 
 // Fighter application form and submission
 Route::get('/fighter-application', 'EventApplicationController@fighterForm')->name('application.fight');
@@ -34,21 +33,21 @@ Route::post('/subscribe', 'SubscriberController@store')->name('subscribe');
 Route::get('/unsubscribe', 'SubscriberController@showUnsubscribeForm')->name('mail.showUnsubscribeForm');
 Route::post('/unsubscribe', 'SubscriberController@unsubscribe')->name('mail.unsubscribe');
 
+//Get Auction info
+Route::get('auction/{auctionId}', 'EventController@getAuctionItem')->name('getAuctionItem');
 
 // Contender api
 Route::get('/contenders/bio/{contenderID}', 'EventController@getContender')->name('getContender');
 
+//Fight video api
+Route::get('/bout/watch-fight/{boutID}', 'EventController@fightVideoModal')->name('fightVideoModal');
+Route::get('/bout/{boutID}', 'EventController@getBout')->name('getBout');
+
 
 // Contact us
-Route::post('/contact/general', function(){
-    return 'general contact us';
-})->name('contact.general');
+Route::post('/contact/general', 'ContactController@general')->name('contact.general');
+Route::post('/contact/sponsor', 'ContactController@sponsor')->name('contact.sponsor');
+Route::post('/contact/table', 'ContactController@table')->name('contact.table');
 
-Route::post('/contact/sponsor', function(){
-    return 'sponsor contact us';
-})->name('contact.sponsor');
-
-Route::post('/contact/table', function(){
-    return 'table contact us';
-})->name('contact.table');
+// Auth routes
 Auth::routes();

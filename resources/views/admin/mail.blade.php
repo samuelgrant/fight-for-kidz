@@ -39,9 +39,8 @@
                 <input type="text" name="subject" id="subject" class="form-control" placeholder="" required>
             </div>
             <div class="form-group">
-              <label for="message">Message:</label>
-              <textarea name="messageText" id="messageText" class="form-control" placeholder="" rows="12" required></textarea>
-              <small id="helpId" class="text-muted float-right">0/5000</small>
+                <label for="message">Message:</label>
+                <textarea name="messageText" id="messageText" class="form-control" placeholder="" rows="12" required></textarea>
             </div>
             <div class="form-group">
 				<label class="btn btn-primary" for="fileUpload"><i class="fas fa-paperclip"></i>&nbsp;Select Attachments
@@ -82,7 +81,6 @@
     <script>
         
         $(document).ready(function(){
- 
             groupID = $('#mailForm').data('targetGroup');
             if(groupID != null) {
                 // find the element for the group in the dropdown and 'click'
@@ -95,9 +93,7 @@
 
     {{-- Ckeditor --}}
     <script>
-
         CKEDITOR.replace('messageText');
-
     </script>
 
 @endsection
