@@ -123,7 +123,7 @@ class Event extends Model
     public function sponsors()
     {
         return $this->belongsToMany('App\Sponsor');
-    }
+    } 
 
     // Relation to contenders - one to many
     public function contenders()
