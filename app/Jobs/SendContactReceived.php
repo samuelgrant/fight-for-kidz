@@ -14,14 +14,14 @@ class SendContactReceived implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $name, $email;    
+    protected $name, $email, $type;    
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($name, $email)
+    public function __construct($name, $email, $type)
     {
         $this->name = $name;
         $this->email = $email;
@@ -34,6 +34,6 @@ class SendContactReceived implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->email)->send(new ContactReceived($this->name));
+        Mail::to($this->email)->send(new ContactReceived($this->name, $this->type));
     }
 }
