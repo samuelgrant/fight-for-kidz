@@ -11,7 +11,7 @@
 					<option value="select" {{app('request')->input('option') == null ? 'selected' : null}}>Select</option>
 					<option value="general" {{app('request')->input('option') == 'general' ? 'selected' : null}}>General</option>
 					<option value="sponsor" {{app('request')->input('option') == 'sponsor' ? 'selected' : null}}>Become a Sponsor</option>
-					<option value="table" {{app('request')->input('option') == 'table' ? 'selected' : null}}>Booking a Table</option>
+					<option value="table" {{app('request')->input('option') == 'table' ? 'selected' : null}}>Enquire about Booking a Table</option>
 				</select>
 			</div>
 
