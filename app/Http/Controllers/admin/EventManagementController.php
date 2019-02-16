@@ -42,11 +42,7 @@ class EventManagementController extends Controller
             $event->venue_address = $request->input('venueAddress');
         $event->save();
 
-        try{
-            $event->updateGPS();
-        } catch (Excepton $e){
-            echo 'Caught exception: ',  $e->getMessage(), "\n";
-        }            
+        $event->updateGPS();         
 
         session()->flash('success', 'The event called '.$event->name.' was created.');
         return redirect()->back();
@@ -98,11 +94,7 @@ class EventManagementController extends Controller
         $event->event_sponsor = $request->input('eventSponsor');
 
         if($event->venue_address == $request->input('address')){
-            try{
-                $event->updateGPS();
-            } catch (Excepton $e){
-                echo 'Caught exception: ',  $e->getMessage(), "\n";
-            }            
+            $event->updateGPS();      
         }        
 
         if($image = $request->file('charityLogo'))
