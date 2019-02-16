@@ -20,12 +20,26 @@
             <div class="form-group my-3">
                 <label for="multipleGroupSelect">Select Email Recipients:</label>
                 {{-- target group selector --}}
-                <select name="target_groups[]" class="multi-select form-control" id="multipleGroupSelect" style="margin-top:-15px" multiple="multiple">
-                    <optgroup label="System Groups">                        
-                        <option value="admins">Administrators</option>
-                        <option value="applicants">{{App\Event::current()->name}} Applicants</option>
-                        <option value="sponsors">Sponsors</option>
+                <select name="target_groups[]" class="multi-select form-control" id="multipleGroupSelect" style="margin-top:-15px" multiple="multiple">                    
+                    
+                    <optgroup label="Misc" style="text-align: left">
                         <option value="subscribers">Subscribers</option>
+                        <option value="admins">Administrators</option>
+                        <option value="contenders">All Previous Fighters</option>
+
+                    <optgroup label="{{App\Event::current()->name}} Fighters">
+                        <option value="red">Red Team</option>
+                        <option value="blue">Blue Team</option>
+
+                    <optgroup label="Fighter Applicants">                        
+                        <option value="applicants">{{App\Event::current()->name}} Applicants</option>
+                        <option value="prevapplicants">Previous Applicants</option>
+
+                    <optgroup label="Sponsors">
+                        <option value="sponsors">{{App\Event::current()->name}} Sponsors</option>       
+                        <option value="prevsponsors">Previous Sponsors</option>
+                        
+                        
                     <optgroup label="Custom Groups">                    
                         @foreach(App\Group::all() as $group)                    
                             <option value="{{$group->id}}">{{$group->name}}</option>
