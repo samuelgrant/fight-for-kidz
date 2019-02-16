@@ -25,6 +25,7 @@ class SendContactReceived implements ShouldQueue
     {
         $this->name = $name;
         $this->email = $email;
+        $this->type = $type;
     }
 
     /**

@@ -11,16 +11,17 @@ class ContactReceived extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $name;
+    public $name, $type;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name)
+    public function __construct($name, $type)
     {
         $this->name = $name;
+        $this->type = $type;
     }
 
     /**
