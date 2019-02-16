@@ -14,9 +14,15 @@ class SponsorsTableSeeder extends Seeder
     public function run()
     {
         factory(App\Sponsor::class, 16)->create();
+        $id = 1;
 
         foreach(Sponsor::all() as $sponsor){
-            $sponsor->events()->attach(Event::find(1));
+            
+            $sponsor->events()->attach(Event::find($id++));
+
+            if($id == 4){
+                $id = 1;
+            }
         }
     }
 }
