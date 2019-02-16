@@ -42,7 +42,11 @@ class EventManagementController extends Controller
             $event->venue_address = $request->input('venueAddress');
         $event->save();
 
-        $event->updateGPS();
+        try{
+            $event->updateGPS();
+        } catch (Excepton $e){
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }            
 
         session()->flash('success', 'The event called '.$event->name.' was created.');
         return redirect()->back();
