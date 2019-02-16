@@ -42,7 +42,7 @@ class EventManagementController extends Controller
             $event->venue_address = $request->input('venueAddress');
         $event->save();
 
-        $event->updateGPS();
+        $event->updateGPS();         
 
         session()->flash('success', 'The event called '.$event->name.' was created.');
         return redirect()->back();
@@ -93,7 +93,9 @@ class EventManagementController extends Controller
         $event->desc_1 = $request->input('eventDesc');
         $event->event_sponsor = $request->input('eventSponsor');
 
-        $event->updateGPS();
+        if($event->venue_address != $request->input('address')){
+            $event->updateGPS();      
+        }        
 
         if($image = $request->file('charityLogo'))
         {
