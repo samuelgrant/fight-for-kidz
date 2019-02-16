@@ -93,7 +93,7 @@ class EventManagementController extends Controller
         $event->desc_1 = $request->input('eventDesc');
         $event->event_sponsor = $request->input('eventSponsor');
 
-        if($event->venue_address == $request->input('address')){
+        if($event->venue_address != $request->input('address')){
             $event->updateGPS();      
         }        
 
