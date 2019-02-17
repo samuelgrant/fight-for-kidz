@@ -47,9 +47,10 @@ class ApplicantManagementController extends Controller
                 $bout->blue_contender()->dissociate();
             }
             
-            if($applicant->contender->is($bout->victor)){
-                $bout->victor()->dissociate();
-            }
+            //Input not implemented at this stage
+            // if($applicant->contender->is($bout->victor)){
+            //     $bout->victor()->dissociate();
+            // }
 
             $bout->save();
         }
