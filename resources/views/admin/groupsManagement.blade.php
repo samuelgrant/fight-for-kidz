@@ -159,7 +159,7 @@
                         <img id="imgPreview" src="https://via.placeholder.com/80x100" class="float-left mr-2 group-icon" alt="placeholder">
                         <label class="btn btn-info btn-sm btn-file">
                             <i class="fas fa-upload"></i> Select Image
-                            <input name="groupImage" id="img" type="file" style="display: none;">
+                            <input name="newGroupImage" id="newGroupImage" type="file" style="display: none;">
                         </label>
                         <button class="btn btn-danger btn-sm d-block" type="button" onclick="resetImagePre()"><i class="fas fa-times"></i>
                             Remove Image</button>
