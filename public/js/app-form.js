@@ -50,13 +50,15 @@ $(document).ready(function() {
             },
             phone_1:{
               required: true,
+              number:true,
               minlength: 3,
-              maxlength: 30
+              maxlength: 12
             },
             phone_2:{
               required: false,
+              number: true, 
               minlength: 3,
-              maxlength: 30
+              maxlength: 12
             },
       
             //Personal
@@ -302,10 +304,12 @@ $(document).ready(function() {
             },
             phone_1:{
               required: "Please enter your phone number",
+              number : "Please enter only numbers in this field",
               minlength: "Your phone number needs to be greater than 2 charcters",
               maxlength: "The phone number you entered is too long"
             },
             phone_2:{
+              number : "Please enter only numbers in this field",
               minlength: "Your phone number needs to be greater than 2 charcters",
               maxlength: "The phone number you entered is too long"
             },

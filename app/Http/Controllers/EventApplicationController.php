@@ -52,7 +52,6 @@ class EventApplicationController extends Controller
             'post_code' => 'required',
             'email' => 'required|email',
             'phone_1' => 'required',
-            //phone_2 not required
 
             //Personal Details Section
             'dob' => 'required|date', // string must be date according to PHP strtotime() function
