@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 use App\Traits\Groupable;
+use App\Jobs\SendSubscribedEmail;
 
 class Subscriber extends Model
 {
@@ -23,6 +24,8 @@ class Subscriber extends Model
             $subscriber->email = $email;
             $subscriber->unsubscribe_token = Hash::make($email . uniqid());
             $subscriber->save();
+
+            SendSubscribedEmail::dispatch($subscriber);
         }
 
     }

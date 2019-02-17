@@ -33,12 +33,10 @@ class SubscriberController extends Controller
          * Then add them to system group 2 (subscribers).
          */
         if(!Subscriber::where('email', $request->input('email'))->count()){
-            Subscriber::subscribe($request->input('name'), $request->input('email'));
 
-            // send mail notification of subscription
-            SendSubscribedEmail::dispatch($subscriber);
-            
+            Subscriber::subscribe($request->input('name'), $request->input('email'));            
             session()->flash('success', 'You have successfully subscribed');
+            
         }else{
             session()->flash('error', 'This email address has already been signed up');
         }
