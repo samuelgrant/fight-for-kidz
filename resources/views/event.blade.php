@@ -1,7 +1,7 @@
 @extends('layouts.app') 
 @section('content')
 
-<div class="container-fluid" style="background-color: black;">
+<div style="background-color: black;">
 	<section class="upcoming-section">
 		<div class="container">
 			<div class="row pb-5">
