@@ -26,14 +26,16 @@ function resetForm(form){
     sponsor = form.find('.sponsor-select');
     red = form.find('.red-select');
     blue = form.find('.blue-select');
-    victor = form.find('.winner-select');
+    //Input not implemented at this stage
+    //victor = form.find('.winner-select');
     video = form.find('.video-url');
 
 
     sponsor.val(form.data('sponsorId'));
     red.val(form.data('redId'));
     blue.val(form.data('blueId'));
-    victor.val(form.data('winnerId'));
+    //Input not implemented at this stage
+    //victor.val(form.data('winnerId'));
     video.val(form.data('videoUrl'));
 }
 
