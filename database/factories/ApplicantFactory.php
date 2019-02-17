@@ -24,7 +24,7 @@ $factory->define(App\Applicant::class, function (Faker $faker) {
         'postcode' => $faker->randomNumber(4, true),
         'phone_1' => $faker->phoneNumber(),
         'phone_2' => $faker->phoneNumber(),
-        'email' => $faker->unique()->email(),
+        'email' => $faker->unique()->safeEmail(),
 
         //Section 2 - Personal Details
         'dob' => $faker->dateTimeBetween($startDate = '-30 years', $endDate = '-18 years'),

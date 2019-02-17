@@ -7,7 +7,7 @@ $factory->define(App\Sponsor::class, function (Faker $faker) {
         'company_name' => $faker->unique()->company(),
         'contact_name' => $faker->name(),
         'contact_phone' => $faker->phoneNumber(),
-        'email' => $faker->unique()->companyEmail(),
+        'email' => $faker->unique()->safeEmail(),
         'url' => 'www.'.$faker->domainName()
     ];
 });
