@@ -378,10 +378,8 @@
                     <table id="auctionTable" class="tabletable-sm text-center mx-auto">
                       <tbody>
                         <tr id="auctionTableDonor">
-                          <td><p class="pt-2 mb-0">Donated by</p></span></td>
+                          <td><p class="pt-2 mb-0">Donated by</p><span id="auctionItemDonorSpan"></span></td>
                         </tr>
-                        <tr>
-                          <td><span id="auctionItemDonorSpan"></td>
                         </tr>
                         <tr id="auctionTableDonorUrl">
                           <td><span><a href="" id="auctionItemDonorUrlSpan"></span></td>
