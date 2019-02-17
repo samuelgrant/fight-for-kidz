@@ -5,7 +5,8 @@
 	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   	<meta name="description" content="Fight for Kidz is a non for profit charity based in Invercargill that rasies funds for Southland Kids.">
-  	<meta name="author" content="Mitchell Quarrie, Samuel Grant, Samuel Jackson">
+    <meta name="author" content="Mitchell Quarrie, Samuel Grant, Samuel Jackson">
+    <meta name="theme-color" content="#DC3545"/>
   
   <title>Fight for Kidz</title>
 
