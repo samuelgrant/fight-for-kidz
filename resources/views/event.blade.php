@@ -345,7 +345,7 @@
                 <div class="auctionItem-name">
                   <h5>{{$auction->name}}</h5>
                 </div>
-                <div class="auction-btn auction-btn-red" onclick="auctionItemModal({{$auction->id}})">More Info</div>
+                <div class="auction-btn auction-btn" onclick="auctionItemModal({{$auction->id}})">More Info</div>
               </div>
             </div>
             @endif

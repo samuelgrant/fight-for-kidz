@@ -1,0 +1,52 @@
+.item-img{
+    opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.item-details{
+    transition: .5s ease;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.item-price{
+    color: aqua;
+}
+
+.auction-item-div:hover .item-img, .merch-div:hover .item-img{
+    opacity: 0.3;
+}
+
+.auction-item-div:hover .item-details, .merch-div:hover .item-details{
+    opacity: 1;
+}
+
+.merch-div{
+    margin-bottom: 15px;
+}
+
+  /* Card customization */
+  .merch-div .card{
+    height: 100%;
+    padding: 30px;   
+    background-color: #fafafa;
+  }
+
+  #merchandise{
+      background-color: #e7e7e7;
+      padding: 0px 15px;
+  }
+
+  .item-details-fixed{
+  color: black;  
+  text-align: center;
+}
