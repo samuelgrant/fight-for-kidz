@@ -45,11 +45,12 @@ class Contender extends Model
         return $this->redBouts->merge($this->blueBouts);
     }
 
+    //Input not implemented at this stage
     // Return bouts where contender won
-    public function boutsWon()
-    {
-        return $this->hasMany('App\Bout', 'victor_id');
-    }
+    // public function boutsWon()
+    // {
+    //     return $this->hasMany('App\Bout', 'victor_id');
+    // }
 
     /**
      *  Returns the full name of the applicant for this 

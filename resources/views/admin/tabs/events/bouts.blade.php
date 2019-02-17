@@ -74,9 +74,10 @@
                             </select>
                         </div>
 
+                        {{-- Input not implemented at this stage --}}
                         <div class="form-group">
-                            <label for="winner-{{$bout->id}}">Winner</label>
-                            <select name="winner" id="winner-{{$bout->id}}" class="form-control winner-select">
+                            <label for="winner-{{$bout->id}}" hidden>Winner</label>
+                            <select name="winner" id="winner-{{$bout->id}}" class="form-control winner-select" hidden>
                                 <option value="0">---</option>
                                 @if($bout->red_contender)
                                     <option value="{{$bout->red_contender->id}}">(Red) {{$bout->red_contender->getFullName()}}</option>
