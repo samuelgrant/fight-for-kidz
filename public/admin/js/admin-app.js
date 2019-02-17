@@ -905,6 +905,11 @@ $(document).ready(function(){
 
 $(document).ready(function(){
     $('#eventDetailsModal').on('show.bs.modal', function(){
-        $('#eventSponsor').val($(this).data('sponsor'));
+        if($(this).data('sponsor') != "")
+        {
+            $('#eventSponsor').val($(this).data('sponsor'));
+        }else{
+            $('#eventSponsor').val(0);
+        }
     });
 });
