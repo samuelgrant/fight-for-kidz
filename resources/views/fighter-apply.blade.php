@@ -40,14 +40,14 @@
 								<div class="form-group-margin">
 									<div class="row">
 										<div class="col-md-2 inputLabel">
-											<label for="first_name">First Name:</label>
+											<label class="required" for="first_name">First Name:</label>
 										</div>
 										<div class="col-md-4">
 											<input class="form-control" type="text" name="first_name" required>
 										</div>
 
 										<div class="col-md-2 inputLabel">
-											<label for="last_name">Last Name:</label>
+											<label class="required" for="last_name">Last Name:</label>
 										</div>
 										<div class="col-md-4">
 											<input class="form-control" type="text" name="last_name" required>
@@ -58,7 +58,7 @@
 								<div class="form-group-margin">
 									<div class="row">
 										<div class="col-md-2 inputLabel">
-											<label for="address_1">Address 1:</label>
+											<label class="required" for="address_1">Address 1:</label>
 										</div>
 										<div class="col-md-4">
 											<input class="form-control" type="text" name="address_1" required>
@@ -75,14 +75,14 @@
 
 									<div class="row">
 										<div class="col-md-2 inputLabel">
-											<label for="suburb">Suburb:</label>
+											<label class="required" for="suburb">Suburb:</label>
 										</div>
 										<div class="col-md-4">
 											<input class="form-control" type="text" name="suburb">
 										</div>
 
 										<div class="col-md-2 inputLabel">
-											<label for="city">City:</label>
+											<label class="required" for="city">City:</label>
 										</div>
 										<div class="col-md-4">
 											<input class="form-control" type="text" name="city" required>
@@ -91,14 +91,14 @@
 
 									<div class="row">
 										<div class="col-md-2 inputLabel">
-											<label for="post_code">Post Code:</label>
+											<label class="required" for="post_code">Post Code:</label>
 										</div>
 										<div class="col-md-4">
 											<input class="form-control" type="text" name="post_code" required>
 										</div>
 
 										<div class="col-md-2 inputLabel">
-											<label for="email">Email:</label>
+											<label class="required" for="email">Email:</label>
 										</div>
 										<div class="col-md-4">
 											<input class="form-control" type="text" name="email" required>
@@ -109,7 +109,7 @@
 								<div class="form-group-margin">
 									<div class="row">
 										<div class="col-md-2 inputLabel">
-											<label for="phone_1">Phone 1:</label>
+											<label class="required" for="phone_1">Phone 1:</label>
 										</div>
 										<div class="col-md-4" id="phone1Input">
 											<input class="form-control" type="text" name="phone_1" required>
@@ -134,21 +134,21 @@
 								<div class="form-group-margin">
 									<div class="row">
 										<div class="col-md-3 inputLabel">
-											<label for="dob">Date of Birth:</label>
+											<label class="required" for="dob">Date of Birth:</label>
 										</div>
 										<div class="col-md-3 input-group date" id="datepicker">
 											<input class="form-control" type="date" name="dob" required>
 										</div>
 				
 										<div class="col-md-3 inputLabel">
-											<label for="height">Height (cm):</label>
+											<label class="required" for="height">Height (cm):</label>
 										</div>
 										<div class="col-md-3">
 											<input class="form-control" type="text" name="height" required>
 										</div>
 				
 										<div class="col-md-3 inputLabel">
-											<label for="current_weight">Current Weight (kg):</label>
+											<label class="required" for="current_weight">Current Weight (kg):</label>
 										</div>
 										<div class="col-md-3">
 											<input class="form-control" type="text" name="current_weight" required>
@@ -166,7 +166,7 @@
 								<div class="form-group">
 									<div class="row">
 										<div class="col-md-3 inputLabel">
-											<label for="occupation">Occupation:</label>
+											<label class="required" for="occupation">Occupation:</label>
 										</div>
 										<div class="col-md-3">
 											<input class="form-control" type="text" name="occupation" required>
@@ -186,7 +186,7 @@
 								<div class="form-group">
 									<div class="row">
 										<div class="col-md-6">
-											<p class="">Are you:</p>
+											<label class="required">Are you:</label>
 											<div class="radio form-group">
 												<div><label class="radio-selector"><input type="radio" name="gender" value="male" required>Male</label></div>
 												<div><label class="radio-selector"><input type="radio" name="gender" value="female" required>Female</label></div>
@@ -195,7 +195,7 @@
 											<label for="gender" class="error" style="display: none;"></label>
 										</div>
 										<div class="col-md-6">
-											<p>Are you:</p>
+												<label class="required">Are you:</label>
 											<div class="radio form-group">
 												<div><label class="radio-selector"><input type="radio" name="hand" value="left" required>Left-handed</label></div>
 												<div><label class="radio-selector"><input type="radio" name="hand" value="right" required>Right-handed</label></div>
@@ -216,7 +216,7 @@
 								</div>
 				
 								<div class="form-group">
-									<p class="">Can you secure your own sponsor? (not a condition of entry)</p>
+									<label class="required">Can you secure your own sponsor? (not a condition of entry)</label>
 									<div class="radio">
 										<label class="radio-selector"><input type="radio" name="sponsorRadio" value="yes" required>Yes</label>
 										<label class="radio-selector"><input type="radio" name="sponsorRadio" value="no" required>No</label>
@@ -228,7 +228,7 @@
 								<!-- Photo upload -->
 				
 								<div class="form-group">
-									<label for="upload">Please upload a recent photo of yourself:</label>
+									<label class="required" for="upload">Please upload a recent photo of yourself:</label>
 									<br>
 									<input type="file" class="form-control-file" name="photo">
 								</div>
