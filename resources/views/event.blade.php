@@ -374,15 +374,17 @@
                 <div class="col-lg-6 mx-auto image-frame"style="height:333px;"><img id="auctionItemImage" src="" class="img-fluid"></div>
               </div>
 
-              <h5 id="auctionItemInfo" class="text-center text-white"></h5>
               <div class="row">
                     <table id="auctionTable" class="tabletable-sm text-center mx-auto">
                       <tbody>
                         <tr id="auctionTableDonor">
-                          <td>&nbsp;Donor: <span id="auctionItemDonorSpan"></span></td>
+                          <td><p class="pt-2 mb-0">Donated by</p></span></td>
+                        </tr>
+                        <tr>
+                          <td><span id="auctionItemDonorSpan"></td>
                         </tr>
                         <tr id="auctionTableDonorUrl">
-                          <td>&nbsp;Donor Url: <span><a href="" id="auctionItemDonorUrlSpan"></span></td>
+                          <td><span><a href="" id="auctionItemDonorUrlSpan"></span></td>
                         </tr>
                       </tbody>
                     </table>
