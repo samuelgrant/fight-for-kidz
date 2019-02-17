@@ -4,3 +4,7 @@
     changes will be added to '/public/css/app.css'.
 */
 
+form label.required::before {
+    content: "* ";
+    color: red;
+}
