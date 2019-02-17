@@ -1,0 +1,243 @@
+/* Contains the bouts in the large screen format */
+.bouts-row {
+	color: black;
+	display: none;
+}
+
+/* Contains the bouts in the small screen format */
+.bouts-stack {
+	color: black;
+}
+
+/* Point at which bout card format changes */
+@media only screen and (min-width: 9px) {
+	.bouts-row {
+		display: flex;
+	}
+
+	.bouts-stack {
+		display: none;
+	}
+}
+
+.bout-card {
+	color: white;
+	background-color: rgba(0, 0, 0, .75);
+	border-radius: 5px;
+	padding: 1rem;
+	width: 100%;
+	display: inline-block;
+	margin-bottom: 3rem;
+}
+
+.bout-header {
+	margin-bottom: 0.75rem;
+	text-align: center;
+}
+
+.bout-header .sponsored-by {
+	display: inline-block;
+	margin-right: 15px;
+}
+
+.bout-header .sponsor-badge {
+	max-width: 50%;
+	display: inline-block;
+}
+
+.bout-header h2 {
+	text-align: center;
+	margin-bottom: 1.5rem;
+}
+
+.bout-footer{
+	clear: both;
+	text-align:center;
+	width:222px;
+}
+
+.sponsored-by {
+	text-align: center;
+	margin-bottom: 0.5rem;
+}
+
+/* This contains the sponsor logo and takes the edge off the
+white background of the logo */
+.sponsor-badge {
+	border-radius: 10px;
+	background-color: white;
+	height: 85px;
+	padding: 10px;
+}
+
+@media only screen and (min-width: 992px){
+	.bout-header .sponsor-badge{
+		min-width: 250px;      
+	}
+}
+
+/* This is applied to a div which makes it possible to vertically align 
+the sponsor image that comes after it. */
+.sponsor-badge .vertical-aligner {
+	height: 100%;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.contender-card {
+/* border: 1px solid black; */
+	padding: 1rem;
+	display: inline-block;
+	text-align: center;
+	width: 50%;
+}
+
+.contender-card-red {
+	float: left;
+}
+
+.contender-card-blue {
+	float: right;
+}
+
+.contender-card-inner {
+	padding: 1rem;
+	border-radius: 3px;
+}
+
+.contender-img {
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 1.5rem;
+}
+
+.contender-card-red .contender-img {
+	border: 4px solid red;
+}
+
+.contender-card-blue .contender-img {
+	border: 4px solid blue;
+}
+
+.contender-card-blue .contender-card-inner {
+	background: linear-gradient(transparent, blue);
+}
+
+.contender-card-red .contender-card-inner {
+	background: linear-gradient(transparent, red);
+}
+
+.contender-name {
+	margin-bottom: 1rem;
+}
+
+/* Fighter nickname */
+.contender-name h4 {
+	font-style: italic;
+}
+
+.contender-sponsor {
+	margin-bottom: 1rem;
+}
+
+.bout-btn {
+	color: white;
+	padding: 0.5rem;
+	background-color: transparent;
+	background-image: none;
+	-webkit-transition: all 0.3s !important;
+	transition: all 0.3s !important;
+	border-radius: 5px;
+}
+
+.bout-btn:hover {
+	/* color: white; */
+	cursor: pointer;
+	-webkit-transition: all 0.3s !important;
+	transition: all 0.3s !important;
+	background-color: rgba(255, 255, 255, 0.3);
+}
+
+.bout-btn-blue {
+	border: 2px solid #2762D6;
+	margin-bottom: 0.5rem;
+}
+
+.bout-btn-fight{
+	border: 2px solid #039240;
+}
+
+.bout-btn-fight:hover{
+	border: 2px solid white;
+}
+
+.bout-btn-blue:hover {
+	/* background-color: #2762D6; */
+	/* border: 1px solid #2762D6; */
+	border: 2px solid white;
+}
+
+.bout-btn-red {
+	border: 2px solid red;
+	margin-bottom: 0.5rem;
+}
+
+.bout-btn-red:hover {
+	/* background-color: red; */
+	/* border: 1px solid red; */
+	border: 2px solid white;
+} 
+
+@media only screen and (max-width: 468px){
+	.container{
+		width: 100%;
+		padding: 0px;
+	}
+
+	.contender-card{
+		margin: 0px;
+		padding: 0px;
+	}
+
+	.contender-card-inner{
+		padding: 5px;
+		margin: 0px;
+	}
+
+	.bout-card{
+		margin: 0px;
+		padding: 0px;
+	}
+
+	.sponsor-badge{
+		margin: 20px;
+	}
+}
+
+.contender-modal-body{
+	background-color: rgba(0, 0, 0, .85);
+}
+
+.contender-modal-body{
+	border-bottom-color: transparent;
+	box-shadow: 0px 0px 8px gray;
+}
+
+.contender-modal-footer{
+	border-top-color: transparent;
+	background-color: transparent;
+}
+
+.contender-modal-body hr{
+	border: 1px solid lightgray;
+	border-radius: 0%;
+}
+
+#contenderTable{
+	color: white;
+}
+
+#contenderItemName, #contenderItemDescription{
+	color: white;
+}
