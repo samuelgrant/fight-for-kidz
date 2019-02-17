@@ -292,7 +292,6 @@
                                 <option value="Fighter App">Fighter Application Page</option>
                                 <option value="Sponsor Enquiry">Sponsor Enquiry Page</option>
                                 <option value="Table Enquiry">Table Enquiry Page</option>
-                                <option value="General Enquiry">General Enquiry Page</option>
                         </select>
                     </div>
     
