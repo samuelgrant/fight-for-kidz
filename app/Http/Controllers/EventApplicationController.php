@@ -229,13 +229,6 @@ class EventApplicationController extends Controller
         
         // Convert to png if needed and store
         Image::storeAsPng($image, $imagePath, $imageName);
-
-        if(isset($img)){
-            imagepng($img, storage_path('app\\' . $imagePath . $imageName));
-        } else{
-            // save image to storage
-            $image->storeAs($imagePath, $imageName);
-        }
         
         // send email notification of receipt
         SendApplicationReceivedEmail::dispatch($applicant->email, $applicant->first_name);
