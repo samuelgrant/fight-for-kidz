@@ -42,8 +42,9 @@ class BoutManagementController extends Controller
         $bout->sponsor()->associate(Sponsor::find($request->input('sponsor')));
         $bout->video_url = $request->input('video');
 
+        //Input not implemented at this stage
+        
         //$victor = Contender::find($request->input('winner'));
-
         // if($bout->red_contender == null || $bout->blue_contender == null || $victor != $bout->red_contender && $victor != $bout->blue_contender){
         //     $bout->victor()->dissociate();
         // } else{
