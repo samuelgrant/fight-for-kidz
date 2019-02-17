@@ -8,7 +8,6 @@ use App\Jobs\SendSubscribedEmail;
 use App\Jobs\SendUnsubscribedEmail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
@@ -34,11 +33,7 @@ class SubscriberController extends Controller
          * Then add them to system group 2 (subscribers).
          */
         if(!Subscriber::where('email', $request->input('email'))->count()){
-            $subscriber = new Subscriber;
-            $subscriber->name = $request->input('name');
-            $subscriber->email = $request->input('email');
-            $subscriber->unsubscribe_token = Hash::make($request->email . uniqid());
-            $subscriber->save();
+            Subscriber::subscribe($request->input('name'), $request->input('email'));
 
             // send mail notification of subscription
             SendSubscribedEmail::dispatch($subscriber);

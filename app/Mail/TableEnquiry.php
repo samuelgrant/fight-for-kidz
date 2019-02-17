@@ -33,6 +33,7 @@ class TableEnquiry extends Mailable
      */
     public function build()
     {
+        $this->replyTo($this->email);
         return $this->view('emails.contact.tableEnquiry')
                     ->text('emails.contact.tableEnquiryPlain')
                     ->subject('Table Booking Enquiry Received');

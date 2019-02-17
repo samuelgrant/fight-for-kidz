@@ -7,21 +7,20 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ContactReceived extends Mailable
+class ApplicationReceived extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $name, $type;
+    public $recipient;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name, $type)
+    public function __construct($recipient)
     {
-        $this->name = $name;
-        $this->type = $type;
+        $this->recipient = $recipient;
     }
 
     /**
@@ -31,8 +30,8 @@ class ContactReceived extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.contact.contactReceived')
-                    ->text('emails.contact.contactReceivedPlain')
-                    ->subject('Fight for Kidz - Enquiry Received');
+        return $this->view('emails.applicationReceived')
+                    ->subject('Application Received')
+                    ->text('emails.applicationReceivedPlain');
     }
 }

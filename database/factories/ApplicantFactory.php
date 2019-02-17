@@ -13,7 +13,7 @@ $factory->define(App\Applicant::class, function (Faker $faker) {
     $relationship = $gender ? "Father" : "Mother";
     $e_firstName = $gender ? $faker->firstName('male') : $faker->firstName('female');
     return [
-        'event_id' => 1,
+        'event_id' => $faker->numberBetween(1,3),
         //Section 1 - Contact Information
         'first_name' => $firstName,
         'last_name' => $lastName,

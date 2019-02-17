@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 use App\Subscriber;
+use App\Jobs\SendApplicationReceivedEmail;
 
 class EventApplicationController extends Controller
 {
@@ -227,6 +228,9 @@ class EventApplicationController extends Controller
         
         // Convert to png if needed and store
         Image::storeAsPng($image, $imagePath, $imageName);
+        
+        // send email notification of receipt
+        SendApplicationReceivedEmail::dispatch($applicant->email, $applicant->first_name);
 
         // show feedback page
         return view('feedback.received-app');

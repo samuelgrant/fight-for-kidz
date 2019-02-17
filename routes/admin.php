@@ -39,9 +39,13 @@ Route::delete('/sponsor-management/{SponsorID}/{eventID}', 'admin\SponsorManagem
 Route::get('/group-management/all', 'admin\GroupManagementController@getAll')->name('admin.group.all');
 Route::get('/group-management/subscribers', 'admin\GroupManagementController@getSubscribers')->name('admin.group.subscribers');
 Route::get('/group-management/admins', 'admin\GroupManagementController@getAdmins')->name('admin.group.admins');
+Route::get('/group-management/all-applicants', 'admin\GroupManagementController@getAllApplicants')->name('admin.group.allApplicants');
+Route::get('/group-management/all-sponsors', 'admin\GroupManagementController@getAllSponsors')->name('admin.group.allSponsors');
+Route::get('/group-management/others', 'admin\GroupManagementController@getOthers')->name('admin.group.others');
+Route::get('/group-management/red', 'admin\GroupManagementController@getRed')->name('admin.group.red');
+Route::get('/group-management/blue', 'admin\GroupManagementController@getBlue')->name('admin.group.blue');
 Route::get('/group-management/applicants', 'admin\GroupManagementController@getApplicants')->name('admin.group.applicants');
 Route::get('/group-management/sponsors', 'admin\GroupManagementController@getSponsors')->name('admin.group.sponsors');
-Route::get('/group-management/others', 'admin\GroupManagementController@getOthers')->name('admin.group.others');
 
 //View, Update Group
 Route::get('/group-management/{groupID}', 'admin\GroupManagementController@view')->name('admin.group');
