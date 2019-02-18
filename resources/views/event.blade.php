@@ -20,7 +20,9 @@
             <h3>Proudly sponsored by</h3>
           </div>
           <div>
-            <img src="{{file_exists(public_path('/storage/images/sponsors/' . $event->event_sponsor . '.png')) ? '/storage/images/sponsors/' . $event->event_sponsor . '.png' : '/storage/images/sponsors/0.png'}}" style="max-width:400px;">
+            <a href="{{App\Sponsor::find($event->event_sponsor)->url}}" target="blank">
+              <img src="{{file_exists(public_path('/storage/images/sponsors/' . $event->event_sponsor . '.png')) ? '/storage/images/sponsors/' . $event->event_sponsor . '.png' : '/storage/images/sponsors/0.png'}}" style="max-width:400px;">
+            </a>
           </div>
           @endif
 				</div>
@@ -38,7 +40,9 @@
           @endif
           @if(file_exists(public_path('storage/images/charity/'. $event->id . '.png')))
             @if($event->charity_url)
-              <a href="{{$event->charity_url}}"><img id="charityLogo" src="{{'/storage/images/charity/' .  $event->id . '.png'}}" style="width: 150px;"></a>
+              <a href="{{$event->charity_url}}">
+                <img id="charityLogo" src="{{'/storage/images/charity/' .  $event->id . '.png'}}" style="width: 150px;">
+              </a>
             @else
               <img id="charityLogo" src="{{'/storage/images/charity/' .  $event->id . '.png'}}" style="width: 150px;">
             @endif
