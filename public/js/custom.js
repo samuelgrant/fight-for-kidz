@@ -176,6 +176,10 @@ $(document).ready(function () {
       } else if(data.sponsor_id == null){
         $("#bio-sponsor-div").addClass('d-none');
       }
+
+      if(data.sponsor_url != null){
+        $("#sponsorLink").attr('href', data.sponsor_url);
+      }
       
 
       $('#contenderAge').html(data.age);

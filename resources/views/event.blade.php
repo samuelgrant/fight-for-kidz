@@ -20,7 +20,9 @@
             <h3>Proudly sponsored by</h3>
           </div>
           <div>
-            <img src="{{file_exists(public_path('/storage/images/sponsors/' . $event->event_sponsor . '.png')) ? '/storage/images/sponsors/' . $event->event_sponsor . '.png' : '/storage/images/sponsors/0.png'}}" style="max-width:400px;">
+            <a href="{{App\Sponsor::find($event->event_sponsor)->url}}" target="blank">
+              <img src="{{file_exists(public_path('/storage/images/sponsors/' . $event->event_sponsor . '.png')) ? '/storage/images/sponsors/' . $event->event_sponsor . '.png' : '/storage/images/sponsors/0.png'}}" style="max-width:400px;">
+            </a>
           </div>
           @endif
 				</div>
@@ -38,7 +40,9 @@
           @endif
           @if(file_exists(public_path('storage/images/charity/'. $event->id . '.png')))
             @if($event->charity_url)
-              <a href="{{$event->charity_url}}"><img id="charityLogo" src="{{'/storage/images/charity/' .  $event->id . '.png'}}" style="width: 150px;"></a>
+              <a href="{{$event->charity_url}}">
+                <img id="charityLogo" src="{{'/storage/images/charity/' .  $event->id . '.png'}}" style="width: 150px;">
+              </a>
             @else
               <img id="charityLogo" src="{{'/storage/images/charity/' .  $event->id . '.png'}}" style="width: 150px;">
             @endif
@@ -132,9 +136,11 @@
 
             {{-- Sponsor Logo --}}
             <label for="red-sponsor" style="font-size:14px">Sponsored by</label>
-            <img id="red-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png')) ?
-              '/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png' : '/storage/images/sponsors/0.png'}}"
-              class="mx-auto contender-img" style="height:89px;">
+            <a href="{{App\Sponsor::find($event->event_sponsor)->url}}" target="blank">
+              <img id="red-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png')) ?
+                '/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png' : '/storage/images/sponsors/0.png'}}"
+                class="mx-auto contender-img" style="height:89px;">
+            </a>
 
             <div class="bout-btn bout-btn-red bio-view-button" data-toggle="modal" data-target="#bio-modal"
               data-contenderId="{{$bout->red_contender->id}}">View Bio</div>
@@ -154,9 +160,11 @@
 
             {{-- Sponsor Logo --}}
             <label for="red-sponsor" style="font-size:14px">Sponsored by</label>
-            <img id="red-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png')) ?
-              '/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png' : '/storage/images/sponsors/0.png'}}"
-              class="mx-auto contender-img" style="height:89px;">
+            <a href="{{App\Sponsor::find($event->event_sponsor)->url}}" target="blank">
+              <img id="red-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png')) ?
+                '/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png' : '/storage/images/sponsors/0.png'}}"
+                class="mx-auto contender-img" style="height:89px;">
+            </a>
 
             <div class="bout-btn bout-btn-blue bio-view-button" data-toggle="modal" data-target="#bio-modal"
               data-contenderId="{{$bout->blue_contender->id}}">View Bio</div>
@@ -194,9 +202,11 @@
 
             {{-- Sponsor Logo --}}
             <label for="red-sponsor" style="font-size:14px">Sponsored by</label>
-            <img id="red-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png')) ?
+            <a href="{{App\Sponsor::find($event->event_sponsor)->url}}" target="blank">
+              <img id="red-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png')) ?
               '/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png' : '/storage/images/sponsors/0.png'}}"
               class="mx-auto contender-img" style="height:89px;">
+            </a>
 
             <div class="bout-btn bout-btn-red bio-view-button" data-toggle="modal" data-target="#bio-modal"
               data-contenderId="{{$bout->red_contender->id}}">View Bio</div>
@@ -215,10 +225,11 @@
 
             {{-- Sponsor Logo --}}
             <label for="blue-sponsor" style="font-size:14px">Sponsored by</label>
-            <img id="blue-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->blue_contender_id)->sponsor_id . '.png')) ?
+            <a href="{{App\Sponsor::find($event->event_sponsor)->url}}" target="blank">
+              <img id="blue-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->blue_contender_id)->sponsor_id . '.png')) ?
               '/storage/images/sponsors/' . App\Contender::find($bout->blue_contender_id)->sponsor_id . '.png' : '/storage/images/sponsors/0.png'}}"
               class="mx-auto contender-img" style="height:89px;">
-
+            </a>
             <div class="bout-btn bout-btn-blue bio-view-button" data-toggle="modal" data-target="#bio-modal"
               data-contenderId="{{$bout->blue_contender->id}}">View Bio
             </div>
@@ -263,7 +274,9 @@
             {{-- Sponsor logo --}}
             <div id="bio-sponsor-div" class="col-lg-6 pt-2 mx-auto text-center d-none">
               <label for="bio-sponsor" style="width:100%;">Sponsored by...</label>
-              <img id="bio-sponsor" class="img-fluid" style="height: 100px;">
+              <a id="sponsorLink" target="blank">
+                <img id="bio-sponsor" class="img-fluid" style="height: 100px;">
+              </a>  
             </div>
 
             <div class=" px-4 py-3 text-white text-justify">
