@@ -274,7 +274,9 @@
             {{-- Sponsor logo --}}
             <div id="bio-sponsor-div" class="col-lg-6 pt-2 mx-auto text-center d-none">
               <label for="bio-sponsor" style="width:100%;">Sponsored by...</label>
-              <img id="bio-sponsor" class="img-fluid" style="height: 100px;">
+              <a id="sponsorLink" target="blank">
+                <img id="bio-sponsor" class="img-fluid" style="height: 100px;">
+              </a>  
             </div>
 
             <div class=" px-4 py-3 text-white text-justify">
