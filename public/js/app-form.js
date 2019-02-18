@@ -555,3 +555,11 @@ $(document).ready(function() {
     }
   });
 });
+
+function canSubmit(){
+  if(document.getElementById('guidelinesCheckbox').checked){
+    $("#appSubmitBtn").removeClass('d-none');
+  }else{
+    $("#appSubmitBtn").addClass('d-none');
+  }
+}
