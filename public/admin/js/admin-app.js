@@ -15,6 +15,10 @@ $(document).ready(function () {
         processImage(this);
     })
 
+    $('#newGroupImage').change(function () {
+        processImage(this);
+    })
+
     $('#mainPagePhoto').change(function(){
         processImage(this);
     })
