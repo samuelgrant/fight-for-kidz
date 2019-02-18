@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Event;
-use App\Contender, App\Bout, App\AuctionItem;
+use App\Contender, App\Bout, App\AuctionItem, App\Sponsor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Response;
@@ -36,6 +36,7 @@ class EventController extends Controller
                 'bio_url' => $contender->bio_url,
                 'bio_text' => $contender->bio_text,
                 'sponsor_id' => $contender->sponsor_id,
+                'sponsor_url' => Sponsor::find($contender->sponsor_id)->url,
                 'team' => $contender->team,
                 'height' => $contender->height,
                 'weight' => $contender->weight,
