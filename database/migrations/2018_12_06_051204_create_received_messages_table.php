@@ -23,6 +23,7 @@ class CreateReceivedMessagesTable extends Migration
             $table->string('phone')->nullable();
             $table->string('sponsorship_type')->nullable(); // type of sponsorship
             $table->longText('message')->nullable();
+            $table->boolean('read')->default('0');
             $table->softDeletes();
             $table->timestamps();
 

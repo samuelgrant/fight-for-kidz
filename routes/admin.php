@@ -156,3 +156,4 @@ Route::get('/messages', 'admin\MessagesController@index')->name('admin.messages'
 Route::get('/messages/{messageID}', 'admin\MessagesController@view')->name('admin.messages.view');
 Route::delete('/messages/{messageID}', 'admin\MessagesController@delete')->name('admin.messages.delete');
 Route::put('/messages/{messageID}', 'admin\MessagesController@restore')->name('admin.messages.restore');
+Route::patch('/messages/{messageID}', 'admin\MessagesController@markAsUnread')->name('admin.messages.markAsUnread');

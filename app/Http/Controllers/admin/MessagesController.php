@@ -20,6 +20,12 @@ class MessagesController extends Controller
      * Return a view of a single message
      */
     public function view($messageID){
+
+        // Mark as read
+        $message = ReceivedMessage::find($messageID);
+        $message->read = true;
+        $message->save();
+
         return view('admin.message')->with('msg', ReceivedMessage::find($messageID));
     }
 
@@ -38,5 +44,17 @@ class MessagesController extends Controller
 
         session()->flash('success', 'Message has been restored');
         return redirect()->back();
+    }
+
+    public function markAsUnread($messageID){
+
+        $message = ReceivedMessage::find($messageID);
+        $message->read = false;
+        $message->save();
+
+        // Returns to main messages view afterwards
+        return view('admin.messages')->with('messages', ReceivedMessage::all())
+                                    ->with('deletedMessages', ReceivedMessage::onlyTrashed()->get());
+
     }
 }

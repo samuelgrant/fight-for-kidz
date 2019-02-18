@@ -913,3 +913,10 @@ $(document).ready(function(){
         }
     });
 });
+
+function markAsRead(id){
+    console.log('gotem');
+        $('#msg-row-' + id).removeClass('font-weight-bold');
+        $('#open-icon-' + id).attr('class', 'fas fa-envelope-open');
+        $('#open-btn-' + id).attr('title', 'Mark as unread');
+    }

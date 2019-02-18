@@ -39,7 +39,7 @@
 						</thead>
 						<tbody>
 							@foreach($messages as $msg)
-							<tr>
+							<tr id="msg-row-{{$msg->id}}" class="{{$msg->read ? '' : 'font-weight-bold'}}">
 								<td>{{strtotime($msg->created_at)}}</td>
 								<td>{{$msg->created_at}}</td>
 								<td>{{App\Event::find($msg->event_id)->name}}</td>
@@ -48,11 +48,16 @@
 								<td>{{$msg->name}}</td>
 								<td>
 									<div class="float-right">
-										<a class="btn btn-sm btn-primary" target="_blank" href="{{route('admin.messages.view', ['messageID' => $msg->id])}}"><i class="fas fa-search"></i></a>
+										<a data-toggle="tooltip" title="View" onclick="markAsRead({{$msg->id}})" id="viewMsgBtn" class="btn btn-sm btn-primary" target="_blank" href="{{route('admin.messages.view', ['messageID' => $msg->id])}}"><i class="fas fa-search"></i></a>
+										<form class="d-inline" method="POST" action="{{route('admin.messages.markAsUnread', ['messageId' => $msg->id])}}">
+											@csrf
+											@method('PATCH')
+											<button id="open-btn-{{$msg->id}}" data-toggle="tooltip" title="{{$msg->read ? 'Mark as unread' : ''}}" type="submit" class="btn btn-sm btn-primary"><i id="open-icon-{{$msg->id}}" class="{{$msg->read ? 'fas fa-envelope-open' : 'fas fa-envelope'}}"></i></button>
+										</form>
 										<form class="d-inline" method="POST" action="{{route('admin.messages.delete', ['messageID' => $msg->id])}}">
 											@csrf
 											@method('DELETE')
-											<button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
+											<button data-toggle="tooltip" title="Delete" type="submit" class="btn btn-sm btn-danger"><i class="fas fa-trash"></i></button>
 										</form>
 									</div>
 								</td>
