@@ -113,6 +113,13 @@ class Applicant extends Model
     /**
      *  Returns the age of the applicant
      */
+    public function getAgeOnEventDate(){
+        $date = Carbon::parse($this->dob);
+        $eventDate = Carbon::parse($this->event->date);
+
+        return $eventDate->diffInYears($date);
+    }
+
     public function getAge(){
         $date = Carbon::parse($this->dob);
 
