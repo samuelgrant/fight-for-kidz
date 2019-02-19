@@ -202,11 +202,15 @@
 
             {{-- Sponsor Logo --}}
             <label for="red-sponsor" style="font-size:14px">Sponsored by</label>
-            <a href="{{App\Sponsor::find($event->event_sponsor)->url}}" target="blank">
+            @if(App\Contender::find($bout->red_contender_id)->sponsor_id)
+            <a href="{{App\Sponsor::find(App\Contender::find($bout->red_contender_id)->sponsor_id)->url}}" target="blank">
               <img id="red-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png')) ?
               '/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png' : '/storage/images/sponsors/0.png'}}"
               class="mx-auto contender-img" style="height:89px;">
             </a>
+            @else
+              <img id="red-sponsor" src="/storage/images/sponsors/0.png" class="mx-auto contender-img" style="height:89px;">
+            @endif
 
             <div class="bout-btn bout-btn-red bio-view-button" data-toggle="modal" data-target="#bio-modal"
               data-contenderId="{{$bout->red_contender->id}}">View Bio</div>
@@ -225,11 +229,16 @@
 
             {{-- Sponsor Logo --}}
             <label for="blue-sponsor" style="font-size:14px">Sponsored by</label>
-            <a href="{{App\Sponsor::find($event->event_sponsor)->url}}" target="blank">
+            @if(App\Contender::find($bout->blue_contender_id)->sponsor_id)
+            <a href="{{App\Sponsor::find(App\Contender::find($bout->blue_contender_id)->sponsor_id)->url}}" target="blank">
               <img id="blue-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->blue_contender_id)->sponsor_id . '.png')) ?
               '/storage/images/sponsors/' . App\Contender::find($bout->blue_contender_id)->sponsor_id . '.png' : '/storage/images/sponsors/0.png'}}"
               class="mx-auto contender-img" style="height:89px;">
             </a>
+            @else
+              <img id="blue-sponsor" src="/storage/images/sponsors/0.png" class="mx-auto contender-img" style="height:89px;">
+            @endif
+
             <div class="bout-btn bout-btn-blue bio-view-button" data-toggle="modal" data-target="#bio-modal"
               data-contenderId="{{$bout->blue_contender->id}}">View Bio
             </div>
