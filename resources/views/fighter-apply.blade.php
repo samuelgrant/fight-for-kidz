@@ -651,7 +651,7 @@
 										<input class="d-inline-block align-middle" type="checkbox" name="subscribeCheckbox" id="subscribeCheckbox" checked>I would like to receive Fight for Kidz updates via email
 									</label>
 									<label for="guidelinesCheckbox">
-										<input class="d-inline-block align-middle" type="checkbox" name="declCheckbox" id="guidelinesCheckbox" required>I have provided true and accurate information in this application
+										<input class="d-inline-block align-middle" onclick="canSubmit()" type="checkbox" name="declCheckbox" id="guidelinesCheckbox" required>I have provided true and accurate information in this application
 									</label>
 
 									<div class="form-group text-center">
@@ -660,7 +660,7 @@
 								</div>
 				
 								<div class="text-center">
-									<input type="submit" role="button" class="btn btn-danger mt-2" value="Submit Application"> {!! app('captcha')->render(); !!}
+									<input type="submit" role="button" id="appSubmitBtn" class="btn btn-danger mt-2 d-none" value="Submit Application"> {!! app('captcha')->render(); !!}
 								</div>
 							</div>
 							<hr>
