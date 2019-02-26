@@ -32,14 +32,15 @@
   <script src="/js/libraries/twitter-bootstrap-wizard.js"></script>
 
   <link rel="stylesheet"  href="/css/slick.css"/>
-  <script src="/js/libraries/slick.min.js"></script>
+  <script  src="/js/libraries/slick.min.js"></script>    
 
   <!-- Jquery Validation -->
   <script src="/js/libraries/jquery-validate.js"></script>
   <script src="/js/libraries/additional-methods.js"></script>
   
-  <!-- Custom scripts for this template --> 
-  <script src="/js/app.js" defer></script>
+  <!-- Custom scripts for this template -->
+  <script src="/js/custom.js" defer></script>
+  <script src="/js/app-form.js" defer></script>
 
   <!-- Cookie -->
   <script src="/jquery/jquery.gdrp.js"></script>
