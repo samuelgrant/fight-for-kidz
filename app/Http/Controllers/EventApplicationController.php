@@ -224,10 +224,10 @@ class EventApplicationController extends Controller
 
         $image = $request->file('photo');
         $imagePath = 'private/images/applicants/';
-        $imageName = $applicant->id . '.png'; 
+        $imageName = $applicant->id . '.jpg'; 
         
         // Convert to png if needed and store
-        Image::storeAsPng($image, $imagePath, $imageName);
+        Image::storeAsJpg($image, $imagePath, $imageName);
         
         // send email notification of receipt
         SendApplicationReceivedEmail::dispatch($applicant->email, $applicant->first_name);

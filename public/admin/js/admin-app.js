@@ -511,7 +511,7 @@ function applicantManagementModal(id){
 
         // Set Photo
         var img = $('#appPhoto');
-        img.attr('src', img.data('route') + data.id + '.png'); // appends id.png to end of supplied route
+        img.attr('src', img.data('route') + data.id + '.jpg'); // appends id.jpg to end of supplied route
 
         // Set Gender 
         if(if_male = 0) {
