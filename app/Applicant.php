@@ -3,7 +3,6 @@
 namespace App;
 
 use Excel;
-use App\Applicant;
 use Illuminate\Database\Eloquent\Model;
 use App\Contender;
 use App\Traits\Groupable;
