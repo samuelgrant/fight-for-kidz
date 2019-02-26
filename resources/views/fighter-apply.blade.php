@@ -324,7 +324,7 @@
 
 									<label for="expRadio" class="error" style="display: none;"></label>
 								</div>
-								<div id="exeperience" class="form-group" style="display: none;">
+								<div id="experience" class="form-group" style="display: none;">
 									<textarea id="experience" name="fighting_experience" class="form-control" rows="3" placeholder="* Please describe any prior boxing/kickboxing/martial arts experience..."></textarea>
 								</div>
 				
@@ -559,7 +559,7 @@
 									</div>
 
 									<label class="required">8. Are you aware, through your own experience or a physician’s advice, of any other reason that would prohibit you from exercising without medical supervision?</label>
-									<div class="radio ">
+									<div class="radio ">exe
 										<label class="radio-selector"><input type="radio" name="reasonsRadio" id="reasonsRadio" value="yes" onclick="showReason()" required>Yes</label>
 										<label class="radio-selector"><input type="radio" name="reasonsRadio" id="reasonsRadio" value="no" onclick="hideReason()" required>No</label>
 									</div>

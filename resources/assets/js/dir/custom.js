@@ -1,9 +1,9 @@
 function showExperience() {
-    document.getElementById('exeperience').style.display = 'block';
+    document.getElementById('experience').style.display = 'block';
 }
 
 function hideExperience() {
-    document.getElementById('exeperience').style.display = 'none';
+    document.getElementById('experience').style.display = 'none';
 }
 
 function showCriminal() {
@@ -199,7 +199,7 @@ $(document).ready(function() {
             $('#contenderWeight').html(data.weight);
             $('#contenderReach').html(data.reach);
         }).fail(function(err) {
-            console.error(`Error getting bout information in the custom/bio-view-button method: ${err}`);
+            console.error('Error getting bout information in the custom/bio-view-button method: ' + err);
             $('.dynamic-content').html('<p class="my-auto" style="color:white; text-align: center;"><i class="fa fa-exclamation-triangle"></i>&nbsp;Something went wrong. ' +
                 'Please try again...</p> <div class="modal-footer contender-modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div>');
         });
@@ -228,8 +228,8 @@ function auctionItemModal(id) {
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         },
-        url: `/auction/${id}`
-    }).done((data) => {
+        url: '/auction/' + id
+    }).done(function(data) {
         //Dynamically populate the modal with item info
         $("#auctionItemName").text(data.name);
         $("#auctionItemDescription").text(data.desc);
@@ -261,7 +261,7 @@ function auctionItemModal(id) {
         //Display the modal
         $("#auctionItemModal").modal('show');
     }).fail(function(err) {
-        console.error(`Error getting auction information in the custom/auctionItemModal method: ${err}`);
+        console.error('Error getting auction information in the custom/auctionItemModal method: ' + err);
     });
 }
 
@@ -297,7 +297,7 @@ $(document).ready(function() {
                 $('#fight-vid').addClass('d-none');
             }
         }).fail(function(err) {
-            console.error(`Error getting bout and contender info in the custom/fight-view-btn method: ${err}`);
+            console.error('Error getting bout and contender info in the custom/fight-view-btn method: ' + err);
             $('.dynamic-content').html('<p class="my-auto" style="color:white; text-align: center;"><i class="fa fa-exclamation-triangle"></i>&nbsp;Something went wrong. ' +
                 'Please try again...</p> <div class="modal-footer contender-modal-footer"><button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button></div>');
         });
