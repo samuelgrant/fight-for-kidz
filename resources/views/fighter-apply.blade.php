@@ -559,7 +559,7 @@
 									</div>
 
 									<label class="required">8. Are you aware, through your own experience or a physician’s advice, of any other reason that would prohibit you from exercising without medical supervision?</label>
-									<div class="radio ">exe
+									<div class="radio ">
 										<label class="radio-selector"><input type="radio" name="reasonsRadio" id="reasonsRadio" value="yes" onclick="showReason()" required>Yes</label>
 										<label class="radio-selector"><input type="radio" name="reasonsRadio" id="reasonsRadio" value="no" onclick="hideReason()" required>No</label>
 									</div>

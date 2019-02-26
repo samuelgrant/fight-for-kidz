@@ -1,8 +1,8 @@
 function showExperience(){
-  document.getElementById('exeperience').style.display ='block';
+  document.getElementById('experience').style.display ='block';
 }
 function hideExperience(){
-  document.getElementById('exeperience').style.display ='none';
+  document.getElementById('experience').style.display ='none';
 }  
 function showCriminal(){
   document.getElementById('criminal').style.display = 'block';
