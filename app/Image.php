@@ -46,4 +46,36 @@ class Image //extends Model
 
     }
 
+    public static function storeAsJpg($image, $path, $name){
+        //this checks to see if the supplied directory exists, if it doesn't it creates it
+        $dir = storage_path('app/' . $path);
+        
+        if(!file_exists($dir)){
+            mkdir($dir);
+        }
+
+        switch(exif_imagetype($image)){
+
+            case IMAGETYPE_PNG:
+                $pngImage = imagecreatefrompng($image);
+                break;
+            case IMAGETYPE_JPEG:                
+                break;
+            default:
+                throw new InvalidArgumentException('Invalid image type (must be PNG or JPG)');
+                // validation should prevent reaching this point.
+        }
+
+        if(isset($pngImage)){
+            // Create a png from the jpg image and output to file
+            imagejpeg($pngImage, storage_path('app/' . $path . $name));
+        } else {
+            // Save jpg to file
+            $image->storeAs($path, $name);
+        }
+
+        return true;
+
+    }
+
 }

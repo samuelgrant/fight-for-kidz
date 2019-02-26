@@ -5,87 +5,82 @@ use Faker\Generator as Faker;
 $factory->define(App\Applicant::class, function (Faker $faker) {
 
     // Setting the gender first so that we can generate a gender appropriate first name.
-    $isMale = $faker->numberBetween(0, 1);
-    $firstName = $isMale ? $faker->firstName('male') : $faker->firstName('female');
-    $lastName = $faker->lastname();
+    
 
-    $gender = $faker->numberBetween(0,1);
-    $relationship = $gender ? "Father" : "Mother";
-    $e_firstName = $gender ? $faker->firstName('male') : $faker->firstName('female');
     return [
-        'event_id' => $faker->numberBetween(1,3),
+        'event_id' => 1,
         //Section 1 - Contact Information
-        'first_name' => $firstName,
-        'last_name' => $lastName,
-        'address_1' => $faker->streetAddress(),
-        'address_2' => null,
-        'suburb' => $faker->city(),
-        'city' => $faker->city(),
-        'postcode' => $faker->randomNumber(4, true),
-        'phone_1' => $faker->phoneNumber(),
-        'phone_2' => $faker->phoneNumber(),
-        'email' => $faker->unique()->safeEmail(),
+        'first_name' => '',
+        'last_name' => '',
+        'address_1' => 'N/A',
+        'address_2' => 'N/A',
+        'suburb' => 'N/A',
+        'city' => 'N/A',
+        'postcode' => 0000,
+        'phone_1' => 'N/A',
+        'phone_2' => 'N/A',
+        'email' => 'no-email@example.co.nz',
 
         //Section 2 - Personal Details
         'dob' => $faker->dateTimeBetween($startDate = '-30 years', $endDate = '-18 years'),
-        'height' => $faker->numberBetween(130, 220),
-        'current_weight' => $faker->numberBetween(50, 160),
-        'expected_weight' => $faker->numberBetween(60, 140),
-        'occupation' => $faker->jobTitle(),
-        'employer' => $faker->company(),
-        'is_male' => $isMale,
+        'height' => 0,
+        'current_weight' => 0,
+        'expected_weight' => 0,
+        'occupation' => 'N/A',
+        'employer' => 'N/A',
+        'is_male' => 0,
         'right_handed' => $faker->numberBetween(0, 1),      
-        'preferred_fight_name' => $faker->words(2, true),
+        'preferred_fight_name' => 'N/A',
         'can_secure_sponsor' => $faker->numberBetween(0, 1),
 
         //Section 3 - Emergency Contact
-        'emergency_first_name' => $e_firstName,
-        'emergency_last_name' => $lastName,
-        'emergency_relationship' => $relationship,
-        'emergency_phone_1' => $faker->phoneNumber(),
-        'emergency_phone_2' => $faker->phoneNumber(),
-        'emergency_email' => $faker->unique()->email(),
+        'emergency_first_name' => 'N/A',
+        'emergency_last_name' => 'N/A',
+        'emergency_relationship' => 'N/A',
+        'emergency_phone_1' => 0,
+        'emergency_phone_2' => 0,
+        'emergency_email' => 'N/A',
 
         //Section 4 - Sporting Experience
         'fitness_rating' => $faker->numberBetween(1, 5),
-        'sporting_exp' => $faker->paragraph(3, true),
-        'boxing_exp' => $faker->paragraph(2, true),
+        'sporting_exp' => 'N/A',
+        'boxing_exp' => 'N/A',
 
         //Section 5 - Medical Questions
-        'heart_disease' => $faker->numberBetween(0, 1),  
-        'breathlessness' => $faker->numberBetween(0, 1),
-        'epilepsy' => $faker->numberBetween(0, 1),
-        'heart_attack' => $faker->numberBetween(0, 1),
-        'stroke' => $faker->numberBetween(0, 1),
-        'heart_surgery' => $faker->numberBetween(0, 1),
-        'respiratory_problems' => $faker->numberBetween(0, 1),
-        'cancer' => $faker->numberBetween(0, 1),
-        'irregular_heartbeat' => $faker->numberBetween(0, 1),
-        'smoking' => $faker->numberBetween(0, 1),
-        'joint_pain_problems' => $faker->numberBetween(0, 1),
-        'chest_pain_discomfort' => $faker->numberBetween(0, 1),
-        'hypertension' => $faker->numberBetween(0, 1),
-        'surgery' => $faker->numberBetween(0, 1),
-        'dizziness_fainting' => $faker->numberBetween(0, 1),
-        'high_cholesterol' => $faker->numberBetween(0, 1),
+        'heart_disease' => 0,  
+        'breathlessness' => 0,
+        'epilepsy' => 0,
+        'heart_attack' => 0,
+        'stroke' => 0,
+        'heart_surgery' => 0,
+        'respiratory_problems' => 0,
+        'cancer' => 0,
+        'irregular_heartbeat' => 0,
+        'smoking' => 0,
+        'joint_pain_problems' => 0,
+        'chest_pain_discomfort' => 0,
+        'hypertension' => 0,
+        'surgery' => 0,
+        'dizziness_fainting' => 0,
+        'high_cholesterol' => 0,
 
         'other' => null,
-        'hand_injuries' => $faker->paragraph(1, true),
-        'previous_current_injuries' => $faker->paragraph(1, true),
-        'current_medication' => $faker->paragraph(1, true),
+        'hand_injuries' => 'N/A',
+        'previous_current_injuries' => 'N/A',
+        'current_medication' => 'N/A',
 
-        'heart_condition' => $faker->numberBetween(0, 1),
-        'chest_pain_activity' => $faker->numberBetween(0, 1),
-        'chest_pain_recent' => $faker->numberBetween(0, 1),
-        'lost_consciousness' => $faker->numberBetween(0, 1),
-        'bone_joint_problems' => $faker->numberBetween(0, 1),
-        'recommended_medication' => $faker->numberBetween(0, 1),
+        'heart_condition' => 0,
+        'chest_pain_activity' => 0,
+        'chest_pain_recent' => 0,
+        'lost_consciousness' => 0,
+        'bone_joint_problems' => 0,
+        'recommended_medication' => 0,
         'concussed_knocked_out' => null,
         'other_reasons' => null,    
 
         //Section 6 - Additional Information
-        'hobbies' => $faker->paragraph(1, true),
+        'hobbies' => 'N/A',
         'conviction_details' => null,
-        'consent_to_test' => $faker->numberBetween(0, 1)
+        'consent_to_test' => 0
     ];
 });

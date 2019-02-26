@@ -36,12 +36,12 @@ class EventController extends Controller
                 'bio_url' => $contender->bio_url,
                 'bio_text' => $contender->bio_text,
                 'sponsor_id' => $contender->sponsor_id,
-                'sponsor_url' => Sponsor::find($contender->sponsor_id)->url,
+                'sponsor_url' => $contender->sponsor_id ? Sponsor::find($contender->sponsor_id)->url : null,
                 'team' => $contender->team,
                 'height' => $contender->height,
                 'weight' => $contender->weight,
                 'reach' => $contender->reach,
-                'age' => $contender->applicant->getAge()
+                'age' => $contender->applicant->getAgeOnEventDate()
             ];
         } else{
             return response('No contender found', 400);

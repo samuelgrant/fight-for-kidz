@@ -109,7 +109,12 @@
                             <td>{{$member['first_name'] . ' ' . $member['last_name']}}</td>
                             <td><a href="mailto:{{$member['email']}}">{{$member['email']}}</a></td>
                             <td>{{$member['phone']}}</td>
-                            <td>Applicant ({{Carbon\Carbon::parse(App\Event::find($member['event_id'])->datetime)->format('Y')}})</td>
+                            <td>
+                                @if($member->isContender())
+                                Fighter ({{Carbon\Carbon::parse(App\Event::find($member['event_id'])->datetime)->format('Y')}})</td>
+                                @else
+                                Applicant ({{Carbon\Carbon::parse(App\Event::find($member['event_id'])->datetime)->format('Y')}})</td>
+                                @endif
                             <td></td>
                         </tr>
                     @endforeach

@@ -3,7 +3,6 @@
 namespace App;
 
 use Excel;
-use App\Applicant;
 use Illuminate\Database\Eloquent\Model;
 use App\Contender;
 use App\Traits\Groupable;
@@ -113,6 +112,13 @@ class Applicant extends Model
     /**
      *  Returns the age of the applicant
      */
+    public function getAgeOnEventDate(){
+        $date = Carbon::parse($this->dob);
+        $eventDate = Carbon::parse($this->event->date);
+
+        return $eventDate->diffInYears($date);
+    }
+
     public function getAge(){
         $date = Carbon::parse($this->dob);
 
