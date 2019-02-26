@@ -31,22 +31,22 @@
 					<p class="stat">{{\Carbon\Carbon::parse($event->datetime)->format('D d M Y h:i a')}}{{--->toDayDateTimeString()--}}</p>
 					<p class="all-caps sidebar-heading">Location</p>
 					<p class="stat">{{$event->venue_name}}</p>
-					<p class="all-caps sidebar-heading">Supporting</p>
-					@if($event->charity_url)
-					<a class="stat-link" href="{{$event->charity_url}}" target="blank" style="color: white!important;">
-            <i class="fas fa-link"></i> {{$event->charity}}
-          </a> @else
-					<p class="stat">{{$event->charity}}</p>
-          @endif
-          @if(file_exists(public_path('storage/images/charity/'. $event->id . '.png')))
+					<p class="all-caps sidebar-heading">Supporting</p>          
             @if($event->charity_url)
-              <a href="{{$event->charity_url}}">
-                <img id="charityLogo" src="{{'/storage/images/charity/' .  $event->id . '.png'}}" style="width: 150px;">
+              <a href="{{$event->charity_url}}" target="_blank" class="stat">
+                @if(file_exists(public_path('storage/images/charity/'. $event->id . '.png')))
+                  <p><img id="charityLogo" src="{{'/storage/images/charity/' .  $event->id . '.png'}}" title="{{$event->charity}}" style="width: 150px;"></p>
+                @else
+                  <h4><u>{{$event->charity}}</u></h4>
+                @endif
               </a>
             @else
-              <img id="charityLogo" src="{{'/storage/images/charity/' .  $event->id . '.png'}}" style="width: 150px;">
+              @if(file_exists(public_path('storage/images/charity/'. $event->id . '.png')))
+                <p class="stat"><img id="charityLogo" src="{{'/storage/images/charity/' .  $event->id . '.png'}}" style="width: 150px;" title="{{$event->charity}}"></p>
+              @else
+                <h4 class="text-white stat">{{$event->charity}}</h4>
+              @endif
             @endif
-          @endif
 				</div>
 			</div>
 		</div>
