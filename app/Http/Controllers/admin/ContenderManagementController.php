@@ -69,10 +69,10 @@ class ContenderManagementController extends Controller
         // Save image file
         $image = $request->file('contenderImage');
         $imagePath = 'public/images/contenders/';
-        $imageName = $contender->id . '.png'; 
+        $imageName = $contender->id . '.jpg'; 
         
         // Convert to png if needed and store
-        Image::storeAsPng($image, $imagePath, $imageName);
+        Image::storeAsJpg($image, $imagePath, $imageName);
 
         session()->flash('success', 'Profile of ' . $contender->getFullName() . ' updated.');
         return redirect()->back();

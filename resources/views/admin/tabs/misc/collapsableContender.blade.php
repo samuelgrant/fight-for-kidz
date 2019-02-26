@@ -39,7 +39,7 @@
         <div class="col-md-6 text-center">
 
         {{-- check if a photo exists for the contender, otherwise use 0.png - the silouhette image --}}
-        <img src="{{file_exists(public_path('/storage/images/contenders/' . $contender->id . '.png')) ? '/storage/images/contenders/' . $contender->id . '.png' : '/storage/images/contenders/0.png'}}" 
+        <img src="{{file_exists(public_path('/storage/images/contenders/' . $contender->id . '.jpg')) ? '/storage/images/contenders/' . $contender->id . '.jpg' : '/storage/images/contenders/0.png'}}" 
             class="d-block mx-auto mb-2 img-fluid err-image">
 
         </div>

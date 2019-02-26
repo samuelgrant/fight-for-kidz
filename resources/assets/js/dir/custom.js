@@ -173,9 +173,9 @@ $(document).ready(function() {
             $('#bio-text').text(data.bio_text);
 
             //checks to see if the image exists and uses it to set the contender image otherwise sets it to default
-            $.get('/storage/images/contenders/' + data.id + '.png')
+            $.get('/storage/images/contenders/' + data.id + '.jpg')
                 .done(function() {
-                    $("#bio-image").attr('src', '/storage/images/contenders/' + data.id + '.png');
+                    $("#bio-image").attr('src', '/storage/images/contenders/' + data.id + '.jpg');
                 }).fail(function() {
                     $("#bio-image").attr("src", "/storage/images/contenders/0.png");
                 })

@@ -126,7 +126,7 @@
         <!-- Each bout card will contain two contender-cards -->
         <div class="contender-card contender-card-red">
           <div class="contender-card-inner">
-            <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->red_contender->id . '.png')) ? '/storage/sponsors/contenders/' . $bout->red_contender->id . '.png' : '/storage/images/contenders/0.png'}}"
+            <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->red_contender->id . '.jpg')) ? '/storage/sponsors/contenders/' . $bout->red_contender->id . '.jpg' : '/storage/images/contenders/0.png'}}"
               class="mx-auto contender-img" height="89">
             <div class="contender-name">
               <h5>{{$bout->red_contender->first_name}}</h5>
@@ -150,7 +150,7 @@
 
         <div class="contender-card contender-card-blue">
           <div class="contender-card-inner">
-            <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->blue_contender->id . '.png')) ? '/storage/images/contenders/' . $bout->blue_contender->id . '.png' : '/storage/images/contenders/0.png'}}"
+            <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->blue_contender->id . '.jpg')) ? '/storage/images/contenders/' . $bout->blue_contender->id . '.jpg' : '/storage/images/contenders/0.png'}}"
               class="mx-auto contender-img" height="89">
             <div class="contender-name">
               <h5>{{$bout->blue_contender->first_name}}</h5>
@@ -192,7 +192,7 @@
         <!-- Each bout card will contain two contender-cards -->
         <div class="contender-card contender-card-red">
           <div class="contender-card-inner">
-            <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->red_contender->id . '.png')) ? '/storage/images/contenders/' . $bout->red_contender->id . '.png' : '/storage/images/contenders/0.png'}}"
+            <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->red_contender->id . '.jpg')) ? '/storage/images/contenders/' . $bout->red_contender->id . '.jpg' : '/storage/images/contenders/0.png'}}"
               class="mx-auto contender-img" height="89">
             <div class="contender-name">
               <h5>{{$bout->red_contender->first_name}}</h5>
@@ -219,7 +219,7 @@
 
         <div class="contender-card contender-card-blue">
           <div class="contender-card-inner">
-            <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->blue_contender->id . '.png')) ? '/storage/images/contenders/' . $bout->blue_contender->id . '.png' : '/storage/images/contenders/0.png'}}"
+            <img src="{{file_exists(public_path('/storage/images/contenders/' . $bout->blue_contender->id . '.jpg')) ? '/storage/images/contenders/' . $bout->blue_contender->id . '.jpg' : '/storage/images/contenders/0.png'}}"
               class="mx-auto contender-img" height="89">
             <div class="contender-name">
               <h5>{{$bout->blue_contender->first_name}}</h5>
