@@ -422,3 +422,21 @@ label.error {
 		text-align: center;
 	}
 }
+
+// Nickname alignment on event page
+.nickname-wrapper{
+	display: table;
+	min-height: 50px;
+	text-align: center;
+	width: 100%;
+}
+
+.nickname-cell{
+	vertical-align: middle;
+	display: table-cell;
+}
+
+.contender-name h5{
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
