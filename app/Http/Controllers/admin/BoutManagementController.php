@@ -52,6 +52,8 @@ class BoutManagementController extends Controller
         // }
 
         $bout->save();
+
+        session()->flash('success', 'The bout has been successfully updated');
         
         return redirect()->back();
     }
