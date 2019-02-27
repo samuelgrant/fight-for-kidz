@@ -41,8 +41,13 @@
 }
 
 .bout-header .sponsor-badge {
-	max-width: 50%;
+	max-width: 80%;
 	display: inline-block;
+}
+
+// Stop images dropping out of sponsor badge
+.img-fluid{
+	max-width: 95% !important;
 }
 
 .bout-header h2 {
