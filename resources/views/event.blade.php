@@ -341,7 +341,7 @@
             <h3 id=first-name class="d-inline mx-2"></h3>
             <h2 id="nickname" class="d-inline"></h2>
             <h3 id="last-name" class="d-inline mx-2"></h3>
-            <iframe width="638" height="315" id="bio-vid" src="" frameborder="0" allow="autoplay; encrypted-media;"
+            <iframe class="iframe-video" id="bio-vid" src="" frameborder="0" allow="autoplay; encrypted-media;"
               allowfullscreen style="border-bottom: 1px solid white; border-top: 1px solid white;">
           </iframe>
 
@@ -359,7 +359,7 @@
             </div>
 
             <div class="row pl-3">
-              <div class="col-lg-4"><img id="bio-image" class="img-fluid"></div>
+              <div class="col-lg-4"><img id="bio-image" class="img-fluid mb-2"></div>
               <div class="col-lg-6">
                 <h5 class="text-center text-white">My Stats:</h5>
                 <table id="contenderTable" class="table table-sm text-center">
@@ -520,6 +520,6 @@
       </div>
     </div>
   </div>
-</div> {{-- close bio-modal --}}
+</div> {{-- close fight-modal --}}
 </div>
 @endsection
