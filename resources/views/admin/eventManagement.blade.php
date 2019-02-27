@@ -140,7 +140,8 @@
                         <textarea name="contenderBio" id="contenderBio" class="form-control mb-3"></textarea>
 
                         <label for="contenderImage">Contender Image:</label>
-                        <input type="file" class="d-block mb-3" name="contenderImage" id="contenderImage">
+                        <input type="file" class="d-block" name="contenderImage" id="contenderImage">
+                        <small class="d-block mt-1 mb-2">To ensure correct display on public site, all contender photos should have the same proportions.</small>
 
                         @csrf
                         {{method_field('PATCH')}}
