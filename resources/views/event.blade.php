@@ -120,13 +120,17 @@
       <!-- Each bout has a bout header -->
       <div class="bout-card">
         <div class="bout-header">
-          <h2>BOUT {{++$i}}</h2>
-          {{-- <p class="sponsored-by">sponsored by</p> --}}
-          @if($bout->sponsor)
-            <div class="sponsor-badge">
-              <div class="vertical-aligner"></div><a href="{{$bout->sponsor->url}}" target="_blank"><img style="max-height:60px;" src="{{'/storage/images/sponsors/' . $bout->sponsor->id . '.png'}}" class="img-fluid bout-sponsor"></a>
-            </div>
-          @endif
+			<h2>BOUT {{++$i}}</h2>
+			{{-- <p class="sponsored-by">sponsored by</p> --}}
+			@if($bout->sponsor)
+				<div class="sponsor-badge">
+					<div class="vertical-aligner"></div>
+					<a href="{{$bout->sponsor->url}}" target="_blank">
+						<img style="max-height:60px;" src="{{'/storage/images/sponsors/' . $bout->sponsor->id . '.png'}}" class="img-fluid bout-sponsor"
+						title="{{$bout->sponsor->company_name}}">
+					</a>
+				</div>
+			@endif
         </div>
 
         <!-- Each bout card will contain two contender-cards -->
@@ -148,13 +152,13 @@
 						<a href="{{App\Sponsor::find(App\Contender::find($bout->red_contender_id)->sponsor_id)->url}}" target="blank" class="contender-sponsor-logo-wrapper">
 							<img id="red-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png')) ?
 							'/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png' : '/storage/images/sponsors/0.png'}}"
-							class="mx-auto contender-sponsor-logo">
+							class="mx-auto contender-sponsor-logo" title="{{App\Sponsor::find(App\Contender::find($bout->red_contender_id)->sponsor_id)->company_name}}">
 						</a>
 					@else
 						<div class="contender-sponsor-logo-wrapper">
 							<img id="red-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png')) ?
 							'/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png' : '/storage/images/sponsors/0.png'}}"
-							class="mx-auto contender-sponsor-logo">
+							class="mx-auto contender-sponsor-logo" title="{{App\Sponsor::find(App\Contender::find($bout->red_contender_id)->sponsor_id)->company_name}}">
 						</div>
 					@endif
 				@endif
@@ -184,13 +188,13 @@
 					<a href="{{App\Sponsor::find(App\Contender::find($bout->blue_contender_id)->sponsor_id)->url}}" target="blank" class="contender-sponsor-logo-wrapper">
 						<img id="blue-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->blue_contender_id)->sponsor_id . '.png')) ?
 						'/storage/images/sponsors/' . App\Contender::find($bout->blue_contender_id)->sponsor_id . '.png' : '/storage/images/sponsors/0.png'}}"
-						class="mx-auto contender-sponsor-logo">
+						class="mx-auto contender-sponsor-logo" title="{{App\Sponsor::find(App\Contender::find($bout->blue_contender_id)->sponsor_id)->company_name}}">
 					</a>
 				@else
 					<div class="contender-sponsor-logo-wrapper">
 						<img id="blue-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->blue_contender_id)->sponsor_id . '.png')) ?
 						'/storage/images/sponsors/' . App\Contender::find($bout->blue_contender_id)->sponsor_id . '.png' : '/storage/images/sponsors/0.png'}}"
-						class="mx-auto contender-sponsor-logo">
+						class="mx-auto contender-sponsor-logo" title="{{App\Sponsor::find(App\Contender::find($bout->blue_contender_id)->sponsor_id)->company_name}}">
 					</div>
 				@endif
 			@endif
@@ -209,14 +213,23 @@
 
       <!-- Each bout has a bout header -->
       <div class="bout-card">
-        <div class="bout-header">
-          <h2>BOUT {{++$i}}</h2>
-          {{-- <p class="sponsored-by">sponsored by</p> --}}
-          @if($bout->sponsor)
-            <div class="sponsor-badge">
-              <div class="vertical-aligner"></div><a href="{{$bout->sponsor->url}}" target="_blank"><img style="max-height:60px;" src="{{'/storage/images/sponsors/' . $bout->sponsor->id . '.png'}}" class="img-fluid bout-sponsor"></a>
-            </div>
-          @endif
+		<div class="bout-header">
+			<h2>BOUT {{++$i}}</h2>
+			{{-- <p class="sponsored-by">sponsored by</p> --}}
+			@if($bout->sponsor)
+				<div class="sponsor-badge">
+					<div class="vertical-aligner"></div>
+					@if($bout->sponsor->url)
+					<a href="{{$bout->sponsor->url}}" target="_blank">
+						<img style="max-height:60px;" src="{{'/storage/images/sponsors/' . $bout->sponsor->id . '.png'}}" class="img-fluid bout-sponsor" 
+						title="{{$bout->sponsor->company_name}}">
+					</a>
+					@else
+						<img style="max-height:60px;" src="{{'/storage/images/sponsors/' . $bout->sponsor->id . '.png'}}" class="img-fluid bout-sponsor" 
+						title="{{$bout->sponsor->company_name}}">
+					@endif
+				</div>
+			@endif
         </div>
 
         <!-- Each bout card will contain two contender-cards -->
@@ -239,13 +252,13 @@
 						<a href="{{App\Sponsor::find(App\Contender::find($bout->red_contender_id)->sponsor_id)->url}}" target="blank" class="contender-sponsor-logo-wrapper">
 							<img id="red-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png')) ?
 							'/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png' : '/storage/images/sponsors/0.png'}}"
-							class="mx-auto contender-sponsor-logo">
+							class="mx-auto contender-sponsor-logo" title="{{App\Sponsor::find(App\Contender::find($bout->red_contender_id)->sponsor_id)->company_name}}">
 						</a>
 					@else
 						<div class="contender-sponsor-logo-wrapper">
 							<img id="red-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png')) ?
 							'/storage/images/sponsors/' . App\Contender::find($bout->red_contender_id)->sponsor_id . '.png' : '/storage/images/sponsors/0.png'}}"
-							class="mx-auto contender-sponsor-logo">
+							class="mx-auto contender-sponsor-logo" title="{{App\Sponsor::find(App\Contender::find($bout->red_contender_id)->sponsor_id)->company_name}}">
 						</div>
 					@endif
 				@endif
@@ -274,13 +287,13 @@
 					<a href="{{App\Sponsor::find(App\Contender::find($bout->blue_contender_id)->sponsor_id)->url}}" target="blank" class="contender-sponsor-logo-wrapper">
 						<img id="blue-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->blue_contender_id)->sponsor_id . '.png')) ?
 						'/storage/images/sponsors/' . App\Contender::find($bout->blue_contender_id)->sponsor_id . '.png' : '/storage/images/sponsors/0.png'}}"
-						class="mx-auto contender-sponsor-logo">
+						class="mx-auto contender-sponsor-logo" title="{{App\Sponsor::find(App\Contender::find($bout->blue_contender_id)->sponsor_id)->company_name}}">
 					</a>
 				@else
 					<div class="contender-sponsor-logo-wrapper">
 						<img id="blue-sponsor" src="{{file_exists(public_path('/storage/images/sponsors/' . App\Contender::find($bout->blue_contender_id)->sponsor_id . '.png')) ?
 						'/storage/images/sponsors/' . App\Contender::find($bout->blue_contender_id)->sponsor_id . '.png' : '/storage/images/sponsors/0.png'}}"
-						class="mx-auto contender-sponsor-logo">
+						class="mx-auto contender-sponsor-logo" title="{{App\Sponsor::find(App\Contender::find($bout->blue_contender_id)->sponsor_id)->company_name}}">
 					</div>
 				@endif
 			@endif
