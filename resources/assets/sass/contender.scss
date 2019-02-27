@@ -182,11 +182,16 @@ the sponsor image that comes after it. */
 }
 
 .bout-btn-fight{
-	border: 2px solid #039240;
+	font-size: 1.5rem;
+	padding: 5px;
+	width: 100%;
+	text-decoration: underline;
 }
 
 .bout-btn-fight:hover{
-	border: 2px solid white;
+	cursor: pointer;
+	-webkit-transition: all 0.3s !important;
+	transition: all 0.5s !important;
 }
 
 .bout-btn-blue:hover {

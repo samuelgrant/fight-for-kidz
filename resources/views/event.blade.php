@@ -237,6 +237,13 @@
 			@endif
         </div>
 
+        @if($bout->video_url != null)
+          <div class="bout-footer mx-auto mt-3 w-100">
+              <div class="bout-btn-fight"  data-toggle="modal" data-target="#fight-video-modal"
+              data-bout-id="{{$bout->id}}">Watch the Fight!</div>
+          </div>
+          @endif
+
         <!-- Each bout card will contain two contender-cards -->
         <div class="row">
           <div class="contender-card contender-card-red">
@@ -308,13 +315,6 @@
             </div>              
             </div>
           </div>
-          
-          @if($bout->video_url != null)
-          <div class="bout-footer mx-auto">
-              <div class="bout-btn bout-btn-fight"  data-toggle="modal" data-target="#fight-video-modal"
-              data-bout-id="{{$bout->id}}">Watch the Fight!</div>
-          </div>
-          @endif
         </div>
       </div>
     </div> <!-- end each bout -->
