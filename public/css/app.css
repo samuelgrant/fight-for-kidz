@@ -355,8 +355,12 @@ form label.required::before {
 }
 
 .bout-header .sponsor-badge {
-  max-width: 50%;
+  max-width: 80%;
   display: inline-block;
+}
+
+.img-fluid {
+  max-width: 95% !important;
 }
 
 .bout-header h2 {
@@ -576,6 +580,25 @@ the sponsor image that comes after it. */
   color: white;
 }
 
+.slick-track {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+}
+
+.slick-track .slick-slide {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  height: auto !important;
+  -webkit-box-align: center !important;
+      -ms-flex-align: center !important;
+          align-items: center !important;
+  -webkit-box-pack: center !important;
+      -ms-flex-pack: center !important;
+          justify-content: center !important;
+}
+
 .fight-div {
   padding: 20px;
 }
@@ -686,9 +709,7 @@ the sponsor image that comes after it. */
 .masthead {
   position: relative;
   width: 100%;
-  height: auto;
-  min-height: 35rem;
-  padding: 15rem 0;
+  height: 100vh;
   background: -webkit-gradient(linear, left top, left bottom, from(rgba(22, 22, 22, 0.1)), color-stop(75%, rgba(22, 22, 22, 0.5)), to(#161616)), url("/img/bg-masthead.jpg");
   background: linear-gradient(to bottom, rgba(22, 22, 22, 0.1) 0%, rgba(22, 22, 22, 0.5) 75%, #161616 100%), url("/img/bg-masthead.jpg");
   background-position: center;
@@ -985,6 +1006,7 @@ body {
 }
 
 .bar {
+  padding-bottom: 10px;
   border-bottom: 2px solid aqua;
 }
 
@@ -1233,7 +1255,7 @@ body {
 
 #sponsors-section {
   padding: 2rem;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
 }
 
 #sponsors-section img {
