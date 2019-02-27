@@ -311,7 +311,7 @@
           
           @if($bout->video_url != null)
           <div class="bout-footer mx-auto">
-              <div class="bout-btn bout-btn-fight fight-view-btn"  data-toggle="modal" data-target="#fight-video-modal"
+              <div class="bout-btn bout-btn-fight"  data-toggle="modal" data-target="#fight-video-modal"
               data-bout-id="{{$bout->id}}">Watch the Fight!</div>
           </div>
           @endif

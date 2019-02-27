@@ -253,7 +253,7 @@ function auctionItemModal(id){
 
 //gets information to dynamically populate fight modal
 $(document).ready(function () {
-  $('.fight-view-btn').on('click', function (e) {
+  $('.bout-btn-fight').on('click', function (e) {
 
     var url = '/bout/watch-fight/' + $(this).data('boutId');
 
@@ -282,7 +282,7 @@ $(document).ready(function () {
       }
 
     }).fail(function (err) {
-      console.error(`Error getting bout and contender info in the custom/fight-view-btn method: ${err}`);
+      console.error(`Error getting bout and contender info in the custom/bout-btn-fight method: ${err}`);
       $('.dynamic-content').html('<p class="my-auto" style="color:white; text-align: center;"><i class="fa fa-exclamation-triangle"></i>&nbsp;Something went wrong. ' +  
       'Please try again...</p> <div class="modal-footer contender-modal-footer"><button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button></div>');
     });
