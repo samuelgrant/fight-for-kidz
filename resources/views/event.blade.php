@@ -88,11 +88,11 @@
 						<div>
 							@if($sponsor->url)
 								<a href="{{$sponsor->url}}" target="_blank">
-									<img class="img-fluid" style="max-width:400px;" src="/storage/images/sponsors/{{$sponsor->id}}.png" title="{{$sponsor->company_name}}">
+									<img class="img-fluid" style="width:300px; max-height:300px; margin-left: 50px; margin-right: 50px;" src="/storage/images/sponsors/{{$sponsor->id}}.png" title="{{$sponsor->company_name}}">
 								</a>
 							@else
 								{{-- Div surrounding img is required for vertical alignment to function --}}
-								<div><img class="img-fluid" style="max-width:400px;" src="/storage/images/sponsors/{{$sponsor->id}}.png" title="{{$sponsor->company_name}}"></div>
+								<div><img class="img-fluid" style="width:300px; max-height:300px; margin-left: 50px; margin-right: 50px;" src="/storage/images/sponsors/{{$sponsor->id}}.png" title="{{$sponsor->company_name}}"></div>
 							@endif
 						</div>  
 					@endif
