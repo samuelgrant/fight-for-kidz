@@ -496,7 +496,7 @@
 <!-- Dynamic fight video modal -->
 <div id="fight-video-modal" class="modal fade pt-3" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
   style="display: none; z-index:4005;">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-lg modal-iframe">
     <div class="modal-content">
 
       <div class="modal-body contender-modal-body pl-0">
@@ -510,9 +510,8 @@
             <h5 class="d-inline">V.</h5>
             <h3 id="blue-corner" class="d-inline mx-2"></h3>
             <hr class="ml-3">
-            <iframe width="638" height="315" id="fight-vid" src="" frameborder="0" allow="autoplay; encrypted-media;"
+            <iframe class="iframe-video" id="fight-vid" src="" frameborder="0" allow="autoplay; encrypted-media;"
               allowfullscreen></iframe>
-
           </div>
           <div class="modal-footer contender-modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

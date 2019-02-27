@@ -177,7 +177,7 @@ $(document).ready(function() {
                 .done(function() {
                     $("#bio-image").attr('src', '/storage/images/contenders/' + data.id + '.jpg');
                 }).fail(function() {
-                    $("#bio-image").attr("src", "/storage/images/contenders/0.png");
+                    $("#bio-image").attr("src", "/storage/images/contenders/0.jpg");
                 })
 
             //checks to see if the image exists and uses it to set the sponsor image otherwise sets it to default
