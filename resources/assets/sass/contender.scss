@@ -254,3 +254,16 @@ the sponsor image that comes after it. */
 #contenderItemName, #contenderItemDescription{
 	color: white;
 }
+
+// Vertically centering sponsors bar
+// Thanks to : https://stackoverflow.com/questions/37455322/vertical-align-content-slickslider
+.slick-track {
+	display: flex !important;
+}
+
+.slick-track .slick-slide {
+display: flex !important;
+height: auto !important;
+align-items: center !important;
+justify-content: center !important;
+}

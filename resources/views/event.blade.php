@@ -79,21 +79,22 @@
 
 	<!-- Sponsors Section -->
 	@if(count($event->sponsors) > 3)
-	<section id="sponsors-section" style="border-top: 2px solid black;">
-		<h2 class="text-center text-dark">Event Sponsors</h2>
-		<div class="slick-sponsors">
-			@foreach($event->sponsors as $sponsor) {{-- only show logo in sponsors bar if the image file for it exists --}} @if(file_exists(public_path('storage/images/sponsors/'
-			. $sponsor->id . '.png')))
-			<div>
-				<a href="{{$sponsor->url}}" target="_blank">
-            <img class="img-fluid" style="max-width:250px;" src="{{'/storage/images/sponsors/' . $sponsor->id . '.png'}}">
-          </a>
-        </div>  
-      @endif
-    @endforeach
-  </div>
-</section>
-@endif
+		<section id="sponsors-section" style="border-top: 2px solid black;">
+			<h2 class="text-center text-dark">Event Sponsors</h2>
+			<div class="slick-sponsors">
+				@foreach($event->sponsors as $sponsor) 
+					{{-- only show logo in sponsors bar if the image file for it exists --}} 
+					@if(file_exists(public_path('storage/images/sponsors/' . $sponsor->id . '.png')))
+						<div>
+							<a href="{{$sponsor->url}}" target="_blank">
+								<img class="img-fluid" style="max-width:400px;" src="{{'/storage/images/sponsors/' . $sponsor->id . '.png'}}">
+							</a>
+						</div>  
+					@endif
+				@endforeach
+			</div>
+		</section>
+	@endif
 
 <!-- Bouts Section - show if bouts are switched on-->
 @if($event->show_bouts)
