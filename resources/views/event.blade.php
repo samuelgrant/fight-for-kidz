@@ -7,7 +7,7 @@
 			<div class="row pb-5">
 				<div class="col-lg-8 col-md-6 col-col-sm-12 pt-5 px-4">
 					<h1 class="text-white underline bar">{{$event->name}}</h1>
-					<p class="text-justify">{{$event->desc_1}}</p>
+					<p class="text-left my-4">{{$event->desc_1}}</p>
 					@if(App\Document::where('display_location', 'Event')->get()->count() > 0)
 					<div class="mb-3">
 						<h5>Related files:</h5>
@@ -16,10 +16,8 @@
 					</div>
           @endif
           @if($event->event_sponsor)
-          <div>
-            <h3>Proudly sponsored by</h3>
-          </div>
-          <div>
+          <div class="">
+            <h3 class="mb-3">Proudly sponsored by</h3>
 			@if(App\Sponsor::find($event->event_sponsor)->url)
             <a href="{{App\Sponsor::find($event->event_sponsor)->url}}" target="blank">
 				<img src="/storage/images/sponsors/{{$event->event_sponsor}}.png" style="max-width:400px;">
