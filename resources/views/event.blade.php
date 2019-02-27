@@ -33,13 +33,11 @@
 					<p class="stat">{{$event->venue_name}}</p>
 					<p class="all-caps sidebar-heading">Supporting</p>          
             @if($event->charity_url)
-              <a href="{{$event->charity_url}}" target="_blank" class="stat">
                 @if(file_exists(public_path('storage/images/charity/'. $event->id . '.png')))
-                  <p><img id="charityLogo" src="{{'/storage/images/charity/' .  $event->id . '.png'}}" title="{{$event->charity}}" style="width: 150px;"></p>
+                  <p class="stat"><a href="{{$event->charity_url}}" target="_blank"><img id="charityLogo" src="{{'/storage/images/charity/' .  $event->id . '.png'}}" title="{{$event->charity}}" style="width: 150px;"></a></p>
                 @else
-                  <h4><u>{{$event->charity}}</u></h4>
+                  <a href="{{$event->charity_url}}" target="_blank" class="stat"><h4><u>{{$event->charity}}</u></h4></a>
                 @endif
-              </a>
             @else
               @if(file_exists(public_path('storage/images/charity/'. $event->id . '.png')))
                 <p class="stat"><img id="charityLogo" src="{{'/storage/images/charity/' .  $event->id . '.png'}}" style="width: 150px;" title="{{$event->charity}}"></p>
