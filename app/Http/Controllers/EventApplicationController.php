@@ -26,14 +26,6 @@ class EventApplicationController extends Controller
     }
 
     /**
-     * Returns the sposnor application form view
-     */
-    public function sponsorForm(){
-        return view('sponsor-apply');
-    }
-
-
-    /**
      * Stores an application to fight in the upcoming event
      * 
      * @param request, googleCaptcha

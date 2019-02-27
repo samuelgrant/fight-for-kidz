@@ -24,10 +24,6 @@ Route::get('/merchandise', 'MerchandiseController@index')->name('merchandise');
 Route::get('/fighter-application', 'EventApplicationController@fighterForm')->name('application.fight');
 Route::post('/fighter-application', 'EventApplicationController@storeFighterApp')->name('application.fight.submit');
 
-// Sponsor application form and submission
-Route::get('/sponsor-application', 'EventApplicationController@sponsorForm')->name('application.sponsor');
-Route::post('/sponsor-application', 'EventApplicationController@storeSponsorApp')->name('application.sponsor.submit');
-
 // Subscriber route
 Route::post('/subscribe', 'SubscriberController@store')->name('subscribe');
 Route::get('/unsubscribe', 'SubscriberController@showUnsubscribeForm')->name('mail.showUnsubscribeForm');
