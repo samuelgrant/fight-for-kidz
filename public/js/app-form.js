@@ -565,7 +565,7 @@ function canSubmit(){
 }
 
 $(document).ready(function(){
-  $('form input').keydown(function (e) {
+  $('#application-form input').keydown(function (e) {
     if (e.keyCode == 13) {
         var inputs = $(this).parents("form").eq(0).find(":input");
         if (inputs[inputs.index(this) + 1] != null) {                    
