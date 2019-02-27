@@ -157,6 +157,15 @@ class Event extends Model
     }
 
     /**
+     *  Returns shuffled collection of sponsors.
+     *  Allows the sponsors bar to show sponsors in 
+     *  different orders so that everyone can be seen.
+     */
+    public function sponsorsShuffled(){
+        return $this->sponsors->shuffle();
+    }
+
+    /**
      *  Returns true if event is in the future.
      */
     public function isFutureEvent(){
