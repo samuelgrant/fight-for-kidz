@@ -20,10 +20,10 @@
             <h3 class="mb-3">Proudly sponsored by</h3>
 			@if(App\Sponsor::find($event->event_sponsor)->url)
             <a href="{{App\Sponsor::find($event->event_sponsor)->url}}" target="blank">
-				<img src="/storage/images/sponsors/{{$event->event_sponsor}}.png" style="max-width:400px;">
+				<img src="/storage/images/sponsors/{{$event->event_sponsor}}.png" style="max-width:400px;" title="{{App\Sponsor::find($event->event_sponsor)->company_name}}">
 			</a>
 			@else
-				<img src="/storage/images/sponsors/{{$event->event_sponsor}}.png" style="max-width:400px;">
+				<img src="/storage/images/sponsors/{{$event->event_sponsor}}.png" style="max-width:400px;" title="{{App\Sponsor::find($event->event_sponsor)->company_name}}">
 			@endif
           </div>
           @endif
@@ -86,9 +86,14 @@
 					{{-- only show logo in sponsors bar if the image file for it exists --}} 
 					@if(file_exists(public_path('storage/images/sponsors/' . $sponsor->id . '.png')))
 						<div>
-							<a href="{{$sponsor->url}}" target="_blank">
-								<img class="img-fluid" style="max-width:400px;" src="{{'/storage/images/sponsors/' . $sponsor->id . '.png'}}">
-							</a>
+							@if($sponsor->url)
+								<a href="{{$sponsor->url}}" target="_blank">
+									<img class="img-fluid" style="max-width:400px;" src="/storage/images/sponsors/{{$sponsor->id}}.png" title="{{$sponsor->company_name}}">
+								</a>
+							@else
+								{{-- Div surrounding img is required for vertical alignment to function --}}
+								<div><img class="img-fluid" style="max-width:400px;" src="/storage/images/sponsors/{{$sponsor->id}}.png" title="{{$sponsor->company_name}}"></div>
+							@endif
 						</div>  
 					@endif
 				@endforeach
