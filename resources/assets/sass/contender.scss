@@ -137,7 +137,19 @@ the sponsor image that comes after it. */
 	font-style: italic;
 }
 
-.contender-sponsor {
+.contender-sponsor-section {	
+	display: table;
+	min-height: 150px;
+	width: 100%;
+}
+
+.contender-sponsor-logo{
+	width: 90%;
+}
+
+.contender-sponsor-link{
+	display: table-cell;
+	vertical-align: middle;
 	margin-bottom: 1rem;
 }
 
@@ -207,6 +219,7 @@ the sponsor image that comes after it. */
 
 	.bout-card{
 		margin: 0px;
+		margin-bottom: 2rem;
 		padding: 0px;
 	}
 
