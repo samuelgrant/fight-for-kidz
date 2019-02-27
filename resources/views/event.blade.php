@@ -125,10 +125,15 @@
 			@if($bout->sponsor)
 				<div class="sponsor-badge">
 					<div class="vertical-aligner"></div>
+					@if($bout->sponsor->url)
 					<a href="{{$bout->sponsor->url}}" target="_blank">
-						<img style="max-height:60px;" src="{{'/storage/images/sponsors/' . $bout->sponsor->id . '.png'}}" class="img-fluid bout-sponsor"
+						<img style="max-height:60px;" src="{{'/storage/images/sponsors/' . $bout->sponsor->id . '.png'}}" class="img-fluid bout-sponsor" 
 						title="{{$bout->sponsor->company_name}}">
 					</a>
+					@else
+						<img style="max-height:60px;" src="{{'/storage/images/sponsors/' . $bout->sponsor->id . '.png'}}" class="img-fluid bout-sponsor" 
+						title="{{$bout->sponsor->company_name}}">
+					@endif
 				</div>
 			@endif
         </div>
