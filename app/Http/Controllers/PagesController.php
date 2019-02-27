@@ -11,24 +11,8 @@ class PagesController extends Controller
         $currentEvent = Event::current();
         return view('index')->with('event', $currentEvent);
     }
-
-    public function auction(){
-        return view('auction');
-    }
-
-    public function previous(){
-        return view('previous');
-    }
-
-    public function contenders(){
-        return view('contenders');
-    }
-
+    
     public function contact(){
         return view('contact');
-    }
-
-    public function about(){
-        return view('about');
     }
 }
