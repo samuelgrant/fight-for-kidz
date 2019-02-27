@@ -165,7 +165,7 @@
 			</div>
               <div class="bout-btn bout-btn-red bio-view-button" data-toggle="modal" data-target="#bio-modal"
                 data-contenderId="{{$bout->red_contender->id}}">View Bio</div>
-              <div class="bout-btn bout-btn-red" onclick="window.open('{{$bout->red_contender->donate_url ?? 'https://givealittle.co.nz'}}', '_blank')">Donate</div>
+            <div class="bout-btn bout-btn-red {{$bout->red_contender->donate_url ? '' : 'invisible'}}" onclick="window.open('{{$bout->red_contender->donate_url}}', '_blank')">Donate</div>
             
           </div>
         </div>
@@ -201,7 +201,7 @@
 			</div>
               <div class="bout-btn bout-btn-blue bio-view-button" data-toggle="modal" data-target="#bio-modal"
                 data-contenderId="{{$bout->blue_contender->id}}">View Bio</div>
-              <div class="bout-btn bout-btn-blue" onclick="window.open('{{$bout->blue_contender->donate_url ?? 'https://givealittle.co.nz'}}', '_blank')">Donate</div>
+              <div class="bout-btn bout-btn-blue {{$bout->blue_contender->donate_url ? '' : 'invisible'}}" onclick="window.open('{{$bout->blue_contender->donate_url}}', '_blank')">Donate</div>
             
           </div>
         </div>
