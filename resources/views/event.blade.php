@@ -16,7 +16,7 @@
 					</div>
           @endif
           @if($event->event_sponsor)
-          <div class="">
+          <div>
             <h3 class="mb-3">Proudly sponsored by</h3>
 			@if(App\Sponsor::find($event->event_sponsor)->url)
             <a href="{{App\Sponsor::find($event->event_sponsor)->url}}" target="blank">
@@ -50,6 +50,18 @@
 				</div>
 			</div>
 		</div>
+
+		
+			<div class="w-100 text-center py-0 mb-5">
+				@if($event->show_auctions)
+					<a href="#auction-section" class="btn py-1">See Auctions <br> <i class="fas fa-chevron-down mx-auto"></i></a>
+				@endif
+				@if($event->show_bouts)
+					<a href="#bouts-section" class="btn py-1">See Bouts<br> <i class="fas fa-chevron-down mx-auto"></i></a>	
+				@endif
+			</div>		
+		
+
 		@if(App\Event::current() == $event && $event->isFutureEvent())
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-col-sm-12">
@@ -106,7 +118,7 @@
 <div class="container pt-5">
 
   <!-- All bouts will be contained within single row -->
-  <div class="row bouts-row">
+  <div id="bouts-section" class="row bouts-row">
 
     <?php global $i ?>
     <!-- counter used to name bouts -->
@@ -394,7 +406,7 @@
 
 <!-- Auction section - show if auctions switched on -->
 @if($event->show_auctions)
-  <section id="auction-secton">
+  <section id="auction-section">
 
 	<hr class="text-white mb-5" style="border: 2px solid white">
 
