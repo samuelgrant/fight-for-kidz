@@ -84,16 +84,12 @@
     border: 4px solid blue;
 }
 
-.auctionItem-card-blue .auctionItem-card-inner {
-    background: linear-gradient(transparent, blue);
-}
-
-.auctionItem-card-red .auctionItem-card-inner {
-    background: linear-gradient(transparent, red);
-}
-
 .auctionItem-name {
     margin-bottom: 1rem;
+}
+
+.auction-column{
+    margin-bottom: 2.5rem;
 }
 
 .auction-btn {

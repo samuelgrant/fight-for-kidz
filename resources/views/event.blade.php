@@ -395,6 +395,18 @@
 <!-- Auction section - show if auctions switched on -->
 @if($event->show_auctions)
   <section id="auction-secton">
+
+	<hr class="text-white mb-5" style="border: 2px solid white">
+
+	<h1 class="text-center mb-5">
+		{{$event->name}} Auctions
+	</h1>
+
+    <p class="text-center px-3">
+		The following items {{$event->isFutureEvent() ? 'will be' : 'were'}} available for auction on the night 
+		of the event. We thank all donors for their generous contributions.
+	</p>
+
     <div class="container pt-5">
   
       <!-- All auctions will be contained within single row -->
@@ -458,7 +470,7 @@
               <hr>
   
               <div class="row px-3 pb-2">
-                <div class="col-lg-6 mx-auto image-frame"style="height:333px;"><img id="auctionItemImage" src="" class="img-fluid"></div>
+                <div class="col-lg-6 mx-auto image-frame mb-3"><img id="auctionItemImage" src="" class="img-fluid"></div>
               </div>
 
               <div class="row">
@@ -471,7 +483,7 @@
                           </td>
                         </tr>
                         <tr id="auctionTableDonorUrl">
-                          <td><span><a href="" id="auctionItemDonorUrlSpan"></span></td>
+                          <td><span><a href="" id="auctionItemDonorUrlSpan" target="_blank"></span></td>
                         </tr>
                       </tbody>
                     </table>

@@ -232,6 +232,7 @@ function auctionItemModal(id){
 
       if(data.donor_url != null){
         $("#auctionItemDonorUrlSpan").text(data.donor_url);
+        $("#auctionItemDonorUrlSpan").attr('href', data.donor_url);
       } else if(data.donor_url == null){
         $("#auctionTableDonorUrl").remove();
       }
