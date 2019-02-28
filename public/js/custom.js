@@ -182,11 +182,11 @@ $(document).ready(function () {
       }
       
 
-      $('#contenderAge').html(data.age);
-      $('#contenderHeight').html(data.height);
-      $('#contenderWeight').html(data.weight);
+      $('#contenderAge').html(data.age.toFixed(0));
+      $('#contenderHeight').html(data.height.toFixed(0));
+      $('#contenderWeight').html(data.weight.toFixed(0));
 
-      $('#contenderReach').html(data.reach);
+      $('#contenderReach').html(data.reach.toFixed());
     }).fail(function (err) {
       console.error(`Error getting bout information in the custom/bio-view-button method: ${err}`);
       $('.dynamic-content').html('<p class="my-auto" style="color:white; text-align: center;"><i class="fa fa-exclamation-triangle"></i>&nbsp;Something went wrong. ' +  
