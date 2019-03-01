@@ -63,7 +63,10 @@
 		<!-- Subscriber Section -->
 		<section class="text-center" id="subscriber-section">
 		  	<div class="container conform p-3 mt-5">
-				<h1 class="mb-3">Fight for Kidz Updates!</h1>				
+				<h1 class="mb-3">Fight for Kidz Updates!</h1>	
+				
+				@include('layouts.subscriberMessages')
+				
 				<form method="post" action="{{route('subscribe')}}" class="justify-content-center">
 					<div class="row">
 						<div class="col-md-6 col-sm-12">
