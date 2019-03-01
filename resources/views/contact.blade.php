@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-  	<div class="container conform">
+
+	@include('layouts.messages')
+
+  	<div class="container conform">	
+
     	<div class="mt-5 mb-5" style="padding: 20px 40px;">
 			<h1 class="text-white text-center">Contact Us</h1>
 			<!-- Select Message Type -->
