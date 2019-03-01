@@ -246,6 +246,7 @@
                         <input type="file" id="fileUpload" name="uploaded" hidden required>
                     </label>
                     <span id="fileName" class="ml-3">No file selected</span>
+                    <small class="d-block">10MB maximum</small>
                 </div>
 
                 <hr>
