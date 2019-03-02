@@ -4,6 +4,18 @@
     changes will be added to '/public/css/app.css'.
 */
 
+// IE browser alert
+#browser-alert{
+	display: none;
+}
+
+// Detection of IE 10+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+	#browser-alert{
+		display: block !important;
+	}
+}
+
 /* Custom scrollbar */
 body{
 	overflow-x: hidden;
