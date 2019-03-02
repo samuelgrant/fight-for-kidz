@@ -1,3 +1,9 @@
+<div id="browser-alert" role="alert" class="alert alert-warning">
+		<button type="button" class="close alert-tag" data-dismiss="alert" aria-label="Close"><span  style="color:black" aria-hidden="true">x</span></button>
+		You appear to be using an outdated internet browswer. In order to properly view our site, we recommend updating to a modern browser such 
+		as <a href="https://www.google.com/chrome/">Google Chrome</a>.
+</div>
+
 @if(count($errors) > 0 )
   @foreach($errors->all() as $error)
     <div role="alert" class="alert alert-danger">

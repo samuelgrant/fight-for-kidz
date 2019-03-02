@@ -188,7 +188,7 @@ $(document).ready(function () {
 
       $('#contenderReach').html(data.reach.toFixed());
     }).fail(function (err) {
-      console.error(`Error getting bout information in the custom/bio-view-button method: ${err}`);
+      console.error('Error getting bout information in the custom/bio-view-button method: ' + err);
       $('.dynamic-content').html('<p class="my-auto" style="color:white; text-align: center;"><i class="fa fa-exclamation-triangle"></i>&nbsp;Something went wrong. ' +  
       'Please try again...</p> <div class="modal-footer contender-modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div>');
     });
@@ -248,7 +248,7 @@ function auctionItemModal(id){
       //Display the modal
       $("#auctionItemModal").modal('show');
   }).fail(function(err) {
-    console.error(`Error getting auction information in the custom/auctionItemModal method: ${err}`);
+    console.error('Error getting auction information in the custom/auctionItemModal method: ' + err);
   });
 }
 
@@ -283,7 +283,7 @@ $(document).ready(function () {
       }
 
     }).fail(function (err) {
-      console.error(`Error getting bout and contender info in the custom/bout-btn-fight method: ${err}`);
+      console.error('Error getting bout and contender info in the custom/bout-btn-fight method: ' + err);
       $('.dynamic-content').html('<p class="my-auto" style="color:white; text-align: center;"><i class="fa fa-exclamation-triangle"></i>&nbsp;Something went wrong. ' +  
       'Please try again...</p> <div class="modal-footer contender-modal-footer"><button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button></div>');
     });

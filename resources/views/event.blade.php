@@ -3,6 +3,9 @@
 
 <div style="background-color: black; overflow-x:hidden;">
 	<section class="upcoming-section">
+
+    @include('layouts.messages')
+    
 		<div class="container">
 			<div class="row pb-5">
 				<div class="col-lg-8 col-md-6 col-col-sm-12 pt-5 px-4">

@@ -35,10 +35,10 @@ class SubscriberController extends Controller
         if(!Subscriber::where('email', $request->input('email'))->count()){
 
             Subscriber::subscribe($request->input('name'), $request->input('email'));            
-            session()->flash('success', 'You have successfully subscribed');
+            session()->flash('sub-success', 'You have successfully subscribed');
             
         }else{
-            session()->flash('error', 'This email address has already been signed up');
+            session()->flash('sub-error', 'This email address has already been signed up');
         }
 
         return Redirect::to(URL::previous(). "#subscriber-section");
