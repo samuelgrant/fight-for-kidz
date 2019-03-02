@@ -188,7 +188,7 @@ $(document).ready(function () {
 
       $('#contenderReach').html(data.reach.toFixed());
     }).fail(function (err) {
-      console.error(`Error getting bout information in the custom/bio-view-button method: ${err}`);
+      console.error('Error getting bout information in the custom/bio-view-button method: ' + err);
       $('.dynamic-content').html('<p class="my-auto" style="color:white; text-align: center;"><i class="fa fa-exclamation-triangle"></i>&nbsp;Something went wrong. ' +  
       'Please try again...</p> <div class="modal-footer contender-modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div>');
     });
@@ -248,7 +248,7 @@ function auctionItemModal(id){
       //Display the modal
       $("#auctionItemModal").modal('show');
   }).fail(function(err) {
-    console.error(`Error getting auction information in the custom/auctionItemModal method: ${err}`);
+    console.error('Error getting auction information in the custom/auctionItemModal method: ' + err);
   });
 }
 
@@ -283,7 +283,7 @@ $(document).ready(function () {
       }
 
     }).fail(function (err) {
-      console.error(`Error getting bout and contender info in the custom/bout-btn-fight method: ${err}`);
+      console.error('Error getting bout and contender info in the custom/bout-btn-fight method: ' + err);
       $('.dynamic-content').html('<p class="my-auto" style="color:white; text-align: center;"><i class="fa fa-exclamation-triangle"></i>&nbsp;Something went wrong. ' +  
       'Please try again...</p> <div class="modal-footer contender-modal-footer"><button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button></div>');
     });
@@ -295,41 +295,39 @@ $(document).ready(function () {
 });
 
 $(document).ready(function(){
-
-  // Checks if user is browsing with IE, displays warning message if 
-  // they are.
-
-  // We are only needing to check if IE is being used, the other checks 
-  // have been left in case they are needed in future
-
-  // Opera 8.0+
-var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
-
-// Firefox 1.0+
-var isFirefox = typeof InstallTrigger !== 'undefined';
-
-// Safari 3.0+ "[object HTMLElementConstructor]" 
-var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
-
-// Internet Explorer 6-11
-var isIE = /*@cc_on!@*/false || !!document.documentMode;
-
-// Edge 20+
-var isEdge = !isIE && !!window.StyleMedia;
-
-// Chrome 1 - 71
-var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
-
-// Blink engine detection
-var isBlink = (isChrome || isOpera) && !!window.CSS;
-
-
-// Hide the browser alert if not IE
-if(isIE){
-  $('#browser-alert').css('display', 'block');
-}
-else{
-  $('#browser-alert').css('display', 'none');
-}
-
-})
+    // Checks if user is browsing with IE, displays warning message if 
+    // they are.
+    
+    // We are only needing to check if IE is being used, the other checks 
+    // have been left in case they are needed in future
+    
+    // Opera 8.0+
+    var isOpera = (!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+    
+    // Firefox 1.0+
+    var isFirefox = typeof InstallTrigger !== 'undefined';
+    
+    // Safari 3.0+ "[object HTMLElementConstructor]" 
+    var isSafari = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification));
+    
+    // Internet Explorer 6-11
+    var isIE = /*@cc_on!@*/false || !!document.documentMode;
+    
+    // Edge 20+
+    var isEdge = !isIE && !!window.StyleMedia;
+    
+    // Chrome 1 - 71
+    var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+    
+    // Blink engine detection
+    var isBlink = (isChrome || isOpera) && !!window.CSS;
+    
+    
+    // Hide the browser alert if not IE
+    if(isIE){
+    $('#browser-alert').css('display', 'block');
+    }
+    else{
+    $('#browser-alert').css('display', 'none');
+    }
+});
