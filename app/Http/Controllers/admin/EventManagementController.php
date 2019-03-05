@@ -83,6 +83,8 @@ class EventManagementController extends Controller
 
         $event = Event::find($eventID);
 
+        $diffAddress = $event->venue_address != $request->input('address');
+
         $event->name = $request->input('name');
         $event->datetime = $request->input('date');
         $event->venue_name = $request->input('venue');
@@ -91,7 +93,7 @@ class EventManagementController extends Controller
         $event->charity_url = $request->input('charityUrl');
         $event->ticket_seller_url = $request->input('tickets');
         $event->desc_1 = $request->input('eventDesc');
-        $event->event_sponsor = $request->input('eventSponsor');               
+        $event->event_sponsor = $request->input('eventSponsor');
 
         if($image = $request->file('charityLogo'))
         {
@@ -99,10 +101,10 @@ class EventManagementController extends Controller
         }
 
         $event->save();
-
-        if($event->venue_address != $request->input('address')){
-            $event->updateGPS();      
-        } 
+        
+        if($diffAddress){
+            $event->updateGPS();               
+        }        
 
         // We will also update the logo if the event is public. 
         // This will only change the logo if the modified event
