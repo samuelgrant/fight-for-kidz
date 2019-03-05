@@ -190,7 +190,7 @@ class Event extends Model
 
             $this->venue_gps = 'lat: '.$json['results'][0]['geometry']['location']['lat'].", lng: ".$json['results'][0]['geometry']['location']['lng'];
             $this->save(); 
-        } catch (Excepton $e){
+        } catch (Exception $e){
             echo 'Caught exception: ',  $e->getMessage(), "\n";
         }      
     }
