@@ -1,8 +1,8 @@
 function showExperience(){
-  document.getElementById('exeperience').style.display ='block';
+  document.getElementById('experience').style.display ='block';
 }
 function hideExperience(){
-  document.getElementById('exeperience').style.display ='none';
+  document.getElementById('experience').style.display ='none';
 }  
 function showCriminal(){
   document.getElementById('criminal').style.display = 'block';
@@ -88,9 +88,6 @@ $(document).ready(function(){
       $('html, body').animate({
         scrollTop: $(hash).offset().top - 100
       }, 800, function(){
-  
-        // Add hash (#) to URL when done scrolling (default click behavior)
-        window.location.hash = hash;
       });
     } // End if
   });
@@ -159,9 +156,9 @@ $(document).ready(function () {
       $('#bio-text').text(data.bio_text);
       
       //checks to see if the image exists and uses it to set the contender image otherwise sets it to default
-      $.get('/storage/images/contenders/' + data.id + '.png')
+      $.get('/storage/images/contenders/' + data.id + '.jpg')
       .done(function(){
-          $("#bio-image").attr('src', '/storage/images/contenders/' + data.id + '.png');
+          $("#bio-image").attr('src', '/storage/images/contenders/' + data.id + '.jpg');
       }).fail(function(){
           $("#bio-image").attr("src", "/storage/images/contenders/0.png");
       }) 
@@ -179,15 +176,19 @@ $(document).ready(function () {
       } else if(data.sponsor_id == null){
         $("#bio-sponsor-div").addClass('d-none');
       }
+
+      if(data.sponsor_url != null){
+        $("#sponsorLink").attr('href', data.sponsor_url);
+      }
       
 
-      $('#contenderAge').html(data.age);
-      $('#contenderHeight').html(data.height);
-      $('#contenderWeight').html(data.weight);
+      $('#contenderAge').html(data.age.toFixed(0));
+      $('#contenderHeight').html(data.height.toFixed(0));
+      $('#contenderWeight').html(data.weight.toFixed(0));
 
-      $('#contenderReach').html(data.reach);
+      $('#contenderReach').html(data.reach.toFixed());
     }).fail(function (err) {
-      console.error(`Error getting bout information in the custom/bio-view-button method: ${err}`);
+      console.error('Error getting bout information in the custom/bio-view-button method: ' + err);
       $('.dynamic-content').html('<p class="my-auto" style="color:white; text-align: center;"><i class="fa fa-exclamation-triangle"></i>&nbsp;Something went wrong. ' +  
       'Please try again...</p> <div class="modal-footer contender-modal-footer"><button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button></div>');
     });
@@ -231,6 +232,7 @@ function auctionItemModal(id){
 
       if(data.donor_url != null){
         $("#auctionItemDonorUrlSpan").text(data.donor_url);
+        $("#auctionItemDonorUrlSpan").attr('href', data.donor_url);
       } else if(data.donor_url == null){
         $("#auctionTableDonorUrl").remove();
       }
@@ -246,13 +248,13 @@ function auctionItemModal(id){
       //Display the modal
       $("#auctionItemModal").modal('show');
   }).fail(function(err) {
-    console.error(`Error getting auction information in the custom/auctionItemModal method: ${err}`);
+    console.error('Error getting auction information in the custom/auctionItemModal method: ' + err);
   });
 }
 
 //gets information to dynamically populate fight modal
 $(document).ready(function () {
-  $('.fight-view-btn').on('click', function (e) {
+  $('.bout-btn-fight').on('click', function (e) {
 
     var url = '/bout/watch-fight/' + $(this).data('boutId');
 
@@ -281,7 +283,7 @@ $(document).ready(function () {
       }
 
     }).fail(function (err) {
-      console.error(`Error getting bout and contender info in the custom/fight-view-btn method: ${err}`);
+      console.error('Error getting bout and contender info in the custom/bout-btn-fight method: ' + err);
       $('.dynamic-content').html('<p class="my-auto" style="color:white; text-align: center;"><i class="fa fa-exclamation-triangle"></i>&nbsp;Something went wrong. ' +  
       'Please try again...</p> <div class="modal-footer contender-modal-footer"><button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button></div>');
     });

@@ -29,11 +29,12 @@ class Bout extends Model
         return $this->belongsTo('App\Contender');
     }
 
+    //Input not implemented at this stage
     // Relationship to victor - many to one
-    public function victor()
-    {
-        return $this->belongsTo('App\Contender');
-    }
+    // public function victor()
+    // {
+    //     return $this->belongsTo('App\Contender');
+    // }
 
     /**
      * Returns true if bout has both red and blue

@@ -123,7 +123,7 @@ class Event extends Model
     public function sponsors()
     {
         return $this->belongsToMany('App\Sponsor');
-    }
+    } 
 
     // Relation to contenders - one to many
     public function contenders()
@@ -157,6 +157,15 @@ class Event extends Model
     }
 
     /**
+     *  Returns shuffled collection of sponsors.
+     *  Allows the sponsors bar to show sponsors in 
+     *  different orders so that everyone can be seen.
+     */
+    public function sponsorsShuffled(){
+        return $this->sponsors->shuffle();
+    }
+
+    /**
      *  Returns true if event is in the future.
      */
     public function isFutureEvent(){
@@ -170,16 +179,34 @@ class Event extends Model
 
     /**
      * This method updates the venue_gps field for the event.
-     * It should be called whenever the venue_address field is
-     * modified.
+     * It is passed a new address, and will change the events
+     * address to this only if Google Maps returns a valid
+     * set of coordinates.
+     * 
+     * Return value to indicate to the calling method whether
+     * it was a success.
      */
-    public function updateGPS(){
-        $response = GoogleMaps::load('geocoding')
-        ->setParam (['address' => $this->venue_address])->get();
-        $json = json_decode($response, TRUE);
+    public function updateGPS($address){
+        try{
+            $response = GoogleMaps::load('geocoding')
+            ->setParam (['address' => $address])->get();
+            $json = json_decode($response, TRUE);
 
-        $this->venue_gps = 'lat: '.$json['results'][0]['geometry']['location']['lat'].", lng: ".$json['results'][0]['geometry']['location']['lng'];
-        $this->save(); 
+            Log::debug($response);
+
+            if($json["status"] == "OK"){
+                $this->venue_address = $address;
+                $this->venue_gps = 'lat: '.$json['results'][0]['geometry']['location']['lat'].", lng: ".$json['results'][0]['geometry']['location']['lng'];
+                $this->save(); 
+                return 'SUCCESS';
+            }else{
+                return 'ERROR';
+            }
+
+
+        } catch (Exception $e){
+            echo 'Caught exception: ',  $e->getMessage(), "\n";
+        }      
     }
 
     /**

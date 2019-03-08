@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Log;
 use App\Subscriber;
+use App\Jobs\SendApplicationReceivedEmail;
 
 class EventApplicationController extends Controller
 {
@@ -23,14 +24,6 @@ class EventApplicationController extends Controller
     public function fighterForm(){
         return view('fighter-apply');
     }
-
-    /**
-     * Returns the sposnor application form view
-     */
-    public function sponsorForm(){
-        return view('sponsor-apply');
-    }
-
 
     /**
      * Stores an application to fight in the upcoming event
@@ -52,7 +45,6 @@ class EventApplicationController extends Controller
             'post_code' => 'required',
             'email' => 'required|email',
             'phone_1' => 'required',
-            //phone_2 not required
 
             //Personal Details Section
             'dob' => 'required|date', // string must be date according to PHP strtotime() function
@@ -224,10 +216,13 @@ class EventApplicationController extends Controller
 
         $image = $request->file('photo');
         $imagePath = 'private/images/applicants/';
-        $imageName = $applicant->id . '.png'; 
+        $imageName = $applicant->id . '.jpg'; 
         
         // Convert to png if needed and store
-        Image::storeAsPng($image, $imagePath, $imageName);
+        Image::storeAsJpg($image, $imagePath, $imageName);
+        
+        // send email notification of receipt
+        SendApplicationReceivedEmail::dispatch($applicant->email, $applicant->first_name);
 
         // show feedback page
         return view('feedback.received-app');

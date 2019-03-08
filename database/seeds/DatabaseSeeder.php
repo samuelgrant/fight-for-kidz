@@ -22,19 +22,25 @@ class DatabaseSeeder extends Seeder
             $this->call(UsersTableSeeder::class);
 
             // Generate two test groups
-            $this->call(GroupsTableSeeder::class);
+            // $this->call(GroupsTableSeeder::class);
 
             // Fake record seeders
-            $this->call(ContactsTableSeeder::class);
-            $this->call(SubscribersTableSeeder::class);
-            $this->call(EventsTableSeeder::class);
-            $this->call(SponsorsTableSeeder::class);
-            $this->call(ApplicantsTableSeeder::class);
-            $this->call(ContendersTableSeeder::class);
-            $this->call(BoutsTableSeeder::class);
-            $this->call(AuctionItemsTableSeeder::class);
-            $this->call(MerchandiseItemsTableSeeder::class);
+            // $this->call(ContactsTableSeeder::class);
+            // $this->call(SubscribersTableSeeder::class);
+            // $this->call(EventsTableSeeder::class);
+            // $this->call(SponsorsTableSeeder::class);
+            // $this->call(ApplicantsTableSeeder::class);
+            // $this->call(ContendersTableSeeder::class);
+            // $this->call(BoutsTableSeeder::class);
+            // $this->call(AuctionItemsTableSeeder::class);
+            // $this->call(MerchandiseItemsTableSeeder::class);
+            // $this->call(SiteSettingsTableSeeder::class);
+
+            // Generate site settings
             $this->call(SiteSettingsTableSeeder::class);
+
+            // Generate initial event and all applicants, sponsors, contenders and bouts
+            $this->call(F4K2018Seeder::class);
         }
     }
 }

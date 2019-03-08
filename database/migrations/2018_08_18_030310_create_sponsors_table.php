@@ -18,7 +18,7 @@ class CreateSponsorsTable extends Migration
             $table->string('company_name');
             $table->string('contact_name')->nullable();
             $table->string('contact_phone');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->string('url')->nullable();            
             $table->timestamps();
         });

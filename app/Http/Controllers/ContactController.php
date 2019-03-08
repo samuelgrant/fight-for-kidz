@@ -36,7 +36,7 @@ class ContactController extends Controller
         SendGeneralEnquiry::dispatch($request->input('name'), $request->input('email'), $request->input('phone'), $request->input('message'));  
         
         // Send receipt to sender
-        $this->sendContactReceivedMail($request->input('email'), $request->input('name'));
+        $this->sendContactReceivedMail($request->input('email'), $request->input('name'), 'general');
 
         // Subscribe the sender if they requested it
         $this->checkSubscribed($request);
@@ -68,7 +68,7 @@ class ContactController extends Controller
         SendSponsorEnquiry::dispatch($request->input('name'),$request->input('companyName'), $request->input('email'), $request->input('phone'), $request->input('type'), $request->input('message'));
 
         // Send receipt to sender
-        $this->sendContactReceivedMail($request->input('email'), $request->input('name'));
+        $this->sendContactReceivedMail($request->input('email'), $request->input('name'), 'sponsor');
 
         // Subscribe the sender if they requested it
         $this->checkSubscribed($request);
@@ -98,7 +98,7 @@ class ContactController extends Controller
         SendTableEnquiry::dispatch($request->input('name'), $request->input('email'), $request->input('phone'), $request->input('message'));
 
         // Send receipt to sender
-        $this->sendContactReceivedMail($request->input('email'), $request->input('name'));
+        $this->sendContactReceivedMail($request->input('email'), $request->input('name'), 'table');
 
         // Subscribe the sender if they requested it
         $this->checkSubscribed($request);
@@ -110,8 +110,8 @@ class ContactController extends Controller
      * Sends a notification to the given email and name, letting them
      * know that their enquiry has been received.
      */
-    protected function sendContactReceivedMail($email, $name){
-        SendContactReceived::dispatch($name, $email);
+    protected function sendContactReceivedMail($email, $name, $type){
+        SendContactReceived::dispatch($name, $email, $type);
     }
 
     /**

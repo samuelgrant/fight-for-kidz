@@ -6,10 +6,20 @@
 @import "variables";
 
 // Custom styles
+
+@import "app_form";
+@import "auction";
+@import "auction_hover";
+@import "contender";
+@import "previous";
+@import "grayscale_theme";
+
+
 @import "custom";
+@import "gdpr";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// @import '~bootstrap/scss/bootstrap';
 
 .navbar-laravel {
   background-color: #fff;

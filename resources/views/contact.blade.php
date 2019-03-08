@@ -1,17 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
-  	<div class="container conform">
+
+	@include('layouts.messages')
+
+  	<div class="container conform">	
+
     	<div class="mt-5 mb-5" style="padding: 20px 40px;">
 			<h1 class="text-white text-center">Contact Us</h1>
 			<!-- Select Message Type -->
 			<div id="messageTypeContainer" class="pb-3">
-				<p class="text-white text-center mb-5">Why do you want to get in touch with us?</p>
+				<p class="text-white text-center mt-5">Why do you want to get in touch with us?</p>
 				<select id="messageType" class="form-control" onchange="toggelForm()">
-					<option value="select" {{app('request')->input('option') == null ? 'selected' : null}}>Select</option>
-					<option value="general" {{app('request')->input('option') == 'general' ? 'selected' : null}}>General</option>
+					<option value="select" {{app('request')->input('option') == null ? 'selected' : null}}>-- Select type of enquiry --</option>
+					<option value="general" {{app('request')->input('option') == 'general' ? 'selected' : null}}>General Enquiry</option>
 					<option value="sponsor" {{app('request')->input('option') == 'sponsor' ? 'selected' : null}}>Become a Sponsor</option>
-					<option value="table" {{app('request')->input('option') == 'table' ? 'selected' : null}}>Enquire about Booking a Table</option>
+					<option value="table" {{app('request')->input('option') == 'table' ? 'selected' : null}}>Table Booking Enquiry</option>
 				</select>
 			</div>
 

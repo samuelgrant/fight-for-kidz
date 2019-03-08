@@ -38,11 +38,15 @@ class EventManagementController extends Controller
         $event = new Event();
             $event->name = $request->input('eventName');
             $event->datetime = new carbon($request->input('dateTime'));
-            $event->venue_name = $request->input('venueName');
-            $event->venue_address = $request->input('venueAddress');
+            $event->venue_name = $request->input('venueName');           
         $event->save();
 
-        $event->updateGPS();
+        $result = $event->updateGPS($request->input('venueAddress')); 
+        
+        if($result != "SUCCESS"){
+            session()->flash('error', 'There was an issue updating Google Maps, venue address
+            has not been saved.');
+        }
 
         session()->flash('success', 'The event called '.$event->name.' was created.');
         return redirect()->back();
@@ -85,29 +89,44 @@ class EventManagementController extends Controller
 
         $event->name = $request->input('name');
         $event->datetime = $request->input('date');
-        $event->venue_name = $request->input('venue');
-        $event->venue_address = $request->input('address');
+        $event->venue_name = $request->input('venue');        
         $event->charity = $request->input('charity');
         $event->charity_url = $request->input('charityUrl');
         $event->ticket_seller_url = $request->input('tickets');
         $event->desc_1 = $request->input('eventDesc');
         $event->event_sponsor = $request->input('eventSponsor');
 
-        $event->updateGPS();
-
         if($image = $request->file('charityLogo'))
         {
             Image::storeAsPng($image, 'public/images/charity/', $event->id . '.png');
-        }
+        }        
 
-        $event->save();
+        $event->save(); // all changes bar the venue address
 
         // We will also update the logo if the event is public. 
         // This will only change the logo if the modified event
         // is the 'current' event (i.e. most recent public event)
         $this->updateLogo();
 
-        session()->flash('success', $event->name . ' was updated.');
+        // Check if supplied 
+        
+        if($event->venue_address != $request->input('address')){
+            $results = $event->updateGPS($request->input('address'));
+
+            Log::debug($results);
+
+            if($results == "SUCCESS"){
+                session()->flash('success', $event->name . ' was updated');
+            }
+            elseif($results == "ERROR"){
+                session()->flash('success', $event->name . ' was updated');
+                session()->flash('error', 'There was an issue updating Google Maps, venue address
+                has not been saved.');
+            }
+        }
+        else{            
+            session()->flash('success', $event->name . ' was updated');
+        }       
 
         return redirect()->back();
 

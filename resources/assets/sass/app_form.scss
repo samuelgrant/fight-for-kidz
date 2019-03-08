@@ -40,3 +40,8 @@ body{
 #additional_information{
     margin-bottom: 24px;
 }
+
+form label.required::before {
+    content: "* ";
+    color: red;
+}

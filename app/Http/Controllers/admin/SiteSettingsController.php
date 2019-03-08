@@ -38,10 +38,9 @@ class SiteSettingsController extends Controller
 
     public function storeFile(Request $request){
 
-        // validate file here - file size max can be adjusted if PHP limit
-        // is increased from default of 2MB
+        // validate file here - file size max can be adjusted if PHP limit allows
         $this->validate($request, [
-            'uploaded' => 'required|max:2000|mimes:doc,docx,bmp,gif,jpg,jpeg,png,pdf,rtf,xls,xlsx,txt', //limiting file types for security
+            'uploaded' => 'required|max:10000|mimes:doc,docx,bmp,gif,jpg,jpeg,png,pdf,rtf,xls,xlsx,txt', //limiting file types for security
             'location' => 'required'
         ]);
 

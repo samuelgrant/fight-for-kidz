@@ -155,7 +155,9 @@
                         <label for="logoInput" class="btn btn-primary mb-0">Change
                             <input type="file" name="logo" id="logoInput" class="form-control" hidden>
                         </label>
+                        <small>Recommended dimensions: 300px wide, less than 300px high</small>
                     </div>
+                    
                     @csrf {{method_field('PATCH')}}
                     <button class="btn btn-danger" data-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-success float-right"><i class="fas fa-edit"></i> Save Changes</button>

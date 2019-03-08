@@ -111,3 +111,8 @@
   #logout:hover{
     color: rgba(255, 255, 255, 0.75);
   }
+
+  form label.required::before {
+    content: "* ";
+    color: red;
+}

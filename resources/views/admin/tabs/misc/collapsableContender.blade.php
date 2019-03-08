@@ -5,7 +5,7 @@
 
     {{-- edit / remove buttons --}}
     <div class="mb-2">
-        <button class="btn btn-primary" onclick="editContenderModal({{$contender->id}})">Edit Details</button> 
+        <button class="btn btn-{{$contender->team == 'blue' ? 'primary' : 'danger'}}" onclick="editContenderModal({{$contender->id}})">Edit Details</button> 
         <input type="submit" class="btn btn-warning" onclick="removeApplicantFromTeam({{$contender->applicant->id}})" value="Remove from team">            
     </div>
 
@@ -39,7 +39,7 @@
         <div class="col-md-6 text-center">
 
         {{-- check if a photo exists for the contender, otherwise use 0.png - the silouhette image --}}
-        <img src="{{file_exists(public_path('/storage/images/contenders/' . $contender->id . '.png')) ? '/storage/images/contenders/' . $contender->id . '.png' : '/storage/images/contenders/0.png'}}" 
+        <img src="{{file_exists(public_path('/storage/images/contenders/' . $contender->id . '.jpg')) ? '/storage/images/contenders/' . $contender->id . '.jpg' : '/storage/images/contenders/0.png'}}" 
             class="d-block mx-auto mb-2 img-fluid err-image">
 
         </div>

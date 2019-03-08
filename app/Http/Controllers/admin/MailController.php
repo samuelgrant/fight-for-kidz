@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Group;
 use App\Event;
+use App\Contender;
 use App\User, App\Subscriber, App\Sponsor, App\Applicant;
 use App\Mail\CustomMail;
 use Illuminate\Http\Request;
@@ -109,21 +110,74 @@ class MailController extends Controller
             }
         }
 
+        // Add applicants for the current event
         if(in_array('applicants', $groups)){
             foreach(Applicant::where('event_id', Event::current()->id)->get() as $applicant){
                 $recipients[] = ['email' => $applicant->email, 'name' => $applicant->first_name];
             }
         }
 
+        // Add only applicants from previous events
+        if(in_array('prevapplicants', $groups)){
+            // all applicant records from previous events
+            foreach(Applicant::where('event_id', '!=', Event::current()->id)->get() as $applicant){ 
+                // only add if this applicant has not already applied for current event
+                if(Applicant::where([
+                    ['first_name', $applicant->first_name], 
+                    ['last_name', $applicant->last_name],
+                    ['email', $applicant->email],
+                    ['event_id', Event::current()->id]
+                    ])->get()->count() == 0){
+                    $recipients[] = ['email' => $applicant->email, 'name' => $applicant->first_name];
+                }
+            }
+        }
+
+        // Adds sponsors that are sponsoring the current event
         if(in_array('sponsors', $groups)){
             foreach(Sponsor::all() as $sponsor){
-                $recipients[] = ['email' => $sponsor->email, 'name' => $sponsor->contact_name];
+                if(Event::current()->sponsors->contains($sponsor)){
+                    $recipients[] = ['email' => $sponsor->email, 'name' => $sponsor->contact_name];
+                }
+            }
+        }
+
+        // Adds sponsors that sponsored only previous events or no events
+        if(in_array('prevsponsors', $groups)){
+            foreach(Sponsor::all() as $sponsor){
+                if(!Event::current()->sponsors->contains($sponsor)){
+                    $recipients[] = ['email' => $sponsor->email, 'name' => $sponsor->contact_name];
+                }
             }
         }
 
         if(in_array('subscribers', $groups)){
             foreach(Subscriber::all() as $subscriber){
                 $recipients[] = ['email' => $subscriber->email, 'name' => $subscriber->name];
+            }
+        }
+
+        if(in_array('red', $groups)){
+            foreach(Contender::where([
+                ['team', 'red'],
+                ['event_id', Event::current()->id]
+            ])->get() as $contender){
+                $recipients[] = ['email' => $contender->applicant->email, 'name' => $contender->first_name];
+            }
+        }
+
+        if(in_array('blue', $groups)){
+            foreach(Contender::where([
+                ['team', 'blue'],
+                ['event_id', Event::current()->id]
+            ])->get() as $contender){
+                $recipients[] = ['email' => $contender->applicant->email, 'name' => $contender->first_name];
+            }
+        }
+
+        if(in_array('contenders', $groups)){
+            foreach(Contender::where('event_id', '!=', Event::current()->id)->get() as $contender){
+                $recipients[] = ['email' => $contender->applicant->email, 'name' => $contender->first_name];
             }
         }
 
@@ -150,6 +204,8 @@ class MailController extends Controller
         $recipients = array_filter($recipients, function($key, $value) use ($emails){
             return in_array($value, array_keys($emails));
         }, ARRAY_FILTER_USE_BOTH);
+
+        dd($recipients);
 
         return $recipients;
     }

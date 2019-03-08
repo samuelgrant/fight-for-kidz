@@ -8,6 +8,7 @@ use Input;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Sponsor;
+use App\Image;
 
 class ContenderManagementController extends Controller
 {
@@ -40,7 +41,8 @@ class ContenderManagementController extends Controller
 
         $validator = Validator::make(Input::all(), [ 
             // need to add the rest here
-            'contenderDonateUrl' => 'active_url',
+            'contenderDonateUrl' => 'nullable|active_url',
+            'contenderImage' => 'image|mimes:jpeg,png'
             ],        
             // error messages
             [
@@ -64,9 +66,14 @@ class ContenderManagementController extends Controller
 
         $contender->save();
 
-        // store image
         if($image){
-            $image->storeAs('/public/images/contenders/', $contender->id . '.png');
+            // Save image file
+            $image = $request->file('contenderImage');
+            $imagePath = 'public/images/contenders/';
+            $imageName = $contender->id . '.jpg';             
+        
+            // Convert to png if needed and store
+            Image::storeAsJpg($image, $imagePath, $imageName);
         }
 
         session()->flash('success', 'Profile of ' . $contender->getFullName() . ' updated.');

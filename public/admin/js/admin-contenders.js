@@ -24,6 +24,6 @@ function editContenderModal(contenderID){
         $('#editContenderModal').modal('show');
 
     }).fail(function(err){
-        console.error(`Error getting contender information in the admin-contenders/editContenderModal method: ${err}`);
+        console.error('Error getting contender information in the admin-contenders/editContenderModal method: ' + err);
     });
 }

@@ -8,24 +8,23 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\ContactReceived;
+use App\Mail\ApplicationReceived;
 
-class SendContactReceived implements ShouldQueue
+class SendApplicationReceivedEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $name, $email, $type;    
+    protected $email, $recipient;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($name, $email, $type)
+    public function __construct($email, $recipient)
     {
-        $this->name = $name;
         $this->email = $email;
-        $this->type = $type;
+        $this->recipient = $recipient;
     }
 
     /**
@@ -35,6 +34,6 @@ class SendContactReceived implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->email)->send(new ContactReceived($this->name, $this->type));
+        Mail::to($this->email)->send(new ApplicationReceived($this->recipient));
     }
 }

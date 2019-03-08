@@ -37,7 +37,7 @@ class CreateApplicantsTable extends Migration
             $table->integer('current_weight')->unsigned();
             $table->integer('expected_weight')->unsigned()->nullable();
             $table->string('occupation');
-            $table->string('employer');
+            $table->string('employer')->nullable();
             $table->boolean('is_male');
             $table->boolean('right_handed');
             $table->string('preferred_fight_name')->nullable();

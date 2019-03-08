@@ -20,7 +20,7 @@
 
         <div class="card mb-3">
             <div class="card-header bg-primary text-white">
-                <h3 class="mb-0 mr-2 d-inline-block"><i class="fas fa-info-circle"></i> Displaying {{$type}} {!!($type == 'Applicants') ? 'for ' . App\Event::current()->name : ''!!}</h3>
+                <h3 class="mb-0 mr-2 d-inline-block"><i class="fas fa-info-circle"></i> Displaying {{$type}} {!!(in_array($type, ['Applicants', 'Red Contenders', 'Blue Contenders', 'Sponsors'])) ? 'for ' . App\Event::current()->name : ''!!}</h3>
                 <span>
                     {!!($type == 'All') ? '(excluding <a class="text-white" href="'. route('admin.group.subscribers') .'"><u>subscribers</u></a>)' : ''!!}                    
                 </span>
@@ -97,8 +97,8 @@
                 @endif
 
                 {{-- Applicants loop --}}
-                @if($type == 'All' || $type == 'Applicants')                    
-                    @foreach(($type == 'All' ? App\Applicant::all() : App\Applicant::where('event_id', App\Event::current()->id)->get()) as $member)
+                @if($type == 'All' || $type == 'Applicants' || $type == 'All Applicants')                    
+                    @foreach(($type == 'Applicants' ? App\Applicant::where('event_id', App\Event::current()->id)->get() : App\Applicant::all()) as $member)
                         <tr>
                             <td>
                                 <div class="form-check">
@@ -109,15 +109,58 @@
                             <td>{{$member['first_name'] . ' ' . $member['last_name']}}</td>
                             <td><a href="mailto:{{$member['email']}}">{{$member['email']}}</a></td>
                             <td>{{$member['phone']}}</td>
-                            <td>Applicant ({{Carbon\Carbon::parse(App\Event::find($member['event_id'])->datetime)->format('Y')}})</td>
+                            <td>
+                                @if($member->isContender())
+                                Fighter ({{Carbon\Carbon::parse(App\Event::find($member['event_id'])->datetime)->format('Y')}})</td>
+                                @else
+                                Applicant ({{Carbon\Carbon::parse(App\Event::find($member['event_id'])->datetime)->format('Y')}})</td>
+                                @endif
+                            <td></td>
+                        </tr>
+                    @endforeach
+                @endif
+
+                {{-- Red team loop --}}
+                @if($type == 'Red Contenders')                    
+                    @foreach(App\Event::current()->getTeam('red') as $member)
+                        <tr>
+                            <td>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input dtable-checkbox member-remove-checkbox dtable-control" id="{{$member->applicant['email']}}"
+                                        value="checkedValue" data-member-type="applicant" data-member-id="{{$member->applicant['id']}}">
+                                </div>
+                            </td>
+                            <td>{{$member['first_name'] . ' ' . $member['last_name']}}</td>
+                            <td><a href="mailto:{{$member->applicant['email']}}">{{$member->applicant['email']}}</a></td>
+                            <td>{{$member->applicant['phone']}}</td>
+                            <td>Contender ({{Carbon\Carbon::parse(App\Event::find($member['event_id'])->datetime)->format('Y')}})</td>
+                            <td></td>
+                        </tr>
+                    @endforeach
+                @endif
+
+                {{-- Blue team loop --}}
+                @if($type == 'Blue Contenders')                    
+                    @foreach(App\Event::current()->getTeam('blue') as $member)
+                        <tr>
+                            <td>
+                                <div class="form-check">
+                                    <input type="checkbox" class="form-check-input dtable-checkbox member-remove-checkbox dtable-control" id="{{$member->applicant['email']}}"
+                                        value="checkedValue" data-member-type="applicant" data-member-id="{{$member->applicant['id']}}">
+                                </div>
+                            </td>
+                            <td>{{$member['first_name'] . ' ' . $member['last_name']}}</td>
+                            <td><a href="mailto:{{$member->applicant['email']}}">{{$member->applicant['email']}}</a></td>
+                            <td>{{$member->applicant['phone']}}</td>
+                            <td>Contender ({{Carbon\Carbon::parse(App\Event::find($member['event_id'])->datetime)->format('Y')}})</td>
                             <td></td>
                         </tr>
                     @endforeach
                 @endif
 
                 {{-- Sponsors loop --}}
-                @if($type == 'All' || $type == "Sponsors")
-                    @foreach(App\Sponsor::all() as $member)
+                @if($type == 'All' || $type == "Sponsors" || $type == "All Sponsors")
+                    @foreach(($type == "Sponsors" ? App\Event::current()->sponsors : App\Sponsor::all()) as $member)
                         <tr>
                             <td>
                                 <div class="form-check">

@@ -40,7 +40,11 @@
                     </tr>
                     <tr>
                         <td>Event Sponsor:</td>
-                        <td>{{App\Sponsor::find($event->event_sponsor)->company_name}}</td>
+                        <td>
+                            @if(!$event->event_sponsor == "")
+                            {{App\Sponsor::find($event->event_sponsor)->company_name}}
+                            @endif
+                        </td>
                     </tr>
                     <tr>
                         <td>Charity:</td>

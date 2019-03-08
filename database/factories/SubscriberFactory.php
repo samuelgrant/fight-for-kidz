@@ -5,7 +5,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Subscriber::class, function (Faker $faker) {
 
-    $email = $faker->unique()->freeEmail();
+    $email = $faker->unique()->safeEmail();
     $token = Hash::make($email . uniqid());
 
     return [

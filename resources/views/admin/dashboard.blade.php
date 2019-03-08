@@ -246,6 +246,7 @@
                         <input type="file" id="fileUpload" name="uploaded" hidden required>
                     </label>
                     <span id="fileName" class="ml-3">No file selected</span>
+                    <small class="d-block">10MB maximum</small>
                 </div>
 
                 <hr>
@@ -292,7 +293,6 @@
                                 <option value="Fighter App">Fighter Application Page</option>
                                 <option value="Sponsor Enquiry">Sponsor Enquiry Page</option>
                                 <option value="Table Enquiry">Table Enquiry Page</option>
-                                <option value="General Enquiry">General Enquiry Page</option>
                         </select>
                     </div>
     
