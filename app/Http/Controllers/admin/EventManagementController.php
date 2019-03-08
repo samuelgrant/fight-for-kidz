@@ -38,7 +38,8 @@ class EventManagementController extends Controller
         $event = new Event();
             $event->name = $request->input('eventName');
             $event->datetime = new carbon($request->input('dateTime'));
-            $event->venue_name = $request->input('venueName');           
+            $event->venue_name = $request->input('venueName'); 
+            $event->venue_address = "0";          
         $event->save();
 
         $result = $event->updateGPS($request->input('venueAddress')); 
