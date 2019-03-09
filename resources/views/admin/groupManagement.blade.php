@@ -109,7 +109,7 @@
         <button class="btn btn-danger mb-3" id="removeFromGroupButton" type="button" data-toggle="modal" data-target="#removeFromGroupModal"
             onclick="countSelected('groups')"><i class="fas fa-trash"></i>&nbsp;Remove selected</button>
         <form action="{{route('admin.mail.preset')}}" method="POST" class="float-right">
-            <input name="groupID" type="hidden" value="{{$group->id}}">
+            <input name="groupID" type="hidden" value="group-{{$group->id}}">
             <button class="btn btn-success" type="submit"><i class="fas fa-envelope"></i>&nbsp;Email All</button>
             @csrf
         </form>

@@ -692,7 +692,7 @@ $(document).ready(function(){
         message = CKEDITOR.instances['messageText'].getData();
         action = $(this).data('url');
         
-        // ajax call to add to team
+        // ajax call to generate preview
         $.ajax({
             type: 'POST',
             headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
@@ -709,34 +709,48 @@ $(document).ready(function(){
         
     });
 
-    $('#sendBtn').on('click', function(){
+    $('#confirmSendModal').on('show.bs.modal', function(){
 
-        // hide self and preview buttons
-        $('#mailPreviewBtn').addClass('d-none');
-        $('#promptText').addClass('d-none');
-        $(this).addClass('d-none');
-        $(this).removeClass('d-inline');
+        $('#noOfEmails').text('...');
 
-        // show confirm and abort buttons
-        $('#confirmSendBtn').removeClass('d-none');
-        $('#abortSendBtn').removeClass('d-none');
+        var groups = $('#multipleGroupSelect').val();
+        console.log(groups);
+
+        // ajax call to retrieve recipient list
+        if(groups.length > 0){        
+            $.ajax({
+                type: 'POST',
+                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+                url: $(this).data('url'),
+                data: {'groups' : groups}, 
+            }).done(function(data){            
+                
+                console.log(data);
+                let noOfEmails = Object.keys(data).length;
+                $('#noOfEmails').text(noOfEmails);
+
+                let tbody = $('#recipientTableBody');
+
+                tbody.empty(); // empty existing content from table
+
+                $.each(data, function(email, name){
+                    tbody.append("<tr><td>" + email + "</td><td>" + name + "</td></tr>");
+                });
+
+            }).fail(function(err){
+                console.error('Error confirming mail recipients.');
+            });
+        } else{
+            $(this).modal('hide');
+            alert("Please select recipients first.");
+        }
 
     });
 
-    $('#abortSendBtn').on('click', function(){
+    $('#confirmSendBtn').on('click', function(){
 
-        // show send and preview buttons
-        $('#mailPreviewBtn').removeClass('d-none');
-        $('#sendBtn').removeClass('d-none');
-        $('#sendBtn').addClass('d-inline');
-        $('#promptText').removeClass('d-none');
-
-        // hide confirm and abort buttons
-        $('#confirmSendBtn').addClass('d-none');
-        $(this).addClass('d-none');
-
-    });
-
+        $('#mailFormSubmitBtn').click();
+    })
 
     $('#multipleGroupSelect').change(function(){
         // this is important as the fSelect doesn't seem to support straightforward
@@ -750,7 +764,12 @@ $(document).ready(function(){
             $('#hiddenCheck').prop('checked', false);
         }
 
-    })
+    });
+
+    $('#messageText').on( 'required', function( evt ) {
+        alert( 'Please enter your message.' );
+        evt.cancel();
+    } );
 
 })
 

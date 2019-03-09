@@ -15,7 +15,7 @@
 <div class="row">
     <!-- Group Settings -->
     <div class="col-12">
-
+        
         @include('admin.layouts.manualMessage')
 
         <div class="card mb-3">
@@ -36,9 +36,22 @@
             <button class="btn btn-success" type="button" data-toggle="modal" data-target="#copyToGroupModal">
                 <i class="fas fa-copy"></i>&nbsp; Copy to group
             </button>
-            @if($type != 'All' && $type != 'Others')
+            @if($type != 'All' && $type != 'Others' && $type != 'All Applicants' && $type != 'All Sponsors')
                 <form action="{{route('admin.mail.preset')}}" method="POST" class="float-right">
-                    <input name="groupID" type="hidden" value="{{strtolower($type)}}">
+                    <?php
+                        $groupId = '';
+
+                        if($type == 'Blue Contenders'){
+                            $groupId = 'blue-' . $event->id;
+                        }elseif($type == 'Red Contenders'){
+                            $groupId = 'red-' . $event->id;
+                        }elseif($type == 'Sponsors'){
+                            $groupId = 'sponsors-' . $event->id;
+                        }elseif($type == 'Applicants'){
+                            $groupId = 'applicants-' . $event->id;
+                        }
+                    ?>
+                    <input name="groupID" type="hidden" value="{{$groupId}}">
                     <button class="btn btn-success" type="submit"><i class="fas fa-envelope"></i>&nbsp;Email All</button>
                     @csrf
                 </form> 

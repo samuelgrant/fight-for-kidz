@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Jobs\SendCustomMail;
 use Illuminate\Support\Facades\Storage;
 use Purifier;
+use Illuminate\Support\Facades\Log;
 
 class MailController extends Controller
 {
@@ -38,7 +39,6 @@ class MailController extends Controller
         $messageText = $request->messageText;
 
         return new CustomMail('test@example.com', '<name here>', '<Subject here>', $messageText, $empty);
-
     }
 
     public function sendMail(Request $request){
@@ -47,7 +47,7 @@ class MailController extends Controller
             'subject' => 'required|string',
             'messageText' => 'required|string',
             'target_groups' => 'required',
-            'messageAttachments.*' => 'max:2000|mimes:doc,docx,bmp,gif,jpg,jpeg,png,pdf,rtf,xls,xlsx,txt',
+            'messageAttachments.*' => 'max:5000|mimes:doc,docx,bmp,gif,jpg,jpeg,png,pdf,rtf,xls,xlsx,txt',
         ]);
         
         $subject = $request->input('subject');
@@ -76,15 +76,16 @@ class MailController extends Controller
         // end of attachment processing
 
         $recipients = $this->getRecipients($request->input('target_groups'));
+        $count = 0;
 
-        foreach($recipients as $recipient){
+        foreach($recipients as $email => $name){
 
-            SendCustomMail::dispatch($recipient['email'], $recipient['name'], $subject, $messageText, $attachmentDetails);
-                    
+            SendCustomMail::dispatch($email, $name, $subject, $messageText, $attachmentDetails);
+            $count++;
         }
 
 
-        session()->flash('success', 'Emails will send in the background.');
+        session()->flash('success', 'Emails will send in the background (' . $count .' emails queued).');
 
         return redirect()->back();
     }
@@ -98,115 +99,94 @@ class MailController extends Controller
      * 
      * @return array
      */
-    private function getRecipients($groups) {
+    public function getRecipients($groups) {
 
-        $recipients = [];        
+        $recipients = [];    
+        
+        foreach($groups as $groupName){
 
-        // Add all contacts for system groups
-
-        if(in_array('admins', $groups)){
-            foreach(User::all() as $user){
-                $recipients[] = ['email' => $user->email, 'name' => $user->name];
-            }
-        }
-
-        // Add applicants for the current event
-        if(in_array('applicants', $groups)){
-            foreach(Applicant::where('event_id', Event::current()->id)->get() as $applicant){
-                $recipients[] = ['email' => $applicant->email, 'name' => $applicant->first_name];
-            }
-        }
-
-        // Add only applicants from previous events
-        if(in_array('prevapplicants', $groups)){
-            // all applicant records from previous events
-            foreach(Applicant::where('event_id', '!=', Event::current()->id)->get() as $applicant){ 
-                // only add if this applicant has not already applied for current event
-                if(Applicant::where([
-                    ['first_name', $applicant->first_name], 
-                    ['last_name', $applicant->last_name],
-                    ['email', $applicant->email],
-                    ['event_id', Event::current()->id]
-                    ])->get()->count() == 0){
-                    $recipients[] = ['email' => $applicant->email, 'name' => $applicant->first_name];
+            if($groupName == 'subscribers'){
+                foreach(Subscriber::all() as $subscriber){                    
+                    $recipients[] = ['email' => $subscriber->email, 'name' => $subscriber->name];
                 }
             }
-        }
-
-        // Adds sponsors that are sponsoring the current event
-        if(in_array('sponsors', $groups)){
-            foreach(Sponsor::all() as $sponsor){
-                if(Event::current()->sponsors->contains($sponsor)){
-                    $recipients[] = ['email' => $sponsor->email, 'name' => $sponsor->contact_name];
+            elseif($groupName == 'admins'){
+                foreach(User::all() as $user){
+                    $recipients[] = ['email' => $user->email, 'name' => $user->name];
                 }
             }
-        }
-
-        // Adds sponsors that sponsored only previous events or no events
-        if(in_array('prevsponsors', $groups)){
-            foreach(Sponsor::all() as $sponsor){
-                if(!Event::current()->sponsors->contains($sponsor)){
-                    $recipients[] = ['email' => $sponsor->email, 'name' => $sponsor->contact_name];
-                }
-            }
-        }
-
-        if(in_array('subscribers', $groups)){
-            foreach(Subscriber::all() as $subscriber){
-                $recipients[] = ['email' => $subscriber->email, 'name' => $subscriber->name];
-            }
-        }
-
-        if(in_array('red', $groups)){
-            foreach(Contender::where([
-                ['team', 'red'],
-                ['event_id', Event::current()->id]
-            ])->get() as $contender){
-                $recipients[] = ['email' => $contender->applicant->email, 'name' => $contender->first_name];
-            }
-        }
-
-        if(in_array('blue', $groups)){
-            foreach(Contender::where([
-                ['team', 'blue'],
-                ['event_id', Event::current()->id]
-            ])->get() as $contender){
-                $recipients[] = ['email' => $contender->applicant->email, 'name' => $contender->first_name];
-            }
-        }
-
-        if(in_array('contenders', $groups)){
-            foreach(Contender::where('event_id', '!=', Event::current()->id)->get() as $contender){
-                $recipients[] = ['email' => $contender->applicant->email, 'name' => $contender->first_name];
-            }
-        }
-
-        // Add all contacts for custom groups
-
-        foreach($groups as $group){
-            if(!in_array($group, ['admin', 'applicants', 'sponsors', 'subscribers'])){
-                $groupObject = Group::find($group);
-
-                if($groupObject){
-                    $groupRecipients = $groupObject->recipients();
-
-                    foreach($groupRecipients as $groupRecipient){
-                        $recipients[] = ['email' => $groupRecipient['email'], 'name' => $groupRecipient['name']];
+            else{
+                $s = explode('-', $groupName);
+                
+                if($s[0] == 'red'){
+                    foreach(Contender::where([['team', 'red'],['event_id', $s[1]]])->get() as $contender){
+                        $recipients[] = ['email' => $contender->applicant->email, 'name' => $contender->first_name];
                     }
-                }                
+                }
+                elseif($s[0] == 'blue'){
+                    foreach(Contender::where([['team', 'blue'],['event_id', $s[1]]])->get() as $contender){
+                        $recipients[] = ['email' => $contender->applicant->email, 'name' => $contender->first_name];
+                    }
+                }
+                elseif($s[0] == 'applicants'){
+                    foreach(Applicant::where('event_id', $s[1])->get() as $applicant){
+                        $recipients[] = ['email' => $applicant->email, 'name' => $applicant->first_name];
+                    }
+                }
+                elseif($s[0] == 'sponsors'){
+                    foreach(Sponsor::all() as $sponsor){
+                        if(Event::find($s[1])->sponsors->contains($sponsor)){
+                            $recipients[] = ['email' => $sponsor->email, 'name' => $sponsor->contact_name ?? $sponsor->company_name];
+                        }
+                    }
+                }
+                elseif($s[0] == 'group'){
+
+                    $groupObject = Group::find($s[1]);                    
+                    
+                    if($groupObject){
+                        $groupRecipients = $groupObject->recipients();
+    
+                        foreach($groupRecipients as $groupRecipient){
+                            $recipients[] = ['email' => $groupRecipient['email'], 'name' => $groupRecipient['name']];
+                        }
+                    } 
+                }
             }
         }
+        ($recipients);
+
+        $recipientsTrimmed = [];
+
+        foreach($recipients as $recipient){
+            
+            if(!array_key_exists($recipient['email'], $recipientsTrimmed)){
+                $recipientsTrimmed[$recipient['email']] = $recipient['name'];
+            }
+            else{
+                Log::Debug($recipient['name'] . ' omitted from recipients as the email address '
+                . $recipient['email'] . ' already exists in the recipients list.');
+            }
+        }
+
+        return $recipientsTrimmed;
 
         // trim duplicate emails from array https://stackoverflow.com/questions/307674/how-to-remove-duplicate-values-from-a-multi-dimensional-array-in-php
 
-        $emails = array_column($recipients, 'email'); // get all emails 
-        $emails = array_unique($emails); // reduce to unique emails
-        $recipients = array_filter($recipients, function($key, $value) use ($emails){
-            return in_array($value, array_keys($emails));
-        }, ARRAY_FILTER_USE_BOTH);
+        // $emails = array_column($recipients, 'email'); // get all emails 
+        // $emails = array_unique($emails); // reduce to unique emails
+        // $recipients = array_filter($recipients, function($key, $value) use ($emails){
+        //     return in_array($value, array_keys($emails));
+        // }, ARRAY_FILTER_USE_BOTH);
+    }
 
-        dd($recipients);
-
-        return $recipients;
+    /**
+     *  Used by ajax call when confirming email send.
+     *  Allows user to see how many people they are emailing,
+     *  and also allows them to see what emails are being sent
+     *  to.
+     */
+    public function getRecipientsApi(Request $request){        
+        return $this->getRecipients($request->input('groups'));
     }
 }

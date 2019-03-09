@@ -72,7 +72,7 @@
                 <hr>
                 {{-- end of system groups --}}
 
-                {{-- start of event grous --}}
+                {{-- start of event groups --}}
                 <h3 class="text-center mt-3">{{App\Event::current()->name}} Groups</h3>
 
                 <div class="row">
