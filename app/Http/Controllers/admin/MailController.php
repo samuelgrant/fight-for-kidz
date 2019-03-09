@@ -76,15 +76,16 @@ class MailController extends Controller
         // end of attachment processing
 
         $recipients = $this->getRecipients($request->input('target_groups'));
+        $count = 0;
 
         foreach($recipients as $email => $name){
 
             SendCustomMail::dispatch($email, $name, $subject, $messageText, $attachmentDetails);
-                    
+            $count++;
         }
 
 
-        session()->flash('success', 'Emails will send in the background.');
+        session()->flash('success', 'Emails will send in the background (' . $count .' emails queued).');
 
         return redirect()->back();
     }
@@ -98,7 +99,7 @@ class MailController extends Controller
      * 
      * @return array
      */
-    private function getRecipients($groups) {
+    public function getRecipients($groups) {
 
         $recipients = [];    
         
@@ -177,5 +178,15 @@ class MailController extends Controller
         // $recipients = array_filter($recipients, function($key, $value) use ($emails){
         //     return in_array($value, array_keys($emails));
         // }, ARRAY_FILTER_USE_BOTH);
+    }
+
+    /**
+     *  Used by ajax call when confirming email send.
+     *  Allows user to see how many people they are emailing,
+     *  and also allows them to see what emails are being sent
+     *  to.
+     */
+    public function getRecipientsApi(Request $request){        
+        return $this->getRecipients($request->input('groups'));
     }
 }

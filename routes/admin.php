@@ -129,6 +129,7 @@ Route::get('/emails', 'admin\MailController@index')->name('admin.sendMail');
 Route::post('/emails', 'admin\MailController@presetTarget')->name('admin.mail.preset');
 Route::post('/emails/preview', 'admin\MailController@previewMail')->name('admin.mail.preview');
 Route::post('/emails/send', 'admin\MailController@sendMail')->name('admin.mail.send');
+Route::post('/emails/getrecipients', 'admin\MailController@getRecipientsApi')->name('admin.mail.getRecipients');
 
 //Get + CRUD Auction Items
 Route::get('/auction-management/auction/{auctionId}', 'admin\AuctionManagementController@getAuctionItem')->name('admin.auctionManagement.getAuctionItem');
