@@ -20,7 +20,7 @@
 
         <div class="card mb-3">
             <div class="card-header bg-primary text-white">
-                <h3 class="mb-0 mr-2 d-inline-block"><i class="fas fa-info-circle"></i> Displaying {{$type}} {!!(in_array($type, ['Applicants', 'Red Contenders', 'Blue Contenders', 'Sponsors'])) ? 'for ' . App\Event::current()->name : ''!!}</h3>
+                <h3 class="mb-0 mr-2 d-inline-block"><i class="fas fa-info-circle"></i> Displaying {{$type}} {!!(in_array($type, ['Applicants', 'Red Contenders', 'Blue Contenders', 'Sponsors'])) ? 'for ' . $event->name : ''!!}</h3>
                 <span>
                     {!!($type == 'All') ? '(excluding <a class="text-white" href="'. route('admin.group.subscribers') .'"><u>subscribers</u></a>)' : ''!!}                    
                 </span>
@@ -98,7 +98,7 @@
 
                 {{-- Applicants loop --}}
                 @if($type == 'All' || $type == 'Applicants' || $type == 'All Applicants')                    
-                    @foreach(($type == 'Applicants' ? App\Applicant::where('event_id', App\Event::current()->id)->get() : App\Applicant::all()) as $member)
+                    @foreach(($type == 'Applicants' ? App\Applicant::where('event_id', $event->id)->get() : App\Applicant::all()) as $member)
                         <tr>
                             <td>
                                 <div class="form-check">
@@ -122,7 +122,7 @@
 
                 {{-- Red team loop --}}
                 @if($type == 'Red Contenders')                    
-                    @foreach(App\Event::current()->getTeam('red') as $member)
+                    @foreach($event->getTeam('red') as $member)
                         <tr>
                             <td>
                                 <div class="form-check">
@@ -141,7 +141,7 @@
 
                 {{-- Blue team loop --}}
                 @if($type == 'Blue Contenders')                    
-                    @foreach(App\Event::current()->getTeam('blue') as $member)
+                    @foreach($event->getTeam('blue') as $member)
                         <tr>
                             <td>
                                 <div class="form-check">
@@ -160,7 +160,7 @@
 
                 {{-- Sponsors loop --}}
                 @if($type == 'All' || $type == "Sponsors" || $type == "All Sponsors")
-                    @foreach(($type == "Sponsors" ? App\Event::current()->sponsors : App\Sponsor::all()) as $member)
+                    @foreach(($type == "Sponsors" ? $event->sponsors : App\Sponsor::all()) as $member)
                         <tr>
                             <td>
                                 <div class="form-check">
@@ -168,7 +168,7 @@
                                         value="checkedValue" data-member-type="sponsor" data-member-id="{{$member['id']}}">
                                 </div>
                             </td>
-                            <td>{{$member['contact_name'] . ' (' . $member['company_name'] . ')'}}</td>
+                            <td>{{$member['contact_name'] ? $member['contact_name'] . ' (' . $member['company_name'] . ')' : $member['company_name']}}</td>
                             <td><a href="mailto:{{$member['email']}}">{{$member['email']}}</a></td>
                             <td>{{$member['contact_phone']}}</td>
                             <td>Sponsor</td>
