@@ -709,7 +709,7 @@ $(document).ready(function(){
         
     });
 
-    $('#confirmSendModal').on('shown.bs.modal', function(){
+    $('#confirmSendModal').on('show.bs.modal', function(){
 
         $('#noOfEmails').text('...');
 
