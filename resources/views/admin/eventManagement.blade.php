@@ -185,7 +185,7 @@
                     </div>
                     <div class="form-group">
                         <label for="eventCharity">Supported Charity</label>
-                        <input type="text" name="charity" id="eventCharity" class="form-control" value="{{$event->charity}}" required>
+                        <input type="text" name="charity" id="eventCharity" class="form-control" value="{{$event->charity}}">
                     </div>
                     <div class="form-group">
                         <label for="eventCharitUrly">Charity Url</label>
