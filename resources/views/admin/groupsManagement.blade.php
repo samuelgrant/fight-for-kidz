@@ -77,26 +77,26 @@
 
                 <div class="row">
 
-                    <div class="col-lg-2 col-md-3 col-sm-6 my-3 px-2">
-                        <a class="btn groups border border-primary" href="{{route('admin.group.applicants')}}">
+                    <div class="col-md-3 col-sm-6 my-3 px-2">
+                        <a class="btn groups border border-primary" href="{{route('admin.group.applicants', ['eventId' => App\Event::current()->id])}}">
                             <h5>Applicants</h5>
                         </a>
                     </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-6 my-3 px-2">
-                        <a class="btn groups border border-primary" href="{{route('admin.group.red')}}">
+                    <div class="col-md-3 col-sm-6 my-3 px-2">
+                        <a class="btn groups border border-primary" href="{{route('admin.group.red', ['eventId' => App\Event::current()->id])}}">
                             <h5>Red Contenders</h5>
                         </a>
                     </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-6 my-3 px-2">
-                        <a class="btn groups border border-primary" href="{{route('admin.group.blue')}}">
+                    <div class="col-md-3 col-sm-6 my-3 px-2">
+                        <a class="btn groups border border-primary" href="{{route('admin.group.blue', ['eventId' => App\Event::current()->id])}}">
                             <h5>Blue Contenders</h5>
                         </a>
                     </div>
 
-                    <div class="col-lg-2 col-md-3 col-sm-6 my-3 px-2">
-                        <a class="btn groups border border-primary" href="{{route('admin.group.sponsors')}}">
+                    <div class="col-md-3 col-sm-6 my-3 px-2">
+                        <a class="btn groups border border-primary" href="{{route('admin.group.sponsors', ['eventId' => App\Event::current()->id])}}">
                             <h5>Sponsors</h5>
                         </a>
                     </div>
@@ -110,16 +110,63 @@
 
                 {{-- start of custom groups --}}
                 <div class="row">
-                    @foreach($groups as $group)
-                    <div class="col-lg-3 col-md-4 col-sm-6 my-4 px-2">
-                        <a class="btn groups border border-primary" href="{{ route('admin.group', ['id' => $group->id])}}">
-                            <img class="d-block m-auto group-icon" src="/storage/images/groups/{{($group->custom_icon)?$group->id: 0 }}.png" alt="Group Icon" />
-                            <h5>{{$group->name}}</h5>
-                            <span class="d-block text-center">{{$group->type}}</span>
-                        </a>
-                    </div>
-                    @endforeach
+                    @if(count($groups) > 0)
+                        @foreach($groups as $group)
+                        <div class="col-lg-3 col-md-4 col-sm-6 my-4 px-2">
+                            <a class="btn groups border border-primary" href="{{ route('admin.group', ['id' => $group->id])}}">
+                                <img class="d-block m-auto group-icon" src="/storage/images/groups/{{($group->custom_icon)?$group->id: 0 }}.png" alt="Group Icon" />
+                                <h5>{{$group->name}}</h5>
+                                <span class="d-block text-center">{{$group->type}}</span>
+                            </a>
+                        </div>
+                        @endforeach
+                    @else
+                        <h4 class="text-center my-3 w-100">No custom groups defined</h4>
+                    @endif
                 </div>
+
+                <hr>
+
+                <h3 class="text-center my-5">Previous Event Groups</h3>
+
+                {{-- start of historical groups --}}
+                @foreach(App\Event::all()->sortByDesc('datetime') as $event)
+                    {{-- skip if the event is the current event --}}
+                    @if($event != App\Event::current())
+                        {{-- start of event groups --}}
+                        <h4 class="text-center mt-3">{{$event->name}} Groups</h4>
+
+                        <div class="row">
+
+                            <div class="col-md-3 col-sm-6 my-3 px-2">
+                                <a class="btn groups border border-primary" href="{{route('admin.group.applicants', ['eventId' => $event->id])}}">
+                                    <h5>Applicants</h5>
+                                </a>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 my-3 px-2">
+                                <a class="btn groups border border-primary" href="{{route('admin.group.red', ['eventId' => $event->id])}}">
+                                    <h5>Red Contenders</h5>
+                                </a>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 my-3 px-2">
+                                <a class="btn groups border border-primary" href="{{route('admin.group.blue', ['eventId' => $event->id])}}">
+                                    <h5>Blue Contenders</h5>
+                                </a>
+                            </div>
+
+                            <div class="col-md-3 col-sm-6 my-3 px-2">
+                                <a class="btn groups border border-primary" href="{{route('admin.group.sponsors', ['eventId' => $event->id])}}">
+                                    <h5>Sponsors</h5>
+                                </a>
+                            </div>
+                        @endif
+
+                    </div>
+                    {{-- end of event groups --}}
+                @endforeach
+                {{-- end of historical groups --}}
             </div>
             {{-- end of active, start of deleted groups --}}
             <div class="tab-pane {{ (app('request')->input('tab') == 'deleted')? 'active': '' }}" role="tabpanel" id="tab-2">

@@ -31,7 +31,7 @@ class SponsorManagementController extends Controller
             'companyName' => 'required',
             'phone' => 'required',
             'email' => 'email|required',
-            'url' => 'active_url',
+            'url' => 'nullable|active_url',
             // 'logo' => 'mimes:png'
         ]);
 
@@ -64,7 +64,7 @@ class SponsorManagementController extends Controller
             'companyName' => 'required',
             'phone' => 'required',
             'email' => 'email|required',
-            'url' => 'active_url',
+            'url' => 'nullable|active_url',
             // 'logo' => 'mimes:png'
         ]);
 

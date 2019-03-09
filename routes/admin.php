@@ -42,10 +42,10 @@ Route::get('/group-management/admins', 'admin\GroupManagementController@getAdmin
 Route::get('/group-management/all-applicants', 'admin\GroupManagementController@getAllApplicants')->name('admin.group.allApplicants');
 Route::get('/group-management/all-sponsors', 'admin\GroupManagementController@getAllSponsors')->name('admin.group.allSponsors');
 Route::get('/group-management/others', 'admin\GroupManagementController@getOthers')->name('admin.group.others');
-Route::get('/group-management/red', 'admin\GroupManagementController@getRed')->name('admin.group.red');
-Route::get('/group-management/blue', 'admin\GroupManagementController@getBlue')->name('admin.group.blue');
-Route::get('/group-management/applicants', 'admin\GroupManagementController@getApplicants')->name('admin.group.applicants');
-Route::get('/group-management/sponsors', 'admin\GroupManagementController@getSponsors')->name('admin.group.sponsors');
+Route::get('/group-management/red/{eventId}', 'admin\GroupManagementController@getRed')->name('admin.group.red');
+Route::get('/group-management/blue/{eventId}', 'admin\GroupManagementController@getBlue')->name('admin.group.blue');
+Route::get('/group-management/applicants/{eventId}', 'admin\GroupManagementController@getApplicants')->name('admin.group.applicants');
+Route::get('/group-management/sponsors/{eventId}', 'admin\GroupManagementController@getSponsors')->name('admin.group.sponsors');
 
 //View, Update Group
 Route::get('/group-management/{groupID}', 'admin\GroupManagementController@view')->name('admin.group');

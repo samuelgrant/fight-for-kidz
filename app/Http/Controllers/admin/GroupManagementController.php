@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use Storage;
 use Illuminate\Support\Facades\Log;
 use App\Group;
+use App\Event;
 use App\User;
 use App\Sponsor;
 use App\Contact;
@@ -263,8 +264,10 @@ class GroupManagementController extends Controller
     /**
      * Returns view of all applicants from current event
      */
-    public function getApplicants(){
-        return view('admin.systemGroupManagement')->with('type', 'Applicants')->with('groups', Group::all());
+    public function getApplicants($eventId){
+        
+        return view('admin.systemGroupManagement')->with('type', 'Applicants')->with('groups', Group::all())
+                                                    ->with('event', Event::find($eventId));;
     }
 
     /**
@@ -279,8 +282,9 @@ class GroupManagementController extends Controller
     /**
      * Returns view of all sponsors from current event
      */
-    public function getSponsors(){
-        return view('admin.systemGroupManagement')->with('type', 'Sponsors')->with('groups', Group::all());
+    public function getSponsors($eventId){
+        return view('admin.systemGroupManagement')->with('type', 'Sponsors')->with('groups', Group::all())
+                                                    ->with('event', Event::find($eventId));;
     }
 
     /**
@@ -295,15 +299,17 @@ class GroupManagementController extends Controller
     /**
      * Returns view of red team for current event
      */
-    public function getRed(){
-        return view('admin.systemGroupManagement')->with('type', 'Red Contenders')->with('groups', Group::all());
+    public function getRed($eventId){
+        return view('admin.systemGroupManagement')->with('type', 'Red Contenders')->with('groups', Group::all())
+                                                    ->with('event', Event::find($eventId));
     }
 
     /**
      * Returns view of blue team for current event
      */
-    public function getBlue(){
-        return view('admin.systemGroupManagement')->with('type', 'Blue Contenders')->with('groups', Group::all());
+    public function getBlue($eventId){
+        return view('admin.systemGroupManagement')->with('type', 'Blue Contenders')->with('groups', Group::all())
+                                                    ->with('event', Event::find($eventId));;
     }
 
     /**

@@ -74,7 +74,7 @@ class EventManagementController extends Controller
     public function update(Request $request, $eventID){
         $validator = Validator::make(Input::all(), [ 
             'name' => 'required',
-            'tickets' => 'active_url',
+            'tickets' => 'nullable|active_url',
         ],        
         // error messages
         [
