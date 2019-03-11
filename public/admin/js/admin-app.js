@@ -514,11 +514,7 @@ function applicantManagementModal(id){
         img.attr('src', img.data('route') + data.id + '.jpg'); // appends id.jpg to end of supplied route
 
         // Set Gender 
-        if(data.is_male == 1) {
-            $("#appGender").val("Male");
-        }else if(data.is_male == 0) {
-            $("#appGender").val("Female");
-        }
+        $("#appGender").val(parseInt(data.is_male) ? 'Male' : 'Female');
         
         $("#appEmail").val(data.email);                     $("#appPhone1").val(data.phone_1);
         $("#appPhone2").val(data.phone_2);                   $("#appAddress1").val(data.address_1);
@@ -529,7 +525,7 @@ function applicantManagementModal(id){
         $("#appHeight").val(data.height + "cm");            $("#appWeightC").val(data.current_weight + "kg");
         $("#appWeightE").val(data.expected_weight + "kg");  
         $('#fitnessLevel').text('This applicant rates their fitness at ' + data.fitness_rating + ' out of 5');
-        $("#dominantHand").text("This applicant is " + (data.right_handed ? 'right' : 'left') + "-handed");
+        $("#dominantHand").text("This applicant is " + (parseInt(data.right_handed) ? 'right' : 'left') + "-handed");
         $("#appBoxingExperience").text(data.boxing_exp);
         $("#appSportingExperience").text(data.sporting_exp);
         $('#hobbies').text(data.hobbies);
@@ -540,21 +536,21 @@ function applicantManagementModal(id){
         $("#appEmergencyPhone2").val(data.emergency_phone_2);                    $("#appEmergencyEmail").val(data.emergency_email);                   
 
         // Medical Tab 1
-        $("#appHeartDisease").val(data.heart_disease ? 'Yes' : 'No');                          $("#appBreathlessness").val(data.breathlessness ? 'Yes' : 'No');
-        $("#appEpilepsy").val(data.epilepsy ? 'Yes' : 'No');                                   $("#appHeartAttack").val(data.heart_attack ? 'Yes' : 'No');
-        $("#appStroke").val(data.stroke ? 'Yes' : 'No');                                       $("#appHeartSurgery").val(data.heart_surgery ? 'Yes' : 'No');
-        $("#appRespiratoryProblems").val(data.respiratory_problems ? 'Yes' : 'No');            $("#appCancer").val(data.cancer ? 'Yes' : 'No');
-        $("#appIrregularHeatbeat").val(data.irregular_heartbeat ? 'Yes' : 'No');               $("#appSmoking").val(data.smoking ? 'Yes' : 'No');
-        $("#appJointProblems").val(data.joint_pain_problems ? 'Yes' : 'No');                   $("#appChestPain").val(data.chest_pain_discomfort ? 'Yes' : 'No');
-        $("#appHypertension").val(data.hypertension ? 'Yes' : 'No');                           $("#appSurgery").val(data.surgery ? 'Yes' : 'No');
-        $("#appDizzinessFainting").val(data.dizziness_fainting ? 'Yes' : 'No');                $("#appCholesterol").val(data.high_cholesterol ? 'Yes' : 'No');
+        $("#appHeartDisease").val(parseInt(data.heart_disease) ? 'Yes' : 'No');                          $("#appBreathlessness").val(parseInt(data.breathlessness) ? 'Yes' : 'No');
+        $("#appEpilepsy").val(parseInt(data.epilepsy) ? 'Yes' : 'No');                                   $("#appHeartAttack").val(parseInt(data.heart_attack) ? 'Yes' : 'No');
+        $("#appStroke").val(parseInt(data.stroke) ? 'Yes' : 'No');                                       $("#appHeartSurgery").val(parseInt(data.heart_surgery) ? 'Yes' : 'No');
+        $("#appRespiratoryProblems").val(parseInt(data.respiratory_problems) ? 'Yes' : 'No');            $("#appCancer").val(parseInt(data.cancer) ? 'Yes' : 'No');
+        $("#appIrregularHeatbeat").val(parseInt(data.irregular_heartbeat) ? 'Yes' : 'No');               $("#appSmoking").val(parseInt(data.smoking) ? 'Yes' : 'No');
+        $("#appJointProblems").val(parseInt(data.joint_pain_problems) ? 'Yes' : 'No');                   $("#appChestPain").val(parseInt(data.chest_pain_discomfort) ? 'Yes' : 'No');
+        $("#appHypertension").val(parseInt(data.hypertension) ? 'Yes' : 'No');                           $("#appSurgery").val(parseInt(data.surgery) ? 'Yes' : 'No');
+        $("#appDizzinessFainting").val(parseInt(data.dizziness_fainting) ? 'Yes' : 'No');                $("#appCholesterol").val(parseInt(data.high_cholesterol) ? 'Yes' : 'No');
 
         $("#appOther").text(data.other);
 
         // Medical Tab 2
-        $("#appHeartCondtion").val(data.heart_condition ? 'Yes' : 'No');                       $("#appPhysicalChestPain").val(data.chest_pain_activity ? 'Yes' : 'No');
-        $("#appRecentChestPain").val(data.chest_pain_recent ? 'Yes' : 'No');                   $("#appPassedOut").val(data.lost_consciousness ? 'Yes' : 'No');
-        $("#appBoneJointProblems").val(data.bone_joint_problems ? 'Yes' : 'No');               $("#appMedicationBloodHeart").val(data.recommended_medication ? 'Yes' : 'No');
+        $("#appHeartCondtion").val(parseInt(data.heart_condition) ? 'Yes' : 'No');                       $("#appPhysicalChestPain").val(parseInt(data.chest_pain_activity) ? 'Yes' : 'No');
+        $("#appRecentChestPain").val(parseInt(data.chest_pain_recent) ? 'Yes' : 'No');                   $("#appPassedOut").val(parseInt(data.lost_consciousness) ? 'Yes' : 'No');
+        $("#appBoneJointProblems").val(parseInt(data.bone_joint_problems) ? 'Yes' : 'No');               $("#appMedicationBloodHeart").val(parseInt(data.recommended_medication) ? 'Yes' : 'No');
 
         $("#appConcussed").val(data.concussed_knocked_out);
         $("#appReason").val(data.other_reasons);
@@ -567,18 +563,10 @@ function applicantManagementModal(id){
         $("#appConvictionDetails").text(data.conviction_details);
 
         // Set Consent
-        if(consent_to_test = 0){
-            $("#appConsent").val("Yes");
-        }else if(consent_to_test = 1){
-            $("#appConsent").val("Yes");
-        }
+        $("#appConsent").val(parseInt(data.consent_to_test) ? 'Yes' : 'No');
 
         // Set Sponsor
-        if(can_secure_sponsor = 0){
-            $("#appSponsor").val("Yes");
-        }else if(consent_to_test = 1){
-            $("#appSponsor").val("Yes");
-        }
+        $("#appSponsor").val(parseInt(data.can_secure_sponsor) ? 'Yes' : 'No');
 
         //Custom Tab
         $('#custom_1').val(data.custom_one);
