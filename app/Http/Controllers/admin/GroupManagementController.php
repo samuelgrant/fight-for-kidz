@@ -17,7 +17,7 @@ use App\Http\Controllers\Controller;
 class GroupManagementController extends Controller
 {
     /**
-     * Displays the usermanagment view.
+     * Displays the usermanagement view.
      * 
      * @return $users, view 
      */

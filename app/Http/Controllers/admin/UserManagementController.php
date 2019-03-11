@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 class UserManagementController extends Controller
 {
     /**
-     * Displays the usermanagment view.
+     * Displays the usermanagement view.
      * 
      * @return $users, view 
      */
