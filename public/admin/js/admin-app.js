@@ -506,7 +506,7 @@ function applicantManagementModal(id){
 
         // General Tab
         $("#appFirstName").val(data.first_name);            $("#appLastName").val(data.last_name);
-        $("#appFightName").val(data.preferred_nickame);     $("#appAge").val(calculate_age(dob));
+        $("#appFightName").val(data.preferred_fight_name);     $("#appAge").val(calculate_age(dob));
         $("#appDob").val(dob.toLocaleDateString("en-US"));
 
         // Set Photo
@@ -514,9 +514,9 @@ function applicantManagementModal(id){
         img.attr('src', img.data('route') + data.id + '.jpg'); // appends id.jpg to end of supplied route
 
         // Set Gender 
-        if(if_male = 0) {
+        if(data.is_male == 1) {
             $("#appGender").val("Male");
-        }else if(if_male = 1) {
+        }else if(data.is_male == 0) {
             $("#appGender").val("Female");
         }
         
