@@ -16,7 +16,7 @@ class MerchandiseManagementController extends Controller
     }
 
     /**
-     * Displays the merchandiseManagment view.
+     * Displays the merchandiseManagement view.
      * 
      * @return view 
      */

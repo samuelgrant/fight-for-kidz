@@ -12,7 +12,7 @@
             
             <div class="d-inline-block gray-card">
 				<p class="mb-0 text-center">Export All</p>
-				<a class="btn btn-info" href="{{route('admin.eventManagment.downloadApplicants', [$event->id])}}"><i class="fas fa-file-excel"></i>&nbsp; Download</a>
+				<a class="btn btn-info" href="{{route('admin.eventManagement.downloadApplicants', [$event->id])}}"><i class="fas fa-file-excel"></i>&nbsp; Download</a>
 			</div>
         </span>
 </div>

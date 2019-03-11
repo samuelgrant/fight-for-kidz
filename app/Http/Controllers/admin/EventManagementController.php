@@ -18,7 +18,7 @@ use App\Contender, App\Bout, App\Sponsor;
 class EventManagementController extends Controller
 {
     /**
-     * Displays the eventManagment view.
+     * Displays the eventManagement view.
      * 
      */
     public function index(){
