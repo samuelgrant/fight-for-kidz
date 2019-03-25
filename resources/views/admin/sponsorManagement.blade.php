@@ -139,7 +139,7 @@
                     </div>
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input type="text" name="email" id="email" class="form-control" value="{{$sponsor->email}}" required>
+                        <input type="email" name="email" id="email" class="form-control" value="{{$sponsor->email}}" required>
                     </div>
                     <div class="form-group">
                         <label for="url">Website URL:</label>
