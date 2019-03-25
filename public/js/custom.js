@@ -293,3 +293,10 @@ $(document).ready(function () {
     $("#fight-video-modal iframe").attr("src", "");
   });
 });
+
+//removes forward and trailing spaces from any text input
+$(function(){
+  $('input[type="text"]').change(function(){
+      this.value = $.trim(this.value);
+  });
+});
