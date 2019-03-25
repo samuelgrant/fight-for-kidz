@@ -294,9 +294,16 @@ $(document).ready(function () {
   });
 });
 
-//removes forward and trailing spaces from any text input
-$(function(){
+$(document).ready(function(){
+  //removes forward and trailing spaces from any text input
   $('input[type="text"]').change(function(){
       this.value = $.trim(this.value);
   });
+
+  // prevents user from entering spaces when inputting their email
+  // or any input with the 'noSpaces' class
+  $('.noSpaces').keypress(function(key){
+    if(key.charCode == 32) return false;
+  });
+
 });
