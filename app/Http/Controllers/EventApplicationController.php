@@ -104,7 +104,7 @@ class EventApplicationController extends Controller
     
     );       
 
-        Log::debug('Server is validating application submitted by ' . $request->input('first_name' . ' ' . $request->input('last_name') . ' from ' . $request->input('email')));
+        Log::debug('Server is validating application submitted by ' . $request->input('first_name') . ' ' . $request->input('last_name') . ' from ' . $request->input('email'));
 
         if($validator->fails()){
 
@@ -114,7 +114,7 @@ class EventApplicationController extends Controller
 
         }
 
-        Log::debug('Server has successfully validated application submitted by ' . $request->input('first_name' . ' ' . $request->input('last_name') . ' from ' . $request->input('email')));        
+        Log::debug('Server has successfully validated application submitted by ' . $request->input('first_name') . ' ' . $request->input('last_name') . ' from ' . $request->input('email'));        
 
         // also need to check if someone has already submitted
         // an application for this email address
