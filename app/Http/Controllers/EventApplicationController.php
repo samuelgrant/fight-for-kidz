@@ -50,7 +50,7 @@ class EventApplicationController extends Controller
             'dob' => 'required|date', // string must be date according to PHP strtotime() function
             'height' => 'required|integer|gt:0',
             'current_weight' => 'required|integer|gt:0', 
-            'expected_weight' => 'integer|gt:0',
+            'expected_weight' => 'nullable|integer|gt:0',
             'occupation' => 'required',
             'gender' => 'required',
             'hand' => 'required',
