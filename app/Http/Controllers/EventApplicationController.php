@@ -102,12 +102,9 @@ class EventApplicationController extends Controller
             'accepted' => 'Please check the declaration checkbox'
         ]
     
-    );
+    );       
 
-        // check if subscribe for updates checkbox is checked and that there is an email in the email field subscribe if so
-        if($request->input('subscribeCheckbox') && $request->input('email')!= '' ){
-            Subscriber::subscribe($request->input('first_name') . ' ' . $request->input('last_name'), $request->input('email'));
-        }
+        Log::debug('Server is validating application submitted by ' . $request->input('first_name' . ' ' . $request->input('last_name') . ' from ' . $request->input('email')));
 
         if($validator->fails()){
 
@@ -117,9 +114,13 @@ class EventApplicationController extends Controller
 
         }
 
+        Log::debug('Server has successfully validated application submitted by ' . $request->input('first_name' . ' ' . $request->input('last_name') . ' from ' . $request->input('email')));        
+
         // also need to check if someone has already submitted
         // an application for this email address
         if(Applicant::where('email', $request->input('email'))->where('event_id', Event::current()->id)->get()->first() != null){
+
+            Log::debug('An application from ' . $request->input('email') . ' has failed as there is already an application under this email address.');
 
             session()->flash('error', 'An application has already been submitted using this email address,
             please contact Fight for Kidz if this is an error, or if you wish to amend you application details.');
@@ -220,6 +221,11 @@ class EventApplicationController extends Controller
         
         // Convert to png if needed and store
         Image::storeAsJpg($image, $imagePath, $imageName);
+
+        // check if subscribe for updates checkbox is checked and that there is an email in the email field subscribe if so
+        if($request->input('subscribeCheckbox') && $request->input('email')!= '' ){
+            Subscriber::subscribe($request->input('first_name') . ' ' . $request->input('last_name'), $request->input('email'));
+        }
         
         // send email notification of receipt
         SendApplicationReceivedEmail::dispatch($applicant->email, $applicant->first_name);
