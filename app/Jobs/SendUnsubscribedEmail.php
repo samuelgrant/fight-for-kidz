@@ -33,6 +33,10 @@ class SendUnsubscribedEmail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->email)->send(new Unsubscribed());
+        $msg = Mail::to($this->email)->send(new Unsubscribed());
+        Log::debug('Sending successfully unsubscribed mail to ' . $this->email);
+        if($msg){
+            Log::debug('Mail job message: ' . $msg);
+        }
     }
 }

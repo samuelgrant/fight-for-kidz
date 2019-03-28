@@ -35,6 +35,10 @@ class SendContactReceived implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->email)->send(new ContactReceived($this->name, $this->type));
+        $msg = Mail::to($this->email)->send(new ContactReceived($this->name, $this->type));
+        Log::debug('Sending contact received (type ' . $this->type . ') mail to ' . $this->email);
+        if($msg){
+            Log::debug('Mail job message: ' . $msg);
+        }
     }
 }
