@@ -34,6 +34,10 @@ class SendPasswordResetEmail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->user->email)->send(new CustomPasswordReset($this->user));
+        $msg = Mail::to($this->user->email)->send(new CustomPasswordReset($this->user));
+        Log::debug('Sending password been reset email mail to ' . $this->user->email);
+        if($msg){
+            Log::debug('Mail job message: ' . $msg);
+        }
     }
 }

@@ -34,6 +34,10 @@ class SendActivatedAccountEmail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->user->email)->send(new AccountActivated($this->user));
+        $msg = Mail::to($this->user->email)->send(new AccountActivated($this->user));
+        Log::debug('Sending account activated mail to ' . $this->user->email);
+        if($msg){
+            Log::debug('Mail job message: ' . $msg);
+        }
     }
 }

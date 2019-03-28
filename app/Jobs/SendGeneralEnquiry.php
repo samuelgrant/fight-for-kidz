@@ -36,6 +36,10 @@ class SendGeneralEnquiry implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to(env('ADMIN_EMAIL'))->send(new GeneralEnquiry($this->name, $this->email, $this->phone, $this->message));
+        $msg = Mail::to(env('ADMIN_EMAIL'))->send(new GeneralEnquiry($this->name, $this->email, $this->phone, $this->message));
+        Log::debug('Sending new general enquiry received to the admin email.');
+        if($msg){
+            Log::debug('Mail job message: ' . $msg);
+        }
     }
 }

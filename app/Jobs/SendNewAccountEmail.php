@@ -35,6 +35,10 @@ class SendNewAccountEmail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->user->email)->send(new NewAccount($this->user, $this->token));
+        $msg = Mail::to($this->user->email)->send(new NewAccount($this->user, $this->token));
+        Log::debug('Sending new account mail to ' . $this->user->email);
+        if($msg){
+            Log::debug('Mail job message: ' . $msg);
+        }
     }
 }

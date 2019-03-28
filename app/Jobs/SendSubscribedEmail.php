@@ -34,9 +34,11 @@ class SendSubscribedEmail implements ShouldQueue
      * @return void
      */
     public function handle()
-    {
-        Log::debug('Sending mail to ' . $this->subscriber->email);
+    {        
         $msg = Mail::to($this->subscriber->email)->send(new Subscribed($this->subscriber));
-        Log::debug('Mail sent. Message: ' . $msg);
+        Log::debug('Sending successfully subscribed mail to ' . $this->subscriber->email);
+        if($msg){
+            Log::debug('Mail job message: ' . $msg);
+        }
     }
 }

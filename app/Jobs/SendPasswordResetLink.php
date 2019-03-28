@@ -35,6 +35,10 @@ class SendPasswordResetLink implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->user->email)->send(new ResetPasswordLink($this->user, $this->token));
+        $msg = Mail::to($this->user->email)->send(new ResetPasswordLink($this->user, $this->token));
+        Log::debug('Sending password reset link mail to ' . $this->user->email);
+        if($msg){
+            Log::debug('Mail job message: ' . $msg);
+        }
     }
 }

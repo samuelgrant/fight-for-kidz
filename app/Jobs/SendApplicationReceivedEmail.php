@@ -34,6 +34,10 @@ class SendApplicationReceivedEmail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->email)->send(new ApplicationReceived($this->recipient));
+        $msg = Mail::to($this->email)->send(new ApplicationReceived($this->recipient));
+        Log::debug('Sending application received mail to ' . $this->email);
+        if($msg){
+            Log::debug('Mail job message: ' . $msg);
+        }
     }
 }

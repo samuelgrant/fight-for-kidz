@@ -34,6 +34,10 @@ class SendDeactivatedAccountEmail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->user->email)->send(new AccountDeactivated($this->user));
+        $msg = Mail::to($this->user->email)->send(new AccountDeactivated($this->user));
+        Log::debug('Sending account deactivated mail to ' . $this->user->email);
+        if($msg){
+            Log::debug('Mail job message: ' . $msg);
+        }
     }
 }
