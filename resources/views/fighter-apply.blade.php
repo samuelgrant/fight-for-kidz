@@ -137,7 +137,7 @@
 											<label class="required" for="dob">Date of Birth:</label>
 										</div>
 										<div class="col-md-3 input-group date" id="datepicker">
-											<input class="form-control" type="date" name="dob" required>
+											<input class="form-control" type="date" placeholder="YYYY-MM-DD" name="dob" required>
 										</div>
 				
 										<div class="col-md-3 inputLabel">

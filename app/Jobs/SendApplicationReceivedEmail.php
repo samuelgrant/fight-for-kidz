@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ApplicationReceived;
+use Illuminate\Support\Facades\Log;
 
 class SendApplicationReceivedEmail implements ShouldQueue
 {

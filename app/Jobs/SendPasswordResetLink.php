@@ -10,6 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ResetPasswordLink;
 use App\User;
+use Illuminate\Support\Facades\Log;
 
 class SendPasswordResetLink implements ShouldQueue
 {
