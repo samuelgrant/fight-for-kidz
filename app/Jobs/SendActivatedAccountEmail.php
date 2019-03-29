@@ -10,6 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use App\Mail\AccountActivated;
 use Illuminate\Support\Facades\Mail;
 use App\User;
+use Illuminate\Support\Facades\Log;
 
 class SendActivatedAccountEmail implements ShouldQueue
 {

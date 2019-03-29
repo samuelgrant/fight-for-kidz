@@ -10,6 +10,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\PasswordReset as CustomPasswordReset;
 use App\User;
+use Illuminate\Support\Facades\Log;
 
 class SendPasswordResetEmail implements ShouldQueue
 {
