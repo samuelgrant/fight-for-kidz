@@ -213,7 +213,21 @@ class EventApplicationController extends Controller
         // set applicant event to current event
         $applicant->event()->associate(Event::current());
 
-        $applicant->save(); // generates id number to use when generating image name
+        try{
+            $applicant->save(); // generates id number to use when generating image name
+        }
+        catch(\PDOException $ex){
+
+            Log::error('Error saving applicant to database. Code: ' . $ex->getCode() . ' | ' . $ex->getMessage());
+
+            if($ex->getCode() == 22007 || $ex->getCode() == '22007'){ // code for invalid date format
+                session()->flash('error', 'Your application failed to submit correctly. Please ensure you follow the date format YYYY-MM-DD for you birth date.');
+            }
+            else{            
+                session()->flash('error', 'Your application has failed to submit correctly. Please try again, and if the issue persists, please contact Fight for Kidz.');
+            }
+            return redirect()->back(); 
+        }
 
         $image = $request->file('photo');
         $imagePath = 'private/images/applicants/';
