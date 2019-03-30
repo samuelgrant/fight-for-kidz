@@ -102,6 +102,7 @@
 										</div>
 										<div class="col-md-4">
 											<input class="form-control" type="email" name="email" required>
+											<small>(one application per email only)</small>
 										</div>
 									</div>
 								</div>

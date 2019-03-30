@@ -108,10 +108,10 @@ class EventApplicationController extends Controller
 
         if($validator->fails()){
 
-            return redirect()->back()->withErrors($validator);
-            session()->flash('error', 'Application could not be processed');
-            return redirect()->back();
-
+            Log::info('Application submitted from ' . $request->input('email') . ' failed server validation.');            
+            Log::info($validator->errors());
+            
+            return view('feedback.failed-submission')->withErrors($validator);
         }
 
         Log::debug('Server has successfully validated application submitted by ' . $request->input('first_name') . ' ' . $request->input('last_name') . ' from ' . $request->input('email'));        
@@ -124,7 +124,7 @@ class EventApplicationController extends Controller
 
             session()->flash('error', 'An application has already been submitted using this email address,
             please contact Fight for Kidz if this is an error, or if you wish to amend you application details.');
-            return redirect()->back();
+            return view('feedback.failed-submission');
 
         }
 
@@ -221,12 +221,12 @@ class EventApplicationController extends Controller
             Log::error('Error saving applicant to database. Code: ' . $ex->getCode() . ' | ' . $ex->getMessage());
 
             if($ex->getCode() == 22007 || $ex->getCode() == '22007'){ // code for invalid date format
-                session()->flash('error', 'Your application failed to submit correctly. Please ensure you follow the date format YYYY-MM-DD for you birth date.');
+                session()->flash('error', 'Your application failed to submit correctly. Please ensure you follow the date format YYYY-MM-DD for your birth date.');
             }
             else{            
-                session()->flash('error', 'Your application has failed to submit correctly. Please try again, and if the issue persists, please contact Fight for Kidz.');
+                session()->flash('error', 'Your application has failed to submit correctly due to a server error. Please try again, and if the issue persists, please contact Fight for Kidz.');
             }
-            return redirect()->back(); 
+            return view('feedback.failed-submission'); 
         }
 
         $image = $request->file('photo');
