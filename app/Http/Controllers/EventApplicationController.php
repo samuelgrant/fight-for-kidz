@@ -108,10 +108,10 @@ class EventApplicationController extends Controller
 
         if($validator->fails()){
 
-            return redirect()->back()->withErrors($validator);
-            session()->flash('error', 'Application could not be processed');
-            return redirect()->back();
+            Log::info('Application submitted from ' . $request->input('email') . ' failed server validation.');
+            Log::info($validator->errors());
 
+            return redirect()->back()->withErrors($validator);
         }
 
         Log::debug('Server has successfully validated application submitted by ' . $request->input('first_name') . ' ' . $request->input('last_name') . ' from ' . $request->input('email'));        
