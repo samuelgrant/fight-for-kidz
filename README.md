@@ -50,3 +50,5 @@ ___Database Notice:__ Please create a new MySQL user __DO NOT USE ROOT__. Grant 
 Please secure your site with an SSL certificate. You can get a free certificate using [Certbot](https://certbot.eff.org/lets-encrypt/ubuntuartful-apache) from Let's Encrypt.
 
 **Windows Users**: To create the required symbolic link run the command `php artisan storage:link`.
+
+To make use of the rich text editor run the command `php artisan vendor:publish --tag=ckeditor`
