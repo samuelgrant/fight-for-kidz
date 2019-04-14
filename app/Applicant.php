@@ -149,7 +149,7 @@ class Applicant extends Model
     }
 
     /**
-     * Trims an applicants data to the information we want
+     * Trims an applicants data to display the information we want, in the format we want
      * @param Elloquent\Applicant
      * @return Elloquent\Applicant
      */
@@ -157,15 +157,64 @@ class Applicant extends Model
 
         for($i = 0; $i < count($applicants); $i++){
             $tmpApplicant = new Applicant();
-                $tmpApplicant->name = $applicants[$i]->last_name.', '.$applicants[$i]->first_name;
-                $tmpApplicant->pref_name = $applicants[$i]->preferred_nickname;
-                $tmpApplicant->gender = ($applicants[$i]->is_male)? "Male":"Female";
-                $tmpApplicant->age = $applicants[$i]->getAge().', '.$applicants[$i]->dob;
-                $tmpApplicant->phone = (isset($applicants[$i]->mobile))? $applicants[$i]->mobile : $applicants[$i]->phone;
-                $tmpApplicant->email = $applicants[$i]->email;
-                $tmpApplicant->weight = $applicants[$i]->current_weight;
-                $tmpApplicant->height = $applicants[$i]->height;
-                $tmpApplicant->dominant_hand = ($applicants[$i]->right_handed) ? "Right" : "Left";
+                //General
+                $tmpApplicant->Name = $applicants[$i]->last_name.', '.$applicants[$i]->first_name;
+                $tmpApplicant->Pref_name = $applicants[$i]->preferred_nickname;
+                $tmpApplicant->Age = $applicants[$i]->getAge().', '.$applicants[$i]->dob;
+                $tmpApplicant->Gender = ($applicants[$i]->is_male)? "Male":"Female";
+                $tmpApplicant->DOB = $applicants[$i]->dob;
+
+                $tmpApplicant->Phone_1 = $applicants[$i]->phone_1;
+                $tmpApplicant->Phone_2 = $applicants[$i]->phone_2;
+                $tmpApplicant->Email = $applicants[$i]->email;
+
+                $tmpApplicant->Address_1 = $applicants[$i]->address_1;
+                $tmpApplicant->Address_2 = $applicants[$i]->address_2;
+                $tmpApplicant->Suburb = $applicants[$i]->suburb;
+                $tmpApplicant->City = $applicants[$i]->city;
+                $tmpApplicant->Post_code = $applicants[$i]->postcode;
+
+                //Personal
+                $tmpApplicant->Height = $applicants[$i]->height;
+                $tmpApplicant->Weight = $applicants[$i]->current_weight;
+                $tmpApplicant->Expected_weight = $applicants[$i]->expected_weight;
+                $tmpApplicant->Fitness_rating = $applicants[$i]->fitness_rating. " out of 5";
+                $tmpApplicant->Dominant_hand = ($applicants[$i]->right_handed) ? "Right" : "Left";
+
+                $tmpApplicant->Boxing_kickboxing_martial_arts_experience = $applicants[$i]->boxing_exp;
+                $tmpApplicant->Sporting_experience = $applicants[$i]->sporting_experience;
+                $tmpApplicant->Hobbies_interests = $applicants[$i]->hobbies;
+
+                //Emergency
+                $tmpApplicant->Emergency_name = $applicants[$i]->emergency_last_name. ', ' .$applicants[$i]->emergency_first_name;
+                $tmpApplicant->Relationship = $applicants[$i]->emergency_relationship;
+                $tmpApplicant->Emergency_phone_1 = $applicants[$i]->emergency_phone_1;
+                $tmpApplicant->Emergency_phone_2 = $applicants[$i]->emergency_phone_2;
+                $tmpApplicant->Emergency_email = $applicants[$i]->emergency_email;
+
+                //Medical 1
+                $tmpApplicant->Heart_disease = ($applicants[$i]->heart_disease)? "Yes" : "No";
+                $tmpApplicant->Breathlessness = ($applicants[$i]->breathlessness)? "Yes" : "No";
+                $tmpApplicant->Epilepsy = ($applicants[$i]->epilepsy)? "Yes" : "No";
+                $tmpApplicant->Heart_attack = ($applicants[$i]->heart_attack)? "Yes" : "No";
+                $tmpApplicant->Stroke = ($applicants[$i]->stroke)? "Yes" : "No";
+                $tmpApplicant->Heart_surgery = ($applicants[$i]->heart_surgery)? "Yes" : "No";
+                $tmpApplicant->Repiratory = ($applicants[$i]->respiratory_problems)? "Yes" : "No";
+                $tmpApplicant->Cancer = ($applicants[$i]->cancer)? "Yes" : "No";
+                $tmpApplicant->Irregular_heartbeat = ($applicants[$i]->irregular_heartbeat)? "Yes" : "No";
+                $tmpApplicant->Smoking = ($applicants[$i]->smoking)? "Yes" : "No";
+                $tmpApplicant->Joint_problems = ($applicants[$i]->joint_pain_problems)? "Yes" : "No";
+                $tmpApplicant->Chest_pain = ($applicants[$i]->chest_pain_discomfort)? "Yes" : "No";
+                $tmpApplicant->Hypertension = ($applicants[$i]->hypertension)? "Yes" : "No";
+                $tmpApplicant->Sugery = ($applicants[$i]->surgery)? "Yes" : "No";
+                $tmpApplicant->Dizziness_fainting = ($applicants[$i]->dizziness_fainting)? "Yes" : "No";
+                $tmpApplicant->High_cholesterol = ($applicants[$i]->high_cholesterol)? "Yes" : "No";                
+                $tmpApplicant->Other = ($applicants[$i]->other)? $applicants[$i]->other : "No";
+
+                
+
+
+                //$tmpApplicant-> = $applicants[$i]-> ;
                 $tmpApplicant->has_conviction = isset($applicants[$i]->conviction_details);
             $applicants[$i] = $tmpApplicant;
         }
