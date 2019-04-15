@@ -209,13 +209,36 @@ class Applicant extends Model
                 $tmpApplicant->Sugery = ($applicants[$i]->surgery)? "Yes" : "No";
                 $tmpApplicant->Dizziness_fainting = ($applicants[$i]->dizziness_fainting)? "Yes" : "No";
                 $tmpApplicant->High_cholesterol = ($applicants[$i]->high_cholesterol)? "Yes" : "No";                
-                $tmpApplicant->Other = ($applicants[$i]->other)? $applicants[$i]->other : "No";
+                $tmpApplicant->Other = $applicants[$i]->other;
 
+                $tmpApplicant->Medically_supervised_activity = ($applicants[$i]->heart_condition)? "Yes" : "No";
+                $tmpApplicant->Chest_pain_brought_on_by_physical_activity = ($applicants[$i]->chest_pain_activity)? "Yes" : "No";
+                $tmpApplicant->Onset_of_recent_chest_pain = ($applicants[$i]->chest_pain_recent)? "Yes" : "No";
+                $tmpApplicant->Passed_out_due_to_dizziness = ($applicants[$i]->lost_consciousness)? "Yes" : "No";
+                $tmpApplicant->Bone_Joint_problems = ($applicants[$i]->bone_joint_problems)? "Yes" : "No";
+                $tmpApplicant->Medication_for_blood_pressure_or_heart = ($applicants[$i]->recommended_medication)? "Yes" : "No";
+
+                //Medical 2
+                $tmpApplicant->Explain_your_losses_of_consciousness = $applicants[$i]->lost_consciousness;
+                $tmpApplicant->Is_there_any_reason_why_you_shouldnt_participate = $applicants[$i]->other_reasons;
+                $tmpApplicant->Hand_injuries = $applicants[$i]->hand_injuries;
+                $tmpApplicant->Previous_significant_injuries = $applicants[$i]->previous_current_injuries;
+                $tmpApplicant->Current_medication = $applicants[$i]->current_medication;
+
+                //Additional
+                $tmpApplicant->Occupation = $applicants[$i]->occupaton;
+                $tmpApplicant->Employer = $applicants[$i]->employer ;
+                $tmpApplicant->Can_secure_sponsor = ($applicants[$i]->can_secure_sponsor)? "Yes" : "No";
+                $tmpApplicant->Consents_to_drug_test = ($applicants[$i]->consent_to_test)? "Yes" : "No";
+                $tmpApplicant->Has_conviction = isset($applicants[$i]->conviction_details);
+
+                //Custom
+                $tmpApplicant->Custom_1 = $applicants[$i]->custom_one;
+                $tmpApplicant->Custom_2 = $applicants[$i]->custom_two;
+                $tmpApplicant->Custom_3 = $applicants[$i]->custom_three;
+                $tmpApplicant->Custom_4 = $applicants[$i]->custom_four ;
+                $tmpApplicant->Custom_5 = $applicants[$i]->custom_five;
                 
-
-
-                //$tmpApplicant-> = $applicants[$i]-> ;
-                $tmpApplicant->has_conviction = isset($applicants[$i]->conviction_details);
             $applicants[$i] = $tmpApplicant;
         }
 
