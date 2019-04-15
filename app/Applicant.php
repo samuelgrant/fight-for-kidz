@@ -226,11 +226,11 @@ class Applicant extends Model
                 $tmpApplicant->Current_medication = $applicants[$i]->current_medication;
 
                 //Additional
-                $tmpApplicant->Occupation = $applicants[$i]->occupaton;
+                $tmpApplicant->Occupation = $applicants[$i]->occupation;
                 $tmpApplicant->Employer = $applicants[$i]->employer ;
                 $tmpApplicant->Can_secure_sponsor = ($applicants[$i]->can_secure_sponsor)? "Yes" : "No";
                 $tmpApplicant->Consents_to_drug_test = ($applicants[$i]->consent_to_test)? "Yes" : "No";
-                $tmpApplicant->Has_conviction = isset($applicants[$i]->conviction_details);
+                $tmpApplicant->Has_conviction = $applicants[$i]->conviction_details;
 
                 //Custom
                 $tmpApplicant->Custom_1 = $applicants[$i]->custom_one;
