@@ -159,7 +159,7 @@ class Applicant extends Model
             $tmpApplicant = new Applicant();
                 //General
                 $tmpApplicant->Name = $applicants[$i]->last_name.', '.$applicants[$i]->first_name;
-                $tmpApplicant->Pref_name = $applicants[$i]->preferred_nickname;
+                $tmpApplicant->Fight_name = $applicants[$i]->preferred_fight_name;
                 $tmpApplicant->Age = $applicants[$i]->getAge();
                 $tmpApplicant->Gender = ($applicants[$i]->is_male)? "Male":"Female";
                 $tmpApplicant->DOB = $applicants[$i]->dob;
