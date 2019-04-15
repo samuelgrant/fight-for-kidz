@@ -160,7 +160,7 @@ class Applicant extends Model
                 //General
                 $tmpApplicant->Name = $applicants[$i]->last_name.', '.$applicants[$i]->first_name;
                 $tmpApplicant->Pref_name = $applicants[$i]->preferred_nickname;
-                $tmpApplicant->Age = $applicants[$i]->getAge().', '.$applicants[$i]->dob;
+                $tmpApplicant->Age = $applicants[$i]->getAge();
                 $tmpApplicant->Gender = ($applicants[$i]->is_male)? "Male":"Female";
                 $tmpApplicant->DOB = $applicants[$i]->dob;
 
