@@ -182,7 +182,7 @@ class Applicant extends Model
                 $tmpApplicant->Dominant_hand = ($applicants[$i]->right_handed) ? "Right" : "Left";
 
                 $tmpApplicant->Boxing_kickboxing_martial_arts_experience = $applicants[$i]->boxing_exp;
-                $tmpApplicant->Sporting_experience = $applicants[$i]->sporting_experience;
+                $tmpApplicant->Sporting_experience = $applicants[$i]->sporting_exp;
                 $tmpApplicant->Hobbies_interests = $applicants[$i]->hobbies;
 
                 //Emergency
