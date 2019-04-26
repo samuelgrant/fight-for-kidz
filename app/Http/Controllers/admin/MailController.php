@@ -105,7 +105,7 @@ class MailController extends Controller
         // Add all contacts for system groups
 
         if(in_array('admins', $groups)){
-            foreach(User::all() as $user){
+            foreach(User::all()->where('active', 1) as $user){
                 $recipients[] = ['email' => $user->email, 'name' => $user->name];
             }
         }
