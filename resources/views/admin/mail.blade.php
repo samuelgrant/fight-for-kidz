@@ -57,7 +57,7 @@
 				</label>
 				<span class="ml-3 gray-card d-none" id="fileName"></span>
                 <span id="clearAttachmentsBtn" class="times-circle-btn d-none"><i class="fas fa-times-circle"></i></span>
-                <p>Attachments must not exceed 10MB total size</p>
+                <p>Attachments must not exceed 9.5MB total size</p>
             </div>
             <div class="form-group w-100">
                 <div class="d-inline-block">
