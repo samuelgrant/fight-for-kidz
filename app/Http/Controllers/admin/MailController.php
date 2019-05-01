@@ -47,7 +47,7 @@ class MailController extends Controller
             'subject' => 'required|string',
             'messageText' => 'required|string',
             'target_groups' => 'required',
-            'messageAttachments.*' => 'max:5000|mimes:doc,docx,bmp,gif,jpg,jpeg,png,pdf,rtf,xls,xlsx,txt',
+            'messageAttachments.*' => 'max:9500|mimes:doc,docx,bmp,gif,jpg,jpeg,png,pdf,rtf,xls,xlsx,txt',
         ]);
         
         $subject = $request->input('subject');
