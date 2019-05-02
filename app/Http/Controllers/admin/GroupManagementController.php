@@ -329,18 +329,25 @@ class GroupManagementController extends Controller
     /**
      * Updates a contact record 
      */
-    public function updateContact(Request $request, $contactID){
+    public function updateContact(Request $request, $contactID){        
 
-        $contact = Contact::find($contactID);
-
+        // Validate form input
         $this->validate($request, [
             'name' => 'string|required',
             'email' => 'email|required',
         ]);
 
+        // Make sure no other contacts have the same email
+        if(count(Contact::where('email', $request->input('email'))->get()) > 0){
+            session()->flash('error', 'Unable to update contact as there is already a contact with this email address.');
+            return redirect()->back();
+        }
+
+        // Ensure that the contact to update exists
+        $contact = Contact::find($contactID);
         if($contact)
         {
-
+            // Update contact information
             $contact->name = $request->input('name');
             $contact->phone = $request->input('phone');
             $contact->email = $request->input('email');
