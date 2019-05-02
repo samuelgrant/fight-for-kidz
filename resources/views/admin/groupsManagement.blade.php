@@ -161,13 +161,13 @@
                                     <h5>Sponsors</h5>
                                 </a>
                             </div>
-                        @endif
-
-                    </div>
+                        </div>
+                    @endif
+                    
                     {{-- end of event groups --}}
                 @endforeach
                 {{-- end of historical groups --}}
-            
+                    </div>
             {{-- end of active, start of deleted groups --}}
             <div class="tab-pane {{ (app('request')->input('tab') == 'deleted')? 'active': '' }}" role="tabpanel" id="tab-2">
                 <div class="row">
