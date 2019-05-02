@@ -24,7 +24,7 @@ class SubscriberController extends Controller
             'g-recaptcha-response' => 'required|captcha',
             'name' => 'required',
             'email' => 'required|email',
-        ]);
+        ])->validate();
 
         
         /**

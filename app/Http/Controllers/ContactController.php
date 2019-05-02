@@ -27,7 +27,7 @@ class ContactController extends Controller
             'accepted' => 'Please confirm that your details are correct'
         ]
     
-    );
+    )->validate();
 
         // Store the message in the database
         $this->storeMessage('General', $request);
@@ -59,7 +59,7 @@ class ContactController extends Controller
             'accepted' => 'Please confirm that your details are correct'
         ]
     
-    );
+    )->validate();
 
         // Store the message in the database
         $this->storeMessage('Sponsor', $request);
@@ -89,7 +89,7 @@ class ContactController extends Controller
             'accepted' => 'Please confirm that your details are correct'
         ]
     
-    );        
+    )->validate();        
     
         // Store the message details in the database
         $this->storeMessage('Table', $request);
