@@ -60,6 +60,9 @@ Route::patch('/group-management/contacts/{contactID}', 'admin\GroupManagementCon
 Route::delete('/group-management/contacts/delete/{contactID}', 'admin\GroupManagementController@deleteContact')->name('admin.contact.delete');
 Route::post('/contact-management/add', 'admin\GroupManagementController@addContact')->name('admin.contact.add');
 
+// Add contact to group via message view
+Route::post('/contact-management/addToGroup/{contactId}', 'admin\GroupManagementController@addContactToGroup')->name('admin.contact.addContactToGroup');
+
 // Get contact JSON
 Route::get('/group-management/contacts/{contactID}', 'admin\GroupManagementController@getContact')->name('admin.contact.get');
 

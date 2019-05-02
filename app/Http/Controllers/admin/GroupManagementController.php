@@ -431,4 +431,34 @@ class GroupManagementController extends Controller
         }
     }
 
+    public function addContactToGroup(Request $request, $contactId){
+
+        $contact = Contact::find($contactId);
+
+        if($contact){
+
+            $group = Group::find($request->input('groupId'));
+
+            if($group){
+
+                $contact->addToGroup($group->id);
+                
+                session()->flash('success', 'Contact added to group: "' . $group->name .'".');
+                return redirect()->back();
+
+            }
+            else
+            {
+                session()->flash('error', 'Internal error. If the error persists, please contact the developers.');
+                return redirect()->back();
+            }
+        }
+        else
+        {
+            session()->flash('error', 'Internal error. If the error persists, please contact the developers.');
+            return redirect()->back();
+        }
+
+    }
+
 }
