@@ -4,10 +4,9 @@
 	<li class="breadcrumb-item">
 		<a href="{{route('admin.dashboard')}}">Dashboard</a>
 	</li>
-	<li class="breadcrumb-item">
-		<a href="{{route('admin.messages')}}">Messages</a>
+	<li class="breadcrumb-item active">
+		Messages
 	</li>
-	<li class="breadcrumb-item active">View Message</li>
 </ol>
 
 
