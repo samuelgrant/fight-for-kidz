@@ -55,9 +55,10 @@ Route::put('/group-management/{groupID}', 'admin\GroupManagementController@updat
 Route::post('/group-management/{groupID}', 'admin\GroupManagementController@addMember')->name('admin.group.addMember');
 Route::delete('/group-management/{groupID}/{contact}', 'admin\GroupManagementController@removeMember')->name('admin.group.removeMember');
 
-// Edit and delete other contacts
+// Add, edit and delete other contacts
 Route::patch('/group-management/contacts/{contactID}', 'admin\GroupManagementController@updateContact')->name('admin.contact.update');
 Route::delete('/group-management/contacts/delete/{contactID}', 'admin\GroupManagementController@deleteContact')->name('admin.contact.delete');
+Route::post('/group-management/contacts', 'admin\GroupManagementController@addContact')->name('admin.contact.add');
 
 // Get contact JSON
 Route::get('/group-management/contacts/{contactID}', 'admin\GroupManagementController@getContact')->name('admin.contact.get');
