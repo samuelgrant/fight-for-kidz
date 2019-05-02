@@ -328,7 +328,10 @@ class GroupManagementController extends Controller
 
     /**
      *  Returns true if an email address is not
-     *  in use by an existing contact
+     *  in use by an existing contact.
+     * 
+     *  Will exclude contact with supplied id (for
+     *  when updating a contact).
      */
     public function emailAvailable($email){
         return Contact::where('email', $email)->first() == null;        
@@ -379,18 +382,18 @@ class GroupManagementController extends Controller
         $this->validate($request, [
             'name' => 'string|required',
             'email' => 'email|required',
-        ]);
-
-        // Make sure no other contacts have the same email
-        if(!$this->emailAvailable($request->input('email'))){
-            session()->flash('error', 'Unable to update contact as there is already a contact with this email address.');
-            return redirect()->back();
-        }
+        ]);        
 
         // Ensure that the contact to update exists
         $contact = Contact::find($contactID);
         if($contact)
         {
+            // Make sure no other contacts have the same email
+            if(!$this->emailAvailable($request->input('email')) && $contact->email != $request->input('email')){
+            session()->flash('error', 'Unable to update contact as there is already a contact with this email address.');
+            return redirect()->back();
+            }
+
             // Update contact information
             $contact->name = $request->input('name');
             $contact->phone = $request->input('phone');
