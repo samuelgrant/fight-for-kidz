@@ -6,7 +6,6 @@ use Intervention\Image\Facades\Image;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Log;
-use App\Group;
 
 class Group extends Model
 {

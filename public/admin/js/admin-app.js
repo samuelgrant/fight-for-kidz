@@ -236,7 +236,9 @@ $(document).ready(function() {
             null,
             null,
             { "orderable": false, "searchable": false }
-        ]
+        ],
+        "order" : [1, "desc"],
+        "iDisplayLength" : 50,
     });
 
     $('#deleted-messages-dtable').DataTable({
@@ -248,7 +250,9 @@ $(document).ready(function() {
             null,
             null,
             { "orderable": false, "searchable": false }
-        ]
+        ],
+        "order" : [1, "desc"],
+        "iDisplayLength" : 50,
     });
 });
 

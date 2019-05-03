@@ -327,20 +327,74 @@ class GroupManagementController extends Controller
     }
 
     /**
-     * Updates a contact record 
+     *  Returns true if an email address is not
+     *  in use by an existing contact.
+     * 
+     *  Will exclude contact with supplied id (for
+     *  when updating a contact).
      */
-    public function updateContact(Request $request, $contactID){
+    public function emailAvailable($email){
+        return Contact::where('email', $email)->first() == null;        
+    }
 
-        $contact = Contact::find($contactID);
+    /**
+     *  Adds a contact record
+     */
+    public function addContact(Request $request){
 
+        // Validate form input
         $this->validate($request, [
             'name' => 'string|required',
             'email' => 'email|required',
         ]);
 
+        // Make sure no other contacts have the same email
+        if(!$this->emailAvailable($request->input('email'))){
+            session()->flash('error', 'Unable to update contact as there is already a contact with this email address.');
+            return redirect()->back();
+        }
+
+        // Create new contact
+        $contact = new Contact();
+        $contact->name = $request->input('name');
+        $contact->email = $request->input('email');
+        $contact->phone = $request->input('phone');
+        
+        try
+        {
+            $contact->save();
+            session()->flash('success', 'Contact created successfully');
+        }
+        catch(Exception $ex){
+            session()->flash('error', 'There was an error saving this contact. If error persists, please contact the developers.');            
+        }
+
+        return redirect()->back();
+
+    }
+
+    /**
+     * Updates a contact record 
+     */
+    public function updateContact(Request $request, $contactID){        
+
+        // Validate form input
+        $this->validate($request, [
+            'name' => 'string|required',
+            'email' => 'email|required',
+        ]);        
+
+        // Ensure that the contact to update exists
+        $contact = Contact::find($contactID);
         if($contact)
         {
+            // Make sure no other contacts have the same email
+            if(!$this->emailAvailable($request->input('email')) && $contact->email != $request->input('email')){
+            session()->flash('error', 'Unable to update contact as there is already a contact with this email address.');
+            return redirect()->back();
+            }
 
+            // Update contact information
             $contact->name = $request->input('name');
             $contact->phone = $request->input('phone');
             $contact->email = $request->input('email');
@@ -375,6 +429,36 @@ class GroupManagementController extends Controller
 
             return redirect()->back();
         }
+    }
+
+    public function addContactToGroup(Request $request, $contactId){
+
+        $contact = Contact::find($contactId);
+
+        if($contact){
+
+            $group = Group::find($request->input('groupId'));
+
+            if($group){
+
+                $contact->addToGroup($group->id);
+                
+                session()->flash('success', 'Contact added to group: "' . $group->name .'".');
+                return redirect()->back();
+
+            }
+            else
+            {
+                session()->flash('error', 'Internal error. If the error persists, please contact the developers.');
+                return redirect()->back();
+            }
+        }
+        else
+        {
+            session()->flash('error', 'Internal error. If the error persists, please contact the developers.');
+            return redirect()->back();
+        }
+
     }
 
 }

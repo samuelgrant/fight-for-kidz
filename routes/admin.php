@@ -55,9 +55,13 @@ Route::put('/group-management/{groupID}', 'admin\GroupManagementController@updat
 Route::post('/group-management/{groupID}', 'admin\GroupManagementController@addMember')->name('admin.group.addMember');
 Route::delete('/group-management/{groupID}/{contact}', 'admin\GroupManagementController@removeMember')->name('admin.group.removeMember');
 
-// Edit and delete other contacts
+// Add, edit and delete other contacts
 Route::patch('/group-management/contacts/{contactID}', 'admin\GroupManagementController@updateContact')->name('admin.contact.update');
 Route::delete('/group-management/contacts/delete/{contactID}', 'admin\GroupManagementController@deleteContact')->name('admin.contact.delete');
+Route::post('/contact-management/add', 'admin\GroupManagementController@addContact')->name('admin.contact.add');
+
+// Add contact to group via message view
+Route::post('/contact-management/addToGroup/{contactId}', 'admin\GroupManagementController@addContactToGroup')->name('admin.contact.addContactToGroup');
 
 // Get contact JSON
 Route::get('/group-management/contacts/{contactID}', 'admin\GroupManagementController@getContact')->name('admin.contact.get');
@@ -157,4 +161,4 @@ Route::get('/messages', 'admin\MessagesController@index')->name('admin.messages'
 Route::get('/messages/{messageID}', 'admin\MessagesController@view')->name('admin.messages.view');
 Route::delete('/messages/{messageID}', 'admin\MessagesController@delete')->name('admin.messages.delete');
 Route::put('/messages/{messageID}', 'admin\MessagesController@restore')->name('admin.messages.restore');
-Route::patch('/messages/{messageID}', 'admin\MessagesController@markAsUnread')->name('admin.messages.markAsUnread');
+Route::patch('/messages/{messageID}', 'admin\MessagesController@toggleReadState')->name('admin.messages.toggleReadState');

@@ -36,6 +36,15 @@
             <button class="btn btn-success" type="button" data-toggle="modal" data-target="#copyToGroupModal">
                 <i class="fas fa-copy"></i>&nbsp; Copy to group
             </button>
+
+            {{-- show 'add contact' button if viewing 'other contacts' --}}
+            @if($type == 'Others')
+                <button class="btn btn-success" type="button" data-toggle="modal" data-target="#addContactModal">
+                    <i class="fas fa-plus"></i>&nbsp; Add new contact
+                </button>
+            @endif
+
+            {{-- Show 'email all' button if appropriate --}}
             @if($type != 'All' && $type != 'Others' && $type != 'All Applicants' && $type != 'All Sponsors')
                 <form action="{{route('admin.mail.preset')}}" method="POST" class="float-right">
                     <?php
@@ -251,6 +260,37 @@
     </div>
 </div>
 {{-- end edit contact modal --}}
+
+{{-- add contact modal --}}
+<div class="modal fade" id="addContactModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-dark">
+                <h4 class="modal-title text-white">Add New Contact</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <form id="addContactForm" method="post" action="{{route('admin.contact.add')}}">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="addContactName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" name="phone" id="addContactPhone" class="form-control">
+                        </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="addContactEmail" class="form-control" required>
+                    </div>
+                    @csrf
+                    <input type="submit" class="btn btn-success" value="Add Contact">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- end add contact modal --}}
 
 {{-- Copy to another group modal - outside if block as it is available for system groups --}}
 <div class="modal fade" id="copyToGroupModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">

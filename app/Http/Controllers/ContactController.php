@@ -14,7 +14,7 @@ class ContactController extends Controller
 {
     public function general(request $request) {
         $validator = Validator::make($request->all(), [
-            'g-recaptcha-response' => 'required|captcha',
+            //'g-recaptcha-response' => 'required|captcha',
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
@@ -27,7 +27,7 @@ class ContactController extends Controller
             'accepted' => 'Please confirm that your details are correct'
         ]
     
-    );
+    )->validate();
 
         // Store the message in the database
         $this->storeMessage('General', $request);
@@ -45,7 +45,7 @@ class ContactController extends Controller
     }
     public function sponsor(request $request) {
         $validator = Validator::make($request->all(), [ 
-            'g-recaptcha-response' => 'required|captcha',
+            //'g-recaptcha-response' => 'required|captcha',
             'name' => 'required',
             'companyName' => 'required',
             'email' => 'required|email',
@@ -59,7 +59,7 @@ class ContactController extends Controller
             'accepted' => 'Please confirm that your details are correct'
         ]
     
-    );
+    )->validate();
 
         // Store the message in the database
         $this->storeMessage('Sponsor', $request);
@@ -77,7 +77,7 @@ class ContactController extends Controller
     }
     public function table(request $request) {
         $validator = Validator::make($request->all(), [ 
-            'g-recaptcha-response' => 'required|captcha',
+            //'g-recaptcha-response' => 'required|captcha',
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
@@ -89,7 +89,7 @@ class ContactController extends Controller
             'accepted' => 'Please confirm that your details are correct'
         ]
     
-    );        
+    )->validate();        
     
         // Store the message details in the database
         $this->storeMessage('Table', $request);

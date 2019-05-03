@@ -247,23 +247,4 @@ class EventApplicationController extends Controller
         // show feedback page
         return view('feedback.received-app');
     }
-
-    /**
-     * Stores an application to become a sponsor in the upcoming
-     * event.
-     * 
-     * @param request, googleCaptcha
-     * @todo Full form validation & Sotring of data.
-     */
-    public function storeSponsorApp(Request $request){
-        $validate = Validator::make(Input::all(), [
-            'g-recaptcha-response' => 'required|captcha'
-        ]);
-
-        abort(501);
-
-
-        // if validation passess
-
-    }
 }

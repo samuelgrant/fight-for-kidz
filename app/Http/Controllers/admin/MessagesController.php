@@ -46,15 +46,14 @@ class MessagesController extends Controller
         return redirect()->back();
     }
 
-    public function markAsUnread($messageID){
+    public function toggleReadState($messageID){
 
         $message = ReceivedMessage::find($messageID);
-        $message->read = false;
+        $message->read = !$message->read;
         $message->save();
 
         // Returns to main messages view afterwards
-        return view('admin.messages')->with('messages', ReceivedMessage::all())
-                                    ->with('deletedMessages', ReceivedMessage::onlyTrashed()->get());
+        return redirect()->back();
 
     }
 }
