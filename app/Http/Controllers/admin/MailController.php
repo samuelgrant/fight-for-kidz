@@ -38,6 +38,9 @@ class MailController extends Controller
         $empty = []; // have to pass an array
         $messageText = $request->messageText;
 
+        // Purify the input to remove malicious scripts / dangerous html tags
+        $messageText = Purifier::clean($messageText);
+
         return new CustomMail('test@example.com', '<name here>', '<Subject here>', $messageText, $empty);
     }
 
