@@ -42,8 +42,16 @@
                 <li class="nav-item"><a href="{{route('merchandise')}}" class="nav-link">Merchandise</a></li>
                 @endif
 
-                <!-- Contact/Subscribe -->
-                <li class="nav-item"><a href="{{route('contact')}}" class="nav-link">Contact Us</a></li>
+                <!-- Contact -->
+                <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle nav-link dropdown-toggle">Contact Us</a>
+                    <div role="menu" class="dropdown-menu">
+                        
+                        <a href="{{route('contact.general')}}" class="dropdown-item">General Enquiry</a>
+                        <a href="{{route('contact.table')}}" class="dropdown-item">Table Booking Enquiry</a>
+                        <a href="{{route('contact.sponsor')}}" class="dropdown-item">Sponsorship Enquiry<a>
+
+                    </div>
+                </li><!-- End Book Tickets -->
             </ul>
         </div>
     </div>
