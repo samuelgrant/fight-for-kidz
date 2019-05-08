@@ -14,7 +14,7 @@ class ContactController extends Controller
 {
     public function general(request $request) {
         $validator = Validator::make($request->all(), [
-            //'g-recaptcha-response' => 'required|captcha',
+            'g-recaptcha-response' => 'required|captcha',
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
@@ -45,7 +45,7 @@ class ContactController extends Controller
     }
     public function sponsor(request $request) {
         $validator = Validator::make($request->all(), [ 
-            //'g-recaptcha-response' => 'required|captcha',
+            'g-recaptcha-response' => 'required|captcha',
             'name' => 'required',
             'companyName' => 'required',
             'email' => 'required|email',
@@ -77,7 +77,7 @@ class ContactController extends Controller
     }
     public function table(request $request) {
         $validator = Validator::make($request->all(), [ 
-            //'g-recaptcha-response' => 'required|captcha',
+            'g-recaptcha-response' => 'required|captcha',
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',

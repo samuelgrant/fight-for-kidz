@@ -12,7 +12,15 @@ class PagesController extends Controller
         return view('index')->with('event', $currentEvent);
     }
     
-    public function contact(){
+    public function contactGeneral(){
         return view('contact');
+    }
+
+    public function contactTable(){
+        return view('contact-table');
+    }
+
+    public function contactSponsor(){
+        return view('contact-sponsor');
     }
 }

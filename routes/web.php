@@ -12,7 +12,9 @@
 */
 
 Route::get('/', 'PagesController@index')->name('index');
-Route::get('/contact', 'PagesController@contact')->name('contact');
+Route::get('/contact/general', 'PagesController@contactGeneral')->name('contact.general');
+Route::get('/contact/table', 'PagesController@contactTable')->name('contact.table');
+Route::get('/contact/sponsor', 'PagesController@contactSponsor')->name('contact.sponsor');
 Route::get('/event/{eventId}', 'EventController@index')->name('event');
 Route::get('/merchandise', 'MerchandiseController@index')->name('merchandise');
 
