@@ -1,11 +1,4 @@
-<!-- I have cookies -->
-<script>
-$('body').ihavecookies({
-		title: "Cookies & Privacy",
-		message: "We use cookies to ensure you get the best experience on our website.",
-		cookieTypes: []
-	}); 
-</script>
+@include('layouts.cookie-consent')
 
 <!-- Footer -->
 <footer id="f4k-footer" class="bg-black small text-center text-white-50 py-2">
