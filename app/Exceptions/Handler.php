@@ -7,7 +7,7 @@ use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 use Mail;
-use App\Mail\ExceptionOccured;
+use App\Jobs\SendExceptionEmail;
 use Symfony\Component\Debug\Exception\FlattenException;
 use Symfony\Component\Debug\ExceptionHandler as SymfonyExceptionHandler;
 
@@ -81,11 +81,17 @@ class Handler extends ExceptionHandler
 
             foreach($users as $user)
             {
-                Mail::to($user->email)->send(new ExceptionOccured($html));
+                SendExceptionEmail::dispatch($user->email, $html);                
             }
             
         } catch (Exception $ex) {
-            dd("Something went wrong");
+            if(env('APP_DEBUG') == true) {
+                dd($ex);
+            } else {
+                echo "Woops. Something went wrong.<br>";
+                echo "But we can't display the error details here. Please get in touch with us and tell us you saw this error, so we can fix it ASAP!";
+                die;
+            }
         }
     }
 }
