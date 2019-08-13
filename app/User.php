@@ -56,6 +56,7 @@ class User extends Authenticatable
     {
         if($this->active){
             $this->active = false;
+            $this->developer = false;
             $this->save();
 
             // Fire email

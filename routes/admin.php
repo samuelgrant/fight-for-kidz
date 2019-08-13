@@ -16,7 +16,8 @@ Route::get('/dashboard', function(){
 
 //View, Activate, Delete, Restore Users.
 Route::get('/user-management', 'admin\UserManagementController@index')->name('admin.userManagement');
-Route::put('/user-management/{userID}', 'admin\UserManagementController@toggleActive')->name('admin.userManagement.toggleActive');
+Route::put('/user-management/{userID}/access', 'admin\UserManagementController@toggleActive')->name('admin.userManagement.toggleActive');
+Route::put('/user-management/{userID}/developer', 'admin\UserManagementController@toggleDeveloper')->name('admin.userManagement.toggleDeveloper');
 Route::delete('/user-management/{userID}', 'admin\UserManagementController@destroy')->name('admin.userManagement.destroy');
 Route::patch('/user-management/{userID}', 'admin\UserManagementController@restore')->name('admin.userManagement.restore');
 
