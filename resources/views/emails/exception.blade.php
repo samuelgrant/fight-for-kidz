@@ -1,5 +1,4 @@
-<ul>
-    <li>IP Address: {{Request::ip()}}</li>
+<ul>    
     <li>Time: {{Carbon\Carbon::now()->toDateTimeString()}}</li>
     <li>User: 
         @if(Auth::user())
