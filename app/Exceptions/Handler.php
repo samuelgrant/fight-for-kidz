@@ -8,6 +8,7 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 use Mail;
 use App\Jobs\SendExceptionEmail;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\Debug\Exception\FlattenException;
 use Symfony\Component\Debug\ExceptionHandler as SymfonyExceptionHandler;
 
@@ -90,6 +91,7 @@ class Handler extends ExceptionHandler
             } else {
                 echo "Woops. Something went wrong.<br>";
                 echo "But we can't display the error details here. Please get in touch with us and tell us you saw this error, so we can fix it ASAP!";
+                Log::error($ex);
                 die;
             }
         }
