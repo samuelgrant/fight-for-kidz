@@ -4,7 +4,6 @@
     <button type="button" class="btn btn-primary bg-blue float-right" onclick="acceptCookies();">
             <span aria-hidden="true">Accept</span>
     </button>
-    {{cookie::get('cookieconsent')}}
     <span>We make use of cookies on this site to provide you with a better browsing experince.</span>
 </div>
 
@@ -14,7 +13,7 @@
             type: 'post',
             url: '/accept-cookies'
         }).done(() => {
-            $("#cookieConsent").fadeOut();
+            $("#cookieConsent").remove();
         }).fail((err) => {
             console.error(err.responseText);
         })
