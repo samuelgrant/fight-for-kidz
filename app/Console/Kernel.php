@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         \App\Console\Commands\images\defaults::class,
         \App\Console\Commands\images\purge::class,
         \App\Console\Commands\setupscript::class,
+        \App\Console\Commands\testException::class,
     ];
 
     /**
