@@ -50,6 +50,29 @@ class UserManagementController extends Controller
     }
 
     /**
+     * Toggle developer status. Developers get emails of exceptions
+     * 
+     * @param $id
+     */
+    public function toggleDeveloper($id)
+    {
+        $user = User::find($id);
+        
+        if($user->developer){
+            $user->developer = false;
+            session()->flash('success', 'The account belonging to '.$user->name.' will no longer receive exception emails.');
+        }
+        else
+        {
+            $user->developer = true;
+            session()->flash('success', 'The account belonging to '.$user->name.' will receive exception emails.');
+        }
+
+        $user->save();
+        return redirect()->back();
+    }
+
+    /**
      * Soft deletes selected user account
      * 
      * @param $id

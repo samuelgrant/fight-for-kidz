@@ -45,3 +45,4 @@ Route::post('/contact/table', 'ContactController@table')->name('contact.table');
 
 // Auth routes
 Auth::routes();
+Route::post('/accept-cookies', 'CookieController@action');

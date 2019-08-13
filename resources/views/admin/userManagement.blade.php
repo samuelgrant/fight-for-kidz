@@ -26,6 +26,7 @@
                                 <th>Name</th>
                                 <th>Email</th>
                                 <th>Status</th>
+                                <th>Exception Emails</th>
                                 <th>Last Updated</th>
                                 <th></th>
                                 <th></th>
@@ -46,6 +47,16 @@
                                     @else
                                         Inactive Account
                                     @endif
+                                </td>
+                                <td>
+                                    <form action="{{route('admin.userManagement.toggleDeveloper', ['userID' => $user->id])}}" method="POST">                                    
+                                        <label class="switch">
+                                            <input type="checkbox" {{$user->developer ? 'checked' : ''}} onchange="this.form.submit()">
+                                            <span class="slider round"></span>
+                                        </label>
+                                        @method('PUT')
+                                        @csrf
+                                    </form>
                                 </td>
                                 <td>{{$user->updated_at->format('d M Y')}}</td>
                                 <td>
