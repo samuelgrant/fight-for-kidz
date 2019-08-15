@@ -97,6 +97,7 @@ Route::get('/event-management/{eventID}/applicants', 'admin\ApplicantManagementC
 
 // Contender update
 Route::patch('/event-management/contenders/{contenderID}', 'admin\ContenderManagementController@update')->name('admin.eventManagement.updateContender');
+Route::put('/event-management/contenders/{contenderID}', 'admin\ContenderManagementController@overrideColor')->name('admin.eventManagement.updateContender.color');
 
 //Get contender data
 Route::get('/event-management/contenders/{contenderID}', 'admin\ContenderManagementController@getContender')->name('admin.contenderManagement.getContender');
