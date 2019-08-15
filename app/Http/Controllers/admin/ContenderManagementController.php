@@ -80,4 +80,20 @@ class ContenderManagementController extends Controller
         return redirect()->back();
 
     }
+
+    /**
+     * Allows the admin team to specify an override bout colour for a contender on the events page
+     * 
+     * While any value can be set, I only have CSS for the following options:
+     * @var coloroverride "red", "blue", "white" or "null"
+     * @param $id, Illuminate\Http\Request
+     */
+    public function overrideColor($contenderID, Request $request){
+        $contender = Contender::find($contenderID);
+        $contender->coloroverride = ($contender->coloroverride == null)?  "white" : null ;
+        $contender->save();
+
+        session()->flash('success', $contender->getFullName() . 's display colour has been set to '.$contender->coloroverride.'.');
+        return redirect()->back();
+    }
 }
