@@ -41,8 +41,10 @@ class Bout extends Model
      * contenders set.
      */
     public function contendersSet(){
-
         return isset($this->red_contender, $this->blue_contender);
+    }
 
+    public function contenders(){
+        return [$this->red_contender, $this->blue_contender];
     }
 }
