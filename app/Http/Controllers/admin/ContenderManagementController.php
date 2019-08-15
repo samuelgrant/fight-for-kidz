@@ -90,10 +90,16 @@ class ContenderManagementController extends Controller
      */
     public function overrideColor($contenderID, Request $request){
         $contender = Contender::find($contenderID);
-        $contender->coloroverride = ($contender->coloroverride == null)?  "white" : null ;
-        $contender->save();
 
-        session()->flash('success', $contender->getFullName() . 's display colour has been set to '.$contender->coloroverride.'.');
+        if($contender->coloroverride == null) {
+            $contender->coloroverride = "white";
+            session()->flash('success', $contender->getFullName() . 's display colour has been set to '.$contender->coloroverride.'.');
+        } else {
+            $contender->coloroverride = null;
+            session()->flash('success', $contender->getFullName() . 's display colour has been set to '.$contender->team.'.');
+        }
+
+        $contender->save();
         return redirect()->back();
     }
 }
