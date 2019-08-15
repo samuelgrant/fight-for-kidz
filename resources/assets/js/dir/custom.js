@@ -72,6 +72,8 @@ $("document").ready(function() {
         pauseOnHover: false,
         touchMove: false
     });
+
+    $('.slick-sponsors').removeClass("slick-sponsors-hide");
 });
 
 /* Facebook */
