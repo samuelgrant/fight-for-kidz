@@ -106,7 +106,7 @@
 	@if(count($event->sponsors) > 3)
 	<section id="sponsors-section" style="border-top: 2px solid black;">
 		<h2 class="text-center text-dark">Event Sponsors</h2>
-		<div class="slick-sponsors">
+		<div class="slick-sponsors slick-sponsors-hide">
 			@foreach($event->sponsorsShuffled() as $sponsor) 
 				{{-- only show logo in sponsors bar if the image file for it exists --}} 
 				@if(file_exists(public_path('storage/images/sponsors/' . $sponsor->id . '.png')))
