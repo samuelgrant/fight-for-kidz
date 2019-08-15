@@ -19,6 +19,10 @@ class EventController extends Controller
             $event = Event::where('name', str_replace('-', ' ', $eventName))->first();
         }
 
+        if($event == null) {
+            abort(404, "Event not found");
+        }
+            
         return view('event')->with('event', $event);
     }
 
