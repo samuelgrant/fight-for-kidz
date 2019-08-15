@@ -51,11 +51,11 @@
                         </div>
                     </div>
             
-                <div class="modal-footer contender-modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <div class="modal-footer contender-modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div><!-- close bio-modal -->
