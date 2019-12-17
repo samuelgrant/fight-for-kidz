@@ -1,5 +1,7 @@
 <?php
 
+use App\Event;
+use App\SiteSetting;
 use Illuminate\Http\Request;
 
 /*
@@ -12,7 +14,12 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::middleware("api")->get('/sitemap', function (Request $request) {
+    $index = SiteSetting::first();
+    $events = Event::where('is_public', true)->orderBy('datetime', 'desc')->get();
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+    return response()->view('_sitemap', [
+        'index' => $index,
+        'events' => $events
+    ])->header('Content-Type', 'text/xml');
 });
