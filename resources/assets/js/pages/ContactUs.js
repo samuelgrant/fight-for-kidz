@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { FormGroup, Input, Select, Checkbox } from '../components/FormControl';
 import { General, Table, Sponsorship} from './ContactUs.Partials';
 import $ from 'jquery';
-import Spinner from '../components/Spinner';
+import Wrapper from '../components/Wrapper';
 
 const partials = {
     general: General,
@@ -66,17 +66,18 @@ export default class ContactUs extends Component {
         formData['type'] = this.state.type;
 
         this._updateState('loading', true);
-
+        
         //send
         $.ajax({
             method: 'post',
             url: '/contact-us',
             data: formData,
         }).done((json) => {
-            console.log('sent', json);
+            this.Alert.success(json);
             this._updateState('loading', false);
         }).fail((err) => {
             console.log(err);
+            this.Alert.error(err.responseJSON.message);
             this._updateState('loading', false);
         });
     }
@@ -89,7 +90,7 @@ export default class ContactUs extends Component {
             <div className="text-white text-center">
                 <h1 className="mb-2">Contact Us</h1>
                 <p className="mb-5">Send us a message and we will get back to you as soon as we can.</p>
-                <Spinner loading={this.state.loading}>
+                <Wrapper loading={this.state.loading} AlertRef={Alert => (this.Alert = Alert)}>
                 <form className="text-left" onSubmit={this._handleSubmit.bind(this)}>
                     <div className="row">
                         <FormGroup className="form-group col col-md-6 col-sm-12" label="Your Name:" htmlFor="name" required>
@@ -127,7 +128,7 @@ export default class ContactUs extends Component {
 
                     <button className="btn btn-primary d-block mx-auto" type="submit">Send Email</button>
                 </form>
-                </Spinner>
+                </Wrapper>
             </div>
         )
     }
