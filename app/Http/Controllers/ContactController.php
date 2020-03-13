@@ -18,18 +18,23 @@ class ContactController extends Controller
         
 
 
-    //     $validator = Validator::make($request->all(), [
-    //         'g-recaptcha-response' => 'required|captcha',
-    //         'name' => 'required',
-    //         'email' => 'required|email',
-    //         'phone' => 'required',
-    //         'message' => 'required',
+        $validator = Validator::make($request->all(), [
+            'g-recaptcha-response' => 'required|captcha',
+            'name' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required',
+            'message' => 'required',
             
-    //     ]
-    // )->validate();
+        ])->validate();
 
-    
-
+        if($validator->fails()) {
+            return Response::json(array(
+                'success' => false,
+                'errors' => $validator->getMessageBag()->toArray()
+        
+            ), 400); // 400 being the HTTP code for an invalid request.
+        }
+           
         // Store the message in the database
         $this->storeMessage(ucfirst($request->input('type')), $request);
 
@@ -42,7 +47,7 @@ class ContactController extends Controller
         // Subscribe the sender if they requested it
         $this->checkSubscribed($request);
         
-        // return view('feedback.received-contact');
+        return response('Your email has been received.', 202);
     }
 
     /**
