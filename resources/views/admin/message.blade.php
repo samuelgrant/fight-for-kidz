@@ -46,41 +46,34 @@
             </div>
 
             <div class="card-body">
-                <table class="table">
-                    <tr>
-                        <td>Date Received</td>
-                        <td>{{$msg->created_at}}</td>
-                    </tr>
-                    <tr>
-                        <td>Event:</td>
-                        <td>{{App\Event::find($msg->event_id)->name}}</td>
-                    </tr>
-                    <tr>
-                        <td>Message Type:</td>
-                        <td>{{$msg->message_type}}</td>
-                    </tr>
-                    <tr>
-                        <td>Name:</td>
-                        <td>{{$msg->name}}</td>
-                    </tr>
-                    <tr>
-                        <td>Email:</td>
-                        <td>{{$msg->email}}</td>
-                    </tr>
-                    <tr>
-                        <td>Phone:</td>
-                        <td>{{$msg->phone}}</td>
-                    </tr>
-                    @if($msg->message_type == 'Sponsor')
-                    <tr>
-                        <td>Sponsorship Type:</td>
-                        <td>{{$msg->sponsorship_type}}</td>
-                    </tr>
-                    @endif
-                    <tr>
-                        <td>Message:</td>
-                        <td>{{$msg->message}}</td>
-                </table>
+                <div class="row">
+                    <div class="col col-md-6 col-sm-12">
+                        <ul class="list-unstyled">
+                            <li class="text-bold">{{$msg->name}} &lt;<a href="mailto:{{$msg->email}}">{{$msg->email}}</a>&gt;</li>
+                            <li>{{$msg->message_type}} enquiry</li>
+                            <li class="text-thin">{{$msg->created_at}}</li>
+                        </ul>
+                    </div>
+
+                    <div class="col col-md-6 col-sm-12">
+                        <ul class="list-unstyled">
+                            <li>
+                                <span class="text-bold">Contact Ph:</span> {{$msg->phone}}
+                            </li>
+                            <li>
+                                <span class="text-bold">Event:</span> {{App\Event::find($msg->event_id)->name}}
+                            </li>
+                            @if($msg->message_type == 'Sponsorship')
+                                <li class="text-bold">Interested in sponsoring:</li>
+                                <li>{{$msg->sponsorship_type}}</li>
+                            @endif
+                        </ul>
+                    </div>
+
+                    <div class="col col-12">
+                        {!! strip_tags(nl2br($msg->message), '<br>') !!}
+                    </div>
+                </div>
             </div>
         </div>
     </div>

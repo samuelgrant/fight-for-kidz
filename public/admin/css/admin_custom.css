@@ -116,3 +116,11 @@
     content: "* ";
     color: red;
 }
+
+.text-bold {
+  font-weight: bolder;
+}
+
+.text-thin{
+  font-weight: lighter;
+}

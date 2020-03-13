@@ -28,7 +28,7 @@
 
     <!-- Contact Us -->
     <url>
-        <loc>{{env('APP_URL')}}/contact/general</loc>
+        <loc>{{env('APP_URL')}}/contact-us</loc>
         <priority>0.8</priority>
     </url>
     
@@ -43,7 +43,7 @@
             <lastmod>{{substr($event->updated_at, 0, strpos($event->updated_at, ' '))}}</lastmod>
             <priority>{{($priority >= 0.0) ? $priority : 0.1}}</priority>
         </url>
-        {{-- This value should go down by 0.25 each cycle --}}
+        {{-- This value should go down by 0.1 each cycle --}}
         <?php $priority = $priority - 0.1; ?>
         @endif
     @endforeach

@@ -12,9 +12,6 @@
 */
 
 Route::get('/', 'PagesController@index')->name('index');
-Route::get('/contact/general', 'PagesController@contactGeneral')->name('contact.general');
-Route::get('/contact/table', 'PagesController@contactTable')->name('contact.table');
-Route::get('/contact/sponsor', 'PagesController@contactSponsor')->name('contact.sponsor');
 Route::get('/event/{eventId}', 'EventController@index')->name('event');
 Route::get('/merchandise', 'MerchandiseController@index')->name('merchandise');
 
@@ -39,9 +36,8 @@ Route::get('/bout/{boutID}', 'EventController@getBout')->name('getBout');
 
 
 // Contact us
-Route::post('/contact/general', 'ContactController@general')->name('contact.general');
-Route::post('/contact/sponsor', 'ContactController@sponsor')->name('contact.sponsor');
-Route::post('/contact/table', 'ContactController@table')->name('contact.table');
+Route::get('/contact-us', 'ContactController@index')->name('contact.index');
+Route::post('/contact-us', 'ContactController@send');
 
 // Auth routes
 Auth::routes();
