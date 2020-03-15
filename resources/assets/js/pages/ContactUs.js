@@ -2,8 +2,11 @@ import React, {Component, Fragment} from 'react';
 import { render } from 'react-dom';
 import { FormGroup, Input, Select, Checkbox } from '../components/FormControl';
 import { General, Table, Sponsorship} from './ContactUs.Partials';
-import $ from 'jquery';
+import Captcha from '../components/reCaptcha';
 import Wrapper from '../components/Wrapper';
+import $ from 'jquery';
+
+
 
 const partials = {
     general: General,
@@ -36,6 +39,14 @@ export default class ContactUs extends Component {
     }
 
     _getData(){
+        $.ajax({
+            url: '/api/captcha'
+        }).done((captcha) => {
+            this.setState({
+                captchaSiteKey: captcha.sitekey
+            })
+        });
+
         // ajax call to get data???
         // Maybe block some contact types during the year
         this.setState({
@@ -57,13 +68,30 @@ export default class ContactUs extends Component {
         this.setState({[objKey]: obj});
     }
 
-    _handleSubmit(e) {
+    _verifyCaptcha(e) {
         e.preventDefault();
+        this.reCaptcha.execute();
+    }
+
+    _submitEmail(captchaCode) {
+        // no captcha code, then fail
+        if(!captchaCode) {
+            this.Alert.error("The reCAPTCHA key is missing, please alert the developers");
+            return;
+        }
 
         //Validate that we have sponsor types if required
+        let sponsorshipTypes = this.state.fields.sponsorshipTypes;
+        console.log(type == "sponsorship")
+        // if(type == "sponsorship" && !sponsorshipTypes || sponsorshipTypes[0] == '') {
+        //     this.Alert.error("Please select at least one sponsorship type");
+        //     return;
+        // }
+        
 
         let formData = this.state.fields;
         formData['type'] = this.state.type;
+        formData['g-recaptcha-response'] = captchaCode;
 
         this._updateState('loading', true);
         
@@ -91,7 +119,7 @@ export default class ContactUs extends Component {
                 <h1 className="mb-2">Contact Us</h1>
                 <p className="mb-5">Send us a message and we will get back to you as soon as we can.</p>
                 <Wrapper loading={this.state.loading} AlertRef={Alert => (this.Alert = Alert)}>
-                <form className="text-left" onSubmit={this._handleSubmit.bind(this)}>
+                <form className="text-left" onSubmit={this._verifyCaptcha.bind(this)}>
                     <div className="row">
                         <FormGroup className="form-group col col-md-6 col-sm-12" label="Your Name:" htmlFor="name" required>
                             <Input id="name" type="text" value={name} 
@@ -125,6 +153,11 @@ export default class ContactUs extends Component {
                             />
                         </FormGroup>
                     </div>
+
+                    <Captcha onRef={reCaptcha => (this.reCaptcha = reCaptcha)} theme={"dark"}
+                        sitekey={this.state.captchaSiteKey} theme={"dark"} 
+                        onVerified={this._submitEmail.bind(this)}
+                    />
 
                     <button className="btn btn-primary d-block mx-auto" type="submit">Send Email</button>
                 </form>

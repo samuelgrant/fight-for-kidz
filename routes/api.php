@@ -23,3 +23,11 @@ Route::middleware("api")->get('/sitemap', function (Request $request) {
         'events' => $events
     ])->header('Content-Type', 'text/xml');
 });
+
+Route::get('/captcha', function (Request $request) {
+    return response()
+        ->json([
+            'debug' => 'true',
+            'sitekey' => env('INVISIBLE_RECAPTCHA_SITEKEY')
+        ]);
+});

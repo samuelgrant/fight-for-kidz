@@ -19,20 +19,16 @@ class ContactController extends Controller
 
 
         $validator = Validator::make($request->all(), [
-            'g-recaptcha-response' => 'required|captcha',
+            'g-recaptcha-response' => 'required',
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
             'message' => 'required',
             
-        ])->validate();
+        ]);
 
         if($validator->fails()) {
-            return Response::json(array(
-                'success' => false,
-                'errors' => $validator->getMessageBag()->toArray()
-        
-            ), 400); // 400 being the HTTP code for an invalid request.
+            return Response::json($validator->getMessageBag()->toArray(), 400); // 400 being the HTTP code for an invalid request.
         }
            
         // Store the message in the database
