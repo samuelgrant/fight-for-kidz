@@ -36,8 +36,8 @@ class Enquiry extends Mailable
     public function build()
     {
         $this->replyTo($this->email);
-        return $this->view('emails.contact.enquiryReceived')// needs to be fixed
-                    ->text('emails.contact.enquiryReceivedPlain')// needs to be fixed
+        return $this->view('emails.contact.enquiryReceived')
+                    ->text('emails.contact.enquiryReceivedPlain')
                     ->subject('New '.ucfirst($this->enquiryType).' Enquiry Received');
     }
 }
