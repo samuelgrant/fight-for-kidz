@@ -25,9 +25,9 @@
     "dependencies": {
         "jquery-validation": "^1.18.0",
         "node-sass": "^4.13.1",
-        "react-recaptcha-google": "^1.1.1",
         "react-select": "^3.0.8",
         "react-toastify": "^5.5.0",
+        "reaptcha": "^1.7.2",
         "webpack-dev-server": "^3.10.3"
     }
 }

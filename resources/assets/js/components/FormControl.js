@@ -162,11 +162,15 @@ export class Input extends Component {
     }
 }
 
-export class Select extends Component {
+export class Select extends Component {  
+    _handleChange(selected) {
+        this.props.onChange((!!selected) ? selected : []);
+    }
+
     render() {
         const { className, name, options, style, placeHolder,
             autoFocus, isDisabled, isMulti, isSearchable, required, // attribute properties
-            defaultValue, onChange, value
+            defaultValue, value
         } = this.props;
 
         return  <Rselect className={className}
@@ -185,7 +189,7 @@ export class Select extends Component {
             Controlled props
             value={value}
             defaultValue={defaultValue}
-            onChange={onChange}
+            onChange={this._handleChange.bind(this)}
         />
     }
 }
@@ -215,10 +219,11 @@ export class TextArea extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (this.state.value != nextProps.value)
+        if (this.state.value != nextProps.value) {
             this.setState({
                 value: nextProps.value
             });
+        }
     }
 
     getCharCount() {

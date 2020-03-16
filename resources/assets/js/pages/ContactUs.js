@@ -74,6 +74,7 @@ export default class ContactUs extends Component {
     }
 
     _submitEmail(captchaCode) {
+        const {type, fields} = this.state;
         // no captcha code, then fail
         if(!captchaCode) {
             this.Alert.error("The reCAPTCHA key is missing, please alert the developers");
@@ -81,13 +82,12 @@ export default class ContactUs extends Component {
         }
 
         //Validate that we have sponsor types if required
-        let sponsorshipTypes = this.state.fields.sponsorshipTypes;
-        console.log(type == "sponsorship")
-        // if(type == "sponsorship" && !sponsorshipTypes || sponsorshipTypes[0] == '') {
-        //     this.Alert.error("Please select at least one sponsorship type");
-        //     return;
-        // }
-        
+        if(type == 'sponsorship' && 
+            !fields.sponsorshipTypes[0]) {
+            
+            this.Alert.error("We need to know what types of sponsorship you are interested in.");
+            return;
+        }
 
         let formData = this.state.fields;
         formData['type'] = this.state.type;
