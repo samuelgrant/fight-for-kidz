@@ -18,7 +18,9 @@
                 {{-- Event Applications --}}
                 @if($currentEvent->isFutureEvent() && $currentEvent->open)
                 <!-- Applications-->
-                    <li class="nav-item"><a href="{{route('application.fight')}}" class="nav-link">Apply to Fight</a></li>
+                    <li class="nav-item">
+                        <a href="{{route('application.fight')}}" class="nav-link">Apply to Fight</a>
+                    </li>
                 @endif
                 <!-- End Buy Tickets Dropdown -->
                 
@@ -39,19 +41,15 @@
                 
                 @if($settings->display_merch)
                 <!-- Merchandise -->
-                <li class="nav-item"><a href="{{route('merchandise')}}" class="nav-link">Merchandise</a></li>
+                <li class="nav-item">
+                    <a href="{{route('merchandise')}}" class="nav-link">Merchandise</a>
+                </li>
                 @endif
 
                 <!-- Contact -->
-                <li class="dropdown"><a data-toggle="dropdown" aria-expanded="false" href="#" class="dropdown-toggle nav-link dropdown-toggle">Contact Us</a>
-                    <div role="menu" class="dropdown-menu">
-                        
-                        <a href="{{route('contact.general')}}" class="dropdown-item">General Enquiry</a>
-                        <a href="{{route('contact.table')}}" class="dropdown-item">Table Booking Enquiry</a>
-                        <a href="{{route('contact.sponsor')}}" class="dropdown-item">Sponsorship Enquiry<a>
-
-                    </div>
-                </li><!-- End Book Tickets -->
+                <li class="nav-item">
+                    <a href="{{route('contact.index')}}" class="nav-link">Contact Us</a>
+                </li>
             </ul>
         </div>
     </div>

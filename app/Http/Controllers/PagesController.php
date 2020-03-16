@@ -11,16 +11,4 @@ class PagesController extends Controller
         $currentEvent = Event::current();
         return view('index')->with('event', $currentEvent);
     }
-    
-    public function contactGeneral(){
-        return view('contact');
-    }
-
-    public function contactTable(){
-        return view('contact-table');
-    }
-
-    public function contactSponsor(){
-        return view('contact-sponsor');
-    }
 }
