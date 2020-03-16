@@ -120,7 +120,6 @@ export class Input extends Component {
             return this.props.type;
 
         // No type found? - use TEXT as default
-        
         return 'text';
     }
 
