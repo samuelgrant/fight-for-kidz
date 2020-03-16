@@ -39,8 +39,6 @@ export default class ContactUs extends Component {
     }
 
     _getData(){
-        // ajax call to get data???
-        // Maybe block some contact types during the year
         this.setState({
             types: [
                 {value: 'general', label: 'General enquiry'},
