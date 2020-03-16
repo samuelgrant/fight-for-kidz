@@ -162,9 +162,25 @@ export class Input extends Component {
     }
 }
 
-export class Select extends Component {  
+export class Select extends Component {
     _handleChange(selected) {
         this.props.onChange((!!selected) ? selected : []);
+    }
+
+    _getValues(){
+        const {options, value} = this.props;
+
+        // No options provided
+        if(!options[0]) return {};
+        // No value selected,
+        // return first option
+        if(!value) return options[0];
+
+        if(Array.isArray(value)) {
+            return options.filter(opt => value.includes(opt.value));
+        } else {
+            return options.filter(opt => opt.value === value);
+        }
     }
 
     render() {
@@ -187,8 +203,8 @@ export class Select extends Component {
             options={options}
 
             Controlled props
-            value={value}
-            defaultValue={defaultValue}
+            value={this._getValues()}
+            // defaultValue={defaultValue}
             onChange={this._handleChange.bind(this)}
         />
     }

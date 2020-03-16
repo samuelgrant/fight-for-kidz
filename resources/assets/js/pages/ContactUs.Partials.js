@@ -52,7 +52,7 @@ export class Sponsorship extends Component {
 
     render() {
         const { company, message, sponsorshipTypes} = this.props.fields;
-        this._getSelectedOptions(sponsorshipTypes)
+        
         return (
             <Fragment>
                 <FormGroup className="form-group col col-12" label="Your Company: (Optional)" htmlFor="company">
@@ -62,7 +62,7 @@ export class Sponsorship extends Component {
                 </FormGroup>
 
                 <FormGroup className="form-group col col-12" label="What type(s) of sponsorship are you interested in?" required>
-                    <Select options={options} isMulti required
+                    <Select options={options} value={sponsorshipTypes} isMulti required
                         onChange={this._handleSelectChange.bind(this)} 
                     />
                     <label className="text-danger">Select any that apply</label>

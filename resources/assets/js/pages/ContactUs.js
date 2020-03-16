@@ -39,14 +39,6 @@ export default class ContactUs extends Component {
     }
 
     _getData(){
-        $.ajax({
-            url: '/api/captcha'
-        }).done((captcha) => {
-            this.setState({
-                captchaSiteKey: captcha.sitekey
-            })
-        });
-
         // ajax call to get data???
         // Maybe block some contact types during the year
         this.setState({
@@ -141,7 +133,7 @@ export default class ContactUs extends Component {
 
                         <FormGroup className="form-group col col-md-6 col-sm-12" label="Talk to us about...." required>
                             <Select options={this.state.types} onChange={(selected) => this._updateState('type', selected.value)} 
-                                defaultValue={{value: 'general', label: 'General enquiry'}} required
+                                value={this.state.type} required
                             />
                         </FormGroup>
 
@@ -154,9 +146,8 @@ export default class ContactUs extends Component {
                         </FormGroup>
                     </div>
 
-                    <Captcha onRef={reCaptcha => (this.reCaptcha = reCaptcha)} theme={"dark"}
-                        sitekey={this.state.captchaSiteKey} theme={"dark"} 
-                        onVerified={this._submitEmail.bind(this)}
+                    <Captcha onRef={reCaptcha => (this.reCaptcha = reCaptcha)} 
+                        theme={"dark"}  onVerified={this._submitEmail.bind(this)}
                     />
 
                     <button className="btn btn-primary d-block mx-auto" type="submit">Send Email</button>

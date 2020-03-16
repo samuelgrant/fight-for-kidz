@@ -47,6 +47,6 @@ form label.required::before {
 }
 
 // Override react-select color
-.css-2b097c-container {
+div[id*="react-select"] {
     color: black;
 }

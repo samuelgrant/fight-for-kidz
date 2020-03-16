@@ -1,5 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import Reaptcha from 'reaptcha';
+import $ from 'jquery';
 
 export default class Captcha extends Component {
     constructor(props) {
@@ -17,11 +18,19 @@ export default class Captcha extends Component {
 
     componentDidMount() {
         this.props.onRef(this);
-        // this.captcha.renderExplicitly();
+
+        $.ajax({
+            url: '/api/captcha'
+        }).done((captcha) => {
+            this.setState({
+                sitekey: captcha.sitekey
+            })
+        });
     }
 
     onLoad() {
-        this.setState({ ready: true });
+        console.log('captcha loaded');
+        this.captcha.renderExplicitly();
     }
 
     recaptchaResponse(code) {
@@ -45,17 +54,20 @@ export default class Captcha extends Component {
     }
 
     render() {
-    const {sitekey, size, theme} = this.props;
+    const {size, theme} = this.props;
 
-        return sitekey ? <Reaptcha
+        if(!this.state.sitekey) return null;
+        
+        return <Reaptcha
             ref={e => (this.captcha = e)}
-            sitekey={this.props.sitekey}
+            sitekey={this.state.sitekey}
             onExpire={this.onVerify}
             onVerify={this.onVerify}
             onLoad={this.onLoad}
+            inject={false}
             size={size || "invisible"}
             theme={theme || "light"}
-            // explicit
-        /> : null;
+            explicit
+        />
     }
 }
