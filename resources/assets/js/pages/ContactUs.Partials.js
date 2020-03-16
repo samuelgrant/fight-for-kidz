@@ -11,7 +11,7 @@ export class General extends Component {
                     onChange={this.props.onChange.bind(this, 'fields', 'message')} 
                 />
             </FormGroup>
-        )//this.props.onChange.bind(this, 'fields', 'message')
+        )
     }
 }
 
