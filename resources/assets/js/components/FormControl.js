@@ -124,10 +124,11 @@ export class Input extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (this.state.value != nextProps.value)
+        if (this.state.value != nextProps.value) {
             this.setState({
                 value: nextProps.value
             });
+        }
     }
 
 

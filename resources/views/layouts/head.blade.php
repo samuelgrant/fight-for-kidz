@@ -51,6 +51,5 @@
   <script src="/js/app-form.js" defer></script>
 
   <!-- React and Compiled JS -->
-  <script src="https://www.google.com/recaptcha/api.js" async></script>
   <script src="/js/app.js" defer></script>
 </head>
