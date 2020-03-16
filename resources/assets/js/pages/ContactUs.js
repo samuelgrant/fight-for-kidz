@@ -35,7 +35,7 @@ export default class ContactUs extends Component {
     }
 
     componentDidMount(){
-        this._getData();//If Any
+        this._getData();
     }
 
     _getData(){
