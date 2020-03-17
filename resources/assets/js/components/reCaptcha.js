@@ -44,7 +44,7 @@ export default class Captcha extends Component {
     };
 
     execute() {
-        if(!this.state.ready) return;
+        if(!!this.props.requireReady && !this.state.ready) return;
 
         if(this.state.code) {
             this.captcha.reset();

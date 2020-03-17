@@ -144,8 +144,8 @@ export default class ContactUs extends Component {
                         </FormGroup>
                     </div>
 
-                    <Captcha onRef={reCaptcha => (this.reCaptcha = reCaptcha)} 
-                        theme={"dark"}  onVerified={this._submitEmail.bind(this)}
+                    <Captcha onRef={reCaptcha => (this.reCaptcha = reCaptcha)} theme={"dark"}
+                        requireReady={false} onVerified={this._submitEmail.bind(this)}
                     />
 
                     <button className="btn btn-primary d-block mx-auto" type="submit">Send Email</button>
