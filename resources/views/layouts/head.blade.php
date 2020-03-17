@@ -14,6 +14,7 @@
   	<meta name="description" content="Fight for Kidz is a non for profit charity based in Invercargill that rasies funds for Southland Kids.">
     <meta name="author" content="Mitchell Quarrie, Samuel Grant, Samuel Jackson">
     <meta name="theme-color" content="#DC3545"/>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
   
   <title>Fight for Kidz</title>
 
@@ -48,4 +49,7 @@
   <!-- Custom scripts for this template -->
   <script src="/js/custom.js" defer></script>
   <script src="/js/app-form.js" defer></script>
+
+  <!-- React and Compiled JS -->
+  <script src="/js/app.js" defer></script>
 </head>

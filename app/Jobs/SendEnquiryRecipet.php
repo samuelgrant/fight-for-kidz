@@ -8,26 +8,25 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Mail;
-use App\Mail\GeneralEnquiry;
+use App\Mail\EnquiryRecipet;
 use Illuminate\Support\Facades\Log;
 
-class SendGeneralEnquiry implements ShouldQueue
+class SendEnquiryRecipet implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    protected $name, $email, $phone, $message;
+    protected $name, $email, $type;    
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($name, $email, $phone, $message)
+    public function __construct($name, $email, $type)
     {
         $this->name = $name;
         $this->email = $email;
-        $this->phone = $phone;
-        $this->message = $message;
+        $this->type = $type;
     }
 
     /**
@@ -37,8 +36,8 @@ class SendGeneralEnquiry implements ShouldQueue
      */
     public function handle()
     {
-        $msg = Mail::to(env('ADMIN_EMAIL'))->send(new GeneralEnquiry($this->name, $this->email, $this->phone, $this->message));
-        Log::debug('Sending new general enquiry received to the admin email.');
+        $msg = Mail::to($this->email)->send(new EnquiryRecipet($this->name, $this->type));
+        Log::debug('Sending contact received (type ' . $this->type . ') mail to ' . $this->email);
         if($msg){
             Log::debug('Mail job message: ' . $msg);
         }
