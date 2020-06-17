@@ -16,7 +16,9 @@ Route::get('/event/{eventId}', 'EventController@index')->name('event');
 Route::get('/merchandise', 'MerchandiseController@index')->name('merchandise');
 
 // Fighter application form and submission
+Route::get('/fighter-application-old', 'EventApplicationController@fighterFormOld')->name('application.fight.old');
 Route::get('/fighter-application', 'EventApplicationController@fighterForm')->name('application.fight');
+Route::get('/api/fighter-application', 'EventApplicationController@fighterFormAPI')->middleware('api');
 Route::post('/fighter-application', 'EventApplicationController@storeFighterApp')->name('application.fight.submit');
 
 // Subscriber route

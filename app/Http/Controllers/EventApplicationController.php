@@ -26,8 +26,22 @@ class EventApplicationController extends Controller
     }
 
     /**
+     * Returns the fighter application form view
+     */
+    public function fighterFormAPI(){
+        return "fighter form api";
+    }
+
+    /**
+     * Returns the fighter application form view
+     */
+    public function fighterFormOld(){
+        return view('fighter-apply-old');
+    }
+
+    /**
      * Stores an application to fight in the upcoming event
-     * 
+     *
      * @param request, googleCaptcha
      * @todo Full form validation & Sotring of data.
      */
@@ -49,7 +63,7 @@ class EventApplicationController extends Controller
             //Personal Details Section
             'dob' => 'required|date', // string must be date according to PHP strtotime() function
             'height' => 'required|integer|gt:0',
-            'current_weight' => 'required|integer|gt:0', 
+            'current_weight' => 'required|integer|gt:0',
             'expected_weight' => 'nullable|integer|gt:0',
             'occupation' => 'required',
             'gender' => 'required',
@@ -95,26 +109,26 @@ class EventApplicationController extends Controller
             'declCheckbox' => 'accepted'
 
         ],
-        
+
         // error messages
         [
             'required' => ':attribute must be filled in',
             'accepted' => 'Please check the declaration checkbox'
         ]
-    
-    );       
+
+    );
 
         Log::debug('Server is validating application submitted by ' . $request->input('first_name') . ' ' . $request->input('last_name') . ' from ' . $request->input('email'));
 
         if($validator->fails()){
 
-            Log::info('Application submitted from ' . $request->input('email') . ' failed server validation.');            
+            Log::info('Application submitted from ' . $request->input('email') . ' failed server validation.');
             Log::info($validator->errors());
-            
+
             return view('feedback.failed-submission')->withErrors($validator);
         }
 
-        Log::debug('Server has successfully validated application submitted by ' . $request->input('first_name') . ' ' . $request->input('last_name') . ' from ' . $request->input('email'));        
+        Log::debug('Server has successfully validated application submitted by ' . $request->input('first_name') . ' ' . $request->input('last_name') . ' from ' . $request->input('email'));
 
         // also need to check if someone has already submitted
         // an application for this email address
@@ -161,7 +175,7 @@ class EventApplicationController extends Controller
         $applicant->emergency_phone_1 = $request->input('emergency_phone_1');
         $applicant->emergency_phone_2 = $request->input('emergency_phone_2');
         $applicant->emergency_email = $request->input('emergency_email');
-        
+
         //Sporting Experience Section
         $applicant->fitness_rating = $request->input('fitness_rating');
         $applicant->boxing_exp = $request->input('fighting_experience');
@@ -197,7 +211,7 @@ class EventApplicationController extends Controller
         $applicant->recommended_medication = $request->input('bloodRadio') == 'yes' ? true : false;
         $applicant->concussed_knocked_out = $request->input('concussed_details');
         $applicant->other_reasons = $request->input('reason_details');
-        
+
         //Additonal Info Section
         $applicant->conviction_details = $request->input('conviction_details');
         $applicant->consent_to_test = $request->input('drugRadio') == 'yes' ? true : false;
@@ -223,16 +237,16 @@ class EventApplicationController extends Controller
             if($ex->getCode() == 22007 || $ex->getCode() == '22007'){ // code for invalid date format
                 session()->flash('error', 'Your application failed to submit correctly. Please ensure you follow the date format YYYY-MM-DD for your birth date.');
             }
-            else{            
+            else{
                 session()->flash('error', 'Your application has failed to submit correctly due to a server error. Please try again, and if the issue persists, please contact Fight for Kidz.');
             }
-            return view('feedback.failed-submission'); 
+            return view('feedback.failed-submission');
         }
 
         $image = $request->file('photo');
         $imagePath = 'private/images/applicants/';
-        $imageName = $applicant->id . '.jpg'; 
-        
+        $imageName = $applicant->id . '.jpg';
+
         // Convert to png if needed and store
         Image::storeAsJpg($image, $imagePath, $imageName);
 
@@ -240,7 +254,7 @@ class EventApplicationController extends Controller
         if($request->input('subscribeCheckbox') && $request->input('email')!= '' ){
             Subscriber::subscribe($request->input('first_name') . ' ' . $request->input('last_name'), $request->input('email'));
         }
-        
+
         // send email notification of receipt
         SendApplicationReceivedEmail::dispatch($applicant->email, $applicant->first_name);
 
