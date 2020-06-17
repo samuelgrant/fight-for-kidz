@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Input;
+use Storage;
 use App\Image;
 use App\Applicant, App\Event;
 use Illuminate\Http\Request;
@@ -29,7 +30,33 @@ class EventApplicationController extends Controller
      * Returns the fighter application form view
      */
     public function fighterFormAPI(){
-        return "fighter form api";
+        $event = Event::Current();
+
+        // Build the custom questions array
+        $custom_questions = [];
+        foreach($event->customQuestions as $question) {
+            array_push($custom_questions, [
+                'text' => $question->text,
+                'required' => $question->required == 1,
+                'type' => $question->type
+            ]);
+        }
+
+        // Build the Documents array
+        $docs = [];
+        foreach(\App\Document::where('display_location', 'Fighter App')->get() as $doc) {
+            array_push($docs, [
+                'href' => Storage::disk('documents')->url($doc->filename),
+                'name' => $doc->originalName
+            ]);
+        }
+
+        return response()
+        ->json([
+            '_eventName' => $event->name,
+            '_applicationDocs' => $docs,
+            '_customQuestions' => $custom_questions
+        ]);
     }
 
     /**

@@ -30,3 +30,7 @@
 .slick-sponsors-hide {
   display: none;
 }
+
+.fa-pulse.slow {
+  animation-timing-function: steps(5);
+}
