@@ -1,0 +1,68 @@
+form label.required::after {
+    content: " *";
+    font-weight: bolder;
+    color: red;
+}
+
+.application-section {
+    padding-bottom: 30px;
+}
+
+// Override react-select color
+div[id*="react-select"] {
+    color: black;
+}
+
+fieldset {
+    border: 1px solid;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+
+    legend {
+        width: auto;
+        padding: 0px 10px;
+    }
+}
+
+/* Mutli-steps Form Styles
+* ------------------------- */
+ul.steps {
+    border-left: 3px solid rgba(242, 242, 242, 0.4);
+    // Active color
+    //border-left: 3px solid rgba(100, 161, 157, 0.4);
+}
+
+.steps li {
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    height: 31px;
+    position: relative;
+}
+
+.steps li:hover {
+    color:  #64A19D;
+    cursor: pointer;
+    transition: ease-in-out 0.5s;
+}
+
+.steps li.current {
+    color: #64A19D;
+}
+
+.steps li.done::before {
+    font-family: 'Font Awesome 5 Free';
+    content: "\f058";
+    visibility: visible;
+    font-weight: 900;
+
+    margin-right: 4px;
+    color: #28A745;
+}
+
+.steps li::before {
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: '\f111';
+    margin-right: 4px;
+}

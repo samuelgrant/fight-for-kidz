@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
 import Rselect from 'react-select';
-import { render } from 'react-dom';
 import { isFunction } from '../helper';
 
 // Dev docs: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
 const AutoComplete = [
     // Generic fields
-    "off", "on", "email", "tel", "username", "new-password", "one-time-code",
+    "off", "on", "email", "tel", "username", "new-password", "one-time-code", "bday",
     // Org fields
     "organization-title", "organization",
-    // Name fields    
+    // Name fields
     "name", "honorific-prefix", "given-name", "additional-name", "family-name",
     // Address fields
     "street-address", "address-line1", "address-line2", "address-level4", "address-level3", "address-level2", "address-level1", "country", "country-name", "postal-code",
 ]
 
-const Type = ["email", "password", "url", "number", "tel"];
+const Type = ["date", "email", "password", "url", "number", "tel"];
 
 // checkbox
 export class Checkbox extends Component {
@@ -123,20 +122,17 @@ export class Input extends Component {
         return 'text';
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (this.state.value != nextProps.value) {
-            this.setState({
-                value: nextProps.value
-            });
+    componentDidUpdate(prevProps) {
+        if(prevProps.value != this.props.value) {
+            this.setState({value: this.props.value});
         }
     }
-
 
     render() {
         const { id, className, name, placeHolder,
             autoFocus, disabled, minLength, maxLength, readOnly, required // attribute properties
         } = this.props;
-        
+
         return (
             <input id={id || null}
                 className={className || 'form-control'}
@@ -144,7 +140,7 @@ export class Input extends Component {
                 name={name || null}
                 autoComplete={this.getAutoComplete()}
                 placeholder={placeHolder || null}
-                                
+
                 // Attribute properties
                 autoFocus={!!autoFocus}
                 disabled={!!disabled}
@@ -152,7 +148,7 @@ export class Input extends Component {
                 maxLength={maxLength || null}
                 readOnly={!!readOnly}
                 required={!!required}
-                                
+
                 // Controlled props
                 onChange={this.handleChange.bind(this)}
                 onPaste={this.handleChange.bind(this)}
@@ -226,7 +222,7 @@ export class TextArea extends Component {
             value
         }, () => {
             let onChange = this.props.onChange;
-            
+
             // Send the value to the (optional) callback
             if(isFunction(onChange)){
                 onChange(value);
@@ -234,11 +230,9 @@ export class TextArea extends Component {
         });
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (this.state.value != nextProps.value) {
-            this.setState({
-                value: nextProps.value
-            });
+    componentDidUpdate(prevProps) {
+        if(prevProps.value != this.props.value) {
+            this.setState({value: this.props.value});
         }
     }
 
@@ -264,7 +258,7 @@ export class TextArea extends Component {
                     className={className || 'form-control'}
                     name={name || null}
                     placeholder={placeHolder || null}
-                    
+
                     // Attribute properties
                     autoFocus={!!autoFocus}
                     disabled={!!disabled}
@@ -280,6 +274,62 @@ export class TextArea extends Component {
                 />
                 {charLimit}
             </React.Fragment>
+        )
+    }
+}
+
+export class Radio extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            value: undefined
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if(prevProps.value != this.props.value) {
+            this.setState({value: this.props.value});
+        }
+    }
+
+    handleClick(e) {
+        this.setState({
+            value: e.target.value
+        })
+    }
+
+    render() {
+        const { id, inline, options, prefix, suffix } = this.props;
+        console.log(prefix)
+        return (
+            <div>
+                { options.map((option, key) => {
+                    return (
+                    <div className={inline ? 'form-check-inline' : 'form-check' } key={key}>
+                        { prefix ?
+                            key == 0 ? <span className="mr-3">{prefix}</span> : ""
+                        : null}
+
+                        <input id={`${id}:${option}`}
+                            className="form-check-input"
+                            type="radio"
+                            value={option}
+                            checked={option.toLowerCase() == (this.state.value || "").toLowerCase()}
+                            onChange={this.handleClick.bind(this)}
+                        />
+
+                        <label className="form-check-label" htmlFor={`${id}:${option}`}>
+                            {option}
+                        </label>
+
+                        { suffix ?
+                            key == (options.length -1) ? <span className="ml-3">{suffix}</span> : ""
+                        : null}
+                    </div>
+                    )
+                })}
+            </div>
         )
     }
 }

@@ -17,7 +17,7 @@ body{
 }
 
 .radio-selector{
-    margin-right: 15px;    
+    margin-right: 15px;
 }
 
 .radio-selector input{
@@ -28,7 +28,7 @@ body{
     margin-bottom: 2.5rem;
 }
 
-.inputLabel{ 
+.inputLabel{
     padding-top: .5rem !important;
     padding-bottom: .5rem !important;
 }
@@ -41,10 +41,10 @@ body{
     margin-bottom: 24px;
 }
 
-form label.required::before {
-    content: "* ";
-    color: red;
-}
+// form label.required::before {
+//     content: "* ";
+//     color: red;
+// }
 
 // Override react-select color
 div[id*="react-select"] {

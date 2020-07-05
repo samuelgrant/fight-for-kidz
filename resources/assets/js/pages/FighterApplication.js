@@ -31,6 +31,10 @@ export default class FighterApplication extends Component {
         Cookies.remove('fighterapp');
     }
 
+    enableAutosave() {
+        this.setState({_cookieConsent: true})
+    }
+
     getCookie() {
         if (!Cookies.get('fighterapp')) {// cookie exists
             this.setState({
@@ -55,8 +59,8 @@ export default class FighterApplication extends Component {
                 answers={answers}
                 applicationDocs={_applicationDocs}
                 customQuestions={_customQuestions}
+                enableAutosave={this.enableAutosave.bind(this)}
                 updateState={(answers) => this.setState(answers)}
-                updateCookie={this.updateCookie}
             />
         )
     }
