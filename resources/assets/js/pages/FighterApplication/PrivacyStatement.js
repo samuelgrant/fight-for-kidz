@@ -1,6 +1,17 @@
 import React from 'react';
 
 export default class PrivacyStatement extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.handleProceed = this.proceed.bind(this);
+    }
+
+    proceed(bool) {
+        this.props.autoSave(bool);
+        this.props.setTabIndex(1);
+    }
+
     render() {
         return (
             <React.Fragment>
@@ -17,8 +28,8 @@ export default class PrivacyStatement extends React.Component {
 
                 <div className="alert alert-info">We cannot see your answers until you click the submit button at the end of the application!</div>
 
-                <button className="btn btn-sm btn-info" onClick={this.props.enableAutosave.bind(this, false)}>Continue Without AutoSave</button>
-                <button className="btn btn-sm btn-success" onClick={this.props.enableAutosave.bind(this, true)}>Use AutoSave</button>
+                <button className="btn btn-sm btn-dark float-left" onClick={() => this.handleProceed(false)}>Continue Without AutoSave</button>
+                <button className="btn btn-sm btn-success float-right" onClick={() => this.handleProceed(true)}>Use AutoSave</button>
             </React.Fragment>
         )
     }

@@ -52,7 +52,7 @@ export default class MedicalTwo extends React.Component {
                 <h6>If you answered “yes” to any of these eight questions you should consult your Physician before participation in any physical training can begin.</h6>
 
                 <button className="btn btn-sm btn-info float-left"
-                    onClick={this.props.handleTabChange.bind(this, this.props.tabIndex-1)}>
+                    onClick={this.props.setTabIndex.bind(this, this.props.tabIndex-1)}>
                     <i className="fas fa-arrow-circle-left"/> Previous
                 </button>
                 <button className="btn btn-sm btn-info float-right" type="submit">

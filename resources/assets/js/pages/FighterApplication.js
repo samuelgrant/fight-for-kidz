@@ -1,8 +1,31 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-import Sections from './FighterApplication/Sections';
 import ReactError from './FighterApplication/Error';
 import Cookies from 'js-cookie'
+/** Application Sections */
+import Tablist from './FighterApplication/Tablist';
+import PrivacyStatement from './FighterApplication/PrivacyStatement';
+import ContactInformation from './FighterApplication/ContactInformation';
+import PersonalDetails from './FighterApplication/PersonalDetails';
+import EmergencyContact from './FighterApplication/EmergencyContact';
+import SportingExperience from './FighterApplication/SportingExperience';
+import MedicalOne from './FighterApplication/MedicalOne';
+import MedicalTwo from './FighterApplication/MedicalTwo';
+import Additional from './FighterApplication/Additional';
+import Declaration from './FighterApplication/Declaration';
+
+/** Define the order of the tabs */
+const tabs = {
+    0: PrivacyStatement,
+    1: ContactInformation,
+    2: PersonalDetails,
+    3: EmergencyContact,
+    4: SportingExperience,
+    5: MedicalOne,
+    6: MedicalTwo,
+    7: Additional,
+    8: Declaration
+}
 
 export default class FighterApplication extends Component {
     constructor(props) {
@@ -11,8 +34,15 @@ export default class FighterApplication extends Component {
         this.state = {
             _cookieConsent: false,
             _hasError: false,
-            answers: {}
+            _ready: false,
+            eventdata: {},
+            formdata: {},
+            tabIndex: 0
         }
+
+        this.handleAutoSave  = this.setAutosave.bind(this);
+        this.handleSetTabIndex = this.setTabIndex.bind(this);
+        this.handleSetFormData = this.setFormData.bind(this);
     }
 
     static getDerivedStateFromError(error) {
@@ -23,45 +53,81 @@ export default class FighterApplication extends Component {
         $.ajax({
             method: 'get',
             url: '/api/fighter-application',
-            success: ((data) => this.setState(data))
+            success: ((eventdata) => {
+                let formdata = formdata = Cookies.getJSON('fighterapp') || {};
+
+                this.setState({
+                    eventdata,
+                    formdata,
+                    _ready: true
+                });
+            }),
         })
     }
 
-    clearCookie() {
+    _clearCookie() {
         Cookies.remove('fighterapp');
     }
 
-    enableAutosave() {
-        this.setState({_cookieConsent: true})
-    }
-
-    getCookie() {
-        if (!Cookies.get('fighterapp')) {// cookie exists
-            this.setState({
-                answers: {}//cookie value
-            });
-        }
-    }
-
-    setCookie() {
-        if(this.state._cookieConsent) {
+    // Store the applicaiton data in the cookie
+    componentDidUpdate(_, prevState){
+        if(this.state._cookieConsent && prevState.formdata != this.state.formdata) {
             Cookies.set('fighterapp', this.state.answers)
         }
     }
 
+    // Enable/disable the auto save cookie
+    setAutosave(bool) {
+        this.setState({_cookieConsent: bool})
+    }
+
+    // Update the applicants data (form answers)
+    setFormData(key, val) {
+        let formdata = this.state.formdata;
+        formdata[key] = val;
+        this.setState({formdata});
+    }
+
+    // Change the application tab
+    setTabIndex(tabIndex) {
+        this.setState({tabIndex});
+    }
+
     render() {
-        const { answers, _applicationDocs, _customQuestions, _eventName  } = this.state;
+        const { formdata, eventdata, tabIndex } = this.state;
+        // Loading application settings from API.
+        if(!this.state._ready) return null;
+
+        // Fetch the active tab from the tabs object
+        // using this.state.tabIndex
+        const Partial = tabs[tabIndex];
 
         return this.state._hasError ?
         <ReactError /> : (
-            <Sections
-                name={_eventName}
-                answers={answers}
-                applicationDocs={_applicationDocs}
-                customQuestions={_customQuestions}
-                enableAutosave={this.enableAutosave.bind(this)}
-                updateState={(answers) => this.setState(answers)}
-            />
+            <div className="row">
+                <div className="col-auto">
+                    <Tablist tabs={tabs}
+                        setTabIndex={this.handleSetTabIndex}
+                        tabIndex={this.state.tabIndex}
+                    />
+                </div>
+
+                <div className="col">
+                    <h4 className="pb-4">{Partial.name.replace(/([A-Z])/g, ' $1').trim()}</h4>
+                    <p>A red asterisk (<span className="font-weight-bold text-danger">*</span>) indicates a required field.</p>
+                    <hr />
+                    <Partial formdata={formdata}
+                        // Event attributes
+                        name={eventdata._eventName}
+                        customQuestions={eventdata._customQuestions}
+                        autoSave={this.handleAutoSave}
+                        // Tabs
+                        updateState={(answers) => this.setState(answers)}
+                        setTabIndex={this.handleSetTabIndex}
+                        tabIndex={tabIndex}
+                    />
+                </div>
+            </div>
         )
     }
 }

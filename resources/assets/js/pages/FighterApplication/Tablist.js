@@ -1,15 +1,15 @@
 import React from 'react';
 
 export default class Tablist extends React.Component {
-    getClasses(k) {
+    getClasses(index) {
         const { tabs, tabIndex } = this.props;
 
         let classes = [];
-        if (k == 0) classes.push('first');
-        else if (k == (Object.keys(tabs).length - 1)) classes.push('last');
+        if (index == 0) classes.push('first');
+        else if (index == (Object.keys(tabs).length - 1)) classes.push('last');
 
-        if (k == tabIndex) classes.push('current')
-        else if (k < tabIndex) classes.push('done')
+        if (index == tabIndex) classes.push('current')
+        else if (index < tabIndex) classes.push('done')
 
         return classes.join(' ');
     }
@@ -19,20 +19,19 @@ export default class Tablist extends React.Component {
     }
 
     render() {
-        const { handleTabChange, tabs, tabIndex } = this.props;
+        const { tabs, setTabIndex, tabIndex } = this.props;
+
         let navs = [];
         Object.keys(tabs).forEach((key) => {
            navs.push(
                 <li role="tab" aria-disabled="false" key={key}
                     className={this.getClasses(key) || null}
-                    onClick={handleTabChange.bind(this, key)}
+                    onClick={setTabIndex.bind(this, key)}
                 >
                     {this.getName(tabs[key].name)}
                 </li>
             )
         });
-
-        let percent  = tabIndex*100/(Object.keys(tabs).length -1);
 
         return tabs ? (
             <React.Fragment>
@@ -42,13 +41,25 @@ export default class Tablist extends React.Component {
 
                 <hr />
 
+                <ProgressBar value={tabIndex} outof={Object.keys(tabs).length -1} />
+            </React.Fragment>
+        ) : null
+    }
+}
+
+class ProgressBar extends React.Component {
+    render() {
+        const { value, outof } = this.props;
+
+        return (
+            <React.Fragment>
                 <p>Application Progress:</p>
                 <div className="progress">
-                    <div className="progress-bar bg-info" role="progressbar" style={{width: percent + '%'}} aria-valuenow={percent} aria-valuemin="0" aria-valuemax="100">
-                        {percent.toFixed(2) + '%'}
+                    <div className="progress-bar bg-info" role="progressbar" style={{width: value*100/outof + '%'}} aria-valuenow={value*100/outof} aria-valuemin="0" aria-valuemax="100">
+                        {Math.ceil(value*100/outof) + '%'}
                     </div>
                 </div>
             </React.Fragment>
-        ) : null
+        )
     }
 }

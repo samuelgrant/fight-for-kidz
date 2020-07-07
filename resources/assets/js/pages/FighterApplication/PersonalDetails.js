@@ -64,7 +64,7 @@ export default class PersonalDetails extends React.Component {
                 </div>
 
                 <button className="btn btn-sm btn-info float-left"
-                    onClick={this.props.handleTabChange.bind(this, this.props.tabIndex-1)}>
+                    onClick={this.props.setTabIndex.bind(this, this.props.tabIndex-1)}>
                     <i className="fas fa-arrow-circle-left"/> Previous
                 </button>
                 <button className="btn btn-sm btn-info float-right" type="submit">

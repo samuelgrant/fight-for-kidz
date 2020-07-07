@@ -10,7 +10,7 @@ import $ from 'jquery';
 
 const partials = {
     general: General,
-    table: Table, 
+    table: Table,
     sponsorship: Sponsorship
 };
 
@@ -54,7 +54,7 @@ export default class ContactUs extends Component {
 
     _updateStateObj(objKey, key, val){
         let obj = this.state[objKey];
-        obj[key] = val;       
+        obj[key] = val;
         this.setState({[objKey]: obj});
     }
 
@@ -72,9 +72,9 @@ export default class ContactUs extends Component {
         }
 
         //Validate that we have sponsor types if required
-        if(type == 'sponsorship' && 
+        if(type == 'sponsorship' &&
             !fields.sponsorshipTypes[0]) {
-            
+
             this.Alert.error("We need to know what types of sponsorship you are interested in.");
             return;
         }
@@ -84,7 +84,7 @@ export default class ContactUs extends Component {
         formData['g-recaptcha-response'] = captchaCode;
 
         this._updateState('loading', true);
-        
+
         //send
         $.ajax({
             method: 'post',
@@ -94,7 +94,6 @@ export default class ContactUs extends Component {
             this.Alert.success(json);
             this._updateState('loading', false);
         }).fail((err) => {
-            console.log(err);
             this.Alert.error(err.responseJSON.message);
             this._updateState('loading', false);
         });
@@ -103,7 +102,7 @@ export default class ContactUs extends Component {
     render() {
         const Partial = partials[this.state.type];
         const { name, email, phone, subscribe } = this.state.fields;
-        
+
         return (
             <div className="text-white text-center">
                 <h1 className="mb-2">Contact Us</h1>
@@ -112,25 +111,25 @@ export default class ContactUs extends Component {
                 <form className="text-left" onSubmit={this._verifyCaptcha.bind(this)}>
                     <div className="row">
                         <FormGroup className="form-group col col-md-6 col-sm-12" label="Your Name:" htmlFor="name" required>
-                            <Input id="name" type="text" value={name} 
+                            <Input id="name" type="text" value={name}
                                 onChange={this._updateStateObj.bind(this, 'fields', 'name')} required
                             />
                         </FormGroup>
 
                         <FormGroup className="form-group col col-md-6 col-sm-12" label="Your Email:" htmlFor="email" required>
-                            <Input id="email" type="email" value={email} 
-                                onChange={this._updateStateObj.bind(this, 'fields', 'email')} required 
+                            <Input id="email" type="email" value={email}
+                                onChange={this._updateStateObj.bind(this, 'fields', 'email')} required
                             />
                         </FormGroup>
 
                         <FormGroup className="form-group col col-md-6 col-sm-12" label="Your Phone Number:" htmlFor="phone" required>
-                            <Input id="phone" type="tel" value={phone} 
-                                onChange={this._updateStateObj.bind(this, 'fields', 'phone')} required 
+                            <Input id="phone" type="tel" value={phone}
+                                onChange={this._updateStateObj.bind(this, 'fields', 'phone')} required
                             />
                         </FormGroup>
 
                         <FormGroup className="form-group col col-md-6 col-sm-12" label="Talk to us about...." required>
-                            <Select options={this.state.types} onChange={(selected) => this._updateState('type', selected.value)} 
+                            <Select options={this.state.types} onChange={(selected) => this._updateState('type', selected.value)}
                                 value={this.state.type} required
                             />
                         </FormGroup>
