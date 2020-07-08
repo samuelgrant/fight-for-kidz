@@ -54,7 +54,11 @@ export default class FighterApplication extends Component {
             method: 'get',
             url: '/api/fighter-application',
             success: ((eventdata) => {
-                let formdata = formdata = Cookies.getJSON('fighterapp') || {};
+                let formdata = {};
+
+                if(!!Cookies.getJSON('fighterapp')) {
+                    formdata = Cookies.getJSON('fighterapp');
+                }
 
                 this.setState({
                     eventdata,
@@ -65,20 +69,29 @@ export default class FighterApplication extends Component {
         })
     }
 
-    _clearCookie() {
-        Cookies.remove('fighterapp');
-    }
-
     // Store the applicaiton data in the cookie
-    componentDidUpdate(_, prevState){
-        if(this.state._cookieConsent && prevState.formdata != this.state.formdata) {
-            Cookies.set('fighterapp', this.state.answers)
+    componentDidUpdate(){
+        if(this.state._cookieConsent) {
+            // Expires in seven days
+            let expires = new Date(new Date());
+            expires.setDate(expires.getDate() + 7)
+
+            Cookies.set('fighterapp', this.state.formdata, {expires})
         }
     }
 
     // Enable/disable the auto save cookie
     setAutosave(bool) {
-        this.setState({_cookieConsent: bool})
+        let formdata = this.state.formdata;
+        if(!bool) {
+            formdata = {};
+            Cookies.remove('fighterapp');
+        }
+
+        this.setState({
+            _cookieConsent: bool,
+            formdata
+        });
     }
 
     // Update the applicants data (form answers)
@@ -122,7 +135,7 @@ export default class FighterApplication extends Component {
                         customQuestions={eventdata._customQuestions}
                         autoSave={this.handleAutoSave}
                         // Tabs
-                        updateState={(answers) => this.setState(answers)}
+                        updateState={this.handleSetFormData}
                         setTabIndex={this.handleSetTabIndex}
                         tabIndex={tabIndex}
                     />
