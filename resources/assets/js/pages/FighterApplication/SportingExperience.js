@@ -6,9 +6,9 @@ export default class SportingExperience extends React.Component {
         super(props);
 
         this.state = this.props.formdata.previousSport || {
-            boxingExperience: false,
-            boxingDescribe: "",
             fitnessLevel: null,
+            boxingExperience: false,
+            boxingDescribe: "",            
             otherExperience: "",
             hobbies: ""
         }

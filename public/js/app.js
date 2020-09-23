@@ -54280,9 +54280,9 @@ var SportingExperience = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (SportingExperience.__proto__ || Object.getPrototypeOf(SportingExperience)).call(this, props));
 
         _this.state = _this.props.formdata.previousSport || {
+            fitnessLevel: null,
             boxingExperience: false,
             boxingDescribe: "",
-            fitnessLevel: null,
             otherExperience: "",
             hobbies: ""
         };
