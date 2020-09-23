@@ -14,7 +14,7 @@ const AutoComplete = [
     "street-address", "address-line1", "address-line2", "address-level4", "address-level3", "address-level2", "address-level1", "country", "country-name", "postal-code",
 ]
 
-const Type = ["date", "email", "password", "url", "number", "tel"];
+const Type = ["date", "email", "file", "number", "password", "url",  "tel"];
 
 // checkbox
 export class Checkbox extends Component {
@@ -130,7 +130,7 @@ export class Input extends Component {
 
     render() {
         const { id, className, name, placeHolder,
-            autoFocus, disabled, minLength, maxLength, readOnly, required // attribute properties
+            autoFocus, accept, disabled, minLength, maxLength, readOnly, required // attribute properties
         } = this.props;
 
         return (
@@ -148,6 +148,7 @@ export class Input extends Component {
                 maxLength={maxLength || null}
                 readOnly={!!readOnly}
                 required={!!required}
+                accept={accept || null}
 
                 // Controlled props
                 onChange={this.handleChange.bind(this)}
@@ -168,8 +169,7 @@ export class Select extends Component {
 
         // No options provided
         if(!options[0]) return {};
-        // No value selected,
-        // return first option
+        // No value selected, return first
         if(!value) return options[0];
 
         if(Array.isArray(value)) {
@@ -283,7 +283,7 @@ export class Radio extends Component {
         super(props);
 
         this.state = {
-            value: undefined
+            value: this.props.value
         }
     }
 
@@ -294,9 +294,15 @@ export class Radio extends Component {
     }
 
     handleClick(e) {
+        let value = e.target.value;
+
         this.setState({
-            value: e.target.value
-        })
+            value
+        }, () => {
+            if(isFunction(this.props.onChange)) {
+                this.props.onChange(value);
+            }
+        });
     }
 
     render() {
