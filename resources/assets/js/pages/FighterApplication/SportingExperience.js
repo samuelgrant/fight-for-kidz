@@ -9,8 +9,8 @@ export default class SportingExperience extends React.Component {
             boxingExperience: false,
             boxingDescribe: "",
             fitnessLevel: null,
-            hobbies: "",
-            otherExperience: ""
+            otherExperience: "",
+            hobbies: ""
         }
     }
 
@@ -63,12 +63,16 @@ export default class SportingExperience extends React.Component {
                         }
                     </FormGroup>
 
-                    <FormGroup className="col-12 form-group" label="Other Sporting Experience:" htmlFor="othersports" required>
-                        <TextArea id="othersports" required/>
+                    <FormGroup className="col-12 form-group" label="Other Sporting Experience:" htmlFor="otherExperience" required>
+                        <TextArea id="otherExperience" required
+                            value={otherExperience} onChange={(val) => this.handleChange('otherExperience', val)}
+                        />
                     </FormGroup>
 
                     <FormGroup className="col-12 form-group" label="Hobbies/interests:" htmlFor="hobbies" required>
-                        <TextArea id="hobbies" required />
+                        <TextArea id="hobbies" required 
+                            value={hobbies} onChange={(val) => this.handleChange('hobbies', val)}
+                        />
                     </FormGroup>
                 </div>
 

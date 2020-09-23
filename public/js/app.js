@@ -115,7 +115,7 @@ var AutoComplete = [
 // Address fields
 "street-address", "address-line1", "address-line2", "address-level4", "address-level3", "address-level2", "address-level1", "country", "country-name", "postal-code"];
 
-var Type = ["date", "email", "password", "url", "number", "tel"];
+var Type = ["date", "email", "file", "number", "password", "url", "tel"];
 
 // checkbox
 var Checkbox = function (_Component) {
@@ -287,6 +287,7 @@ var Input = function (_Component3) {
                 name = _props3.name,
                 placeHolder = _props3.placeHolder,
                 autoFocus = _props3.autoFocus,
+                accept = _props3.accept,
                 disabled = _props3.disabled,
                 minLength = _props3.minLength,
                 maxLength = _props3.maxLength,
@@ -307,7 +308,8 @@ var Input = function (_Component3) {
                 minLength: minLength || null,
                 maxLength: maxLength || null,
                 readOnly: !!readOnly,
-                required: !!required
+                required: !!required,
+                accept: accept || null
 
                 // Controlled props
                 , onChange: this.handleChange.bind(this),
@@ -344,8 +346,7 @@ var Select = function (_Component4) {
             // No options provided
 
             if (!options[0]) return {};
-            // No value selected,
-            // return first option
+            // No value selected, return first
             if (!value) return options[0];
 
             if (Array.isArray(value)) {
@@ -509,7 +510,7 @@ var Radio = function (_Component6) {
         var _this9 = _possibleConstructorReturn(this, (Radio.__proto__ || Object.getPrototypeOf(Radio)).call(this, props));
 
         _this9.state = {
-            value: undefined
+            value: _this9.props.value
         };
         return _this9;
     }
@@ -524,14 +525,22 @@ var Radio = function (_Component6) {
     }, {
         key: 'handleClick',
         value: function handleClick(e) {
+            var _this10 = this;
+
+            var value = e.target.value;
+
             this.setState({
-                value: e.target.value
+                value: value
+            }, function () {
+                if (Object(__WEBPACK_IMPORTED_MODULE_2__helper__["a" /* isFunction */])(_this10.props.onChange)) {
+                    _this10.props.onChange(value);
+                }
             });
         }
     }, {
         key: 'render',
         value: function render() {
-            var _this10 = this;
+            var _this11 = this;
 
             var _props7 = this.props,
                 id = _props7.id,
@@ -557,8 +566,8 @@ var Radio = function (_Component6) {
                             className: 'form-check-input',
                             type: 'radio',
                             value: option,
-                            checked: option.toLowerCase() == (_this10.state.value || "").toLowerCase(),
-                            onChange: _this10.handleClick.bind(_this10)
+                            checked: option.toLowerCase() == (_this11.state.value || "").toLowerCase(),
+                            onChange: _this11.handleClick.bind(_this11)
                         }),
                         __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'label',
@@ -18839,7 +18848,7 @@ TransitionGroup.defaultProps = defaultProps;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(40);
-module.exports = __webpack_require__(98);
+module.exports = __webpack_require__(97);
 
 
 /***/ }),
@@ -52999,19 +53008,19 @@ module.exports = function (css) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FighterApplication_Error__ = __webpack_require__(96);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_js_cookie__ = __webpack_require__(97);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__FighterApplication_Error__ = __webpack_require__(85);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_js_cookie__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_js_cookie___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_js_cookie__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__FighterApplication_Tablist__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__FighterApplication_PrivacyStatement__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__FighterApplication_ContactInformation__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__FighterApplication_PersonalDetails__ = __webpack_require__(89);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__FighterApplication_EmergencyContact__ = __webpack_require__(90);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__FighterApplication_SportingExperience__ = __webpack_require__(91);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__FighterApplication_MedicalOne__ = __webpack_require__(92);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__FighterApplication_MedicalTwo__ = __webpack_require__(93);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__FighterApplication_Additional__ = __webpack_require__(94);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__FighterApplication_Declaration__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__FighterApplication_Tablist__ = __webpack_require__(87);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__FighterApplication_PrivacyStatement__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__FighterApplication_ContactInformation__ = __webpack_require__(89);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__FighterApplication_PersonalDetails__ = __webpack_require__(90);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__FighterApplication_EmergencyContact__ = __webpack_require__(91);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__FighterApplication_SportingExperience__ = __webpack_require__(92);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__FighterApplication_MedicalOne__ = __webpack_require__(93);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__FighterApplication_MedicalTwo__ = __webpack_require__(94);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__FighterApplication_Additional__ = __webpack_require__(95);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__FighterApplication_Declaration__ = __webpack_require__(96);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -53081,7 +53090,11 @@ var FighterApplication = function (_Component) {
                 method: 'get',
                 url: '/api/fighter-application',
                 success: function success(eventdata) {
-                    var formdata = formdata = __WEBPACK_IMPORTED_MODULE_3_js_cookie___default.a.getJSON('fighterapp') || {};
+                    var formdata = {};
+
+                    if (!!__WEBPACK_IMPORTED_MODULE_3_js_cookie___default.a.getJSON('fighterapp')) {
+                        formdata = __WEBPACK_IMPORTED_MODULE_3_js_cookie___default.a.getJSON('fighterapp');
+                    }
 
                     _this2.setState({
                         eventdata: eventdata,
@@ -53091,19 +53104,18 @@ var FighterApplication = function (_Component) {
                 }
             });
         }
-    }, {
-        key: '_clearCookie',
-        value: function _clearCookie() {
-            __WEBPACK_IMPORTED_MODULE_3_js_cookie___default.a.remove('fighterapp');
-        }
 
         // Store the applicaiton data in the cookie
 
     }, {
         key: 'componentDidUpdate',
-        value: function componentDidUpdate(_, prevState) {
-            if (this.state._cookieConsent && prevState.formdata != this.state.formdata) {
-                __WEBPACK_IMPORTED_MODULE_3_js_cookie___default.a.set('fighterapp', this.state.answers);
+        value: function componentDidUpdate() {
+            if (this.state._cookieConsent) {
+                // Expires in seven days
+                var expires = new Date(new Date());
+                expires.setDate(expires.getDate() + 7);
+
+                __WEBPACK_IMPORTED_MODULE_3_js_cookie___default.a.set('fighterapp', this.state.formdata, { expires: expires });
             }
         }
 
@@ -53112,7 +53124,17 @@ var FighterApplication = function (_Component) {
     }, {
         key: 'setAutosave',
         value: function setAutosave(bool) {
-            this.setState({ _cookieConsent: bool });
+            var formdata = this.state.formdata;
+
+            if (!bool) {
+                formdata = {};
+                __WEBPACK_IMPORTED_MODULE_3_js_cookie___default.a.remove('fighterapp');
+            }
+
+            this.setState({
+                _cookieConsent: bool,
+                formdata: formdata
+            });
         }
 
         // Update the applicants data (form answers)
@@ -53135,8 +53157,6 @@ var FighterApplication = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this3 = this;
-
             var _state = this.state,
                 formdata = _state.formdata,
                 eventdata = _state.eventdata,
@@ -53186,9 +53206,7 @@ var FighterApplication = function (_Component) {
                         customQuestions: eventdata._customQuestions,
                         autoSave: this.handleAutoSave
                         // Tabs
-                        , updateState: function updateState(answers) {
-                            return _this3.setState(answers);
-                        },
+                        , updateState: this.handleSetFormData,
                         setTabIndex: this.handleSetTabIndex,
                         tabIndex: tabIndex
                     })
@@ -53213,8 +53231,236 @@ if (document.getElementById('ranchor_fighterapp')) {
 }
 
 /***/ }),
-/* 85 */,
+/* 85 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+
+var ReactError = function (_React$Component) {
+    _inherits(ReactError, _React$Component);
+
+    function ReactError() {
+        _classCallCheck(this, ReactError);
+
+        return _possibleConstructorReturn(this, (ReactError.__proto__ || Object.getPrototypeOf(ReactError)).apply(this, arguments));
+    }
+
+    _createClass(ReactError, [{
+        key: "render",
+        value: function render() {
+            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                "div",
+                { className: "text-center text-white" },
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-cog fa-7x text-danger fa-pulse slow", "data-fa-transform": "right-6 up-3" }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-cog fa-5x text-dark", "data-fa-transform": "down-4" }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-cog fa-10x text-warning fa-pulse slow", "data-fa-transform": "left-6", style: { 'animationDirection': 'reverse' } }),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "h1",
+                    { className: "pt-2 mb-1" },
+                    "Internal Server Error"
+                ),
+                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    "span",
+                    null,
+                    "This error was probably our fault. ",
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("br", null),
+                    " Please flick us a message and tell us what page you were trying to visit."
+                )
+            );
+        }
+    }]);
+
+    return ReactError;
+}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["a"] = (ReactError);
+
+/***/ }),
 /* 86 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+ * JavaScript Cookie v2.2.1
+ * https://github.com/js-cookie/js-cookie
+ *
+ * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
+ * Released under the MIT license
+ */
+;(function (factory) {
+	var registeredInModuleLoader;
+	if (true) {
+		!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
+				__WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		registeredInModuleLoader = true;
+	}
+	if (true) {
+		module.exports = factory();
+		registeredInModuleLoader = true;
+	}
+	if (!registeredInModuleLoader) {
+		var OldCookies = window.Cookies;
+		var api = window.Cookies = factory();
+		api.noConflict = function () {
+			window.Cookies = OldCookies;
+			return api;
+		};
+	}
+}(function () {
+	function extend () {
+		var i = 0;
+		var result = {};
+		for (; i < arguments.length; i++) {
+			var attributes = arguments[ i ];
+			for (var key in attributes) {
+				result[key] = attributes[key];
+			}
+		}
+		return result;
+	}
+
+	function decode (s) {
+		return s.replace(/(%[0-9A-Z]{2})+/g, decodeURIComponent);
+	}
+
+	function init (converter) {
+		function api() {}
+
+		function set (key, value, attributes) {
+			if (typeof document === 'undefined') {
+				return;
+			}
+
+			attributes = extend({
+				path: '/'
+			}, api.defaults, attributes);
+
+			if (typeof attributes.expires === 'number') {
+				attributes.expires = new Date(new Date() * 1 + attributes.expires * 864e+5);
+			}
+
+			// We're using "expires" because "max-age" is not supported by IE
+			attributes.expires = attributes.expires ? attributes.expires.toUTCString() : '';
+
+			try {
+				var result = JSON.stringify(value);
+				if (/^[\{\[]/.test(result)) {
+					value = result;
+				}
+			} catch (e) {}
+
+			value = converter.write ?
+				converter.write(value, key) :
+				encodeURIComponent(String(value))
+					.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
+
+			key = encodeURIComponent(String(key))
+				.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent)
+				.replace(/[\(\)]/g, escape);
+
+			var stringifiedAttributes = '';
+			for (var attributeName in attributes) {
+				if (!attributes[attributeName]) {
+					continue;
+				}
+				stringifiedAttributes += '; ' + attributeName;
+				if (attributes[attributeName] === true) {
+					continue;
+				}
+
+				// Considers RFC 6265 section 5.2:
+				// ...
+				// 3.  If the remaining unparsed-attributes contains a %x3B (";")
+				//     character:
+				// Consume the characters of the unparsed-attributes up to,
+				// not including, the first %x3B (";") character.
+				// ...
+				stringifiedAttributes += '=' + attributes[attributeName].split(';')[0];
+			}
+
+			return (document.cookie = key + '=' + value + stringifiedAttributes);
+		}
+
+		function get (key, json) {
+			if (typeof document === 'undefined') {
+				return;
+			}
+
+			var jar = {};
+			// To prevent the for loop in the first place assign an empty array
+			// in case there are no cookies at all.
+			var cookies = document.cookie ? document.cookie.split('; ') : [];
+			var i = 0;
+
+			for (; i < cookies.length; i++) {
+				var parts = cookies[i].split('=');
+				var cookie = parts.slice(1).join('=');
+
+				if (!json && cookie.charAt(0) === '"') {
+					cookie = cookie.slice(1, -1);
+				}
+
+				try {
+					var name = decode(parts[0]);
+					cookie = (converter.read || converter)(cookie, name) ||
+						decode(cookie);
+
+					if (json) {
+						try {
+							cookie = JSON.parse(cookie);
+						} catch (e) {}
+					}
+
+					jar[name] = cookie;
+
+					if (key === name) {
+						break;
+					}
+				} catch (e) {}
+			}
+
+			return key ? jar[key] : jar;
+		}
+
+		api.set = set;
+		api.get = function (key) {
+			return get(key, false /* read as raw */);
+		};
+		api.getJSON = function (key) {
+			return get(key, true /* read as json */);
+		};
+		api.remove = function (key, attributes) {
+			set(key, '', extend(attributes, {
+				expires: -1
+			}));
+		};
+
+		api.defaults = {};
+
+		api.withConverter = init;
+
+		return api;
+	}
+
+	return init(function () {});
+}));
+
+
+/***/ }),
+/* 87 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53343,7 +53589,7 @@ var ProgressBar = function (_React$Component2) {
 }(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53454,7 +53700,7 @@ var PrivacyStatement = function (_React$Component) {
 /* harmony default export */ __webpack_exports__["a"] = (PrivacyStatement);
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53462,6 +53708,8 @@ var PrivacyStatement = function (_React$Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_FormControl__ = __webpack_require__(1);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -53475,22 +53723,56 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var ContactInformation = function (_React$Component) {
     _inherits(ContactInformation, _React$Component);
 
-    function ContactInformation() {
+    function ContactInformation(props) {
         _classCallCheck(this, ContactInformation);
 
-        return _possibleConstructorReturn(this, (ContactInformation.__proto__ || Object.getPrototypeOf(ContactInformation)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (ContactInformation.__proto__ || Object.getPrototypeOf(ContactInformation)).call(this, props));
+
+        _this.state = _this.props.formdata.contact || {
+            firstName: "",
+            lastName: "",
+            address1: "",
+            address2: "",
+            suburb: "",
+            city: "",
+            postcode: "",
+            email: "",
+            phone1: "",
+            phone2: ""
+        };
+        return _this;
     }
 
     _createClass(ContactInformation, [{
+        key: 'handleChange',
+        value: function handleChange(key, val) {
+            this.setState(_defineProperty({}, key, val));
+        }
+    }, {
         key: 'handleSubmit',
         value: function handleSubmit(e) {
             e.preventDefault();
-            alert('submit form');
-            // if validates push data to top level state, then move to next tab
+            this.props.updateState('contact', this.state);
+            this.props.setTabIndex(this.props.tabIndex * 1 + 1);
         }
     }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
+            var _state = this.state,
+                firstName = _state.firstName,
+                lastName = _state.lastName,
+                address1 = _state.address1,
+                address2 = _state.address2,
+                suburb = _state.suburb,
+                city = _state.city,
+                postcode = _state.postcode,
+                email = _state.email,
+                phone1 = _state.phone1,
+                phone2 = _state.phone2;
+
+
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'form',
                 { onSubmit: this.handleSubmit.bind(this) },
@@ -53500,12 +53782,16 @@ var ContactInformation = function (_React$Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 col-sm-12 form-group', label: 'First Name:', htmlFor: 'givenname', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'givenname', type: 'text', autoComplete: 'given-name', required: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'givenname', type: 'text', autoComplete: 'given-name', value: firstName, onChange: function onChange(val) {
+                                return _this2.handleChange('firstName', val);
+                            }, required: true })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 col-sm-12 form-group', label: 'Last Name:', htmlFor: 'familyname', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'familyname', type: 'text', autoComplete: 'family-name', required: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'familyname', type: 'text', autoComplete: 'family-name', value: lastName, onChange: function onChange(val) {
+                                return _this2.handleChange('lastName', val);
+                            }, required: true })
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -53514,32 +53800,44 @@ var ContactInformation = function (_React$Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 col-sm-12 form-group', label: 'Address 1:', htmlFor: 'addressline1', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'addressline1', type: 'text', autoComplete: 'address-line1', required: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'addressline1', type: 'text', autoComplete: 'address-line1', value: address1, onChange: function onChange(val) {
+                                return _this2.handleChange('address1', val);
+                            }, required: true })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 col-sm-12 form-group', label: 'Address 2:', htmlFor: 'addressline2' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'addressline2', type: 'text', autoComplete: 'address-line2' })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'addressline2', type: 'text', autoComplete: 'address-line2', value: address2, onChange: function onChange(val) {
+                                return _this2.handleChange('address2', val);
+                            } })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 col-sm-12 form-group', label: 'Suburb:', htmlFor: 'addresslevel3', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'addresslevel3', type: 'text', autoComplete: 'address-level3', required: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'addresslevel3', type: 'text', autoComplete: 'address-level3', value: suburb, onChange: function onChange(val) {
+                                return _this2.handleChange('suburb', val);
+                            }, required: true })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 col-sm-12 form-group', label: 'City:', htmlFor: 'addresslevel2', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'addresslevel2', type: 'text', autoComplete: 'address-level2', required: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'addresslevel2', type: 'text', autoComplete: 'address-level2', value: city, onChange: function onChange(val) {
+                                return _this2.handleChange('city', val);
+                            }, required: true })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 col-sm-12 form-group', label: 'Post Code:', htmlFor: 'postalcode', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'postalcode', type: 'number', autoComplete: 'postal-code', required: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'postalcode', type: 'number', autoComplete: 'postal-code', value: postcode, onChange: function onChange(val) {
+                                return _this2.handleChange('postcode', val);
+                            }, required: true })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 col-sm-12 form-group', label: 'Email:', htmlFor: 'email', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'email', type: 'email', autoComplete: 'email', required: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'email', type: 'email', autoComplete: 'email', value: email, onChange: function onChange(val) {
+                                return _this2.handleChange('email', val);
+                            }, required: true })
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -53548,17 +53846,21 @@ var ContactInformation = function (_React$Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 col-sm-12 form-group', label: 'Phone 1:', htmlFor: 'tel1', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'tel1', type: 'tel', autoComplete: 'tel', required: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'tel1', type: 'tel', autoComplete: 'tel', value: phone1, onChange: function onChange(val) {
+                                return _this2.handleChange('phone1', val);
+                            }, required: true })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 col-sm-12 form-group', label: 'Phone 2:', htmlFor: 'tel2' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'tel2', type: 'tel' })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'tel2', type: 'tel', value: phone2, onChange: function onChange(val) {
+                                return _this2.handleChange('phone2', val);
+                            } })
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'button',
-                    { className: 'btn btn-sm btn-info float-left',
+                    { className: 'btn btn-sm btn-info float-left', type: 'button',
                         onClick: this.props.setTabIndex.bind(this, this.props.tabIndex - 1) },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-arrow-circle-left' }),
                     ' Previous'
@@ -53571,6 +53873,18 @@ var ContactInformation = function (_React$Component) {
                 )
             );
         }
+    }], [{
+        key: 'getDerivedStateFromProps',
+        value: function getDerivedStateFromProps(nextProps, prevState) {
+            var contact = nextProps.formdata.contact;
+
+
+            if (!!contact && prevState != contact) {
+                return nextProps.formdata.contact;
+            }
+
+            return prevState;
+        }
     }]);
 
     return ContactInformation;
@@ -53579,7 +53893,7 @@ var ContactInformation = function (_React$Component) {
 /* harmony default export */ __webpack_exports__["a"] = (ContactInformation);
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53587,6 +53901,8 @@ var ContactInformation = function (_React$Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_FormControl__ = __webpack_require__(1);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -53600,47 +53916,94 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var PersonalDetails = function (_React$Component) {
     _inherits(PersonalDetails, _React$Component);
 
-    function PersonalDetails() {
+    function PersonalDetails(props) {
         _classCallCheck(this, PersonalDetails);
 
-        return _possibleConstructorReturn(this, (PersonalDetails.__proto__ || Object.getPrototypeOf(PersonalDetails)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (PersonalDetails.__proto__ || Object.getPrototypeOf(PersonalDetails)).call(this, props));
+
+        _this.state = _this.props.formdata.personal || {
+            currentWeight: "",
+            dob: "",
+            employer: "",
+            expectedWeight: "",
+            fightname: "",
+            gender: "",
+            hand: "",
+            height: "",
+            image: "",
+            occupation: "",
+            ownsponsor: ""
+        };
+        return _this;
     }
 
     _createClass(PersonalDetails, [{
+        key: 'handleChange',
+        value: function handleChange(key, val) {
+            this.setState(_defineProperty({}, key, val));
+        }
+    }, {
+        key: 'handleImageUpload',
+        value: function handleImageUpload(e) {
+            this.handleChange('image', e.target.files[0]);
+        }
+    }, {
         key: 'handleSubmit',
         value: function handleSubmit(e) {
             e.preventDefault();
-            alert('submit form');
-            // if validates push data to top level state, then move to next tab
+            this.props.updateState('personal', this.state);
+            this.props.setTabIndex(this.props.tabIndex * 1 + 1);
         }
     }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
+            var _state = this.state,
+                currentWeight = _state.currentWeight,
+                dob = _state.dob,
+                employer = _state.employer,
+                expectedWeight = _state.expectedWeight,
+                gender = _state.gender,
+                hand = _state.hand,
+                height = _state.height,
+                image = _state.image,
+                occupation = _state.occupation,
+                ownsponsor = _state.ownsponsor;
+
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'form',
-                null,
+                { onSubmit: this.handleSubmit.bind(this) },
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
                     { className: 'row application-section' },
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 col-sm-12 form-group', label: 'Date of Birth:', htmlFor: 'dob', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'dob', type: 'date', autoComplete: 'bday', required: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'dob', type: 'date', autoComplete: 'bday', value: dob, onChange: function onChange(val) {
+                                return _this2.handleChange('dob', val);
+                            }, required: true })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 col-sm-12 form-group', label: 'Height (cm):', htmlFor: 'height', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'height', type: 'number', required: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'height', type: 'number', value: height, onChange: function onChange(val) {
+                                return _this2.handleChange('height', val);
+                            }, required: true })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 col-sm-12 form-group', label: 'Current Weight (kg):', htmlFor: 'currentweight', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'currentweight', type: 'number', required: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'currentweight', type: 'number', value: currentWeight, onChange: function onChange(val) {
+                                return _this2.handleChange('currentWeight', val);
+                            }, required: true })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 col-sm-12 form-group', label: 'Expected Weight (kg):', htmlFor: 'expectedweight' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'expectedweight', type: 'number' })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'expectedweight', type: 'number', value: expectedWeight, onChange: function onChange(val) {
+                                return _this2.handleChange('expectedWeight', val);
+                            } })
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -53649,12 +54012,16 @@ var PersonalDetails = function (_React$Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 col-sm-12 form-group', label: 'Occupation:', htmlFor: 'occupation', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'occupation', type: 'text', required: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'occupation', type: 'text', value: occupation, onChange: function onChange(val) {
+                                return _this2.handleChange('occupation', val);
+                            }, required: true })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 col-sm-12 form-group', label: 'Employer:', htmlFor: 'employer' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'employer', type: 'text' })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'employer', type: 'text', value: employer, onChange: function onChange(val) {
+                                return _this2.handleChange('employer', val);
+                            } })
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -53663,17 +54030,23 @@ var PersonalDetails = function (_React$Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 form-group', label: 'Are you:', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Male', 'Female'] })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Male', 'Female'], value: gender, onChange: function onChange(val) {
+                                return _this2.handleChange('gender', val);
+                            } })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 form-group', label: 'Are you:', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Left-handed', 'Right-handed'] })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Left-handed', 'Right-handed'], value: hand, onChange: function onChange(val) {
+                                return _this2.handleChange('hand', val);
+                            } })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-12 form-group', label: 'Can you secure your own sponsor? (Not a condition of entry)', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Yes', 'No'], inline: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Yes', 'No'], inline: true, value: ownsponsor, onChange: function onChange(val) {
+                                return _this2.handleChange('ownsponsor', val);
+                            } })
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -53682,16 +54055,16 @@ var PersonalDetails = function (_React$Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 col-sm-12 form-group', label: 'Preferred Fight Name:', htmlFor: 'fightname' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'fightname', type: 'text', placeHolder: 'Leave blank if undecided' })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'fightname', type: 'text', placeHolder: 'Leave blank if undecided', onChange: function onChange(val) {
+                                return _this2.handleChange('fightname', val);
+                            } })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
-                        { className: 'col-md-12 form-group', label: 'Please upload a recent photo of yourself:', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'h1',
-                            { className: 'text-danger' },
-                            'TO DO'
-                        )
+                        { className: 'col-md-12 form-group', label: 'Please upload a recent photo of yourself:', htmlFor: 'photo', required: true },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('input', { id: 'photo', type: 'file', accept: 'image/*', onChange: function onChange(file) {
+                                return _this2.handleImageUpload(file);
+                            }, required: true })
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -53709,6 +54082,18 @@ var PersonalDetails = function (_React$Component) {
                 )
             );
         }
+    }], [{
+        key: 'getDerivedStateFromProps',
+        value: function getDerivedStateFromProps(nextProps, prevState) {
+            var personal = nextProps.formdata.personal;
+
+
+            if (!!personal && prevState != personal) {
+                return nextProps.formdata.personal;
+            }
+
+            return prevState;
+        }
     }]);
 
     return PersonalDetails;
@@ -53717,7 +54102,7 @@ var PersonalDetails = function (_React$Component) {
 /* harmony default export */ __webpack_exports__["a"] = (PersonalDetails);
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53725,6 +54110,8 @@ var PersonalDetails = function (_React$Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_FormControl__ = __webpack_require__(1);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -53738,22 +54125,48 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var EmergencyContact = function (_React$Component) {
     _inherits(EmergencyContact, _React$Component);
 
-    function EmergencyContact() {
+    function EmergencyContact(props) {
         _classCallCheck(this, EmergencyContact);
 
-        return _possibleConstructorReturn(this, (EmergencyContact.__proto__ || Object.getPrototypeOf(EmergencyContact)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (EmergencyContact.__proto__ || Object.getPrototypeOf(EmergencyContact)).call(this, props));
+
+        _this.state = _this.props.formdata.emergency || {
+            firstName: "",
+            lastName: "",
+            email: "",
+            phone1: "",
+            phone2: "",
+            relationship: ""
+        };
+        return _this;
     }
 
     _createClass(EmergencyContact, [{
+        key: 'handleChange',
+        value: function handleChange(key, val) {
+            this.setState(_defineProperty({}, key, val));
+        }
+    }, {
         key: 'handleSubmit',
         value: function handleSubmit(e) {
             e.preventDefault();
-            alert('submit form');
-            // if validates push data to top level state, then move to next tab
+            this.props.updateState('emergency', this.state);
+            this.props.setTabIndex(this.props.tabIndex * 1 + 1);
         }
     }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
+            var _state = this.state,
+                firstName = _state.firstName,
+                lastName = _state.lastName,
+                email = _state.email,
+                phone1 = _state.phone1,
+                phone2 = _state.phone2,
+                relationship = _state.relationship;
+
+
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'form',
                 { onSubmit: this.handleSubmit.bind(this) },
@@ -53763,32 +54176,44 @@ var EmergencyContact = function (_React$Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 col-sm-12 form-group', label: 'First Name:', htmlFor: 'em:firstname', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'em:firstname', type: 'text', required: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'em:firstname', type: 'text', value: firstName, onChange: function onChange(val) {
+                                return _this2.handleChange('firstName', val);
+                            }, required: true })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 col-sm-12 form-group', label: 'Last Name:', htmlFor: 'em:lastname', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'em:lastname', type: 'text', required: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'em:lastname', type: 'text', value: lastName, onChange: function onChange(val) {
+                                return _this2.handleChange('lastName', val);
+                            }, required: true })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 col-sm-12 form-group', label: 'Relationship:', htmlFor: 'em:relationship', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'em:relationship', type: 'text', required: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'em:relationship', type: 'text', value: relationship, onChange: function onChange(val) {
+                                return _this2.handleChange('relationship', val);
+                            }, required: true })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 col-sm-12 form-group', label: 'Email:', htmlFor: 'em:email', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'em:email', type: 'email', required: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'em:email', type: 'email', value: email, onChange: function onChange(val) {
+                                return _this2.handleChange('email', val);
+                            }, required: true })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 col-sm-12 form-group', label: 'Phone 1:', htmlFor: 'em:phone1', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'em:phone1', type: 'tel', required: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'em:phone1', type: 'tel', value: phone1, onChange: function onChange(val) {
+                                return _this2.handleChange('phone1', val);
+                            }, required: true })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-md-6 col-sm-12 form-group', label: 'Phone 2:', htmlFor: 'em:phone2' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'em:phone2', type: 'tel' })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["c" /* Input */], { id: 'em:phone2', type: 'tel', value: phone2, onChange: function onChange(val) {
+                                return _this2.handleChange('phone2', val);
+                            } })
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -53806,6 +54231,18 @@ var EmergencyContact = function (_React$Component) {
                 )
             );
         }
+    }], [{
+        key: 'getDerivedStateFromProps',
+        value: function getDerivedStateFromProps(nextProps, prevState) {
+            var emergency = nextProps.formdata.emergency;
+
+
+            if (!!emergency && prevState != emergency) {
+                return nextProps.formdata.emergency;
+            }
+
+            return prevState;
+        }
     }]);
 
     return EmergencyContact;
@@ -53814,7 +54251,7 @@ var EmergencyContact = function (_React$Component) {
 /* harmony default export */ __webpack_exports__["a"] = (EmergencyContact);
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -53822,6 +54259,8 @@ var EmergencyContact = function (_React$Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_FormControl__ = __webpack_require__(1);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -53835,22 +54274,50 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var SportingExperience = function (_React$Component) {
     _inherits(SportingExperience, _React$Component);
 
-    function SportingExperience() {
+    function SportingExperience(props) {
         _classCallCheck(this, SportingExperience);
 
-        return _possibleConstructorReturn(this, (SportingExperience.__proto__ || Object.getPrototypeOf(SportingExperience)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (SportingExperience.__proto__ || Object.getPrototypeOf(SportingExperience)).call(this, props));
+
+        _this.state = _this.props.formdata.previousSport || {
+            boxingExperience: false,
+            boxingDescribe: "",
+            fitnessLevel: null,
+            otherExperience: "",
+            hobbies: ""
+        };
+        return _this;
     }
 
     _createClass(SportingExperience, [{
+        key: 'handleChange',
+        value: function handleChange(key, val) {
+            console.log(key, val);
+            this.setState(_defineProperty({}, key, val));
+            return null;
+        }
+    }, {
         key: 'handleSubmit',
         value: function handleSubmit(e) {
             e.preventDefault();
-            alert('submit form');
-            // if validates push data to top level state, then move to next tab
+            this.props.updateState('previousSport', this.state);
+            this.props.setTabIndex(this.props.tabIndex * 1 + 1);
         }
     }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
+            var _state = this.state,
+                boxingExperience = _state.boxingExperience,
+                boxingDescribe = _state.boxingDescribe,
+                fitnessLevel = _state.fitnessLevel,
+                hobbies = _state.hobbies,
+                otherExperience = _state.otherExperience;
+
+
+            if (boxingExperience == "No") this.handleChange.bind(this, 'boxingDescribe', null);
+
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'form',
                 { onSubmit: this.handleSubmit.bind(this) },
@@ -53860,23 +54327,43 @@ var SportingExperience = function (_React$Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-12 form-group', label: 'How would you rate you fitness levels?', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ["1", "2", "3", "4", "5"], prefix: 'poor', suffix: 'Excellent', inline: true, required: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ["1", "2", "3", "4", "5"], prefix: 'Poor', suffix: 'Excellent', inline: true,
+                            value: fitnessLevel, onChange: function onChange(val) {
+                                return _this2.handleChange('fitnessLevel', val);
+                            }, required: true
+                        })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-12 form-group', label: 'Have you ever done boxing/kickboxing/martial arts?', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ["Yes", "No"], inline: true, required: true }),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["f" /* TextArea */], { placeHolder: 'Please describe your prior experience...' })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ["Yes", "No"], inline: true, required: true,
+                            value: boxingExperience, onChange: function onChange(val) {
+                                return _this2.handleChange('boxingExperience', val);
+                            }
+                        }),
+                        boxingExperience == "Yes" ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["f" /* TextArea */], { placeHolder: 'Please describe your prior experience...', required: true,
+                            value: boxingDescribe, onChange: function onChange(val) {
+                                return _this2.handleChange('boxingDescribe', val);
+                            }
+                        }) : this.handleChange.bind(this, 'boxingDescribe', null)
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
-                        { className: 'col-12 form-group', label: 'Other Sporting Experience:', htmlFor: 'othersports', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["f" /* TextArea */], { id: 'othersports', required: true })
+                        { className: 'col-12 form-group', label: 'Other Sporting Experience:', htmlFor: 'otherExperience', required: true },
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["f" /* TextArea */], { id: 'otherExperience', required: true,
+                            value: otherExperience, onChange: function onChange(val) {
+                                return _this2.handleChange('otherExperience', val);
+                            }
+                        })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-12 form-group', label: 'Hobbies/interests:', htmlFor: 'hobbies', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["f" /* TextArea */], { id: 'hobbies', required: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["f" /* TextArea */], { id: 'hobbies', required: true,
+                            value: hobbies, onChange: function onChange(val) {
+                                return _this2.handleChange('hobbies', val);
+                            }
+                        })
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -53894,6 +54381,18 @@ var SportingExperience = function (_React$Component) {
                 )
             );
         }
+    }], [{
+        key: 'getDerivedStateFromProps',
+        value: function getDerivedStateFromProps(nextProps, prevState) {
+            var previousSport = nextProps.formdata.previousSport;
+
+
+            if (!!previousSport && prevState != previousSport) {
+                return nextProps.formdata.previousSport;
+            }
+
+            return prevState;
+        }
     }]);
 
     return SportingExperience;
@@ -53902,7 +54401,7 @@ var SportingExperience = function (_React$Component) {
 /* harmony default export */ __webpack_exports__["a"] = (SportingExperience);
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54103,7 +54602,7 @@ var MedicalOne = function (_React$Component) {
 /* harmony default export */ __webpack_exports__["a"] = (MedicalOne);
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54222,7 +54721,7 @@ var MedicalTwo = function (_React$Component) {
 /* harmony default export */ __webpack_exports__["a"] = (MedicalTwo);
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54308,7 +54807,7 @@ var Additional = function (_React$Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Additional);
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -54378,236 +54877,7 @@ var Declaration = function (_React$Component) {
 /* harmony default export */ __webpack_exports__["a"] = (Declaration);
 
 /***/ }),
-/* 96 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-
-
-var ReactError = function (_React$Component) {
-    _inherits(ReactError, _React$Component);
-
-    function ReactError() {
-        _classCallCheck(this, ReactError);
-
-        return _possibleConstructorReturn(this, (ReactError.__proto__ || Object.getPrototypeOf(ReactError)).apply(this, arguments));
-    }
-
-    _createClass(ReactError, [{
-        key: "render",
-        value: function render() {
-            return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                "div",
-                { className: "text-center text-white" },
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-cog fa-7x text-danger fa-pulse slow", "data-fa-transform": "right-6 up-3" }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-cog fa-5x text-dark", "data-fa-transform": "down-4" }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("i", { className: "fas fa-cog fa-10x text-warning fa-pulse slow", "data-fa-transform": "left-6", style: { 'animationDirection': 'reverse' } }),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "h1",
-                    { className: "pt-2 mb-1" },
-                    "Internal Server Error"
-                ),
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                    "span",
-                    null,
-                    "This error was probably our fault. ",
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("br", null),
-                    " Please flick us a message and tell us what page you were trying to visit."
-                )
-            );
-        }
-    }]);
-
-    return ReactError;
-}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
-
-/* harmony default export */ __webpack_exports__["a"] = (ReactError);
-
-/***/ }),
 /* 97 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * JavaScript Cookie v2.2.1
- * https://github.com/js-cookie/js-cookie
- *
- * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
- * Released under the MIT license
- */
-;(function (factory) {
-	var registeredInModuleLoader;
-	if (true) {
-		!(__WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.call(exports, __webpack_require__, exports, module)) :
-				__WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-		registeredInModuleLoader = true;
-	}
-	if (true) {
-		module.exports = factory();
-		registeredInModuleLoader = true;
-	}
-	if (!registeredInModuleLoader) {
-		var OldCookies = window.Cookies;
-		var api = window.Cookies = factory();
-		api.noConflict = function () {
-			window.Cookies = OldCookies;
-			return api;
-		};
-	}
-}(function () {
-	function extend () {
-		var i = 0;
-		var result = {};
-		for (; i < arguments.length; i++) {
-			var attributes = arguments[ i ];
-			for (var key in attributes) {
-				result[key] = attributes[key];
-			}
-		}
-		return result;
-	}
-
-	function decode (s) {
-		return s.replace(/(%[0-9A-Z]{2})+/g, decodeURIComponent);
-	}
-
-	function init (converter) {
-		function api() {}
-
-		function set (key, value, attributes) {
-			if (typeof document === 'undefined') {
-				return;
-			}
-
-			attributes = extend({
-				path: '/'
-			}, api.defaults, attributes);
-
-			if (typeof attributes.expires === 'number') {
-				attributes.expires = new Date(new Date() * 1 + attributes.expires * 864e+5);
-			}
-
-			// We're using "expires" because "max-age" is not supported by IE
-			attributes.expires = attributes.expires ? attributes.expires.toUTCString() : '';
-
-			try {
-				var result = JSON.stringify(value);
-				if (/^[\{\[]/.test(result)) {
-					value = result;
-				}
-			} catch (e) {}
-
-			value = converter.write ?
-				converter.write(value, key) :
-				encodeURIComponent(String(value))
-					.replace(/%(23|24|26|2B|3A|3C|3E|3D|2F|3F|40|5B|5D|5E|60|7B|7D|7C)/g, decodeURIComponent);
-
-			key = encodeURIComponent(String(key))
-				.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent)
-				.replace(/[\(\)]/g, escape);
-
-			var stringifiedAttributes = '';
-			for (var attributeName in attributes) {
-				if (!attributes[attributeName]) {
-					continue;
-				}
-				stringifiedAttributes += '; ' + attributeName;
-				if (attributes[attributeName] === true) {
-					continue;
-				}
-
-				// Considers RFC 6265 section 5.2:
-				// ...
-				// 3.  If the remaining unparsed-attributes contains a %x3B (";")
-				//     character:
-				// Consume the characters of the unparsed-attributes up to,
-				// not including, the first %x3B (";") character.
-				// ...
-				stringifiedAttributes += '=' + attributes[attributeName].split(';')[0];
-			}
-
-			return (document.cookie = key + '=' + value + stringifiedAttributes);
-		}
-
-		function get (key, json) {
-			if (typeof document === 'undefined') {
-				return;
-			}
-
-			var jar = {};
-			// To prevent the for loop in the first place assign an empty array
-			// in case there are no cookies at all.
-			var cookies = document.cookie ? document.cookie.split('; ') : [];
-			var i = 0;
-
-			for (; i < cookies.length; i++) {
-				var parts = cookies[i].split('=');
-				var cookie = parts.slice(1).join('=');
-
-				if (!json && cookie.charAt(0) === '"') {
-					cookie = cookie.slice(1, -1);
-				}
-
-				try {
-					var name = decode(parts[0]);
-					cookie = (converter.read || converter)(cookie, name) ||
-						decode(cookie);
-
-					if (json) {
-						try {
-							cookie = JSON.parse(cookie);
-						} catch (e) {}
-					}
-
-					jar[name] = cookie;
-
-					if (key === name) {
-						break;
-					}
-				} catch (e) {}
-			}
-
-			return key ? jar[key] : jar;
-		}
-
-		api.set = set;
-		api.get = function (key) {
-			return get(key, false /* read as raw */);
-		};
-		api.getJSON = function (key) {
-			return get(key, true /* read as json */);
-		};
-		api.remove = function (key, attributes) {
-			set(key, '', extend(attributes, {
-				expires: -1
-			}));
-		};
-
-		api.defaults = {};
-
-		api.withConverter = init;
-
-		return api;
-	}
-
-	return init(function () {});
-}));
-
-
-/***/ }),
-/* 98 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
