@@ -83,6 +83,7 @@ export default class FighterApplication extends Component {
     // Enable/disable the auto save cookie
     setAutosave(bool) {
         let formdata = this.state.formdata;
+
         if(!bool) {
             formdata = {};
             Cookies.remove('fighterapp');
