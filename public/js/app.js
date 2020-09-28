@@ -54410,6 +54410,8 @@ var SportingExperience = function (_React$Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_FormControl__ = __webpack_require__(1);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -54422,22 +54424,90 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var MedicalOne = function (_React$Component) {
     _inherits(MedicalOne, _React$Component);
 
-    function MedicalOne() {
+    function MedicalOne(props) {
         _classCallCheck(this, MedicalOne);
 
-        return _possibleConstructorReturn(this, (MedicalOne.__proto__ || Object.getPrototypeOf(MedicalOne)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (MedicalOne.__proto__ || Object.getPrototypeOf(MedicalOne)).call(this, props));
+
+        _this.state = _this.props.formdata.medicalOne || {
+            checkboxes: {
+                "HeartDisease": false,
+                "HeartSurgery": false,
+                "HeartAttack": false,
+                "Stroke": false,
+                "Smoking": false,
+                "Cancer": false,
+                "Breathlessness": false,
+                "Epilepsy": false,
+                "ChestPain": false,
+                "IrregularHeartbeat": false,
+                "RespiratoryProblems": false,
+                "JointPain": false,
+                "Surgery": false,
+                "DizzinessOrFainting": false,
+                "HighCholesterol": false,
+                "Hypertension": false,
+                "Other": false
+            },
+            otherExplain: "",
+            handInjuries: false,
+            handInjuriesExplain: "",
+            injuries: false,
+            injuriesExplain: "",
+            medication: false,
+            medicationExplain: ""
+        };
+        return _this;
     }
 
     _createClass(MedicalOne, [{
         key: 'handleSubmit',
         value: function handleSubmit(e) {
             e.preventDefault();
-            alert('submit form');
-            // if validates push data to top level state, then move to next tab
+            this.props.updateState('medicalOne', this.state);
+            this.props.setTabIndex(this.props.tabIndex * 1 + 1);
+        }
+    }, {
+        key: 'handleChange',
+        value: function handleChange(key, val) {
+            this.setState(_defineProperty({}, key, val));
+            return null;
+        }
+    }, {
+        key: 'handleCheckboxChange',
+        value: function handleCheckboxChange(key, val) {
+            var checkboxes = this.state.checkboxes;
+            checkboxes[key] = val;
+            this.setState({ checkboxes: checkboxes });
         }
     }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
+            var _state = this.state,
+                checkboxes = _state.checkboxes,
+                otherExplain = _state.otherExplain,
+                handInjuries = _state.handInjuries,
+                handInjuriesExplain = _state.handInjuriesExplain,
+                injuries = _state.injuries,
+                injuriesExplain = _state.injuriesExplain,
+                medication = _state.medication,
+                medicationExplain = _state.medicationExplain;
+
+
+            var boxes = Object.keys(checkboxes).map(function (p, key) {
+                name = p.replace(/([A-Z])/g, ' $1').trim();
+
+                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                    'div',
+                    { className: 'col-md-4 col-sm-6' },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["a" /* Checkbox */], { id: p, label: name, key: key, onChange: function onChange(val) {
+                            return _this2.handleCheckboxChange(p, val);
+                        } })
+                );
+            });
+
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'form',
                 { onSubmit: this.handleSubmit.bind(this) },
@@ -54457,96 +54527,16 @@ var MedicalOne = function (_React$Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         'div',
                         { className: 'row mx-auto' },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'col-md-4 col-sm-6' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["a" /* Checkbox */], { id: ' ', label: 'Heart Disease' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'col-md-4 col-sm-6' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["a" /* Checkbox */], { id: ' ', label: 'Heart Surgery' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'col-md-4 col-sm-6' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["a" /* Checkbox */], { id: ' ', label: 'Heart Attack' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'col-md-4 col-sm-6' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["a" /* Checkbox */], { id: ' ', label: 'Stroke' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'col-md-4 col-sm-6' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["a" /* Checkbox */], { id: ' ', label: 'Smoking' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'col-md-4 col-sm-6' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["a" /* Checkbox */], { id: ' ', label: 'Cancer' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'col-md-4 col-sm-6' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["a" /* Checkbox */], { id: ' ', label: 'Breathlessness' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'col-md-4 col-sm-6' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["a" /* Checkbox */], { id: ' ', label: 'Epilepsy' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'col-md-4 col-sm-6' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["a" /* Checkbox */], { id: ' ', label: 'Chest Pain' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'col-md-4 col-sm-6' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["a" /* Checkbox */], { id: ' ', label: 'Irregular Heartbeat' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'col-md-4 col-sm-6' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["a" /* Checkbox */], { id: ' ', label: 'Respiratory Problems' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'col-md-4 col-sm-6' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["a" /* Checkbox */], { id: ' ', label: 'Joint Pain' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'col-md-4 col-sm-6' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["a" /* Checkbox */], { id: ' ', label: 'Surgery' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'col-md-4 col-sm-6' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["a" /* Checkbox */], { id: ' ', label: 'Dizziness or Fainting' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'col-md-4 col-sm-6' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["a" /* Checkbox */], { id: ' ', label: 'High Cholesterol' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'col-md-4 col-sm-6' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["a" /* Checkbox */], { id: ' ', label: 'Hypertension' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
-                            'div',
-                            { className: 'col-md-4 col-sm-6' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["a" /* Checkbox */], { id: ' ', label: 'Other' })
-                        ),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
+                        boxes,
+                        checkboxes["Other"] ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                             'div',
                             { className: 'col-12 pt-3 mb-0' },
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["f" /* TextArea */], { placeHolder: 'Please explain....' })
-                        )
+                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["f" /* TextArea */], { placeHolder: 'Please explain....', required: true,
+                                value: otherExplain, onChange: function onChange(val) {
+                                    return _this2.handleChange('otherExplain', val);
+                                }
+                            })
+                        ) : this.handleChange.bind(this, 'otherExplain', null)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -54555,8 +54545,16 @@ var MedicalOne = function (_React$Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-12 form-group', label: 'Have you ever had any hand injuries?', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Yes', 'No'], inline: true }),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["f" /* TextArea */], { className: 'mt-2 form-control', placeHolder: 'Please explain' })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Yes', 'No'], inline: true,
+                            value: handInjuries, onChange: function onChange(val) {
+                                return _this2.handleChange('handInjuries', val);
+                            }, required: true
+                        }),
+                        handInjuries == 'Yes' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["f" /* TextArea */], { className: 'mt-2 form-control', placeHolder: 'Please explain', required: true,
+                            value: handInjuriesExplain, onChange: function onChange(val) {
+                                return _this2.handleChange('handInjuriesExplain', val);
+                            }
+                        }) : this.handleChange.bind(this, 'handInjuriesExplain', null)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -54565,8 +54563,16 @@ var MedicalOne = function (_React$Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-12 form-group', label: 'Have you ever had any significant injuries (especially head injuries)?', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Yes', 'No'], inline: true }),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["f" /* TextArea */], { className: 'mt-2 form-control', placeHolder: 'Please explain' })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Yes', 'No'], inline: true,
+                            value: injuries, onChange: function onChange(val) {
+                                return _this2.handleChange('injuries', val);
+                            }, required: true
+                        }),
+                        injuries == 'Yes' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["f" /* TextArea */], { className: 'mt-2 form-control', placeHolder: 'Please explain', required: true,
+                            value: injuriesExplain, onChange: function onChange(val) {
+                                return _this2.handleChange('injuriesExplain', val);
+                            }
+                        }) : this.handleChange.bind(this, 'injuriesExplain', null)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -54575,8 +54581,16 @@ var MedicalOne = function (_React$Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { className: 'col-12 form-group', label: 'Are you currently taking any medications?', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Yes', 'No'], inline: true }),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["f" /* TextArea */], { className: 'mt-2 form-control', placeHolder: 'Please explain' })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Yes', 'No'], inline: true,
+                            value: medication, onChange: function onChange(val) {
+                                return _this2.handleChange('medication', val);
+                            }, required: true
+                        }),
+                        medication == 'Yes' ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["f" /* TextArea */], { className: 'mt-2 form-control', placeHolder: 'Please explain', required: true,
+                            value: medicationExplain, onChange: function onChange(val) {
+                                return _this2.handleChange('medicationExplain', val);
+                            }
+                        }) : this.handleChange.bind(this, 'medicationExplain', null)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -54593,6 +54607,18 @@ var MedicalOne = function (_React$Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-arrow-circle-right' })
                 )
             );
+        }
+    }], [{
+        key: 'getDerivedStateFromProps',
+        value: function getDerivedStateFromProps(nextProps, prevState) {
+            var medicalOne = nextProps.formdata.medicalOne;
+
+
+            if (!!medicalOne && prevState != medicalOne) {
+                return nextProps.formdata.medicalOne;
+            }
+
+            return prevState;
         }
     }]);
 
