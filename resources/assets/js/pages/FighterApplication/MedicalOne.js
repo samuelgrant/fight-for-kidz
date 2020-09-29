@@ -69,8 +69,8 @@ export default class MedicalOne extends React.Component {
             name = p.replace(/([A-Z])/g, ' $1').trim();
 
             return (
-                <div className="col-md-4 col-sm-6">
-                    <Checkbox id={p} label={name} key={key} onChange={(val) => this.handleCheckboxChange(p, val)}/>
+                <div className="col-md-4 col-sm-6" key={key}>
+                    <Checkbox id={p} label={name} checked={checkboxes[p]}  onChange={(val) => this.handleCheckboxChange(p, val)}/>
                 </div>
             )
         });

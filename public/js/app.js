@@ -54501,8 +54501,8 @@ var MedicalOne = function (_React$Component) {
 
                 return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                     'div',
-                    { className: 'col-md-4 col-sm-6' },
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["a" /* Checkbox */], { id: p, label: name, key: key, onChange: function onChange(val) {
+                    { className: 'col-md-4 col-sm-6', key: key },
+                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["a" /* Checkbox */], { id: p, label: name, checked: checkboxes[p], onChange: function onChange(val) {
                             return _this2.handleCheckboxChange(p, val);
                         } })
                 );
