@@ -54637,6 +54637,8 @@ var MedicalOne = function (_React$Component) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_FormControl__ = __webpack_require__(1);
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -54649,22 +54651,57 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var MedicalTwo = function (_React$Component) {
     _inherits(MedicalTwo, _React$Component);
 
-    function MedicalTwo() {
+    function MedicalTwo(props) {
         _classCallCheck(this, MedicalTwo);
 
-        return _possibleConstructorReturn(this, (MedicalTwo.__proto__ || Object.getPrototypeOf(MedicalTwo)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (MedicalTwo.__proto__ || Object.getPrototypeOf(MedicalTwo)).call(this, props));
+
+        _this.state = _this.props.formdata.medicalTwo || {
+            heartCondition: false,
+            chestPain: false,
+            recentChestPain: false,
+            dizziness: false,
+            jointProblems: false,
+            medication: false,
+            knockedOut: false,
+            knockedOutExplain: "",
+            prohibited: false,
+            prohibitedExplain: ""
+        };
+        return _this;
     }
 
     _createClass(MedicalTwo, [{
         key: 'handleSubmit',
         value: function handleSubmit(e) {
             e.preventDefault();
-            alert('submit form');
-            // if validates push data to top level state, then move to next tab
+            this.props.updateState('medicalTwo', this.state);
+            this.props.setTabIndex(this.props.tabIndex * 1 + 1);
+        }
+    }, {
+        key: 'handleChange',
+        value: function handleChange(key, val) {
+            this.setState(_defineProperty({}, key, val));
+            return null;
         }
     }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
+            var _state = this.state,
+                heartCondition = _state.heartCondition,
+                chestPain = _state.chestPain,
+                recentChestPain = _state.recentChestPain,
+                dizziness = _state.dizziness,
+                jointProblems = _state.jointProblems,
+                medication = _state.medication,
+                knockedOut = _state.knockedOut,
+                knockedOutExplain = _state.knockedOutExplain,
+                prohibited = _state.prohibited,
+                prohibitedExplain = _state.prohibitedExplain;
+
+
             return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                 'form',
                 { onSubmit: this.handleSubmit.bind(this) },
@@ -54679,44 +54716,82 @@ var MedicalTwo = function (_React$Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { label: '1. Has a physician ever said that you have a heart condition and recommended only medically supervised activity?', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Yes', 'No'], inline: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Yes', 'No'], inline: true,
+                            value: heartCondition, onChange: function onChange(val) {
+                                return _this2.handleChange('heartCondition', val);
+                            }, required: true
+                        })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { label: '2. Do you have chest pain that\u2019s brought on by physical activity?', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Yes', 'No'], inline: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Yes', 'No'], inline: true,
+                            value: chestPain, onChange: function onChange(val) {
+                                return _this2.handleChange('chestPain', val);
+                            }, required: true
+                        })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { label: '3. Have you developed chest pain in the past month?', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Yes', 'No'], inline: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Yes', 'No'], inline: true,
+                            value: recentChestPain, onChange: function onChange(val) {
+                                return _this2.handleChange('recentChestPain', val);
+                            }, required: true
+                        })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { label: '4. Have you on one or more occasions lost consciousness or fallen over as a result of dizziness?', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Yes', 'No'], inline: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Yes', 'No'], inline: true,
+                            value: dizziness, onChange: function onChange(val) {
+                                return _this2.handleChange('dizziness', val);
+                            }, required: true
+                        })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { label: '5. Do you have a bone or joint problem that could be aggravated by the proposed physical activity?', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Yes', 'No'], inline: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Yes', 'No'], inline: true,
+                            value: jointProblems, onChange: function onChange(val) {
+                                return _this2.handleChange('jointProblems', val);
+                            }, required: true
+                        })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { label: '6. Has a physician ever recommended medication for your blood pressure or a heart condition?', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Yes', 'No'], inline: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Yes', 'No'], inline: true,
+                            value: medication, onChange: function onChange(val) {
+                                return _this2.handleChange('medication', val);
+                            }, required: true
+                        })
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { label: '7. Have you ever been knocked out or concussed?', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Yes', 'No'], inline: true }),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["f" /* TextArea */], { className: 'mt-2 form-control', placeHolder: 'Please explain...', required: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Yes', 'No'], inline: true,
+                            value: knockedOut, onChange: function onChange(val) {
+                                return _this2.handleChange('knockedOut', val);
+                            }, required: true
+                        }),
+                        knockedOut == "Yes" ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["f" /* TextArea */], _defineProperty({ className: 'mt-2 form-control', placeHolder: 'Please explain...', required: true,
+                            value: knockedOutExplain, onChange: function onChange(val) {
+                                return _this2.handleChange('knockedOutExplain', val);
+                            } }, 'required', true)) : this.handleChange.bind(this, 'knockedOutExplain', null)
                     ),
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
                         __WEBPACK_IMPORTED_MODULE_1__components_FormControl__["b" /* FormGroup */],
                         { label: '8. Are you aware, through your own experience or a physician\u2019s advice, of any other reason that would prohibit you from exercising without medical supervision?', required: true },
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Yes', 'No'], inline: true }),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["f" /* TextArea */], { className: 'mt-2 form-control', placeHolder: 'Please explain...', required: true })
+                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["d" /* Radio */], { options: ['Yes', 'No'], inline: true,
+                            value: prohibited, onChange: function onChange(val) {
+                                return _this2.handleChange('prohibited', val);
+                            }, required: true
+                        }),
+                        prohibited == "Yes" ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_FormControl__["f" /* TextArea */], _defineProperty({ className: 'mt-2 form-control', placeHolder: 'Please explain...', required: true,
+                            value: prohibitedExplain, onChange: function onChange(val) {
+                                return _this2.handleChange('prohibitedExplain', val);
+                            } }, 'required', true)) : this.handleChange.bind(this, 'prohibitedExplain', null)
                     )
                 ),
                 __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(
@@ -54738,6 +54813,18 @@ var MedicalTwo = function (_React$Component) {
                     __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement('i', { className: 'fas fa-arrow-circle-right' })
                 )
             );
+        }
+    }], [{
+        key: 'getDerivedStateFromProps',
+        value: function getDerivedStateFromProps(nextProps, prevState) {
+            var medicalTwo = nextProps.formdata.medicalTwo;
+
+
+            if (!!medicalTwo && prevState != medicalTwo) {
+                return nextProps.formdata.medicalTwo;
+            }
+
+            return prevState;
         }
     }]);
 
