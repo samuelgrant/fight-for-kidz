@@ -23,14 +23,14 @@ export default class MedicalOne extends React.Component {
                 "DizzinessOrFainting": false,
                 "HighCholesterol": false,
                 "Hypertension": false,
-                "Other": false            
+                "Other": false
             },
             otherExplain: "",
             handInjuries: false,
             handInjuriesExplain: "",
             injuries: false,
             injuriesExplain: "",
-            medication: false, 
+            medication: false,
             medicationExplain: ""
         }
     }
@@ -59,18 +59,27 @@ export default class MedicalOne extends React.Component {
     handleCheckboxChange(key, val) {
         let checkboxes = this.state.checkboxes;
         checkboxes[key] = val;
-        this.setState({checkboxes})
+        this.setState({ checkboxes })
     }
 
     render() {
-        const { checkboxes, otherExplain, handInjuries, handInjuriesExplain, injuries, injuriesExplain, medication, medicationExplain} = this.state;
+        const {
+            checkboxes,
+            otherExplain,
+            handInjuries,
+            handInjuriesExplain,
+            injuries,
+            injuriesExplain,
+            medication,
+            medicationExplain
+        } = this.state;
 
         const boxes = Object.keys(checkboxes).map((p, key) => {
             name = p.replace(/([A-Z])/g, ' $1').trim();
 
             return (
                 <div className="col-md-4 col-sm-6" key={key}>
-                    <Checkbox id={p} label={name} checked={checkboxes[p]}  onChange={(val) => this.handleCheckboxChange(p, val)}/>
+                    <Checkbox id={p} label={name} checked={checkboxes[p]} onChange={(val) => this.handleCheckboxChange(p, val)} />
                 </div>
             )
         });
@@ -84,13 +93,13 @@ export default class MedicalOne extends React.Component {
 
                         {boxes}
 
-                        { checkboxes["Other"] ? (
-                        <div className="col-12 pt-3 mb-0">
-                            <TextArea placeHolder="Please explain...." required
-                                value={otherExplain} onChange={(val) => this.handleChange('otherExplain', val)}
-                            />
-                        </div>
-                        ) : this.handleChange.bind(this, 'otherExplain', null) }
+                        {checkboxes["Other"] ? (
+                            <div className="col-12 pt-3 mb-0">
+                                <TextArea placeHolder="Please explain...." required
+                                    value={otherExplain} onChange={(val) => this.handleChange('otherExplain', val)}
+                                />
+                            </div>
+                        ) : this.handleChange.bind(this, 'otherExplain', null)}
 
                     </div>
                 </fieldset>
@@ -98,7 +107,7 @@ export default class MedicalOne extends React.Component {
                 <div className="row application-section">
                     <FormGroup className="col-12 form-group" label="Have you ever had any hand injuries?" required>
                         <Radio options={['Yes', 'No']} inline
-                            value={handInjuries} onChange={(val) => this.handleChange('handInjuries', val)}  required
+                            value={handInjuries} onChange={(val) => this.handleChange('handInjuries', val)} required
                         />
                         {
                             handInjuries == 'Yes' ? (
@@ -106,14 +115,14 @@ export default class MedicalOne extends React.Component {
                                     value={handInjuriesExplain} onChange={(val) => this.handleChange('handInjuriesExplain', val)}
                                 />
                             ) : this.handleChange.bind(this, 'handInjuriesExplain', null)
-                        }                        
+                        }
                     </FormGroup>
                 </div>
 
                 <div className="row application-section">
                     <FormGroup className="col-12 form-group" label="Have you ever had any significant injuries (especially head injuries)?" required>
-                        <Radio options={['Yes', 'No']} inline 
-                            value={injuries} onChange={(val) => this.handleChange('injuries', val)}  required
+                        <Radio options={['Yes', 'No']} inline
+                            value={injuries} onChange={(val) => this.handleChange('injuries', val)} required
                         />
                         {
                             injuries == 'Yes' ? (
@@ -121,14 +130,14 @@ export default class MedicalOne extends React.Component {
                                     value={injuriesExplain} onChange={(val) => this.handleChange('injuriesExplain', val)}
                                 />
                             ) : this.handleChange.bind(this, 'injuriesExplain', null)
-                        }     
+                        }
                     </FormGroup>
                 </div>
 
                 <div className="row application-section">
                     <FormGroup className="col-12 form-group" label="Are you currently taking any medications?" required>
-                        <Radio options={['Yes', 'No']} inline 
-                            value={medication} onChange={(val) => this.handleChange('medication', val)}  required
+                        <Radio options={['Yes', 'No']} inline
+                            value={medication} onChange={(val) => this.handleChange('medication', val)} required
                         />
                         {
                             medication == 'Yes' ? (
@@ -136,7 +145,7 @@ export default class MedicalOne extends React.Component {
                                     value={medicationExplain} onChange={(val) => this.handleChange('medicationExplain', val)}
                                 />
                             ) : this.handleChange.bind(this, 'medicationExplain', null)
-                        }     
+                        }
                     </FormGroup>
                 </div>
 
