@@ -106,7 +106,7 @@ export default class MedicalOne extends React.Component {
 
                 <div className="row application-section">
                     <FormGroup className="col-12 form-group" label="Have you ever had any hand injuries?" required>
-                        <Radio options={['Yes', 'No']} inline
+                        <Radio id='handInjuries' options={['Yes', 'No']} inline
                             value={handInjuries} onChange={(val) => this.handleChange('handInjuries', val)} required
                         />
                         {
@@ -121,7 +121,7 @@ export default class MedicalOne extends React.Component {
 
                 <div className="row application-section">
                     <FormGroup className="col-12 form-group" label="Have you ever had any significant injuries (especially head injuries)?" required>
-                        <Radio options={['Yes', 'No']} inline
+                        <Radio id='injuries' options={['Yes', 'No']} inline
                             value={injuries} onChange={(val) => this.handleChange('injuries', val)} required
                         />
                         {
@@ -136,7 +136,7 @@ export default class MedicalOne extends React.Component {
 
                 <div className="row application-section">
                     <FormGroup className="col-12 form-group" label="Are you currently taking any medications?" required>
-                        <Radio options={['Yes', 'No']} inline
+                        <Radio id='medication' options={['Yes', 'No']} inline
                             value={medication} onChange={(val) => this.handleChange('medication', val)} required
                         />
                         {
