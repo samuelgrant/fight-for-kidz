@@ -1,22 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- Detection of IE 9 and lower -->
-<!--[if IE]>
-	<style>
-    #browser-alert{display:block;}
-  </style>
-<![endif]-->
-
 <head>
 	<meta charset="utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  	<meta name="description" content="Fight for Kidz is a non for profit charity based in Invercargill that rasies funds for Southland Kids.">
-    <meta name="author" content="Mitchell Quarrie, Samuel Grant, Samuel Jackson">
-    <meta name="theme-color" content="#DC3545"/>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-  
-  <title>Fight for Kidz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  @include('layouts.dynamic-metadata')
 
   <!-- Bootstrap core CSS -->
   <!-- Latest compiled and minified CSS -->
@@ -40,12 +27,12 @@
   <script src="/js/libraries/twitter-bootstrap-wizard.js"></script>
 
   <link rel="stylesheet"  href="/css/slick.css"/>
-  <script  src="/js/libraries/slick.min.js"></script>    
+  <script src="/js/libraries/slick.min.js"></script>
 
   <!-- Jquery Validation -->
   <script src="/js/libraries/jquery-validate.js"></script>
   <script src="/js/libraries/additional-methods.js"></script>
-  
+
   <!-- Custom scripts for this template -->
   <script src="/js/custom.js" defer></script>
   <script src="/js/app-form.js" defer></script>
@@ -53,3 +40,9 @@
   <!-- React and Compiled JS -->
   <script src="/js/app.js" defer></script>
 </head>
+<!-- Detection of IE 9 and lower -->
+<!--[if IE]>
+	<style>
+    #browser-alert{display:block;}
+  </style>
+<![endif]-->
