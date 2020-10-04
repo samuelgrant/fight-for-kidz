@@ -19,7 +19,7 @@ if(Request::is('contact-us') || Request::is('apply-to-fight') || Request::is('ev
 <meta property="og:url" content="{{Request::url()}}">
 <meta property="og:title" content="{{$meta->seo_title ?? 'Fight for Kidz'}}">
 <meta property="og:description" content="{{$meta->seo_description}}">
-<meta property="og:image" content="{{env('APP_URL')}}/storage/images/f4k_logo_noyear.png">
+<meta property="og:image" content="{{env('APP_URL')}}/storage/images/f4k_logo_seo.png">
 <meta property="og:type" content="website">
 
 <!--- SEO: Twitter --->
