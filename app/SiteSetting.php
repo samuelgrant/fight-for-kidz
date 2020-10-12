@@ -18,7 +18,12 @@ class SiteSetting extends Model
         return SiteSetting::get(['seo_author', 'seo_description', 'seo_keywords', 'seo_theme_color'])->first();
     }
 
-    // TODO: Proper comment - TLDR: Only used for event pages, contact us & apply to fight
+    /**
+     * Returns the altered metadata for a given page
+     * Only works for 'contact us', 'apply to fight' & 'event/*'
+     * @param string:request_url
+     * @return json{page_meta_data}
+     */
     public static function getPageMeta($request_url) {
         $meta = SiteSetting::getSiteMeta();
 

@@ -12,6 +12,8 @@
 
 <!-- Custom fonts for this template-->
 <script src="/vendor/font-awesome/js/all.js" defer></script>
+<!-- Import React -->
+<script src="/js/app.js" defer></script>
 
 <!-- Page level plugin CSS-->
 <link href="/css/dataTables-bootstrap4.min.css" rel="stylesheet">

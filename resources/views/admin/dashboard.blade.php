@@ -94,9 +94,9 @@
     {{-- Site settings card --}}
     <div class="col-lg-6 pb-4">
         <div class="card border-primary h-100">
-            
+
             <div class="card-header bg-primary text-white">
-                <h4 class="text-white d-inline-block mb-0">Other Website Settings</h4>                
+                <h4 class="text-white d-inline-block mb-0">Other Website Settings</h4>
                 <span class="float-right"><button class="btn btn-primary" data-target="#siteSettingsModal" onclick="setSettingsModal({{$settings->display_merch}}, '{{$settings->about_us}}')" id="editSettingsButton" data-toggle="modal"><i class="fas fa-cogs"></i>&nbsp; Edit</button></span>
             </div>
 
@@ -109,7 +109,7 @@
                         <h5>About Us</h5>
                         <p id="aboutUsText" class="text-justify">{{$settings->about_us}}</p>
                     </div>
-    
+
                     <div class="col-lg-4">
                         <h5>Main Page Image</h5>
                         <img class="img-fluid" src="/storage/images/mainPagePhoto.jpg?{{filemtime(storage_path('app/public/images/mainPagePhoto.jpg'))}}" alt="Main Page Image">
@@ -117,7 +117,7 @@
                 </div>
 
             </div>
-            
+
         </div>
     </div>
     {{-- End of site settings card --}}
@@ -125,13 +125,13 @@
     {{-- File uploads card --}}
     <div class="col-lg-6 pb-4">
         <div class="card border-primary h-100">
-            
+
             <div class="card-header bg-primary text-white">
-                <h4 class="text-white d-inline-block mb-0">File Uploads</h4>                
+                <h4 class="text-white d-inline-block mb-0">File Uploads</h4>
                 <span class="float-right"><button class="btn btn-primary" data-target="#uploadModal" data-toggle="modal"><i class="fas fa-plus"></i>&nbsp; Upload File</button></span>
             </div>
 
-            <div class="card-body">               
+            <div class="card-body">
 
                 @if(count(App\Document::all()) > 0)
                 <table class="table table-striped table-sm">
@@ -165,13 +165,13 @@
 
                 </table>
                 @else
-                
+
                 <h5 class="text-center mt-5">There are no files to display!</h5>
-                
+
                 @endif
 
             </div>
-            
+
         </div>
     </div>
     {{-- End of file uploads card --}}
@@ -180,49 +180,62 @@
 
 {{-- site settings modal --}}
 <div id="siteSettingsModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="Site Settings" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
                 <h4 class="modal-title">Website Settings</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
             </div>
             <div class="modal-body">
-                <form action="{{route('admin.updateSettings')}}" method="POST" enctype="multipart/form-data">
 
-                <div class="form-group w-100 text-center">
-                    <h5 class="mb-3">Enable Merchandise Page</h5>
-                    <label class="switch align-middle">
-                            <input name="displayMerch" id="displayMerchCheckbox" type="checkbox" {{$settings->display_merch ? 'checked' : ''}}>
-                            <span class="slider round"></span>
-                    </label>
-                </div>                
-                
-                <div class="form-group">
-                    <label class="mb-1" for="aboutUs"><h5>About Us</h5></label>
-                    <textarea class="form-control" rows="5" name="aboutUs" id="aboutUs">{{$settings->about_us}}</textarea>
-                </div>
+                <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                      <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home Page</a>
+                      <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-metadata" role="tab" aria-controls="nav-metadata" aria-selected="false">Metadata</a>
+                    </div>
+                  </nav>
+                  <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                        <form action="{{route('admin.updateSettings')}}" method="POST" enctype="multipart/form-data">
+                            <div class="form-group w-100 text-center">
+                                <h5 class="mb-3">Enable Merchandise Page</h5>
+                                <label class="switch align-middle">
+                                        <input name="displayMerch" id="displayMerchCheckbox" type="checkbox" {{$settings->display_merch ? 'checked' : ''}}>
+                                        <span class="slider round"></span>
+                                </label>
+                            </div>
 
-                <div class="form-group">
+                            <div class="form-group">
+                                <label class="mb-1" for="aboutUs"><h5>About Us</h5></label>
+                                <textarea class="form-control" rows="5" name="aboutUs" id="aboutUs">{{$settings->about_us}}</textarea>
+                            </div>
 
-                    <h5>About Us Photo</h5>
+                            <div class="form-group">
 
-                    {{-- Image preview --}}
-                    <img src="/storage/images/mainPagePhoto.jpg" class="img-fluid mb-2" id="imgPreview">
-                    <br>
-                    <label class="btn btn-info btn-sm btn-file">
-                        <i class="fas fa-upload"></i> Select Image
-                        <input type="file" name="mainPagePhoto" id="mainPagePhoto" class="d-none">
-                    </label> 
-                    <small>file must be jpg less than 2MB</small>             
-                </div>
+                                <h5>About Us Photo</h5>
 
-                {{method_field('PATCH')}}
-                <div class="float-right">
-                    <button type="button" data-dismiss="modal" class="btn btn-danger">Cancel</button>
-                    <button class="btn btn-primary" type="submit">Save Changes</button>
-                </div>     
-                @csrf               
-                </form>
+                                {{-- Image preview --}}
+                                <img src="/storage/images/mainPagePhoto.jpg" class="img-fluid mb-2" id="imgPreview">
+                                <br>
+                                <label class="btn btn-info btn-sm btn-file">
+                                    <i class="fas fa-upload"></i> Select Image
+                                    <input type="file" name="mainPagePhoto" id="mainPagePhoto" class="d-none">
+                                </label>
+                                <small>file must be jpg less than 2MB</small>
+                            </div>
+
+                            {{method_field('PATCH')}}
+                            <div class="float-right">
+                                <button type="button" data-dismiss="modal" class="btn btn-danger">Cancel</button>
+                                <button class="btn btn-primary" type="submit">Save Changes</button>
+                            </div>
+                            @csrf
+                        </form>
+                    </div>
+                    <div class="tab-pane fade" id="nav-metadata" role="tabpanel" aria-labelledby="nav-metadata-tab">
+                        <div id="ranchor_metadata"></div>
+                    </div>
+                  </div>
             </div>
         </div>
     </div>
@@ -239,7 +252,7 @@
             </div>
             <div class="modal-body">
                 <form action="{{route('admin.uploadFile')}}" method="POST" enctype="multipart/form-data">
-            
+
                 <div class="form-group">
                     <label class="btn btn-success" for="fileUpload">
                         Select File
@@ -265,8 +278,8 @@
                 <div class="float-right">
                     <button type="button" data-dismiss="modal" class="btn btn-danger">Cancel</button>
                     <button class="btn btn-primary" type="submit">Save File</button>
-                </div>     
-                @csrf               
+                </div>
+                @csrf
                 </form>
             </div>
         </div>
@@ -284,7 +297,7 @@
                 </div>
                 <div class="modal-body">
                     <form id="fileUpdateForm" action="" data-action="{{route('admin.updateFile', ['docID' => null])}}" method="POST">
-                    
+
                     <div class="form-group">
                         <label for="updateDisplaySelect">Where should this file be downloadable from?</label>
                         <select id="updateDisplaySelect" name="location" class="form-control">
@@ -295,13 +308,13 @@
                                 <option value="Table Enquiry">Table Enquiry Page</option>
                         </select>
                     </div>
-    
+
                     <div class="float-right">
                         <button type="button" data-dismiss="modal" class="btn btn-danger">Cancel</button>
                         <button class="btn btn-primary" type="submit">Save Changes</button>
-                    </div>     
-                    @csrf  
-                    @method('PATCH')             
+                    </div>
+                    @csrf
+                    @method('PATCH')
                     </form>
                 </div>
             </div>
