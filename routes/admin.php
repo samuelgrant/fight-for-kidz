@@ -113,7 +113,8 @@ Route::delete('/event-management/questions/{questionID}', 'admin\QuestionManagem
 Route::patch('/event-management/questions/{questionID}', 'admin\QuestionManagementController@updateQuestion')->name('admin.eventManagement.updateQuestion');
 
 // Site settings functions
-Route::patch('/dashboard/settings', 'admin\SiteSettingsController@update')->name('admin.updateSettings');
+Route::get('/dashboard/settings', 'admin\SiteSettingsController@get')->name('admin.homeSettings');
+Route::patch('/dashboard/settings', 'admin\SiteSettingsController@update')->name('admin.updateHomeSettings');
 
 // Site settings Metadata
 Route::get('/dashboard/settings/metadata', 'admin\MetaSettingsController@get')->name('admin.metaSettings');

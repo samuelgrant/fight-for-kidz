@@ -190,13 +190,14 @@
 
                 <nav>
                     <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                      <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home Page</a>
+                      <a class="nav-link" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home Page</a>
+                      <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home-o" role="tab" aria-controls="nav-home-o" aria-selected="true">Home (old)</a>
                       <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-metadata" role="tab" aria-controls="nav-metadata" aria-selected="false">Metadata</a>
                     </div>
                   </nav>
                   <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                        <form action="{{route('admin.updateSettings')}}" method="POST" enctype="multipart/form-data">
+                    <div class="tab-pane fade show active" id="nav-home-o" role="tabpanel" aria-labelledby="nav-homeo-tab">
+                        <form action="{{route('admin.updateHomeSettings')}}" method="POST" enctype="multipart/form-data">
                             <div class="form-group w-100 text-center">
                                 <h5 class="mb-3">Enable Merchandise Page</h5>
                                 <label class="switch align-middle">
@@ -232,8 +233,11 @@
                             @csrf
                         </form>
                     </div>
+                    <div class="tab-pane fade" id="nav-home" role="tab-panel" aria-labelledby="nav-home-tab">
+                        <div id="ranchor_home_settings"></div>
+                    </div>
                     <div class="tab-pane fade" id="nav-metadata" role="tabpanel" aria-labelledby="nav-metadata-tab">
-                        <div id="ranchor_metadata"></div>
+                        <div id="ranchor_metadata_settings"></div>
                     </div>
                   </div>
             </div>

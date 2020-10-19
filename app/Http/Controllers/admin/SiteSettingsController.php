@@ -10,10 +10,14 @@ use Illuminate\Support\Facades\Storage;
 
 class SiteSettingsController extends Controller
 {
+    public function get() {
+        return response() ->json(SiteSetting::getHomeSettings());
+    }
+
     // Update settings
     public function update(Request $request){
 
-        
+
         $this->validate($request, [
             'aboutUs' => 'required|string|max:1000',
             'mainPagePhoto' => 'mimes:jpg,jpeg|max:2000',
@@ -22,7 +26,7 @@ class SiteSettingsController extends Controller
         $settings = SiteSetting::getSettings();
 
         $settings->about_us = $request->input('aboutUs');
-        $settings->display_merch = $request->input('displayMerch') ? true : false;        
+        $settings->display_merch = $request->input('displayMerch') ? true : false;
         $settings->setMainPhoto($request->file('mainPagePhoto'));
         $settings->save();
 
@@ -33,7 +37,7 @@ class SiteSettingsController extends Controller
 
     }
 
-    // Following three methods relate to files uploaded by admins for 
+    // Following three methods relate to files uploaded by admins for
     // download by the public.
 
     public function storeFile(Request $request){
@@ -45,7 +49,7 @@ class SiteSettingsController extends Controller
         ]);
 
         // get file from request
-        $file = $request->file('uploaded');      
+        $file = $request->file('uploaded');
 
         // get file name and extension
         $fileName = $file->getClientOriginalName();
@@ -59,7 +63,7 @@ class SiteSettingsController extends Controller
         $doc->originalName = $fileName; // for the a tag contents
         $doc->filename = $uniqueName; // for identifying the actual file
         $doc->save();
-        
+
         session()->flash('success', 'File uploaded successfully');
 
         return redirect()->back();
@@ -92,7 +96,7 @@ class SiteSettingsController extends Controller
         return redirect()->back();
     }
 
-    // For the update file modal 
+    // For the update file modal
     public function getFile($docID){
 
         $doc = Document::find($docID);

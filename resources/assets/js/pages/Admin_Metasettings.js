@@ -7,7 +7,7 @@ import Wrapper from '../components/Wrapper';
 
 const url = '/a/dashboard/settings/metadata';
 
-export default class Metasettings extends Component {
+export default class MetaSettings extends Component {
     constructor(props) {
         super();
 
@@ -19,8 +19,8 @@ export default class Metasettings extends Component {
     }
 
     componentDidMount() {
-        $.ajax({url}).done((metadata) => {
-            this.setState({...metadata, ready: true})
+        $.ajax({url}).done((res) => {
+            this.setState({...res, ready: true})
         });
     }
 
@@ -82,6 +82,6 @@ export default class Metasettings extends Component {
     }
 }
 
-if(document.getElementById('ranchor_metadata')) {
-    render(<Metasettings />, document.getElementById('ranchor_metadata'));
+if(document.getElementById('ranchor_metadata_settings')) {
+    render(<MetaSettings />, document.getElementById('ranchor_metadata_settings'));
 }

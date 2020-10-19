@@ -23,4 +23,5 @@ $.ajaxSetup({
  */
 
 import './pages/ContactUs';
-import './pages/Admin_Metasettings';
+import './pages/Admin_MetaSettings';
+import './pages/Admin_HomeSettings';

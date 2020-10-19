@@ -9,12 +9,16 @@ use Illuminate\Support\Facades\Storage;
 
 class SiteSetting extends Model
 {
-    public static function getSettings(){
+    public static function getSettings() {
         return SiteSetting::all()->first();
     }
 
+    public static function getHomeSettings() {
+        return SiteSetting::get(['about_us', 'auction', 'display_merch', 'merch'])->first();
+    }
+
     // Returns the configurable site SEO Metadata
-    public static function getSiteMeta(){
+    public static function getSiteMeta() {
         return SiteSetting::get(['seo_author', 'seo_description', 'seo_keywords', 'seo_theme_color'])->first();
     }
 
@@ -64,7 +68,7 @@ class SiteSetting extends Model
         return $meta;
     }
 
-    public function setMainPhoto($image){
+    public function setMainPhoto($image) {
 
         if(isset($image)){
             $image->storeAs('public/images', 'mainPagePhoto.jpg');
