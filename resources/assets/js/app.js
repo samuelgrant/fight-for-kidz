@@ -23,3 +23,4 @@ $.ajaxSetup({
  */
 
 import './pages/ContactUs';
+import './pages/Admin_Metasettings';
