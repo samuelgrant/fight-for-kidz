@@ -6,7 +6,7 @@ export default class Wrapper extends Component {
 
     /**
      * Creates the required ref
-     * so we can call the alert() 
+     * so we can call the alert()
      * and responseAlert() methods
      */
     componentDidMount() {
@@ -33,7 +33,7 @@ export default class Wrapper extends Component {
         return (
             <div className={this.props.className || null}>
                 {
-                    this.props.loading ? 
+                    this.props.loading ?
                     <div className="sk-chase d-block mx-auto pt-5 mt-5">
                         <div className="sk-chase-dot"></div>
                         <div className="sk-chase-dot"></div>
@@ -41,9 +41,9 @@ export default class Wrapper extends Component {
                         <div className="sk-chase-dot"></div>
                         <div className="sk-chase-dot"></div>
                         <div className="sk-chase-dot"></div>
-                    </div> 
+                    </div>
                     : this.props.children
-                    
+
                 }
 
                 <ToastContainer

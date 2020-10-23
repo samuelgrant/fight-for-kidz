@@ -115,7 +115,11 @@ Route::patch('/event-management/questions/{questionID}', 'admin\QuestionManageme
 // Site settings functions
 Route::patch('/dashboard/settings', 'admin\SiteSettingsController@update')->name('admin.updateSettings');
 
-// File Uploads 
+// Site settings Metadata
+Route::get('/dashboard/settings/metadata', 'admin\MetaSettingsController@get')->name('admin.metaSettings');
+Route::patch('/dashboard/settings/metadata', 'admin\MetaSettingsController@update')->name('admin.updateMetaSettings');
+
+// File Uploads
 Route::post('/dashboard/uploads', 'admin\SiteSettingsController@storeFile')->name('admin.uploadFile');
 Route::patch('/dashboard/uploads/{docID}', 'admin\SiteSettingsController@updateFile')->name('admin.updateFile');
 Route::delete('/dashboard/uploads/{docID}', 'admin\SiteSettingsController@deleteFile')->name('admin.deleteFile');

@@ -9,13 +9,13 @@ const AutoComplete = [
     "off", "on", "email", "tel", "username", "new-password", "one-time-code",
     // Org fields
     "organization-title", "organization",
-    // Name fields    
+    // Name fields
     "name", "honorific-prefix", "given-name", "additional-name", "family-name",
     // Address fields
     "street-address", "address-line1", "address-line2", "address-level4", "address-level3", "address-level2", "address-level1", "country", "country-name", "postal-code",
 ]
 
-const Type = ["email", "password", "url", "number", "tel"];
+const Type = ["color", "email", "password", "url", "number", "tel"];
 
 // checkbox
 export class Checkbox extends Component {
@@ -136,7 +136,7 @@ export class Input extends Component {
         const { id, className, name, placeHolder,
             autoFocus, disabled, minLength, maxLength, readOnly, required // attribute properties
         } = this.props;
-        
+
         return (
             <input id={id || null}
                 className={className || 'form-control'}
@@ -144,7 +144,7 @@ export class Input extends Component {
                 name={name || null}
                 autoComplete={this.getAutoComplete()}
                 placeholder={placeHolder || null}
-                                
+
                 // Attribute properties
                 autoFocus={!!autoFocus}
                 disabled={!!disabled}
@@ -152,7 +152,7 @@ export class Input extends Component {
                 maxLength={maxLength || null}
                 readOnly={!!readOnly}
                 required={!!required}
-                                
+
                 // Controlled props
                 onChange={this.handleChange.bind(this)}
                 onPaste={this.handleChange.bind(this)}
@@ -226,7 +226,7 @@ export class TextArea extends Component {
             value
         }, () => {
             let onChange = this.props.onChange;
-            
+
             // Send the value to the (optional) callback
             if(isFunction(onChange)){
                 onChange(value);
@@ -264,7 +264,7 @@ export class TextArea extends Component {
                     className={className || 'form-control'}
                     name={name || null}
                     placeholder={placeHolder || null}
-                    
+
                     // Attribute properties
                     autoFocus={!!autoFocus}
                     disabled={!!disabled}
