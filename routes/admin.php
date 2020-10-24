@@ -113,11 +113,12 @@ Route::delete('/event-management/questions/{questionID}', 'admin\QuestionManagem
 Route::patch('/event-management/questions/{questionID}', 'admin\QuestionManagementController@updateQuestion')->name('admin.eventManagement.updateQuestion');
 
 // Site settings functions
-Route::patch('/dashboard/settings', 'admin\SiteSettingsController@update')->name('admin.updateSettings');
+Route::get('/site-settings/home', 'admin\SiteSettingsController@homePage')->name('admin.getHomeSettings');
+Route::patch('/site-settings/home', 'admin\SiteSettingsController@updateHomePage')->name('admin.updateHomeSettings');
 
 // Site settings Metadata
-Route::get('/dashboard/settings/metadata', 'admin\MetaSettingsController@get')->name('admin.metaSettings');
-Route::patch('/dashboard/settings/metadata', 'admin\MetaSettingsController@update')->name('admin.updateMetaSettings');
+Route::get('/site-settings/metadata', 'admin\MetaSettingsController@get')->name('admin.metaSettings');
+Route::patch('/site-settings/metadata', 'admin\MetaSettingsController@update')->name('admin.updateMetaSettings');
 
 // File Uploads
 Route::post('/dashboard/uploads', 'admin\SiteSettingsController@storeFile')->name('admin.uploadFile');

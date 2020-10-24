@@ -13,8 +13,13 @@ class SiteSetting extends Model
         return SiteSetting::all()->first();
     }
 
+    // Returns the public
+    public static function getHomePage() {
+        return SiteSetting::get(['about_us', 'display_merch', 'facebook_url'])->first();
+    }
+
     // Returns the configurable site SEO Metadata
-    public static function getSiteMeta(){
+    public static function getSiteMeta() {
         return SiteSetting::get(['seo_author', 'seo_description', 'seo_keywords', 'seo_theme_color'])->first();
     }
 

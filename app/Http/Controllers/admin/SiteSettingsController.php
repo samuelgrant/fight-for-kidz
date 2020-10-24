@@ -10,10 +10,17 @@ use Illuminate\Support\Facades\Storage;
 
 class SiteSettingsController extends Controller
 {
-    // Update settings
-    public function update(Request $request){
-
+    public function homePage() {
+        $settings = SiteSetting::getHomePage();
+        if(!$settings['display_merch']) {
+            $settings['display_merch'] = false;
+        }
         
+        return response()->json($settings);
+    }
+
+    // Update settings
+    public function update(Request $request){        
         $this->validate($request, [
             'aboutUs' => 'required|string|max:1000',
             'mainPagePhoto' => 'mimes:jpg,jpeg|max:2000',

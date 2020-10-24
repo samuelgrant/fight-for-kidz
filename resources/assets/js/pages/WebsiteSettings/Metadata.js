@@ -1,13 +1,12 @@
-import React, {Component} from 'react';
-import { render } from 'react-dom';
+import React from 'react';
 
-import { FormGroup, Input } from '../components/FormControl';
-import Button from '../components/Button';
-import Wrapper from '../components/Wrapper';
+import { FormGroup, Input } from '../../components/FormControl';
+import Button from '../../components/Button';
+import Wrapper from '../../components/Wrapper';
 
-const url = '/a/dashboard/settings/metadata';
+const url = '/a/site-settings/metadata';
 
-export default class Metasettings extends Component {
+export default class MetaSettings extends React.Component {
     constructor(props) {
         super();
 
@@ -18,9 +17,12 @@ export default class Metasettings extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    componentDidMount() {
-        $.ajax({url}).done((metadata) => {
-            this.setState({...metadata, ready: true})
+    componentDidMount() { this.fetchData() };
+    
+
+    fetchData() {
+        $.ajax({url}).done((settings) => {
+            this.setState({...settings, ready: true})
         });
     }
 
@@ -56,7 +58,7 @@ export default class Metasettings extends Component {
 
         return (
             <Wrapper AlertRef={Alert => (this.Alert = Alert)}>
-                <form onSubmit={this.handleSubmit}>
+                <form className="pt-3" onSubmit={this.handleSubmit}>
                     <FormGroup htmlFor="seo_author" label="Author" >
                         <Input id="seo_author" type="text" value={seo_author} onChange={this.handleChange.bind(this, 'seo_author')} />
                     </FormGroup>
@@ -73,15 +75,15 @@ export default class Metasettings extends Component {
                         <Input id="seo_theme_color" className="form-control d-inline" type="color" value={seo_theme_color}  onChange={this.handleChange.bind(this, 'seo_theme_color')} />
                     </FormGroup>
 
-                    <Button className="btn btn-primary" pending={pending} type="submit">
-                        <i className="fas fa-check-circle" /> Save Changes
-                    </Button>
+                    <div className="text-right">
+                        <Button className="btn btn-sm btn-danger mx-1" onClick={() => this.fetchData()}>Cancel</Button>
+                        
+                        <Button className="btn btn-sm btn-success" pending={pending} type="submit">
+                            <i className="fas fa-check-circle" /> Save Changes
+                        </Button>
+                    </div>
                 </form>
             </Wrapper>
         );
     }
-}
-
-if(document.getElementById('ranchor_metadata')) {
-    render(<Metasettings />, document.getElementById('ranchor_metadata'));
 }

@@ -186,57 +186,7 @@
                 <h4 class="modal-title">Website Settings</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span class="text-white" aria-hidden="true">&times;</span></button>
             </div>
-            <div class="modal-body">
-
-                <nav>
-                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                      <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Home Page</a>
-                      <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-metadata" role="tab" aria-controls="nav-metadata" aria-selected="false">Metadata</a>
-                    </div>
-                  </nav>
-                  <div class="tab-content" id="nav-tabContent">
-                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                        <form action="{{route('admin.updateSettings')}}" method="POST" enctype="multipart/form-data">
-                            <div class="form-group w-100 text-center">
-                                <h5 class="mb-3">Enable Merchandise Page</h5>
-                                <label class="switch align-middle">
-                                        <input name="displayMerch" id="displayMerchCheckbox" type="checkbox" {{$settings->display_merch ? 'checked' : ''}}>
-                                        <span class="slider round"></span>
-                                </label>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="mb-1" for="aboutUs"><h5>About Us</h5></label>
-                                <textarea class="form-control" rows="5" name="aboutUs" id="aboutUs">{{$settings->about_us}}</textarea>
-                            </div>
-
-                            <div class="form-group">
-
-                                <h5>About Us Photo</h5>
-
-                                {{-- Image preview --}}
-                                <img src="/storage/images/mainPagePhoto.jpg" class="img-fluid mb-2" id="imgPreview">
-                                <br>
-                                <label class="btn btn-info btn-sm btn-file">
-                                    <i class="fas fa-upload"></i> Select Image
-                                    <input type="file" name="mainPagePhoto" id="mainPagePhoto" class="d-none">
-                                </label>
-                                <small>file must be jpg less than 2MB</small>
-                            </div>
-
-                            {{method_field('PATCH')}}
-                            <div class="float-right">
-                                <button type="button" data-dismiss="modal" class="btn btn-danger">Cancel</button>
-                                <button class="btn btn-primary" type="submit">Save Changes</button>
-                            </div>
-                            @csrf
-                        </form>
-                    </div>
-                    <div class="tab-pane fade" id="nav-metadata" role="tabpanel" aria-labelledby="nav-metadata-tab">
-                        <div id="ranchor_metadata"></div>
-                    </div>
-                  </div>
-            </div>
+            <div id="ranchor_site-settings" class="modal-body">/div>
         </div>
     </div>
 </div>

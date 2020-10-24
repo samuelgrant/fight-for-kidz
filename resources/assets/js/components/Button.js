@@ -24,8 +24,8 @@ export default class Button extends Component {
     }
 
     handleClick() {
-        if(this.props.cb) {
-            this.props.cb();
+        if(this.props.onClick) {
+            this.props.onClick();
         }
     }
 

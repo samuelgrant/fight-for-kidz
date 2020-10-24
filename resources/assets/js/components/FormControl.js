@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Rselect from 'react-select';
 import { render } from 'react-dom';
 import { isFunction } from '../helper';
+import { Callbacks } from 'jquery';
 
 // Dev docs: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
 const AutoComplete = [
@@ -23,29 +24,32 @@ export class Checkbox extends Component {
         super(props);
 
         this.state = {
-            checked: this.props.checked || false
+            checked: false
         };
+
+        this.handleChange = this.handleChange.bind(this);
     }
 
-    _handleChange() {
-        this.setState({
-            checked: !this.state.checked
-        }, () => {
-            const onChange = this.props.onChange;
-            if(isFunction(onChange)) {
-                onChange(this.state.checked)
-            }
-        });
+    static getDerivedStateFromProps(props, state) {
+        if(props.checked != state.checked) {
+            return { checked: props.checked }
+        }
+        
+        return state;
+    }
+
+    handleChange() {
+        this.props.onChange(!this.state.checked);
     }
 
     render() {
         const {id, label, noSelector} = this.props;
 
         if(!id) throw ("An id is required");
-
+        
         return (
             <div className={`custom-control custom-checkbox ${noSelector ? 'noselect' :''}`}>
-                <input type="checkbox" className="custom-control-input" id={id} checked={this.state.checked} onChange={this._handleChange.bind(this)} />
+                <input type="checkbox" className="custom-control-input" id={id} checked={this.state.checked} onChange={this.handleChange} />
                 <label className="custom-control-label" htmlFor={id}>{label}</label>
             </div>
         )
