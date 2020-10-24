@@ -76,7 +76,9 @@ export default class MetaSettings extends React.Component {
                     </FormGroup>
 
                     <div className="text-right">
-                        <Button className="btn btn-sm btn-danger mx-1" onClick={() => this.fetchData()}>Cancel</Button>
+                        <Button className="btn btn-sm btn-danger mx-1" onClick={() => this.fetchData()}>
+                            <i className="fas fa-undo" /> Reset
+                        </Button>
                         
                         <Button className="btn btn-sm btn-success" pending={pending} type="submit">
                             <i className="fas fa-check-circle" /> Save Changes

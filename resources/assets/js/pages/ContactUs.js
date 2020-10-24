@@ -6,8 +6,6 @@ import Captcha from '../components/reCaptcha';
 import Wrapper from '../components/Wrapper';
 import $ from 'jquery';
 
-
-
 const partials = {
     general: General,
     table: Table,
