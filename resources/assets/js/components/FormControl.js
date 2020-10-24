@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import Rselect from 'react-select';
-import { render } from 'react-dom';
 import { isFunction } from '../helper';
-import { Callbacks } from 'jquery';
+const select_style = {
+    option: (styles, state) => ({
+        ...styles,
+        backgroundColor: state.isSelected ? "#49505736" : "",
+    })
+}
 
-// Dev docs: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete
+// Dev docs: https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete 
 const AutoComplete = [
     // Generic fields
     "off", "on", "email", "tel", "username", "new-password", "one-time-code",
@@ -39,7 +43,11 @@ export class Checkbox extends Component {
     }
 
     handleChange() {
-        this.props.onChange(!this.state.checked);
+        const { onChange } = this.props;
+        
+        if(isFunction(onChange)){
+            onChange(!this.state.checked)
+        }
     }
 
     render() {
@@ -84,24 +92,28 @@ export class Input extends Component {
         }
     }
 
+    static getDerivedStateFromProps(props, state) {
+        if (state.value != props.value) {
+            return {value: props.value || ""};
+        }
+
+        return state;
+    }
+
     handleChange(e) {
-        let value = e.target.value;
+        const { onChange } = this.props;
 
-        this.setState({value}, () => {
-            let onChange = this.props.onChange;
-
-            // Send the value to the (optional) callback
-            if(isFunction(onChange)){
-                onChange(value);
-            }
-        });
+        if(isFunction(onChange)){
+            onChange(e.target.value);
+        }
     }
 
     getAutoComplete() {
         // Check against our allowed auto completes
-        if (AutoComplete.includes(this.props.autoComplete))
+        if (AutoComplete.includes(this.props.autoComplete)) {
             return this.props.autoComplete;
-
+        }
+            
         // Guess the probable setting or return off
         switch (this.props.autoComplete) {
             case "phone":
@@ -116,25 +128,18 @@ export class Input extends Component {
     }
 
     getType() {
-        if (!this.props.type)
+        if (!this.props.type) {
             throw 'You must provide a type for the input field';
+        }
 
         // Check against our allowed types
-        if (Type.includes(this.props.type))
+        if (Type.includes(this.props.type)) {
             return this.props.type;
+        }
 
         // No type found? - use TEXT as default
         return 'text';
     }
-
-    componentWillReceiveProps(nextProps) {
-        if (this.state.value != nextProps.value) {
-            this.setState({
-                value: nextProps.value
-            });
-        }
-    }
-
 
     render() {
         const { id, className, name, placeHolder,
@@ -196,7 +201,7 @@ export class Select extends Component {
         return  <Rselect className={className}
             name={name}
             placeHolder={placeHolder}
-            style={style}
+            styles={select_style}
             required={required}
 
             Attribute properties
@@ -219,36 +224,27 @@ export class TextArea extends Component {
         super(props);
 
         this.state = {
-            value: this.props.value
+            value: this.props.value || ""
         }
+    }
+
+    static getDerivedStateFromProps(props, state) {
+        if (state.value != props.value) {
+            return {value: props.value || ""};
+        }
+
+        return state;
     }
 
     handleChange(e) {
-        let value = e.target.value;
+        const { onChange } = this.props;
 
-        this.setState({
-            value
-        }, () => {
-            let onChange = this.props.onChange;
-
-            // Send the value to the (optional) callback
-            if(isFunction(onChange)){
-                onChange(value);
-            }
-        });
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (this.state.value != nextProps.value) {
-            this.setState({
-                value: nextProps.value
-            });
+        if(isFunction(onChange)) {
+            onChange(e.target.value || "");
         }
     }
 
-    getCharCount() {
-        return this.state.value && this.state.value.length ? this.state.value.length : 0
-    }
+    getCharCount() {  return this.state.value && this.state.value.length ? this.state.value.length : 0 }
 
     render() {
         const { id, className, name, placeHolder,
