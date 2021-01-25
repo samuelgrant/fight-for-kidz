@@ -78,15 +78,15 @@ export default class PersonalDetails extends React.Component {
 
                 <div className="row application-section">
                     <FormGroup className="col-md-6 form-group" label="Are you:" required>
-                        <Radio options={['Male', 'Female']} value={gender} onChange={(val) => this.handleChange('gender', val)} />
+                        <Radio id="gender" options={['Male', 'Female']} value={gender} onChange={(val) => this.handleChange('gender', val)} required />
                     </FormGroup>
 
                     <FormGroup className="col-md-6 form-group" label="Are you:" required>
-                        <Radio options={['Left-handed', 'Right-handed']} value={hand} onChange={(val) => this.handleChange('hand', val)} />
+                        <Radio id="hand" options={['Left-handed', 'Right-handed']} value={hand} onChange={(val) => this.handleChange('hand', val)} required />
                     </FormGroup>
 
                     <FormGroup className="col-md-12 form-group" label="Can you secure your own sponsor? (Not a condition of entry)" required>
-                        <Radio options={['Yes', 'No']} inline  value={ownsponsor} onChange={(val) => this.handleChange('ownsponsor', val)} />
+                        <Radio id="ownsponsor" options={['Yes', 'No']} inline  value={ownsponsor} onChange={(val) => this.handleChange('ownsponsor', val)} required />
                     </FormGroup>
                 </div>
 

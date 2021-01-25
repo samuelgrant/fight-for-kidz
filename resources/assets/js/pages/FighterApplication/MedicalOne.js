@@ -7,22 +7,22 @@ export default class MedicalOne extends React.Component {
 
         this.state = this.props.formdata.medicalOne || {
             checkboxes: {
+                "Breathlessness": false,
+                "Cancer": false,
+                "ChestPain": false,
+                "DizzinessOrFainting": false,
+                "Epilepsy": false,
+                "HeartAttack": false,
                 "HeartDisease": false,
                 "HeartSurgery": false,
-                "HeartAttack": false,
-                "Stroke": false,
-                "Smoking": false,
-                "Cancer": false,
-                "Breathlessness": false,
-                "Epilepsy": false,
-                "ChestPain": false,
-                "IrregularHeartbeat": false,
-                "RespiratoryProblems": false,
-                "JointPain": false,
-                "Surgery": false,
-                "DizzinessOrFainting": false,
                 "HighCholesterol": false,
                 "Hypertension": false,
+                "IrregularHeartbeat": false,
+                "JointPain": false,
+                "RespiratoryProblems": false,
+                "Smoking": false,
+                "Stroke": false,
+                "Surgery": false,
                 "Other": false
             },
             otherExplain: "",
@@ -78,7 +78,7 @@ export default class MedicalOne extends React.Component {
             name = p.replace(/([A-Z])/g, ' $1').trim();
 
             return (
-                <div className="col-md-4 col-sm-6" key={key}>
+                <div className="col-md-6 col-sm-12" key={key}>
                     <Checkbox id={p} label={name} checked={checkboxes[p]} onChange={(val) => this.handleCheckboxChange(p, val)} />
                 </div>
             )
