@@ -28,8 +28,6 @@ fieldset {
 * ------------------------- */
 ul.steps {
     border-left: 3px solid rgba(242, 242, 242, 0.4);
-    // Active color
-    //border-left: 3px solid rgba(100, 161, 157, 0.4);
 }
 
 .steps li {
@@ -46,23 +44,25 @@ ul.steps {
     transition: ease-in-out 0.5s;
 }
 
-.steps li.current {
+.steps li.current:before {
     color: #64A19D;
+
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    content: '\f0a9';
 }
 
 .steps li.done::before {
-    font-family: 'Font Awesome 5 Free';
-    content: "\f058";
-    visibility: visible;
-    font-weight: 900;
-
-    margin-right: 4px;
     color: #28A745;
+
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    content: "\f058";    
 }
 
 .steps li::before {
     font-family: "Font Awesome 5 Free";
     font-weight: 900;
     content: '\f111';
-    margin-right: 4px;
+    margin-right: 10px;
 }
