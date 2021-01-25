@@ -1,5 +1,6 @@
 import React from 'react';
 import { Checkbox, FormGroup } from '../../components/FormControl';
+import ProgressButtos from './ProgressButtons';
 
 export default class Declaration extends React.Component {
     constructor(props) {
@@ -60,6 +61,9 @@ export default class Declaration extends React.Component {
                 <button className="btn btn-sm btn-success d-block mx-auto mb-5">
                     <i className="fas fa-check-circle" /> Submit Form
                 </button>
+
+                <ProgressButtos nextText="Submit Application" nextIcon={<i className="fas fa-check-circle" />}
+                    handleBack={() => this.props.setTabIndex(this.props.tabIndex -1) } />
             </form>
         )
     }

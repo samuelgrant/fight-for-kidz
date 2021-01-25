@@ -1,5 +1,6 @@
 import React from 'react';
 import { Checkbox, TextArea, FormGroup, Radio } from '../../components/FormControl'
+import ProgressButtos from './ProgressButtons';
 
 export default class MedicalOne extends React.Component {
     constructor(props) {
@@ -149,14 +150,7 @@ export default class MedicalOne extends React.Component {
                     </FormGroup>
                 </div>
 
-                <button className="btn btn-sm btn-dark float-left"
-                    onClick={this.props.setTabIndex.bind(this, this.props.tabIndex - 1)}>
-                    <i className="fas fa-arrow-circle-left" /> Previous
-                </button>
-
-                <button className="btn btn-sm btn-info float-right" type="submit">
-                    Next <i className="fas fa-arrow-circle-right" />
-                </button>
+                <ProgressButtos handleBack={() => this.props.setTabIndex(this.props.tabIndex -1) } />
             </form>
         )
     }
