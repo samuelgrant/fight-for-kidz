@@ -54,10 +54,9 @@ class ProgressBar extends React.Component {
         return (
             <React.Fragment>
                 <p>Application Progress:</p>
-                <div className="progress">
-                    <div className="progress-bar bg-info" role="progressbar" style={{width: value*100/outof + '%'}} aria-valuenow={value*100/outof} aria-valuemin="0" aria-valuemax="100">
-                        {Math.ceil(value*100/outof) + '%'}
-                    </div>
+                <div className="progress" style={{'position': 'relative'}}>
+                    <div className="progress-bar bg-info" role="progressbar" style={{width: value*100/outof + '%'}} aria-valuenow={value*100/outof} aria-valuemin="0" aria-valuemax="100"/>
+                    <span style={{'position': 'absolute', 'width': '100%', 'textAlign': 'center', 'color': 'black'}}>{value} of {outof}</span>
                 </div>
             </React.Fragment>
         )

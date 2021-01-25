@@ -91,10 +91,11 @@ export default class ContactInformation extends React.Component {
                     </FormGroup>
                 </div>
 
-                <button className="btn btn-sm btn-info float-left" type="button"
+                <button className="btn btn-sm btn-dark float-left" type="button"
                     onClick={this.props.setTabIndex.bind(this, this.props.tabIndex-1)}>
                     <i className="fas fa-arrow-circle-left"/> Previous
                 </button>
+
                 <button className="btn btn-sm btn-info float-right" type="submit">
                     Next <i className="fas fa-arrow-circle-right"/>
                 </button>

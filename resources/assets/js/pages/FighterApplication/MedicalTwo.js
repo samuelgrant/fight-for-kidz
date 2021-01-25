@@ -59,43 +59,43 @@ export default class MedicalTwo extends React.Component {
 
                 <div className="application-section">
                     <FormGroup label="1. Has a physician ever said that you have a heart condition and recommended only medically supervised activity?" required>
-                        <Radio options={['Yes', 'No']} inline
+                        <Radio id="heartCondition" options={['Yes', 'No']} inline
                             value={heartCondition} onChange={(val) => this.handleChange('heartCondition', val)} required
                         />
                     </FormGroup>
 
                     <FormGroup label="2. Do you have chest pain that’s brought on by physical activity?" required>
-                        <Radio options={['Yes', 'No']} inline
+                        <Radio id="chestPain" options={['Yes', 'No']} inline
                             value={chestPain} onChange={(val) => this.handleChange('chestPain', val)} required
                         />
                     </FormGroup>
 
                     <FormGroup label="3. Have you developed chest pain in the past month?" required>
-                        <Radio options={['Yes', 'No']} inline
+                        <Radio id="recentChestPain" options={['Yes', 'No']} inline
                             value={recentChestPain} onChange={(val) => this.handleChange('recentChestPain', val)} required
                         />
                     </FormGroup>
 
                     <FormGroup label="4. Have you on one or more occasions lost consciousness or fallen over as a result of dizziness?" required>
-                        <Radio options={['Yes', 'No']} inline
+                        <Radio id="dizziness" options={['Yes', 'No']} inline
                             value={dizziness} onChange={(val) => this.handleChange('dizziness', val)} required
                         />
                     </FormGroup>
 
                     <FormGroup label="5. Do you have a bone or joint problem that could be aggravated by the proposed physical activity?" required>
-                        <Radio options={['Yes', 'No']} inline
+                        <Radio id="jointProblems" options={['Yes', 'No']} inline
                             value={jointProblems} onChange={(val) => this.handleChange('jointProblems', val)} required
                         />
                     </FormGroup>
 
                     <FormGroup label="6. Has a physician ever recommended medication for your blood pressure or a heart condition?" required>
-                        <Radio options={['Yes', 'No']} inline
+                        <Radio id="medication" options={['Yes', 'No']} inline
                             value={medication} onChange={(val) => this.handleChange('medication', val)} required
                         />
                     </FormGroup>
 
                     <FormGroup label="7. Have you ever been knocked out or concussed?" required>
-                        <Radio options={['Yes', 'No']} inline
+                        <Radio id="knockedOut" options={['Yes', 'No']} inline
                             value={knockedOut} onChange={(val) => this.handleChange('knockedOut', val)} required
                         />
                         {
@@ -108,7 +108,7 @@ export default class MedicalTwo extends React.Component {
                     </FormGroup>
 
                     <FormGroup label="8. Are you aware, through your own experience or a physician’s advice, of any other reason that would prohibit you from exercising without medical supervision?" required>
-                        <Radio options={['Yes', 'No']} inline
+                        <Radio id="prohibited" options={['Yes', 'No']} inline
                             value={prohibited} onChange={(val) => this.handleChange('prohibited', val)} required
                         />
                         {
@@ -121,12 +121,15 @@ export default class MedicalTwo extends React.Component {
                     </FormGroup>
                 </div>
 
-                <h6>If you answered “yes” to any of these eight questions you should consult your Physician before participation in any physical training can begin.</h6>
+                <div className="alert alert-info">
+                    If you answered “yes” to any of these eight questions you should consult your Physician before participation in any physical training can begin.
+                </div>
 
-                <button className="btn btn-sm btn-info float-left"
+                <button className="btn btn-sm btn-dark float-left"
                     onClick={this.props.setTabIndex.bind(this, this.props.tabIndex - 1)}>
                     <i className="fas fa-arrow-circle-left" /> Previous
                 </button>
+
                 <button className="btn btn-sm btn-info float-right" type="submit">
                     Next <i className="fas fa-arrow-circle-right" />
                 </button>

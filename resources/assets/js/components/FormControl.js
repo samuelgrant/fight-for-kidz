@@ -307,7 +307,6 @@ export class Radio extends Component {
 
     render() {
         const { id, inline, options, prefix, suffix } = this.props;
-
         return (
             <div>
                 { options.map((option, key) => {
