@@ -13,6 +13,7 @@ import MedicalOne from './FighterApplication/MedicalOne';
 import MedicalTwo from './FighterApplication/MedicalTwo';
 import Additional from './FighterApplication/Additional';
 import Declaration from './FighterApplication/Declaration';
+import { max } from 'lodash';
 
 /** Define the order of the tabs */
 const tabs = {
@@ -63,6 +64,7 @@ export default class FighterApplication extends Component {
                 this.setState({
                     eventdata,
                     formdata,
+                    maxIndex: 0,
                     _ready: true
                 });
             }),
@@ -104,7 +106,14 @@ export default class FighterApplication extends Component {
 
     // Change the application tab
     setTabIndex(tabIndex) {
-        this.setState({tabIndex});
+        // Track the maxIndex value so we can stop the user
+        // from jumping ahead
+        let maxIndex = this.state.maxIndex;
+        if(tabIndex > maxIndex) {
+            maxIndex = tabIndex;
+        }
+        
+        this.setState({tabIndex, maxIndex});
     }
 
     render() {
@@ -121,13 +130,14 @@ export default class FighterApplication extends Component {
             <div className="row">
                 <div className="col-auto">
                     <Tablist tabs={tabs}
+                        maxIndex={this.state.maxIndex}
                         setTabIndex={this.handleSetTabIndex}
                         tabIndex={this.state.tabIndex}
                     />
                 </div>
 
                 <div className="col">
-                    <h4 className="pb-4">{Partial.name.replace(/([A-Z])/g, ' $1').trim()}</h4>
+                    <h4 className="pb-2">{Partial.name.replace(/([A-Z])/g, ' $1').trim()}</h4>
                     <p>A red asterisk (<span className="font-weight-bold text-danger">*</span>) indicates a required field.</p>
                     <hr />
                     <Partial formdata={formdata}

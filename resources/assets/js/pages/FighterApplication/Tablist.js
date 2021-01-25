@@ -1,34 +1,43 @@
 import React from 'react';
 
 export default class Tablist extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.handleClick = this.handleClick.bind(this);
+    }
+
     getClasses(index) {
-        const { tabs, tabIndex } = this.props;
+        const { tabs, maxIndex, tabIndex } = this.props;
 
         let classes = [];
         if (index == 0) classes.push('first');
         else if (index == (Object.keys(tabs).length - 1)) classes.push('last');
 
         if (index == tabIndex) classes.push('current')
+        else if (index > maxIndex) classes.push('disabled')
         else if (index < tabIndex) classes.push('done')
 
         return classes.join(' ');
     }
 
-    getName(s) {
-        return s.replace(/([A-Z])/g, ' $1').trim();
+    handleClick(tabIndex) {
+        // Do not handle the click if the tab item is disabled
+        if (tabIndex <= this.props.maxIndex) {
+            this.props.setTabIndex(tabIndex);
+        }
     }
 
     render() {
-        const { tabs, setTabIndex, tabIndex } = this.props;
+        const { tabs, tabIndex } = this.props;
 
         let navs = [];
         Object.keys(tabs).forEach((key) => {
-           navs.push(
-                <li role="tab" aria-disabled="false" key={key}
-                    className={this.getClasses(key) || null}
-                    onClick={setTabIndex.bind(this, key)}
-                >
-                    {this.getName(tabs[key].name)}
+            let name = tabs[key].name.replace(/([A-Z])/g, ' $1').trim();
+            
+            navs.push(
+                <li role="tab" key={key} className={this.getClasses(key) || null} onClick={() => this.handleClick(key)}>
+                    {name.trim()}
                 </li>
             )
         });

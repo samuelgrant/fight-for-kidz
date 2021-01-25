@@ -66,3 +66,8 @@ ul.steps {
     content: '\f111';
     margin-right: 10px;
 }
+
+.steps li.disabled {
+    cursor: not-allowed;
+    color: unset;
+}
