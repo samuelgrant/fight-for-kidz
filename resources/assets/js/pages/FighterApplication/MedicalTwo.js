@@ -40,6 +40,7 @@ export default class MedicalTwo extends React.Component {
         this.setState({ [key]: val })
         return null;
     }
+
     render() {
         const {
             heartCondition,
@@ -104,7 +105,7 @@ export default class MedicalTwo extends React.Component {
                                 <TextArea className="mt-2 form-control" placeHolder="Please explain..." required
                                     value={knockedOutExplain} onChange={(val) => this.handleChange('knockedOutExplain', val)} required
                                 />
-                            ) : this.handleChange.bind(this, 'knockedOutExplain', null)
+                            ) : null
                         }
                     </FormGroup>
 
@@ -117,7 +118,7 @@ export default class MedicalTwo extends React.Component {
                                 <TextArea className="mt-2 form-control" placeHolder="Please explain..." required
                                     value={prohibitedExplain} onChange={(val) => this.handleChange('prohibitedExplain', val)} required
                                 />
-                            ) : this.handleChange.bind(this, 'prohibitedExplain', null)
+                            ) : null
                         }
                     </FormGroup>
                 </div>

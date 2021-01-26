@@ -26,9 +26,7 @@ export default class SportingExperience extends React.Component {
     }
 
     handleChange(key, val) {
-        console.log(key, val)
         this.setState({[key]: val})
-        return null;
     }
 
     handleSubmit(e) {
@@ -60,7 +58,7 @@ export default class SportingExperience extends React.Component {
                                 <TextArea placeHolder="Please describe your prior experience..." required
                                     value={boxingDescribe} onChange={(val) => this.handleChange('boxingDescribe', val)}
                                 />
-                            ) : this.handleChange.bind(this, 'boxingDescribe', null)
+                            ) : null
                         }
                     </FormGroup>
 

@@ -54,7 +54,6 @@ export default class MedicalOne extends React.Component {
 
     handleChange(key, val) {
         this.setState({ [key]: val })
-        return null;
     }
 
     handleCheckboxChange(key, val) {
@@ -91,17 +90,17 @@ export default class MedicalOne extends React.Component {
                     <legend className="ml-3">Previous History</legend>
                     <h6 className="ml-4">Which conditions have you had in the past?</h6>
                     <div className="row mx-auto">
-
                         {boxes}
 
-                        {checkboxes["Other"] ? (
-                            <div className="col-12 pt-3 mb-0">
-                                <TextArea placeHolder="Please explain...." required
-                                    value={otherExplain} onChange={(val) => this.handleChange('otherExplain', val)}
-                                />
-                            </div>
-                        ) : this.handleChange.bind(this, 'otherExplain', null)}
-
+                        {
+                            checkboxes["Other"] ? (
+                                <div className="col-12 pt-3 mb-0">
+                                    <TextArea placeHolder="Please explain...." required
+                                        value={otherExplain} onChange={(val) => this.handleChange('otherExplain', val)}
+                                    />
+                                </div>
+                            ) : null
+                        }
                     </div>
                 </fieldset>
 
@@ -115,7 +114,7 @@ export default class MedicalOne extends React.Component {
                                 <TextArea className="mt-2 form-control" placeHolder="Please explain" required
                                     value={handInjuriesExplain} onChange={(val) => this.handleChange('handInjuriesExplain', val)}
                                 />
-                            ) : this.handleChange.bind(this, 'handInjuriesExplain', null)
+                            ) : null
                         }
                     </FormGroup>
                 </div>
@@ -130,7 +129,7 @@ export default class MedicalOne extends React.Component {
                                 <TextArea className="mt-2 form-control" placeHolder="Please explain" required
                                     value={injuriesExplain} onChange={(val) => this.handleChange('injuriesExplain', val)}
                                 />
-                            ) : this.handleChange.bind(this, 'injuriesExplain', null)
+                            ) : null
                         }
                     </FormGroup>
                 </div>
@@ -145,7 +144,7 @@ export default class MedicalOne extends React.Component {
                                 <TextArea className="mt-2 form-control" placeHolder="Please explain" required
                                     value={medicationExplain} onChange={(val) => this.handleChange('medicationExplain', val)}
                                 />
-                            ) : this.handleChange.bind(this, 'medicationExplain', null)
+                            ) : null
                         }
                     </FormGroup>
                 </div>

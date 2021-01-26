@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormGroup, Radio, TextArea } from '../../components/FormControl';
+import ProgressButtos from './ProgressButtons';
 
 const cq = {
     0: 'customZero',
@@ -55,7 +56,6 @@ export default class Additional extends React.Component {
                 <div className="row application-section">
                     {                      
                         this.props.customQuestions.map((question, key) => {
-                            console.log(key);
                             return <CustomQuestion id={key} question={question} value={this.state[cq[key]]} onChange={this.handleChange.bind(this, cq[key])} key={key} />
                         })
                     }

@@ -53,15 +53,6 @@ export default class Declaration extends React.Component {
                     </div>
                 </div>
 
-                <button className="btn btn-sm btn-dark float-left" type="button"
-                    onClick={this.props.setTabIndex.bind(this, this.props.tabIndex-1)}>
-                    <i className="fas fa-arrow-circle-left"/> Previous
-                </button>
-                
-                <button className="btn btn-sm btn-success d-block mx-auto mb-5">
-                    <i className="fas fa-check-circle" /> Submit Form
-                </button>
-
                 <ProgressButtos nextText="Submit Application" nextIcon={<i className="fas fa-check-circle" />}
                     handleBack={() => this.props.setTabIndex(this.props.tabIndex -1) } />
             </form>
