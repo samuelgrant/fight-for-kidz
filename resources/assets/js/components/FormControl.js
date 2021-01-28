@@ -318,6 +318,7 @@ export class Radio extends Component {
 
                         <input id={`${id}:${option}`}
                             className="form-check-input"
+                            name={id || null}
                             type="radio"
                             value={option}
                             checked={option.toLowerCase() == (this.state.value || "").toLowerCase()}

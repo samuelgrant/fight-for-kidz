@@ -44,13 +44,13 @@ export default class SportingExperience extends React.Component {
             <form onSubmit={this.handleSubmit.bind(this)}>
                 <div className="row application-section">
                     <FormGroup className="col-12 form-group" label="How would you rate you fitness levels?" required>
-                        <Radio options={["1", "2", "3", "4", "5"]} prefix="Poor" suffix="Excellent" inline
+                        <Radio id="fitnessLevel" options={["1", "2", "3", "4", "5"]} prefix="Poor" suffix="Excellent" inline
                            value={fitnessLevel} onChange={(val) => this.handleChange('fitnessLevel', val)}  required
                         />
                     </FormGroup>
 
                     <FormGroup className="col-12 form-group" label="Have you ever done boxing/kickboxing/martial arts?" required>
-                        <Radio options={["Yes", "No"]} inline required
+                        <Radio id="boxingExperience" options={["Yes", "No"]} inline required
                             value={boxingExperience} onChange={(val) => this.handleChange('boxingExperience', val)}
                         />
                         {

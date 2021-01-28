@@ -63,13 +63,13 @@ export default class Additional extends React.Component {
 
                 <div className="row application-section">
                     <FormGroup className="col-12 form-group" label="Do you have any criminal convictions or are facing charges?" required>
-                        <Radio options={['Yes', 'No']} inline
+                        <Radio id="criminalConvictions" options={['Yes', 'No']} inline
                             value={criminalConvictions} onChange={(val) => this.handleChange('criminalConvictions', val)} required
                         />
                     </FormGroup>
 
                     <FormGroup className="col-12 form-group" label="Are you happy to take a drug screening test?" required>
-                        <Radio options={['Yes', 'No']} inline
+                        <Radio id="drugTest" options={['Yes', 'No']} inline
                             value={drugTest} onChange={(val) => this.handleChange('drugTest', val)} required
                         />
                     </FormGroup>

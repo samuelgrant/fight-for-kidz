@@ -6248,6 +6248,11 @@ ul.steps {
   margin-right: 10px;
 }
 
+.steps li.disabled {
+  cursor: not-allowed;
+  color: unset;
+}
+
 /* Contains the auctions in the large screen format */
 .auctions-row {
   color: black;
