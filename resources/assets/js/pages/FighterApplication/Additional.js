@@ -23,6 +23,8 @@ export default class Additional extends React.Component {
             criminalConvictions: false,
             drugTest: false
         }
+
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     static getDerivedStateFromProps(nextProps, prevState) {
@@ -52,11 +54,11 @@ export default class Additional extends React.Component {
 
         return (
 
-            <form onSubmit={this.handleSubmit.bind(this)}>
+            <form onSubmit={this.handleSubmit}>
                 <div className="row application-section">
                     {                      
                         this.props.customQuestions.map((question, key) => {
-                            return <CustomQuestion id={key} question={question} value={this.state[cq[key]]} onChange={this.handleChange.bind(this, cq[key])} key={key} />
+                            return <CustomQuestion id={key} question={question} value={this.state[cq[key]]} required={question.required} onChange={this.handleChange.bind(this, cq[key])} key={key} />
                         })
                     }
                 </div>

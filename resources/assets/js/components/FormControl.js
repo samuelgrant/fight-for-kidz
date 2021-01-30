@@ -306,7 +306,8 @@ export class Radio extends Component {
     }
 
     render() {
-        const { id, inline, options, prefix, suffix } = this.props;
+        const { id, inline, options, prefix, required, suffix } = this.props;
+
         return (
             <div>
                 { options.map((option, key) => {
@@ -321,6 +322,7 @@ export class Radio extends Component {
                             name={id || null}
                             type="radio"
                             value={option}
+                            required={required}
                             checked={option.toLowerCase() == (this.state.value || "").toLowerCase()}
                             onChange={this.handleClick.bind(this)}
                         />
