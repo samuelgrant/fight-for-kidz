@@ -12,16 +12,6 @@ export default class Declaration extends React.Component {
         }
     }
 
-    static getDerivedStateFromProps(nextProps, prevState) {
-        const { declaration } = nextProps.formdata;
-
-        if (!!declaration && prevState != declaration) {
-            return nextProps.formdata.declaration;
-        }
-
-        return prevState;
-    }
-
     handleSubmit(e) {
         e.preventDefault();
         this.props.updateState('declaration', this.state)

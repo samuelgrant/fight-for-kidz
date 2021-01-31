@@ -20,16 +20,6 @@ export default class MedicalTwo extends React.Component {
         }
     }
 
-    static getDerivedStateFromProps(nextProps, prevState) {
-        const { medicalTwo } = nextProps.formdata;
-
-        if (!!medicalTwo && prevState != medicalTwo) {
-            return nextProps.formdata.medicalTwo;
-        }
-
-        return prevState;
-    }
-
     handleSubmit(e) {
         e.preventDefault();
         this.props.updateState('medicalTwo', this.state)

@@ -36,16 +36,6 @@ export default class MedicalOne extends React.Component {
         }
     }
 
-    static getDerivedStateFromProps(nextProps, prevState) {
-        const { medicalOne } = nextProps.formdata;
-
-        if (!!medicalOne && prevState != medicalOne) {
-            return nextProps.formdata.medicalOne;
-        }
-
-        return prevState;
-    }
-
     handleSubmit(e) {
         e.preventDefault();
         this.props.updateState('medicalOne', this.state)

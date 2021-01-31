@@ -27,16 +27,6 @@ export default class Additional extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    static getDerivedStateFromProps(nextProps, prevState) {
-        const { additional } = nextProps.formdata;
-
-        if (!!additional && prevState != additional) {
-            return nextProps.formdata.additional;
-        }
-
-        return prevState;
-    }
-
     handleSubmit(e) {
         e.preventDefault();
         this.props.updateState('additional', this.state)

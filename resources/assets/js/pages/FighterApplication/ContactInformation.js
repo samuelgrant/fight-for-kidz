@@ -19,17 +19,7 @@ export default class ContactInformation extends React.Component {
             phone2: ""
         }
     }
-
-    static getDerivedStateFromProps(nextProps, prevState) {
-        const { contact } = nextProps.formdata;
-
-        if(!!contact && prevState != contact){
-            return nextProps.formdata.contact;
-        }
-
-        return prevState;
-    }
-
+    
     handleChange(key, val) {
         this.setState({[key]: val})
     }

@@ -21,16 +21,6 @@ export default class PersonalDetails extends React.Component {
         }
     }
 
-    static getDerivedStateFromProps(nextProps, prevState) {
-        const { personal } = nextProps.formdata;
-
-        if(!!personal && prevState != personal){
-            return nextProps.formdata.personal;
-        }
-
-        return prevState;
-    }
-
     handleChange(key, val) {
         this.setState({[key]: val})
     }
@@ -46,7 +36,7 @@ export default class PersonalDetails extends React.Component {
     }
 
     render() {
-        const { currentWeight, dob, employer, expectedWeight, gender, hand, height, image, occupation, ownsponsor } = this.state;
+        const { currentWeight, dob, employer, expectedWeight, gender, hand, height, image, occupation, ownsponsor, fightname } = this.state;
         return (
             <form onSubmit={this.handleSubmit.bind(this)}>
                 <div className="row application-section">
@@ -93,7 +83,7 @@ export default class PersonalDetails extends React.Component {
 
                 <div className="row application-section">
                     <FormGroup className="col-md-6 col-sm-12 form-group" label="Preferred Fight Name:" htmlFor="fightname">
-                        <Input id="fightname" type="text" placeHolder="Leave blank if undecided" onChange={(val) => this.handleChange('fightname', val)} />
+                        <Input id="fightname" type="text" placeHolder="Leave blank if undecided" value={fightname} onChange={(val) => this.handleChange('fightname', val)} />
                     </FormGroup>
 
                     <FormGroup className="col-md-12 form-group" label="Please upload a recent photo of yourself:" htmlFor="photo" required>

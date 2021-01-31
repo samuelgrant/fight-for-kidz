@@ -16,16 +16,6 @@ export default class EmergencyContact extends React.Component {
         }
     }
 
-    static getDerivedStateFromProps(nextProps, prevState) {
-        const { emergency } = nextProps.formdata;
-
-        if(!!emergency && prevState != emergency){
-            return nextProps.formdata.emergency;
-        }
-
-        return prevState;
-    }
-
     handleChange(key, val) {
         this.setState({[key]: val})
     }

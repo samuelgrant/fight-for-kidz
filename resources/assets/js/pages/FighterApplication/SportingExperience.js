@@ -15,16 +15,6 @@ export default class SportingExperience extends React.Component {
         }
     }
 
-    static getDerivedStateFromProps(nextProps, prevState) {
-        const { previousSport } = nextProps.formdata;
-
-        if(!!previousSport && prevState != previousSport){
-            return nextProps.formdata.previousSport;
-        }
-
-        return prevState;
-    }
-
     handleChange(key, val) {
         this.setState({[key]: val})
     }
